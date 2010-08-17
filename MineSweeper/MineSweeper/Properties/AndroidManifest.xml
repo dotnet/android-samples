@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Novell.DroidSamples.MineSweeper" android:versionCode="1" android:versionName="1.0">
-  <application android:label="MineSweeper">
-  </application>
-  <uses-sdk minSdkVersion="4" />
-</manifest>

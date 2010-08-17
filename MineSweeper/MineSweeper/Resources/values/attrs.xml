@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<resources>
-	<declare-styleable name="MineFieldView">
-		<attr name="mine_field_columns" format="integer"/>
-		<attr name="mine_field_rows" format="integer"/>
-	</declare-styleable>
-</resources>
