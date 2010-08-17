@@ -62,7 +62,7 @@ namespace Mono.Samples.LunarLander {
 		 * @param menu the Menu to which entries may be added
 		 * @return true
 		 */
-		public override bool OnCreateOptionsMenu (Menu menu)
+		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
 			base.OnCreateOptionsMenu (menu);
 
@@ -84,7 +84,7 @@ namespace Mono.Samples.LunarLander {
 		 * @return true if the Menu item was legit (and we consumed it), false
 		 *		 otherwise
 		 */
-		public override bool OnOptionsItemSelected (MenuItem item)
+		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
 			case MENU_START:

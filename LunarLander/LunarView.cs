@@ -41,7 +41,7 @@ using Thread = System.Threading.Thread;
  */
 
 namespace Mono.Samples.LunarLander {
-	class LunarView : SurfaceView, SurfaceHolderCallback
+	class LunarView : SurfaceView, ISurfaceHolderCallback
 	{
 		/** Handle to the application context, used to e.g. fetch Drawables. */
 		private Context mContext;
@@ -55,7 +55,7 @@ namespace Mono.Samples.LunarLander {
 		public LunarView (IntPtr handle) : base (handle) 
 		{
 			// register our interest in hearing about changes to our surface
-			SurfaceHolder holder = Holder;
+			ISurfaceHolder holder = Holder;
 			Holder.AddCallback (this);
 
 			// create thread only; it's started in surfaceCreated()
@@ -108,7 +108,7 @@ namespace Mono.Samples.LunarLander {
 		}
 
 		/* Callback invoked when the surface dimensions change. */
-		public void SurfaceChanged(SurfaceHolder holder, int format, int width, int height)
+		public void SurfaceChanged(ISurfaceHolder holder, int format, int width, int height)
 		{
 			thread.SetSurfaceSize(width, height);
 		}
@@ -117,7 +117,7 @@ namespace Mono.Samples.LunarLander {
 		 * Callback invoked when the Surface has been created and is ready to be
 		 * used.
 		 */
-		public void SurfaceCreated(SurfaceHolder holder)
+		public void SurfaceCreated(ISurfaceHolder holder)
 		{
 			// start the thread here so that we don't busy-wait in run()
 			// waiting for the surface to be created
@@ -130,7 +130,7 @@ namespace Mono.Samples.LunarLander {
 		 * be touched. WARNING: after this method returns, the Surface/Canvas must
 		 * never be touched again!
 		 */
-		public void SurfaceDestroyed (SurfaceHolder holder)
+		public void SurfaceDestroyed (ISurfaceHolder holder)
 		{
 			// we have to tell thread to shut down & wait for it to finish, or else
 			// it might touch the Surface after we return and explode
@@ -316,7 +316,7 @@ namespace Mono.Samples.LunarLander {
 			private RectF mScratchRect;
 
 			/** Handle to the surface manager object we interact with */
-			private SurfaceHolder mSurfaceHolder;
+			private ISurfaceHolder mSurfaceHolder;
 
 			/** Number of wins in a row. */
 			private int mWinsInARow;
@@ -330,7 +330,7 @@ namespace Mono.Samples.LunarLander {
 			Thread thread;
 			LunarView view;
 
-			public LunarThread (LunarView view, SurfaceHolder surfaceHolder, Context context, Handler handler)
+			public LunarThread (LunarView view, ISurfaceHolder surfaceHolder, Context context, Handler handler)
 			{
 				this.view = view;
 				thread = new Thread (Run);
