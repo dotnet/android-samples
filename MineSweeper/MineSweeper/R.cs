@@ -1,3 +1,0 @@
-public partial class R
-{
-}

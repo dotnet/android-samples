@@ -94,7 +94,7 @@ namespace Novell.DroidSamples.MineSweeper
 			var line_paint = new Paint ();
 			line_paint.Color = Color.Cyan;
 			line_paint.StrokeWidth = 10;
-			line_paint.SetStyle (Paint.Style.STROKE);
+			line_paint.SetStyle (Paint.Style.Stroke);
 
 			canvas.DrawLine (0.0f, 0.0f, 100.0f, 100.0f, line_paint);
 			return;
@@ -125,7 +125,7 @@ namespace Novell.DroidSamples.MineSweeper
 			w = 32;
 			h = 32;
 
-			var bmp = Bitmap.CreateBitmap (w, h, Bitmap.Config.ARGB_8888);
+			var bmp = Bitmap.CreateBitmap (w, h, Bitmap.Config.Argb8888);
 			Log ("TEST #1: {0}", bmp != null);
 			Canvas c = new Canvas (bmp);
 			d.SetBounds (0, 0, w - 1, h - 1);
