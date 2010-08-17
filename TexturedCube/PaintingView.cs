@@ -84,6 +84,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.MatrixMode(All.Projection);
 			GL.LoadIdentity();
 
+			// gluPerspective
 			Matrix4 m = Matrix4.CreatePerspectiveFieldOfView (ToRadians (45.0f), (float)width / (float)height, 1.0f, 100.0f);
 			float [] perspective_m = new float [16];
 

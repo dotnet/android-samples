@@ -16,10 +16,14 @@ namespace Mono.Samples.GLCube {
 		public PaintingView (IntPtr handle) : base (handle)
 		{ }
 
+		// This gets called when the drawing surface is ready
 		protected override void OnLoad (EventArgs e)
 		{
 			base.OnLoad (e);
 
+			// UpdateFrame and RenderFrame are called
+			// by the render loop. This is takes effect
+			// when we use 'Run ()', like below
 			UpdateFrame += delegate {
 				rotx += 0.5f;
 				roty += 1.5f;
