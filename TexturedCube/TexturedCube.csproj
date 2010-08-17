@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources/drawable/app_texturedcube.png" />
-    <AndroidResource Include="Resources/drawable/f_spot.bmp" />
+    <AndroidResource Include="Resources/drawable/f_spot.png" />
     <AndroidResource Include="Resources/layout/main.xml" />
     <AndroidResource Include="Resources/values/strings.xml" />
   </ItemGroup>

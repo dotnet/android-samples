@@ -31,6 +31,9 @@ namespace Mono.Samples.TexturedCube {
 			Resize += delegate {
 				SetupCamera ();
 			};
+
+			xangle = 45;
+			yangle = 45;
 		}
 
 		protected override void OnLoad (EventArgs e)
@@ -42,7 +45,7 @@ namespace Mono.Samples.TexturedCube {
 			MakeCurrent ();
 
 			GL.ShadeModel(All.Smooth);
-			GL.ClearColor(0, 0, 0, 0);
+			GL.ClearColor(1, 1, 1, 1);
 
 			GL.ClearDepth(1.0f);
 			GL.Enable(All.DepthTest);
