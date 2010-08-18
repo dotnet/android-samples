@@ -8,7 +8,8 @@ The following samples are provided:
   - Button: A full-screen button with click counter, demonstrates use of C#
     events to handle UI events.
 
-  - GLCube: A static image shown via OpenGLES and OpenTK, via AndroidGameView.
+  - GLCube: A simple colored cube that keeps rotating about its center, rendered
+    via OpenGLES and OpenTK, via AndroidGameView.
 
   - HelloWorld: A port of the simple Android Hello World application.
     Also demonstrates use of resources.
