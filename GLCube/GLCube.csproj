@@ -12,7 +12,7 @@
     <RootNamespace>Mono.Samples.GLCube</RootNamespace>
     <AssemblyName>GLCube</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidManifest>AndroidManifest.xml</AndroidManifest>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>R.cs</AndroidResgenFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="OpenTK" />
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,12 +47,14 @@
     <Compile Include="R.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_glcube.png" />
     <AndroidResource Include="Resources\layout\main.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
