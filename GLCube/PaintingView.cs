@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
+using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using OpenTK.Platform;
@@ -12,9 +13,15 @@ namespace Mono.Samples.GLCube {
 
 	class PaintingView : AndroidGameView
 	{
-		float rotx, roty, rotz;
+		float [] rot;
+		float [] rateOfRotationPS;//degrees
+
 		public PaintingView (IntPtr handle) : base (handle)
-		{ }
+		{
+			GLContextVersion = GLContextVersion.Gles1_1;
+			rateOfRotationPS = new float [] { 30, 45, 60 };
+			rot = new float [] { 0, 0, 0};
+		}
 
 		// This gets called when the drawing surface is ready
 		protected override void OnLoad (EventArgs e)
@@ -24,10 +31,10 @@ namespace Mono.Samples.GLCube {
 			// UpdateFrame and RenderFrame are called
 			// by the render loop. This is takes effect
 			// when we use 'Run ()', like below
-			UpdateFrame += delegate {
-				rotx += 0.5f;
-				roty += 1.5f;
-				rotz += 0.9f;
+			UpdateFrame += delegate (object sender, FrameEventArgs args) {
+				// Rotate at a constant speed
+				for (int i = 0; i < 3; i ++)
+					rot [i] += (float) (rateOfRotationPS [i] * args.Time);
 			};
 
 			RenderFrame += delegate {
@@ -35,7 +42,7 @@ namespace Mono.Samples.GLCube {
 			};
 
 			// Run the render loop
-			Run ();
+			Run (30);
 		}
 
 		void RenderCube ()
@@ -47,9 +54,9 @@ namespace Mono.Samples.GLCube {
 
 			GL.MatrixMode (All.Modelview);
 			GL.LoadIdentity ();
-			GL.Rotate (rotx, 1.0f, 0.0f, 0.0f);
-			GL.Rotate (roty, 0.0f, 1.0f, 0.0f);
-			GL.Rotate (rotz, 0.0f, 1.0f, 0.0f);
+			GL.Rotate (rot[0], 1.0f, 0.0f, 0.0f);
+			GL.Rotate (rot[1], 0.0f, 1.0f, 0.0f);
+			GL.Rotate (rot[2], 0.0f, 1.0f, 0.0f);
 
 			GL.ClearColor (0, 0, 0, 1.0f);
 			GL.Clear ((uint) All.ColorBufferBit);
