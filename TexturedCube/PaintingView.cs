@@ -17,8 +17,6 @@ namespace Mono.Samples.TexturedCube {
 
 	class PaintingView : AndroidGameView
 	{
-		float[] cubeVertexBfr;
-		float[] cubeTextureBfr;
 		float prevx, prevy;
 		float xangle, yangle;
 		int textureId;
@@ -71,7 +69,7 @@ namespace Mono.Samples.TexturedCube {
 
 			SetupCamera ();
 
-			RenderFrame ();
+			RenderCube ();
 		}
 
 		void SetupCamera ()
@@ -110,11 +108,11 @@ namespace Mono.Samples.TexturedCube {
 		public override bool OnTouchEvent (MotionEvent e)
 		{
 			base.OnTouchEvent (e);
-			if (e.Action == MotionEvent.ActionDown) {
+			if (e.Action == MotionEventActions.Down) {
 			    prevx = e.GetX ();
 			    prevy = e.GetY ();
 			}
-			if (e.Action == MotionEvent.ActionMove) {
+			if (e.Action == MotionEventActions.Move) {
 			    float e_x = e.GetX ();
 			    float e_y = e.GetY ();
 
@@ -125,12 +123,12 @@ namespace Mono.Samples.TexturedCube {
 			    prevx = e_x;
 			    prevy = e_y;
 			}
-			if (e.Action == MotionEvent.ActionDown || e.Action == MotionEvent.ActionMove)
-				RenderFrame ();
+			if (e.Action == MotionEventActions.Down || e.Action == MotionEventActions.Move)
+				RenderCube ();
 			return true;
 		}
 
-		void RenderFrame ()
+		void RenderCube ()
 		{
 			GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
 			GL.MatrixMode(All.Modelview);
