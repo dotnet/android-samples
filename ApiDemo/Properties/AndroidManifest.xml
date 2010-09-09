@@ -8,12 +8,12 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <!--<activity android:name="monoDroid.apiDemo.Transition3d" android:label="Animation/Transition3d">
+    <activity android:name="monoDroid.apiDemo.Transition3d" android:label="Animation/Transition3d">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.SAMPLE_CODE" />
       </intent-filter>
-    </activity>-->
+    </activity>
     <activity android:name="monoDroid.apiDemo.NotifyWithText" android:label="App/NotifyWithText">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -75,7 +75,7 @@
       </intent-filter>
     </activity>
   </application>
+  <uses-sdk android:minSdkVersion="4" />
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.CAMERA" />
-  <uses-sdk android:minSdkVersion="4" />
 </manifest>

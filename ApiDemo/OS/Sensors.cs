@@ -54,6 +54,7 @@ namespace MonoDroid.ApiDemo
 			private float mWidth;
 			private float mHeight;
 
+
 			public GraphView (Context context)
 				: base (context)
 			{

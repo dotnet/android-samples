@@ -81,7 +81,7 @@ namespace MonoDroid.ApiDemo
 
 			// Since we are caching large views, we want to keep their cache
 			// between each animation
-			mContainer.PersistentDrawingCache = ViewGroup.PersistentAnimationCache;
+			mContainer.PersistentDrawingCache = PersistentDrawingCaches.AnimationCache;
 		}
 
 		/**
@@ -182,14 +182,14 @@ namespace MonoDroid.ApiDemo
 				Rotate3dAnimation rotation;
 
 				if (position > -1) {
-					photos_list.Visibility = View.Gone;
-					image_view.Visibility = View.Visible;
+					photos_list.Visibility = ViewStates.Gone;
+					image_view.Visibility = ViewStates.Visible;
 					image_view.RequestFocus ();
 
 					rotation = new Rotate3dAnimation (90, 180, centerX, centerY, 310.0f, false);
 				} else {
-					image_view.Visibility = View.Gone;
-					photos_list.Visibility = View.Visible;
+					image_view.Visibility = ViewStates.Gone;
+					photos_list.Visibility = ViewStates.Visible;
 					photos_list.RequestFocus ();
 
 					rotation = new Rotate3dAnimation (90, 0, centerX, centerY, 310.0f, false);
@@ -216,18 +216,18 @@ namespace MonoDroid.ApiDemo
 
 		#region IOnItemClickListener Members
 
-		public void OnItemClick (AdapterView<object> parent, View view, int position, long id)
+		public void OnItemClick (object parent, ItemEventArgs args)
 		{
 			// Pre-load the image then start the animation
-			mImageView.SetImageResource (PHOTOS_RESOURCES[position]);
-			ApplyRotation (position, 0, 90);
+			mImageView.SetImageResource (PHOTOS_RESOURCES[args.Position]);
+			ApplyRotation (args.Position, 0, 90);
 		}
 
 		#endregion
 
 		#region IOnClickListener Members
 
-		public void OnClick (View v)
+		public void OnClick (object sender, EventArgs e)
 		{
 			ApplyRotation (-1, 180, 90);
 		}

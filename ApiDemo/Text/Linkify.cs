@@ -60,30 +60,28 @@ namespace MonoDroid.ApiDemo
 			// illustrate how you might display text that came from a
 			// dynamic source (eg, the network).
 
-			//TextView t3 = (TextView)FindViewById (R.id.text3);
-			//t3.Text = (CharSequence)Html.FromHtml (
-			//                "<b>text3:</b>  Text with a " +
-			//                "<a href=\"http://www.google.com\">link</a> " +
-			//                "created in the Java source code using HTML.");
+			TextView t3 = (TextView)FindViewById (R.id.text3);
+			t3.Text = (CharSequence)Html.FromHtml (
+					"<b>text3:</b>  Text with a " +
+					"<a href=\"http://www.google.com\">link</a> " +
+					"created in the Java source code using HTML.");
 
-			//t3.MovementMethod = LinkMovementMethod.Instance;
+			t3.MovementMethod = LinkMovementMethod.Instance;
 
 			// text4 illustrates constructing a styled string containing a
 			// link without using HTML at all.  Again, for a fixed string
 			// you should probably be using a string resource, not a
 			// hardcoded value.
 
-			//SpannableString ss = new SpannableString ("text4: Click here to dial the phone.");
+			SpannableString ss = new SpannableString ("text4: Click here to dial the phone.");
 
-			//ss.SetSpan (new StyleSpan (Typeface.Bold), 0, 6,
-			//           SpannedConsts.SpanExclusiveExclusive);
-			//ss.SetSpan (new URLSpan ("tel:4155551212"), 13, 17,
-			//           SpannedConsts.SpanExclusiveExclusive);
+			ss.SetSpan (new StyleSpan (TypefaceStyle.Bold), 0, 6, SpanTypes.ExclusiveExclusive);
+			ss.SetSpan (new URLSpan ("tel:4155551212"), 13, 17, SpanTypes.ExclusiveExclusive);
 
-			//TextView t4 = FindViewById<TextView> (R.id.text4);
+			TextView t4 = (TextView)FindViewById (R.id.text4);
 
-			//t4.Text = ss;
-			//t4.MovementMethod = LinkMovementMethod.Instance;
+			t4.Text = ((ICharSequence)ss).ToString ();
+			t4.MovementMethod = LinkMovementMethod.Instance;
 		}
 	}
 }

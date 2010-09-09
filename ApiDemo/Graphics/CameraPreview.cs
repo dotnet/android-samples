@@ -15,6 +15,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 using Android.App;
 using Android.Content;
@@ -59,7 +60,7 @@ namespace MonoDroid.ApiDemo
 			// underlying surface is created and destroyed.
 			surface_holder = Holder;
 			surface_holder.AddCallback (this);
-			surface_holder.SetType (SurfaceHolderConsts.SurfaceTypePushBuffers);
+			surface_holder.SetType (SurfaceType.PushBuffers);
 		}
 
 		public void SurfaceCreated (ISurfaceHolder holder)
@@ -87,7 +88,7 @@ namespace MonoDroid.ApiDemo
 			camera = null;
 		}
 
-		private Camera.Size GetOptimalPreviewSize (Java.Util.IList<Camera.Size> sizes, int w, int h)
+		private Camera.Size GetOptimalPreviewSize (IList<Camera.Size> sizes, int w, int h)
 		{
 			const double ASPECT_TOLERANCE = 0.05;
 			double targetRatio = (double)w / h;
@@ -101,8 +102,8 @@ namespace MonoDroid.ApiDemo
 			int targetHeight = h;
 
 			// Try to find an size match aspect ratio and size
-			for (int i = 0; i < sizes.Size (); i++) {
-				Camera.Size size = sizes.Get (i);
+			for (int i = 0; i < sizes.Count; i++) {
+				Camera.Size size = sizes [i];
 				double ratio = (double)size.Width / size.Height;
 
 				if (Math.Abs (ratio - targetRatio) > ASPECT_TOLERANCE)
@@ -117,8 +118,8 @@ namespace MonoDroid.ApiDemo
 			// Cannot find the one match the aspect ratio, ignore the requirement
 			if (optimalSize == null) {
 				minDiff = Double.MaxValue;
-				for (int i = 0; i < sizes.Size (); i++) {
-					Camera.Size size = sizes.Get (i);
+				for (int i = 0; i < sizes.Count; i++) {
+					Camera.Size size = sizes [i];
 
 					if (Math.Abs (size.Height - targetHeight) < minDiff) {
 						optimalSize = size;
@@ -126,7 +127,7 @@ namespace MonoDroid.ApiDemo
 					}
 				}
 			}
-
+			//a
 			return optimalSize;
 		}
 
@@ -136,7 +137,7 @@ namespace MonoDroid.ApiDemo
 			// the preview.
 			Camera.Parameters parameters = camera.GetParameters ();
 
-			Java.Util.IList<Camera.Size> sizes = parameters.SupportedPreviewSizes;
+			IList<Camera.Size> sizes = parameters.SupportedPreviewSizes;
 			Camera.Size optimalSize = GetOptimalPreviewSize (sizes, w, h);
 
 			parameters.SetPreviewSize (optimalSize.Width, optimalSize.Height);

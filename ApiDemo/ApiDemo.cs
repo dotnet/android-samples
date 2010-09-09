@@ -15,6 +15,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -37,6 +38,8 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
+			SetDefaultKeyMode (DefaultKey.SearchLocal);
+
 			String path = Intent.GetStringExtra ("com.example.android.apis.Path");
 			
 			if (path == null)
@@ -46,11 +49,18 @@ namespace MonoDroid.ApiDemo
 				Android.R.Layout.SimpleListItem1, new String[] { "title" },
 				new int[] { Android.R.Id.Text1 });
 			ListView.TextFilterEnabled = true;
+
+			ListView.ItemClick += delegate (object sender, ItemEventArgs args) {
+				IDictionary<string, object> map = (IDictionary<string, object>) (sender as ListView).GetItemAtPosition (args.Position);
+				Intent intent = (Intent)map ["intent"];
+				intent.SetFlags (ActivityFlags.NewTask);
+				StartActivity (intent);
+			};
 		}
 
-		protected Java.Util.IList<Java.Util.IMap<string, object>> GetData (String prefix)
+		protected IList<IDictionary<string, object>> GetData (String prefix)
 		{
-			var myData = new Java.Util.ArrayList<Java.Util.IMap<string, object>> ();
+			var myData = new JavaList<IDictionary<string, object>> ();
 
 			Intent mainIntent = new Intent (Intent.ActionMain, null);
 			mainIntent.AddCategory (Intent.CategorySampleCode);
@@ -68,12 +78,12 @@ namespace MonoDroid.ApiDemo
 			else
 				prefixPath = prefix.Split ('/');
 
-			int len = list.Size ();
+			int len = list.Count;
 
-			Java.Util.HashMap<string, bool> entries = new Java.Util.HashMap<string, bool> ();
+			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
 
 			for (int i = 0; i < len; i++) {
-				ResolveInfo info = list.Get (i);
+				ResolveInfo info = list [i];
 				CharSequence labelSeq = info.LoadLabel (pm);
 
 				String label = labelSeq != null ? labelSeq.ToString () : info.ActivityInfo.Name;
@@ -88,9 +98,9 @@ namespace MonoDroid.ApiDemo
 							info.ActivityInfo.ApplicationInfo.PackageName,
 							info.ActivityInfo.Name));
 					} else {
-						if (entries.Get (nextLabel) == false) {
+						if (!entries.ContainsKey (nextLabel) || entries [nextLabel] == false) {
 							AddItem (myData, nextLabel, BrowseIntent (prefix == "" ? nextLabel : prefix + "/" + nextLabel));
-							entries.Put (nextLabel, true);
+							entries [nextLabel] = true;
 						}
 					}
 				}
@@ -116,24 +126,14 @@ namespace MonoDroid.ApiDemo
 			return result;
 		}
 
-		protected void AddItem (Java.Util.ArrayList<Java.Util.IMap<string, object>> data, String name, Intent intent)
+		protected void AddItem (JavaList<IDictionary<string, object>> data, String name, Intent intent)
 		{
-			Java.Util.IMap<string, object> temp = new Java.Util.HashMap<string, object> ();
+			JavaDictionary<string, object> temp = new JavaDictionary<string, object> ();
 
-			temp.Put ("title", name);
-			temp.Put ("intent", intent);
+			temp ["title"] = name;
+			temp ["intent"] = intent;
 
 			data.Add (temp);
-		}
-
-		protected override void OnListItemClick (ListView l, View v, int position, long id)
-		{
-			Java.Util.IMap<string, object> map = (Java.Util.IMap<string, object>)l.GetItemAtPosition (position);
-
-			Intent intent = (Intent)map.Get ("intent");
-			intent.SetFlags (Intent.FlagActivityNewTask);
-
-			StartActivity (intent);
 		}
 	}
 }

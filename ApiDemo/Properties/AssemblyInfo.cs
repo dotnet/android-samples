@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle ("ApiDemo")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Novell")]
+[assembly: AssemblyCompany ("Microsoft")]
 [assembly: AssemblyProduct ("ApiDemo")]
-[assembly: AssemblyCopyright ("Copyright © Novell 2010")]
+[assembly: AssemblyCopyright ("Copyright © Microsoft 2010")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

@@ -46,13 +46,13 @@ namespace MonoDroid.ApiDemo
 			SetContentView (R.layout.morse_code);
 
 			// Set the Click event for the button so we see when it's pressed.
-			((Button)FindViewById (R.id.button)).Click += new View.OnClickEventHandler (MorseCode_Click);
+			((Button)FindViewById (R.id.button)).Click += MorseCode_Click;
 
 			// Save the text view so we don't have to look it up each time
 			mTextView = (TextView)FindViewById (R.id.text);
 		}
 
-		private void MorseCode_Click (View v)
+		private void MorseCode_Click (object sender, EventArgs e)
 		{
 			// Get the text out of the view
 			String text = mTextView.Text.ToString ();

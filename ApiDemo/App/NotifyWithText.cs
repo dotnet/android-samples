@@ -59,7 +59,7 @@ namespace MonoDroid.ApiDemo
 				// resource id (R.string.short_notification_text).  There is also
 				// a version that takes a CharSequence if you must construct
 				// the text yourself.
-				Toast.MakeText (this, R.@string.short_notification_text, Toast.LengthShort).Show ();
+				Toast.MakeText (this, R.@string.short_notification_text, ToastLength.Short).Show ();
 			};
 
 			// long notification
@@ -69,8 +69,7 @@ namespace MonoDroid.ApiDemo
 			button = (Button)FindViewById (R.id.long_notify);
 
 			button.Click += delegate {
-				Toast.MakeText (this, R.@string.long_notification_text,
-				Toast.LengthLong).Show ();
+				Toast.MakeText (this, R.@string.long_notification_text, ToastLength.Long).Show ();
 			};
 		}
 	}
