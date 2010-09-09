@@ -60,13 +60,13 @@ namespace MonoDroid.ApiDemo
 			// illustrate how you might display text that came from a
 			// dynamic source (eg, the network).
 
-			TextView t3 = (TextView)FindViewById (R.id.text3);
-			t3.Text = (CharSequence)Html.FromHtml (
-					"<b>text3:</b>  Text with a " +
-					"<a href=\"http://www.google.com\">link</a> " +
-					"created in the Java source code using HTML.");
+			//TextView t3 = (TextView)FindViewById (R.id.text3);
+			//t3.Text = Html.FromHtml(
+			//        "<b>text3:</b>  Text with a " +
+			//        "<a href=\"http://www.google.com\">link</a> " +
+			//        "created in the Java source code using HTML.").GetType ().ToString ();
 
-			t3.MovementMethod = LinkMovementMethod.Instance;
+			//t3.MovementMethod = LinkMovementMethod.Instance;
 
 			// text4 illustrates constructing a styled string containing a
 			// link without using HTML at all.  Again, for a fixed string
@@ -80,7 +80,7 @@ namespace MonoDroid.ApiDemo
 
 			TextView t4 = (TextView)FindViewById (R.id.text4);
 
-			t4.Text = ((ICharSequence)ss).ToString ();
+			t4.Text = ss;
 			t4.MovementMethod = LinkMovementMethod.Instance;
 		}
 	}
