@@ -64,7 +64,7 @@ namespace MonoDroid.ApiDemo
 			//t3.Text = Html.FromHtml(
 			//        "<b>text3:</b>  Text with a " +
 			//        "<a href=\"http://www.google.com\">link</a> " +
-			//        "created in the Java source code using HTML.").GetType ().ToString ();
+			//        "created in the Java source code using HTML.");
 
 			//t3.MovementMethod = LinkMovementMethod.Instance;
 
