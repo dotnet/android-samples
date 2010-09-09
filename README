@@ -11,6 +11,8 @@ The following samples are provided:
   - GLCube: A simple colored cube that keeps rotating about its center, rendered
     via OpenGLES and OpenTK, via AndroidGameView.
 
+  - GLTriangle20: Renders a simple triangle using OpenGLES 2.0 shaders.
+
   - HelloWorld: A port of the simple Android Hello World application.
     Also demonstrates use of resources.
 
