@@ -15,45 +15,27 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "Text/Log TextBox")]
+	[Activity (Label = "Graphics/Gradient Drawable")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
-	public class LogTextBox1 : Activity
+	public class GradientDrawable1 : Activity
 	{
-		private LogTextBox text_box;
-
-		public LogTextBox1 (IntPtr handle)
+		public GradientDrawable1 (IntPtr handle)
 			: base (handle)
 		{
 		}
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (savedInstanceState);
+			base.OnCreate (bundle);
 
-			SetContentView (Resource.layout.log_text_box_1);
-
-			text_box = FindViewById<LogTextBox> (Resource.id.text);
-
-			Button addButton = FindViewById<Button> (Resource.id.add);
-			addButton.Click += new EventHandler (addButton_Click);
-		}
-
-		void addButton_Click (object sender, EventArgs e)
-		{
-			text_box.Append ("This is a test\n");
+			// Create your application here
+			SetContentView (Resource.layout.shape_drawable_1);
 		}
 	}
 }

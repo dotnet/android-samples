@@ -15,16 +15,18 @@
  */
 
 using System;
-
 using Android.App;
+using Android.Content;
 using Android.OS;
-using Android.Widget;
 using Android.Views;
 using Android.Views.Animations;
+using Android.Widget;
 using Java.Lang;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "Animation/3D Transition")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class Transition3d : Activity
 	{
 		private ListView mPhotosList;
@@ -48,23 +50,23 @@ namespace MonoDroid.ApiDemo
 
 		// Resource identifiers for the photos we want to display
 		private static int[] PHOTOS_RESOURCES = new int[] {
-			R.drawable.photo1,
-			R.drawable.photo2,
-			R.drawable.photo3,
-			R.drawable.photo4,
-			R.drawable.photo5,
-			R.drawable.photo6
+			Resource.drawable.photo1,
+			Resource.drawable.photo2,
+			Resource.drawable.photo3,
+			Resource.drawable.photo4,
+			Resource.drawable.photo5,
+			Resource.drawable.photo6
 		};
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.animations_main_screen);
+			SetContentView (Resource.layout.animations_main_screen);
 
 			mPhotosList = (ListView)FindViewById (Android.R.Id.List);
-			mImageView = (ImageView)FindViewById (R.id.picture);
-			mContainer = (ViewGroup)FindViewById (R.id.container);
+			mImageView = (ImageView)FindViewById (Resource.id.picture);
+			mContainer = (ViewGroup)FindViewById (Resource.id.container);
 
 			// Prepare the ListView
 			ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,

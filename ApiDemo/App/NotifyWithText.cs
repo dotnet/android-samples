@@ -19,9 +19,12 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Widget;
+using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "App/Text Notify")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class NotifyWithText : Activity
 	{
 		public NotifyWithText (IntPtr handle)
@@ -42,12 +45,12 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.notify_with_text);
+			SetContentView (Resource.layout.notify_with_text);
 
 			Button button;
 
 			// short notification
-			button = (Button)FindViewById (R.id.short_notify);
+			button = (Button)FindViewById (Resource.id.short_notify);
 
 			button.Click += delegate {
 				// Note that we create the Toast object and call the show() method
@@ -56,20 +59,20 @@ namespace MonoDroid.ApiDemo
 				// it appears.
 				//
 				// Note also that we use the version of makeText that takes a
-				// resource id (R.string.short_notification_text).  There is also
+				// resource id (Resource.string.short_notification_text).  There is also
 				// a version that takes a CharSequence if you must construct
 				// the text yourself.
-				Toast.MakeText (this, R.@string.short_notification_text, ToastLength.Short).Show ();
+				Toast.MakeText (this, Resource.@string.short_notification_text, ToastLength.Short).Show ();
 			};
 
 			// long notification
 			// The only difference here is that the notification stays up longer.
 			// You might want to use this if there is more text that they're going
 			// to read.
-			button = (Button)FindViewById (R.id.long_notify);
+			button = (Button)FindViewById (Resource.id.long_notify);
 
 			button.Click += delegate {
-				Toast.MakeText (this, R.@string.long_notification_text, ToastLength.Long).Show ();
+				Toast.MakeText (this, Resource.@string.long_notification_text, ToastLength.Long).Show ();
 			};
 		}
 	}

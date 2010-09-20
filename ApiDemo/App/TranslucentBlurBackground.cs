@@ -19,9 +19,12 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
+using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "App/Translucent Blur Background")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class TranslucentBlurBackground : Activity
 	{
 		public TranslucentBlurBackground (IntPtr handle) : base (handle)
@@ -35,7 +38,7 @@ namespace MonoDroid.ApiDemo
 			// Have the system blur any windows behind this one.
 			Window.SetFlags (WindowManagerFlags.BlurBehind, WindowManagerFlags.BlurBehind);
 
-			SetContentView (R.layout.translucent_background);
+			SetContentView (Resource.layout.translucent_background);
 		}
 	}
 }

@@ -18,9 +18,12 @@ using System;
 
 using Android.App;
 using Android.OS;
+using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "Text/Marquee")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class Marquee : Activity
 	{
 		public Marquee (IntPtr handle) : base (handle)
@@ -31,7 +34,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 			 
-			SetContentView (R.layout.marquee);
+			SetContentView (Resource.layout.marquee);
 		}
 	}
 }

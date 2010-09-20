@@ -18,9 +18,12 @@ using System;
 
 using Android.App;
 using Android.OS;
+using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "App/Translucent Background")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class TranslucentBackground : Activity
 	{
 		public TranslucentBackground (IntPtr handle)
@@ -32,7 +35,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.translucent_background);
+			SetContentView (Resource.layout.translucent_background);
 		}
 	}
 }

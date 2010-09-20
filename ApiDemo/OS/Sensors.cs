@@ -25,21 +25,59 @@ using Android.Views;
 
 namespace MonoDroid.ApiDemo
 {
-	// TODO: Disabled due to https://bugzilla.novell.com/show_bug.cgi?id=632427
+	[Activity (Label="OS/Sensors")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class Sensors : Activity
 	{
-		private SensorManager mSensorManager;
-		private GraphView mGraphView;
+		private SensorManager sensor_manager;
+		private GraphView graph_view;
 
 		public Sensors (IntPtr handle)
 			: base (handle)
 		{
 		}
 
+		// Initialization of the Activity after it is first created.  Must at least
+		// call {@link android.app.Activity#setContentView setContentView()} to
+		// describe what is to be displayed in the screen.
+		protected override void OnCreate (Bundle savedInstanceState)
+		{
+			// Be sure to call the base class.
+			base.OnCreate (savedInstanceState);
+
+			sensor_manager = (SensorManager)GetSystemService (SensorService);
+			graph_view = new GraphView (this.BaseContext);
+			SetContentView (graph_view);
+
+			sensor_manager.RegisterListener (graph_view,
+				SensorManager.SensorAccelerometer |
+				SensorManager.SensorMagneticField |
+				SensorManager.SensorOrientation,
+				SensorDelay.Fastest);
+
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+
+			sensor_manager.RegisterListener (graph_view,
+				SensorManager.SensorAccelerometer |
+				SensorManager.SensorMagneticField |
+				SensorManager.SensorOrientation,
+				SensorDelay.Fastest);
+		}
+
+		protected override void OnStop ()
+		{
+			sensor_manager.UnregisterListener (graph_view);
+			base.OnStop ();
+		}
+
 		private class GraphView : View, ISensorListener
 		{
 			private Bitmap mBitmap;
-			private Paint mPaint = new Paint ();
+			private Paint paint = new Paint ();
 			private Canvas mCanvas = new Canvas ();
 			private Path mPath = new Path ();
 			private RectF mRect = new RectF ();
@@ -54,18 +92,17 @@ namespace MonoDroid.ApiDemo
 			private float mWidth;
 			private float mHeight;
 
-
 			public GraphView (Context context)
 				: base (context)
 			{
-				mColors[0] = Color.Argb (192, 255, 64, 64);
-				mColors[1] = Color.Argb (192, 64, 128, 64);
-				mColors[2] = Color.Argb (192, 64, 64, 255);
-				mColors[3] = Color.Argb (192, 64, 255, 255);
-				mColors[4] = Color.Argb (192, 128, 64, 128);
-				mColors[5] = Color.Argb (192, 255, 255, 64);
+				mColors[0] = new Color (255, 64, 64, 192);
+				mColors[1] = new Color (64, 128, 64, 192);
+				mColors[2] = new Color (64, 64, 255, 192);
+				mColors[3] = new Color (64, 255, 255, 192);
+				mColors[4] = new Color (128, 64, 128, 192);
+				mColors[5] = new Color (255, 255, 64, 192);
 
-				mPaint.Flags = Paint.AntiAliasFlag;
+				paint.Flags = PaintFlags.AntiAlias;
 				mRect.Set (-0.5f, -0.5f, 0.5f, 0.5f);
 				mPath.ArcTo (mRect, 0, 180);
 			}
@@ -96,10 +133,9 @@ namespace MonoDroid.ApiDemo
 			{
 				lock (this) {
 					if (mBitmap != null) {
-						Paint paint = mPaint;
 						Path path = mPath;
-						int outer = Color.Argb (255, 192, 192, 192);
-						int inner = Color.Argb (255, 255, 112, 16);
+						int outer = new Color (192, 192, 192);
+						int inner = new Color (255, 112, 16);
 
 						if (mLastX >= mMaxX) {
 							mLastX = 0;
@@ -107,7 +143,7 @@ namespace MonoDroid.ApiDemo
 							float yoffset = mYOffset;
 							float maxx = mMaxX;
 							float oneG = SensorManager.StandardGravity * mScale[0];
-							paint.Color = Color.Argb (255, 170, 170, 170);
+							paint.Color = new Color (170, 170, 170);
 							cavas.DrawColor (Color.Black);
 							cavas.DrawLine (0, yoffset, maxx, yoffset, paint);
 							cavas.DrawLine (0, yoffset + oneG, maxx, yoffset + oneG, paint);
@@ -121,9 +157,9 @@ namespace MonoDroid.ApiDemo
 							float w = w0 - 32;
 							float x = w0 * 0.5f;
 							for (int i = 0; i < 3; i++) {
-								canvas.Save (Canvas.MatrixSaveFlag);
+								canvas.Save (SaveFlags.Matrix);
 								canvas.Translate (x, w * 0.5f + 4.0f);
-								canvas.Save (Canvas.MatrixSaveFlag);
+								canvas.Save (SaveFlags.Matrix);
 								paint.Color = outer;
 								canvas.Scale (w, w);
 								canvas.DrawOval (mRect, paint);
@@ -140,9 +176,9 @@ namespace MonoDroid.ApiDemo
 							float h = h0 - 32;
 							float y = h0 * 0.5f;
 							for (int i = 0; i < 3; i++) {
-								canvas.Save (Canvas.MatrixSaveFlag);
+								canvas.Save (SaveFlags.Matrix);
 								canvas.Translate (mWidth - (h * 0.5f + 4.0f), y);
-								canvas.Save (Canvas.MatrixSaveFlag);
+								canvas.Save (SaveFlags.Matrix);
 								paint.Color = outer;
 								canvas.Scale (h, h);
 								canvas.DrawOval (mRect, paint);
@@ -165,7 +201,6 @@ namespace MonoDroid.ApiDemo
 				lock (this) {
 					if (mBitmap != null) {
 						Canvas canvas = mCanvas;
-						Paint paint = mPaint;
 						if (sensor == SensorManager.SensorAccelerometer) {
 							for (int i = 0; i < 3; i++) {
 								mOrientationValues[i] = values[i];
@@ -196,43 +231,5 @@ namespace MonoDroid.ApiDemo
 
 			}
 		}
-
-		/**
-		 * Initialization of the Activity after it is first created.  Must at least
-		 * call {@link android.app.Activity#setContentView setContentView()} to
-		 * describe what is to be displayed in the screen.
-		 */
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			// Be sure to call the super class.
-			base.OnCreate (savedInstanceState);
-
-			mSensorManager = (SensorManager)GetSystemService (SensorService);
-			mGraphView = new GraphView (this.BaseContext);
-			SetContentView (mGraphView);
-
-			mSensorManager.RegisterListener (mGraphView,
-				SensorManager.SensorAccelerometer |
-				SensorManager.SensorMagneticField |
-				SensorManager.SensorOrientation,
-				SensorManager.SensorDelayFastest);
-
-		}
-
-		//protected override void OnResume ()
-		//{
-		//        base.OnResume ();
-
-		//        mSensorManager.RegisterListener (mGraphView,
-		//                SensorManager.SensorAccelerometer |
-		//                SensorManager.SensorMagneticField |
-		//                SensorManager.SensorOrientation,
-		//                SensorManager.SensorDelayFastest);
-		//}
-
-		//protected override void OnStop() {
-		//    mSensorManager.UnregisterListener(mGraphView);
-		//    base.OnStop();
-		//}
 	}
 }

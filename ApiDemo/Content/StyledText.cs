@@ -20,9 +20,12 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using Java.Lang;
+using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "Content/Styled Text")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class StyledText : Activity
 	{
 		public StyledText (IntPtr handle)
@@ -34,14 +37,14 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.styled_text);
+			SetContentView (Resource.layout.styled_text);
 
 			// Programmatically retrieve a string resource with style
 			// information and apply it to the second text view.  Note the
 			// use of CharSequence instead of String so we don't lose
 			// the style info.
-			CharSequence str = GetText (R.@string.styled_text);
-			TextView tv = (TextView)FindViewById (R.id.text);
+			CharSequence str = GetText (Resource.@string.styled_text);
+			TextView tv = (TextView)FindViewById (Resource.id.text);
 			tv.Text = str;
 		}
 	}

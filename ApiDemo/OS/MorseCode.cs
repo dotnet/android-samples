@@ -23,6 +23,8 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "OS/Morse Code")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class MorseCode : Activity
 	{
 		// Our text view 
@@ -43,13 +45,13 @@ namespace MonoDroid.ApiDemo
 			// See assets/res/any/layout/hello_world.xml for this
 			// view layout definition, which is being set here as
 			// the content of our screen.
-			SetContentView (R.layout.morse_code);
+			SetContentView (Resource.layout.morse_code);
 
 			// Set the Click event for the button so we see when it's pressed.
-			((Button)FindViewById (R.id.button)).Click += MorseCode_Click;
+			((Button)FindViewById (Resource.id.button)).Click += MorseCode_Click;
 
 			// Save the text view so we don't have to look it up each time
-			mTextView = (TextView)FindViewById (R.id.text);
+			mTextView = (TextView)FindViewById (Resource.id.text);
 		}
 
 		private void MorseCode_Click (object sender, EventArgs e)

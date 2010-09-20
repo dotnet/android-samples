@@ -25,6 +25,8 @@ using Android.Views;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "Graphics/Camera Preview")]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class CameraPreview : Activity
 	{
 		private Preview preview;
@@ -39,8 +41,7 @@ namespace MonoDroid.ApiDemo
 			base.OnCreate (savedInstanceState);
 
 			// Hide the window title.
-			// TODO: Enable when bug #633032 is fixed
-			//RequestWindowFeature (Window.FeatureNoTitle);
+			RequestWindowFeature (WindowFeatures.NoTitle);
 
 			// Create our Preview view and set it as the content of our activity.
 			preview = new Preview (this);
@@ -127,7 +128,7 @@ namespace MonoDroid.ApiDemo
 					}
 				}
 			}
-			//a
+
 			return optimalSize;
 		}
 

@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -27,6 +28,7 @@ using Java.Lang;
 
 namespace MonoDroid.ApiDemo
 {
+	[Activity (Label = "MonoDroid API Demo", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
 		public ApiDemo (IntPtr handle)
@@ -42,8 +44,7 @@ namespace MonoDroid.ApiDemo
 
 			String path = Intent.GetStringExtra ("com.example.android.apis.Path");
 			
-			if (path == null)
-				path = "";
+			path = path ?? "";
 				
 			ListAdapter = new SimpleAdapter (this, GetData (path),
 				Android.R.Layout.SimpleListItem1, new String[] { "title" },
@@ -68,7 +69,7 @@ namespace MonoDroid.ApiDemo
 			PackageManager pm = PackageManager;
 			var list = pm.QueryIntentActivities (mainIntent, 0);
 
-			if (null == list)
+			if (list == null)
 				return myData;
 
 			String[] prefixPath;
@@ -81,6 +82,8 @@ namespace MonoDroid.ApiDemo
 			int len = list.Count;
 
 			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
+
+			list = list.OrderBy (p => p.ActivityInfo.NonLocalizedLabel.ToString ()).ToList ();
 
 			for (int i = 0; i < len; i++) {
 				ResolveInfo info = list [i];
@@ -106,6 +109,7 @@ namespace MonoDroid.ApiDemo
 				}
 			}
 
+			
 			return myData;
 		}
 

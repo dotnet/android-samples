@@ -13,7 +13,7 @@
     <AssemblyName>MonoDroid.ApiDemo</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidResgenFile>R.cs</AndroidResgenFile>
+    <AndroidResgenFile>Resources\Resources.designer.cs</AndroidResgenFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,18 +57,26 @@
     <Compile Include="App\TranslucentBlurBackground.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="App\VoiceRecognition.cs" />
     <Compile Include="Content\ResourcesSample.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Content\StyledText.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Graphics\AlphaBitmap.cs" />
     <Compile Include="Graphics\CameraPreview.cs" />
+    <Compile Include="Graphics\Compass.cs" />
+    <Compile Include="Graphics\GradientDrawable1.cs" />
+    <Compile Include="Graphics\GraphicsActivity.cs" />
+    <Compile Include="Graphics\Layers.cs" />
+    <Compile Include="Graphics\PictureLayout.cs" />
     <Compile Include="OS\MorseCodeConverter.cs" />
     <Compile Include="OS\MorseCode.cs" />
-    <None Include="OS\Sensors.cs" />
-    <Compile Include="R.cs" />
+    <Compile Include="OS\Sensors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resources.designer.cs" />
+    <Compile Include="Text\LogTextBox.cs" />
     <Compile Include="Text\Marquee.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +87,18 @@
     </Content>
     <AndroidResource Include="Resources\layout\morse_code.xml" />
     <AndroidResource Include="Resources\layout\link.xml" />
+    <AndroidResource Include="Resources\layout\voice_recognition.xml" />
+    <AndroidResource Include="Resources\layout\log_text_box_1.xml" />
+    <AndroidResource Include="Resources\drawable\box.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\app_sample_code.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\app_sample_code.png" />
+    <AndroidResource Include="Resources\layout\shape_drawable_1.xml" />
+    <AndroidResource Include="Resources\drawable\line.xml" />
+    <AndroidResource Include="Resources\drawable\shape_1.xml" />
+    <AndroidResource Include="Resources\drawable\shape_2.xml" />
+    <AndroidResource Include="Resources\drawable\shape_3.xml" />
+    <AndroidResource Include="Resources\drawable\shape_4.xml" />
+    <AndroidResource Include="Resources\drawable\shape_5.xml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -98,11 +118,13 @@
     <AndroidResource Include="Resources\layout\resources.xml" />
     <AndroidResource Include="Resources\layout\styled_text.xml" />
     <AndroidResource Include="Resources\layout\translucent_background.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Text\Linkify.cs" />
-    <None Include="Text\LogTextBox1.cs" />
+    <Compile Include="Text\LogTextBox1.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
