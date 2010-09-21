@@ -9,6 +9,7 @@ using OpenTK.Platform.Android;
 
 using Android.Util;
 using Android.Views;
+using Android.Content;
 
 // Render a triangle using OpenGLES 2.0
 
@@ -20,8 +21,14 @@ namespace Mono.Samples.GLTriangle20 {
 		int program;
 		float [] vertices;
 
+		public PaintingView (Context context, IAttributeSet attrs) :
+			base (context, attrs)
+		{
+		}
+
 		public PaintingView (IntPtr handle) : base (handle)
-		{ }
+		{
+		}
 
 		// This gets called when the drawing surface is ready
 		protected override void OnLoad (EventArgs e)

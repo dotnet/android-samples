@@ -8,6 +8,8 @@ using OpenTK.Platform;
 using OpenTK.Platform.Android;
 
 using Android.Views;
+using Android.Util;
+using Android.Content;
 
 namespace Mono.Samples.GLCube {
 
@@ -16,7 +18,18 @@ namespace Mono.Samples.GLCube {
 		float [] rot;
 		float [] rateOfRotationPS;//degrees
 
+		public PaintingView (Context context, IAttributeSet attrs) :
+			base (context, attrs)
+		{
+			Initialize ();
+		}
+
 		public PaintingView (IntPtr handle) : base (handle)
+		{
+			Initialize ();
+		}
+
+		private void Initialize ()
 		{
 			GLContextVersion = GLContextVersion.Gles1_1;
 			rateOfRotationPS = new float [] { 30, 45, 60 };

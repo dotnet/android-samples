@@ -6,6 +6,7 @@ using Android.Runtime;
 
 namespace Mono.Samples.Button
 {
+	[Activity (Label = "Button Demo", MainLauncher = true)]
 	public class ButtonActivity : Activity
 	{
 		int count = 0;
@@ -16,9 +17,6 @@ namespace Mono.Samples.Button
 
 		protected override void OnCreate (Bundle bundle)
 		{
-#if MONODROID_TIMING
-			Logger.Log(LogLevel.Info, "MonoDroid-Timing", "ButtonActivity.OnCreate: time: " + (DateTime.Now - new DateTime (1970, 1, 1)).TotalMilliseconds);
-#endif
 			base.OnCreate (bundle);
 
 			// Create your application here

@@ -13,7 +13,7 @@
     <AssemblyName>GLCube</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidResgenFile>R.cs</AndroidResgenFile>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,10 +44,7 @@
   <ItemGroup>
     <Compile Include="GLCubeActivity.cs" />
     <Compile Include="PaintingView.cs" />
-    <Compile Include="R.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
+    <Compile Include="Resources\Resource.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_glcube.png" />
@@ -55,6 +52,9 @@
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

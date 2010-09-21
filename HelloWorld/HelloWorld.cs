@@ -5,9 +5,9 @@ using Android.OS;
 
 namespace Mono.Samples.HelloWorld
 {
+	[Activity (Label = "Hello World Demo", MainLauncher = true)]
 	public class HelloAndroid : Activity
 	{
-
 		public HelloAndroid (IntPtr handle) : base (handle)
 		{
 		}
@@ -16,7 +16,7 @@ namespace Mono.Samples.HelloWorld
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.main);
+			SetContentView (Resource.layout.main);
 		}
 	}
 }

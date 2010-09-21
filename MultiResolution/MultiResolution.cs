@@ -7,14 +7,15 @@ using Android.Widget;
 
 namespace Mono.Samples.MultiResolution
 {
+	[Activity (Label = "Multi Resolution Demo", MainLauncher = true)]
 	public class MultiResolution : Activity
 	{
 		private int photo_index = 0;
 
-		private List<int> photo_ids = new List<int> () { R.drawable.sample_0,
-			R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3,
-			R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6,
-			R.drawable.sample_7 };
+		private List<int> photo_ids = new List<int> () { Resource.drawable.sample_0,
+			Resource.drawable.sample_1, Resource.drawable.sample_2, Resource.drawable.sample_3,
+			Resource.drawable.sample_4, Resource.drawable.sample_5, Resource.drawable.sample_6,
+			Resource.drawable.sample_7 };
 
 		public MultiResolution (IntPtr handle) : base (handle)
 		{
@@ -25,11 +26,11 @@ namespace Mono.Samples.MultiResolution
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (R.layout.main);
+			SetContentView (Resource.layout.main);
 			ShowPhoto (photo_index);
 
 			// Handle clicks on the 'Next' button.
-			Button nextButton = (Button)FindViewById (R.id.next_button);
+			Button nextButton = FindViewById<Button> (Resource.id.next_button);
 
 			nextButton.Click += delegate {
 				photo_index = (photo_index + 1) % photo_ids.Count;
@@ -54,10 +55,10 @@ namespace Mono.Samples.MultiResolution
 
 		private void ShowPhoto (int photoIndex)
 		{
-			ImageView imageView = (ImageView)FindViewById (R.id.image_view);
+			ImageView imageView = FindViewById<ImageView> (Resource.id.image_view);
 			imageView.SetImageResource (photo_ids[photoIndex]);
 
-			TextView statusText = (TextView)FindViewById (R.id.status_text);
+			TextView statusText = FindViewById<TextView> (Resource.id.status_text);
 			statusText.Text = String.Format ("{0}/{1}", photoIndex + 1, photo_ids.Count);
 		}
 	}

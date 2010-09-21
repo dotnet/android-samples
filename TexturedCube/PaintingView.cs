@@ -23,7 +23,18 @@ namespace Mono.Samples.TexturedCube {
 		int width, height;
 		Context context;
 
+		public PaintingView (Context context, IAttributeSet attrs) :
+			base (context, attrs)
+		{
+			Initialize ();
+		}
+
 		public PaintingView (IntPtr handle) : base (handle)
+		{
+			Initialize ();
+		}
+
+		private void Initialize ()
 		{
 			context = Context;
 			Resize += delegate {
@@ -32,6 +43,7 @@ namespace Mono.Samples.TexturedCube {
 
 			xangle = 45;
 			yangle = 45;
+
 		}
 
 		protected override void OnLoad (EventArgs e)
@@ -42,30 +54,30 @@ namespace Mono.Samples.TexturedCube {
 			CreateFrameBuffer ();
 			MakeCurrent ();
 
-			GL.ShadeModel(All.Smooth);
-			GL.ClearColor(1, 1, 1, 1);
+			GL.ShadeModel (All.Smooth);
+			GL.ClearColor (1, 1, 1, 1);
 
-			GL.ClearDepth(1.0f);
-			GL.Enable(All.DepthTest);
-			GL.DepthFunc(All.Lequal);
-			
-			GL.Enable(All.CullFace);
-			GL.CullFace(All.Back);
-			
-			GL.Hint(All.PerspectiveCorrectionHint, All.Nicest);
+			GL.ClearDepth (1.0f);
+			GL.Enable (All.DepthTest);
+			GL.DepthFunc (All.Lequal);
+
+			GL.Enable (All.CullFace);
+			GL.CullFace (All.Back);
+
+			GL.Hint (All.PerspectiveCorrectionHint, All.Nicest);
 
 			// create texture
-			GL.Enable(All.Texture2D);
-			GL.GenTextures(1, ref textureId);
-			GL.BindTexture(All.Texture2D, textureId);
-			
+			GL.Enable (All.Texture2D);
+			GL.GenTextures (1, ref textureId);
+			GL.BindTexture (All.Texture2D, textureId);
+
 			// setup texture parameters
-			GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);
-			GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
-			GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-			GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
-			
-			LoadTexture (context, R.drawable.f_spot);
+			GL.TexParameterx (All.Texture2D, All.TextureMagFilter, (int)All.Linear);
+			GL.TexParameterx (All.Texture2D, All.TextureMinFilter, (int)All.Linear);
+			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
+			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+
+			LoadTexture (context, Resource.drawable.f_spot);
 
 			SetupCamera ();
 

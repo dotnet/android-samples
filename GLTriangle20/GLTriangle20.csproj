@@ -13,7 +13,7 @@
     <AssemblyName>GLTriangle20</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidResgenFile>R.cs</AndroidResgenFile>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="GLTriangle20Activity.cs" />
     <Compile Include="PaintingView.cs" />
-    <Compile Include="R.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_gltriangle.png" />

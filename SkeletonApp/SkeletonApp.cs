@@ -7,6 +7,7 @@ using Android.Widget;
 
 namespace Mono.Samples.SkeletonApp
 {
+	[Activity (MainLauncher = true)]
 	public class SkeletonActivity : Activity
 	{
 		EditText mEditor;
@@ -20,17 +21,17 @@ namespace Mono.Samples.SkeletonApp
 			base.OnCreate (savedInstanceState);
 
 			// Inflate our UI from its XML layout description
-			SetContentView (R.layout.skeleton_activity);
+			SetContentView (Resource.layout.skeleton_activity);
 
 			// Find the text editor view inside the layout, because we
 			// want to do various programmatic things with it.
-			mEditor = (EditText)FindViewById (R.id.editor);
+			mEditor = FindViewById<EditText> (Resource.id.editor);
 
 			// Hook up button presses to the appropriate event handler.
-			FindViewById (R.id.back).Click += delegate { Finish (); };
-			FindViewById (R.id.clear).Click += delegate { mEditor.Text = String.Empty; };
+			FindViewById (Resource.id.back).Click += delegate { Finish (); };
+			FindViewById (Resource.id.clear).Click += delegate { mEditor.Text = String.Empty; };
 
-			mEditor.Text = GetText (R.@string.main_label);
+			mEditor.Text = GetText (Resource.@string.main_label);
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -41,8 +42,8 @@ namespace Mono.Samples.SkeletonApp
 			// unique integer IDs, labels from our string resources, and
 			// given them shortcuts.
 
-			menu.Add (0, (int)MenuItems.Back, 0, R.@string.back).SetShortcut ('0', 'b');
-			menu.Add (0, (int)MenuItems.Clear, 0, R.@string.clear).SetShortcut ('1', 'c');
+			menu.Add (0, (int)MenuItems.Back, 0, Resource.@string.back).SetShortcut ('0', 'b');
+			menu.Add (0, (int)MenuItems.Clear, 0, Resource.@string.clear).SetShortcut ('1', 'c');
 
 			return true;
 		}
