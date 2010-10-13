@@ -21,6 +21,7 @@ using Android.OS;
 using Java.Lang;
 using Android.Widget;
 using Android.Content;
+using Android.Runtime;
 
 namespace MonoDroid.ApiDemo
 {
@@ -40,7 +41,6 @@ namespace MonoDroid.ApiDemo
 			SetContentView (Resource.layout.resources);
 
 			TextView tv;
-			CharSequence cs;
 			string str;
 
 			// ====== Using the Context.getString() convenience method ===========
@@ -48,9 +48,8 @@ namespace MonoDroid.ApiDemo
 			// Using the GetString() conevenience method, retrieve a string
 			// resource that hapepns to have style information.  Note the use of
 			// CharSequence instead of String so we don't lose the style info.
-			cs = GetText (Resource.@string.styled_text);
 			tv = (TextView)FindViewById (Resource.id.styled_text);
-			tv.Text = cs;
+			tv.Text = GetText (Resource.@string.styled_text); ;
 
 			// Use the same resource, but convert it to a string, which causes it
 			// to lose the style information.
@@ -69,9 +68,8 @@ namespace MonoDroid.ApiDemo
 			Android.Content.Res.Resources res = context.Resources;
 
 			// Get the string resource, like above.
-			cs = res.GetText (Resource.@string.styled_text);
 			tv = (TextView)FindViewById (Resource.id.res1);
-			tv.Text = cs;
+			tv.Text = res.GetText (Resource.@string.styled_text);
 
 			// Note that the Resources class has methods like getColor(),
 			// getDimen(), getDrawable() because themes are stored in resources.

@@ -24,7 +24,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 
 namespace MonoDroid.ApiDemo
 {
@@ -87,9 +86,9 @@ namespace MonoDroid.ApiDemo
 
 			for (int i = 0; i < len; i++) {
 				ResolveInfo info = list [i];
-				CharSequence labelSeq = info.LoadLabel (pm);
+				string labelSeq = info.LoadLabel (pm).ToString ();
 
-				String label = labelSeq != null ? labelSeq.ToString () : info.ActivityInfo.Name;
+				String label = labelSeq != null ? labelSeq : info.ActivityInfo.Name;
 
 				if (prefix.Length == 0 || label.StartsWith (prefix)) {
 

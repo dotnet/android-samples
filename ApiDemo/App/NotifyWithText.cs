@@ -37,7 +37,7 @@ namespace MonoDroid.ApiDemo
 		 * using the Toast method.
 		 * @see Toast
 		 * @see Toast#makeText(android.content.Context,int,int)
-		 * @see Toast#makeText(android.content.Context,java.lang.CharSequence,int)
+		 * @see Toast#makeText(android.content.Context,IEnumarable<char>,int)
 		 * @see Toast#LENGTH_SHORT
 		 * @see Toast#LENGTH_LONG
 		 */

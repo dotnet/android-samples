@@ -21,6 +21,7 @@ using Android.OS;
 using Android.Widget;
 using Java.Lang;
 using Android.Content;
+using Android.Runtime;
 
 namespace MonoDroid.ApiDemo
 {
@@ -43,9 +44,8 @@ namespace MonoDroid.ApiDemo
 			// information and apply it to the second text view.  Note the
 			// use of CharSequence instead of String so we don't lose
 			// the style info.
-			CharSequence str = GetText (Resource.@string.styled_text);
 			TextView tv = (TextView)FindViewById (Resource.id.text);
-			tv.Text = str;
+			tv.Text = GetText (Resource.@string.styled_text);
 		}
 	}
 }

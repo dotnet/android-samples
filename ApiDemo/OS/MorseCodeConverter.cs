@@ -15,7 +15,6 @@
 //
 
 using System;
-using Java.Lang;
 
 namespace MonoDroid.ApiDemo
 {
@@ -100,7 +99,7 @@ namespace MonoDroid.ApiDemo
 			for (int i = 0; i < strlen; i++) {
 				char c = str[i];
 
-				if (Character.IsWhitespace (c)) {
+				if (Java.Lang.Character.IsWhitespace (c)) {
 					if (!lastWasWhitespace) {
 						len++;
 						lastWasWhitespace = true;
@@ -124,7 +123,7 @@ namespace MonoDroid.ApiDemo
 
 			for (int i = 0; i < strlen; i++) {
 				char c = str[i];
-				if (Character.IsWhitespace (c)) {
+				if (Java.Lang.Character.IsWhitespace (c)) {
 					if (!lastWasWhitespace) {
 						result[pos] = WORD_GAP;
 						pos++;

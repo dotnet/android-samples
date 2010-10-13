@@ -21,7 +21,6 @@ using Android.OS;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
-using Java.Lang;
 
 namespace MonoDroid.ApiDemo
 {
@@ -162,7 +161,7 @@ namespace MonoDroid.ApiDemo
 	     * This class is responsible for swapping the views and start the second
 	     * half of the animation.
 	     */
-		private class SwapViews : IRunnable
+		private class SwapViews : Java.Lang.IRunnable
 		{
 			private int position;
 			private ViewGroup container;
