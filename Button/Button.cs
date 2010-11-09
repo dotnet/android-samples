@@ -11,10 +11,6 @@ namespace Mono.Samples.Button
 	{
 		int count = 0;
 
-		public ButtonActivity (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
