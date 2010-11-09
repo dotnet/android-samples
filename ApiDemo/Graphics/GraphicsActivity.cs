@@ -22,9 +22,5 @@ namespace MonoDroid.ApiDemo
 {
 	public class GraphicsActivity : Activity
 	{
-		public GraphicsActivity (IntPtr handle)
-			: base (handle)
-		{
-		}
 	}
 }

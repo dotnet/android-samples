@@ -27,17 +27,12 @@ namespace MonoDroid.ApiDemo
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class NotifyWithText : Activity
 	{
-		public NotifyWithText (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		/**
 		 * When you push the button on this Activity, it creates a {@link Toast} object and
 		 * using the Toast method.
 		 * @see Toast
 		 * @see Toast#makeText(android.content.Context,int,int)
-		 * @see Toast#makeText(android.content.Context,IEnumarable<char>,int)
+		 * @see Toast#makeText(android.content.Context,java.lang.CharSequence,int)
 		 * @see Toast#LENGTH_SHORT
 		 * @see Toast#LENGTH_LONG
 		 */

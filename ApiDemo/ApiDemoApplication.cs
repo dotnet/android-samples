@@ -13,11 +13,6 @@ namespace MonoDroid.ApiDemo
 	{
 		int count = 0;
 
-		public MonoDroidApiDemoApplication (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		public override void OnCreate ()
 		{
 			base.OnCreate ();

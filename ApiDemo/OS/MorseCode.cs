@@ -30,10 +30,6 @@ namespace MonoDroid.ApiDemo
 		// Our text view 
 		private TextView mTextView;
 
-		public MorseCode (IntPtr handle) : base (handle)
-		{
-		}
-
 		// Initialization of the Activity after it is first created.  Must at least
 		// call {@link android.app.Activity#setContentView setContentView()} to
 		// describe what is to be displayed in the screen.

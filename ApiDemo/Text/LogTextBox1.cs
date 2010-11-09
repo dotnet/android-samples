@@ -34,11 +34,6 @@ namespace MonoDroid.ApiDemo
 	{
 		private LogTextBox text_box;
 
-		public LogTextBox1 (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);

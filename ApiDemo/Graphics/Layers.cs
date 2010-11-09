@@ -27,11 +27,6 @@ namespace MonoDroid.ApiDemo
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class Layers : Activity
 	{
-		public Layers (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);

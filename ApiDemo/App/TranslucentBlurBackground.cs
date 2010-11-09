@@ -27,10 +27,6 @@ namespace MonoDroid.ApiDemo
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class TranslucentBlurBackground : Activity
 	{
-		public TranslucentBlurBackground (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);

@@ -28,11 +28,6 @@ namespace MonoDroid.ApiDemo
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class AlphaBitmap : GraphicsActivity
 	{
-		public AlphaBitmap (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);

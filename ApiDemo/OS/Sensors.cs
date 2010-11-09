@@ -32,11 +32,6 @@ namespace MonoDroid.ApiDemo
 		private SensorManager sensor_manager;
 		private GraphView graph_view;
 
-		public Sensors (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		// Initialization of the Activity after it is first created.  Must at least
 		// call {@link android.app.Activity#setContentView setContentView()} to
 		// describe what is to be displayed in the screen.

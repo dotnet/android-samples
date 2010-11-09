@@ -32,11 +32,6 @@ namespace MonoDroid.ApiDemo
 		private SampleView mView;
 		private float[] mValues;
 
-		public Compass (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);

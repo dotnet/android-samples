@@ -31,11 +31,6 @@ namespace MonoDroid.ApiDemo
 	{
 		private Preview preview;
 
-		public CameraPreview (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);

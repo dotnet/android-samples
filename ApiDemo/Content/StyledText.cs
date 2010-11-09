@@ -15,13 +15,13 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 using Android.App;
 using Android.OS;
 using Android.Widget;
 using Java.Lang;
 using Android.Content;
-using Android.Runtime;
 
 namespace MonoDroid.ApiDemo
 {
@@ -29,11 +29,6 @@ namespace MonoDroid.ApiDemo
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
 	public class StyledText : Activity
 	{
-		public StyledText (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -44,8 +39,9 @@ namespace MonoDroid.ApiDemo
 			// information and apply it to the second text view.  Note the
 			// use of CharSequence instead of String so we don't lose
 			// the style info.
+			IEnumerable<char> str = GetText (Resource.@string.styled_text);
 			TextView tv = (TextView)FindViewById (Resource.id.text);
-			tv.Text = GetText (Resource.@string.styled_text);
+			tv.Text = str;
 		}
 	}
 }

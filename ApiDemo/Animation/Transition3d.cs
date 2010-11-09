@@ -32,11 +32,6 @@ namespace MonoDroid.ApiDemo
 		private ViewGroup mContainer;
 		private ImageView mImageView;
 
-		public Transition3d (IntPtr handle)
-			: base (handle)
-		{
-		}
-
 		// Names of the photos we show in the list
 		private static string[] PHOTOS_NAMES = new String[] {
 			"Lyon",

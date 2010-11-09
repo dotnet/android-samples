@@ -30,8 +30,7 @@ namespace MonoDroid.ApiDemo
 	[Activity (Label = "MonoDroid API Demo", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
-		public ApiDemo (IntPtr handle)
-			: base (handle)
+		public ApiDemo ()
 		{
 		}
 
@@ -82,13 +81,13 @@ namespace MonoDroid.ApiDemo
 
 			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
 
-			list = list.OrderBy (p => p.ActivityInfo.NonLocalizedLabel.ToString ()).ToList ();
+			list = list.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel ?? "").ToString ()).ToList ();
 
 			for (int i = 0; i < len; i++) {
 				ResolveInfo info = list [i];
-				string labelSeq = info.LoadLabel (pm).ToString ();
+				IEnumerable<char> labelSeq = info.LoadLabel (pm);
 
-				String label = labelSeq != null ? labelSeq : info.ActivityInfo.Name;
+				String label = labelSeq != null ? labelSeq.ToString () : info.ActivityInfo.Name;
 
 				if (prefix.Length == 0 || label.StartsWith (prefix)) {
 
@@ -123,7 +122,7 @@ namespace MonoDroid.ApiDemo
 		protected Intent BrowseIntent (String path)
 		{
 			Intent result = new Intent ();
-			result.SetClassName (this, "monoDroid.apiDemo.ApiDemo");
+			result.SetClass (this, typeof (ApiDemo));
 			result.PutExtra ("com.example.android.apis.Path", path);
 
 			return result;

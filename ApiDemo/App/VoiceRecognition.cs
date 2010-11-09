@@ -33,11 +33,6 @@ namespace MonoDroid.ApiDemo
 		private const int VOICE_RECOGNITION_REQUEST_CODE = 1234;
 		private ListView voice_list;
 
-		public VoiceRecognition (IntPtr handle)
-			: base (handle)
-		{
-		}
-		
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
