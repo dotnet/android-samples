@@ -18,7 +18,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     
-    <mono.samples.gLCube.PaintingView
+    <mono.samples.glcube.PaintingView
       android:id="@+id/paintingview"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"/>

@@ -13,10 +13,6 @@ namespace Mono.Samples.GLCube
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class GLCubeActivity : Activity
 	{
-		public GLCubeActivity (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
