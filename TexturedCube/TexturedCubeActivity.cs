@@ -13,10 +13,6 @@ namespace Mono.Samples.TexturedCube
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class TexturedCubeActivity : Activity
 	{
-		public TexturedCubeActivity (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
