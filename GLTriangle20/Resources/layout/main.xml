@@ -18,7 +18,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     
-    <mono.samples.gLTriangle20.PaintingView
+    <mono.samples.gltriangle20.PaintingView
       android:id="@+id/paintingview"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"/>

@@ -13,10 +13,6 @@ namespace Mono.Samples.GLTriangle20
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class GLTriangle20Activity : Activity
 	{
-		public GLTriangle20Activity (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
