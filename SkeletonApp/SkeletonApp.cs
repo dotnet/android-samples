@@ -12,10 +12,6 @@ namespace Mono.Samples.SkeletonApp
 	{
 		EditText mEditor;
 
-		public SkeletonActivity (IntPtr handle) : base (handle)
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
