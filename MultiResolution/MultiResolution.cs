@@ -17,10 +17,6 @@ namespace Mono.Samples.MultiResolution
 			Resource.drawable.sample_4, Resource.drawable.sample_5, Resource.drawable.sample_6,
 			Resource.drawable.sample_7 };
 
-		public MultiResolution (IntPtr handle) : base (handle)
-		{
-		}
-
 		// Called when the activity is first created.
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
