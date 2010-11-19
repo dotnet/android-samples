@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="App\VoiceRecognition.cs" />
+    <Compile Include="Content\ReadAsset.cs" />
     <Compile Include="Content\ResourcesSample.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,6 +77,7 @@
     <Compile Include="Graphics\GraphicsActivity.cs" />
     <Compile Include="Graphics\Layers.cs" />
     <Compile Include="Graphics\PictureLayout.cs" />
+    <Compile Include="Graphics\Typefaces.cs" />
     <Compile Include="OS\MorseCodeConverter.cs" />
     <Compile Include="OS\MorseCode.cs" />
     <Compile Include="OS\Sensors.cs" />
@@ -87,6 +89,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\read_asset.txt" />
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -109,8 +112,11 @@
     <AndroidResource Include="Resources\drawable\shape_3.xml" />
     <AndroidResource Include="Resources\drawable\shape_4.xml" />
     <AndroidResource Include="Resources\drawable\shape_5.xml" />
+    <AndroidResource Include="Resources\layout\read_asset.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fonts\samplefont.ttf" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\anim\layout_bottom_to_top_slide.xml" />
     <AndroidResource Include="Resources\anim\slide_right.xml" />
