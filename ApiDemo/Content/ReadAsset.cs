@@ -19,7 +19,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Java.IO;
+using System.IO;
 
 namespace MonoDroid.ApiDemo
 {
@@ -36,20 +36,13 @@ namespace MonoDroid.ApiDemo
 			// Programmatically load text from an asset and place it into the
 			// text view.  Note that the text we are loading is ASCII, so we
 			// need to convert it to UTF-16.
-			InputStream input = Assets.Open ("read_asset.txt");
+			Stream input = Assets.Open ("read_asset.txt");
 
-			// We guarantee that the available method returns the total
-			// size of the asset...  of course, this does mean that a single
-			// asset can't be more than 2 gigs.
-			int size = input.Available ();
-			
-			// Read the entire asset into a local byte buffer.
-			byte[] buffer = new byte[size];
-			input.Read (buffer);
-			input.Close ();
+			string text;
 
-			// Convert the buffer into a string.
-			String text = System.Text.ASCIIEncoding.Default.GetString (buffer);
+			// Use a StreamReader to read the data
+			using (StreamReader sr = new StreamReader (input))
+				text = sr.ReadToEnd ();
 
 			// Finally stick the string into the text view.
 			TextView tv = FindViewById<TextView> (Resource.id.text);

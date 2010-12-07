@@ -20,7 +20,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Views;
-using Java.IO;
+using System.IO;
 
 namespace MonoDroid.ApiDemo
 {
@@ -48,7 +48,7 @@ namespace MonoDroid.ApiDemo
 			{
 				Focusable = true;
 
-				InputStream input = context.Resources.OpenRawResource (Resource.drawable.app_sample_code);
+				Stream input = context.Resources.OpenRawResource (Resource.drawable.app_sample_code);
 				
 				mBitmap = BitmapFactory.DecodeStream (input);
 				mBitmap2 = mBitmap.ExtractAlpha ();
