@@ -45,8 +45,8 @@ namespace MonoDroid.ApiDemo
 			path = path ?? "";
 				
 			ListAdapter = new SimpleAdapter (this, GetData (path),
-				Android.R.Layout.SimpleListItem1, new String[] { "title" },
-				new int[] { Android.R.Id.Text1 });
+				Android.Resource.Layout.SimpleListItem1, new String[] { "title" },
+				new int[] { Android.Resource.Id.Text1 });
 			ListView.TextFilterEnabled = true;
 
 			ListView.ItemClick += delegate (object sender, ItemEventArgs args) {

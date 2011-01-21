@@ -38,12 +38,12 @@ namespace MonoDroid.ApiDemo
 			base.OnCreate (savedInstanceState);
 
 			// Inflate our UI from its XML layout description.
-			SetContentView (Resource.layout.voice_recognition);
+			SetContentView (Resource.Layout.voice_recognition);
 
 			// Get display items for later interaction
-			Button speakButton = FindViewById<Button> (Resource.id.btn_speak);
+			Button speakButton = FindViewById<Button> (Resource.Id.btn_speak);
 
-			voice_list = FindViewById<ListView> (Resource.id.list);
+			voice_list = FindViewById<ListView> (Resource.Id.list);
 
 			// Check to see if a recognition activity is present
 			PackageManager pm = PackageManager;
@@ -62,7 +62,7 @@ namespace MonoDroid.ApiDemo
 			if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Result.Ok) {
 				// Fill the list view with the strings the recognizer thought it could have heard
 				IList<String> matches = data.GetStringArrayListExtra (RecognizerIntent.ExtraResults);
-				voice_list.Adapter = new ArrayAdapter<String> (this, Android.R.Layout.SimpleListItem1, matches);
+				voice_list.Adapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItem1, matches);
 			}
 
 			base.OnActivityResult (requestCode, resultCode, data);
@@ -72,7 +72,7 @@ namespace MonoDroid.ApiDemo
 		{
 			View v = (View)sender;
 
-			if (v.Id == Resource.id.btn_speak)
+			if (v.Id == Resource.Id.btn_speak)
 				StartVoiceRecognitionActivity ();
 		}
 

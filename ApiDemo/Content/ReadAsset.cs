@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.read_asset);
+			SetContentView (Resource.Layout.read_asset);
 
 			// Programmatically load text from an asset and place it into the
 			// text view.  Note that the text we are loading is ASCII, so we
@@ -45,7 +45,7 @@ namespace MonoDroid.ApiDemo
 				text = sr.ReadToEnd ();
 
 			// Finally stick the string into the text view.
-			TextView tv = FindViewById<TextView> (Resource.id.text);
+			TextView tv = FindViewById<TextView> (Resource.Id.text);
 			tv.Text = text;
 		}
 	}

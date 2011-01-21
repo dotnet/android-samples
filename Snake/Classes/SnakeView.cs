@@ -84,9 +84,9 @@ namespace Mono.Samples.Snake
 			// Initialize and load our tile bitmaps
 			ResetTiles (4);
 
-			LoadTile (TileType.Red, Resources.GetDrawable (Resource.drawable.redstar));
-			LoadTile (TileType.Yellow, Resources.GetDrawable (Resource.drawable.yellowstar));
-			LoadTile (TileType.Green, Resources.GetDrawable (Resource.drawable.greenstar));
+			LoadTile (TileType.Red, Resources.GetDrawable (Resource.Drawable.redstar));
+			LoadTile (TileType.Yellow, Resources.GetDrawable (Resource.Drawable.yellowstar));
+			LoadTile (TileType.Green, Resources.GetDrawable (Resource.Drawable.greenstar));
 		}
 		#endregion
 
@@ -148,7 +148,7 @@ namespace Mono.Samples.Snake
 			}
 
 			if (newCoord == null)
-				Log.E (TAG, "Somehow ended up with a null newCoord!");
+				Log.Error (TAG, "Somehow ended up with a null newCoord!");
 
 			apples.Add (newCoord);
 		}
@@ -236,12 +236,12 @@ namespace Mono.Samples.Snake
 			IEnumerable<char> str = "";
 
 			if (newMode == GameMode.Paused)
-				str = Resources.GetText (Resource.@string.mode_pause);
+				str = Resources.GetText (Resource.String.mode_pause);
 			else if (newMode == GameMode.Ready)
-				str = Resources.GetText (Resource.@string.mode_ready);
+				str = Resources.GetText (Resource.String.mode_ready);
 			else if (newMode == GameMode.Lost) {
-				var lose_prefix = Resources.GetString (Resource.@string.mode_lose_prefix);
-				var lose_suffix = Resources.GetString (Resource.@string.mode_lose_suffix);
+				var lose_prefix = Resources.GetString (Resource.String.mode_lose_prefix);
+				var lose_suffix = Resources.GetString (Resource.String.mode_lose_suffix);
 				str = string.Format ("{0}{1}{2}", lose_prefix, mScore, lose_suffix);
 			}
 
@@ -342,9 +342,9 @@ namespace Mono.Samples.Snake
 					AddRandomApple ();
 
 					mScore++;
-					Log.I ("tag", mMoveDelay.ToString ());
+					Log.Info ("tag", mMoveDelay.ToString ());
 					mMoveDelay = (int)(mMoveDelay * 0.9);
-					Log.I ("tag", mMoveDelay.ToString ());
+					Log.Info ("tag", mMoveDelay.ToString ());
 
 					growSnake = true;
 

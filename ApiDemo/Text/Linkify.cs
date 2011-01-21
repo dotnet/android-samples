@@ -34,7 +34,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.link);
+			SetContentView (Resource.Layout.link);
 
 			// text1 shows the android:autoLink property, which
 			// automatically linkifies things like URLs and phone numbers
@@ -46,7 +46,7 @@ namespace MonoDroid.ApiDemo
 			// respond to user input.  To make them active, you need to
 			// call setMovementMethod() on the TextView object.
 
-			TextView t2 = (TextView)FindViewById (Resource.id.text2);
+			TextView t2 = (TextView)FindViewById (Resource.Id.text2);
 			t2.MovementMethod = LinkMovementMethod.Instance;
 
 			// text3 shows creating text with links from HTML in the Java
@@ -56,7 +56,7 @@ namespace MonoDroid.ApiDemo
 			// illustrate how you might display text that came from a
 			// dynamic source (eg, the network).
 
-			//TextView t3 = (TextView)FindViewById (Resource.id.text3);
+			//TextView t3 = (TextView)FindViewById (Resource.Id.text3);
 			//t3.Text = Html.FromHtml(
 			//        "<b>text3:</b>  Text with a " +
 			//        "<a href=\"http://www.google.com\">link</a> " +
@@ -74,7 +74,7 @@ namespace MonoDroid.ApiDemo
 			ss.SetSpan (new StyleSpan (TypefaceStyle.Bold), 0, 6, SpanTypes.ExclusiveExclusive);
 			ss.SetSpan (new URLSpan ("tel:4155551212"), 13, 17, SpanTypes.ExclusiveExclusive);
 
-			TextView t4 = (TextView)FindViewById (Resource.id.text4);
+			TextView t4 = (TextView)FindViewById (Resource.Id.text4);
 
 			t4.Text = ss;
 			t4.MovementMethod = LinkMovementMethod.Instance;

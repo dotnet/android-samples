@@ -42,21 +42,21 @@ namespace JetBoy
 			// Remove the title bar
 			RequestWindowFeature (WindowFeatures.NoTitle);
 
-			SetContentView (Resource.layout.main);
+			SetContentView (Resource.Layout.main);
 
 			// Look up the happy shiny buttons
-			start_button = FindViewById<Button> (Resource.id.Button01);
+			start_button = FindViewById<Button> (Resource.Id.Button01);
 			start_button.Click += new EventHandler (StartButton_Click);
 
-			retry_button = FindViewById<Button> (Resource.id.Button02);
+			retry_button = FindViewById<Button> (Resource.Id.Button02);
 			retry_button.Click += new EventHandler (RetryButton_Click);
 
 			// Get handles for instruction text and game timer text
-			text_view = FindViewById<TextView> (Resource.id.text);
-			timer_view = FindViewById<TextView> (Resource.id.timer);
+			text_view = FindViewById<TextView> (Resource.Id.text);
+			timer_view = FindViewById<TextView> (Resource.Id.timer);
 
 			// Get handles to the JetView from XML and the JET thread.
-			JetBoyView jetboy_view = FindViewById<JetBoyView> (Resource.id.JetBoyView);
+			JetBoyView jetboy_view = FindViewById<JetBoyView> (Resource.Id.JetBoyView);
 
 			jetboy_view.Initialize (timer_view, retry_button, text_view);
 			jetboy_thread = jetboy_view.GetThread ();
@@ -64,7 +64,7 @@ namespace JetBoy
 
 		private void RetryButton_Click (object sender, EventArgs e)
 		{
-			text_view.SetText (Resource.@string.helpText);
+			text_view.SetText (Resource.String.helpText);
 
 			start_button.Text = "PLAY!";
 
@@ -82,7 +82,7 @@ namespace JetBoy
 					// User hit the "START" button
 					start_button.Text = "PLAY!";
 					text_view.Visibility = ViewStates.Visible;
-					text_view.SetText (Resource.@string.helpText);
+					text_view.SetText (Resource.String.helpText);
 
 					jetboy_thread.GameState = GameState.Play;
 

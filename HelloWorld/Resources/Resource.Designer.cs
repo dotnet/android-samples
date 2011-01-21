@@ -15,46 +15,46 @@ namespace Mono.Samples.HelloWorld
 	public partial class Resource
 	{
 		
-		public class attr
+		public partial class Attribute
 		{
 			
-			private attr()
+			private Attribute()
 			{
 			}
 		}
 		
-		public class drawable
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
 			public const int icon = 2130837504;
 			
-			private drawable()
+			private Drawable()
 			{
 			}
 		}
 		
-		public class layout
+		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
 			public const int main = 2130903040;
 			
-			private layout()
+			private Layout()
 			{
 			}
 		}
 		
-		public class @string
+		public partial class String
 		{
-			
-			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
 			
 			// aapt resource value: 0x7f040001
 			public const int app_name = 2130968577;
 			
-			private @string()
+			// aapt resource value: 0x7f040000
+			public const int hello = 2130968576;
+			
+			private String()
 			{
 			}
 		}

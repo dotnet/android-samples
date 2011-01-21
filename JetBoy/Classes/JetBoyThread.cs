@@ -260,45 +260,45 @@ namespace JetBoy
 
 			// Load background image as a Bitmap instead of a Drawable b/c
 			// we don't need to transform it and it's faster to draw this way
-			mTitleBG = BitmapFactory.DecodeResource (mRes, Resource.drawable.title_hori);
+			mTitleBG = BitmapFactory.DecodeResource (mRes, Resource.Drawable.title_hori);
 
 			// Two background since we want them moving at different speeds
-			mBackgroundImageFar = BitmapFactory.DecodeResource (mRes, Resource.drawable.background_a);
-			mBackgroundImageNear = BitmapFactory.DecodeResource (mRes, Resource.drawable.background_b);
+			mBackgroundImageFar = BitmapFactory.DecodeResource (mRes, Resource.Drawable.background_a);
+			mBackgroundImageNear = BitmapFactory.DecodeResource (mRes, Resource.Drawable.background_b);
 
-			mLaserShot = BitmapFactory.DecodeResource (mRes, Resource.drawable.laser);
+			mLaserShot = BitmapFactory.DecodeResource (mRes, Resource.Drawable.laser);
 
-			mShipFlying[0] = BitmapFactory.DecodeResource (mRes, Resource.drawable.ship2_1);
-			mShipFlying[1] = BitmapFactory.DecodeResource (mRes, Resource.drawable.ship2_2);
-			mShipFlying[2] = BitmapFactory.DecodeResource (mRes, Resource.drawable.ship2_3);
-			mShipFlying[3] = BitmapFactory.DecodeResource (mRes, Resource.drawable.ship2_4);
+			mShipFlying[0] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.ship2_1);
+			mShipFlying[1] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.ship2_2);
+			mShipFlying[2] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.ship2_3);
+			mShipFlying[3] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.ship2_4);
 
-			mBeam[0] = BitmapFactory.DecodeResource (mRes, Resource.drawable.intbeam_1);
-			mBeam[1] = BitmapFactory.DecodeResource (mRes, Resource.drawable.intbeam_2);
-			mBeam[2] = BitmapFactory.DecodeResource (mRes, Resource.drawable.intbeam_3);
-			mBeam[3] = BitmapFactory.DecodeResource (mRes, Resource.drawable.intbeam_4);
+			mBeam[0] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.intbeam_1);
+			mBeam[1] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.intbeam_2);
+			mBeam[2] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.intbeam_3);
+			mBeam[3] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.intbeam_4);
 
-			mTimerShell = BitmapFactory.DecodeResource (mRes, Resource.drawable.int_timer);
+			mTimerShell = BitmapFactory.DecodeResource (mRes, Resource.Drawable.int_timer);
 
 			// I wanted them to rotate in a certain way
 			// so I loaded them backwards from the way created.
-			mAsteroids[11] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid01);
-			mAsteroids[10] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid02);
-			mAsteroids[9] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid03);
-			mAsteroids[8] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid04);
-			mAsteroids[7] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid05);
-			mAsteroids[6] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid06);
-			mAsteroids[5] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid07);
-			mAsteroids[4] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid08);
-			mAsteroids[3] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid09);
-			mAsteroids[2] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid10);
-			mAsteroids[1] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid11);
-			mAsteroids[0] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid12);
+			mAsteroids[11] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid01);
+			mAsteroids[10] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid02);
+			mAsteroids[9] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid03);
+			mAsteroids[8] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid04);
+			mAsteroids[7] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid05);
+			mAsteroids[6] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid06);
+			mAsteroids[5] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid07);
+			mAsteroids[4] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid08);
+			mAsteroids[3] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid09);
+			mAsteroids[2] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid10);
+			mAsteroids[1] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid11);
+			mAsteroids[0] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid12);
 
-			mExplosions[0] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid_explode1);
-			mExplosions[1] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid_explode2);
-			mExplosions[2] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid_explode3);
-			mExplosions[3] = BitmapFactory.DecodeResource (mRes, Resource.drawable.asteroid_explode4);
+			mExplosions[0] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid_explode1);
+			mExplosions[1] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid_explode2);
+			mExplosions[2] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid_explode3);
+			mExplosions[3] = BitmapFactory.DecodeResource (mRes, Resource.Drawable.asteroid_explode4);
 		}
 		#endregion
 
@@ -323,20 +323,20 @@ namespace JetBoy
 			// JET info: inthis animation thread object. 
 			mJet.SetEventListener (this);
 
-			Log.D (TAG, "opening jet file");
+			Log.Debug (TAG, "opening jet file");
 
 			// JET info: load the actual JET content the game will be playing,
 			// JET info: it's stored as a raw resource in our APK, and is labeled "level1"
 			// JET info: if our JET file was stored on the sdcard for instance, we would have used
 			// JET info: mJet.loadJetFile("/sdcard/level1.jet");
-			mJet.LoadJetFile (mContext.Resources.OpenRawResourceFd (Resource.raw.level1));
+			mJet.LoadJetFile (mContext.Resources.OpenRawResourceFd (Resource.Raw.level1));
 
-			Log.D (TAG, "opening jet file DONE");
+			Log.Debug (TAG, "opening jet file DONE");
 
 			mCurrentBed = 0;
 			sbyte sSegmentID = 0;
 
-			Log.D (TAG, " start queuing jet file");
+			Log.Debug (TAG, " start queuing jet file");
 
 			// JET info: now we're all set to prepare queuing the JET audio segments for the game.
 			// JET info: in this example, the game uses segment 0 for the duration of the game play,
@@ -360,7 +360,7 @@ namespace JetBoy
 			// JET info: the player hasn't scored yet.
 			mJet.SetMuteArray (muteMask[0], true);
 
-			Log.D (TAG, " start queuing jet file DONE");
+			Log.Debug (TAG, " start queuing jet file DONE");
 		}
 
 		private void SetInitialGameState ()
@@ -395,7 +395,7 @@ namespace JetBoy
 				case GameState.Play:
 				case GameState.Lost:
 					if (mTitleBG2 == null)
-						mTitleBG2 = BitmapFactory.DecodeResource (mRes, Resource.drawable.title_bg_hori);
+						mTitleBG2 = BitmapFactory.DecodeResource (mRes, Resource.Drawable.title_bg_hori);
 
 					DoDrawPlay (canvas);
 
@@ -519,7 +519,7 @@ namespace JetBoy
 					if (!mJetPlaying) {
 						mInitialized = false;
 
-						Log.D (TAG, "------> STARTING JET PLAY");
+						Log.Debug (TAG, "------> STARTING JET PLAY");
 
 						mJet.Play ();
 						mJetPlaying = true;
@@ -906,14 +906,14 @@ namespace JetBoy
 				if (mState == GameState.Play) {
 					Resources res = mContext.Resources;
 					mBackgroundImageFar = BitmapFactory
-						.DecodeResource (res, Resource.drawable.background_a);
+						.DecodeResource (res, Resource.Drawable.background_a);
 
 					// Don't forget to resize the background image
 					mBackgroundImageFar = Bitmap.CreateScaledBitmap (mBackgroundImageFar,
 						mCanvasWidth * 2, mCanvasHeight, true);
 
 					mBackgroundImageNear = BitmapFactory.DecodeResource (res,
-						Resource.drawable.background_b);
+						Resource.Drawable.background_b);
 
 					// Don't forget to resize the background image
 					mBackgroundImageNear = Bitmap.CreateScaledBitmap (mBackgroundImageNear,

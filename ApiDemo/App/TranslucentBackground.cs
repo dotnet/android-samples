@@ -30,7 +30,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.translucent_background);
+			SetContentView (Resource.Layout.translucent_background);
 		}
 	}
 }

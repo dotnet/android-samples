@@ -40,12 +40,12 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.notify_with_text);
+			SetContentView (Resource.Layout.notify_with_text);
 
 			Button button;
 
 			// short notification
-			button = (Button)FindViewById (Resource.id.short_notify);
+			button = (Button)FindViewById (Resource.Id.short_notify);
 
 			button.Click += delegate {
 				// Note that we create the Toast object and call the show() method
@@ -57,17 +57,17 @@ namespace MonoDroid.ApiDemo
 				// resource id (Resource.string.short_notification_text).  There is also
 				// a version that takes a CharSequence if you must construct
 				// the text yourself.
-				Toast.MakeText (this, Resource.@string.short_notification_text, ToastLength.Short).Show ();
+				Toast.MakeText (this, Resource.String.short_notification_text, ToastLength.Short).Show ();
 			};
 
 			// long notification
 			// The only difference here is that the notification stays up longer.
 			// You might want to use this if there is more text that they're going
 			// to read.
-			button = (Button)FindViewById (Resource.id.long_notify);
+			button = (Button)FindViewById (Resource.Id.long_notify);
 
 			button.Click += delegate {
-				Toast.MakeText (this, Resource.@string.long_notification_text, ToastLength.Long).Show ();
+				Toast.MakeText (this, Resource.String.long_notification_text, ToastLength.Long).Show ();
 			};
 		}
 	}

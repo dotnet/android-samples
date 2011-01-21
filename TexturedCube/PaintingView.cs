@@ -77,7 +77,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
 			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
-			LoadTexture (context, Resource.drawable.f_spot);
+			LoadTexture (context, Resource.Drawable.f_spot);
 
 			SetupCamera ();
 

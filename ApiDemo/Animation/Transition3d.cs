@@ -44,27 +44,27 @@ namespace MonoDroid.ApiDemo
 
 		// Resource identifiers for the photos we want to display
 		private static int[] PHOTOS_RESOURCES = new int[] {
-			Resource.drawable.photo1,
-			Resource.drawable.photo2,
-			Resource.drawable.photo3,
-			Resource.drawable.photo4,
-			Resource.drawable.photo5,
-			Resource.drawable.photo6
+			Resource.Drawable.photo1,
+			Resource.Drawable.photo2,
+			Resource.Drawable.photo3,
+			Resource.Drawable.photo4,
+			Resource.Drawable.photo5,
+			Resource.Drawable.photo6
 		};
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.animations_main_screen);
+			SetContentView (Resource.Layout.animations_main_screen);
 
-			mPhotosList = (ListView)FindViewById (Android.R.Id.List);
-			mImageView = (ImageView)FindViewById (Resource.id.picture);
-			mContainer = (ViewGroup)FindViewById (Resource.id.container);
+			mPhotosList = (ListView)FindViewById (Android.Resource.Id.List);
+			mImageView = (ImageView)FindViewById (Resource.Id.picture);
+			mContainer = (ViewGroup)FindViewById (Resource.Id.container);
 
 			// Prepare the ListView
 			ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,
-				Android.R.Layout.SimpleListItem1, PHOTOS_NAMES);
+				Android.Resource.Layout.SimpleListItem1, PHOTOS_NAMES);
 
 			mPhotosList.Adapter = adapter;
 			mPhotosList.ItemClick += OnItemClick;

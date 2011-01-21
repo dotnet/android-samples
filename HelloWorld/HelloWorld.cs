@@ -12,7 +12,7 @@ namespace Mono.Samples.HelloWorld
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.main);
+			SetContentView (Resource.Layout.main);
 		}
 	}
 }

@@ -33,7 +33,7 @@ namespace MonoDroid.ApiDemo
 		{
 		}
 
-		public LogTextBox (Context context, IAttributeSet attrs) : this (context, attrs, Android.R.Attr.TextViewStyle)
+		public LogTextBox (Context context, IAttributeSet attrs) : this (context, attrs, Android.Resource.Attribute.TextViewStyle)
 		{
 		}
 

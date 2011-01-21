@@ -34,7 +34,7 @@ namespace MonoDroid.ApiDemo
 			// Have the system blur any windows behind this one.
 			Window.SetFlags (WindowManagerFlags.BlurBehind, WindowManagerFlags.BlurBehind);
 
-			SetContentView (Resource.layout.translucent_background);
+			SetContentView (Resource.Layout.translucent_background);
 		}
 	}
 }

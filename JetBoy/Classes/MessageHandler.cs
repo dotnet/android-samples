@@ -44,17 +44,17 @@ namespace JetBoy
 		{
 			// Ensure we have a valid message
 			if (msg == null) {
-				Log.D (TAG, "null msg");
+				Log.Debug (TAG, "null msg");
 				return;
 			}
 
 			if (msg.Data == null) {
-				Log.D (TAG, "null msg.Data");
+				Log.Debug (TAG, "null msg.Data");
 				return;
 			}
 
 			// Update the timer
-			Log.D ("jpobst", msg.Data.GetString ("text"));
+			Log.Debug ("jpobst", msg.Data.GetString ("text"));
 			timer_view.Text = msg.Data.GetString ("text");
 
 			// If the user lost, set up the lost screen
@@ -65,7 +65,7 @@ namespace JetBoy
 				text_view.Visibility = ViewStates.Visible;
 
 				if (scores.HitTotal >= scores.SuccessThreshold) {
-					text_view.SetText (Resource.@string.winText);
+					text_view.SetText (Resource.String.winText);
 				} else {
 					string lost = string.Format ("Sorry, You Lose! You got {0}. You need {1} to win.", scores.HitTotal, scores.SuccessThreshold);
 					text_view.Text = lost;

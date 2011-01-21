@@ -18,13 +18,13 @@ namespace MonoDroid.ApiDemo {
 			{
 				base.OnCreate (savedInstanceState);
 
-				SetContentView (Resource.layout.local_service_controller);
+				SetContentView (Resource.Layout.local_service_controller);
 
-				var button = FindViewById<Button>(Resource.id.start);
+				var button = FindViewById<Button>(Resource.Id.start);
 				button.Click += delegate {
 					StartService (new Intent (this, typeof (LocalService)));
 				};
-				button = FindViewById<Button>(Resource.id.stop);
+				button = FindViewById<Button>(Resource.Id.stop);
 				button.Click += delegate {
 					StopService (new Intent (this, typeof (LocalService)));
 				};
@@ -49,13 +49,13 @@ namespace MonoDroid.ApiDemo {
 			{
 				base.OnCreate (savedInstanceState);
 
-				SetContentView (Resource.layout.local_service_binding);
+				SetContentView (Resource.Layout.local_service_binding);
 
-				var button = FindViewById<Button>(Resource.id.bind);
+				var button = FindViewById<Button>(Resource.Id.bind);
 				button.Click += delegate {
 					BindService ();
 				};
-				button = FindViewById<Button>(Resource.id.unbind);
+				button = FindViewById<Button>(Resource.Id.unbind);
 				button.Click += delegate {
 					UnbindService ();
 				};
@@ -93,13 +93,13 @@ namespace MonoDroid.ApiDemo {
 				public void OnServiceConnected (ComponentName className, IBinder service)
 				{
 					self.boundService = ((LocalService.LocalBinder) service).Service;
-					Toast.MakeText (self, Resource.@string.local_service_connected, ToastLength.Short).Show ();
+					Toast.MakeText (self, Resource.String.local_service_connected, ToastLength.Short).Show ();
 				}
 
 				public void OnServiceDisconnected (ComponentName className)
 				{
 					self.boundService = null;
-					Toast.MakeText (self, Resource.@string.local_service_disconnected, ToastLength.Short).Show ();
+					Toast.MakeText (self, Resource.String.local_service_disconnected, ToastLength.Short).Show ();
 				}
 			}
 		}

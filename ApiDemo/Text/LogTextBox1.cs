@@ -38,11 +38,11 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.log_text_box_1);
+			SetContentView (Resource.Layout.log_text_box_1);
 
-			text_box = FindViewById<LogTextBox> (Resource.id.text);
+			text_box = FindViewById<LogTextBox> (Resource.Id.text);
 
-			Button addButton = FindViewById<Button> (Resource.id.add);
+			Button addButton = FindViewById<Button> (Resource.Id.add);
 			addButton.Click += new EventHandler (addButton_Click);
 		}
 

@@ -19,10 +19,10 @@ namespace Mono.Samples.GLCube
 
 			// Inflate our UI from its XML layout description
 			// - should match filename res/layout/main.xml ?
-			SetContentView (Resource.layout.main);
+			SetContentView (Resource.Layout.main);
 
 			// Load the view
-			FindViewById (Resource.id.paintingview);
+			FindViewById (Resource.Id.paintingview);
 		}
 	}
 }

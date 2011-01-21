@@ -33,14 +33,14 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.styled_text);
+			SetContentView (Resource.Layout.styled_text);
 
 			// Programmatically retrieve a string resource with style
 			// information and apply it to the second text view.  Note the
 			// use of CharSequence instead of String so we don't lose
 			// the style info.
-			IEnumerable<char> str = GetText (Resource.@string.styled_text);
-			TextView tv = (TextView)FindViewById (Resource.id.text);
+			IEnumerable<char> str = GetText (Resource.String.styled_text);
+			TextView tv = (TextView)FindViewById (Resource.Id.text);
 			tv.Text = str;
 		}
 	}

@@ -15,15 +15,15 @@ namespace SimpleWidget
 	public partial class Resource
 	{
 		
-		public class attr
+		public partial class Attribute
 		{
 			
-			private attr()
+			private Attribute()
 			{
 			}
 		}
 		
-		public class drawable
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
@@ -44,12 +44,38 @@ namespace SimpleWidget
 			// aapt resource value: 0x7f020005
 			public const int widget_bg_selected = 2130837509;
 			
-			private drawable()
+			private Drawable()
 			{
 			}
 		}
 		
-		public class layout
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f070004
+			public const int bullet = 2131165188;
+			
+			// aapt resource value: 0x7f070005
+			public const int definition = 2131165189;
+			
+			// aapt resource value: 0x7f070002
+			public const int icon = 2131165186;
+			
+			// aapt resource value: 0x7f070001
+			public const int message = 2131165185;
+			
+			// aapt resource value: 0x7f070000
+			public const int widget = 2131165184;
+			
+			// aapt resource value: 0x7f070003
+			public const int word_title = 2131165187;
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
@@ -58,50 +84,39 @@ namespace SimpleWidget
 			// aapt resource value: 0x7f030001
 			public const int widget_word = 2130903041;
 			
-			private layout()
+			private Layout()
 			{
 			}
 		}
 		
-		public class xml
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int widget_word = 2130968576;
-			
-			private xml()
-			{
-			}
-		}
-		
-		public class @string
+		public partial class String
 		{
 			
 			// aapt resource value: 0x7f050000
 			public const int app_name = 2131034112;
 			
-			// aapt resource value: 0x7f050001
-			public const int widget_name = 2131034113;
-			
 			// aapt resource value: 0x7f050002
 			public const int widget_loading = 2131034114;
 			
-			private @string()
+			// aapt resource value: 0x7f050001
+			public const int widget_name = 2131034113;
+			
+			private String()
 			{
 			}
 		}
 		
-		public class style
+		public partial class Style
 		{
-			
-			// aapt resource value: 0x7f060000
-			public const int WidgetBackground = 2131099648;
 			
 			// aapt resource value: 0x7f060001
 			public const int BulletPoint = 2131099649;
 			
 			// aapt resource value: 0x7f060002
 			public const int Text = 2131099650;
+			
+			// aapt resource value: 0x7f060006
+			public const int Text_Definition = 2131099654;
 			
 			// aapt resource value: 0x7f060003
 			public const int Text_Loading = 2131099651;
@@ -112,36 +127,21 @@ namespace SimpleWidget
 			// aapt resource value: 0x7f060005
 			public const int Text_WordType = 2131099653;
 			
-			// aapt resource value: 0x7f060006
-			public const int Text_Definition = 2131099654;
+			// aapt resource value: 0x7f060000
+			public const int WidgetBackground = 2131099648;
 			
-			private style()
+			private Style()
 			{
 			}
 		}
 		
-		public class id
+		public partial class Xml
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int widget = 2131165184;
+			// aapt resource value: 0x7f040000
+			public const int widget_word = 2130968576;
 			
-			// aapt resource value: 0x7f070001
-			public const int message = 2131165185;
-			
-			// aapt resource value: 0x7f070002
-			public const int icon = 2131165186;
-			
-			// aapt resource value: 0x7f070003
-			public const int word_title = 2131165187;
-			
-			// aapt resource value: 0x7f070004
-			public const int bullet = 2131165188;
-			
-			// aapt resource value: 0x7f070005
-			public const int definition = 2131165189;
-			
-			private id()
+			private Xml()
 			{
 			}
 		}

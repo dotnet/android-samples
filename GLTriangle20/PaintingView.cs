@@ -78,7 +78,7 @@ namespace Mono.Samples.GLTriangle20 {
 				if (length > 0) {
 					var log = new StringBuilder (length);
 					GL.GetProgramInfoLog (program, length, ref length, log);
-					Log.D ("GL2", "Couldn't link program: " + log.ToString ());
+					Log.Debug ("GL2", "Couldn't link program: " + log.ToString ());
 				}
 
 				GL.DeleteProgram (program);
@@ -106,7 +106,7 @@ namespace Mono.Samples.GLTriangle20 {
 				if (length > 0) {
 					var log = new StringBuilder (length);
 					GL.GetShaderInfoLog (shader, length, ref length, log);
-					Log.D ("GL2", "Couldn't compile shader: " + log.ToString ());
+					Log.Debug ("GL2", "Couldn't compile shader: " + log.ToString ());
 				}
 
 				GL.DeleteShader (shader);

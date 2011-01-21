@@ -15,15 +15,15 @@ namespace Mono.Samples.TexturedCube
 	public partial class Resource
 	{
 		
-		public class attr
+		public partial class Attribute
 		{
 			
-			private attr()
+			private Attribute()
 			{
 			}
 		}
 		
-		public class drawable
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
@@ -32,40 +32,40 @@ namespace Mono.Samples.TexturedCube
 			// aapt resource value: 0x7f020001
 			public const int f_spot = 2130837505;
 			
-			private drawable()
+			private Drawable()
 			{
 			}
 		}
 		
-		public class layout
-		{
-			
-			// aapt resource value: 0x7f030000
-			public const int main = 2130903040;
-			
-			private layout()
-			{
-			}
-		}
-		
-		public class @string
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int app_name = 2130968576;
-			
-			private @string()
-			{
-			}
-		}
-		
-		public class id
+		public partial class Id
 		{
 			
 			// aapt resource value: 0x7f050000
 			public const int paintingview = 2131034112;
 			
-			private id()
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int main = 2130903040;
+			
+			private Layout()
+			{
+			}
+		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int app_name = 2130968576;
+			
+			private String()
 			{
 			}
 		}

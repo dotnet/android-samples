@@ -11,7 +11,7 @@ namespace MonoDroid.ApiDemo {
 	{
 		public override void OnReceive (Context context, Intent intent)
 		{
-			Toast.MakeText (context, Resource.@string.repeating_received, ToastLength.Short).Show ();
+			Toast.MakeText (context, Resource.String.repeating_received, ToastLength.Short).Show ();
 		}
 	}
 }

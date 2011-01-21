@@ -30,7 +30,7 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (savedInstanceState);
 			 
-			SetContentView (Resource.layout.marquee);
+			SetContentView (Resource.Layout.marquee);
 		}
 	}
 }

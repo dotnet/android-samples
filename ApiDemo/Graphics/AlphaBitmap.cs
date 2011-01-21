@@ -48,7 +48,7 @@ namespace MonoDroid.ApiDemo
 			{
 				Focusable = true;
 
-				Stream input = context.Resources.OpenRawResource (Resource.drawable.app_sample_code);
+				Stream input = context.Resources.OpenRawResource (Resource.Drawable.app_sample_code);
 				
 				mBitmap = BitmapFactory.DecodeStream (input);
 				mBitmap2 = mBitmap.ExtractAlpha ();

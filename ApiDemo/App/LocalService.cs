@@ -38,14 +38,14 @@ namespace MonoDroid.ApiDemo {
 
 		public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
-			Log.I ("LocalService", "Received start id " + startId + ": " + intent);
+			Log.Info ("LocalService", "Received start id " + startId + ": " + intent);
 			return StartCommandResult.Sticky;
 		}
 
 		public override void OnDestroy ()
 		{
-			nm.Cancel (Resource.@string.local_service_started);
-			Toast.MakeText (this, Resource.@string.local_service_stopped, ToastLength.Short).Show ();
+			nm.Cancel (Resource.String.local_service_started);
+			Toast.MakeText (this, Resource.String.local_service_stopped, ToastLength.Short).Show ();
 		}
 
 		public override IBinder OnBind (Intent intent)
@@ -55,11 +55,11 @@ namespace MonoDroid.ApiDemo {
 
 		void ShowNotification ()
 		{
-			var text = GetText (Resource.@string.local_service_started);
-			var notification = new Notification (Resource.drawable.stat_sample, text, System.Environment.TickCount);
+			var text = GetText (Resource.String.local_service_started);
+			var notification = new Notification (Resource.Drawable.stat_sample, text, System.Environment.TickCount);
 			PendingIntent contentIntent = PendingIntent.GetActivity (this, 0, new Intent (this, typeof (LocalServiceActivities.Controller)), 0);
-			notification.SetLatestEventInfo (this, GetText (Resource.@string.local_service_label), text, contentIntent);
-			nm.Notify (Resource.@string.local_service_started, notification);
+			notification.SetLatestEventInfo (this, GetText (Resource.String.local_service_label), text, contentIntent);
+			nm.Notify (Resource.String.local_service_started, notification);
 		}
 	}
 }

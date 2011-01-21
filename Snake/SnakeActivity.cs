@@ -43,10 +43,10 @@ namespace Mono.Samples.Snake
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.snake_layout);
+			SetContentView (Resource.Layout.snake_layout);
 
-			snake_view = FindViewById<SnakeView> (Resource.id.snake);
-			snake_view.SetTextView (FindViewById<TextView> (Resource.id.text));
+			snake_view = FindViewById<SnakeView> (Resource.Id.snake);
+			snake_view.SetTextView (FindViewById<TextView> (Resource.Id.text));
 
 			if (savedInstanceState == null) {
 				// We were just launched -- set up a new game

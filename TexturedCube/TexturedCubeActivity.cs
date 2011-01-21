@@ -18,9 +18,9 @@ namespace Mono.Samples.TexturedCube
 			base.OnCreate (savedInstanceState);
 
 			// Inflate our UI from its XML layout description
-			SetContentView (Resource.layout.main);
+			SetContentView (Resource.Layout.main);
 
-			PaintingView glp = FindViewById<PaintingView> (Resource.id.paintingview);
+			PaintingView glp = FindViewById<PaintingView> (Resource.Id.paintingview);
 		}
 	}
 }

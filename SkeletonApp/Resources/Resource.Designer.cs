@@ -15,55 +15,72 @@ namespace Mono.Samples.SkeletonApp
 	public partial class Resource
 	{
 		
-		public class attr
+		public partial class Attribute
 		{
 			
-			private attr()
+			private Attribute()
 			{
 			}
 		}
 		
-		public class drawable
-		{
-			
-			// aapt resource value: 0x7f020000
-			public const int violet = 2130837504;
-			
-			// aapt resource value: 0x7f020001
-			public const int semi_black = 2130837505;
-			
-			private drawable()
-			{
-			}
-		}
-		
-		public class layout
-		{
-			
-			// aapt resource value: 0x7f030000
-			public const int skeleton_activity = 2130903040;
-			
-			private layout()
-			{
-			}
-		}
-		
-		public class color
+		public partial class Color
 		{
 			
 			// aapt resource value: 0x7f040000
 			public const int red = 2130968576;
 			
-			private color()
+			private Color()
 			{
 			}
 		}
 		
-		public class @string
+		public partial class Drawable
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int skeleton_app = 2131034112;
+			// aapt resource value: 0x7f020001
+			public const int semi_black = 2130837505;
+			
+			// aapt resource value: 0x7f020000
+			public const int violet = 2130837504;
+			
+			private Drawable()
+			{
+			}
+		}
+		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f070001
+			public const int back = 2131165185;
+			
+			// aapt resource value: 0x7f070003
+			public const int clear = 2131165187;
+			
+			// aapt resource value: 0x7f070000
+			public const int editor = 2131165184;
+			
+			// aapt resource value: 0x7f070002
+			public const int image = 2131165186;
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int skeleton_activity = 2130903040;
+			
+			private Layout()
+			{
+			}
+		}
+		
+		public partial class String
+		{
 			
 			// aapt resource value: 0x7f050001
 			public const int back = 2131034113;
@@ -74,12 +91,15 @@ namespace Mono.Samples.SkeletonApp
 			// aapt resource value: 0x7f050003
 			public const int main_label = 2131034115;
 			
-			private @string()
+			// aapt resource value: 0x7f050000
+			public const int skeleton_app = 2131034112;
+			
+			private String()
 			{
 			}
 		}
 		
-		public class style
+		public partial class Style
 		{
 			
 			// aapt resource value: 0x7f060000
@@ -91,27 +111,7 @@ namespace Mono.Samples.SkeletonApp
 			// aapt resource value: 0x7f060002
 			public const int TextAppearance_ActionButton = 2131099650;
 			
-			private style()
-			{
-			}
-		}
-		
-		public class id
-		{
-			
-			// aapt resource value: 0x7f070000
-			public const int editor = 2131165184;
-			
-			// aapt resource value: 0x7f070001
-			public const int back = 2131165185;
-			
-			// aapt resource value: 0x7f070002
-			public const int image = 2131165186;
-			
-			// aapt resource value: 0x7f070003
-			public const int clear = 2131165187;
-			
-			private id()
+			private Style()
 			{
 			}
 		}

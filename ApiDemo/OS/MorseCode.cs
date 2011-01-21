@@ -41,13 +41,13 @@ namespace MonoDroid.ApiDemo
 			// See assets/res/any/layout/hello_world.xml for this
 			// view layout definition, which is being set here as
 			// the content of our screen.
-			SetContentView (Resource.layout.morse_code);
+			SetContentView (Resource.Layout.morse_code);
 
 			// Set the Click event for the button so we see when it's pressed.
-			((Button)FindViewById (Resource.id.button)).Click += MorseCode_Click;
+			((Button)FindViewById (Resource.Id.button)).Click += MorseCode_Click;
 
 			// Save the text view so we don't have to look it up each time
-			mTextView = (TextView)FindViewById (Resource.id.text);
+			mTextView = (TextView)FindViewById (Resource.Id.text);
 		}
 
 		private void MorseCode_Click (object sender, EventArgs e)

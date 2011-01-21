@@ -30,7 +30,7 @@ namespace MonoDroid.ApiDemo
 			base.OnCreate (bundle);
 
 			// Create your application here
-			SetContentView (Resource.layout.shape_drawable_1);
+			SetContentView (Resource.Layout.shape_drawable_1);
 		}
 	}
 }

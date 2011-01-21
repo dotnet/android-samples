@@ -15,15 +15,15 @@ namespace JetBoy
 	public partial class Resource
 	{
 		
-		public class attr
+		public partial class Attribute
 		{
 			
-			private attr()
+			private Attribute()
 			{
 			}
 		}
 		
-		public class drawable
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
@@ -131,66 +131,89 @@ namespace JetBoy
 			// aapt resource value: 0x7f020022
 			public const int title_hori = 2130837538;
 			
-			private drawable()
+			private Drawable()
 			{
 			}
 		}
 		
-		public class layout
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f070002
+			public const int Button01 = 2131165186;
+			
+			// aapt resource value: 0x7f070003
+			public const int Button02 = 2131165187;
+			
+			// aapt resource value: 0x7f070000
+			public const int JetBoyView = 2131165184;
+			
+			// aapt resource value: 0x7f070001
+			public const int text = 2131165185;
+			
+			// aapt resource value: 0x7f070004
+			public const int timer = 2131165188;
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
 			public const int main = 2130903040;
 			
-			private layout()
+			private Layout()
 			{
 			}
 		}
 		
-		public class raw
+		public partial class Raw
 		{
 			
 			// aapt resource value: 0x7f040000
 			public const int level1 = 2130968576;
 			
-			private raw()
+			private Raw()
 			{
 			}
 		}
 		
-		public class @string
+		public partial class String
 		{
 			
 			// aapt resource value: 0x7f050000
 			public const int app_name = 2131034112;
 			
-			// aapt resource value: 0x7f050001
-			public const int start = 2131034113;
-			
-			// aapt resource value: 0x7f050002
-			public const int retry = 2131034114;
-			
-			// aapt resource value: 0x7f050003
-			public const int restart = 2131034115;
-			
 			// aapt resource value: 0x7f050004
 			public const int helpText = 2131034116;
-			
-			// aapt resource value: 0x7f050005
-			public const int winText = 2131034117;
 			
 			// aapt resource value: 0x7f050006
 			public const int loseText = 2131034118;
 			
+			// aapt resource value: 0x7f050003
+			public const int restart = 2131034115;
+			
+			// aapt resource value: 0x7f050002
+			public const int retry = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int start = 2131034113;
+			
 			// aapt resource value: 0x7f050007
 			public const int timer = 2131034119;
 			
-			private @string()
+			// aapt resource value: 0x7f050005
+			public const int winText = 2131034117;
+			
+			private String()
 			{
 			}
 		}
 		
-		public class style
+		public partial class Style
 		{
 			
 			// aapt resource value: 0x7f060000
@@ -202,30 +225,7 @@ namespace JetBoy
 			// aapt resource value: 0x7f060002
 			public const int timerText = 2131099650;
 			
-			private style()
-			{
-			}
-		}
-		
-		public class id
-		{
-			
-			// aapt resource value: 0x7f070000
-			public const int JetBoyView = 2131165184;
-			
-			// aapt resource value: 0x7f070001
-			public const int text = 2131165185;
-			
-			// aapt resource value: 0x7f070002
-			public const int Button01 = 2131165186;
-			
-			// aapt resource value: 0x7f070003
-			public const int Button02 = 2131165187;
-			
-			// aapt resource value: 0x7f070004
-			public const int timer = 2131165188;
-			
-			private id()
+			private Style()
 			{
 			}
 		}

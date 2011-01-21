@@ -19,13 +19,13 @@ namespace MonoDroid.ApiDemo {
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.alarm_controller);
+			SetContentView (Resource.Layout.alarm_controller);
 
-			FindViewById<Button>(Resource.id.one_shot).Click += OneShotClick;
+			FindViewById<Button>(Resource.Id.one_shot).Click += OneShotClick;
 
-			FindViewById<Button>(Resource.id.start_repeating).Click += StartRepeatingClick;
+			FindViewById<Button>(Resource.Id.start_repeating).Click += StartRepeatingClick;
 
-			FindViewById<Button>(Resource.id.stop_repeating).Click += StopRepeatingClick;
+			FindViewById<Button>(Resource.Id.stop_repeating).Click += StopRepeatingClick;
 		}
 
 		void OneShotClick (object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace MonoDroid.ApiDemo {
 
 			if (repeating != null)
 				repeating.Cancel ();
-			repeating = Toast.MakeText (this, Resource.@string.one_shot_scheduled, ToastLength.Long);
+			repeating = Toast.MakeText (this, Resource.String.one_shot_scheduled, ToastLength.Long);
 			repeating.Show ();
 		}
 
@@ -55,7 +55,7 @@ namespace MonoDroid.ApiDemo {
 
 			if (repeating != null)
 				repeating.Cancel ();
-			repeating = Toast.MakeText (this, Resource.@string.repeating_scheduled, ToastLength.Long);
+			repeating = Toast.MakeText (this, Resource.String.repeating_scheduled, ToastLength.Long);
 			repeating.Show ();
 		}
 
@@ -69,7 +69,7 @@ namespace MonoDroid.ApiDemo {
 
 			if (repeating != null)
 				repeating.Cancel ();
-			repeating = Toast.MakeText (this, Resource.@string.repeating_unscheduled, ToastLength.Long);
+			repeating = Toast.MakeText (this, Resource.String.repeating_unscheduled, ToastLength.Long);
 			repeating.Show ();
 		}
 	}
