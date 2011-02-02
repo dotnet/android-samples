@@ -52,17 +52,17 @@ namespace SimpleWidget
 			var entry = WordEntry.GetWordOfTheDay ();
 
 			// Build an update that holds the updated widget contents
-			var updateViews = new RemoteViews (context.PackageName, Resource.layout.widget_word);
+			var updateViews = new RemoteViews (context.PackageName, Resource.Layout.widget_word);
 
-			updateViews.SetTextViewText (Resource.id.word_title, entry.Title);
-			updateViews.SetTextViewText (Resource.id.definition, entry.Description);
+			updateViews.SetTextViewText (Resource.Id.word_title, entry.Title);
+			updateViews.SetTextViewText (Resource.Id.definition, entry.Description);
 
 			// When user clicks on widget, launch to Wiktionary definition page
 			if (!string.IsNullOrEmpty (entry.Link)) {
 				Intent defineIntent = new Intent (Intent.ActionView, Android.Net.Uri.Parse (entry.Link));
 			
 				PendingIntent pendingIntent = PendingIntent.GetActivity (context, 0, defineIntent, 0);
-				updateViews.SetOnClickPendingIntent (Resource.id.widget, pendingIntent);
+				updateViews.SetOnClickPendingIntent (Resource.Id.widget, pendingIntent);
 			}
 
 			return updateViews;
