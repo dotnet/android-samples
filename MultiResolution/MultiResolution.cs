@@ -12,21 +12,21 @@ namespace Mono.Samples.MultiResolution
 	{
 		private int photo_index = 0;
 
-		private List<int> photo_ids = new List<int> () { Resource.drawable.sample_0,
-			Resource.drawable.sample_1, Resource.drawable.sample_2, Resource.drawable.sample_3,
-			Resource.drawable.sample_4, Resource.drawable.sample_5, Resource.drawable.sample_6,
-			Resource.drawable.sample_7 };
+		private List<int> photo_ids = new List<int> () { Resource.Drawable.sample_0,
+			Resource.Drawable.sample_1, Resource.Drawable.sample_2, Resource.Drawable.sample_3,
+			Resource.Drawable.sample_4, Resource.Drawable.sample_5, Resource.Drawable.sample_6,
+			Resource.Drawable.sample_7 };
 
 		// Called when the activity is first created.
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.layout.main);
+			SetContentView (Resource.Layout.main);
 			ShowPhoto (photo_index);
 
 			// Handle clicks on the 'Next' button.
-			Button nextButton = FindViewById<Button> (Resource.id.next_button);
+			Button nextButton = FindViewById<Button> (Resource.Id.next_button);
 
 			nextButton.Click += delegate {
 				photo_index = (photo_index + 1) % photo_ids.Count;
@@ -51,10 +51,10 @@ namespace Mono.Samples.MultiResolution
 
 		private void ShowPhoto (int photoIndex)
 		{
-			ImageView imageView = FindViewById<ImageView> (Resource.id.image_view);
+			ImageView imageView = FindViewById<ImageView> (Resource.Id.image_view);
 			imageView.SetImageResource (photo_ids[photoIndex]);
 
-			TextView statusText = FindViewById<TextView> (Resource.id.status_text);
+			TextView statusText = FindViewById<TextView> (Resource.Id.status_text);
 			statusText.Text = String.Format ("{0}/{1}", photoIndex + 1, photo_ids.Count);
 		}
 	}
