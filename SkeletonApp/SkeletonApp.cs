@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using Android.App;
 using Android.OS;
@@ -51,7 +52,7 @@ namespace Mono.Samples.SkeletonApp
 
 			// Before showing the menu, we need to decide whether the clear
 			// item is enabled depending on whether there is text to clear.
-			menu.FindItem ((int)MenuItems.Clear).SetVisible (((string)mEditor.Text).Length > 0);
+			menu.FindItem ((int)MenuItems.Clear).SetVisible (mEditor.Text.Any ());
 
 			return true;
 		}
