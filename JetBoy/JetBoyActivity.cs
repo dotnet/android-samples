@@ -20,10 +20,11 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace JetBoy
 {
-	[Activity (Label = "Jet Boy", MainLauncher = true)]
+	[Activity (Label = "Jet Boy", MainLauncher = true, ScreenOrientation = ScreenOrientation.Landscape, Icon = "@drawable/icon")]
 	public class JetBoyActivity : Activity
 	{
 		// Handle to the thread that's actually running the animation.
