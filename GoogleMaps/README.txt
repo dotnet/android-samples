@@ -1,0 +1,159 @@
+Google Maps Sample
+==================
+
+Using Google Maps from Mono for Android presents a bit of a challenge,
+as Mono for Android only binds `android.jar`, and thus the `maps.jar`
+file required for Google Maps use isn't currently bound.
+
+Consequently, Mono for Android's Java interop functionality must be
+used.
+
+
+Prequisites
+===========
+
+There are three prequisites in order to run build and run this sample:
+
+ 1. Mono for Android Preiew 13 or later.
+ 2. The Google APIs Android SDK add-on.
+ 3. A device with Google Maps support.
+ 4. Obtain an API Key for use with Google Maps.
+
+Commands that need to be executed are indicated within backtics (`),
+and $ANDROID_SDK_PATH is the directory that contains your Android SDK
+installation.
+
+
+Installing the Google APIs Android SDK add-on
+---------------------------------------------
+
+To install the Google APIs Android SDK add-on:
+
+ 1. Launch the Android SDK adn AVD manager:
+        `$ANDROID_SDK_PATH/tools/android`
+
+ 2. Within the Android SDK and AVD manager, click Available packages
+    in the left-hand pane.
+
+ 3. In the right-hand pane, navigate to the tree view node Third party
+    Add-ons /Google Inc. add-ons (dl-ssl.google.com)
+
+ 4. Select the check-box for "Google APIs by Google Inc., Android API
+    8, revision 2".
+
+ 5. Click the Install Selected button in the lower right corner.
+
+ 6. In the "Choose Packages to Install" dialog, select the Accept
+    radio button, then click the Install button.
+
+
+Creating a device with Google Maps support
+------------------------------------------
+
+To verify that your target device has Google Maps support, you can use
+`$ANDROID_SDK_PATH/platform-tools/adb shell ls /system/framework/*map*`
+to see if Google Maps support is present.  It should be present on
+hardware devices, but may not be present within some emulators.
+
+If you need an emulator with Google Maps support:
+
+ 1. Launch the Android SDK adn AVD manager:
+        `$ANDROID_SDK_PATH/tools/android`
+
+ 2. Within the Android SDK and AVD manager, click Virtual devices
+    in the left-hand pane.
+
+ 3. Click the New... button on the right-hande side.
+
+ 4. In the Create new Andorid Virtual Device (AVD) dialog, provide a
+    name for the device (e.g. MAPS), and in the Target drop-down 
+    select the Google APIs (Google Inc.) - API Level 8 entry.
+
+ 5. Click the Create AVD button.
+
+You may now launch the emulator with: 
+$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS
+
+
+Google Maps API Key
+-------------------
+
+See the Google Maps sample/tutorial at
+http://mobiforge.com/developing/story/using-google-maps-android
+for more information about installing and using the API key.  You will
+also need to edit the file Resources\Layout\Map.axml and edit the
+/RelativeLayout/com.google.android.maps.MapView/@android:apiKey
+attribute to contain your Google Maps API Key.
+
+If you don't change this, you'll get a blank map, though the sample
+will still serve to demonstrate how C# and Java interop can work.
+
+
+How it works
+============
+
+As Mono for Android does not currently support binding arbitrary .jar
+files (only the Android SDK android.jar is bound), alternative
+mechanisms must instead used for interoperation between Java and
+managed code.  Two primary mechanisms are:
+
+ 1. Android.Runtime.JNIEnv for creating instances of Java objects and
+    invoking methods on them from C#.  This is very similar to
+    System.Reflection in that everything is string based and thus
+    untyped at compile time.
+
+ 2. The ability to include Java source code and .jar files into the
+    resulting Android application.
+
+Use of the Google Maps API requires two things:
+
+ 1. com.google.android.maps.MapActivity MUST be subclassed and the
+    MapActivity.isRouteDisplayed() method overridden.
+
+ 2. The MapActivity subclass must be created BEFORE creating any
+    MapView instances, AND the MapView instances can ONLY be added as
+    children of the MapActivity.
+
+Because we need to subclass an unbound Java type (1), we will need to
+write custom Java code, thus necessitating Mechanism (2).
+
+The Java source code is kept in MyMapActivity.java, which is included
+in the project with a Build Action of AndroidJavaSource.
+
+Furthermore, we edit Properties\AndroidManifest.xml so that it
+contains three additional elements:
+
+ 1. /manifest/uses-permission must be added to include the
+    android.permission.INTERNET permission.  This can be done within 
+    the IDE, if desired.
+
+ 2. /manifest/application/uses-library must be added to specify that
+    the com.google.android.maps library will be used.
+
+ 3. A /manifest/application/activity element must be created so that
+    we can use Context.StartActivity() to create the custom activity.
+
+This translates to having the following XML within
+AndroidManifest.xml:
+
+	<application android:label="Managed Maps">
+		<uses-library android:name="com.google.android.maps" />
+		<activity android:name="mono.samples.googlemaps.MyMapActivity" />
+	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
+
+MyMapActivity.java uses the Resources\Layout\Map.axml resource, which
+contains a com.google.android.maps.MapView instance.
+Resource.Layout.Map CANNOT be used from Activity1.cs, as MapView
+requires that the constructing Activity be a MapActivity subclass.
+
+Instead, Activity1.cs uses Java.Lang.Class.FindClass() to obtain a
+Java.Lang.Class instance for the custom MyMapActivity type, then we
+create an Intent to pass to Activity.StartActivity() to launch the
+MapActivity subclass.
+
+The <uses-library/> element is used by monodroid.exe to lookup the
+appropriate Android SDK Add-on and include the .jar file in the Java
+source compilation so that everything compiles properly.  No
+additional .jar files need to be specified.
+
