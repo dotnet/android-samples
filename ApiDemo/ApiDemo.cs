@@ -81,7 +81,7 @@ namespace MonoDroid.ApiDemo
 
 			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
 
-			list = list.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel ?? "").ToString ()).ToList ();
+			list = list.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel == null ? "" : p.ActivityInfo.NonLocalizedLabel.ToString ()).ToString ()).ToList ();
 
 			for (int i = 0; i < len; i++) {
 				ResolveInfo info = list [i];

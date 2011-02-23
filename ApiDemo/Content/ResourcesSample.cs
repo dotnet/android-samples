@@ -36,7 +36,7 @@ namespace MonoDroid.ApiDemo
 			SetContentView (Resource.Layout.resources);
 
 			TextView tv;
-			IEnumerable<char> cs;
+			ICharSequence cs;
 			string str;
 
 			// ====== Using the Context.getString() convenience method ===========
@@ -44,9 +44,9 @@ namespace MonoDroid.ApiDemo
 			// Using the GetString() conevenience method, retrieve a string
 			// resource that hapepns to have style information.  Note the use of
 			// CharSequence instead of String so we don't lose the style info.
-			cs = GetText (Resource.String.styled_text);
+			cs = GetTextFormatted (Resource.String.styled_text);
 			tv = (TextView)FindViewById (Resource.Id.styled_text);
-			tv.Text = cs;
+			tv.TextFormatted = cs;
 
 			// Use the same resource, but convert it to a string, which causes it
 			// to lose the style information.
@@ -65,9 +65,9 @@ namespace MonoDroid.ApiDemo
 			Android.Content.Res.Resources res = context.Resources;
 
 			// Get the string resource, like above.
-			cs = res.GetText (Resource.String.styled_text);
+			cs = res.GetTextFormatted (Resource.String.styled_text);
 			tv = (TextView)FindViewById (Resource.Id.res1);
-			tv.Text = cs;
+			tv.TextFormatted = cs;
 
 			// Note that the Resources class has methods like getColor(),
 			// getDimen(), getDrawable() because themes are stored in resources.

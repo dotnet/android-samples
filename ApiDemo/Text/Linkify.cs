@@ -76,7 +76,7 @@ namespace MonoDroid.ApiDemo
 
 			TextView t4 = (TextView)FindViewById (Resource.Id.text4);
 
-			t4.Text = ss;
+			t4.TextFormatted = ss;
 			t4.MovementMethod = LinkMovementMethod.Instance;
 		}
 	}

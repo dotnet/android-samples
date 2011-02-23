@@ -233,7 +233,7 @@ namespace Mono.Samples.Snake
 				return;
 			}
 
-			IEnumerable<char> str = "";
+			var str = "";
 
 			if (newMode == GameMode.Paused)
 				str = Resources.GetText (Resource.String.mode_pause);

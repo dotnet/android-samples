@@ -39,9 +39,9 @@ namespace MonoDroid.ApiDemo
 			// information and apply it to the second text view.  Note the
 			// use of CharSequence instead of String so we don't lose
 			// the style info.
-			IEnumerable<char> str = GetText (Resource.String.styled_text);
+			var str = GetTextFormatted (Resource.String.styled_text);
 			TextView tv = (TextView)FindViewById (Resource.Id.text);
-			tv.Text = str;
+			tv.TextFormatted = str;
 		}
 	}
 }
