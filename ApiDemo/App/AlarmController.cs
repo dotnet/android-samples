@@ -34,7 +34,7 @@ namespace MonoDroid.ApiDemo {
 			var source = PendingIntent.GetBroadcast (this, 0, intent, 0);
 
 			var am = (AlarmManager) GetSystemService (AlarmService);
-			am.Set (AlarmType.RtcWakeup, SystemClock.ElapsedRealtime () + 30*1000, source);
+			am.Set (AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime () + 30*1000, source);
 
 			if (repeating != null)
 				repeating.Cancel ();
