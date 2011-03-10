@@ -192,10 +192,7 @@ namespace Mono.Samples.TexturedCube {
 
 		static int[] GetTextureFromBitmapResource(Context context, int resourceId, out int width, out int height)
 		{
-			Bitmap bitmap = null;
-			try {
-				bitmap = BitmapFactory.DecodeResource(context.Resources, resourceId);
-
+			using (Bitmap bitmap = BitmapFactory.DecodeResource(context.Resources, resourceId)) {
 				width = bitmap.Width;
 				height = bitmap.Height;
 
@@ -204,11 +201,6 @@ namespace Mono.Samples.TexturedCube {
 				// Start writing from bottom row, to effectively flip it in Y-axis
 				bitmap.GetPixels  (pixels, pixels.Length - width, -width, 0, 0, width, height);
 				return pixels;
-			}
-			finally	{
-				if (bitmap != null) {
-					bitmap.Recycle();
-				}
 			}
 		}
 
