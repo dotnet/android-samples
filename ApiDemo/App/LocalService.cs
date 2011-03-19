@@ -1,3 +1,4 @@
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -56,7 +57,9 @@ namespace MonoDroid.ApiDemo {
 		void ShowNotification ()
 		{
 			var text = GetText (Resource.String.local_service_started);
-			var notification = new Notification (Resource.Drawable.stat_sample, text, System.Environment.TickCount);
+            var sinceEpoch = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var msSinceEpoch = (long)sinceEpoch.TotalMilliseconds;
+            var notification = new Notification(Resource.Drawable.stat_sample, text, msSinceEpoch);
 			PendingIntent contentIntent = PendingIntent.GetActivity (this, 0, new Intent (this, typeof (LocalServiceActivities.Controller)), 0);
 			notification.SetLatestEventInfo (this, GetText (Resource.String.local_service_label), text, contentIntent);
 			nm.Notify (Resource.String.local_service_started, notification);
