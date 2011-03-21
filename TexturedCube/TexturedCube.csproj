@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,8 +55,8 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\app_texturedcube.png" />
-    <AndroidResource Include="Resources\drawable\f_spot.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\app_texturedcube.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\f_spot.png" />
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
