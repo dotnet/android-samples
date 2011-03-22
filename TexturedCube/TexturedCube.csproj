@@ -55,6 +55,8 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable-nodpi\translucent.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\pattern.png" />
     <AndroidResource Include="Resources\drawable-nodpi\app_texturedcube.png" />
     <AndroidResource Include="Resources\drawable-nodpi\f_spot.png" />
     <AndroidResource Include="Resources\layout\main.xml" />

@@ -19,7 +19,8 @@ namespace Mono.Samples.TexturedCube {
 	{
 		float prevx, prevy;
 		float xangle, yangle;
-		int textureId;
+		int [] textureIds;
+		int cur_texture;
 		int width, height;
 		Context context;
 
@@ -36,6 +37,7 @@ namespace Mono.Samples.TexturedCube {
 
 		private void Initialize ()
 		{
+			textureIds = new int[2];
 			context = Context;
 			Resize += delegate {
 				SetupCamera ();
@@ -43,7 +45,6 @@ namespace Mono.Samples.TexturedCube {
 
 			xangle = 45;
 			yangle = 45;
-
 		}
 
 		protected override void OnLoad (EventArgs e)
@@ -55,7 +56,7 @@ namespace Mono.Samples.TexturedCube {
 			MakeCurrent ();
 
 			GL.ShadeModel (All.Smooth);
-			GL.ClearColor (1, 1, 1, 1);
+			GL.ClearColor (0, 0, 0, 1);
 
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
@@ -66,21 +67,14 @@ namespace Mono.Samples.TexturedCube {
 
 			GL.Hint (All.PerspectiveCorrectionHint, All.Nicest);
 
-			// create texture
+			// create texture ids
 			GL.Enable (All.Texture2D);
-			GL.GenTextures (1, ref textureId);
-			GL.BindTexture (All.Texture2D, textureId);
+			GL.GenTextures (2, textureIds);
 
-			// setup texture parameters
-			GL.TexParameterx (All.Texture2D, All.TextureMagFilter, (int)All.Linear);
-			GL.TexParameterx (All.Texture2D, All.TextureMinFilter, (int)All.Linear);
-			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
-
-			LoadTexture (context, Resource.Drawable.f_spot);
+			LoadTexture (context, Resource.Drawable.pattern, textureIds [0]);
+			LoadTexture (context, Resource.Drawable.f_spot, textureIds [1]);
 
 			SetupCamera ();
-
 			RenderCube ();
 		}
 
@@ -140,6 +134,12 @@ namespace Mono.Samples.TexturedCube {
 			return true;
 		}
 
+		public void SwitchTexture ()
+		{
+			cur_texture = (cur_texture + 1) % textureIds.Length;
+			RenderCube ();
+		}
+
 		void RenderCube ()
 		{
 			GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
@@ -152,7 +152,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.Rotate(-xangle, 1, 0, 0);
 			GL.Rotate(-yangle, 0, 1, 0);
 			
-			GL.BindTexture(All.Texture2D, textureId);
+			GL.BindTexture(All.Texture2D, textureIds [cur_texture]);
 			GL.EnableClientState(All.VertexArray);
 			GL.EnableClientState(All.TextureCoordArray);
 			for (int i = 0; i < 6; i++) // draw each face
@@ -172,7 +172,7 @@ namespace Mono.Samples.TexturedCube {
 		protected override void Dispose (bool disposing)
 		{
 			base.Dispose (disposing);
-			GL.DeleteTextures (1, ref textureId);
+			GL.DeleteTextures (2, textureIds);
 		}
 
 	        public static float ToRadians (float degrees)
@@ -182,8 +182,16 @@ namespace Mono.Samples.TexturedCube {
                         return (float) (degrees * (System.Math.PI/180.0));
                 }
 
-		void LoadTexture (Context context, int resourceId)
+		void LoadTexture (Context context, int resourceId, int tex_id)
 		{
+			GL.BindTexture (All.Texture2D, tex_id);
+
+			// setup texture parameters
+			GL.TexParameterx (All.Texture2D, All.TextureMagFilter, (int)All.Linear);
+			GL.TexParameterx (All.Texture2D, All.TextureMinFilter, (int)All.Linear);
+			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
+			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+
 			int w, h;
 			int [] pixels = GetTextureFromBitmapResource (context, resourceId, out w, out h);
 

@@ -14,12 +14,51 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
-    <mono.samples.texturedcube.PaintingView
-      android:id="@+id/paintingview"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"/>
-</FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="0px"
+		android:layout_weight="1">
+
+		<mono.samples.texturedcube.PaintingView
+			android:id="@+id/paintingview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<LinearLayout android:id="@+id/hidecontainer"
+			android:orientation="vertical"
+			android:visibility="gone"
+			android:background="@drawable/translucent"
+			android:gravity="center"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<Button android:id="@+id/switch_texture"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:visibility="gone"
+				android:text="@string/switch_texture"/>
+		</LinearLayout>
+	</FrameLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center">
+
+		<Button android:id="@+id/show"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/show"/>
+
+		<Button android:id="@+id/hide"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/hide"/>
+	</LinearLayout>
+</LinearLayout>

@@ -13,6 +13,7 @@ namespace Mono.Samples.TexturedCube
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class TexturedCubeActivity : Activity
 	{
+		View mMenuContainer, mSwitchTexture;
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -21,6 +22,25 @@ namespace Mono.Samples.TexturedCube
 			SetContentView (Resource.Layout.main);
 
 			PaintingView glp = FindViewById<PaintingView> (Resource.Id.paintingview);
+
+			// Find the views whose visibility will change
+			mMenuContainer = FindViewById (Resource.Id.hidecontainer);
+			mSwitchTexture = FindViewById (Resource.Id.switch_texture);
+			mSwitchTexture.Click += delegate { glp.SwitchTexture (); };
+
+			// Find our buttons
+			Button showButton = FindViewById<Button>(Resource.Id.show);
+			Button hideButton = FindViewById<Button> (Resource.Id.hide);
+
+			// Wire each button to a click listener
+			showButton.Click += delegate { SetVisibility (ViewStates.Visible); };
+			hideButton.Click += delegate { SetVisibility (ViewStates.Invisible); };
+		}
+
+		void SetVisibility (ViewStates state)
+		{
+			mSwitchTexture.Visibility = state;
+			mMenuContainer.Visibility = state;
 		}
 	}
 }
