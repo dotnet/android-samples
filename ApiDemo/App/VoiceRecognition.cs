@@ -49,8 +49,9 @@ namespace MonoDroid.ApiDemo
 			PackageManager pm = PackageManager;
 			IList<ResolveInfo> activities = pm.QueryIntentActivities (new Intent (RecognizerIntent.ActionRecognizeSpeech), 0);
 
-			if (activities.Count != 0)
+			if (activities.Count != 0) {
 				speakButton.Click += speakButton_Click;
+			}
 			else {
 				speakButton.Enabled = false;
 				speakButton.Text = "Recognizer not present";
@@ -72,8 +73,7 @@ namespace MonoDroid.ApiDemo
 		{
 			View v = (View)sender;
 
-			if (v.Id == Resource.Id.btn_speak)
-			{
+			if (v.Id == Resource.Id.btn_speak) {
 				StartVoiceRecognitionActivity();
 			}
 		}
