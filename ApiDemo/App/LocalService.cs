@@ -60,7 +60,6 @@ namespace MonoDroid.ApiDemo {
             var sinceEpoch = DateTime.UtcNow - new DateTime(1970, 1, 1);
             var msSinceEpoch = (long)sinceEpoch.TotalMilliseconds;
             var notification = new Notification(Resource.Drawable.stat_sample, text, msSinceEpoch);
-			PendingIntent contentIntent = PendingIntent.GetActivity (this, 0, new Intent (this, typeof (LocalServiceActivities.Controller)), 0);
 			var sinceEpoch = DateTime.UtcNow - new DateTime(1970, 1, 1);
 			var msSinceEpoch = (long)sinceEpoch.TotalMilliseconds;
 			var notification = new Notification (Resource.Drawable.stat_sample, text, msSinceEpoch);
