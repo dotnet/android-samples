@@ -13,8 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
-using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -24,7 +22,7 @@ using System.IO;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Content/Read Asset")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class ReadAsset : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -41,9 +39,10 @@ namespace MonoDroid.ApiDemo
 			string text;
 
 			// Use a StreamReader to read the data
-			using (StreamReader sr = new StreamReader (input))
-				text = sr.ReadToEnd ();
-
+			using (StreamReader sr = new StreamReader(input))
+			{
+				text = sr.ReadToEnd();
+			}
 			// Finally stick the string into the text view.
 			TextView tv = FindViewById<TextView> (Resource.Id.text);
 			tv.Text = text;

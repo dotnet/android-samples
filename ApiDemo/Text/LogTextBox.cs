@@ -16,7 +16,6 @@
 
 using System;
 using Android.Content;
-using Android.Text;
 using Android.Text.Method;
 using Android.Util;
 using Android.Widget;
@@ -41,7 +40,7 @@ namespace MonoDroid.ApiDemo
 		{
 		}
 
-		protected override Android.Text.Method.IMovementMethod DefaultMovementMethod {
+		protected override IMovementMethod DefaultMovementMethod {
 			get { return ScrollingMovementMethod.Instance; }
 		}
 

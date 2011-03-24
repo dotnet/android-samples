@@ -15,21 +15,16 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Text/Log TextBox")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class LogTextBox1 : Activity
 	{
 		private LogTextBox text_box;
@@ -43,7 +38,7 @@ namespace MonoDroid.ApiDemo
 			text_box = FindViewById<LogTextBox> (Resource.Id.text);
 
 			Button addButton = FindViewById<Button> (Resource.Id.add);
-			addButton.Click += new EventHandler (addButton_Click);
+			addButton.Click += addButton_Click;
 		}
 
 		void addButton_Click (object sender, EventArgs e)

@@ -3,14 +3,13 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo {
 
 	[Activity (Label = "@string/activity_alarm_controller")]
-	[IntentFilter (new[] { Intent.ActionMain },
-			Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain },
+			Categories = new [] { Intent.CategorySampleCode })]
 	public class AlarmController : Activity
 	{
 		Toast repeating;

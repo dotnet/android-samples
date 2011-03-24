@@ -1,8 +1,6 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
-using Android.Util;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo {
@@ -10,8 +8,8 @@ namespace MonoDroid.ApiDemo {
 	public class LocalServiceActivities {
 
 		[Activity (Label = "@string/activity_local_service_controller")]
-		[IntentFilter (new[] { Intent.ActionMain },
-				Categories = new string[] { Intent.CategorySampleCode })]
+		[IntentFilter (new [] { Intent.ActionMain },
+				Categories = new [] { Intent.CategorySampleCode })]
 		public class Controller : Activity {
 
 			protected override void OnCreate (Bundle savedInstanceState)
@@ -32,8 +30,8 @@ namespace MonoDroid.ApiDemo {
 		}
 
 		[Activity (Label = "@string/activity_local_service_binding")]
-		[IntentFilter (new[] { Intent.ActionMain },
-				Categories = new string[] { Intent.CategorySampleCode })]
+		[IntentFilter (new [] { Intent.ActionMain },
+				Categories = new [] { Intent.CategorySampleCode })]
 		public class Binding : Activity {
 
 			bool isBound;

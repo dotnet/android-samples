@@ -111,14 +111,11 @@ namespace MonoDroid.ApiDemo.Graphics
 			int x = Width / 2;
 			int y = Height / 2;
 
-			if (false)
-				canvas.DrawPicture (mPicture);
-			else {
-				DrawPict (canvas, 0, 0, x, y, 1, 1);
-				DrawPict (canvas, x, 0, x, y, -1, 1);
-				DrawPict (canvas, 0, y, x, y, 1, -1);
-				DrawPict (canvas, x, y, x, y, -1, -1);
-			}
+			DrawPict (canvas, 0, 0, x, y, 1, 1);
+			DrawPict (canvas, x, 0, x, y, -1, 1);
+			DrawPict (canvas, 0, y, x, y, 1, -1);
+			DrawPict (canvas, x, y, x, y, -1, -1);
+			
 		}
 
 		public override IViewParent InvalidateChildInParent (int[] location, Rect dirty)

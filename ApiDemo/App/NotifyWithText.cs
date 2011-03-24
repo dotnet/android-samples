@@ -13,9 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
-using System;
-
 using Android.App;
 using Android.OS;
 using Android.Widget;
@@ -24,7 +21,7 @@ using Android.Content;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "App/Text Notify")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class NotifyWithText : Activity
 	{
 		/**

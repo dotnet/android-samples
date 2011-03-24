@@ -14,9 +14,6 @@
 // limitations under the License.
 //
 
-using System;
-using System.Collections.Generic;
-
 using Android.App;
 using Android.OS;
 using Java.Lang;
@@ -26,7 +23,7 @@ using Android.Content;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Content/Resources Sample")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class ResourcesSample : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
