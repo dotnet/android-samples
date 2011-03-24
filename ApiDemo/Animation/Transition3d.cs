@@ -25,7 +25,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Animation/3D Transition")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class Transition3d : Activity
 	{
 		private ListView mPhotosList;
@@ -33,7 +33,7 @@ namespace MonoDroid.ApiDemo
 		private ImageView mImageView;
 
 		// Names of the photos we show in the list
-		private static string[] PHOTOS_NAMES = new String[] {
+		private static string[] PHOTOS_NAMES = new [] {
 			"Lyon",
 			"Livermore",
 			"Tahoe Pier",
@@ -43,7 +43,7 @@ namespace MonoDroid.ApiDemo
 		};
 
 		// Resource identifiers for the photos we want to display
-		private static int[] PHOTOS_RESOURCES = new int[] {
+		private static int[] PHOTOS_RESOURCES = new [] {
 			Resource.Drawable.photo1,
 			Resource.Drawable.photo2,
 			Resource.Drawable.photo3,
@@ -81,12 +81,12 @@ namespace MonoDroid.ApiDemo
 		}
 
 		/**
- * Setup a new 3D rotation on the container view.
- *
- * @param position the item that was clicked to show a picture, or -1 to show the list
- * @param start the start angle at which the rotation must begin
- * @param end the end angle of the rotation
- */
+		 * Setup a new 3D rotation on the container view.
+		 *
+		 * @param position the item that was clicked to show a picture, or -1 to show the list
+		 * @param start the start angle at which the rotation must begin
+		 * @param end the end angle of the rotation
+		 */
 		private void ApplyRotation (int position, float start, float end)
 		{
 			// Find the center of the container
@@ -107,10 +107,10 @@ namespace MonoDroid.ApiDemo
 
 
 		/**
-	     * This class listens for the end of the first half of the animation.
-	     * It then posts a new action that effectively swaps the views when the container
-	     * is rotated 90 degrees and thus invisible.
-	     */
+		 * This class listens for the end of the first half of the animation.
+		 * It then posts a new action that effectively swaps the views when the container
+		 * is rotated 90 degrees and thus invisible.
+		 */
 		private class DisplayNextView : Animation.IAnimationListener
 		{
 			private int position;
@@ -153,9 +153,9 @@ namespace MonoDroid.ApiDemo
 		}
 
 		/**
-	     * This class is responsible for swapping the views and start the second
-	     * half of the animation.
-	     */
+		 * This class is responsible for swapping the views and start the second
+		 * half of the animation.
+		 */
 		private class SwapViews : Java.Lang.IRunnable
 		{
 			private int position;

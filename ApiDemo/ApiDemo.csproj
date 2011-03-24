@@ -83,6 +83,7 @@
     <Compile Include="Graphics\GraphicsActivity.cs" />
     <Compile Include="Graphics\Layers.cs" />
     <Compile Include="Graphics\PictureLayout.cs" />
+    <Compile Include="Graphics\Preview.cs" />
     <Compile Include="Graphics\Typefaces.cs" />
     <Compile Include="OS\MorseCodeConverter.cs" />
     <Compile Include="OS\MorseCode.cs" />

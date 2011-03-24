@@ -13,20 +13,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
-using System;
-using System.Collections.Generic;
-
 using Android.App;
 using Android.OS;
 using Android.Widget;
-using Java.Lang;
 using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Content/Styled Text")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class StyledText : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-using System;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -25,7 +23,7 @@ using System.IO;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Graphics/Alpha Bitmap")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class AlphaBitmap : GraphicsActivity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -56,8 +54,8 @@ namespace MonoDroid.ApiDemo
 				DrawIntoBitmap (mBitmap3);
 
 				mShader = new LinearGradient (0, 0, 100, 70, new int[] {
-                                         Color.Red, Color.Green, Color.Blue },
-							     null, Shader.TileMode.Mirror);
+										 Color.Red, Color.Green, Color.Blue },
+								 null, Shader.TileMode.Mirror);
 			}
 
 			protected override void OnDraw (Canvas canvas)

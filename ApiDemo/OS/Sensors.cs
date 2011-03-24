@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-using System;
-
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -26,7 +24,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label="OS/Sensors")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class Sensors : Activity
 	{
 		private SensorManager sensor_manager;
@@ -41,7 +39,7 @@ namespace MonoDroid.ApiDemo
 			base.OnCreate (savedInstanceState);
 
 			sensor_manager = (SensorManager)GetSystemService (SensorService);
-			graph_view = new GraphView (this.BaseContext);
+			graph_view = new GraphView (BaseContext);
 			SetContentView (graph_view);
 
 			sensor_manager.RegisterListener (graph_view,
@@ -194,29 +192,29 @@ namespace MonoDroid.ApiDemo
 			public void OnSensorChanged (int sensor, float[] values)
 			{
 				lock (this) {
-					if (mBitmap != null) {
-						Canvas canvas = mCanvas;
-						if (sensor == SensorManager.SensorAccelerometer) {
-							for (int i = 0; i < 3; i++) {
-								mOrientationValues[i] = values[i];
-							}
-						} else {
-							float deltaX = mSpeed;
-							float newX = mLastX + deltaX;
-
-							int j = (sensor == SensorManager.SensorMagneticField) ? 1 : 0;
-							for (int i = 0; i < 3; i++) {
-								int k = i + j * 3;
-								float v = mYOffset + values[i] * mScale[j];
-								paint.Color = mColors[k];
-								canvas.DrawLine (mLastX, mLastValues[k], newX, v, paint);
-								mLastValues[k] = v;
-							}
-							if (sensor == SensorManager.SensorMagneticField)
-								mLastX += mSpeed;
+					if (mBitmap == null) return;
+					Canvas canvas = mCanvas;
+					if (sensor == SensorManager.SensorAccelerometer) {
+						for (int i = 0; i < 3; i++) {
+							mOrientationValues[i] = values[i];
 						}
-						Invalidate ();
+					} else {
+						float deltaX = mSpeed;
+						float newX = mLastX + deltaX;
+
+						int j = (sensor == SensorManager.SensorMagneticField) ? 1 : 0;
+						for (int i = 0; i < 3; i++) {
+							int k = i + j * 3;
+							float v = mYOffset + values[i] * mScale[j];
+							paint.Color = mColors[k];
+							canvas.DrawLine (mLastX, mLastValues[k], newX, v, paint);
+							mLastValues[k] = v;
+						}
+						if (sensor == SensorManager.SensorMagneticField) {
+							mLastX += mSpeed;
+						}
 					}
+					Invalidate ();
 				}
 			}
 

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -25,7 +24,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Graphics/Compass")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class Compass : GraphicsActivity
 	{
 		private SensorManager mSensorManager;
@@ -37,7 +36,7 @@ namespace MonoDroid.ApiDemo
 			base.OnCreate (bundle);
 
 			// Create your application here
-			mSensorManager = (SensorManager)GetSystemService (Context.SensorService);
+			mSensorManager = (SensorManager)GetSystemService (SensorService);
 			mView = new SampleView (this);
 
 			SetContentView (mView);

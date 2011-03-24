@@ -22,7 +22,6 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo
@@ -30,10 +29,6 @@ namespace MonoDroid.ApiDemo
 	[Activity (Label = "MonoDroid API Demo", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
-		public ApiDemo ()
-		{
-		}
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -45,7 +40,7 @@ namespace MonoDroid.ApiDemo
 			path = path ?? "";
 				
 			ListAdapter = new SimpleAdapter (this, GetData (path),
-				Android.Resource.Layout.SimpleListItem1, new String[] { "title" },
+				Android.Resource.Layout.SimpleListItem1, new [] { "title" },
 				new int[] { Android.Resource.Id.Text1 });
 			ListView.TextFilterEnabled = true;
 
@@ -70,18 +65,15 @@ namespace MonoDroid.ApiDemo
 			if (list == null)
 				return myData;
 
-			String[] prefixPath;
-
-			if (prefix == string.Empty)
-				prefixPath = null;
-			else
-				prefixPath = prefix.Split ('/');
+			string[] prefixPath = prefix == string.Empty ? null : prefix.Split ('/');
 
 			int len = list.Count;
 
 			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
 
-			list = list.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel == null ? "" : p.ActivityInfo.NonLocalizedLabel.ToString ()).ToString ()).ToList ();
+			list = list
+				.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel == null ? "" : p.ActivityInfo.NonLocalizedLabel.ToString ()).ToString ())
+				.ToList ();
 
 			for (int i = 0; i < len; i++) {
 				ResolveInfo info = list [i];

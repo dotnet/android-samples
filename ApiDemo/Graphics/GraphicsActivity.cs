@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-using System;
 using Android.App;
-using Android.OS;
 
 namespace MonoDroid.ApiDemo
 {

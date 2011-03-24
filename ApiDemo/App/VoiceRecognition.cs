@@ -27,7 +27,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label="App/Voice Recognition")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class VoiceRecognition : Activity
 	{
 		private const int VOICE_RECOGNITION_REQUEST_CODE = 1234;
@@ -73,7 +73,9 @@ namespace MonoDroid.ApiDemo
 			View v = (View)sender;
 
 			if (v.Id == Resource.Id.btn_speak)
-				StartVoiceRecognitionActivity ();
+			{
+				StartVoiceRecognitionActivity();
+			}
 		}
 
 		private void StartVoiceRecognitionActivity ()

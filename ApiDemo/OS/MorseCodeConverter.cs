@@ -28,63 +28,61 @@ namespace MonoDroid.ApiDemo
 		static long WORD_GAP = SPEED_BASE * 7;
 
 		/** The characters from 'A' to 'Z' */
-		private static long[][] LETTERS = new long[][] {
-        /* A */ new long[] { DOT, GAP, DASH },
-        /* B */ new long[] { DASH, GAP, DOT, GAP, DOT, GAP, DOT },
-        /* C */ new long[] { DASH, GAP, DOT, GAP, DASH, GAP, DOT },
-        /* D */ new long[] { DASH, GAP, DOT, GAP, DOT },
-        /* E */ new long[] { DOT },
-        /* F */ new long[] { DOT, GAP, DOT, GAP, DASH, GAP, DOT },
-        /* G */ new long[] { DASH, GAP, DASH, GAP, DOT },
-        /* H */ new long[] { DOT, GAP, DOT, GAP, DOT, GAP, DOT },
-        /* I */ new long[] { DOT, GAP, DOT },
-        /* J */ new long[] { DOT, GAP, DASH, GAP, DASH, GAP, DASH },
-        /* K */ new long[] { DASH, GAP, DOT, GAP, DASH },
-        /* L */ new long[] { DOT, GAP, DASH, GAP, DOT, GAP, DOT },
-        /* M */ new long[] { DASH, GAP, DASH },
-        /* N */ new long[] { DASH, GAP, DOT },
-        /* O */ new long[] { DASH, GAP, DASH, GAP, DASH },
-        /* P */ new long[] { DOT, GAP, DASH, GAP, DASH, GAP, DOT },
-        /* Q */ new long[] { DASH, GAP, DASH, GAP, DOT, GAP, DASH },
-        /* R */ new long[] { DOT, GAP, DASH, GAP, DOT },
-        /* S */ new long[] { DOT, GAP, DOT, GAP, DOT },
-        /* T */ new long[] { DASH },
-        /* U */ new long[] { DOT, GAP, DOT, GAP, DASH },
-        /* V */ new long[] { DOT, GAP, DOT, GAP, DASH },
-        /* W */ new long[] { DOT, GAP, DASH, GAP, DASH },
-        /* X */ new long[] { DASH, GAP, DOT, GAP, DOT, GAP, DASH },
-        /* Y */ new long[] { DASH, GAP, DOT, GAP, DASH, GAP, DASH },
-        /* Z */ new long[] { DASH, GAP, DASH, GAP, DOT, GAP, DOT },
-    };
+		private static long[][] LETTERS = new [] {
+		/* A */ new [] { DOT, GAP, DASH },
+		/* B */ new [] { DASH, GAP, DOT, GAP, DOT, GAP, DOT },
+		/* C */ new [] { DASH, GAP, DOT, GAP, DASH, GAP, DOT },
+		/* D */ new [] { DASH, GAP, DOT, GAP, DOT },
+		/* E */ new [] { DOT },
+		/* F */ new [] { DOT, GAP, DOT, GAP, DASH, GAP, DOT },
+		/* G */ new [] { DASH, GAP, DASH, GAP, DOT },
+		/* H */ new [] { DOT, GAP, DOT, GAP, DOT, GAP, DOT },
+		/* I */ new [] { DOT, GAP, DOT },
+		/* J */ new [] { DOT, GAP, DASH, GAP, DASH, GAP, DASH },
+		/* K */ new [] { DASH, GAP, DOT, GAP, DASH },
+		/* L */ new [] { DOT, GAP, DASH, GAP, DOT, GAP, DOT },
+		/* M */ new [] { DASH, GAP, DASH },
+		/* N */ new [] { DASH, GAP, DOT },
+		/* O */ new [] { DASH, GAP, DASH, GAP, DASH },
+		/* P */ new [] { DOT, GAP, DASH, GAP, DASH, GAP, DOT },
+		/* Q */ new [] { DASH, GAP, DASH, GAP, DOT, GAP, DASH },
+		/* R */ new [] { DOT, GAP, DASH, GAP, DOT },
+		/* S */ new [] { DOT, GAP, DOT, GAP, DOT },
+		/* T */ new [] { DASH },
+		/* U */ new [] { DOT, GAP, DOT, GAP, DASH },
+		/* V */ new [] { DOT, GAP, DOT, GAP, DASH },
+		/* W */ new [] { DOT, GAP, DASH, GAP, DASH },
+		/* X */ new [] { DASH, GAP, DOT, GAP, DOT, GAP, DASH },
+		/* Y */ new [] { DASH, GAP, DOT, GAP, DASH, GAP, DASH },
+		/* Z */ new [] { DASH, GAP, DASH, GAP, DOT, GAP, DOT },
+	};
 
 		/** The characters from '0' to '9' */
-		private static long[][] NUMBERS = new long[][] {
-        /* 0 */ new long[] { DASH, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DASH },
-        /* 1 */ new long[] { DOT, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DASH },
-        /* 2 */ new long[] { DOT, GAP, DOT, GAP, DASH, GAP, DASH, GAP, DASH },
-        /* 3 */ new long[] { DOT, GAP, DOT, GAP, DOT, GAP, DASH, GAP, DASH },
-        /* 4 */ new long[] { DOT, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DASH },
-        /* 5 */ new long[] { DOT, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DOT },
-        /* 6 */ new long[] { DASH, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DOT },
-        /* 7 */ new long[] { DASH, GAP, DASH, GAP, DOT, GAP, DOT, GAP, DOT },
-        /* 8 */ new long[] { DASH, GAP, DASH, GAP, DASH, GAP, DOT, GAP, DOT },
-        /* 9 */ new long[] { DASH, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DOT },
-    };
+		private static long[][] NUMBERS = new [] {
+		/* 0 */ new [] { DASH, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DASH },
+		/* 1 */ new [] { DOT, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DASH },
+		/* 2 */ new [] { DOT, GAP, DOT, GAP, DASH, GAP, DASH, GAP, DASH },
+		/* 3 */ new [] { DOT, GAP, DOT, GAP, DOT, GAP, DASH, GAP, DASH },
+		/* 4 */ new [] { DOT, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DASH },
+		/* 5 */ new [] { DOT, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DOT },
+		/* 6 */ new [] { DASH, GAP, DOT, GAP, DOT, GAP, DOT, GAP, DOT },
+		/* 7 */ new [] { DASH, GAP, DASH, GAP, DOT, GAP, DOT, GAP, DOT },
+		/* 8 */ new [] { DASH, GAP, DASH, GAP, DASH, GAP, DOT, GAP, DOT },
+		/* 9 */ new [] { DASH, GAP, DASH, GAP, DASH, GAP, DASH, GAP, DOT },
+	};
 
-		private static long[] ERROR_GAP = new long[] { GAP };
+		private static long[] ERROR_GAP = new [] { GAP };
 
 		/** Return the pattern data for a given character */
 		static long[] GetPattern (char c)
 		{
 			if (c >= 'A' && c <= 'Z')
 				return LETTERS[c - 'A'];
-
 			if (c >= 'a' && c <= 'z')
 				return LETTERS[c - 'a'];
-			else if (c >= '0' && c <= '9')
+			if (c >= '0' && c <= '9')
 				return NUMBERS[c - '0'];
-			else
-				return ERROR_GAP;
+			return ERROR_GAP;
 		}
 
 		public static long[] GetPattern (String str)

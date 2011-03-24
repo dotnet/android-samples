@@ -14,7 +14,6 @@
 // limitations under the License.
 //
 
-using System;
 using Android.Graphics;
 using Android.Views.Animations;
 
@@ -74,10 +73,12 @@ namespace MonoDroid.ApiDemo
 
 			camera.Save ();
 
-			if (reverse)
-				camera.Translate (0.0f, 0.0f, depth_z * interpolatedTime);
-			else
-				camera.Translate (0.0f, 0.0f, depth_z * (1.0f - interpolatedTime));
+			if (reverse) {
+				camera.Translate(0.0f, 0.0f, depth_z * interpolatedTime);
+			}
+			else {
+				camera.Translate(0.0f, 0.0f, depth_z*(1.0f - interpolatedTime));
+			}
 
 			camera.RotateY (degrees);
 			camera.GetMatrix (matrix);

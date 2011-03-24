@@ -18,13 +18,12 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "OS/Morse Code")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new [] { Intent.ActionMain }, Categories = new [] { Intent.CategorySampleCode })]
 	public class MorseCode : Activity
 	{
 		// Our text view 
@@ -44,7 +43,7 @@ namespace MonoDroid.ApiDemo
 			SetContentView (Resource.Layout.morse_code);
 
 			// Set the Click event for the button so we see when it's pressed.
-			((Button)FindViewById (Resource.Id.button)).Click += MorseCode_Click;
+			FindViewById (Resource.Id.button).Click += MorseCode_Click;
 
 			// Save the text view so we don't have to look it up each time
 			mTextView = (TextView)FindViewById (Resource.Id.text);
@@ -53,14 +52,14 @@ namespace MonoDroid.ApiDemo
 		private void MorseCode_Click (object sender, EventArgs e)
 		{
 			// Get the text out of the view
-			String text = mTextView.Text.ToString ();
+			String text = mTextView.Text;
 
 			// convert it using the function defined above.  See the docs for
 			// android.os.Vibrator for more info about the format of this array
 			long[] pattern = MorseCodeConverter.GetPattern (text);
 
 			// Start the vibration
-			Vibrator vibrator = (Vibrator)GetSystemService (Context.VibratorService);
+			Vibrator vibrator = (Vibrator)GetSystemService (VibratorService);
 			vibrator.Vibrate (pattern, -1);
 		}
 	}
