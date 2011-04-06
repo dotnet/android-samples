@@ -27,7 +27,7 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "MonoDroid API Demo", MainLauncher = true)]
+	[Activity (Label = "Mono for Android API Demo", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
 		public ApiDemo ()

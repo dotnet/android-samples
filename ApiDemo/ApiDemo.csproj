@@ -93,6 +93,19 @@
     <Compile Include="Text\Marquee.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tutorials\AutoCompleteTutorial.cs" />
+    <Compile Include="Tutorials\FormWidgetsTutorial.cs" />
+    <Compile Include="Tutorials\WebViewTutorial.cs" />
+    <Compile Include="Tutorials\GalleryTutorial.cs" />
+    <Compile Include="Tutorials\SpinnerTutorial.cs" />
+    <Compile Include="Tutorials\TimePickerTutorial.cs" />
+    <Compile Include="Tutorials\DatePickerTutorial.cs" />
+    <Compile Include="Tutorials\ListViewTutorial.cs" />
+    <Compile Include="Tutorials\TabLayoutTutorial.cs" />
+    <Compile Include="Tutorials\GridViewTutorial.cs" />
+    <Compile Include="Tutorials\TableLayoutTutorial.cs" />
+    <Compile Include="Tutorials\RelativeLayoutTutorial.cs" />
+    <Compile Include="Tutorials\LinearLayoutTutorial.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />
@@ -119,6 +132,20 @@
     <AndroidResource Include="Resources\drawable\shape_4.xml" />
     <AndroidResource Include="Resources\drawable\shape_5.xml" />
     <AndroidResource Include="Resources\layout\read_asset.xml" />
+    <AndroidResource Include="Resources\drawable\sample_3.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_4.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_5.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_6.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_7.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_0.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_1.jpg" />
+    <AndroidResource Include="Resources\drawable\sample_2.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_tab_artists.xml" />
+    <AndroidResource Include="Resources\drawable\ic_tab_artists_grey.png" />
+    <AndroidResource Include="Resources\drawable\ic_tab_artists_white.png" />
+    <AndroidResource Include="Resources\drawable\android_normal.png" />
+    <AndroidResource Include="Resources\drawable\android_focused.png" />
+    <AndroidResource Include="Resources\drawable\android_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\samplefont.ttf" />
@@ -147,6 +174,51 @@
   <ItemGroup>
     <Compile Include="Text\Linkify.cs" />
     <Compile Include="Text\LogTextBox1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LinearLayoutTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RelativeLayoutTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TableLayoutTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\GridViewTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TabLayoutTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListViewTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DatePickerTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TimePickerTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SpinnerTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\GalleryTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\WebViewTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AutoCompleteTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_item.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\FormWidgetsTutorial.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\android_button.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
