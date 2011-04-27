@@ -17,7 +17,8 @@ There are three prequisites in order to run build and run this sample:
  1. Mono for Android Preiew 13 or later.
  2. The Google APIs Android SDK add-on.
  3. A device with Google Maps support.
- 4. Obtain an API Key for use with Google Maps.
+ 4. A keystore file.
+ 5. Obtain an API Key for use with Google Maps.
 
 Commands that need to be executed are indicated within backtics (`),
 and $ANDROID_SDK_PATH is the directory that contains your Android SDK
@@ -72,7 +73,54 @@ If you need an emulator with Google Maps support:
  5. Click the Create AVD button.
 
 You may now launch the emulator with: 
-$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS
+
+        `$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS`
+
+
+Keystore
+--------
+
+The Google Maps API key is based on the `keytool`-generated keystore.
+Consequently, you must use the same certificate every time you sign the
+application. Since the default Mono for Android build process always
+creates a new debug keystore (and one only good for 6 months, and thus not
+suitable for use on the Android Market), we need to alter the default
+behavior.
+
+This involves two steps:
+
+ 1. Creating the keystore to use.
+ 2. Altering the build process to use the new keystore.
+
+To simplify matters, this project includes a `public.keystore` file
+within the repository, but this is likely not a good idea for
+production apps:
+
+        http://developer.android.com/guide/publishing/app-signing.html#cert
+
+The `public.keystore` file was generated using the command:
+
+        `keytool -genkey -v -keystore public.keystore -alias public -keyalg RSA -keysize 2048 -validity 10000`
+
+Once you have a keystore to use, you need to tell Mono for Android to
+use your keystore to sign the final package instead of using the
+default debug keystore. This requires modifying the .csproj in
+accordance with:
+
+        http://mono-android.net/Documentation/Build_Process#Signing
+
+The required build system changes have already been done for `GoogleMaps.csproj`:
+
+        <PropertyGroup>
+            <AndroidKeyStore>True</AndroidKeyStore>
+            <AndroidSigningKeyStore>public.keystore</AndroidSigningKeyStore>
+            <AndroidSigningStorePass>public</AndroidSigningStorePass>
+            <AndroidSigningKeyAlias>public</AndroidSigningKeyAlias>
+            <AndroidSigningKeyPass>public</AndroidSigningKeyPass>
+        </PropertyGroup>
+
+Again, for actual non-sample apps, it may not be advisable to have the
+private keystore within source control, as is done for this sample.
 
 
 Google Maps API Key
@@ -92,7 +140,7 @@ will still serve to demonstrate how C# and Java interop can work.
 How it works
 ============
 
-As Mono for Android does not currently support binding arbitrary .jar
+As Mono for Android 1.0 does not support binding arbitrary .jar
 files (only the Android SDK android.jar is bound), alternative
 mechanisms must instead used for interoperation between Java and
 managed code.  Two primary mechanisms are:
