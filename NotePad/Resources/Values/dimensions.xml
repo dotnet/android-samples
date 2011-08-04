@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <dimen name="standard_border">5px</dimen>
+    <dimen name="large_font_size">16sp</dimen>
+</resources>
