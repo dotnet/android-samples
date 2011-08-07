@@ -5,19 +5,24 @@ The `Labelled Sections` demo is a port from the
 [Alphabetically ordered ListView with labelled sections](http://androidseverywhere.info/JAAB/?p=6)
 sample, with some changes to follow .NET conventions.
 
-The `ListItemInterface` interface is the [IHasLabel](IHasLabel.cs) interface.
+The `ListItemInterface` interface is the
+[IHasLabel](/mono/monodroid-samples/blob/master/LabelledSections/IHasLabel.cs) interface.
 
-The `ListItemObject` class is the [ListItemValue](ListItemValue.cs) class.
+The `ListItemObject` class is the
+[ListItemValue](/mono/monodroid-samples/blob/master/ListItemValue.cs) class.
 
 The `ListItemContainer` class is the
-[ListItemCollection](ListItemCollection.cs) class.
+[ListItemCollection](/mono/monodroid-samples/blob/master/ListItemCollection.cs)
+class.
 
-The `ListWithHeaders` activity is the [Activity1](Activity1.cs) activity.
+The `ListWithHeaders` activity is the
+[Activity1](/mono/monodroid-samples/blob/master/Activity1.cs) activity.
 
 The `res/layout` XML files are unchanged, though `list_item.xml` has been
-renamed to [ListItem.axml](Resources/layout/ListItem.axml) and
-`list_header.xml` has been renamed to
-[ListHeader.axml](Resources/layout/ListHeader.axml).
+renamed to [ListItem.axml](/mono/monodroid-samples/blob/master/Resources/layout/ListItem.axml)
+and `list_header.xml` has been renamed to
+[ListHeader.axml](/mono/monodroid-samples/blob/master/Resources/layout/ListHeader.axml).
 
 The `SeparatedListAdapter` type is the
-[SeparatedListAdapter](SeparatedListAdapter.cs) type.
+[SeparatedListAdapter](/mono/monodroid-samples/blob/master/SeparatedListAdapter.cs)
+type.
