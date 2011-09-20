@@ -56,3 +56,11 @@ two ways to build the various samples:
     'Novell\Novell.MonoDroid.Common.targets'.
 
     topdir is also used to find the MonoDroid Install directory.
+
+Contributing
+------------
+
+Before adding a sample to the repository, please run either install-hook.bat
+or install-hook.sh depending on whether you're on Windows or a Posix system.
+This will install a Git hook that runs the Xamarin code sample validator before
+a commit, to ensure that all samples are good to go.
