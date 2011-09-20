@@ -8,7 +8,6 @@ file required for Google Maps use isn't currently bound.
 Consequently, Mono for Android's Java interop functionality must be
 used.
 
-
 Prequisites
 ===========
 
@@ -23,7 +22,6 @@ There are three prequisites in order to run build and run this sample:
 Commands that need to be executed are indicated within backtics (`),
 and $ANDROID_SDK_PATH is the directory that contains your Android SDK
 installation.
-
 
 Installing the Google APIs Android SDK add-on
 ---------------------------------------------
@@ -46,7 +44,6 @@ To install the Google APIs Android SDK add-on:
 
  6. In the "Choose Packages to Install" dialog, select the Accept
     radio button, then click the Install button.
-
 
 Creating a device with Google Maps support
 ------------------------------------------
@@ -75,7 +72,6 @@ If you need an emulator with Google Maps support:
 You may now launch the emulator with: 
 
         `$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS`
-
 
 Keystore
 --------
@@ -122,7 +118,6 @@ The required build system changes have already been done for `GoogleMaps.csproj`
 Again, for actual non-sample apps, it may not be advisable to have the
 private keystore within source control, as is done for this sample.
 
-
 Google Maps API Key
 -------------------
 
@@ -135,7 +130,6 @@ attribute to contain your Google Maps API Key.
 
 If you don't change this, you'll get a blank map, though the sample
 will still serve to demonstrate how C# and Java interop can work.
-
 
 How it works
 ============
@@ -204,4 +198,3 @@ The <uses-library/> element is used by monodroid.exe to lookup the
 appropriate Android SDK Add-on and include the .jar file in the Java
 source compilation so that everything compiles properly.  No
 additional .jar files need to be specified.
-

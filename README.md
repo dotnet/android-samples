@@ -1,7 +1,10 @@
+MonoDroid Samples
+=================
+
 MonoDroid samples, showing use of Android API wrappers from C#.
 
-Samples:
-=======
+Samples
+-------
 
 The following samples are provided:
 
@@ -23,8 +26,8 @@ The following samples are provided:
   - TexturedCube: OpenGLES and OpenTK demonstration.  Drag the cube around to
     see it rotate.
 
-Building:
-========
+Building
+--------
 
 In order to build, the following must be installed first:
 
@@ -53,4 +56,3 @@ two ways to build the various samples:
     'Novell\Novell.MonoDroid.Common.targets'.
 
     topdir is also used to find the MonoDroid Install directory.
-
