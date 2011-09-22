@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for dir in `find . -type d -maxdepth 1`; do
+for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\."`; do
     xcsv.exe $dir;
 
     if [ $? != 0 ]; then
