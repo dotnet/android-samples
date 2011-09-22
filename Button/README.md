@@ -1,4 +1,4 @@
 Button
 ======
 
-TODO
+Shows how to use a simple button widget.
