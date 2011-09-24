@@ -1,4 +1,4 @@
-Labelled Sections 
+Labelled Sections
 =================
 
 The `Labelled Sections` demo is a port from the
