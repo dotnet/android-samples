@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>com.example.monodroid.hcgallery</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>HoneycombGallery</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v3.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Directory.cs" />
+    <Compile Include="DirectoryCategory.cs" />
+    <Compile Include="DirectoryEntry.cs" />
+    <Compile Include="TitlesFragment.cs" />
+    <Compile Include="CameraSample.cs" />
+    <Compile Include="ContentFragment.cs" />
+    <Compile Include="FitCenterFrameLayout.cs" />
+    <Compile Include="CameraFragment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btn_notification_ic_example.xml" />
+    <AndroidResource Include="Resources\drawable\picture_frame.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_notification_ic_example_default.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_notification_ic_example_pressed.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_camera_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_camera_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_share_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_share_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_toggle_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_toggle_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_stat_notify_example.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\picture_frame_default.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\picture_frame_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\picture_frame_selected.9.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_notification_ic_example_default.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_notification_ic_example_pressed.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_camera_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_camera_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_share_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_share_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_toggle_holo_dark.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_toggle_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_stat_notify_example.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\picture_frame_default.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\picture_frame_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\picture_frame_selected.9.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\big_droid.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\blue_balloon.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\blue_bike.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\chrome_wheel.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\cupcake.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\donut.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\eclair.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\froyo.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\green_balloon.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\notification_default_largeicon.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\punk_droid.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\rainbow_bike.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\red_balloon.JPG" />
+    <AndroidResource Include="Resources\drawable-nodpi\stargazer_droid.JPG" />
+    <AndroidResource Include="Resources\layout\action_bar_custom.xml" />
+    <AndroidResource Include="Resources\layout\camera_sample.xml" />
+    <AndroidResource Include="Resources\layout\content_welcome.xml" />
+    <AndroidResource Include="Resources\layout\main.xml" />
+    <AndroidResource Include="Resources\layout\notification.xml" />
+    <AndroidResource Include="Resources\layout\title_list_item.xml" />
+    <AndroidResource Include="Resources\layout-port\main.xml" />
+    <AndroidResource Include="Resources\menu\camera_menu.xml" />
+    <AndroidResource Include="Resources\menu\main_menu.xml" />
+    <AndroidResource Include="Resources\menu\photo_context_menu.xml" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values-port\dimens.xml" />
+  </ItemGroup>
+</Project>
