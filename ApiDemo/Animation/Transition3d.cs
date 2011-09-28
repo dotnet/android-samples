@@ -111,7 +111,7 @@ namespace MonoDroid.ApiDemo
 	     * It then posts a new action that effectively swaps the views when the container
 	     * is rotated 90 degrees and thus invisible.
 	     */
-		private class DisplayNextView : Animation.IAnimationListener
+		private class DisplayNextView : Java.Lang.Object, Animation.IAnimationListener
 		{
 			private int position;
 			private ViewGroup container;
@@ -141,22 +141,13 @@ namespace MonoDroid.ApiDemo
 			{
 			}
 			#endregion
-
-			#region IJavaObject Members
-
-			public IntPtr Handle
-			{
-				get { throw new NotImplementedException (); }
-			}
-
-			#endregion
 		}
 
 		/**
 	     * This class is responsible for swapping the views and start the second
 	     * half of the animation.
 	     */
-		private class SwapViews : Java.Lang.IRunnable
+		private class SwapViews : Java.Lang.Object, Java.Lang.IRunnable
 		{
 			private int position;
 			private ViewGroup container;
@@ -197,16 +188,6 @@ namespace MonoDroid.ApiDemo
 
 				container.StartAnimation (rotation);
 			}
-
-
-			#region IJavaObject Members
-
-			public IntPtr Handle
-			{
-				get { throw new NotImplementedException (); }
-			}
-
-			#endregion
 		}
 
 
