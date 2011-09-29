@@ -48,17 +48,15 @@ namespace com.example.monodroid.hcgallery
 			ListView lv = ListView;
 			lv.ChoiceMode = ChoiceMode.Single;
 			lv.CacheColorHint = Color.Transparent;
-			lv.ItemLongClick += delegate(object sender, ItemEventArgs e) {
-				View v = e.View;
-				int pos = e.Position;
-				long id = e.Id;
-				String title = (String) ((TextView) v).Text;
+			lv.ItemLongClick = delegate(AdapterView parent, View view, int position, long id) {
+				String title = (String) ((TextView) view).Text;
 			
 				// Set up clip data with the category||entry_id format.
-				String textData = String.Format ("{0}||{1}", mCategory, pos);
+				String textData = String.Format ("{0}||{1}", mCategory, position);
 				ClipData data = ClipData.NewPlainText (title, textData);
-				v.StartDrag (data, new MyDragShadowBuilder (v), null, 0);
-				};
+				view.StartDrag (data, new MyDragShadowBuilder (view), null, 0);
+				return true;
+			};
 			
 			SelectPosition (mCurPosition);
 		}
