@@ -24,7 +24,8 @@ namespace Mono.Samples.GLCube {
 			Initialize ();
 		}
 
-		public PaintingView (IntPtr handle) : base (handle)
+		public PaintingView (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+			: base (handle, transfer)
 		{
 			Initialize ();
 		}

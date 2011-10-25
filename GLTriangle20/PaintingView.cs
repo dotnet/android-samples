@@ -26,7 +26,8 @@ namespace Mono.Samples.GLTriangle20 {
 		{
 		}
 
-		public PaintingView (IntPtr handle) : base (handle)
+		public PaintingView (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+			: base (handle, transfer)
 		{
 		}
 

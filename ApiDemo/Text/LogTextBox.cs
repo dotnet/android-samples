@@ -25,7 +25,8 @@ namespace MonoDroid.ApiDemo
 {
 	public class LogTextBox : TextView
 	{
-		public LogTextBox (IntPtr handle) : base (handle)
+		public LogTextBox (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+			: base (handle, transfer)
 		{
 		}
 
