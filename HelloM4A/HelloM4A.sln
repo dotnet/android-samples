@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloM4A", "HelloM4A\HelloM4A.csproj", "{BBA81F1A-306F-44A7-BF21-62F83ACF8221}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBA81F1A-306F-44A7-BF21-62F83ACF8221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA81F1A-306F-44A7-BF21-62F83ACF8221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA81F1A-306F-44A7-BF21-62F83ACF8221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA81F1A-306F-44A7-BF21-62F83ACF8221}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = HelloM4A\HelloM4A.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.inheritsSet = VisualStudio
+		$3.inheritsScope = text/plain
+		$3.scope = application/xml
+		$0.XmlFormattingPolicy = $4
+		$4.inheritsSet = Mono
+		$4.inheritsScope = application/xml
+		$4.scope = application/xml
+		$0.TextStylePolicy = $5
+		$5.FileWidth = 120
+		$5.inheritsSet = VisualStudio
+		$5.inheritsScope = text/plain
+		$5.scope = text/plain
+	EndGlobalSection
+EndGlobal

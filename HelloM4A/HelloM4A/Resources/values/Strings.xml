@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="helloButtonText">Say Hello</string>
+    <string name="helloLabelText">Hello Mono for Android</string> 
+</resources>
