@@ -1,12 +1,12 @@
-Google Maps Sample
+Jni Sample
 ==================
 
-Using Google Maps from Mono for Android presents a bit of a challenge,
-as Mono for Android only binds `android.jar`, and thus the `maps.jar`
-file required for Google Maps use isn't currently bound.
+This sample shows how to manually bind to a Java library so it can
+be consumed by a Mono for Android application.
 
-Consequently, Mono for Android's Java interop functionality must be
-used.
+Note this binds to the Google Maps library as a sample, but Mono for Android
+provides bindings to the Google Maps library for you.  If you just want
+to use Maps, see the MapsDemo sample instead.
 
 Prequisites
 ===========
