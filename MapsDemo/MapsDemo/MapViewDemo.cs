@@ -22,8 +22,7 @@ using Android.GoogleMaps;
 namespace MonoDroid.Samples.MapsDemo
 {
 	// This demonstrates creating a Map based Activity.
-	[Activity (Name = "com.example.monodroid.googleapis.maps.MapViewDemo", Label = "MapView")]
-	[IntentFilter (new[] { Intent.ActionMain })]
+	[Activity (Label = "MapView")]
 	public class MapViewDemo : MapActivity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

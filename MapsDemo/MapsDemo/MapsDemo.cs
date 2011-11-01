@@ -25,76 +25,33 @@ using Android.Widget;
 
 namespace MonoDroid.Samples.MapsDemo
 {
-	[Activity (Name = "com.example.monodroid.googleapis.maps.MapsDemo", Label = "M4A MapsDemo", MainLauncher = true)]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategoryLauncher })]
+	[Activity (Label = "M4A MapsDemo", MainLauncher = true)]
 	public class MapsDemo : ListActivity 
 	{
+		private List<string> menu = new List<string> ();
+
 		protected override void OnCreate (Bundle savedInstanceState) 
 		{
 			base.OnCreate (savedInstanceState);
-				
-			ListAdapter = new SimpleAdapter (this, GetData (),
-				Android.Resource.Layout.SimpleListItem1, new String [] { "title" },
-				new int[] { Android.Resource.Id.Text1 });
 
-			ListView.TextFilterEnabled = true;
+			menu.Add ("MapView");
+			menu.Add ("MapView and Compass");
+
+			ListAdapter = new ArrayAdapter<string> (this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, menu);
 		}
 
-		protected List<IDictionary<String,Object>> GetData () 
+		protected override void OnListItemClick (ListView l, View v, int position, long id)
 		{
-			var myData = new List<IDictionary<String,Object>> ();
-			
-			Intent mainIntent = new Intent (Intent.ActionMain, null);
-			mainIntent.AddCategory (Intent.CategorySampleCode);
-			
-			PackageManager pm = PackageManager;
-			IList<ResolveInfo> list = pm.QueryIntentActivities (mainIntent, 0);
-			
-			if (null == list)
-				return myData;
-				
-			int len = list.Count;
-			
-			IDictionary<String, Boolean> entries = new Dictionary<String, Boolean> ();
-			
-			for (int i = 0; i < len; i++) {
-				ResolveInfo info = list [i];
-				
-				var labelSeq = info.LoadLabel (pm);
-				
-				if ("com.example.monodroid.googleapis.maps" == info.ActivityInfo.ApplicationInfo.PackageName) {
-					AddItem (myData, labelSeq.ToString (), ActivityIntent (
-						info.ActivityInfo.ApplicationInfo.PackageName,
-						info.ActivityInfo.Name));
-				}
+			var selected = l.GetItemAtPosition (position).ToString ();
+
+			switch (selected) {
+				case "MapView":
+					StartActivity (typeof (MapViewDemo));
+					break;
+				case "MapView and Compass":
+					StartActivity (typeof (MapViewCompassDemo));
+					break;
 			}
-			
-			myData.Sort (delegate (IDictionary<string,object> map1, IDictionary<string,object> map2) {
-				return String.Compare ((string) map1 ["title"], (string) map2 ["title"], StringComparison.CurrentCulture);
-				});
-			
-			return myData;
-		}
-
-		protected Intent ActivityIntent (String pkg, String componentName) 
-		{
-			Intent result = new Intent ();
-			result.SetClassName (pkg, componentName);
-			return result;
-		}
-    
-		protected void AddItem (List<IDictionary<String, Object>> data, String name, Intent intent) {
-			IDictionary<String, Object> temp = new Dictionary<String, Object> ();
-			temp ["title"] = name;
-			temp ["intent"] = intent;
-			data.Add (temp);
-		}
-
-		protected override void OnListItemClick (ListView l, View v, int position, long id) {
-			var map = (IDictionary<String, Object>) l.GetItemAtPosition (position);
-			
-			Intent intent = (Intent) map ["intent"];
-			StartActivity (intent);
 		}
 	}
 }

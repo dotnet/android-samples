@@ -26,8 +26,7 @@ using Android.GoogleMaps;
 // Example of how to use a MapsView in conjunction with the SensorManager
 namespace MonoDroid.Samples.MapsDemo
 {
-	[Activity (Name = "com.example.monodroid.googleapis.maps.MapViewCompassDemo", Label = "MapView and Compass")]
-	[IntentFilter (new[] { Intent.ActionMain })]
+	[Activity (Label = "MapView and Compass")]
 	public class MapViewCompassDemo : MapActivity
 	{
 		const String TAG = "MapViewCompassDemo";
