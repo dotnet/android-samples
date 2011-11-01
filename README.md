@@ -8,8 +8,12 @@ Samples
 
 The following samples are provided:
 
+  - ApiDemo: Shows how to use various Android APIs.
+
   - Button: A full-screen button with click counter, demonstrates use of C#
     events to handle UI events.
+
+  - ContactManager: Shows how to access contacts stored on an Android device.
 
   - GLCube: A simple colored cube that keeps rotating about its center, rendered
     via OpenGLES and OpenTK, via AndroidGameView.
@@ -19,43 +23,31 @@ The following samples are provided:
   - HelloWorld: A port of the simple Android Hello World application.
     Also demonstrates use of resources.
 
+  - HoneycombGallery: Shows how to use some of the tablet APIs introduced in
+    Android 3.0 (Honeycomb).
+
+  - JeyBoy: Shows how to create an advanced music game.
+
+  - JniDemo: Shows how to create manual bindings to Java libraries so they
+    can be consumed by Mono for Android applications.
+
+  - LabelledSections: Shows how to create a list with section labels.
+
+  - LiveWallpaperDemo: Shows how to create a live wallpaper.
+
+  - MapsDemo: Shows how to use the GoogleMaps bindings.
+
   - MultiResolution: Demonstrates embedded resources and UI integration.
 
+  - SimpleWidget: Shows how to create an Android desktop widget.
+
   - SkeletonApp: Demonstrates text editing and keyboard support.
+
+  - Snake: Shows how to create a simple Snake game.
 
   - TexturedCube: OpenGLES and OpenTK demonstration.  Drag the cube around to
     see it rotate.
 
-Building
---------
-
-In order to build, the following must be installed first:
-
-  - Android SDK, containing at least API level 7 (Android 2.1)
-  - Java SDK
-  - MonoDroid SDK
-
-Once the MonoDroid SDK tools and the Android SDK have been installed, there are 
-two ways to build the various samples:
-
-  - Open */*.sln within Visual Studio 2010.
-
-    MonoDevelop support is forthcoming.
-
-  - Using the Unix makefiles.  These *require* xbuild from Mono 2.6.7 
-    (or later), and the TARGETS_DIR, ANDROID_SDK_PATH, and topdir make(1) 
-    variables:
-
-	make ANRDROID_SDK_PATH=/path/to/android/sdk/root \
-	  TARGETS_DIR=/path/containing/Novell/Novell.MonoDroid.Common.targets \
-	  topdir=/path/to/mondroid/install
-
-    ANDROID_SDK_PATH is the root directory of your Android SDK install
-
-    TARGETS_DIR is the directory containing the file
-    'Novell\Novell.MonoDroid.Common.targets'.
-
-    topdir is also used to find the MonoDroid Install directory.
 
 Contributing
 ------------
