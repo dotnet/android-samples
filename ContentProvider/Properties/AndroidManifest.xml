@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" package="MonoDroid.ContentProviderDemo" android:versionCode="1" android:versionName="1.0">
+  <application android:label="ContentProviderDemo">
+    <provider android:name="monodroid.contentproviderdemo.LocationContentProvider"
+              android:authorities="monodroid.contentproviderdemo.LocationProvider" />
+  </application>
+  <uses-sdk android:minSdkVersion="4" />
+</manifest>
