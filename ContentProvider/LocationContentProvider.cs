@@ -158,21 +158,9 @@ namespace MonoDroid.ContentProviderDemo
             }
 
             // Make sure all NOT NULL fields are set
-            if (values.ContainsKey(_ID) == false)
-            {
-                throw new SQLException("Failed to insert row into " + uri + ". Query is missing _ID!");
-            }
             if (values.ContainsKey(NAME) == false)
             {
                 throw new SQLException("Failed to insert row into " + uri + ". Query is missing NAME!");
-            }
-            if (values.ContainsKey(LONGITUDE) == false)
-            {
-                throw new SQLException("Failed to insert row into " + uri + ". Query is missing LONGITUDE!");
-            }
-            if (values.ContainsKey(LATITUTDE) == false)
-            {
-                throw new SQLException("Failed to insert row into " + uri + ". Query is missing LATITUTDE!");
             }
 
             SQLiteDatabase db = dbHelper.WritableDatabase;

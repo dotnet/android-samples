@@ -63,6 +63,7 @@ namespace MonoDroid.ContentProviderDemo
         {
             ContentValues values = new ContentValues();
 
+            // Don't set _ID if you want to auto increment it.
             //values.Put(LocationContentProvider._ID, 1); 
             values.Put(LocationContentProvider.NAME, "Brüel & Kjær");
             values.Put(LocationContentProvider.LATITUTDE, 55.816932);
