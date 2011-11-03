@@ -1,5 +1,5 @@
 Jni Sample
-==================
+==========
 
 This sample shows how to manually bind to a Java library so it can
 be consumed by a Mono for Android application.
