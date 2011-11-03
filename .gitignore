@@ -7,5 +7,5 @@
 *.suo
 *.pidb
 *.userprefs
-Resource.Designer.cs
-Resource.designer.cs
+*.Designer.cs
+*.designer.cs
