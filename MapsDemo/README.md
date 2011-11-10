@@ -18,9 +18,8 @@ There are four prequisites in order to run build and run this sample:
  3. A device with Google Maps support.
  4. Obtain an API Key for use with Google Maps.
 
-Commands that need to be executed are indicated within backtics (`),
-and `$ANDROID_SDK_PATH` is the directory that contains your Android SDK
-installation.
+In the following sections, `$ANDROID_SDK_PATH` is the directory that contains
+your Android SDK installation.
 
 Installing the Google APIs Android SDK add-on
 ---------------------------------------------
@@ -47,8 +46,13 @@ Creating a device with Google Maps support
 ------------------------------------------
 
 To verify that your target device has Google Maps support, you can use
-`$ANDROID_SDK_PATH/platform-tools/adb shell ls /system/framework/*map*`
-to see if Google Maps support is present.  It should be present on
+the following command to see if Google Maps support is present:
+
+    $ $ANDROID_SDK_PATH/platform-tools/adb shell ls /system/framework/*map*
+    /system/framework/com.google.android.maps.jar
+    /system/framework/com.google.android.maps.odex
+
+The `com.google.android.maps.jar` library should be present on
 hardware devices, but may not be present within some emulators.
 
 If you need an emulator with Google Maps support:
@@ -65,7 +69,7 @@ If you need an emulator with Google Maps support:
 
 You may now launch the emulator with:
 
-        `$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS`
+    `$ANDROID_SDK_PATH/tools/emulator -partition-size 512 -avd MAPS`
 
 Google Maps API Key
 -------------------
