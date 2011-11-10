@@ -24,13 +24,12 @@ namespace MonoDroid.ApiDemo
 
 			EditText edittext = FindViewById<EditText> (Resource.Id.edittext);
 
-			edittext.KeyPress = (v, k, e) => {
-				if (e.Action == KeyEventActions.Down && ((Keycode)k) == Keycode.Enter) {
+			edittext.KeyPress += (o, e) => {
+				if (e.E.Action == KeyEventActions.Down && ((Keycode)e.KeyCode) == Keycode.Enter) {
 					Toast.MakeText (this, edittext.Text, ToastLength.Short).Show ();
-					return true;
 				}
 
-				return false;
+				e.Handled = false;
 			};
 
 			CheckBox checkbox = FindViewById<CheckBox> (Resource.Id.checkbox);

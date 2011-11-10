@@ -53,8 +53,8 @@ namespace com.example.monodroid.hcgallery
 			ImageView imageView = (ImageView) mContentView.FindViewById (Resource.Id.image);
 			mContentView.DrawingCacheEnabled = false;
 			
-			mContentView.Drag = delegate(View v, DragEvent e) {
-				switch (e.Action) {
+			mContentView.Drag += (o, e) => {
+				switch (e.E.Action) {
 				case DragAction.Entered:
 					mContentView.SetBackgroundColor (
 						Resources.GetColor (Resource.Color.drag_active_color));
@@ -65,13 +65,15 @@ namespace com.example.monodroid.hcgallery
 					break;
 				
 				case DragAction.Started:
-					return ProcessDragStarted (e);
+					e.Handled = ProcessDragStarted (e.E);
+					break;
 				
 				case DragAction.Drop:
 					mContentView.SetBackgroundColor (Color.Transparent);
-					return ProcessDrop (e, imageView);
+					e.Handled = ProcessDrop (e.E, imageView);
+					break;
 				}
-				return false;
+				e.Handled = false;
 			};
 			
 			// Keep the action bar visibility in sync with the system status bar. That is, when entering
@@ -105,15 +107,14 @@ namespace com.example.monodroid.hcgallery
 			// When long-pressing a photo, activate the action mode for selection, showing the
 			// contextual action bar (CAB).
 			
-			mContentView.LongClick = delegate (View v) {
+			mContentView.LongClick += (o, e) => {
 				if (mCurrentActionMode != null) {
-					return false;
+					e.Handled = false;
 				}
 				
 				mCurrentActionMode = Activity.StartActionMode (
 					mContentSelectionActionModeCallback);
 				mContentView.Selected = true;
-				return true;
 			};
 			
 			return mContentView;
