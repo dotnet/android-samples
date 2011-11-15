@@ -1,5 +1,5 @@
-Jni Sample
-==========
+Java Native Invoke Sample
+=========================
 
 This sample shows how to manually bind to a Java library so it can
 be consumed by a Mono for Android application.
@@ -9,7 +9,7 @@ provides bindings to the Google Maps library for you.  If you just want
 to use Maps, see the MapsDemo sample instead.
 
 Prequisites
-===========
+-----------
 
 There are three prequisites in order to run build and run this sample:
 
@@ -132,7 +132,7 @@ If you don't change this, you'll get a blank map, though the sample
 will still serve to demonstrate how C# and Java interop can work.
 
 How it works
-============
+------------
 
 As Mono for Android 1.0 does not support binding arbitrary .jar
 files (only the Android SDK android.jar is bound), alternative

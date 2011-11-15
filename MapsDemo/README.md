@@ -1,5 +1,5 @@
-MapsDemo
-========
+Google Maps Demo
+================
 
 This demo shows how to use Managed Google Maps API.
 

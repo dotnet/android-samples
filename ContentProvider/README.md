@@ -1,5 +1,5 @@
-Content Provider Demo for Mono for Android
-==========================================
+Content Provider Demo
+=====================
 
 Just a small example showing how a Content Provider can be implemented in Mono for Android.
 
