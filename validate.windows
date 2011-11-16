@@ -1,0 +1,11 @@
+#!/bin/sh
+
+for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\." | sed "s/^\.\///"`; do
+    if ! [ -f $dir/Makefile ]; then
+        ./xcsv.exe $dir;
+
+        if [ $? != 0 ]; then
+            exit 1;
+        fi;
+    fi;
+done;
