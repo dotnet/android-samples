@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloM4A", "HelloM4A\HelloM4A.csproj", "{BBA81F1A-306F-44A7-BF21-62F83ACF8221}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloM4A", "HelloM4A.csproj", "{BBA81F1A-306F-44A7-BF21-62F83ACF8221}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
