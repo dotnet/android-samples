@@ -1,15 +1,33 @@
 #!/bin/sh
 
-for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\." | sed "s/^\.\///"`; do
-    for file in `git diff --cached --name-only | grep $dir`; do
-        if ! [ -f $dir/Makefile ]; then
-            mono --debug xcsv.exe $dir;
+run_validator()
+{
+    mono --debug xcsv.exe $1 $2 $3;
 
-            if [ $? != 0 ]; then
-                exit 1;
-            fi;
+    if [ $? != 0 ]; then
+        exit 1;
+    fi;
+}
+
+for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\." | sed "s/^\.\///"`; do
+    build_done="false"
+
+    for file in `git diff --cached --name-only | grep "^$dir\/"`; do
+        if [ -f $dir/Makefile ]; then
+            break;
         fi;
 
-        break;
+        if [ $file == $dir/README.md ]; then
+            run_validator markdown $dir;
+        elif [ $file == $dir/Metadata.xml ]; then
+            run_validator metadata $dir;
+        elif [ `echo $file | grep "^$dir\/Screenshots\/"` ]; then
+            run_validator screenshot $dir;
+        else
+            if [ $build_done == "false" ]; then
+                run_validator build $dir "msbuild /t:SignAndroidPackage";
+                build_done="true"
+            fi;
+        fi;
     done;
 done;
