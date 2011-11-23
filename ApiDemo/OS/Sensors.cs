@@ -45,9 +45,9 @@ namespace MonoDroid.ApiDemo
 			SetContentView (graph_view);
 
 			sensor_manager.RegisterListener (graph_view,
-				SensorManager.SensorAccelerometer |
-				SensorManager.SensorMagneticField |
-				SensorManager.SensorOrientation,
+				SensorType.Accelerometer |
+				SensorType.MagneticField |
+				SensorType.Orientation,
 				SensorDelay.Fastest);
 
 		}
@@ -57,9 +57,9 @@ namespace MonoDroid.ApiDemo
 			base.OnResume ();
 
 			sensor_manager.RegisterListener (graph_view,
-				SensorManager.SensorAccelerometer |
-				SensorManager.SensorMagneticField |
-				SensorManager.SensorOrientation,
+				SensorType.Accelerometer |
+				SensorType.MagneticField |
+				SensorType.Orientation,
 				SensorDelay.Fastest);
 		}
 
@@ -196,7 +196,7 @@ namespace MonoDroid.ApiDemo
 				lock (this) {
 					if (mBitmap != null) {
 						Canvas canvas = mCanvas;
-						if (sensor == SensorManager.SensorAccelerometer) {
+						if (sensor == (int)SensorType.Accelerometer) {
 							for (int i = 0; i < 3; i++) {
 								mOrientationValues[i] = values[i];
 							}
@@ -204,7 +204,7 @@ namespace MonoDroid.ApiDemo
 							float deltaX = mSpeed;
 							float newX = mLastX + deltaX;
 
-							int j = (sensor == SensorManager.SensorMagneticField) ? 1 : 0;
+							int j = (sensor == (int)SensorType.MagneticField) ? 1 : 0;
 							for (int i = 0; i < 3; i++) {
 								int k = i + j * 3;
 								float v = mYOffset + values[i] * mScale[j];
@@ -212,7 +212,7 @@ namespace MonoDroid.ApiDemo
 								canvas.DrawLine (mLastX, mLastValues[k], newX, v, paint);
 								mLastValues[k] = v;
 							}
-							if (sensor == SensorManager.SensorMagneticField)
+							if (sensor == (int)SensorType.MagneticField)
 								mLastX += mSpeed;
 						}
 						Invalidate ();

@@ -48,7 +48,7 @@ namespace MonoDroid.ApiDemo
 			base.OnResume ();
 
 			mSensorManager.RegisterListener (mView,
-					SensorManager.SensorOrientation, SensorDelay.Fastest);
+					SensorType.Orientation, SensorDelay.Fastest);
 		}
 
 		protected override void OnStop ()

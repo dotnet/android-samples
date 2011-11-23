@@ -66,7 +66,7 @@ namespace MonoDroid.Samples.MapsDemo
 		{
 			base.OnResume ();
 
-			sensor_manager.RegisterListener (rotate_view, SensorManager.SensorOrientation,SensorDelay.Ui);
+			sensor_manager.RegisterListener (rotate_view, SensorType.Orientation, SensorDelay.Ui);
 			
 			location_overlay.EnableMyLocation ();
 		}
