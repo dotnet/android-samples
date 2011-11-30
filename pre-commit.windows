@@ -13,6 +13,10 @@ for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\." | sed "
     build_done="false"
 
     for file in `git diff --cached --name-only | grep "^$dir\/"`; do
+        if ! [ -d $dir ]; then
+            break;
+        fi;
+
         if [ -f $dir/Makefile ]; then
             break;
         fi;
