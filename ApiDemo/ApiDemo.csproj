@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityListItem.cs" />
     <Compile Include="Animation\Rotate3dAnimation.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -170,6 +171,7 @@
     <AndroidResource Include="Resources\layout\alert_dialog_text_entry.xml" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_settings_applications.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_settings_display.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\samplefont.ttf" />

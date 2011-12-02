@@ -17,127 +17,106 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "Mono for Android API Demo", MainLauncher = true)]
+	[Activity (Label = "Mono API Demos", MainLauncher = true, Icon = "@drawable/icon")]
 	public class ApiDemo : ListActivity
 	{
 		public const string SAMPLE_CATEGORY = "mono.apidemo.sample";
-
-		public ApiDemo ()
-		{
-		}
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetDefaultKeyMode (DefaultKey.SearchLocal);
-
-			String path = Intent.GetStringExtra ("com.example.android.apis.Path");
+			// If this is a submenu list, this will have the prefix to get here
+			var prefix = Intent.GetStringExtra ("com.example.android.apis.Path");
 			
-			path = path ?? "";
-				
-			ListAdapter = new SimpleAdapter (this, GetData (path),
-				Android.Resource.Layout.SimpleListItem1, new String[] { "title" },
-				new int[] { Android.Resource.Id.Text1 });
-			ListView.TextFilterEnabled = true;
+			// This must be the top-level menu list
+			prefix = prefix ?? string.Empty;
 
+			// Get the activities for this prefix
+			var activities = GetDemoActivities (prefix);
+
+			// Get the menu items we need to show
+			var items = GetMenuItems (activities, prefix);
+
+			// Add the menu items to the list
+			ListAdapter = new ArrayAdapter<ActivityListItem> (this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, items);
+
+			// Launch the new activity when the list is clicked
 			ListView.ItemClick += delegate (object sender, ItemEventArgs args) {
-				IDictionary<string, object> map = (IDictionary<string, object>) (sender as ListView).GetItemAtPosition (args.Position);
-				Intent intent = (Intent)map ["intent"];
-				intent.SetFlags (ActivityFlags.NewTask);
-				StartActivity (intent);
+				var item = (ActivityListItem) (sender as ListView).GetItemAtPosition (args.Position);
+				LaunchActivityItem (item);
 			};
 		}
 
-		protected IList<IDictionary<string, object>> GetData (String prefix)
+		private List<ActivityListItem> GetDemoActivities (string prefix)
 		{
-			var myData = new JavaList<IDictionary<string, object>> ();
+			var results = new List<ActivityListItem> ();
 
-			Intent mainIntent = new Intent (Intent.ActionMain, null);
-			mainIntent.AddCategory (ApiDemo.SAMPLE_CATEGORY);
+			// Create an intent to query the package manager with,
+			// we are looking for ActionMain with our custom category
+			Intent query = new Intent (Intent.ActionMain, null);
+			query.AddCategory (ApiDemo.SAMPLE_CATEGORY);
 
-			PackageManager pm = PackageManager;
-			var list = pm.QueryIntentActivities (mainIntent, 0);
+			var list = PackageManager.QueryIntentActivities (query, 0);
 
+			// If there were no results, bail
 			if (list == null)
-				return myData;
+				return results;
 
-			String[] prefixPath;
+			// Process the results
+			foreach (var resolve in list) {
+				// Get the menu category from the activity label
+				var category = resolve.LoadLabel (PackageManager);
 
-			if (prefix == string.Empty)
-				prefixPath = null;
-			else
-				prefixPath = prefix.Split ('/');
+				// Get the data we'll need to launch the activity
+				string type = string.Format ("{0}:{1}", resolve.ActivityInfo.ApplicationInfo.PackageName, resolve.ActivityInfo.Name);
 
-			int len = list.Count;
-
-			JavaDictionary<string, bool> entries = new JavaDictionary<string, bool> ();
-
-			list = list.OrderBy (p => (p.ActivityInfo.NonLocalizedLabel == null ? "" : p.ActivityInfo.NonLocalizedLabel.ToString ()).ToString ()).ToList ();
-
-			for (int i = 0; i < len; i++) {
-				ResolveInfo info = list [i];
-				IEnumerable<char> labelSeq = info.LoadLabel (pm);
-
-				String label = labelSeq != null ? labelSeq.ToString () : info.ActivityInfo.Name;
-
-				if (prefix.Length == 0 || label.StartsWith (prefix)) {
-
-					String[] labelPath = label.Split ('/');
-					String nextLabel = prefixPath == null ? labelPath[0] : labelPath[prefixPath.Length];
-
-					if ((prefixPath != null ? prefixPath.Length : 0) == labelPath.Length - 1) {
-						AddItem (myData, nextLabel, ActivityIntent (
-							info.ActivityInfo.ApplicationInfo.PackageName,
-							info.ActivityInfo.Name));
-					} else {
-						if (!entries.ContainsKey (nextLabel) || entries [nextLabel] == false) {
-							AddItem (myData, nextLabel, BrowseIntent (prefix == "" ? nextLabel : prefix + "/" + nextLabel));
-							entries [nextLabel] = true;
-						}
-					}
-				}
+				if (string.IsNullOrWhiteSpace (prefix) || category.StartsWith (prefix, StringComparison.InvariantCultureIgnoreCase))
+					results.Add (new ActivityListItem (prefix, category, type));
 			}
 
-			
-			return myData;
+			return results;
 		}
 
-		protected Intent ActivityIntent (String pkg, String componentName)
+		private List<ActivityListItem> GetMenuItems (List<ActivityListItem> activities, string prefix)
 		{
-			Intent result = new Intent ();
-			result.SetClassName (pkg, componentName);
+			// Get menu items at this level
+			var items = activities.Where (a => a.IsMenuItem);
 
-			return result;
+			// Get Submenus at this level, but we only need 1 of each
+			var submenus = activities.Where (a => a.IsSubMenu).Distinct (new ActivityListItem.NameComparer ());
+
+			// Combine, sort, return
+			return items.Union (submenus).OrderBy (a => a.Name).ToList ();
 		}
 
-		protected Intent BrowseIntent (String path)
+		private void LaunchActivityItem (ActivityListItem item)
 		{
-			Intent result = new Intent ();
-			result.SetClass (this, typeof (ApiDemo));
-			result.PutExtra ("com.example.android.apis.Path", path);
+			if (item.IsSubMenu) {
+				// Launch this menu activity again with an updated prefix
+				Intent result = new Intent ();
 
-			return result;
-		}
+				result.SetClass (this, typeof (ApiDemo));
+				result.PutExtra ("com.example.android.apis.Path", string.Format ("{0}/{1}", item.Prefix, item.Name).Trim ('/'));
 
-		protected void AddItem (JavaList<IDictionary<string, object>> data, String name, Intent intent)
-		{
-			JavaDictionary<string, object> temp = new JavaDictionary<string, object> ();
+				StartActivity (result);
+			} else {
+				// Launch the item activity
+				Intent result = new Intent ();
+				result.SetClassName (item.Package, item.Component);
 
-			temp ["title"] = name;
-			temp ["intent"] = intent;
-
-			data.Add (temp);
+				StartActivity (result);
+			}
 		}
 	}
 }
