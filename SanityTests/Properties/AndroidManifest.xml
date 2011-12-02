@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Mono.Samples.SanityTests">
+  <uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- to ensure that @drawable/Icon is converted to @drawable/icon -->
+	<activity android:enabled="false" android:icon="@drawable/icon" android:label="DO NOT USE" />
+</manifest>
