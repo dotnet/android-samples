@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hello.cs" />
+    <Compile Include="LibraryActivity.cs" />
     <Compile Include="R.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
