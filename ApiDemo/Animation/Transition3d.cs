@@ -25,7 +25,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Animation/3D Transition")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class Transition3d : Activity
 	{
 		private ListView mPhotosList;

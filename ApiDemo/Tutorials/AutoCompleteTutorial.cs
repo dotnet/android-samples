@@ -7,7 +7,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Tutorials/AutoComplete")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class AutoCompleteTutorial : Activity
 	{
 		protected override void OnCreate (Bundle bundle)

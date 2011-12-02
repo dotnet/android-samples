@@ -8,7 +8,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Tutorials/Form Widgets")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class FormWidgetsTutorial : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

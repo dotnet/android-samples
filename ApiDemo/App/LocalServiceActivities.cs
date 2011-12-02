@@ -11,7 +11,7 @@ namespace MonoDroid.ApiDemo {
 
 		[Activity (Label = "@string/activity_local_service_controller")]
 		[IntentFilter (new[] { Intent.ActionMain },
-				Categories = new string[] { Intent.CategorySampleCode })]
+				Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 		public class Controller : Activity {
 
 			protected override void OnCreate (Bundle savedInstanceState)
@@ -33,7 +33,7 @@ namespace MonoDroid.ApiDemo {
 
 		[Activity (Label = "@string/activity_local_service_binding")]
 		[IntentFilter (new[] { Intent.ActionMain },
-				Categories = new string[] { Intent.CategorySampleCode })]
+				Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 		public class Binding : Activity {
 
 			bool isBound;

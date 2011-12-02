@@ -25,7 +25,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Graphics/Compass")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class Compass : GraphicsActivity
 	{
 		private SensorManager mSensorManager;

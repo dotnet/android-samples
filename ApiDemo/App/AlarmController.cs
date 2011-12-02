@@ -10,7 +10,7 @@ namespace MonoDroid.ApiDemo {
 
 	[Activity (Label = "@string/activity_alarm_controller")]
 	[IntentFilter (new[] { Intent.ActionMain },
-			Categories = new string[] { Intent.CategorySampleCode })]
+			Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class AlarmController : Activity
 	{
 		Toast repeating;

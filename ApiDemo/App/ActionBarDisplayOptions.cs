@@ -28,7 +28,7 @@ namespace MonoDroid.ApiDemo.App
 {
 	// This demo shows how various action bar display option flags can be combined and their effects.
 	[Activity (Label = "App/Action Bar Display Options")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
 	public class ActionBarDisplayOptionsActivity : Activity, Android.App.ActionBar.ITabListener
 	{
 		private View custom_view;

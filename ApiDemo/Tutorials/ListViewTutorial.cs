@@ -7,7 +7,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Tutorials/List View")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ListViewTutorial : ListActivity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

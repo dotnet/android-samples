@@ -25,7 +25,7 @@ using System.IO;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Graphics/Alpha Bitmap")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class AlphaBitmap : GraphicsActivity
 	{
 		protected override void OnCreate (Bundle bundle)

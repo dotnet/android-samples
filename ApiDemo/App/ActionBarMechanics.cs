@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo.App
 	// standard options menu. This demo is for informative purposes only; see ActionBarUsage for
 	// an example of using the Action Bar in a more idiomatic manner.
 	[Activity (Label = "App/Action Bar Mechanics")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
 	public class ActionBarMechanics : Activity
 	{
 		private View custom_view;

@@ -8,7 +8,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Tutorials/Tab Layout", Theme="@android:style/Theme.NoTitleBar")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class TabLayoutTutorial : TabActivity
 	{
 		protected override void OnCreate (Bundle bundle)

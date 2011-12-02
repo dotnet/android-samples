@@ -23,7 +23,7 @@ using Android.Content;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Text/Marquee")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class Marquee : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

@@ -29,7 +29,7 @@ namespace MonoDroid.ApiDemo.App
 {
 	// Example of how to use an AlertDialog
 	[Activity (Label = "App/Alert Dialog Samples")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
 	public class AlertDialogSamples : Activity
 	{
 		private const int DIALOG_YES_NO_MESSAGE = 1;

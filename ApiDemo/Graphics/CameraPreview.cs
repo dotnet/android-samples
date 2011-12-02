@@ -26,7 +26,7 @@ using Android.Views;
 namespace MonoDroid.ApiDemo
 {
 	[Activity (Label = "Graphics/Camera Preview")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { Intent.CategorySampleCode })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class CameraPreview : Activity
 	{
 		private Preview preview;

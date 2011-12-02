@@ -30,6 +30,8 @@ namespace MonoDroid.ApiDemo
 	[Activity (Label = "Mono for Android API Demo", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
+		public const string SAMPLE_CATEGORY = "mono.apidemo.sample";
+
 		public ApiDemo ()
 		{
 		}
@@ -62,7 +64,7 @@ namespace MonoDroid.ApiDemo
 			var myData = new JavaList<IDictionary<string, object>> ();
 
 			Intent mainIntent = new Intent (Intent.ActionMain, null);
-			mainIntent.AddCategory (Intent.CategorySampleCode);
+			mainIntent.AddCategory (ApiDemo.SAMPLE_CATEGORY);
 
 			PackageManager pm = PackageManager;
 			var list = pm.QueryIntentActivities (mainIntent, 0);
