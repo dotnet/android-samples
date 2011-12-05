@@ -46,12 +46,6 @@
     <Reference Include="Mono.Android.GoogleMaps" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SanityTestsLibrary.csproj">
-      <Project>{6BE66B30-9346-4DA6-B09A-0CDC1DFE33C2}</Project>
-      <Name>SanityTestsLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Hello.cs" />
     <Compile Include="LibraryActivity.cs" />
     <Compile Include="R.cs" />
