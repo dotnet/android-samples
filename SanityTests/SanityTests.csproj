@@ -12,7 +12,7 @@
     <RootNamespace>Mono.Samples.SanityTests</RootNamespace>
     <AssemblyName>SanityTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidResgenFile>R.cs</AndroidResgenFile>
+    <AndroidResgenFile>.\R.cs</AndroidResgenFile>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidApplication>true</AndroidApplication>
   </PropertyGroup>
