@@ -29,8 +29,8 @@ namespace NotePad
         private const int ActivityCreate = 0;
         private const int ActivityEdit = 1;
 
-        private const int InsertId = MenuConsts.First;
-        private const int DeleteId = MenuConsts.First + 1;
+        private const int InsertId = Menu.First;
+        private const int DeleteId = Menu.First + 1;
 
         private NotesDbAdapter dbHelper;
 
@@ -57,8 +57,6 @@ namespace NotePad
 
         public override bool OnMenuItemSelected(int featureId, IMenuItem item)
         {
-            Toast.MakeText(this, Resource.String.app_error, ToastLength.Long).Show();
-
             switch (item.ItemId)
             {
                 case InsertId:
@@ -80,7 +78,7 @@ namespace NotePad
             switch (item.ItemId)
             {
                 case DeleteId:
-                    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+                    var info = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
                     this.dbHelper.DeleteNote(info.Id);
                     this.FillData();
                     return true;
@@ -108,13 +106,13 @@ namespace NotePad
             this.StartManagingCursor(notesCursor);
 
             // Create an array to specify the fields we want to display in the list (only TITLE)
-            string[] from = new string[] { NotesDbAdapter.KeyTitle };
+            var from = new[] { NotesDbAdapter.KeyTitle };
 
             // and an array of the fields we want to bind those fields to (in this case just text1)
-            int[] to = new int[] { Resource.Id.text1 };
+            var to = new[] { Resource.Id.text1 };
 
             // Now create a simple cursor adapter and set it to display
-            SimpleCursorAdapter notes =
+            var notes =
                 new SimpleCursorAdapter(this, Resource.Layout.notes_row, notesCursor, from, to);
             this.ListAdapter = notes;
         }

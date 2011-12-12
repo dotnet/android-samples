@@ -106,7 +106,7 @@ namespace NotePad
         /// <returns>A Cursor over all notes</returns>
         public ICursor FetchAllNotes()
         {
-            return this.db.Query(DatabaseTable, new string[] { KeyRowId, KeyTitle, KeyBody }, null, null, null, null, null);
+            return this.db.Query(DatabaseTable, new[] { KeyRowId, KeyTitle, KeyBody }, null, null, null, null, null);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace NotePad
             ICursor cursor = this.db.Query(
                 true,
                 DatabaseTable,
-                new string[] { KeyRowId, KeyTitle, KeyBody },
+                new[] { KeyRowId, KeyTitle, KeyBody },
                 KeyRowId + "=" + rowId,
                 null,
                 null,
