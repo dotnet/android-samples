@@ -29,7 +29,7 @@ for dir in `find . -type d -maxdepth 1 | grep -v "\.$" | grep -v "\./\." | sed "
             run_validator screenshot $dir;
         else
             if [ $build_done == "false" ]; then
-                run_validator build $dir "xbuild /t:SignAndroidPackage";
+                run_validator build $dir;
                 build_done="true"
             fi;
         fi;
