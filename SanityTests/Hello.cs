@@ -1026,7 +1026,7 @@ namespace Mono.Samples.SanityTests
 		public Android.Views.IMenuItem GetItem (int index) {throw new NotSupportedException ();}
 		public bool IsShortcutKey (int keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
 		public bool PerformIdentifierAction (int id, int flags) {throw new NotSupportedException ();}
-		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuFlags flags) {throw new NotSupportedException ();}
+		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
 		public void RemoveGroup (int groupId) {throw new NotSupportedException ();}
 		public void RemoveItem (int id) {throw new NotSupportedException ();}
 		public void SetGroupCheckable (int group, bool checkable, bool exclusive) {throw new NotSupportedException ();}
