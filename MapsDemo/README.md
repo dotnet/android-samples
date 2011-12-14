@@ -8,15 +8,15 @@ It uses Google Maps API which is part of Android SDK add-ons.
 Since Mono for Android 1.9.2, we provide Mono.Android.GoogleMaps.dll which
 is a managed binding to the Java API.
 
-Prequisites
-===========
+Requirements
+============
 
-There are four prequisites in order to run build and run this sample:
+There are four requirements in order to run build and run this sample:
 
  1. Mono for Android 1.9.2 or later.
  2. The Google APIs Android SDK add-on.
  3. A device with Google Maps support.
- 4. Obtain an API Key for use with Google Maps.
+ 4. A Google Maps API Key.
 
 In the following sections, `$ANDROID_SDK_PATH` is the directory that contains
 your Android SDK installation.
