@@ -15,6 +15,8 @@
     <AndroidResgenFile>.\R.cs</AndroidResgenFile>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidApplication>true</AndroidApplication>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,7 +83,7 @@
   </PropertyGroup>
   <Target Name="BuildNativeLibs"
       Inputs="jni\foo.c;jni\bar.c;jni\Android.mk"
-      Outputs="libs\armeabi\libfoo.so;libs\armeabi\libbar.so"
+      Outputs="@(AndroidNativeLibrary)"
       >
     <Exec Command="$(ANDROID_NDK_PATH)\ndk-build" />
   </Target>
@@ -96,6 +98,10 @@
   <ItemGroup>
     <AndroidNativeLibrary Include="libs\armeabi\libfoo.so" />
     <AndroidNativeLibrary Include="libs\armeabi\libbar.so" />
+    <AndroidNativeLibrary Include="libs\armeabi-v7a\libfoo.so" />
+    <AndroidNativeLibrary Include="libs\armeabi-v7a\libbar.so" />
+    <AndroidNativeLibrary Include="libs\x86\libfoo.so" />
+    <AndroidNativeLibrary Include="libs\x86\libbar.so" />
   </ItemGroup>
   <PropertyGroup>
     <MonoDroidExtraArgs Condition="$(StaticApk) != ''">--noshared</MonoDroidExtraArgs>
