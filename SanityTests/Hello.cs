@@ -525,6 +525,11 @@ namespace Mono.Samples.SanityTests
 			IntPtr instance = JNIEnv.NewObject (Adder, Adder_ctor);
 			int result = JNIEnv.CallIntMethod (instance, Adder_add, new JValue (2), new JValue (3));
 			textview.Text += "\n\nnew Adder().add(2,3)=" + result;
+
+			var boundAdder = new Adder (instance, JniHandleOwnership.DoNotTransfer);
+			if (boundAdder.Add (3, 4) != 7)
+				throw new InvalidOperationException ("Add(3,4) != 7!");
+			JNIEnv.DeleteLocalRef (instance);
 		}
 
 		void TestManualOverrides ()
