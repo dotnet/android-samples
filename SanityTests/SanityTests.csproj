@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Hello.cs" />
     <Compile Include="LibraryActivity.cs" />
+    <Compile Include="ManagedAdder.cs" />
     <Compile Include="R.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,7 +60,7 @@
     <AndroidResource Include="Resources\Drawable-mdpi\StatSample.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidJavaSource Include="$(OutputPath)\custom.jar" />
+    <AndroidJavaLibrary Include="$(OutputPath)\custom.jar" />
     <AndroidJavaSource Include="TestCubeEngine.java" Condition="$(AndroidApiLevel) != '4'" />
   </ItemGroup>
   <ItemGroup>
