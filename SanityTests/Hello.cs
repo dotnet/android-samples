@@ -308,6 +308,7 @@ namespace Mono.Samples.SanityTests
 			TestArrays ();
 			TestTypeConversion ();
 			TestJniInvocation (textview);
+			TestManualOverrides ();
 			TestBnc631336 ();
 			TestBnc632470 ();
 			TestBnc654527(textview);
@@ -524,6 +525,17 @@ namespace Mono.Samples.SanityTests
 			IntPtr instance = JNIEnv.NewObject (Adder, Adder_ctor);
 			int result = JNIEnv.CallIntMethod (instance, Adder_add, new JValue (2), new JValue (3));
 			textview.Text += "\n\nnew Adder().add(2,3)=" + result;
+		}
+
+		void TestManualOverrides ()
+		{
+			var adder = new Adder ();
+			Console.WriteLine ("Adder Class: {0}", adder.Class);
+
+			var managedAdder = new ManagedAdder ();
+			int result = Adder.Add (managedAdder, 3, 4);
+			if (result != 14)
+				throw new InvalidOperationException ("ManagedAdder.Add(3, 4) != 14!");
 		}
 
 		void TestBnc631336 ()
