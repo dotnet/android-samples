@@ -541,6 +541,29 @@ namespace Mono.Samples.SanityTests
 			int result = Adder.Add (managedAdder, 3, 4);
 			if (result != 14)
 				throw new InvalidOperationException ("ManagedAdder.Add(3, 4) != 14!");
+
+			var progress = new AdderProgress ();
+			int sum = Adder.Sum (adder, progress, 1, 2, 3);
+			if (sum != 6)
+				throw new InvalidOperationException ("Adder.Sum(adder, 1, 2, 3) != 6! Was: " + sum + ".");
+			if (progress.AddInvocations != 3)
+				throw new InvalidOperationException ("Adder.Sum(adder, 1, 2, 3) didn't invoke progress 3 times! Was: " + progress.AddInvocations + ".");
+
+			progress.AddInvocations = 0;
+			sum = Adder.Sum (managedAdder, progress, 6, 7);
+			if (sum != 38)
+				throw new InvalidOperationException ("Adder.Sum(managedAdder, 6, 7) != 38! Was: " + sum + ".");
+			if (progress.AddInvocations != 2)
+				throw new InvalidOperationException ("Adder.Sum(adder, 6, 7) didn't invoke progress 2 times! Was: " + progress.AddInvocations + ".");
+
+			IntPtr javaDefaultProgress = JNIEnv.CreateInstance ("mono/android/test/Adder$DefaultProgress", "()V");
+			var progress2 = Java.Lang.Object.GetObject<IAdderProgress>(javaDefaultProgress, JniHandleOwnership.TransferLocalRef);
+			Console.WriteLine ("progress2 MCW: {0}", progress2.GetType ().FullName);
+
+			javaDefaultProgress = JNIEnv.CreateInstance ("mono/android/test/Adder$DefaultProgress", "()V");
+			var progress3 = new Java.Lang.Object (javaDefaultProgress, JniHandleOwnership.TransferLocalRef)
+				.JavaCast<IAdderProgress> ();
+			Console.WriteLine ("progress3 MCW: {0}", progress3.GetType ().FullName);
 		}
 
 		void TestBnc631336 ()
