@@ -22,8 +22,8 @@ namespace BluetoothChat
 	/// Activity in the result Intent.
 	/// </summary>
 	[Activity (Label = "@string/select_device", 
-	           Theme = "@android:style/Theme.Dialog", 
-	           ConfigurationChanges=Android.Content.PM.ConfigChanges.KeyboardHidden | Android.Content.PM.ConfigChanges.Orientation)]			
+				Theme = "@android:style/Theme.Dialog", 
+				ConfigurationChanges=Android.Content.PM.ConfigChanges.KeyboardHidden | Android.Content.PM.ConfigChanges.Orientation)]			
 	public class DeviceListActivity : Activity
 	{
 		// Debugging
@@ -105,12 +105,12 @@ namespace BluetoothChat
 			base.OnDestroy ();
 			
 			// Make sure we're not doing discovery anymore
-	        if (btAdapter != null) {
-	            btAdapter.CancelDiscovery();
-	        }
+			if (btAdapter != null) {
+				btAdapter.CancelDiscovery();
+			}
 	
-	        // Unregister broadcast listeners
-	        UnregisterReceiver(receiver);
+			// Unregister broadcast listeners
+			UnregisterReceiver(receiver);
 		}
 		
 		/// <summary>
@@ -135,8 +135,8 @@ namespace BluetoothChat
 	
 			// Request discover from BluetoothAdapter
 			btAdapter.StartDiscovery ();
-		}             
-			       
+		}
+		
 	
 		/// <summary>
 		/// The on-click listener for all devices in the ListViews

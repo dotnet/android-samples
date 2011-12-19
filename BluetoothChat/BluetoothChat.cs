@@ -256,18 +256,18 @@ namespace BluetoothChat
 					break;
 				case MESSAGE_WRITE:
 					byte[] writeBuf = (byte[])msg.Obj;
-		            // construct a string from the buffer
+					// construct a string from the buffer
 					var writeMessage = new Java.Lang.String (writeBuf);
 					bluetoothChat.conversationArrayAdapter.Add ("Me: " + writeMessage);
 					break;
 				case MESSAGE_READ:
 					byte[] readBuf = (byte[])msg.Obj;
-		            // construct a string from the valid bytes in the buffer
+					// construct a string from the valid bytes in the buffer
 					var readMessage = new Java.Lang.String (readBuf, 0, msg.Arg1);
 					bluetoothChat.conversationArrayAdapter.Add (bluetoothChat.connectedDeviceName + ":  " + readMessage);
 					break;
 				case MESSAGE_DEVICE_NAME:
-		            // save the connected device's name
+					// save the connected device's name
 					bluetoothChat.connectedDeviceName = msg.Data.GetString (DEVICE_NAME);
 					Toast.MakeText (Application.Context, "Connected to " + bluetoothChat.connectedDeviceName, ToastLength.Short).Show ();
 					break;
@@ -318,7 +318,7 @@ namespace BluetoothChat
 		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
 			var inflater = MenuInflater;
-	        inflater.Inflate(Resource.Menu.option_menu, menu);
+			inflater.Inflate(Resource.Menu.option_menu, menu);
 			return true;
 		}
 		
@@ -326,17 +326,17 @@ namespace BluetoothChat
 		{
 			switch (item.ItemId) 
 			{
-		        case Resource.Id.scan:
-		            // Launch the DeviceListActivity to see devices and do scan
-		            var serverIntent = new Intent(this, typeof(DeviceListActivity));
-		            StartActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-		            return true;
-		        case Resource.Id.discoverable:
-		            // Ensure this device is discoverable by others
-		            EnsureDiscoverable();
-		            return true;
-	        }
-	        return false;
+				case Resource.Id.scan:
+					// Launch the DeviceListActivity to see devices and do scan
+					var serverIntent = new Intent(this, typeof(DeviceListActivity));
+					StartActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
+					return true;
+				case Resource.Id.discoverable:
+					// Ensure this device is discoverable by others
+					EnsureDiscoverable();
+					return true;
+			}
+			return false;
 		}
 	}
 }

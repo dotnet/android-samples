@@ -283,8 +283,8 @@ namespace BluetoothChat
 
 		/// <summary>
 		/// This thread runs while listening for incoming connections. It behaves
-	    /// like a server-side client. It runs until a connection is accepted
-	    /// (or until cancelled).
+		/// like a server-side client. It runs until a connection is accepted
+		/// (or until cancelled).
 		/// </summary>
 		// TODO: Convert to a .NET thread
 		private class AcceptThread : Thread
@@ -301,7 +301,7 @@ namespace BluetoothChat
 				// Create a new listening server socket
 				try {
 					tmp = _adapter.ListenUsingRfcommWithServiceRecord (NAME, MY_UUID);
-	               
+	
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "listen() failed", e);
 				}
@@ -333,12 +333,12 @@ namespace BluetoothChat
 							switch (_state) {
 							case STATE_LISTEN:
 							case STATE_CONNECTING:
-	                            // Situation normal. Start the connected thread.
+								// Situation normal. Start the connected thread.
 								_service.Connected (socket, socket.RemoteDevice);
 								break;
 							case STATE_NONE:
 							case STATE_CONNECTED:
-	                            // Either not ready or already connected. Terminate new socket.
+								// Either not ready or already connected. Terminate new socket.
 								try {
 									socket.Close ();
 								} catch (Java.IO.IOException e) {
@@ -369,8 +369,8 @@ namespace BluetoothChat
 		
 		/// <summary>
 		/// This thread runs while attempting to make an outgoing connection
-	    /// with a device. It runs straight through; the connection either
-	    /// succeeds or fails.
+		/// with a device. It runs straight through; the connection either
+		/// succeeds or fails.
 		/// </summary>
 		// TODO: Convert to a .NET thread
 		protected class ConnectThread : Thread
@@ -443,7 +443,7 @@ namespace BluetoothChat
 	
 		/// <summary>
 		/// This thread runs during a connection with a remote device.
-	    /// It handles all incoming and outgoing transmissions.
+		/// It handles all incoming and outgoing transmissions.
 		/// </summary>
 		// TODO: Convert to a .NET thread
 		private class ConnectedThread : Thread
@@ -487,7 +487,7 @@ namespace BluetoothChat
 	
 						// Send the obtained bytes to the UI Activity
 						_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
-	                            .SendToTarget ();
+							.SendToTarget ();
 					} catch (Java.IO.IOException e) {
 						Log.Error (TAG, "disconnected", e);
 						_service.ConnectionLost ();
@@ -509,7 +509,7 @@ namespace BluetoothChat
 	
 					// Share the sent message back to the UI Activity
 					_handler.ObtainMessage (BluetoothChat.MESSAGE_WRITE, -1, -1, buffer)
-	                        .SendToTarget ();
+						.SendToTarget ();
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "Exception during write", e);
 				}
