@@ -286,14 +286,14 @@ namespace BluetoothChat
 			switch(requestCode)
 			{
 				case REQUEST_CONNECT_DEVICE:
-				    // When DeviceListActivity returns with a device to connect
+					// When DeviceListActivity returns with a device to connect
 					if( resultCode == Result.Ok)
 					{
 						// Get the device MAC address
 						var address = data.Extras.GetString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 						// Get the BLuetoothDevice object
 						BluetoothDevice device = bluetoothAdapter.GetRemoteDevice(address);
-					    // Attempt to connect to the device
+						// Attempt to connect to the device
 						chatService.Connect(device);
 					}
 					break;
@@ -311,7 +311,7 @@ namespace BluetoothChat
 						Toast.MakeText(this, Resource.String.bt_not_enabled_leaving, ToastLength.Short).Show();
 						Finish();
 					}
-				break;
+					break;
 			}
 		}
 		
