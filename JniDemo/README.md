@@ -8,10 +8,10 @@ Note this binds to the Google Maps library as a sample, but Mono for Android
 provides bindings to the Google Maps library for you.  If you just want
 to use Maps, see the MapsDemo sample instead.
 
-Prequisites
------------
+Requirements
+------------
 
-There are three prequisites in order to run build and run this sample:
+There are three requirements in order to build and run this sample:
 
  1. Mono for Android Preiew 13 or later.
  2. The Google APIs Android SDK add-on.

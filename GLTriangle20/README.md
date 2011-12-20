@@ -3,9 +3,8 @@ GL Triangle 20
 
 OpenGL ES 2.0 Demonstration.
 
-
 Requirements
-============
+------------
 
 There is one requirement to run this sample:
 

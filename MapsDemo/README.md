@@ -9,7 +9,7 @@ Since Mono for Android 1.9.2, we provide Mono.Android.GoogleMaps.dll which
 is a managed binding to the Java API.
 
 Requirements
-============
+------------
 
 There are four requirements in order to run build and run this sample:
 
