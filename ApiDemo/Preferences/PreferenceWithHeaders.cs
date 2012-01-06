@@ -35,7 +35,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo.Preferences
 {
 	[Activity (Label = "@string/preference_with_headers")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class PreferenceWithHeaders : PreferenceActivity
 	{
 		public PreferenceWithHeaders ()

@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo.App
 	// standard options menu. This demo is for informative purposes only; see ActionBarUsage for
 	// an example of using the Action Bar in a more idiomatic manner.
 	[Activity (Label = "App/Action Bar Mechanics")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActionBarMechanics : Activity
 	{
 		private View custom_view;
@@ -63,7 +63,7 @@ namespace MonoDroid.ApiDemo.App
 			// Items that show as actions should favor the "if room" setting, which will
 			// prevent too many buttons from crowding the bar. Extra items will show in the
 			// overflow area.
-			action_item.SetShowAsAction (MenuItem.ShowAsActionIfRoom);
+			action_item.SetShowAsAction (ShowAsAction.IfRoom);
 
 			// Items that show as actions are strongly encouraged to use an icon.
 			// These icons are shown without a text description, and therefore should

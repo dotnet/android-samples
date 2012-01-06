@@ -36,7 +36,7 @@ namespace MonoDroid.ApiDemo.App
 	// a menu item with ShareActionProvider as its action provider. The
 	// ShareActionProvider is responsible for managing the UI for sharing actions.
 	[Activity (Label = "App/Action Bar Action Provider")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActionBarActionProviderActivity : Activity
 	{
 		private string shared_file_name = "shared.png";

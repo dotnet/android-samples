@@ -28,7 +28,7 @@ namespace MonoDroid.ApiDemo.App
 {
 	// This demo shows how various action bar display option flags can be combined and their effects.
 	[Activity (Label = "App/Action Bar Display Options")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActionBarDisplayOptionsActivity : Activity, Android.App.ActionBar.ITabListener
 	{
 		private View custom_view;
@@ -111,7 +111,7 @@ namespace MonoDroid.ApiDemo.App
 					break;
 			}
 
-			lp.Gravity = (int)((GravityFlags)lp.Gravity & ~GravityFlags.HorizontalGravityMask | new_gravity);
+			lp.Gravity = ((GravityFlags)lp.Gravity & ~GravityFlags.HorizontalGravityMask | new_gravity);
 			ActionBar.SetCustomView (custom_view, lp);
 		}
 

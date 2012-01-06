@@ -28,7 +28,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo.App
 {
 	[Activity (Label = "App/Activity Recreate")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActivityRecreate : Activity
 	{
 		int current_theme;

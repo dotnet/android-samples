@@ -29,7 +29,7 @@ namespace MonoDroid.ApiDemo.App
 {
 	// Example of how to use an AlertDialog
 	[Activity (Label = "App/Alert Dialog Samples")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_INTENT })]
+	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class AlertDialogSamples : Activity
 	{
 		private const int DIALOG_YES_NO_MESSAGE = 1;
@@ -124,7 +124,7 @@ namespace MonoDroid.ApiDemo.App
 						return builder.Create ();
 					}
 				case DIALOG_YES_NO_OLD_SCHOOL_MESSAGE: {
-						var builder = new AlertDialog.Builder (this, (int)DialogThemes.Traditional);
+						var builder = new AlertDialog.Builder (this, Android.App.AlertDialog.ThemeTraditional);
 						builder.SetIconAttribute (Android.Resource.Attribute.AlertDialogIcon);
 						builder.SetTitle (Resource.String.alert_dialog_two_buttons_title);
 						builder.SetPositiveButton (Resource.String.alert_dialog_ok, OkClicked);
@@ -133,7 +133,7 @@ namespace MonoDroid.ApiDemo.App
 						return builder.Create ();
 					}
 				case DIALOG_YES_NO_HOLO_LIGHT_MESSAGE: {
-						var builder = new AlertDialog.Builder (this, (int)DialogThemes.HoloLight);
+						var builder = new AlertDialog.Builder (this, Android.App.AlertDialog.ThemeHoloLight);
 						builder.SetIconAttribute (Android.Resource.Attribute.AlertDialogIcon);
 						builder.SetTitle (Resource.String.alert_dialog_two_buttons_title);
 						builder.SetPositiveButton (Resource.String.alert_dialog_ok, OkClicked);
@@ -177,8 +177,8 @@ namespace MonoDroid.ApiDemo.App
 						progress_dialog.SetProgressStyle (ProgressDialogStyle.Horizontal);
 						progress_dialog.Max = MAX_PROGRESS;
 
-						progress_dialog.SetButton ((int)DialogInterfaceButton.Positive, GetText (Resource.String.alert_dialog_ok), OkClicked);
-						progress_dialog.SetButton ((int)DialogInterfaceButton.Negative, GetText (Resource.String.alert_dialog_cancel), CancelClicked);
+						progress_dialog.SetButton (Android.App.Dialog.InterfaceConsts.ButtonPositive, GetText (Resource.String.alert_dialog_ok), OkClicked);
+						progress_dialog.SetButton (Android.App.Dialog.InterfaceConsts.ButtonNegative, GetText (Resource.String.alert_dialog_cancel), CancelClicked);
 
 						return progress_dialog;
 					}
