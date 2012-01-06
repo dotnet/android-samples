@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -47,8 +48,9 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnResume ();
 
-			mSensorManager.RegisterListener (mView,
-					SensorType.Orientation, SensorDelay.Fastest);
+			var ori = mSensorManager.GetDefaultSensor (SensorType.Orientation);
+
+			mSensorManager.RegisterListener (mView, ori, SensorDelay.Fastest);
 		}
 
 		protected override void OnStop ()
@@ -57,7 +59,7 @@ namespace MonoDroid.ApiDemo
 			base.OnStop ();
 		}
 
-		private class SampleView : View, ISensorListener
+		private class SampleView : View, ISensorEventListener
 		{
 			private Paint mPaint = new Paint ();
 			private Path mPath = new Path ();
@@ -99,14 +101,14 @@ namespace MonoDroid.ApiDemo
 			}
 
 			#region ISensorListener Members
-			public void OnAccuracyChanged (int sensor, int accuracy)
+			public void OnAccuracyChanged (Sensor sensor, int accuracy)
 			{
 				// Do nothing
 			}
 
-			public void OnSensorChanged (int sensor, float[] values)
+			public void OnSensorChanged (SensorEvent e)
 			{
-				compass.mValues = values;
+				compass.mValues = e.Values.ToArray ();
 
 				Invalidate ();
 			}

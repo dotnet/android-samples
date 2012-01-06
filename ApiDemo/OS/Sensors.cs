@@ -44,11 +44,13 @@ namespace MonoDroid.ApiDemo
 			graph_view = new GraphView (this.BaseContext);
 			SetContentView (graph_view);
 
-			sensor_manager.RegisterListener (graph_view,
-				SensorType.Accelerometer |
-				SensorType.MagneticField |
-				SensorType.Orientation,
-				SensorDelay.Fastest);
+			var accel = sensor_manager.GetDefaultSensor (SensorType.Accelerometer);
+			var mag = sensor_manager.GetDefaultSensor (SensorType.MagneticField);
+			var ori = sensor_manager.GetDefaultSensor (SensorType.Orientation);
+
+			sensor_manager.RegisterListener (graph_view, accel, SensorDelay.Fastest);
+			sensor_manager.RegisterListener (graph_view, mag, SensorDelay.Fastest);
+			sensor_manager.RegisterListener (graph_view, ori, SensorDelay.Fastest);
 
 		}
 
@@ -56,11 +58,13 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnResume ();
 
-			sensor_manager.RegisterListener (graph_view,
-				SensorType.Accelerometer |
-				SensorType.MagneticField |
-				SensorType.Orientation,
-				SensorDelay.Fastest);
+			var accel = sensor_manager.GetDefaultSensor (SensorType.Accelerometer);
+			var mag = sensor_manager.GetDefaultSensor (SensorType.MagneticField);
+			var ori = sensor_manager.GetDefaultSensor (SensorType.Orientation);
+
+			sensor_manager.RegisterListener (graph_view, accel, SensorDelay.Fastest);
+			sensor_manager.RegisterListener (graph_view, mag, SensorDelay.Fastest);
+			sensor_manager.RegisterListener (graph_view, ori, SensorDelay.Fastest);
 		}
 
 		protected override void OnStop ()
@@ -69,7 +73,7 @@ namespace MonoDroid.ApiDemo
 			base.OnStop ();
 		}
 
-		private class GraphView : View, ISensorListener
+		private class GraphView : View, ISensorEventListener
 		{
 			private Bitmap mBitmap;
 			private Paint paint = new Paint ();
@@ -191,12 +195,15 @@ namespace MonoDroid.ApiDemo
 				}
 			}
 
-			public void OnSensorChanged (int sensor, float[] values)
+			public void OnSensorChanged (SensorEvent e)
 			{
+				var sensor = e.Sensor;
+				var values = e.Values;
+
 				lock (this) {
 					if (mBitmap != null) {
 						Canvas canvas = mCanvas;
-						if (sensor == (int)SensorType.Accelerometer) {
+						if (sensor.Type == SensorType.Accelerometer) {
 							for (int i = 0; i < 3; i++) {
 								mOrientationValues[i] = values[i];
 							}
@@ -204,7 +211,7 @@ namespace MonoDroid.ApiDemo
 							float deltaX = mSpeed;
 							float newX = mLastX + deltaX;
 
-							int j = (sensor == (int)SensorType.MagneticField) ? 1 : 0;
+							int j = (sensor.Type == SensorType.MagneticField) ? 1 : 0;
 							for (int i = 0; i < 3; i++) {
 								int k = i + j * 3;
 								float v = mYOffset + values[i] * mScale[j];
@@ -212,7 +219,7 @@ namespace MonoDroid.ApiDemo
 								canvas.DrawLine (mLastX, mLastValues[k], newX, v, paint);
 								mLastValues[k] = v;
 							}
-							if (sensor == (int)SensorType.MagneticField)
+							if (sensor.Type == SensorType.MagneticField)
 								mLastX += mSpeed;
 						}
 						Invalidate ();
@@ -220,7 +227,7 @@ namespace MonoDroid.ApiDemo
 				}
 			}
 
-			public void OnAccuracyChanged (int sensor, int accuracy)
+			public void OnAccuracyChanged (Sensor sensor, int accuracy)
 			{
 				// TODO Auto-generated method stub
 
