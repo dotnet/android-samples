@@ -28,7 +28,7 @@ using Android.Views;
 // by the device's accelerometer.
 namespace AccelerometerPlay
 {
-	[Activity (Label = "MFA Accelerometer Play", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
+	[Activity (Label = "Accelerometer Demo", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
 	public class AccelerometerActivity : Activity
 	{
 		private SimulationView sim_view;
