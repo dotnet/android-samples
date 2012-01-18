@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -117,6 +117,8 @@
     <Compile Include="Tutorials\RelativeLayoutTutorial.cs" />
     <Compile Include="Tutorials\LinearLayoutTutorial.cs" />
     <Compile Include="Preferences\PreferenceWithHeaders.cs" />
+    <Compile Include="App\Animation.cs" />
+    <Compile Include="View\Controls1.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />
@@ -172,6 +174,12 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_settings_applications.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_settings_display.png" />
     <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\layout\activity_animation.xml" />
+    <AndroidResource Include="Resources\layout\controls_1.xml" />
+    <AndroidResource Include="Resources\anim\fade.xml" />
+    <AndroidResource Include="Resources\anim\hold.xml" />
+    <AndroidResource Include="Resources\anim\zoom_enter.xml" />
+    <AndroidResource Include="Resources\anim\zoom_exit.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\samplefont.ttf" />
@@ -254,4 +262,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="View\" />
+  </ItemGroup>
 </Project>
