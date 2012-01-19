@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMultiScreen", "HelloMultiScreen.csproj", "{872ADEC3-EC6E-4C66-A7C5-DF6B5266D157}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{872ADEC3-EC6E-4C66-A7C5-DF6B5266D157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872ADEC3-EC6E-4C66-A7C5-DF6B5266D157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872ADEC3-EC6E-4C66-A7C5-DF6B5266D157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872ADEC3-EC6E-4C66-A7C5-DF6B5266D157}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = HelloMultiScreen.csproj
+	EndGlobalSection
+EndGlobal
