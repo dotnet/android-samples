@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="showPopup">Show popup menu</string>
+    <string name="app_name">PopupMenuDemo</string>
+</resources>
