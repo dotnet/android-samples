@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" android:versionCode="1" package="notepad.notepad">
+  <application android:label="NotePad">
+  </application>
+  <uses-sdk android:minSdkVersion="4" />
+</manifest>
