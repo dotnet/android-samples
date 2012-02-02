@@ -24,24 +24,24 @@ namespace Mono.Samples.GLTriangle20 {
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
 		{
+			Init ();
 		}
 
 		public PaintingView (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
 			: base (handle, transfer)
 		{
+			Init ();
+		}
+
+		void Init ()
+		{
+			GLContextVersion = GLContextVersion.Gles2_0;
 		}
 
 		// This gets called when the drawing surface is ready
 		protected override void OnLoad (EventArgs e)
 		{
 			base.OnLoad (e);
-
-			// Select OpenGLES 2.0
-			// This must be done before the call to CreateFrameBuffer ()
-			GLContextVersion = GLContextVersion.Gles2_0;
-
-			CreateFrameBuffer ();
-			MakeCurrent ();
 
 			viewportHeight = Height; viewportWidth = Width;
 
@@ -86,7 +86,11 @@ namespace Mono.Samples.GLTriangle20 {
 				throw new InvalidOperationException ("Unable to link program");
 			}
 
-			RenderTriangle ();
+			RenderFrame += delegate {
+				RenderTriangle ();
+			};
+
+			Run (30);
 		}
 
 		int LoadShader (All type, string source)
