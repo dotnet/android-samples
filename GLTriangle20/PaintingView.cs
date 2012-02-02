@@ -38,9 +38,20 @@ namespace Mono.Samples.GLTriangle20 {
 			ContextRenderingApi = GLVersion.ES2;
 		}
 
-		// This gets called when the drawing surface is ready
+		// This gets called when the drawing surface has been created
+		// There is already a GraphicsContext and Surface at this point,
+		// following the standard OpenTK/GameWindow logic
+		//
+		// Android will only render when it refreshes the surface for
+		// the first time, so if you don't call Run, you need to hook
+		// up the Resize delegate or override the OnResize event to
+		// get the updated bounds and re-call your rendering code.
+		// This will also allow non-Run-loop code to update the screen
+		// when the device is rotated.
 		protected override void OnLoad (EventArgs e)
 		{
+			// This is completely optional and only needed
+			// if you've registered delegates for OnLoad
 			base.OnLoad (e);
 
 			viewportHeight = Height; viewportWidth = Width;
@@ -86,11 +97,7 @@ namespace Mono.Samples.GLTriangle20 {
 				throw new InvalidOperationException ("Unable to link program");
 			}
 
-			RenderFrame += delegate {
-				RenderTriangle ();
-			};
-
-			Run (30);
+			RenderTriangle ();
 		}
 
 		int LoadShader (All type, string source)
@@ -143,5 +150,16 @@ namespace Mono.Samples.GLTriangle20 {
 			SwapBuffers ();
 		}
 
+		// this is called whenever android raises the SurfaceChanged event
+		protected override void OnResize (EventArgs e)
+		{
+			viewportHeight = Height;
+			viewportWidth = Width;
+
+			// the surface change event makes your context
+			// not be current, so be sure to make it current again
+			MakeCurrent ();
+			RenderTriangle ();
+		}
 	}
 }
