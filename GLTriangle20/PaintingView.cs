@@ -24,23 +24,38 @@ namespace Mono.Samples.GLTriangle20 {
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
 		{
+			Init ();
 		}
 
 		public PaintingView (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
 			: base (handle, transfer)
 		{
+			Init ();
 		}
 
-		// This gets called when the drawing surface is ready
+		void Init ()
+		{
+			GLContextVersion = GLContextVersion.Gles2_0;
+		}
+
+		// This gets called when the drawing surface has been created
+		// There is already a GraphicsContext and Surface at this point,
+		// following the standard OpenTK/GameWindow logic
+		//
+		// Android will only render when it refreshes the surface for
+		// the first time, so if you don't call Run, you need to hook
+		// up the Resize delegate or override the OnResize event to
+		// get the updated bounds and re-call your rendering code.
+		// This will also allow non-Run-loop code to update the screen
+		// when the device is rotated.
 		protected override void OnLoad (EventArgs e)
 		{
+			// This is completely optional and only needed
+			// if you've registered delegates for OnLoad
 			base.OnLoad (e);
 
-			// Select OpenGLES 2.0
-			// This must be done before the call to CreateFrameBuffer ()
-			GLContextVersion = GLContextVersion.Gles2_0;
-
-			CreateFrameBuffer ();
+			// At this point there is a context, but it's not current
+			// so you need to make it current to be able to do things
 			MakeCurrent ();
 
 			viewportHeight = Height; viewportWidth = Width;
@@ -139,5 +154,16 @@ namespace Mono.Samples.GLTriangle20 {
 			SwapBuffers ();
 		}
 
+		// this is called whenever android raises the SurfaceChanged event
+		protected override void OnResize (EventArgs e)
+		{
+			viewportHeight = Height;
+			viewportWidth = Width;
+
+			// the surface change event makes your context
+			// not be current, so be sure to make it current again
+			MakeCurrent ();
+			RenderTriangle ();
+		}
 	}
 }

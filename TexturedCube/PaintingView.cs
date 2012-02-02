@@ -50,10 +50,6 @@ namespace Mono.Samples.TexturedCube {
 
 		protected override void OnLoad (EventArgs e)
 		{
-			base.OnLoad (e);
-
-			// do this in non-run case
-			CreateFrameBuffer ();
 			MakeCurrent ();
 
 			GL.ShadeModel (All.Smooth);
@@ -135,6 +131,21 @@ namespace Mono.Samples.TexturedCube {
 			return true;
 		}
 
+		protected override void OnResize (EventArgs e)
+		{
+			height = Height;
+			width = Width;
+
+			MakeCurrent ();
+			SetupCamera ();
+			RenderCube ();
+		}
+
+		protected override void OnUnload (EventArgs e)
+		{
+			GL.DeleteTextures (2, textureIds);
+		}
+
 		public void SwitchTexture ()
 		{
 			cur_texture = (cur_texture + 1) % textureIds.Length;
@@ -176,12 +187,12 @@ namespace Mono.Samples.TexturedCube {
 			GL.DeleteTextures (2, textureIds);
 		}
 
-	        public static float ToRadians (float degrees)
-                {
-                        //pi/180
-                        //FIXME: precalc pi/180
-                        return (float) (degrees * (System.Math.PI/180.0));
-                }
+		public static float ToRadians (float degrees)
+		{
+			//pi/180
+			//FIXME: precalc pi/180
+			return (float) (degrees * (System.Math.PI/180.0));
+		}
 
 		void LoadTexture (Context context, int resourceId, int tex_id)
 		{
