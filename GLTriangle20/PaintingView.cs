@@ -35,7 +35,7 @@ namespace Mono.Samples.GLTriangle20 {
 
 		void Init ()
 		{
-			GLContextVersion = GLContextVersion.Gles2_0;
+			GLContextVersion = EAGLRenderingAPI.OpenGLES2;
 		}
 
 		// This gets called when the drawing surface is ready
@@ -70,15 +70,15 @@ namespace Mono.Samples.GLTriangle20 {
 			GL.BindAttribLocation (program, 0, "vPosition");
 			GL.LinkProgram (program);
 
-			int linked = 0;
-			GL.GetProgram (program, All.LinkStatus, ref linked);
+			int linked;
+			GL.GetProgram (program, All.LinkStatus, out linked);
 			if (linked == 0) {
 				// link failed
-				int length = 0;
-				GL.GetProgram (program, All.InfoLogLength, ref length);
+				int length;
+				GL.GetProgram (program, All.InfoLogLength, out length);
 				if (length > 0) {
 					var log = new StringBuilder (length);
-					GL.GetProgramInfoLog (program, length, ref length, log);
+					GL.GetProgramInfoLog (program, length, out length, log);
 					Log.Debug ("GL2", "Couldn't link program: " + log.ToString ());
 				}
 
@@ -104,13 +104,13 @@ namespace Mono.Samples.GLTriangle20 {
 			GL.CompileShader (shader);
 
 			int compiled = 0;
-			GL.GetShader (shader, All.CompileStatus, ref compiled);
+			GL.GetShader (shader, All.CompileStatus, out compiled);
 			if (compiled == 0) {
 				length = 0;
-				GL.GetShader (shader, All.InfoLogLength, ref length);
+				GL.GetShader (shader, All.InfoLogLength, out length);
 				if (length > 0) {
 					var log = new StringBuilder (length);
-					GL.GetShaderInfoLog (shader, length, ref length, log);
+					GL.GetShaderInfoLog (shader, length, out length, log);
 					Log.Debug ("GL2", "Couldn't compile shader: " + log.ToString ());
 				}
 
@@ -130,7 +130,7 @@ namespace Mono.Samples.GLTriangle20 {
 				};
 
 			GL.ClearColor (0.7f, 0.7f, 0.7f, 1);
-			GL.Clear ((int)All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			GL.Viewport (0, 0, viewportWidth, viewportHeight);
 			GL.UseProgram (program);

@@ -32,7 +32,7 @@ namespace Mono.Samples.GLCube {
 
 		private void Initialize ()
 		{
-			GLContextVersion = GLContextVersion.Gles1_1;
+			GLContextVersion = EAGLRenderingAPI.OpenGLES1;
 			rateOfRotationPS = new float [] { 30, 45, 60 };
 			rot = new float [] { 0, 0, 0};
 		}
@@ -73,7 +73,7 @@ namespace Mono.Samples.GLCube {
 			GL.Rotate (rot[2], 0.0f, 1.0f, 0.0f);
 
 			GL.ClearColor (0, 0, 0, 1.0f);
-			GL.Clear ((uint) All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			GL.VertexPointer(3, All.Float, 0, cube);
 			GL.EnableClientState (All.VertexArray);
