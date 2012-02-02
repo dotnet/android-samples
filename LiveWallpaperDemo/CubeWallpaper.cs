@@ -85,7 +85,7 @@ namespace LiveWallpaperDemo
 					mHandler.RemoveCallbacks (mDrawCube);
 			}
 
-			public override void OnSurfaceChanged (ISurfaceHolder holder, int format, int width, int height)
+			public override void OnSurfaceChanged (ISurfaceHolder holder, Android.Graphics.Format format, int width, int height)
 			{
 				base.OnSurfaceChanged (holder, format, width, height);
 

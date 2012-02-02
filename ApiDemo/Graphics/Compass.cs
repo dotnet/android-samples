@@ -101,7 +101,7 @@ namespace MonoDroid.ApiDemo
 			}
 
 			#region ISensorListener Members
-			public void OnAccuracyChanged (Sensor sensor, int accuracy)
+			public void OnAccuracyChanged (Sensor sensor, SensorStatus accuracy)
 			{
 				// Do nothing
 			}

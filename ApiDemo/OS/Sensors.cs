@@ -227,7 +227,7 @@ namespace MonoDroid.ApiDemo
 				}
 			}
 
-			public void OnAccuracyChanged (Sensor sensor, int accuracy)
+			public void OnAccuracyChanged (Sensor sensor, SensorStatus accuracy)
 			{
 				// TODO Auto-generated method stub
 

@@ -22,7 +22,7 @@ using Android.Views;
 
 namespace MonoDroid.Samples.MapsDemo
 {
-	class RotateView : ViewGroup, ISensorListener
+	class RotateView : ViewGroup, ISensorEventListener
 	{
 		const float SQ2 = 1.414213562373095f;
 		const float ROTATE_TOLERANCE = 2.0f;
@@ -36,8 +36,9 @@ namespace MonoDroid.Samples.MapsDemo
 		}
 
 		// When the sensor tells us we have moved, update
-		public void OnSensorChanged (int sensor, float[] values)
+		public void OnSensorChanged (SensorEvent e)
 		{
+			var values = e.Values;
 			lock (lock_obj) {
 				if (Math.Abs (heading - values[0]) > ROTATE_TOLERANCE) {
 					heading = values[0];
@@ -100,7 +101,7 @@ namespace MonoDroid.Samples.MapsDemo
 			return base.DispatchTouchEvent (ev);
 		}
 
-		public void OnAccuracyChanged (int sensor, int accuracy)
+		public void OnAccuracyChanged (Sensor sensor, SensorStatus accuracy)
 		{
 			// TODO Auto-generated method stub
 		}

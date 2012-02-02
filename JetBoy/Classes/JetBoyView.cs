@@ -79,7 +79,7 @@ namespace JetBoy
 		}
 
 		#region ISurfaceHolderCallback Members
-		public void SurfaceChanged (ISurfaceHolder holder, int format, int width, int height)
+		public void SurfaceChanged (ISurfaceHolder holder, Android.Graphics.Format format, int width, int height)
 		{
 			thread.SetSurfaceSize (width, height);
 		}

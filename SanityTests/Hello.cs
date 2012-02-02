@@ -151,7 +151,7 @@ namespace Mono.Samples.SanityTests
 
 		static ItemsDb ()
 		{
-			if (Android.OS.Build.VERSION.SdkInt < 8) {
+			if ((int)Android.OS.Build.VERSION.SdkInt < 8) {
 				return;
 			}
 
@@ -1015,7 +1015,7 @@ namespace Mono.Samples.SanityTests
 		public IMenuItem Add (int titleRes) {throw new NotImplementedException ();}
 		public Android.Views.IMenuItem Add (int groupId, int itemId, int order, Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem Add (int groupId, int itemId, int order, int titleRes) {throw new NotSupportedException ();}
-		public int AddIntentOptions (int groupId, int itemId, int order, Android.Content.ComponentName caller, Android.Content.Intent[] specifics, Android.Content.Intent intent, int flags, Android.Views.IMenuItem[] outSpecificItems) {throw new NotSupportedException ();}
+		public int AddIntentOptions (int groupId, int itemId, int order, Android.Content.ComponentName caller, Android.Content.Intent[] specifics, Android.Content.Intent intent, MenuAppendFlags flags, Android.Views.IMenuItem[] outSpecificItems) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (int titleRes) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (int groupId, int itemId, int order, Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
@@ -1024,9 +1024,9 @@ namespace Mono.Samples.SanityTests
 		public void Close () {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem FindItem (int id) {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem GetItem (int index) {throw new NotSupportedException ();}
-		public bool IsShortcutKey (int keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
-		public bool PerformIdentifierAction (int id, int flags) {throw new NotSupportedException ();}
-		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
+		public bool IsShortcutKey (Keycode keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
+		public bool PerformIdentifierAction (int id, MenuPerformFlags flags) {throw new NotSupportedException ();}
+		public bool PerformShortcut (Keycode keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
 		public void RemoveGroup (int groupId) {throw new NotSupportedException ();}
 		public void RemoveItem (int id) {throw new NotSupportedException ();}
 		public void SetGroupCheckable (int group, bool checkable, bool exclusive) {throw new NotSupportedException ();}

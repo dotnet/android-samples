@@ -42,7 +42,7 @@ namespace TextureViewDemo
             
             var previewSize = _camera.GetParameters ().PreviewSize;
             _textureView.LayoutParameters = 
-                new FrameLayout.LayoutParams (previewSize.Width, previewSize.Height, (int)GravityFlags.Center);
+                new FrameLayout.LayoutParams (previewSize.Width, previewSize.Height, GravityFlags.Center);
             
             try {
                 _camera.SetPreviewTexture (surface);
