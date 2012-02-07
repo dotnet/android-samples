@@ -31,7 +31,50 @@ namespace ExportAttributeTest
 			Bundle b = new Bundle ();
 			var p = Parcel.Obtain ();
 			b.PutSerializable ("dummy", new MySerializable ());
+			b.PutParcelable ("dummy2", new MyParcelable ());
 			p.WriteBundle (b);
+			p.SetDataPosition (0);
+			var b2 = p.ReadBundle ();
+			Console.WriteLine (b2);
+			var p2 = b.GetParcelable ("dummy2");
+			Console.WriteLine (p2);
+		}
+	}
+	
+	class MyParcelable : Object, IParcelable
+	{
+		[ExportField ("CREATOR")]
+		static MyParcelableCreator InitializeCreator ()
+		{
+			Console.WriteLine ("I'm in InitializeCreator");
+			return new MyParcelableCreator ();
+		}
+
+		#region IParcelable implementation
+		public int DescribeContents ()
+		{
+			return 0;
+		}
+
+		public void WriteToParcel (Parcel dest, ParcelableWriteFlags flags)
+		{
+			Console.WriteLine ("WriteToParcel");
+		}
+		#endregion
+	}
+	
+	class MyParcelableCreator : Object, IParcelableCreator
+	{
+		public Object CreateFromParcel (Parcel source)
+		{
+			Console.WriteLine ("CreateFromParcel");
+			return new MyParcelable ();
+		}
+
+		public Object [] NewArray (int size)
+		{
+			Console.WriteLine ("NewArray");
+			return new Object [0];
 		}
 	}
 	
