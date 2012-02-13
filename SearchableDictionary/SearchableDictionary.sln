@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchableDictionary", "SearchableDictionary.csproj", "{19851C3F-2C7D-45D8-9D5F-BC6E0ADD214F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19851C3F-2C7D-45D8-9D5F-BC6E0ADD214F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19851C3F-2C7D-45D8-9D5F-BC6E0ADD214F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19851C3F-2C7D-45D8-9D5F-BC6E0ADD214F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19851C3F-2C7D-45D8-9D5F-BC6E0ADD214F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SearchableDictionary.csproj
+	EndGlobalSection
+EndGlobal
