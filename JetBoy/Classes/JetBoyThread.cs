@@ -948,6 +948,13 @@ namespace JetBoy
 			return true;
 		}
 
+		// Treat a click as pressing the dpad
+		public void DoClick ()
+		{
+			mEventQueue.Enqueue (new KeyGameEvent (Keycode.DpadCenter, false, null));
+			mEventQueue.Enqueue (new KeyGameEvent (Keycode.DpadCenter, true, null));
+		}
+
 		// Callback invoked when the surface dimensions change.
 		public void SetSurfaceSize (int width, int height)
 		{
