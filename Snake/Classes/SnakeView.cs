@@ -87,6 +87,8 @@ namespace Mono.Samples.Snake
 			LoadTile (TileType.Red, Resources.GetDrawable (Resource.Drawable.redstar));
 			LoadTile (TileType.Yellow, Resources.GetDrawable (Resource.Drawable.yellowstar));
 			LoadTile (TileType.Green, Resources.GetDrawable (Resource.Drawable.greenstar));
+
+			Click += new EventHandler (SnakeView_Click);
 		}
 		#endregion
 
@@ -217,6 +219,21 @@ namespace Mono.Samples.Snake
 			}
 
 			return base.OnKeyDown (keyCode, msg);
+		}
+
+		private void SnakeView_Click (object sender, EventArgs e)
+		{
+			// Let you start the game without having a d-pad.  You
+			// still won't be able to play the game, but you can
+			// see it in action.
+			if (mode == GameMode.Ready | mode == GameMode.Lost) {
+				// At the beginning of the game, or the end of a
+				// previous one, we should start a new game.
+				InitNewGame ();
+
+				SetMode (GameMode.Running);
+				Update ();
+			}
 		}
 
 		// Updates the current mode of the application (RUNNING or PAUSED or the like)
