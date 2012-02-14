@@ -58,6 +58,7 @@ namespace JetBoy
 
 			// Get handles to the JetView from XML and the JET thread.
 			JetBoyView jetboy_view = FindViewById<JetBoyView> (Resource.Id.JetBoyView);
+			jetboy_view.Click += new EventHandler (jetboy_view_Click);
 
 			jetboy_view.Initialize (timer_view, retry_button, text_view);
 			jetboy_thread = jetboy_view.GetThread ();
@@ -115,6 +116,11 @@ namespace JetBoy
 				return base.OnKeyUp (keyCode, e);
 			else
 				return jetboy_thread.DoKeyUp (keyCode, e);
+		}
+
+		private void jetboy_view_Click (object sender, EventArgs e)
+		{
+			jetboy_thread.DoClick ();
 		}
 	}
 }
