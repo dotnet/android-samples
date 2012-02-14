@@ -7,7 +7,8 @@ This sample demonstrates various forms of live wallpapers:
 * A rotating cube.
 * A resource-based rotating cube and dodecahedron.
 
-** To Run **
+To Run
+======
 
 * Deploy to target device using Build -> Deploy
 * Long tap on the desktop
