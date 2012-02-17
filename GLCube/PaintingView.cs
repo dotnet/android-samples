@@ -42,6 +42,8 @@ namespace Mono.Samples.GLCube {
 		{
 			base.OnLoad (e);
 
+			MakeCurrent ();
+
 			// UpdateFrame and RenderFrame are called
 			// by the render loop. This is takes effect
 			// when we use 'Run ()', like below
@@ -57,6 +59,11 @@ namespace Mono.Samples.GLCube {
 
 			// Run the render loop
 			Run (30);
+		}
+
+		protected override void OnResize (EventArgs e)
+		{
+			MakeCurrent ();
 		}
 
 		void RenderCube ()
