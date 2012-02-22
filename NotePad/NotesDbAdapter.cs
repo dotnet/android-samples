@@ -35,7 +35,7 @@ namespace NotePad
             "create table notes (_id integer primary key autoincrement, "
             + "title text not null, body text not null);";
 
-        private const string DatabaseName = "data";
+        private const string DBName = "data";
         private const string DatabaseTable = "notes";
         private const int DatabaseVersion = 2;
 
@@ -156,7 +156,7 @@ namespace NotePad
         private class DatabaseHelper : SQLiteOpenHelper
         {
             internal DatabaseHelper(Context context)
-                : base(context, DatabaseName, null, DatabaseVersion)
+                : base(context, DBName, null, DatabaseVersion)
             {
             }
 
