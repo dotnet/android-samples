@@ -35,7 +35,12 @@ namespace Mono.Samples.GLTriangle20 {
 
 		void Init ()
 		{
+		}
+
+		protected override void CreateFrameBuffer ()
+		{
 			GLContextVersion = GLContextVersion.Gles2_0;
+			base.CreateFrameBuffer ();
 		}
 
 		// This gets called when the drawing surface has been created
@@ -159,11 +164,10 @@ namespace Mono.Samples.GLTriangle20 {
 		{
 			viewportHeight = Height;
 			viewportWidth = Width;
-
-			// the surface change event makes your context
-			// not be current, so be sure to make it current again
-			MakeCurrent ();
 			RenderTriangle ();
+
+			// optional, if you registered delegate handlers and wish to call them
+			base.OnResize (e);
 		}
 	}
 }

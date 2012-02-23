@@ -40,16 +40,23 @@ namespace Mono.Samples.TexturedCube {
 		{
 			textureIds = new int[2];
 			context = Context;
-			Resize += delegate {
-				SetupCamera ();
-			};
-
 			xangle = 45;
 			yangle = 45;
+
+			Resize += delegate {
+				height = Height;
+				width = Width;
+				SetupCamera ();
+				RenderCube ();
+			};
 		}
 
 		protected override void OnLoad (EventArgs e)
 		{
+			// This is completely optional and only needed
+			// if you've registered delegates for OnLoad
+			base.OnLoad (e);
+
 			MakeCurrent ();
 
 			GL.ShadeModel (All.Smooth);
@@ -131,16 +138,6 @@ namespace Mono.Samples.TexturedCube {
 			return true;
 		}
 
-		protected override void OnResize (EventArgs e)
-		{
-			height = Height;
-			width = Width;
-
-			MakeCurrent ();
-			SetupCamera ();
-			RenderCube ();
-		}
-
 		protected override void OnUnload (EventArgs e)
 		{
 			GL.DeleteTextures (2, textureIds);
@@ -177,7 +174,7 @@ namespace Mono.Samples.TexturedCube {
 			}
 			GL.DisableClientState(All.VertexArray);
 			GL.DisableClientState(All.TextureCoordArray);
-			
+
 			SwapBuffers ();
 		}
 		
