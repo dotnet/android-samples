@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+//
+// C# port Copyright (C) 2012 Xamarin Inc. http://xamarin.com
+//
+
 using System;
 using Javax.Microedition.Khronos.Egl;
 using Javax.Microedition.Khronos.Opengles;
