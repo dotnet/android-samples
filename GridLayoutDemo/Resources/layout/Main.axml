@@ -7,12 +7,12 @@
         android:orientation="vertical">
 
      <TextView 
-            android:text="Cell 0" 
+            android:text="This" 
             android:textSize="14dip" 
             android:layout_row="0"
             android:layout_column="0" />  
      <TextView 
-            android:text="Cell 1" 
+            android:text="text is" 
             android:textSize="14dip"
             android:layout_row="0"         
             android:layout_column="1" /> 
@@ -22,12 +22,12 @@
             android:layout_width="50dp"         
             android:layout_height="50dp" />    
      <TextView 
-            android:text="Cell 2" 
+            android:text="in a" 
             android:textSize="14dip"
             android:layout_row="2"         
             android:layout_column="0" />  
      <TextView 
-            android:text="Cell 3" 
+            android:text="grid!" 
             android:textSize="14dip"         
             android:layout_row="2"         
             android:layout_column="1" />
