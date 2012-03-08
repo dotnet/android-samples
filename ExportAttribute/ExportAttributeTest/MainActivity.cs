@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Util;
+using Java.Interop;
 
 using Object = Java.Lang.Object;
 
@@ -20,7 +21,7 @@ namespace ExportAttributeTest
 			base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView (Resource.Layout.main);
 		}
 		
 		[Export ("MyButton_OnClick")]
