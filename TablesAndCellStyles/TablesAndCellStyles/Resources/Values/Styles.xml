@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+  <!--
+  <style name="CustomFastScroll" parent="android:Theme">
+    <item name="android:fastScrollTrackDrawable">@color/lightgrey</item>
+    <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_selector</item>
+  </style>
+  -->
+</resources>
