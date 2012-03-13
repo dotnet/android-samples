@@ -1,0 +1,43 @@
+﻿using System;
+
+using Android.App;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Android.OS;
+
+namespace TablesAndCellStyles {
+    //Since: API Level 1 
+    [Activity(Label = "SimpleListItemChecked")]
+    public class SimpleListItemChecked : ListActivity {
+        
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+
+            string[] items = new string []{"Option 1", "Option 2", "Option 3"};
+
+            ListAdapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItemChecked, items);
+
+            ListView lv = FindViewById<ListView>(Android.Resource.Id.List);
+            #if __ANDROID_11__
+            lv.ChoiceMode = Android.Widget.ChoiceMode.Single; // 1
+            #else
+            lv.ChoiceMode = 1;
+            #endif
+        }
+    }
+    /*
+      <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android" 
+          android:id="@android:id/text1" 
+          android:layout_width="fill_parent" 
+          android:layout_height="?android:attr/listPreferredItemHeight" 
+          android:textAppearance="?android:attr/textAppearanceLarge" 
+          android:gravity="center_vertical" 
+          android:checkMark="?android:attr/textCheckMark" 
+          android:paddingLeft="6dip" 
+          android:paddingRight="6dip" /> 
+     */
+}
+
