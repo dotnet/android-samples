@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <Button android:id="@+id/NormalButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click me"
+    />
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"    android:text="This is an image button (go on, touch it)"
+    android:paddingTop="20dip"
+    />
+  <ImageButton android:id="@+id/ImageButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/imagebutton_selector"
+    android:padding="0dip"
+    />
+<!-- Padding is zero so we don't get any 'grey' around the button's image -->
+
+  <TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"    android:text="This is a toggle button. Choose the text carefully or it'll be confusing!"
+  android:paddingTop="20dip"
+    />
+  <ToggleButton
+    android:id="@+id/ToggleButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOff="Turn me on"
+    android:textOn="Switch me off"
+    />
+
+  
+</LinearLayout>

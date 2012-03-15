@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Long-press the text below to show a context menu..."
+    />
+
+
+  <TextView android:id="@+id/ContextMenuText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="This has a context-menu!"
+    android:textSize="36dip"
+    android:textColor="@color/yellow"
+    />
+
+
+</LinearLayout>

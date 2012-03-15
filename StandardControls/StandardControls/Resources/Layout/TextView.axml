@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="This is a plain piece of text"
+    />
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Adding a bit of color and size"
+    android:textSize="24dip"
+    android:textColor="#2A3748"
+    />
+
+  <!-- autolink = [web, email ,phone, map, All]-->
+  
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Contains a link you can click - http://xamarin.com/"
+    android:autoLink="web"
+    android:id="@+id/urlTextView"
+    android:paddingTop="20dip"
+    />
+
+
+  <TextView
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:text="Dial 1 555-123-4567 number from a TextView"
+   android:autoLink="all"
+   
+   android:paddingTop="20dip"
+    />
+
+
+
+  <TextView android:id="@+id/StyledTextView"
+ android:layout_width="fill_parent"
+ android:layout_height="wrap_content"
+ android:text="- formatted text gets set here -"
+   
+ android:paddingTop="20dip"
+    />
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <Button android:id="@+id/ShortToastButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Short Toast Duration"
+    
+    android:paddingBottom="20dip"
+    />
+
+  <Button android:id="@+id/LongToastButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Long Toast Duration"
+    
+    android:paddingBottom="20dip"
+    />
+
+  <Button android:id="@+id/TopToastButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Toast Gravity (TOP)"
+    
+    android:paddingBottom="20dip"
+    />
+
+  <Button android:id="@+id/CustomToastButton"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Custom Toast"
+    
+  android:paddingBottom="20dip"
+    />
+</LinearLayout>

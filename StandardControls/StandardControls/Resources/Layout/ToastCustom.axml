@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/ToastLayout"
+    android:background="@color/red"
+    android:paddingLeft="30dip"
+    android:paddingRight="30dip"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    >
+  <TextView android:id="@+id/ToastText"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="REALLY OBVIOUS TOAST"
+      android:textColor="#000"
+    />
+</LinearLayout>
+
