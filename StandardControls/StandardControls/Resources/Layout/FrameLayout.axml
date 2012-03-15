@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/Frame" 
+             android:layout_height="fill_parent" 
+             android:layout_width="fill_parent" 
+             android:orientation="vertical" >
+  <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/Beach"/>
+  <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingTop="75px"  android:paddingLeft="100px" android:src="@drawable/Plants"/>
+  <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingTop="175px"                             android:src="@drawable/Seeds"/>
+  <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingTop="150px" android:paddingLeft="150px" android:src="@drawable/Shanghai"/>
+</FrameLayout>

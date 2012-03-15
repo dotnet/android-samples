@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <TextView android:id="@+id/Text1"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="Something is happening, and we're waiting..."
+            
+       android:paddingBottom="20dip"
+    />
+
+  <ProgressBar android:id="@+id/ProgressBar"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_centerHorizontal="true"
+             style="@android:style/Widget.ProgressBar.Horizontal" />
+
+  <TextView android:id="@+id/Text2"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="You never know how long with this one..."
+       android:paddingTop="30dip"
+       android:paddingBottom="10dip"
+    />
+  <ProgressBar android:id="@+id/ProgressCircle"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerHorizontal="true"
+             style="@android:style/Widget.ProgressBar.Inverse" />
+  
+  
+</LinearLayout>

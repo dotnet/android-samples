@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"      android:text="AutoText enabled on input"
+    />
+  <EditText
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:autoText="true"
+    android:text=""
+    
+    android:paddingBottom="20dip"
+  />
+  
+  
+  <!-- android:capitalize = [none, words, characters] -->
+  <TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"      android:text="Pascal casing on input (no auto)"
+    />
+  <EditText
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:capitalize="words"
+    android:text=""
+    
+    android:paddingBottom="20dip"
+  />
+
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"      android:text="Password input EditText"
+    />
+  <EditText
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:password="true"
+    android:text=""
+    
+    android:paddingBottom="20dip"
+  />
+
+</LinearLayout>

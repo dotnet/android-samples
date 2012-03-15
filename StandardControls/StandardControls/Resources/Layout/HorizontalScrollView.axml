@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbarFadeDuration="0"
+>
+  <!-- scrollbarFadeDuration="0" keeps the scroll indicator visible, as horizontal scrolling can be hard to 'discover' -->
+  
+  
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+    >
+    <TextView
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="About Xamarin"
+       android:textSize="36dip"
+       />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/Icon"
+      />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Great Apps Fast\n\nMonoTouch and Mono for Android make it easy for .NET developers to dive right into mobile development.\n\nShare Code Between Platforms\n\nSave time by sharing data structures and non-UI code between iOS and Android.\nUse Your Existing .NET Skills\nReuse your .NET skills and write code in your mobile apps using C# and familiar libraries.\nPowerful and Modern Framework\nWrite code using a modern, strongly typed, garbage collected framework.\nEasy Access To Native APIs\nAccess to thousands of native iOS and Android APIs.\nTarget Multiple Devices\nEasily write apps that target iPhone, iPad, iPod Touch and Android devices.\nRich IDE Support\nFull support for autocomplete in our rich IDE. Or use Visual Studio for Android development.\n\nAbout Xamarin\n\nXamarin was founded in May of 2011 in Boston, Massachusetts. Our mission is to produce the best software development tools in the world, and to make it fast, easy and fun to build great mobile apps.\n\nXamarin is composed of more than 20 members of the team that built Mono, with ten years of experience working together to create a great developer platform.\n\n"
+        />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Button 1"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Button 2"/>
+  </LinearLayout>
+
+</HorizontalScrollView>

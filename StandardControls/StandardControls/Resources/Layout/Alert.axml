@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+  <Button android:id="@+id/SimpleAlertButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Simple Alert"
+    />
+
+  <Button android:id="@+id/ComplexAlertButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Complex Alert"
+    />
+
+ 
+</LinearLayout>
