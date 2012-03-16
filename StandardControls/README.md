@@ -1,4 +1,4 @@
-Table and Cell Styles
+Standard Controls
 =====================
 
 This sample demonstrates Android's built-in UI controls.
