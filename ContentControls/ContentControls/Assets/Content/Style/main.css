@@ -1,0 +1,25 @@
+body
+{
+	background-color: #636363;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
+             "Helvetica Neue", sans-serif;
+	font-weight: 100;
+	color: white;
+}
+
+h1
+{
+	font-size: 30pt;
+	text-align: center;
+	font-weight: 100;
+}
+
+a:link, a:visited
+{
+	color: white;
+	text-decoration: none;
+}
+li
+{
+	color: white;
+}
