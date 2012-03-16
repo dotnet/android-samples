@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/listseparator"
+    android:padding="4dp">
+  <!-- GROUP HEADER ROW -->
+  <TextView
+    android:id="@+id/Text1"
+    android:textStyle="bold"
+    android:textColor="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
+</LinearLayout>

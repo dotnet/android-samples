@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+    <Button android:id="@+id/BackButton" android:text="&lt;"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+    <Button android:id="@+id/ForwardButton" android:text="&gt;"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+    <EditText  android:id="@+id/UrlText" android:text="http://xamarin.com"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <Button android:id="@+id/GoButton" android:text="Go"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+    <Button android:id="@+id/StopButton" android:text="X"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+  </LinearLayout>
+
+  <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Web"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+
+  <string name="controls_1_save">Save</string>
+  <string name="controls_1_checkbox_1">Checkbox 1</string>
+  <string name="controls_1_checkbox_2">Checkbox 2</string>
+  <string name="controls_1_radiobutton_1">RadioButton 1</string>
+  <string name="controls_1_radiobutton_2">RadioButton 2</string>
+  <string name="controls_1_star">Star</string>
+
+
+  <!-- Shouldn't be localized -->
+  <string name="textColorPrimary">textColorPrimary</string>
+  <string name="textColorSecondary">textColorSecondary</string>
+  <string name="textColorTertiary">textColorTertiary</string>
+  <string name="listSeparatorTextViewStyle">listSeparatorTextViewStyle</string>
+  
+</resources>
