@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<TextView
+		android:id="@+id/path"
+	    android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	/>
+
+	<TextView
+		android:id="@+id/stored"
+	    android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+		android:text="@string/stored"
+	/>
+	<Button
+	    android:id="@+id/myButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/hello"
+    />
+
+	<Button
+	    android:id="@+id/btnSave"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/save"
+    />
+
+	<Button
+	    android:id="@+id/btnReset"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/reset"
+    />
+</LinearLayout>

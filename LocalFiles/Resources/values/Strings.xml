@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Click Me!</string>
+	<string name="save">Click to save the current count</string>
+	<string name="reset">Click to clear the saved count</string>
+	<string name="stored">The current stored count is {0}</string>
+	<string name="app_name">Permissions</string>
+</resources>
