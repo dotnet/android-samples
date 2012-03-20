@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using System.Text;
@@ -35,6 +37,25 @@ using Mono.Data.Sqlite;
 
 namespace Mono.Samples.SanityTests
 {
+	public class MyInstrumentation : Instrumentation {
+		public MyInstrumentation (IntPtr handle, JniHandleOwnership transfer)
+			: base (handle, transfer)
+		{
+		}
+	}
+
+	public class MyInstrumentationWithOnCreate : Instrumentation {
+		public MyInstrumentationWithOnCreate (IntPtr handle, JniHandleOwnership transfer)
+			: base (handle, transfer)
+		{
+		}
+
+		public override void OnCreate (Android.OS.Bundle arguments)
+		{
+			base.OnCreate (arguments);
+		}
+	}
+
 	public class MyAsyncTask : Android.OS.AsyncTask {
 		protected override Java.Lang.Object DoInBackground (params Java.Lang.Object[] values)
 		{
@@ -151,7 +172,7 @@ namespace Mono.Samples.SanityTests
 
 		static ItemsDb ()
 		{
-			if (Android.OS.Build.VERSION.SdkInt < 8) {
+			if ((int)Android.OS.Build.VERSION.SdkInt < 8) {
 				return;
 			}
 
@@ -334,6 +355,10 @@ namespace Mono.Samples.SanityTests
 #endif
 			TestNumerics (textview);
 			TestManagedToJniLookup_Release (textview);
+			TestJsonDeserializationCreatesJavaHandle (textview);
+			TestJsonBxc163 ();
+			TestJsonNullableDateTime ();
+			TestJsonArray ();
 
 			var die = new TextView (this) {
 				Text = "Added!",
@@ -348,8 +373,9 @@ namespace Mono.Samples.SanityTests
 
 			ThreadPool.QueueUserWorkItem (o => {
 					Log.Info ("*jonp*", "Hello from the thread pool thread!");
-					RunOnUiThread (() => textview.Text += "\n\nThreadPool update!");
+					RunOnUiThread (() => textview.Text += "\n\nThreadPool update!\n");
 			});
+			ThreadPool.QueueUserWorkItem (o => UseLotsOfMemory (textview));
 			GC.Collect ();
 		}
 
@@ -381,6 +407,86 @@ namespace Mono.Samples.SanityTests
 		{
 			textview.SetFilters (new Android.Text.IInputFilter[]{new Android.Text.InputFilterAllCaps ()});
 			textview.SetFilters (new Android.Text.IInputFilter [0]);
+		}
+
+		void TestJsonDeserializationCreatesJavaHandle (TextView textview)
+		{
+			Person p = new Person () {
+				Name = "John Smith",
+				Age = 900,
+			};
+			var stream      = new MemoryStream ();
+			var serializer  = new DataContractJsonSerializer (typeof (Person));
+
+			serializer.WriteObject (stream, p);
+
+			stream.Position = 0;
+			StreamReader sr = new StreamReader (stream);
+
+			textview.Text += "\n\nJSON Person representation: " + sr.ReadToEnd ();
+
+			stream.Position = 0;
+			Person p2 = (Person) serializer.ReadObject (stream);
+
+			if (p2.Name != "John Smith")
+				throw new InvalidOperationException ("JSON deserialization of Name");
+			if (p2.Age != 900)
+				throw new InvalidOperationException ("JSON deserialization of Age");
+			if (p2.Handle == IntPtr.Zero)
+				throw new InvalidOperationException ("Failed to instanatiage new Java instance for Person!");
+		}
+
+		[DataContract(Name = "DateTest")]
+		public class DateTest
+		{
+			[DataMember(Name = "should_have_value")]
+			public DateTime? ShouldHaveValue { get; set; }
+		}
+
+		void TestJsonBxc163 ()
+		{
+			string json = @"{""should_have_value"":""\/Date(1277355600000-0500)\/""}";
+
+			byte[] bytes = System.Text.Encoding.UTF8.GetBytes (json);
+			Stream inputStream = new MemoryStream (bytes);
+
+			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof (DateTest));
+			DateTest t = (DateTest) serializer.ReadObject (inputStream);
+
+			if (!t.ShouldHaveValue.HasValue || t.ShouldHaveValue != new DateTime (2010, 6, 24))
+				throw new InvalidOperationException ("Invalid `DateTime?` value! expected 2010/06/24, got: " + t.ShouldHaveValue);
+		}
+
+		void TestJsonNullableDateTime ()
+		{
+			using (MemoryStream ms = new MemoryStream ())
+			{
+				DateTest foo = new DateTest ();
+				DataContractJsonSerializer test = new DataContractJsonSerializer (typeof (DateTest));
+				test.WriteObject (ms, foo);
+				ms.Seek (0, 0);
+				Console.WriteLine ("# JSON: {0}", new StreamReader (ms).ReadToEnd ());
+				ms.Seek (0, 0);
+				foo = (DateTest) test.ReadObject (ms);
+				Console.WriteLine ("foo.Bar={0}", foo.ShouldHaveValue);
+				if (foo.ShouldHaveValue.HasValue)
+					throw new InvalidOperationException ("foo.ShouldHaveValue should be null!");
+			}
+		}
+
+		void TestJsonArray ()
+		{
+			string json = "[\"Test1\",\"Test2\"]"; //Some dull json array
+
+			using (var ms = new MemoryStream (Encoding.Unicode.GetBytes (json)))
+			{
+				DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof (string[]));
+				var item = serializer.ReadObject (ms);
+				Console.WriteLine ("JSON string[]: {0}", item.GetType ().FullName);
+				var items = (string[]) item;
+				if (items [0] != "Test1" || items [1] != "Test2")
+					throw new InvalidOperationException ("JSON array didn't deserialize! Expected {\"Test1\", \"Test2\"}, got: {\"" + string.Join ("\", \"", items) + "\"}");
+			}
 		}
 
 		void TestGzip ()
@@ -777,10 +883,14 @@ namespace Mono.Samples.SanityTests
 
 		void TestUrlConnectionStream (TextView textview)
 		{
-			Java.Net.URL url = new Java.Net.URL("http://www.google.pt/logos/classicplus.png");
-        		Java.Net.URLConnection urlConnection = url.OpenConnection();
-			Android.Graphics.BitmapFactory.DecodeStream (urlConnection.InputStream);
-			textview.Text += "\n\nOpened Url connection stream and loaded image";
+			try {
+				Java.Net.URL url = new Java.Net.URL("http://www.google.pt/logos/classicplus.png");
+	        		Java.Net.URLConnection urlConnection = url.OpenConnection();
+				Android.Graphics.BitmapFactory.DecodeStream (urlConnection.InputStream);
+				textview.Text += "\n\nOpened Url connection stream and loaded image";
+			} catch (Java.Net.UnknownHostException ex) {
+				textview.Text += "\n\nConnection error: " + ex.Message;
+			}
 		}
  
 		static void AssertEqual<T>(T expected, T actual)
@@ -923,6 +1033,53 @@ namespace Mono.Samples.SanityTests
 			}
 		}
 
+		/*
+		 * Test that "long-running" tasks actually run w/o breaking the GC.
+		 *    http://lists.ximian.com/pipermail/monodroid/2011-March/003820.html
+		 *    http://lists.ximian.com/pipermail/monodroid/2011-March/004040.html
+		 *    http://lists.ximian.com/pipermail/monodroid/2011-April/004075.html
+		 */
+		void UseLotsOfMemory (TextView textview)
+		{
+			List<string> l = new List<string>();
+			int preserveLength = 0;
+
+			// Simulating Heavy Memory Usage
+			for (int i = 0; i < 1000000; i++) {
+				string h = "Hello";
+				string w = "World";
+
+				int a = i + 2;
+
+				l.Add (h + w + a);
+
+				if (i % (1000000/100) == 0) {
+					Log.Info ("long-test", i.ToString());
+					RunOnUiThread(() => {
+							// string log = textview.Text;
+							textview.Append ("\n" + h + w + a);
+							/*
+							int len = log.Length;
+
+							if (preserveLength == 0)
+								preserveLength = log.Length;
+
+							log = (log.Length - preserveLength > 1000)
+								? (log.Substring (0, preserveLength) + "\n\n" + log.Substring (log.Length-1000))
+								: log;
+
+							log += "\n" + h + w + a;
+							Console.WriteLine ("log.Length={0}; textView.Text.Length={1}", len, log.Length);
+							textview.Text = log;
+							*/
+					});
+				}
+			}
+			RunOnUiThread(() => {
+					textview.Append ("\n\nFinished long-running task.");
+			});
+		}
+
 		void OnTouch (object sender, View.TouchEventArgs e)
 		{
 			Log.Info ("HelloApp", "OnTouchListener.OnTouch: sender={0} [{1}]; args.E={2} [{3}]; args.V={4} [{5}]", 
@@ -1026,7 +1183,7 @@ namespace Mono.Samples.SanityTests
 		public Android.Views.IMenuItem GetItem (int index) {throw new NotSupportedException ();}
 		public bool IsShortcutKey (int keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
 		public bool PerformIdentifierAction (int id, int flags) {throw new NotSupportedException ();}
-		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuFlags flags) {throw new NotSupportedException ();}
+		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
 		public void RemoveGroup (int groupId) {throw new NotSupportedException ();}
 		public void RemoveItem (int id) {throw new NotSupportedException ();}
 		public void SetGroupCheckable (int group, bool checkable, bool exclusive) {throw new NotSupportedException ();}
@@ -1074,9 +1231,66 @@ namespace Mono.Samples.SanityTests
 		{
 		}
 
+		public CompanyAdapter (Context context)
+			: base (context, 0, new string [0])
+		{
+		}
+
+#region BXC_2367
+		// This constructor should be skipped in the ACW, because we can't deduce
+		// the parameters to pass in the super(...) call
+		public CompanyAdapter ()
+			: base (null, 0, new string [0])
+		{
+		}
+#endregion
+
 		public override View GetView (int p, View v, ViewGroup parent)
 		{
 			throw new NotImplementedException ();
+		}
+	}
+#endregion
+
+	[DataContract]
+	class Person : Java.Lang.Object {
+		[DataMember]
+		public string Name;
+
+		[DataMember]
+		public int Age;
+	}
+
+#region BXC_2609
+	abstract class AbstractAdapter<T> : ArrayAdapter<T>
+	{
+		public AbstractAdapter (Context context, int n)
+			: base (context, n)
+		{
+		}
+	}
+
+	abstract class AbstractItemFilter<T> : Filter
+	{
+		protected AbstractItemFilter (AbstractAdapter<T> parent)
+		{
+		}
+
+		protected override Filter.FilterResults PerformFiltering(Java.Lang.ICharSequence constraint)
+		{
+			return null;
+		}
+
+		protected override void PublishResults(Java.Lang.ICharSequence constraint, Filter.FilterResults results)
+		{
+		}
+	}
+
+	class TestFilter : AbstractItemFilter<string>
+	{
+		internal TestFilter(AbstractAdapter<string> p )
+			: base(p)
+		{
 		}
 	}
 #endregion
