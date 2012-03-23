@@ -38,6 +38,7 @@ using Java.Util;
 using Object = Java.Lang.Object;
 using Path = System.IO.Path;
 using Environment = Android.OS.Environment;
+using Java.Interop;
 
 [assembly:UsesPermission (Android.Manifest.Permission.WriteExternalStorage)]
 

@@ -21,7 +21,7 @@ namespace ExportAttributeTest
 			base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.main);
+			SetContentView (Resource.Layout.Main);
 		}
 		
 		[Export ("MyButton_OnClick")]
