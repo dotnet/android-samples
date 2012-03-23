@@ -32,17 +32,31 @@ namespace Mono.Samples.GLCube {
 
 		private void Initialize ()
 		{
-			GLContextVersion = GLContextVersion.Gles1_1;
 			rateOfRotationPS = new float [] { 30, 45, 60 };
 			rot = new float [] { 0, 0, 0};
+		}
+
+		// This method is called everytime the context needs
+		// to be recreated. Use it to set any egl-specific settings
+		// prior to context creation
+		protected override void CreateFrameBuffer ()
+		{
+			GLContextVersion = GLContextVersion.Gles1_1;
+
+			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 0, 2, false)
+			// this is a slightly lower setting to demonstrate usage
+			GraphicsMode = new GraphicsMode (16, 0, 0, 0, 0, 0, false);
+
+			// if you don't call this, the context won't be created
+			base.CreateFrameBuffer ();
 		}
 
 		// This gets called when the drawing surface is ready
 		protected override void OnLoad (EventArgs e)
 		{
+			// this call is optional, and meant to raise delegates
+			// in case any are registered
 			base.OnLoad (e);
-
-			MakeCurrent ();
 
 			// UpdateFrame and RenderFrame are called
 			// by the render loop. This is takes effect
@@ -61,9 +75,9 @@ namespace Mono.Samples.GLCube {
 			Run (30);
 		}
 
+		// this occurs mostly on rotation.
 		protected override void OnResize (EventArgs e)
 		{
-			MakeCurrent ();
 		}
 
 		void RenderCube ()
