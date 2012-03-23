@@ -24,5 +24,17 @@ namespace Mono.Samples.GLCube
 			// Load the view
 			FindViewById (Resource.Id.paintingview);
 		}
+
+		protected override void OnPause ()
+		{
+			var view = FindViewById<PaintingView> (Resource.Id.paintingview);
+			view.Pause ();
+		}
+
+		protected override void OnResume ()
+		{
+			var view = FindViewById<PaintingView> (Resource.Id.paintingview);
+			view.Resume ();
+		}
 	}
 }
