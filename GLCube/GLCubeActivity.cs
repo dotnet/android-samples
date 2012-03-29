@@ -27,6 +27,7 @@ namespace Mono.Samples.GLCube
 
 		protected override void OnPause ()
 		{
+			base.OnPause ();
 			var view = FindViewById<PaintingView> (Resource.Id.paintingview);
 			view.Pause ();
 		}
