@@ -13,7 +13,7 @@ using Object = Java.Lang.Object;
 
 namespace ExportAttributeTest
 {
-	[Activity (Label = "M4ATest5", MainLauncher = true)]
+	[Activity (Label = "ExportAttributeTest", MainLauncher = true)]
 	public class Activity1 : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
