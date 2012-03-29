@@ -11,8 +11,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0BABCBF-D26F-491F-9A3E-F0A064DE76AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = HoneycombGallery\HoneycombGallery.csproj

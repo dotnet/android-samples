@@ -11,8 +11,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{65E90495-A320-4C77-810F-7A2409D74587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65E90495-A320-4C77-810F-7A2409D74587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E90495-A320-4C77-810F-7A2409D74587}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{65E90495-A320-4C77-810F-7A2409D74587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65E90495-A320-4C77-810F-7A2409D74587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E90495-A320-4C77-810F-7A2409D74587}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ExportAttributeTest\ExportAttributeTest.csproj

@@ -35,7 +35,7 @@ namespace Mono.Samples.GLTriangle20 {
 
 		void Init ()
 		{
-			GLContextVersion = EAGLRenderingAPI.OpenGLES2;
+			ContextRenderingApi = GLVersion.ES2;
 		}
 
 		// This gets called when the drawing surface is ready

@@ -143,7 +143,7 @@ namespace Mono.Samples.TexturedCube {
 
 		void RenderCube ()
 		{
-			GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
+			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.MatrixMode(All.Modelview);
 			GL.LoadIdentity();
 			
