@@ -80,6 +80,7 @@ namespace Mono.Samples.Snake
 		private void InitSnakeView ()
 		{
 			Focusable = true;
+			FocusableInTouchMode = true;
 
 			// Initialize and load our tile bitmaps
 			ResetTiles (4);
@@ -167,8 +168,7 @@ namespace Mono.Samples.Snake
 		// turn back on itself.
 		public override bool OnKeyDown (Keycode keyCode, KeyEvent msg)
 		{
-
-			if (keyCode == Keycode.DpadUp) {
+			if (keyCode == Keycode.DpadUp || keyCode == Keycode.VolumeUp) {
 				if (mode == GameMode.Ready | mode == GameMode.Lost) {
 					// At the beginning of the game, or the end of a
 					// previous one, we should start a new game.
@@ -189,8 +189,12 @@ namespace Mono.Samples.Snake
 					return true;
 				}
 
-				if (mDirection != Direction.South)
-					mNextDirection = Direction.North;
+				if (keyCode == Keycode.VolumeUp) {
+					mNextDirection = (Direction) (((int)mDirection + 1) % 4);
+				} else {
+					if (mDirection != Direction.South)
+						mNextDirection = Direction.North;
+				}
 
 				return true;
 			}
@@ -198,6 +202,12 @@ namespace Mono.Samples.Snake
 			if (keyCode == Keycode.DpadDown) {
 				if (mDirection != Direction.North)
 					mNextDirection = Direction.South;
+
+				return true;
+			}
+
+			if (keyCode == Keycode.VolumeDown) {
+				mNextDirection = (Direction) (((int)mDirection - 1) % 4);
 
 				return true;
 			}
