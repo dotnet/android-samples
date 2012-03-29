@@ -33,6 +33,7 @@ namespace Mono.Samples.GLCube
 
 		protected override void OnResume ()
 		{
+			base.OnResume ();
 			var view = FindViewById<PaintingView> (Resource.Id.paintingview);
 			view.Resume ();
 		}
