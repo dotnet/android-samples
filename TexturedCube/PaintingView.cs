@@ -42,6 +42,7 @@ namespace Mono.Samples.TexturedCube {
 			context = Context;
 			Resize += delegate {
 				SetupCamera ();
+				RenderCube ();
 			};
 
 			xangle = 45;
@@ -50,12 +51,6 @@ namespace Mono.Samples.TexturedCube {
 
 		protected override void OnLoad (EventArgs e)
 		{
-			base.OnLoad (e);
-
-			// do this in non-run case
-			CreateFrameBuffer ();
-			MakeCurrent ();
-
 			GL.ShadeModel (All.Smooth);
 			GL.ClearColor (0, 0, 0, 1);
 
