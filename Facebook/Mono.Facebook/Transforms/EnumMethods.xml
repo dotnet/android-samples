@@ -1,0 +1,12 @@
+<enum-method-mappings>
+	<!--
+  This example changes the Java method:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (int flags)
+  to be:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (Android.OS.ParcelableWriteFlags flags)
+  when bound in C#.
+  
+  <map package="android.support.v4.app" class="Fragment.SavedState" method="writeToParcel" parameter="flags" enum="Android.OS.ParcelableWriteFlags" />
+  -->
+	<map package="com.facebook.android" class="Facebook" method="authorizeCallback" parameter="p1" enum="Android.App.Result" />
+</enum-method-mappings>
