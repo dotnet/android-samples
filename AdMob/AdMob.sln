@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdMob", "AdMob\AdMob.csproj", "{74B48A13-31DC-40C1-958F-F2979FD0C59D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdMobTest", "AdMobTest\AdMobTest.csproj", "{CD8DCF83-4A46-4B8C-AAF4-135552E2D4D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74B48A13-31DC-40C1-958F-F2979FD0C59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B48A13-31DC-40C1-958F-F2979FD0C59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B48A13-31DC-40C1-958F-F2979FD0C59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B48A13-31DC-40C1-958F-F2979FD0C59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8DCF83-4A46-4B8C-AAF4-135552E2D4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8DCF83-4A46-4B8C-AAF4-135552E2D4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8DCF83-4A46-4B8C-AAF4-135552E2D4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8DCF83-4A46-4B8C-AAF4-135552E2D4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AdMobTest\AdMobTest.csproj
+	EndGlobalSection
+EndGlobal
