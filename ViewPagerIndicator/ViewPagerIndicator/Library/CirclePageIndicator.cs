@@ -543,7 +543,6 @@ namespace ViewPagerIndicator
 			[ExportField ("CREATOR")]
 			static SavedStateCreator InitializeCreator ()
 			{
-				Console.WriteLine ("Create new creator");
 				return new SavedStateCreator ();
 			}
 			
@@ -551,15 +550,11 @@ namespace ViewPagerIndicator
 			{
 				public Java.Lang.Object CreateFromParcel (Parcel source)
 				{
-					
-					Console.WriteLine ("Creating from parcel");
 					return new SavedState (source);
 				}
 		
 				public Java.Lang.Object[] NewArray (int size)
 				{
-						
-					Console.WriteLine ("New Array");
 					return new SavedState[size];
 				}
 			}
