@@ -18,7 +18,7 @@ namespace MonoDroid.ApiDemo
 
 			ListView.TextFilterEnabled = true;
 
-			ListView.ItemClick += delegate (object sender, ItemEventArgs args) {
+			ListView.ItemClick += (sender, args) => {
 				// When clicked, show a toast with the TextView text  
 				Toast.MakeText (Application, ((TextView)args.View).Text, ToastLength.Short).Show ();
 			};
