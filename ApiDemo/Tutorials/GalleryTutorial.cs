@@ -22,7 +22,7 @@ namespace MonoDroid.ApiDemo
 
 			gallery.Adapter = new ImageAdapter (this);
 
-			gallery.ItemClick += (sender, args) => {
+			gallery.ItemClick += delegate (object sender, ItemEventArgs args) {
 				Toast.MakeText (this, args.Position.ToString (), ToastLength.Short).Show ();
 			};
 		}

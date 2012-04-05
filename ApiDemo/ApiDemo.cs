@@ -52,7 +52,7 @@ namespace MonoDroid.ApiDemo
 			ListAdapter = new ArrayAdapter<ActivityListItem> (this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, items);
 
 			// Launch the new activity when the list is clicked
-			ListView.ItemClick += (sender, args) => {
+			ListView.ItemClick += delegate (object sender, ItemEventArgs args) {
 				var item = (ActivityListItem) (sender as ListView).GetItemAtPosition (args.Position);
 				LaunchActivityItem (item);
 			};

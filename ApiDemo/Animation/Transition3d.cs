@@ -100,11 +100,47 @@ namespace MonoDroid.ApiDemo
 			rotation.Duration = 500;
 			rotation.FillAfter = true;
 			rotation.Interpolator = new AccelerateInterpolator ();
-			rotation.AnimationEnd += delegate {
-				mContainer.Post (new SwapViews (position, mContainer, mPhotosList, mImageView));
-			};
+			rotation.SetAnimationListener (new DisplayNextView (position, mContainer, mPhotosList, mImageView));
 
 			mContainer.StartAnimation (rotation);
+		}
+
+
+		/**
+	     * This class listens for the end of the first half of the animation.
+	     * It then posts a new action that effectively swaps the views when the container
+	     * is rotated 90 degrees and thus invisible.
+	     */
+		private class DisplayNextView : Java.Lang.Object, Animation.IAnimationListener
+		{
+			private int position;
+			private ViewGroup container;
+			private ListView photos_list;
+			private ImageView image_view;
+
+			public DisplayNextView (int position, ViewGroup container, ListView photosList, ImageView imageView)
+			{
+				this.position = position;
+				this.container = container;
+				photos_list = photosList;
+				image_view = imageView;
+			}
+
+
+			#region IAnimationListener Members
+			public void OnAnimationEnd (Animation animation)
+			{
+				container.Post (new SwapViews (position, container, photos_list, image_view));
+			}
+
+			public void OnAnimationRepeat (Animation animation)
+			{
+			}
+
+			public void OnAnimationStart (Animation animation)
+			{
+			}
+			#endregion
 		}
 
 		/**
@@ -154,9 +190,10 @@ namespace MonoDroid.ApiDemo
 			}
 		}
 
+
 		#region IOnItemClickListener Members
 
-		public void OnItemClick (object parent, AdapterView.ItemClickEventArgs args)
+		public void OnItemClick (object parent, ItemEventArgs args)
 		{
 			// Pre-load the image then start the animation
 			mImageView.SetImageResource (PHOTOS_RESOURCES[args.Position]);
