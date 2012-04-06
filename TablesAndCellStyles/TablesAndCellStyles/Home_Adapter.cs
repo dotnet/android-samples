@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
 using Android.Content;
 
 namespace TablesAndCellStyles {
+
     public class Sample {
         public Sample(string name, Type screen)
         {
@@ -15,48 +17,60 @@ namespace TablesAndCellStyles {
         public string Name;
         public Type Screen;
     }
+
+    class Header {
+        public string Name;
+        public int SectionIndex;
+    }
+
     public class Home_Adapter : BaseAdapter<Sample> {
-        Activity context = null;
-        Dictionary<string, List<Sample>> samples;
-        private readonly IList<object> rows;
+
+        static Dictionary<string, List<Sample>> samples = new Dictionary<string, List<Sample>>() {
+            { "Cell Styles", new List<Sample>() {
+                new Sample ("SimpleListItem1",                  typeof(SimpleListItem1)),
+                new Sample ("SimpleListItem2",                  typeof(SimpleListItem2)),
+                new Sample ("ActivityListItem",                 typeof(ActivityListItem)),
+                new Sample ("TwoLineListItem",                  typeof(TwoLineListItem)),
+            } },
+            { "Accessory Styles", new List<Sample>() {
+                new Sample ("SimpleListItemChecked",            typeof(SimpleListItemChecked)),
+                new Sample ("SimpleListItemSingleChoice",       typeof(SimpleListItemSingleChoice)),
+                new Sample ("SimpleListItemMultipleChoice",     typeof(SimpleListItemMultipleChoice)),
+            } },
+            { "Custom Cells", new List<Sample>() {
+                new Sample ("ImageAndSubtitle",                 typeof(ImageAndSubtitle)),
+                new Sample ("DateList",                         typeof(DateList)),
+            } },
+            { "Table Styles", new List<Sample>() {
+                new Sample ("Fast Scroll",                      typeof(FastScroll)),
+            } },
+            { "Custom Tables", new List<Sample>() {
+                new Sample ("Labelled Sections",                typeof(LabelledSections)),
+                new Sample ("Labelled Sections with Indexer",   typeof(LabelledSectionsIndexer)),
+                new Sample ("Gradient Background",              typeof(GradientBackground)),
+                new Sample ("Custom Fast Scroll (API11)",       typeof(CustomFastScroll)),
+            } },
+        };
+
+        const int TypeSectionHeader = 0;
+        const int TypeSectionSample = 1;
+
+        readonly Activity context;
+        readonly IList<object> rows = new List<object>();
+
+        readonly ArrayAdapter<string> headers;
+        readonly Dictionary<string, IAdapter> sections = new Dictionary<string, IAdapter>();
 
         public Home_Adapter(Activity context)
-            : base()
         {
             this.context = context;
-            samples = new Dictionary<string, List<Sample>>();
+            headers = new ArrayAdapter<string>(context, Resource.Layout.HomeSectionHeader, Resource.Id.Text1);
 
-            samples.Add("Cell Styles", new List<Sample>() { 
-                   new Sample ("SimpleListItem1", typeof(SimpleListItem1))
-                ,  new Sample ("SimpleListItem2", typeof(SimpleListItem2))
-                ,  new Sample ("ActivityListItem", typeof(ActivityListItem))
-                ,  new Sample ("TwoLineListItem", typeof(TwoLineListItem))
-            });
-            samples.Add("Accessory Styles", new List<Sample>() {
-                   new Sample ("SimpleListItemChecked", typeof(SimpleListItemChecked))
-                ,  new Sample ("SimpleListItemSingleChoice", typeof(SimpleListItemSingleChoice))
-                ,  new Sample ("SimpleListItemMultipleChoice", typeof(SimpleListItemMultipleChoice))
-            });
-            samples.Add("Custom Cells", new List<Sample>() {
-                   new Sample ("ImageAndSubtitle", typeof(ImageAndSubtitle))
-                ,  new Sample ("DateList", typeof(DateList))
-                
-            }); 
-            samples.Add("Table Styles", new List<Sample>() { 
-                   new Sample ("Fast Scroll", typeof(FastScroll))
-            });
-            samples.Add("Custom Tables", new List<Sample>() {
-                   new Sample ("Labelled Sections", typeof(LabelledSections))
-                ,  new Sample ("Labelled Sections with Indexer", typeof(LabelledSectionsIndexer))
-                ,  new Sample ("Gradient Background", typeof(GradientBackground))
-                ,  new Sample ("Custom Fast Scroll (API11)", typeof(CustomFastScroll))
-
-            });
-            
-            // flatten groups into single 'list'
             rows = new List<object>();
             foreach (var section in samples.Keys) {
-                rows.Add(section);
+                headers.Add(section);
+                sections.Add(section, new ArrayAdapter<Sample>(context, Android.Resource.Layout.SimpleListItem1, samples [section]));
+                rows.Add(new Header { Name = section, SectionIndex = sections.Count-1});
                 foreach (var session in samples[section]) {
                     rows.Add(session);
                 }
@@ -71,6 +85,19 @@ namespace TablesAndCellStyles {
             { // this'll break if called with a 'header' position
                 return (Sample)rows[position];
             }
+        }
+
+        public override int ViewTypeCount {
+            get {
+                return 1 + sections.Values.Sum (adapter => adapter.ViewTypeCount);
+            }
+        }
+
+        public override int GetItemViewType(int position)
+        {
+            return rows[position] is Header
+                ? TypeSectionHeader
+                : TypeSectionSample;
         }
 
         public override long GetItemId(int position)
@@ -88,7 +115,7 @@ namespace TablesAndCellStyles {
         }
         public override bool IsEnabled(int position)
         {
-            return !(rows[position] is string);
+            return !(rows[position] is Header);
         }
 
         /// <summary>
@@ -98,20 +125,22 @@ namespace TablesAndCellStyles {
         {
             // Get our object for this position
             var item = this.rows[position];
-            View view = null;
 
-            if (item is string) {   // header
-                view = context.LayoutInflater.Inflate(Resource.Layout.HomeSectionHeader, null);
+            View view;
+
+            if (item is Header) {
+                view = headers.GetView(((Header) item).SectionIndex, convertView, parent);
                 view.Clickable = false;
                 view.LongClickable = false;
-                view.SetOnClickListener(null);
-                view.FindViewById<TextView>(Resource.Id.Text1).Text = (string)item;
-            } else {   //session
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-
-                view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = ((Sample)item).Name;
+                return view;
             }
-            //Finally return the view
+
+            int i = position-1;
+            while (i > 0 && rows[i] is Sample)
+                i--;
+            Header h = (Header) rows[i];
+            view = sections[h.Name].GetView(position-i-1, convertView, parent);
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = ((Sample) item).Name;
             return view;
         }
     }
