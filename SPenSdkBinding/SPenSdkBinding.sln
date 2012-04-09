@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPenSdkBinding", "SPenSdkBinding\SPenSdkBinding.csproj", "{C76434F4-F6FF-43F7-8578-AFB0A27D8940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPenSdkExample1", "SPenSdkExample1\SPenSdkExample1.csproj", "{47A25F7A-1180-4FA7-B994-9876F9CC6AA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47A25F7A-1180-4FA7-B994-9876F9CC6AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A25F7A-1180-4FA7-B994-9876F9CC6AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A25F7A-1180-4FA7-B994-9876F9CC6AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A25F7A-1180-4FA7-B994-9876F9CC6AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76434F4-F6FF-43F7-8578-AFB0A27D8940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76434F4-F6FF-43F7-8578-AFB0A27D8940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76434F4-F6FF-43F7-8578-AFB0A27D8940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76434F4-F6FF-43F7-8578-AFB0A27D8940}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SPenSdkBinding\SPenSdkBinding.csproj
+	EndGlobalSection
+EndGlobal

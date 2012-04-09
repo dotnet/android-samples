@@ -1,0 +1,10 @@
+Samsung S Pen SDK Binding
+=========================
+
+This is an untested sample for Samsung S Pen SDK. Since this software is
+not freely available, we cannot include the actual Java library
+(libspen20.jar) in the repository, nor add sample port here.
+
+To build the binding, you have to add the missing jar into build.
+This project contains a set of metadata which should help building the dll.
+
