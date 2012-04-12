@@ -37,10 +37,38 @@ namespace Mono.Samples.GLTriangle20 {
 		{
 		}
 
+		// This method is called everytime the context needs
+		// to be recreated. Use it to set any egl-specific settings
+		// prior to context creation
 		protected override void CreateFrameBuffer ()
 		{
 			GLContextVersion = GLContextVersion.Gles2_0;
-			base.CreateFrameBuffer ();
+
+			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
+			try {
+				Log.Verbose ("TexturedCube", "Loading with default settings");
+
+				// if you don't call this, the context won't be created
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("TexturedCube", "{0}", ex);
+			}
+
+			// this is a slightly lower setting that disables depth buffers and sets buffers to 0,
+			// which is invalid in OpenTK itself by default but allowed in some devices on
+			// Android
+			try {
+				Log.Verbose ("TexturedCube", "Loading with custom Android settings (low mode)");
+				GraphicsMode = new AndroidGraphicsMode (16, 0, 0, 0, 0, false);
+
+				// if you don't call this, the context won't be created
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("TexturedCube", "{0}", ex);
+			}
+			throw new Exception ("Can't load egl, aborting");
 		}
 
 		// This gets called when the drawing surface has been created
@@ -58,10 +86,6 @@ namespace Mono.Samples.GLTriangle20 {
 			// This is completely optional and only needed
 			// if you've registered delegates for OnLoad
 			base.OnLoad (e);
-
-			// At this point there is a context, but it's not current
-			// so you need to make it current to be able to do things
-			MakeCurrent ();
 
 			viewportHeight = Height; viewportWidth = Width;
 
@@ -164,10 +188,11 @@ namespace Mono.Samples.GLTriangle20 {
 		{
 			viewportHeight = Height;
 			viewportWidth = Width;
-			RenderTriangle ();
 
-			// optional, if you registered delegate handlers and wish to call them
-			base.OnResize (e);
+			// the surface change event makes your context
+			// not be current, so be sure to make it current again
+			MakeCurrent ();
+			RenderTriangle ();
 		}
 	}
 }

@@ -51,6 +51,40 @@ namespace Mono.Samples.TexturedCube {
 			};
 		}
 
+		// This method is called everytime the context needs
+		// to be recreated. Use it to set any egl-specific settings
+		// prior to context creation
+		protected override void CreateFrameBuffer ()
+		{
+			GLContextVersion = GLContextVersion.Gles1_1;
+
+			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
+			try {
+				Log.Verbose ("TexturedCube", "Loading with default settings");
+
+				// if you don't call this, the context won't be created
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("TexturedCube", "{0}", ex);
+			}
+
+			// this is a slightly lower setting that disables depth buffers and sets buffers to 0,
+			// which is invalid in OpenTK itself by default but allowed in some devices on
+			// Android
+			try {
+				Log.Verbose ("TexturedCube", "Loading with custom Android settings (low mode)");
+				GraphicsMode = new AndroidGraphicsMode (16, 0, 0, 0, 0, false);
+
+				// if you don't call this, the context won't be created
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("TexturedCube", "{0}", ex);
+			}
+			throw new Exception ("Can't load egl, aborting");
+		}
+
 		protected override void OnLoad (EventArgs e)
 		{
 			// This is completely optional and only needed
