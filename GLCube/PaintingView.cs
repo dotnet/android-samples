@@ -50,7 +50,32 @@ namespace Mono.Samples.GLCube {
 			GraphicsMode = new AndroidGraphicsMode (null, 16, 0, 0, 0, 0, 0, false);
 
 			// if you don't call this, the context won't be created
-			base.CreateFrameBuffer ();
+			try {
+				Log.Verbose ("GLCube", "Loading with custom Android settings (low mode)");
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("GLCube", "{0}", ex);
+			}
+
+			try {
+				Log.Verbose ("GLCube", "Loading with default settings");
+				GraphicsMode = new AndroidGraphicsMode ();
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("GLCube", "{0}", ex);
+			}
+
+			try {
+				Log.Verbose ("GLCube", "Loading with default settings and a different EGL version");
+				ContextRenderingApi = GLVersion.ES2;
+				base.CreateFrameBuffer ();
+				return;
+			} catch (Exception ex) {
+				Log.Verbose ("GLCube", "{0}", ex);
+			}
+			throw new Exception ("Can't load egl, aborting");
 		}
 
 		// This gets called when the drawing surface is ready
