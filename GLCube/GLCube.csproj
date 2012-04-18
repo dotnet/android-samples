@@ -51,6 +51,7 @@
     <Compile Include="GLCubeActivity.cs" />
     <Compile Include="PaintingView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_glcube.png" />
