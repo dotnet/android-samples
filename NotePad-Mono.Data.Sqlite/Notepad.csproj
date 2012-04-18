@@ -13,7 +13,6 @@
     <AssemblyName>Notepad</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidApplication>true</AndroidApplication>
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
