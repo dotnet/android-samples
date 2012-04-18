@@ -28,13 +28,13 @@ namespace MonoDroid.ApiDemo
 			button.Click += OnZoomClicked;
 		}
 
-		void OnZoomClicked (object sender, EventArgs e)
+		void OnFadeClicked (object sender, EventArgs e)
 		{
 			StartActivity (new Intent (this, typeof (Controls1)));
 			OverridePendingTransition(Resource.Animation.fade, Resource.Animation.hold);
 		}
 
-		void OnFadeClicked (object sender, EventArgs e)
+		void OnZoomClicked (object sender, EventArgs e)
 		{
 			StartActivity (new Intent (this, typeof (Controls1)));
 			OverridePendingTransition(Resource.Animation.zoom_enter, Resource.Animation.zoom_exit);
