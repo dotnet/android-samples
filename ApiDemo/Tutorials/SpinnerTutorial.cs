@@ -19,7 +19,7 @@ namespace MonoDroid.ApiDemo
 
 			Spinner spinner = FindViewById<Spinner> (Resource.Id.spinner);
 
-			spinner.ItemSelected += new EventHandler<ItemEventArgs> (spinner_ItemSelected);
+			spinner.ItemSelected += new EventHandler<Android.Widget.AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
 			var adapter = ArrayAdapter.CreateFromResource (
 			    this, Resource.Array.planets_array, Android.Resource.Layout.SimpleSpinnerItem);
 
@@ -27,7 +27,7 @@ namespace MonoDroid.ApiDemo
 			spinner.Adapter = adapter;
 		}
 
-		private void spinner_ItemSelected (object sender, ItemEventArgs e)
+		private void spinner_ItemSelected (object sender, Android.Widget.AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
 
