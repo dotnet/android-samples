@@ -82,7 +82,7 @@ namespace MonoDroid.ApiDemo
 			private RectF mRect = new RectF ();
 			private float[] mLastValues = new float[3 * 2];
 			private float[] mOrientationValues = new float[3];
-			private int[] mColors = new int[3 * 2];
+			private Color[] mColors = new Color[3 * 2];
 			private float mLastX;
 			private float[] mScale = new float[2];
 			private float mYOffset;
@@ -133,8 +133,8 @@ namespace MonoDroid.ApiDemo
 				lock (this) {
 					if (mBitmap != null) {
 						Path path = mPath;
-						int outer = new Color (192, 192, 192);
-						int inner = new Color (255, 112, 16);
+						var outer = new Color (192, 192, 192);
+						var inner = new Color (255, 112, 16);
 
 						if (mLastX >= mMaxX) {
 							mLastX = 0;
