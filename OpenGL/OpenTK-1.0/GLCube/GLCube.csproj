@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mono.Samples.TexturedCube</RootNamespace>
-    <AssemblyName>TexturedCube</AssemblyName>
+    <RootNamespace>Mono.Samples.GLCube</RootNamespace>
+    <AssemblyName>GLCube</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -40,27 +40,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
-    <Reference Include="OpenTK" />
+    <Reference Include="OpenTK-1.0" />
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="TexturedCubeActivity.cs" />
+    <Compile Include="GLCubeActivity.cs" />
     <Compile Include="PaintingView.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-nodpi\translucent.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\pattern.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\app_texturedcube.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\f_spot.png" />
+    <AndroidResource Include="Resources\drawable\app_glcube.png" />
     <AndroidResource Include="Resources\layout\main.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73A74ADF-6308-42A0-8BA6-2B5D53238546}</ProjectGuid>
+    <ProjectGuid>{73A74ADF-6308-42A0-8BA6-2B5D53238536}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mono.Samples.GLTriangle20</RootNamespace>
-    <AssemblyName>GLTriangle20</AssemblyName>
+    <RootNamespace>Mono.Samples.GLCube</RootNamespace>
+    <AssemblyName>GLCube</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -41,25 +41,27 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="OpenTK" />
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GLTriangle20Activity.cs" />
+    <Compile Include="GLCubeActivity.cs" />
     <Compile Include="PaintingView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\app_gltriangle.png" />
+    <AndroidResource Include="Resources\drawable\app_glcube.png" />
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

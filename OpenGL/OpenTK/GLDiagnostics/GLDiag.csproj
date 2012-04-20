@@ -1,20 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73A74ADF-6308-42A0-8BA6-2B5D53238546}</ProjectGuid>
+    <ProjectGuid>{73A74ADF-6308-42A0-8BA6-2B5D53238576}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mono.Samples.GLCube</RootNamespace>
-    <AssemblyName>GLCube</AssemblyName>
+    <RootNamespace>Mono.Samples.GLDiag</RootNamespace>
+    <AssemblyName>GLDiag</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <AndroidApplication>true</AndroidApplication>
+	<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	<TargetFrameworkVersion>v1.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GLCubeActivity.cs" />
+    <Compile Include="GLDiagActivity.cs" />
     <Compile Include="PaintingView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\app_glcube.png" />
+    <AndroidResource Include="Resources\drawable\app_gldiag.jpeg" />
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>

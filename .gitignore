@@ -1,7 +1,5 @@
-*/bin/*
-*/obj/*
-*/*/bin/*
-*/*/obj/*
+bin
+obj
 */_ReSharper.*/*
 *.user
 *.suo
