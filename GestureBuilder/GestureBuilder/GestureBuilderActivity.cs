@@ -334,7 +334,7 @@ namespace GestureBuilder
 		class GesturesLoadTask : AsyncTask<Object, NamedGesture, int> {
 			int mThumbnailSize;
 			int mThumbnailInset;
-			int mPathColor;
+			Color mPathColor;
 			
 			GestureBuilderActivity parent;
 			public GesturesLoadTask (GestureBuilderActivity parent)
