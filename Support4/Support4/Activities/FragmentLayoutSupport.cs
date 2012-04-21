@@ -77,7 +77,7 @@ namespace Support4
 				if(dualPane)
 				{
 					// In dual-pane mode, the list view highlights the selected item.
-					ListView.ChoiceMode = (int) ChoiceMode.Single;
+					ListView.ChoiceMode = ChoiceMode.Single;
                 
 	                // Make sure our UI is in the correct state.
 	                ShowDetails(curCheckPosition);

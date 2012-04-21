@@ -39,7 +39,9 @@ namespace Support4
 			}
 			set {
 				_checked = value;
-				SetBackgroundDrawable(value ? new ColorDrawable(Resource.Drawable.background) : null);
+				SetBackgroundDrawable(value
+						? new ColorDrawable(Context.Resources.GetColor (Resource.Drawable.background))
+						: null);
 			}
 		}
 		#endregion
