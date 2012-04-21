@@ -21,7 +21,7 @@ namespace SvgAndroidSample
 
 			ImageView imageView = new ImageView (this);
 			// Set the background color to white
-			imageView.SetBackgroundColor (Android.Graphics.Color.White.ToArgb ());
+			imageView.SetBackgroundColor (Android.Graphics.Color.White);
 			// Parse the SVG file from the resource
 			SVG svg = SVGParser.GetSVGFromAsset (Assets, "svg/gradients.svg");
 			// Get a drawable from the parsed SVG and set it as the drawable for the ImageView
