@@ -9,11 +9,11 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.Widget;
 using Android.Runtime;
 #if __ANDROID_7__
@@ -25,6 +25,8 @@ using Javax.Net;
 using Javax.Microedition.Khronos.Egl;
 
 using Mono.Data.Sqlite;
+
+using Path = System.IO.Path;
 
 #if ASSEMBLY_APP
 [assembly: Application (
@@ -454,9 +456,9 @@ namespace Mono.Samples.SanityTests
 			};
 			var colors = new[]{7, 8};
 			var list = new Android.Content.Res.ColorStateList (states, colors);
-			if (list.GetColorForState (states [0], 0) != 7)
+			if (list.GetColorForState (states [0], Color.Transparent) != 7)
 				throw new InvalidOperationException ("list.GetColorForState(states [0]) != 7");
-			if (list.GetColorForState (states [1], 0) != 8)
+			if (list.GetColorForState (states [1], Color.Transparent) != 8)
 				throw new InvalidOperationException ("list.GetColorForState(states [0]) != 7");
 
 			using (var stringArray = new Java.Lang.Object (JNIEnv.NewArray (new[]{new[]{"a", "b"}, new[]{"c", "d"}}), JniHandleOwnership.TransferLocalRef)) {
