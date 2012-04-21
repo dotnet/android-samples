@@ -61,8 +61,8 @@ namespace ViewPagerIndicator
 		private int mScrollState;
 		private Paint mPaintText = new Paint ();
 		private bool mBoldText;
-		private int mColorText;
-		private int mColorSelected;
+		private Color mColorText;
+		private Color mColorSelected;
 		private Path mPath;
 		private Paint mPaintFooterLine = new Paint ();
 		private IndicatorStyle mFooterIndicatorStyle;
@@ -125,7 +125,7 @@ namespace ViewPagerIndicator
 			mBoldText = a.GetBoolean (Resource.Styleable.TitlePageIndicator_selectedBold, defaultSelectedBold);
 	
 			float textSize = a.GetDimension (Resource.Styleable.TitlePageIndicator_textSize, defaultTextSize);
-			int footerColor = a.GetColor (Resource.Styleable.TitlePageIndicator_footerColor, defaultFooterColor);
+			Color footerColor = a.GetColor (Resource.Styleable.TitlePageIndicator_footerColor, defaultFooterColor);
 			mPaintText.TextSize = textSize;
 			mPaintText.AntiAlias = true;
 			mPaintFooterLine.SetStyle (Android.Graphics.Paint.Style.FillAndStroke);
@@ -146,7 +146,7 @@ namespace ViewPagerIndicator
 			return mPaintFooterLine.Color;
 		}
 
-		public void SetFooterColor (int footerColor)
+		public void SetFooterColor (Color footerColor)
 		{
 			mPaintFooterLine.Color = footerColor;
 			mPaintFooterIndicator.Color = footerColor;
@@ -198,12 +198,12 @@ namespace ViewPagerIndicator
 			Invalidate ();
 		}
 	
-		public int GetSelectedColor ()
+		public Color GetSelectedColor ()
 		{
 			return mColorSelected;
 		}
 	
-		public void SetSelectedColor (int selectedColor)
+		public void SetSelectedColor (Color selectedColor)
 		{
 			mColorSelected = selectedColor;
 			Invalidate ();
@@ -225,7 +225,7 @@ namespace ViewPagerIndicator
 			return mColorText;
 		}
 	
-		public void SetTextColor (int textColor)
+		public void SetTextColor (Color textColor)
 		{
 			mPaintText.Color = textColor;
 			mColorText = textColor;

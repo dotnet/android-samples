@@ -98,7 +98,7 @@ namespace ViewPagerIndicator
 			return mCentered;
 		}
 	
-		public void SetPageColor (int pageColor)
+		public void SetPageColor (Color pageColor)
 		{
 			mPaintPageFill.Color = pageColor;
 			Invalidate ();
@@ -109,7 +109,7 @@ namespace ViewPagerIndicator
 			return mPaintPageFill.Color;
 		}
 	
-		public void SetFillColor (int fillColor)
+		public void SetFillColor (Color fillColor)
 		{
 			mPaintFill.Color = fillColor;
 			Invalidate ();
@@ -140,7 +140,7 @@ namespace ViewPagerIndicator
 			return mOrientation;
 		}
 	
-		public void SetStrokeColor (int strokeColor)
+		public void SetStrokeColor (Color strokeColor)
 		{
 			mPaintStroke.Color = strokeColor;
 			Invalidate ();
