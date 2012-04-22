@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
@@ -12,7 +13,6 @@ namespace ContentControls {
 	public class AutoCompleteCustomAdapter : ArrayAdapter, IFilterable {
 		LayoutInflater inflater;
 		Filter filter;
-		Activity context;
 		public string[] AllItems;
 		public string[] MatchItems;
 
@@ -52,9 +52,9 @@ namespace ContentControls {
 
 		class SuggestionsFilter : Filter
 		{
-			AutoCompleteCustomAdapter a;
+			AutoCompleteCustomAdapter customAdapter;
 			public SuggestionsFilter (AutoCompleteCustomAdapter adapter) : base() {
-				a = adapter;
+				customAdapter = adapter;
 			}
 			protected override Filter.FilterResults PerformFiltering (Java.Lang.ICharSequence constraint)
 			{
@@ -66,7 +66,7 @@ Console.WriteLine ("searchFor:" + searchFor);
 					
 					// find matches, IndexOf means look for the input anywhere in the items
 					// but it isn't case-sensitive by default!
-					var matches = from i in a.AllItems
+					var matches = from i in customAdapter.AllItems
 								where i.IndexOf(searchFor) >= 0
 								select i;
 	
@@ -74,7 +74,7 @@ Console.WriteLine ("searchFor:" + searchFor);
 						matchList.Add (match);
 					}
 		
-					a.MatchItems = matchList.ToArray ();
+					customAdapter.MatchItems = matchList.ToArray ();
 Console.WriteLine ("resultCount:" + matchList.Count);
 
 // not sure if the Java array/FilterResults are used
@@ -91,7 +91,7 @@ for (int i = 0; i < matchList.Count; i++) {
 			}
 			protected override void PublishResults (Java.Lang.ICharSequence constraint, Filter.FilterResults results)
 			{
-				a.NotifyDataSetChanged();
+				customAdapter.NotifyDataSetChanged();
 			}
 		}
 	}
