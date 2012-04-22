@@ -1,14 +1,16 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Android.App;
 using Android.OS;
 using Android.Widget;
-using System.IO;
-using System.Collections.Generic;
 
 namespace ContentControls {
-
-    [Activity(Label = "AutoCompleteTextView")]
-    public class AutoCompleteTextViewScreen : Activity {
+	/// <summary>
+	/// Demonstrates writing an Adapter to support custom filtering in the AutoComplete list
+	/// </summary>
+    [Activity(Label = "AutoCompleteCustomAdapter")]
+    public class AutoCompleteCustomAdapterScreen : Activity {
        
         protected override void OnCreate(Bundle bundle)
         {
@@ -18,9 +20,8 @@ namespace ContentControls {
 
             AutoCompleteTextView act = FindViewById<AutoCompleteTextView>(Resource.Id.AutoCompleteInput);
 
-
             Stream seedDataStream = Assets.Open(@"WordList.txt");
-            
+          
             List<string> lines = new List<string>();
             using (StreamReader reader = new StreamReader(seedDataStream)) {
                 string line;
@@ -31,10 +32,7 @@ namespace ContentControls {
 
             string[] wordlist = lines.ToArray();
 
-
-            ArrayAdapter arr = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, wordlist);
-            act.Adapter = arr;
+            act.Adapter = new AutoCompleteCustomAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, wordlist);
         }
     }
 }
-
