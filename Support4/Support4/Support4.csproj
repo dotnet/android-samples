@@ -43,10 +43,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Compatibility.v4">
-      <HintPath>..\..\..\out\lib\mandroid\platforms\android-8\Mono.Android.Compatibility.v4.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
