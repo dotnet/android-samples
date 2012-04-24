@@ -927,10 +927,9 @@ namespace Mono.Samples.SanityTests
 
 		void OnTouch (object sender, View.TouchEventArgs e)
 		{
-			Log.Info ("HelloApp", "OnTouchListener.OnTouch: sender={0} [{1}]; args.E={2} [{3}]; args.V={4} [{5}]", 
+			Log.Info ("HelloApp", "OnTouchListener.OnTouch: sender={0} [{1}]; args.E={2} [{3}]", 
 					sender, sender == null ? "<null>" : sender.GetType ().FullName,
-					e.E, e.E == null ? "<null>" : e.E.GetType ().FullName,
-					e.V, e.V == null ? "<null>" : e.V.GetType ().FullName);
+					e.Event, e.Event == null ? "<null>" : e.Event.GetType ().FullName);
 		}
 	}
 

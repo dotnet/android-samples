@@ -25,7 +25,7 @@ namespace MonoDroid.ApiDemo
 			EditText edittext = FindViewById<EditText> (Resource.Id.edittext);
 
 			edittext.KeyPress += (o, e) => {
-				if (e.E.Action == KeyEventActions.Down && ((Keycode)e.KeyCode) == Keycode.Enter) {
+				if (e.Event.Action == KeyEventActions.Down && ((Keycode)e.KeyCode) == Keycode.Enter) {
 					Toast.MakeText (this, edittext.Text, ToastLength.Short).Show ();
 				}
 

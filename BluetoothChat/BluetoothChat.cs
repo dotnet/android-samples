@@ -134,8 +134,8 @@ namespace BluetoothChat
 			// The action listener for the EditText widget, to listen for the return key
 			outEditText.EditorAction += delegate(object sender, TextView.EditorActionEventArgs e) {
 				// If the action is a key-up event on the return key, send the message
-				if (e.ActionId == ImeAction.ImeNull && e.E.Action == KeyEventActions.Up) {
-					var message = new Java.Lang.String (e.V.Text);
+				if (e.ActionId == ImeAction.ImeNull && e.Event.Action == KeyEventActions.Up) {
+					var message = new Java.Lang.String (((TextView) sender).Text);
 					SendMessage (message);
 				}	
 			};
