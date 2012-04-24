@@ -11,6 +11,8 @@ using Android.Widget;
 using Android.Support.V4.App;
 using System.Text;
 
+using Fragment = Android.Support.V4.App.Fragment;
+
 namespace ViewPagerIndicator
 {
 	class TestFragment : Fragment

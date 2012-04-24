@@ -11,6 +11,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.App;
 
+using Fragment        = Android.Support.V4.App.Fragment;
+using FragmentManager = Android.Support.V4.App.FragmentManager;
+
 namespace ViewPagerIndicator
 {
 	public class TestFragmentAdapter : FragmentPagerAdapter

@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.App;
 
+using FragmentManager = Android.Support.V4.App.FragmentManager;
+
 namespace ViewPagerIndicator
 {
 	public class TestTitleFragmentAdapter : TestFragmentAdapter, TitleProvider

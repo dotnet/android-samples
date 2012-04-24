@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 
+using FragmentManager = Android.Support.V4.App.FragmentManager;
+
 namespace ViewPagerIndicator
 {
 	[Activity (Label = "Tabs/Styled", Theme = "@style/StyledIndicators")]
