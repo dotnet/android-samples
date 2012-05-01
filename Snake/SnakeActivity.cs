@@ -30,7 +30,7 @@ namespace Mono.Samples.Snake
 	 * faster. Running into yourself or the walls will end the game.
 	 * 
 	 */
-	[Activity (Label = "Snake", MainLauncher = true)]
+	[Activity (Label = "Snake", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 	public class SnakeActivity : Activity
 	{
 		private SnakeView snake_view;
