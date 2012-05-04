@@ -121,7 +121,6 @@
     <AndroidResource Include="Resources\Drawable\Plants.png" />
     <AndroidResource Include="Resources\Drawable\Seeds.png" />
     <AndroidResource Include="Resources\Values\Colors.xml" />
-    <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
     <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
     <AndroidResource Include="Resources\Drawable\map_pin.png" />
     <AndroidResource Include="Resources\Anim\hold.xml" />

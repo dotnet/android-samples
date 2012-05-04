@@ -1,9 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!--
-  The project requires a 'PrivateStrings.xml' file exist with the following elements 
-  populated with data that you do not wish to commit to github.
+  <!-- DEBUG KEY-->
+  <string name="GoogleMapAPIKey">apisamples</string>
   
+  <!--RELEASE KEY-->
+  <!--string name="GoogleMapAPIKey">apisample-releasekey</string-->
+
+  <!--
   To obtain a Google Maps API key, follow these instructions:
   http://docs.xamarin.com/android/advanced_topics/Obtaining_a_Google_Maps_API_Key
   
@@ -16,9 +19,6 @@
   and another one for your RELEASE certificate
   http://code.google.com/android/add-ons/google-apis/mapkey.html
   
-  
-   **ALSO DON'T FORGET** to change the names around before your release build!
-   <string name="GoogleMapAPIKey">Your Key Here</string>
-   <string name="GoogleMapAPIKeyRELEASE">Your Key Here</string>
+  You should RENAME the keys (remove RELEASE from the key name).
   -->
 </resources>
