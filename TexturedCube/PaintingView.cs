@@ -69,12 +69,11 @@ namespace Mono.Samples.TexturedCube {
 				Log.Verbose ("TexturedCube", "{0}", ex);
 			}
 
-			// this is a slightly lower setting that disables depth buffers and sets buffers to 0,
-			// which is invalid in OpenTK itself by default but allowed in some devices on
-			// Android
+			// this is a graphics setting that sets everything to the lowest mode possible so
+			// the device returns a reliable graphics setting.
 			try {
 				Log.Verbose ("TexturedCube", "Loading with custom Android settings (low mode)");
-				GraphicsMode = new AndroidGraphicsMode (16, 0, 0, 0, 0, false);
+				GraphicsMode = new AndroidGraphicsMode (0, 0, 0, 0, 0, false);
 
 				// if you don't call this, the context won't be created
 				base.CreateFrameBuffer ();
