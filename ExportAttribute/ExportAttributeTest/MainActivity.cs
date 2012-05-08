@@ -24,7 +24,7 @@ namespace ExportAttributeTest
 			SetContentView (Resource.Layout.Main);
 		}
 		
-		[Export ("MyButton_OnClick")]
+		[Export]
 		public void MyButton_OnClick (View view)
 		{
 			((Button)view).Text = "clicked!";
