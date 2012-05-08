@@ -33,6 +33,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <DefineConstants>MONODROID</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,6 +68,11 @@
   <ItemGroup>
     <None Include="System.Json\Settings.StyleCop" />
     <None Include="System.Json\System.Json.csproj" />
-    <None Include="System.Json\Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="System.Json\Properties\Resources.resx">
+      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
+      <LogicalName>System.Json.Properties.Resources.resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

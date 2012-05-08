@@ -20,6 +20,8 @@ using Android.OS;
 
 using Path = System.IO.Path;
 
+[assembly:UsesPermission (Android.Manifest.Permission.Internet)]
+
 namespace DynamicTest
 {
 	[Activity (Label = "Mono Dynamic Test", MainLauncher = true)]
