@@ -40,13 +40,15 @@ namespace Mono.Samples.TexturedCube {
 		{
 			textureIds = new int[2];
 			context = Context;
+			xangle = 45;
+			yangle = 45;
+
 			Resize += delegate {
+				height = Height;
+				width = Width;
 				SetupCamera ();
 				RenderCube ();
 			};
-
-			xangle = 45;
-			yangle = 45;
 		}
 
 		// This method is called everytime the context needs
@@ -235,6 +237,7 @@ namespace Mono.Samples.TexturedCube {
 		protected override void Dispose (bool disposing)
 		{
 			base.Dispose (disposing);
+			GL.DeleteTextures (2, textureIds);
 		}
 
 		public static float ToRadians (float degrees)
