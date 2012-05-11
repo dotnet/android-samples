@@ -40,13 +40,15 @@ namespace Mono.Samples.TexturedCube {
 		{
 			textureIds = new int[2];
 			context = Context;
+			xangle = 45;
+			yangle = 45;
+
 			Resize += delegate {
+				height = Height;
+				width = Width;
 				SetupCamera ();
 				RenderCube ();
 			};
-
-			xangle = 45;
-			yangle = 45;
 		}
 
 		// This method is called everytime the context needs
@@ -192,6 +194,11 @@ namespace Mono.Samples.TexturedCube {
 			return true;
 		}
 
+		protected override void OnUnload (EventArgs e)
+		{
+			GL.DeleteTextures (2, textureIds);
+		}
+
 		public void SwitchTexture ()
 		{
 			cur_texture = (cur_texture + 1) % textureIds.Length;
@@ -233,12 +240,12 @@ namespace Mono.Samples.TexturedCube {
 			GL.DeleteTextures (2, textureIds);
 		}
 
-	        public static float ToRadians (float degrees)
-                {
-                        //pi/180
-                        //FIXME: precalc pi/180
-                        return (float) (degrees * (System.Math.PI/180.0));
-                }
+		public static float ToRadians (float degrees)
+		{
+			//pi/180
+			//FIXME: precalc pi/180
+			return (float) (degrees * (System.Math.PI/180.0));
+		}
 
 		void LoadTexture (Context context, int resourceId, int tex_id)
 		{

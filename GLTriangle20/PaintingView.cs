@@ -46,27 +46,26 @@ namespace Mono.Samples.GLTriangle20 {
 
 			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
 			try {
-				Log.Verbose ("TexturedCube", "Loading with default settings");
+				Log.Verbose ("GLTriangle", "Loading with default settings");
 
 				// if you don't call this, the context won't be created
 				base.CreateFrameBuffer ();
 				return;
 			} catch (Exception ex) {
-				Log.Verbose ("TexturedCube", "{0}", ex);
+				Log.Verbose ("GLTriangle", "{0}", ex);
 			}
 
-			// this is a slightly lower setting that disables depth buffers and sets buffers to 0,
-			// which is invalid in OpenTK itself by default but allowed in some devices on
-			// Android
+			// this is a graphics setting that sets everything to the lowest mode possible so
+			// the device returns a reliable graphics setting.
 			try {
-				Log.Verbose ("TexturedCube", "Loading with custom Android settings (low mode)");
-				GraphicsMode = new AndroidGraphicsMode (16, 0, 0, 0, 0, false);
+				Log.Verbose ("GLTriangle", "Loading with custom Android settings (low mode)");
+				GraphicsMode = new AndroidGraphicsMode (0, 0, 0, 0, 0, false);
 
 				// if you don't call this, the context won't be created
 				base.CreateFrameBuffer ();
 				return;
 			} catch (Exception ex) {
-				Log.Verbose ("TexturedCube", "{0}", ex);
+				Log.Verbose ("GLTriangle", "{0}", ex);
 			}
 			throw new Exception ("Can't load egl, aborting");
 		}
