@@ -18,7 +18,7 @@ namespace StandardControls {
             var gridview = FindViewById<GridView>(Resource.Id.Grid);
             gridview.Adapter = new ImageAdapter(this);
 
-            gridview.ItemClick += delegate(object sender, ItemEventArgs args) {
+            gridview.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs args) {
                 Toast.MakeText(this, args.Position.ToString(), ToastLength.Short).Show();
             };
         }

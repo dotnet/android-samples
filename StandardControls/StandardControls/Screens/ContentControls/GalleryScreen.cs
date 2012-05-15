@@ -19,7 +19,7 @@ namespace StandardControls {
 
             gallery.Adapter = new ImageAdapter(this);
 
-            gallery.ItemClick += delegate(object sender, ItemEventArgs args) {
+            gallery.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs args) {
                 Toast.MakeText(this, args.Position.ToString(), ToastLength.Short).Show();
             };
         }
