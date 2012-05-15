@@ -24,7 +24,7 @@ namespace TablesAndCellStyles {
 
             var listView = FindViewById<ListView>(Resource.Id.List);
             listView.Adapter = new GradientBackground_Adapter(this, items);
-            listView.ItemClick += (object sender, ItemEventArgs e) => {
+            listView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                 var t = items[e.Position];
                 Android.Widget.Toast.MakeText(this, t.Item1, Android.Widget.ToastLength.Short).Show();
                 Console.WriteLine("Clicked on " + t.Item1);

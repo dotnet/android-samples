@@ -19,11 +19,11 @@ namespace TablesAndCellStyles {
             ListAdapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItemMultipleChoice, items);
 
             ListView lv = FindViewById<ListView>(Android.Resource.Id.List);
-            #if __ANDROID_11__
+            //#if __ANDROID_11__
             lv.ChoiceMode = Android.Widget.ChoiceMode.Multiple; // 2;
-            #else
-            lv.ChoiceMode = 2;
-            #endif
+            //#else
+            //lv.ChoiceMode = 2;
+            //#endif
         }
     }
 }

@@ -26,7 +26,7 @@ namespace TablesAndCellStyles {
             foreach (var c in COUNTRIES) data.Add(new ListItemValue(c));
             var sortedContacts = data.GetSortedData();
             listView.Adapter = CreateAdapter(sortedContacts);
-            listView.ItemClick += (object sender, ItemEventArgs e) => {
+            listView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                 var t = listView.Adapter.GetItem(e.Position);
                 Android.Widget.Toast.MakeText(this, t.ToString(), Android.Widget.ToastLength.Short).Show();
                 Console.WriteLine("Clicked on " + t);
