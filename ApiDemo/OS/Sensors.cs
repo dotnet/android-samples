@@ -159,12 +159,12 @@ namespace MonoDroid.ApiDemo
 								canvas.Save (SaveFlags.Matrix);
 								canvas.Translate (x, w * 0.5f + 4.0f);
 								canvas.Save (SaveFlags.Matrix);
-								paint.Color = outer;
+								paint.Color = new Color(outer); //4.2
 								canvas.Scale (w, w);
 								canvas.DrawOval (mRect, paint);
 								canvas.Restore ();
 								canvas.Scale (w - 5, w - 5);
-								paint.Color = inner;
+								paint.Color = new Color(inner); //4.2
 								canvas.Rotate (-values[i]);
 								canvas.DrawPath (path, paint);
 								canvas.Restore ();
@@ -178,12 +178,12 @@ namespace MonoDroid.ApiDemo
 								canvas.Save (SaveFlags.Matrix);
 								canvas.Translate (mWidth - (h * 0.5f + 4.0f), y);
 								canvas.Save (SaveFlags.Matrix);
-								paint.Color = outer;
+								paint.Color = new Color(outer); //4.2
 								canvas.Scale (h, h);
 								canvas.DrawOval (mRect, paint);
 								canvas.Restore ();
 								canvas.Scale (h - 5, h - 5);
-								paint.Color = inner;
+								paint.Color = new Color(inner); //4.2
 								canvas.Rotate (-values[i]);
 								canvas.DrawPath (path, paint);
 								canvas.Restore ();
@@ -215,7 +215,7 @@ namespace MonoDroid.ApiDemo
 							for (int i = 0; i < 3; i++) {
 								int k = i + j * 3;
 								float v = mYOffset + values[i] * mScale[j];
-								paint.Color = mColors[k];
+								paint.Color = new Color(mColors[k]); //4.2
 								canvas.DrawLine (mLastX, mLastValues[k], newX, v, paint);
 								mLastValues[k] = v;
 							}
@@ -230,7 +230,10 @@ namespace MonoDroid.ApiDemo
 			public void OnAccuracyChanged (Sensor sensor, int accuracy)
 			{
 				// TODO Auto-generated method stub
-
+			}
+			public void OnAccuracyChanged (Sensor sensor, Android.Hardware.SensorStatus status)
+			{
+				// Do nothing
 			}
 		}
 	}

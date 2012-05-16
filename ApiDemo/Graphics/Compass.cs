@@ -105,7 +105,10 @@ namespace MonoDroid.ApiDemo
 			{
 				// Do nothing
 			}
-
+			public void OnAccuracyChanged (Sensor sensor, Android.Hardware.SensorStatus status)
+			{
+				// Do nothing
+			}
 			public void OnSensorChanged (SensorEvent e)
 			{
 				compass.mValues = e.Values.ToArray ();

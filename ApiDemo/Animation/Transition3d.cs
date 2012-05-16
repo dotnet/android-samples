@@ -193,7 +193,7 @@ namespace MonoDroid.ApiDemo
 
 		#region IOnItemClickListener Members
 
-		public void OnItemClick (object parent, ItemEventArgs args)
+		public void OnItemClick (object parent, AdapterView.ItemClickEventArgs args)
 		{
 			// Pre-load the image then start the animation
 			mImageView.SetImageResource (PHOTOS_RESOURCES[args.Position]);

@@ -127,7 +127,7 @@ namespace MonoDroid.ApiDemo
 			return optimalSize;
 		}
 
-		public void SurfaceChanged (ISurfaceHolder holder, int format, int w, int h)
+		public void SurfaceChanged (ISurfaceHolder holder, Android.Graphics.Format format, int w, int h)
 		{
 			// Now that the size is known, set up the camera parameters and begin
 			// the preview.
