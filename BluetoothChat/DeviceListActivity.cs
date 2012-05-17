@@ -152,7 +152,7 @@ namespace BluetoothChat
 		/// <summary>
 		/// The on-click listener for all devices in the ListViews
 		/// </summary>
-		void DeviceListClick (object sender, ItemEventArgs e)
+        void DeviceListClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			// Cancel discovery because it's costly and we're about to connect
 			btAdapter.CancelDiscovery ();
