@@ -17,6 +17,7 @@
 
 using System;
 using Android.Content;
+using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -79,12 +80,12 @@ namespace JetBoy
 		}
 
 		#region ISurfaceHolderCallback Members
-		public void SurfaceChanged (ISurfaceHolder holder, int format, int width, int height)
-		{
-			thread.SetSurfaceSize (width, height);
-		}
+	    public void SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height)
+	    {
+            thread.SetSurfaceSize(width, height);
+        }
 
-		public void SurfaceCreated (ISurfaceHolder holder)
+	    public void SurfaceCreated (ISurfaceHolder holder)
 		{
 			// Start the thread here so that we don't busy-wait in run()
 			// waiting for the surface to be created

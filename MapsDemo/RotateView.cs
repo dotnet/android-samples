@@ -36,7 +36,11 @@ namespace MonoDroid.Samples.MapsDemo
 		}
 
 		// When the sensor tells us we have moved, update
-		public void OnSensorChanged (SensorEvent e)
+	    public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
+	    {
+	    }
+
+	    public void OnSensorChanged (SensorEvent e)
 		{
 			lock (lock_obj) {
 				var values = e.Values;
@@ -102,9 +106,5 @@ namespace MonoDroid.Samples.MapsDemo
 			return base.DispatchTouchEvent (ev);
 		}
 
-		public void OnAccuracyChanged (Sensor sensor, int accuracy)
-		{
-			// TODO Auto-generated method stub
-		}
 	}
 }
