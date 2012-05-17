@@ -137,11 +137,11 @@ namespace AccelerometerPlay
 
 
 		#region ISensorEventListener Members
-		public void OnAccuracyChanged (Sensor sensor, int accuracy)
-		{
-		}
+	    public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
+	    {
+	    }
 
-		public void OnSensorChanged (SensorEvent e)
+	    public void OnSensorChanged (SensorEvent e)
 		{
 			if (e.Sensor.Type != SensorType.Accelerometer)
 				return;
