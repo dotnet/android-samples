@@ -16,13 +16,14 @@
 
 using System;
 using System.Collections.Generic;
+using Android.Graphics;
 using Java.IO;
 using Android.App;
 using Android.Content;
-using Android.Hardware;
 using Android.OS;
 using Android.Util;
 using Android.Views;
+using Camera = Android.Hardware.Camera;
 
 namespace com.example.monodroid.hcgallery
 {
@@ -244,19 +245,37 @@ namespace com.example.monodroid.hcgallery
 		}
 	}
 
-		public void SurfaceCreated (ISurfaceHolder holder) {
-			// The Surface has been created, acquire the camera and tell it where
-			// to draw.
-			try {
-				if (mCamera != null) {
-					mCamera.SetPreviewDisplay (holder);
-				}
-			} catch (IOException exception) {
-				Log.Error (TAG, "IOException caused by setPreviewDisplay()", exception);
-			}
-		}
-			
-		public void SurfaceDestroyed (ISurfaceHolder holder) {
+	    public void SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height) 
+        {
+            // Now that the size is known, set up the camera parameters and being the preview
+	        var parameters = mCamera.GetParameters();
+            parameters.SetPreviewSize(mPreviewSize.Width, mPreviewSize.Height );
+
+	        RequestLayout();
+
+	        mCamera.SetParameters(parameters);
+	        mCamera.StartPreview();
+        }
+
+	    public void SurfaceCreated(ISurfaceHolder holder)
+	    {
+            // The Surface has been created, acquire the camera and tell it where
+            // to draw.
+            try
+            {
+                if (mCamera != null)
+                {
+                    mCamera.SetPreviewDisplay(holder);
+                }
+            }
+            catch (IOException exception)
+            {
+                Log.Error(TAG, "IOException caused by setPreviewDisplay()", exception);
+            }
+	        
+	    }
+
+	    public void SurfaceDestroyed (ISurfaceHolder holder) {
 			// Surface will be destroyed when we return, so stop the preview.
 			if (mCamera != null) {
 				mCamera.StopPreview ();

@@ -54,7 +54,7 @@ namespace com.example.monodroid.hcgallery
 			mContentView.DrawingCacheEnabled = false;
 			
 			mContentView.Drag += (o, e) => {
-				switch (e.E.Action) {
+				switch (e.Event.Action) {
 				case DragAction.Entered:
 					mContentView.SetBackgroundColor (
 						Resources.GetColor (Resource.Color.drag_active_color));
@@ -65,12 +65,12 @@ namespace com.example.monodroid.hcgallery
 					break;
 				
 				case DragAction.Started:
-					e.Handled = ProcessDragStarted (e.E);
+					e.Handled = ProcessDragStarted (e.Event);
 					break;
 				
 				case DragAction.Drop:
 					mContentView.SetBackgroundColor (Color.Transparent);
-					e.Handled = ProcessDrop (e.E, imageView);
+					e.Handled = ProcessDrop (e.Event, imageView);
 					break;
 				}
 				e.Handled = false;
