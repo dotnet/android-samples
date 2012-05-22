@@ -36,11 +36,11 @@ namespace MonoDroid.Samples.MapsDemo
 		}
 
 		// When the sensor tells us we have moved, update
-	    public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
-	    {
-	    }
+		public void OnAccuracyChanged(Sensor sensor, SensorStatus accuracy)
+		{
+		}
 
-	    public void OnSensorChanged (SensorEvent e)
+		public void OnSensorChanged (SensorEvent e)
 		{
 			lock (lock_obj) {
 				var values = e.Values;
@@ -49,6 +49,7 @@ namespace MonoDroid.Samples.MapsDemo
 					heading = values[0];
 					Invalidate ();
 				}
+				((IDisposable) values).Dispose ();
 			}
 		}
 
@@ -105,6 +106,5 @@ namespace MonoDroid.Samples.MapsDemo
 			// TODO: rotate events too
 			return base.DispatchTouchEvent (ev);
 		}
-
 	}
 }

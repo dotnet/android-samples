@@ -80,10 +80,10 @@ namespace JetBoy
 		}
 
 		#region ISurfaceHolderCallback Members
-	    public void SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height)
-	    {
-            thread.SetSurfaceSize(width, height);
-        }
+		public void SurfaceChanged (ISurfaceHolder holder, Format format, int width, int height)
+		{
+			thread.SetSurfaceSize (width, height);
+		}
 
 	    public void SurfaceCreated (ISurfaceHolder holder)
 		{

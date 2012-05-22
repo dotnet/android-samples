@@ -177,8 +177,8 @@ namespace MonoDroid.ApiDemo.App
 						progress_dialog.SetProgressStyle (ProgressDialogStyle.Horizontal);
 						progress_dialog.Max = MAX_PROGRESS;
 
-						progress_dialog.SetButton (Android.App.Dialog.InterfaceConsts.ButtonPositive, GetText (Resource.String.alert_dialog_ok), OkClicked);
-						progress_dialog.SetButton (Android.App.Dialog.InterfaceConsts.ButtonNegative, GetText (Resource.String.alert_dialog_cancel), CancelClicked);
+						progress_dialog.SetButton (-1, GetText (Resource.String.alert_dialog_ok), OkClicked);
+						progress_dialog.SetButton (-2, GetText (Resource.String.alert_dialog_cancel), CancelClicked);
 
 						return progress_dialog;
 					}

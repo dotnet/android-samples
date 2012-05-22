@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgAndroid", "SvgAndroid\SvgAndroid.csproj", "{BFD0B4CD-A6A5-428D-9A6C-A4E83BEED400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgAndroidSample", "SvgAndroidSample\SvgAndroidSample.csproj", "{A704173D-19C5-43E9-A918-0F46A41DB2F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A704173D-19C5-43E9-A918-0F46A41DB2F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A704173D-19C5-43E9-A918-0F46A41DB2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A704173D-19C5-43E9-A918-0F46A41DB2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A704173D-19C5-43E9-A918-0F46A41DB2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD0B4CD-A6A5-428D-9A6C-A4E83BEED400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD0B4CD-A6A5-428D-9A6C-A4E83BEED400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD0B4CD-A6A5-428D-9A6C-A4E83BEED400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD0B4CD-A6A5-428D-9A6C-A4E83BEED400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SvgAndroidSample\SvgAndroidSample.csproj
+	EndGlobalSection
+EndGlobal

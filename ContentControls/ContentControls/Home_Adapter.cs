@@ -39,7 +39,7 @@ namespace ContentControls {
             } },
             { "Search", new List<Sample>() {
                 new Sample ("AutoCompleteTextView",             typeof(AutoCompleteTextViewScreen)),
-				new Sample ("AutoCompleteTextView Custom",      typeof(AutoCompleteCustomAdapterScreen))
+                new Sample ("AutoCompleteTextView Custom",      typeof(AutoCompleteCustomAdapterScreen))
 
             } },
             { "Nav", new List<Sample>() {

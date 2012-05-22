@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -100,9 +100,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resources.designer.cs" />
     <Compile Include="Text\LogTextBox.cs" />
-    <Compile Include="Text\Marquee.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tutorials\AutoCompleteTutorial.cs" />
     <Compile Include="Tutorials\FormWidgetsTutorial.cs" />
     <Compile Include="Tutorials\WebViewTutorial.cs" />
@@ -119,6 +116,9 @@
     <Compile Include="Preferences\PreferenceWithHeaders.cs" />
     <Compile Include="App\Animation.cs" />
     <Compile Include="View\Controls1.cs" />
+    <Compile Include="Graphics\SurfaceViewOverlay.cs" />
+    <Compile Include="Graphics\CubeRenderer.cs" />
+    <Compile Include="Graphics\Cube.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />
@@ -180,6 +180,8 @@
     <AndroidResource Include="Resources\anim\hold.xml" />
     <AndroidResource Include="Resources\anim\zoom_enter.xml" />
     <AndroidResource Include="Resources\anim\zoom_exit.xml" />
+    <AndroidResource Include="Resources\layout\surface_view_overlay.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\samplefont.ttf" />
@@ -194,9 +196,6 @@
     <AndroidResource Include="Resources\drawable\photo5.jpg" />
     <AndroidResource Include="Resources\drawable\photo6.jpg" />
     <AndroidResource Include="Resources\layout\animations_main_screen.xml" />
-    <AndroidResource Include="Resources\layout\marquee.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\notify_with_text.xml" />
     <AndroidResource Include="Resources\layout\resources.xml" />
     <AndroidResource Include="Resources\layout\styled_text.xml" />
@@ -262,7 +261,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

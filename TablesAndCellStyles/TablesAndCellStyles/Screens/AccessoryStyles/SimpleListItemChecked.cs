@@ -21,11 +21,7 @@ namespace TablesAndCellStyles {
             ListAdapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItemChecked, items);
 
             ListView lv = FindViewById<ListView>(Android.Resource.Id.List);
-            //#if __ANDROID_11__
-            lv.ChoiceMode = Android.Widget.ChoiceMode.Single; // 1
-            //#else
-            //lv.ChoiceMode = 1;
-            //#endif
+            lv.ChoiceMode = Android.Widget.ChoiceMode.Single;
         }
     }
     /*

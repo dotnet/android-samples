@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <DeployExternal>false</DeployExternal>
+    <DeployExternal>False</DeployExternal>
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -38,7 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
@@ -121,6 +122,7 @@
     <AndroidResource Include="Resources\Drawable\Plants.png" />
     <AndroidResource Include="Resources\Drawable\Seeds.png" />
     <AndroidResource Include="Resources\Values\Colors.xml" />
+    <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
     <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
     <AndroidResource Include="Resources\Drawable\map_pin.png" />
     <AndroidResource Include="Resources\Anim\hold.xml" />

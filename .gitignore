@@ -1,7 +1,5 @@
-*/bin/*
-*/obj/*
-*/*/bin/*
-*/*/obj/*
+bin
+obj
 */_ReSharper.*/*
 *.user
 *.suo
@@ -10,3 +8,5 @@
 *.Designer.cs
 *.designer.cs
 *.DS_Store
+
+ContentControls/ContentControls/Resources/Values/PrivateStrings.xml

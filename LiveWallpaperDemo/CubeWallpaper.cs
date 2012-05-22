@@ -85,9 +85,12 @@ namespace LiveWallpaperDemo
 					mHandler.RemoveCallbacks (mDrawCube);
 			}
 
-		    public override void OnSurfaceChanged(ISurfaceHolder holder, Format format, int width, int height)
-		    {
-                base.OnSurfaceChanged(holder, format, width, height);
+			public override void OnSurfaceChanged (ISurfaceHolder holder, Format format, int width, int height)
+			{
+				base.OnSurfaceChanged (holder, format, width, height);
+
+				// store the center of the surface, so we can draw the cube in the right spot
+				center.Set (width / 2.0f, height / 2.0f);
 
                 // store the center of the surface, so we can draw the cube in the right spot
                 center.Set(width / 2.0f, height / 2.0f);

@@ -1,0 +1,22 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<remove-node path="/api/package[@name='com.samsung.samm.a']" />
+	<remove-node path="/api/package[@name='com.samsung.samm.b']" />
+	<remove-node path="/api/package[@name='com.samsung.samm.c']" />
+	<remove-node path="/api/package[@name='com.samsung.sdraw']/class[starts-with (@name, 'CanvasView.')]" />
+	<remove-node path="/api/package[@name='com.samsung.sdraw']/class[string-length (@name) &lt;= 2]" />
+	<remove-node path="/api/package[@name='com.samsung.sdraw']/interface[string-length (@name) &lt;= 3]" />
+	
+	<!-- FIXME: should be removed -->
+	<remove-node path="/api/package[@name='com.samsung.samm.common']/class[@name='SObject']/method[@name='setStyle']" />
+	<remove-node path="/api/package[@name='com.samsung.samm.common']/class[@name='SObjectText']/method[@name='setStyle']" />
+	<remove-node path="/api/package[@name='com.samsung.samm.common']/class[@name='SObjectImage']/method[@name='setStyle']" />
+	<remove-node path="/api/package[@name='com.samsung.samm.common']/class[@name='SObjectStroke']/method[@name='setStyle']" />
+	
+</metadata>

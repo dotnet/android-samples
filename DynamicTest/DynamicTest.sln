@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Json.Next", "System.Json.Next\System.Json.Next.csproj", "{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicTest", "DynamicTest\DynamicTest.csproj", "{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Android|Any CPU = Android|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Android|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Android|Any CPU.Build.0 = Debug|Any CPU
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A153ED6-AD9A-40AE-9BC9-E05CED0489F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Android|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Android|Any CPU.Build.0 = Debug|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AC9B03-BFC3-4DE7-BBF1-3C6015D3F387}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DynamicTest\DynamicTest.csproj
+	EndGlobalSection
+EndGlobal

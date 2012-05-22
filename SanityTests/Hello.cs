@@ -16,6 +16,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.Widget;
 using Android.Runtime;
 #if __ANDROID_7__
@@ -27,6 +28,8 @@ using Javax.Net;
 using Javax.Microedition.Khronos.Egl;
 
 using Mono.Data.Sqlite;
+
+using Path = System.IO.Path;
 
 #if ASSEMBLY_APP
 [assembly: Application (
@@ -279,14 +282,18 @@ namespace Mono.Samples.SanityTests
 			Console.Error.WriteLine ("this is my\nstderr\nmessage! yay!");
 
 #if __ANDROID_11__
-			// Android 11+ _really_ doesn't want you to do networking from the main thread:
-			//   http://developer.android.com/reference/android/os/NetworkOnMainThreadException.html
-			// I want to do so, so...
-			var policy = new Android.OS.StrictMode.ThreadPolicy.Builder ()
-				.PermitAll()
-				.Build ();
-			Android.OS.StrictMode.SetThreadPolicy (policy);
-#endif
+			if (((int)Android.OS.Build.VERSION.SdkInt) >= 11) {
+
+				// Android 11+ _really_ doesn't want you to do networking from the main thread:
+				//   http://developer.android.com/reference/android/os/NetworkOnMainThreadException.html
+				// I want to do so, so...
+				var policy = new Android.OS.StrictMode.ThreadPolicy.Builder ()
+					.PermitAll()
+					.Build ();
+				Android.OS.StrictMode.SetThreadPolicy (policy);
+
+			}
+#endif  // __ANDROID_11__
 
 			if (typeof (OnCreateApp) != ApplicationContext.GetType ())
 				throw new InvalidOperationException ("Wrong Application type created!");
@@ -359,6 +366,8 @@ namespace Mono.Samples.SanityTests
 			TestJsonBxc163 ();
 			TestJsonNullableDateTime ();
 			TestJsonArray ();
+			TestMyPaintColor (textview);
+			TestMyIntent (textview);
 
 			var die = new TextView (this) {
 				Text = "Added!",
@@ -367,7 +376,22 @@ namespace Mono.Samples.SanityTests
 			WindowManager.RemoveView (die);
 
 			var scrollView = new ScrollView (this);
+			bool childViewAdded = false;
+			EventHandler<ViewGroup.ChildViewAddedEventArgs> c = (o, e) => {
+				Console.WriteLine ("ScrollView.ChildViewAdded: Parent={0}; Child={1}", e.Parent, e.Child);
+				childViewAdded = true;
+			};
+			EventHandler<ViewGroup.ChildViewRemovedEventArgs> r = (o, e) => {
+				Console.WriteLine ("ScrollView.ChildViewRemoved: Parent={0}; Child={1}", e.Parent, e.Child);
+			};
+			scrollView.ChildViewAdded += c;
+			scrollView.ChildViewRemoved += r;
 			scrollView.AddView (textview);
+			if (!childViewAdded)
+				throw new InvalidOperationException ("ScrollView.ChildViewAdded event not invoked!");
+			scrollView.ChildViewAdded -= c;
+			scrollView.ChildViewRemoved -= r;
+
 			SetContentView (scrollView);
 			textview.Touch += OnTouch;
 
@@ -560,9 +584,9 @@ namespace Mono.Samples.SanityTests
 			};
 			var colors = new[]{7, 8};
 			var list = new Android.Content.Res.ColorStateList (states, colors);
-			if (list.GetColorForState (states [0], 0) != 7)
+			if (list.GetColorForState (states [0], Color.Transparent) != 7)
 				throw new InvalidOperationException ("list.GetColorForState(states [0]) != 7");
-			if (list.GetColorForState (states [1], 0) != 8)
+			if (list.GetColorForState (states [1], Color.Transparent) != 8)
 				throw new InvalidOperationException ("list.GetColorForState(states [0]) != 7");
 
 			using (var stringArray = new Java.Lang.Object (JNIEnv.NewArray (new[]{new[]{"a", "b"}, new[]{"c", "d"}}), JniHandleOwnership.TransferLocalRef)) {
@@ -587,11 +611,19 @@ namespace Mono.Samples.SanityTests
 							"; this.Handle=" + this.Handle +
 							" ReferenceEquals=" + object.ReferenceEquals (values [0], this));
 				if (!(values [1] is int))
-					throw new InvalidOperationException ("GetObjectArray wrong values[1]!");
+					throw new InvalidOperationException (string.Format ("GetObjectArray wrong values[1]! Got {0} [{1}].",
+								values [1], values [1] == null ? "null" : values [1].GetType ().FullName));
 				if (42 != (int) values [1])
-					throw new InvalidOperationException ("GetObjectArray wrong values[1]!");
+					throw new InvalidOperationException (string.Format ("GetObjectArray wrong values[1]! Got {0} [{1}].",
+								values [1], values [1] == null ? "null" : values [1].GetType ().FullName));
 				if ("string" != values [2].ToString ())
 					throw new InvalidOperationException ("GetObjectArray wrong values[2]!");
+			}
+
+			using (var enumArray = new Java.Lang.Object (JNIEnv.NewArray (new[]{Keycode.A}), JniHandleOwnership.TransferLocalRef)) {
+				var copy = JNIEnv.GetArray<Keycode>(enumArray.Handle);
+				if (copy == null || copy.Length != 1 || copy [0] != Keycode.A)
+					throw new InvalidOperationException ("GetArray<Keycode>() failed!");
 			}
 		}
 
@@ -744,6 +776,8 @@ namespace Mono.Samples.SanityTests
 			try {
 #endif
 #if __ANDROID_7__
+				if (((int) Android.OS.Build.VERSION.SdkInt) < 7)
+					return;
 				Log.Info ("HelloApp", "calling Drawable.SetAlpha...");
 				WallpaperManager manager = WallpaperManager.GetInstance (this);
 				var drawable = manager.FastDrawable;
@@ -853,7 +887,6 @@ namespace Mono.Samples.SanityTests
 			if (!object.ReferenceEquals (item, coll [item]))
 				throw new InvalidOperationException ("Unable to lookup non-java.lang.Object item in JavaDictionary!");
 
-#if BXC_2147
 			Log.Info ("*jonp*", "A1");
 			var jl1 = new Android.Runtime.JavaList<object>();
 			Log.Info ("*jonp*", "A2");
@@ -865,6 +898,8 @@ namespace Mono.Samples.SanityTests
 			Log.Info ("*jonp*", "A5");
 			var vo1 = jl1 [0];
 			Log.Info ("*jonp*", "A6={0}", vo1);
+			if (!object.ReferenceEquals (vo1, v1))
+				throw new InvalidOperationException ("Dict through JavaList isn't preserved!");
 
 			var jl2 = new Android.Runtime.JavaList ();
 			Log.Info ("*jonp*", "B2");
@@ -876,16 +911,19 @@ namespace Mono.Samples.SanityTests
 			Log.Info ("*jonp*", "B5");
 			var _vo2 = jl2 [0]; // Exception
 			Log.Info ("*jonp*", "B6={0} [{1}]", _vo2, _vo2 != null ? _vo2.GetType ().FullName : "<null>");
+			if (!object.ReferenceEquals (_vo2, v2))
+				throw new InvalidOperationException ("Dict through JavaList isn't preserved (2)!");
 			var vo2 = (Dictionary<string, object>) jl2 [0]; // Exception
 			Log.Info ("*jonp*", "B7={0}", vo2);
-#endif
+			if (!object.ReferenceEquals (vo2, v2))
+				throw new InvalidOperationException ("Dict through JavaList isn't preserved (3)!");
 		}
 
 		void TestUrlConnectionStream (TextView textview)
 		{
 			try {
 				Java.Net.URL url = new Java.Net.URL("http://www.google.pt/logos/classicplus.png");
-	        		Java.Net.URLConnection urlConnection = url.OpenConnection();
+				Java.Net.URLConnection urlConnection = url.OpenConnection();
 				Android.Graphics.BitmapFactory.DecodeStream (urlConnection.InputStream);
 				textview.Text += "\n\nOpened Url connection stream and loaded image";
 			} catch (Java.Net.UnknownHostException ex) {
@@ -971,6 +1009,8 @@ namespace Mono.Samples.SanityTests
 		void TestNonStaticNestedType (TextView textview)
 		{
 #if __ANDROID_7__
+			if (((int) Android.OS.Build.VERSION.SdkInt) < 7)
+				return;
 			var wallpaper = new CubeWallpaper ();
 			var engine    = wallpaper.OnCreateEngine ();
 			var engine2   = new WallpaperService.Engine (wallpaper);
@@ -1023,6 +1063,43 @@ namespace Mono.Samples.SanityTests
 			var obj = Java.Lang.Object.GetObject <SimpleObj> (gref, JniHandleOwnership.DoNotTransfer);
 			AssertEqual (false, obj.CheckRef ());
 			AssertEqual (0, obj.fin_count);
+		}
+
+		void TestMyPaintColor (TextView textview)
+		{
+			using (var p = new MyPaint ()) {
+				var g = JNIEnv.GetMethodID(p.Class.Handle, "getColor", "()I");
+				int c = JNIEnv.CallIntMethod(p.Handle, g);
+				Console.WriteLine ("Paint.getColor={0}", c.ToString("x"));
+				if (c != 0x11223344) {
+					throw new InvalidOperationException ("Expected to get color 0x11223344");
+				}
+				var s = JNIEnv.GetMethodID(p.Class.Handle, "setColor", "(I)V");
+				JNIEnv.CallVoidMethod (p.Handle, s, new JValue (0x22331144));
+				if (p.SetColor.ToArgb () != 0x22331144)
+					throw new InvalidOperationException ("Expected set color 0x22331144");
+			}
+		}
+
+		void TestMyIntent (TextView textview)
+		{
+			using (var intent = new MyIntent ()) {
+				var m = JNIEnv.GetMethodID (intent.Class.Handle, "getStringArrayListExtra", "(Ljava/lang/String;)Ljava/util/ArrayList;");
+				IntPtr r = JNIEnv.CallObjectMethod (intent.Handle, m, new JValue (IntPtr.Zero));
+				if (r != IntPtr.Zero)
+					throw new InvalidOperationException ("MyIntent.getStringArrayListExtra(null) returned: " + r.ToString ("x"));
+				using (var s = new Java.Lang.String ("values"))
+					r = JNIEnv.CallObjectMethod (intent.Handle, m, new JValue (s));
+				if (r == IntPtr.Zero)
+					throw new InvalidOperationException ("MyIntent.getStringArrayListExtra(\"values\") returned null!");
+				using (var c = new JavaList<string>(r, JniHandleOwnership.TransferLocalRef)) {
+					if (c.Count != 3)
+						throw new InvalidOperationException ("MyIntent.getStringArrayListExtra: count=" + c.Count);
+					if (c [0] != "a" && c [1] != "b" && c [2] != "c")
+						throw new InvalidOperationException ("MyIntent.getStringArrayListExtra: contents=" +
+								string.Join (", ", c));
+				}
+			}
 		}
 
 		private class MyView : View {
@@ -1082,10 +1159,10 @@ namespace Mono.Samples.SanityTests
 
 		void OnTouch (object sender, View.TouchEventArgs e)
 		{
-			Log.Info ("HelloApp", "OnTouchListener.OnTouch: sender={0} [{1}]; args.E={2} [{3}]; args.V={4} [{5}]", 
+			Log.Info ("HelloApp", "OnTouchListener.OnTouch: sender={0} [{1}]; args.Event={2} [{3}]",
 					sender, sender == null ? "<null>" : sender.GetType ().FullName,
-					e.E, e.E == null ? "<null>" : e.E.GetType ().FullName,
-					e.V, e.V == null ? "<null>" : e.V.GetType ().FullName);
+					e.Event, e.Event == null ? "<null>" : e.Event.GetType ().FullName);
+			Console.WriteLine ("OnTouchListener.OnTouch: DeviceId={0}", e.Event.DeviceId);
 		}
 	}
 
@@ -1172,7 +1249,7 @@ namespace Mono.Samples.SanityTests
 		public IMenuItem Add (int titleRes) {throw new NotImplementedException ();}
 		public Android.Views.IMenuItem Add (int groupId, int itemId, int order, Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem Add (int groupId, int itemId, int order, int titleRes) {throw new NotSupportedException ();}
-		public int AddIntentOptions (int groupId, int itemId, int order, Android.Content.ComponentName caller, Android.Content.Intent[] specifics, Android.Content.Intent intent, int flags, Android.Views.IMenuItem[] outSpecificItems) {throw new NotSupportedException ();}
+		public int AddIntentOptions (int groupId, int itemId, int order, Android.Content.ComponentName caller, Android.Content.Intent[] specifics, Android.Content.Intent intent, MenuAppendFlags flags, Android.Views.IMenuItem[] outSpecificItems) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (int titleRes) {throw new NotSupportedException ();}
 		public Android.Views.ISubMenu AddSubMenu (int groupId, int itemId, int order, Java.Lang.ICharSequence title) {throw new NotSupportedException ();}
@@ -1181,9 +1258,9 @@ namespace Mono.Samples.SanityTests
 		public void Close () {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem FindItem (int id) {throw new NotSupportedException ();}
 		public Android.Views.IMenuItem GetItem (int index) {throw new NotSupportedException ();}
-		public bool IsShortcutKey (int keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
-		public bool PerformIdentifierAction (int id, int flags) {throw new NotSupportedException ();}
-		public bool PerformShortcut (int keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
+		public bool IsShortcutKey (Keycode keyCode, Android.Views.KeyEvent e) {throw new NotSupportedException ();}
+		public bool PerformIdentifierAction (int id, MenuPerformFlags flags) {throw new NotSupportedException ();}
+		public bool PerformShortcut (Keycode keyCode, Android.Views.KeyEvent e, Android.Views.MenuPerformFlags flags) {throw new NotSupportedException ();}
 		public void RemoveGroup (int groupId) {throw new NotSupportedException ();}
 		public void RemoveItem (int id) {throw new NotSupportedException ();}
 		public void SetGroupCheckable (int group, bool checkable, bool exclusive) {throw new NotSupportedException ();}
@@ -1291,6 +1368,36 @@ namespace Mono.Samples.SanityTests
 		internal TestFilter(AbstractAdapter<string> p )
 			: base(p)
 		{
+		}
+	}
+#endregion
+
+#region BXC_374
+	class MyPaint : Paint {
+
+		public Color SetColor;
+
+		public override Color Color {
+			get {
+				Console.WriteLine ("get_Color");
+				return new Color (a:0x11, r:0x22, g:0x33, b:0x44);
+			}
+			set {
+				Console.WriteLine ("set_Color({0})", value.ToArgb ());
+				SetColor = value;
+				base.Color = value;
+			}
+		}
+	}
+#endregion
+
+#region Collection Marshaling
+	class MyIntent : Intent {
+		public override System.Collections.Generic.IList<string> GetStringArrayListExtra (string name)
+		{
+			return name == "values"
+				? new[]{"a", "b", "c"}
+				: null;
 		}
 	}
 #endregion

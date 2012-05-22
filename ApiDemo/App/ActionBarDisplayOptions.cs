@@ -90,7 +90,7 @@ namespace MonoDroid.ApiDemo.App
 			var bar = ActionBar;
 
 			var change = bar.DisplayOptions ^ flag;
-			ActionBar.SetDisplayOptions (change, (int)flag);
+			ActionBar.SetDisplayOptions (change, flag);
 		}
 
 		private void CycleGravity (object sender, EventArgs e)

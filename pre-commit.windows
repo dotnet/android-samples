@@ -21,6 +21,10 @@ for dir in `find . -maxdepth 1 -type d | grep -v "\.$" | grep -v "\./\." | sed "
             break;
         fi;
 
+        if [ -e $dir/ignore ]; then
+            break;
+        fi;
+
         if [ $file = $dir/README.md ]; then
             run_validator markdown $dir;
         elif [ $file = $dir/Metadata.xml ]; then

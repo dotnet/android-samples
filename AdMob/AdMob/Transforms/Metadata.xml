@@ -1,0 +1,21 @@
+<metadata>
+  <remove-node path="/api/package[@name='com.google.ads.internal']" />
+  <remove-node path="/api/package[@name='com.google.ads']/class[starts-with (@name, 'a')]" />
+  <remove-node path="/api/package[@name='com.google.ads']/class[string-length (@name) = 1]" />
+  <remove-node path="/api/package[@name='com.google.ads']/class[string-length (@name) = 3 and contains (@name, '.')]" />
+  <remove-node path="/api/package[@name='com.google.ads']/class[@name='AdActivity']" />
+  <remove-node path="/api/package[@name='com.google.ads']/class[@name='InstallReceiver']" />
+  <remove-node path="/api/package[@name='com.google.ads.util']" />
+
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onDismissScreen']" name="argsType">BannerDismissScreenEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onFailedToReceiveAd']" name="argsType">BannerFailedToReceiveAdEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onLeaveApplication']" name="argsType">BannerLeaveApplicationEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onPresentScreen']" name="argsType">BannerPresentScreenEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onReceivedAd']" name="argsType">BannerReceiveAdEventArgs</attr>
+
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onDismissScreen']" name="argsType">IntersitionalDismissScreenEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onFailedToReceiveAd']" name="argsType">IntersitionalFailedToReceiveAdEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onLeaveApplication']" name="argsType">InterstitialLeaveApplicationEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onPresentScreen']" name="argsType">InterstitialPresentScreenEventArgs</attr>
+  <attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onReceivedAd']" name="argsType">InterstitialReceiveAdEventArgs</attr>
+</metadata>
