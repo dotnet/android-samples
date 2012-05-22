@@ -245,18 +245,6 @@ namespace com.example.monodroid.hcgallery
 		}
 	}
 
-	    public void SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height) 
-        {
-            // Now that the size is known, set up the camera parameters and being the preview
-	        var parameters = mCamera.GetParameters();
-            parameters.SetPreviewSize(mPreviewSize.Width, mPreviewSize.Height );
-
-	        RequestLayout();
-
-	        mCamera.SetParameters(parameters);
-	        mCamera.StartPreview();
-        }
-
 	    public void SurfaceCreated(ISurfaceHolder holder)
 	    {
             // The Surface has been created, acquire the camera and tell it where
