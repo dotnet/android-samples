@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.ES11;
+using OpenTK.Graphics.ES10;
 using OpenTK.Platform;
 using OpenTK.Platform.Android;
 
@@ -17,6 +17,8 @@ namespace Mono.Samples.GLCube {
 	{
 		float [] rot;
 		float [] rateOfRotationPS;//degrees
+		int viewportWidth, viewportHeight;
+		bool landscape;
 
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
@@ -89,6 +91,11 @@ namespace Mono.Samples.GLCube {
 			RenderFrame += delegate {
 				RenderCube ();
 			};
+			
+			GL.Enable(All.CullFace);
+			GL.ShadeModel(All.Smooth);
+			
+			GL.Hint(All.PerspectiveCorrectionHint, All.Nicest);
 
 			// Run the render loop
 			Run (30);
@@ -97,14 +104,28 @@ namespace Mono.Samples.GLCube {
 		// this occurs mostly on rotation.
 		protected override void OnResize (EventArgs e)
 		{
+			viewportWidth = Width;
+			viewportHeight = Height;
 		}
 
 		void RenderCube ()
 		{
-			GL.Enable(All.CullFace);
+			GL.Viewport(0, 0, viewportWidth, viewportHeight);
+			
 			GL.MatrixMode (All.Projection);
-			GL.LoadIdentity ();
-			GL.Ortho (-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+			GL.LoadIdentity ();		
+			
+			float nearClip = -1.0f;
+			float farClip  = 1.0f;
+			float yFOV  = 45.0f;
+			float yMax = nearClip * (float)System.Math.Tan(yFOV * System.Math.PI / 360.0f);
+			float aspect = (float)viewportWidth/viewportHeight;
+			float xMin = -yMax * aspect;
+			float xMax = yMax * aspect;
+			
+			GL.Frustum(xMin, xMax, -yMax, yMax, nearClip, farClip);
+			
+			GL.Scale((float)viewportHeight/(float)viewportWidth, 1.0f, 1.0f);
 
 			GL.MatrixMode (All.Modelview);
 			GL.LoadIdentity ();
