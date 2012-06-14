@@ -18,7 +18,6 @@ namespace Mono.Samples.GLCube {
 		float [] rot;
 		float [] rateOfRotationPS;//degrees
 		int viewportWidth, viewportHeight;
-		bool landscape;
 
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
@@ -115,17 +114,14 @@ namespace Mono.Samples.GLCube {
 			GL.MatrixMode (All.Projection);
 			GL.LoadIdentity ();		
 			
-			float nearClip = -1.0f;
-			float farClip  = 1.0f;
-			float yFOV  = 45.0f;
-			float yMax = nearClip * (float)System.Math.Tan(yFOV * System.Math.PI / 360.0f);
-			float aspect = (float)viewportWidth/viewportHeight;
-			float xMin = -yMax * aspect;
-			float xMax = yMax * aspect;
-			
-			GL.Frustum(xMin, xMax, -yMax, yMax, nearClip, farClip);
-			
-			GL.Scale((float)viewportHeight/(float)viewportWidth, 1.0f, 1.0f);
+			if ( viewportWidth > viewportHeight )
+			{
+				GL.Ortho(-1.5f, 1.5f, 1.0f, -1.0f, -1.0f, 1.0f);
+			}
+			else
+			{
+				GL.Ortho(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+			}
 
 			GL.MatrixMode (All.Modelview);
 			GL.LoadIdentity ();

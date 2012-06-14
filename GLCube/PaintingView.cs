@@ -17,6 +17,7 @@ namespace Mono.Samples.GLCube {
 	{
 		float [] rot;
 		float [] rateOfRotationPS;//degrees
+		int viewportWidth, viewportHeight;
 
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
@@ -89,6 +90,11 @@ namespace Mono.Samples.GLCube {
 			RenderFrame += delegate {
 				RenderCube ();
 			};
+			
+			GL.Enable(All.CullFace);
+			GL.ShadeModel(All.Smooth);
+			
+			GL.Hint(All.PerspectiveCorrectionHint, All.Nicest);
 
 			// Run the render loop
 			Run (30);
@@ -97,15 +103,26 @@ namespace Mono.Samples.GLCube {
 		// this occurs mostly on rotation.
 		protected override void OnResize (EventArgs e)
 		{
+			viewportWidth = Width;
+			viewportHeight = Height;
 		}
 
 		void RenderCube ()
 		{
-			GL.Enable(All.CullFace);
+			GL.Viewport(0, 0, viewportWidth, viewportHeight);
+			
 			GL.MatrixMode (All.Projection);
 			GL.LoadIdentity ();
-			GL.Ortho (-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
-
+			
+			if ( viewportWidth > viewportHeight )
+			{
+				GL.Ortho(-1.5f, 1.5f, 1.0f, -1.0f, -1.0f, 1.0f);
+			}
+			else
+			{
+				GL.Ortho(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+			}
+	
 			GL.MatrixMode (All.Modelview);
 			GL.LoadIdentity ();
 			GL.Rotate (rot[0], 1.0f, 0.0f, 0.0f);
