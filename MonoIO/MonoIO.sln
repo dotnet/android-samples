@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoIO", "MonoIO.csproj", "{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug_Honeycomb|Any CPU = Debug_Honeycomb|Any CPU
+		Release_Honeycomb|Any CPU = Release_Honeycomb|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Debug_Honeycomb|Any CPU.ActiveCfg = Debug_Honeycomb|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Debug_Honeycomb|Any CPU.Build.0 = Debug_Honeycomb|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Release_Honeycomb|Any CPU.ActiveCfg = Release_Honeycomb|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Release_Honeycomb|Any CPU.Build.0 = Release_Honeycomb|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4230E5F4-08FA-458A-BF7C-DF3F6C443DCF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MonoIO.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

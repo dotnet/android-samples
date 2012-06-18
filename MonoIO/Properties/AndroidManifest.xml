@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="MonoIO.MonoIO">
+	<application>
+		<meta-data android:name="android.app.default_searchable" android:value="monoio.SearchActivity" />
+	</application>
+	<permission android:name="monoio.permission.WRITE_SCHEDULE" android:protectionLevel="normal" android:label="@string/permission_write" android:description="@string/permission_write" />
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15" />
+	<uses-permission android:name="android.permission.INTERNET" />
+</manifest>
