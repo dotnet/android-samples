@@ -10,6 +10,9 @@ using Android.Content.PM;
 namespace Mono.Samples.TexturedCube
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_texturedcube",
+#if __ANDROID_11__
+		HardwareAccelerated=false,
+#endif
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class TexturedCubeActivity : Activity
 	{
