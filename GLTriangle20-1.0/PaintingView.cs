@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES20;
 using OpenTK.Platform;
@@ -18,8 +19,18 @@ namespace Mono.Samples.GLTriangle20 {
 	class PaintingView : AndroidGameView
 	{
 		int viewportWidth, viewportHeight;
-		int program;
+		int mProgramHandle;
+		int mColorHandle;
+		int mPositionHandle;
+		int mMVPMatrixHandle;
 		float [] vertices;
+
+		Matrix4 mProjectionMatrix;
+		Matrix4 mViewMatrix;
+		Matrix4 mModelViewProjectionMatrix;
+
+		// Set color with red, green, blue and alpha (opacity) values
+	    float [] color;
 
 		public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
@@ -88,44 +99,56 @@ namespace Mono.Samples.GLTriangle20 {
 
 			viewportHeight = Height; viewportWidth = Width;
 
+			// Set our triangle's vertices
+			vertices = new float [] {
+					0.0f, 0.5f, 0.0f,
+					-0.5f, -0.5f, 0.0f,
+					0.5f, -0.5f, 0.0f
+				};
+
+			// Set color with red, green, blue and alpha (opacity) values
+	    	color = new float [] { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+
 			// Vertex and fragment shaders
-			string vertexShaderSrc =  "attribute vec4 vPosition;    \n" +
+			string vertexShaderSrc = "uniform mat4 uMVPMatrix;   \n" +
+							  "attribute vec4 vPosition;    \n" +
 							  "void main()                  \n" +
 							  "{                            \n" +
 							  "   gl_Position = vPosition;  \n" +
 							  "}                            \n";
 
-			string fragmentShaderSrc = "precision mediump float;\n" +
+			string fragmentShaderSrc = "precision mediump float;             \n" +
+							   "uniform vec4 vColor;                         \n" +
 							   "void main()                                  \n" +
 							   "{                                            \n" +
-							   "  gl_FragColor = vec4 (1.0, 0.0, 0.0, 1.0);  \n" +
+							   "  gl_FragColor = vColor;  \n" +
 							   "}                                            \n";
 
 			int vertexShader = LoadShader (All.VertexShader, vertexShaderSrc );
 			int fragmentShader = LoadShader (All.FragmentShader, fragmentShaderSrc );
-			program = GL.CreateProgram();
-			if (program == 0)
+			mProgramHandle = GL.CreateProgram();
+			if (mProgramHandle == 0)
 				throw new InvalidOperationException ("Unable to create program");
 
-			GL.AttachShader (program, vertexShader);
-			GL.AttachShader (program, fragmentShader);
+			GL.AttachShader (mProgramHandle, vertexShader);
+			GL.AttachShader (mProgramHandle, fragmentShader);
 
-			GL.BindAttribLocation (program, 0, "vPosition");
-			GL.LinkProgram (program);
+			GL.BindAttribLocation (mProgramHandle, 0, "vPosition");
+			GL.LinkProgram (mProgramHandle);
 
 			int linked;
-			GL.GetProgram (program, All.LinkStatus, out linked);
+			GL.GetProgram (mProgramHandle, All.LinkStatus, out linked);
 			if (linked == 0) {
 				// link failed
 				int length;
-				GL.GetProgram (program, All.InfoLogLength, out length);
+				GL.GetProgram (mProgramHandle, All.InfoLogLength, out length);
 				if (length > 0) {
 					var log = new StringBuilder (length);
-					GL.GetProgramInfoLog (program, length, out length, log);
+					GL.GetProgramInfoLog (mProgramHandle, length, out length, log);
 					Log.Debug ("GL2", "Couldn't link program: " + log.ToString ());
 				}
 
-				GL.DeleteProgram (program);
+				GL.DeleteProgram (mProgramHandle);
 				throw new InvalidOperationException ("Unable to link program");
 			}
 
@@ -162,22 +185,43 @@ namespace Mono.Samples.GLTriangle20 {
 
 		void RenderTriangle ()
 		{
-			vertices = new float [] {
-					0.0f, 0.5f, 0.0f,
-					-0.5f, -0.5f, 0.0f,
-					0.5f, -0.5f, 0.0f
-				};
-
 			GL.ClearColor (0.7f, 0.7f, 0.7f, 1);
 			GL.Clear (ClearBufferMask.ColorBufferBit);
 
-			GL.Viewport (0, 0, viewportWidth, viewportHeight);
-			GL.UseProgram (program);
 
+			// Set the camera position (View matrix)
+		    mViewMatrix = Matrix4.LookAt(0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+
+		    // Calculate the projection and view transformation
+		    mModelViewProjectionMatrix = Matrix4.Mult(mProjectionMatrix, mViewMatrix);
+
+			GL.UseProgram (mProgramHandle);
+
+			// get handle to vertex shader's vPosition member
+		    mPositionHandle = GL.GetAttribLocation(mProgramHandle, new StringBuilder("vPosition"));
+
+		    // Enable a handle to the triangle vertices
+			GL.EnableVertexAttribArray (mPositionHandle);
+
+			// Prepare the triangle coordinate data
 			GL.VertexAttribPointer (0, 3, All.Float, false, 0, vertices);
-			GL.EnableVertexAttribArray (0);
+
+			// get handle to fragment shader's vColor member
+		    mColorHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("vColor"));
+
+		    // Set color for drawing the triangle
+	        GL.Uniform4(mColorHandle, 1, color);
+
+			// get handle to shape's transformation matrix
+		    mMVPMatrixHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("uMVPMatrix"));
+
+		    // Apply the projection and view transformation
+		    GL.UniformMatrix4(mMVPMatrixHandle, false, ref mModelViewProjectionMatrix);
 
 			GL.DrawArrays (All.Triangles, 0, 3);
+
+			// Disable vertex array
+        	GL.DisableVertexAttribArray(mPositionHandle);
 
 			SwapBuffers ();
 		}
@@ -191,6 +235,17 @@ namespace Mono.Samples.GLTriangle20 {
 			// the surface change event makes your context
 			// not be current, so be sure to make it current again
 			MakeCurrent ();
+
+			// Adjust the viewport based on geometry changes,
+	        // such as screen rotation
+	        GL.Viewport(0, 0, viewportWidth, viewportHeight);
+
+	        float ratio = (float) viewportWidth / viewportHeight;
+
+	        // this projection matrix is applied to object coordinates
+	        // in the onDrawFrame() method
+	        mProjectionMatrix = OpenTK.Matrix4.Frustum(-ratio, ratio, -1, 1, 3, 7);
+
 			RenderTriangle ();
 		}
 	}
