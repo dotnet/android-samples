@@ -905,19 +905,18 @@ namespace JetBoy
 
 				if (mState == GameState.Play) {
 					Resources res = mContext.Resources;
-					mBackgroundImageFar = BitmapFactory
-						.DecodeResource (res, Resource.Drawable.background_a);
+
+					mBackgroundImageFar.Dispose ();
 
 					// Don't forget to resize the background image
-					mBackgroundImageFar = Bitmap.CreateScaledBitmap (mBackgroundImageFar,
-						mCanvasWidth * 2, mCanvasHeight, true);
+					using (var b = BitmapFactory.DecodeResource (res, Resource.Drawable.background_a))
+						mBackgroundImageFar = Bitmap.CreateScaledBitmap (b, mCanvasWidth * 2, mCanvasHeight, true);
 
-					mBackgroundImageNear = BitmapFactory.DecodeResource (res,
-						Resource.Drawable.background_b);
+					mBackgroundImageNear.Dispose ();
 
 					// Don't forget to resize the background image
-					mBackgroundImageNear = Bitmap.CreateScaledBitmap (mBackgroundImageNear,
-						mCanvasWidth * 2, mCanvasHeight, true);
+					using (var b = BitmapFactory.DecodeResource (res, Resource.Drawable.background_b))
+						mBackgroundImageNear = Bitmap.CreateScaledBitmap (b, mCanvasWidth * 2, mCanvasHeight, true);
 
 				} else if (mState == GameState.Running) {
 					// When we enter the running state we should clear any old
@@ -964,12 +963,12 @@ namespace JetBoy
 				mCanvasHeight = height;
 
 				// don't forget to resize the background image
-				mBackgroundImageFar = Bitmap.CreateScaledBitmap (mBackgroundImageFar, width * 2,
-					height, true);
+				using (var b = mBackgroundImageFar)
+					mBackgroundImageFar = Bitmap.CreateScaledBitmap (b, width * 2, height, true);
 
 				// don't forget to resize the background image
-				mBackgroundImageNear = Bitmap.CreateScaledBitmap (mBackgroundImageNear, width * 2,
-					height, true);
+				using (var b = mBackgroundImageNear)
+					mBackgroundImageNear = Bitmap.CreateScaledBitmap (b, width * 2, height, true);
 			}
 		}
 
