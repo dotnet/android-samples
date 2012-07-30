@@ -1,0 +1,22 @@
+<metadata>
+  <remove-node
+path="/api/package[@name='me.kiip.api']/class[string-length(@name)=1]" />
+  <remove-node path="/api/package[@name='me.kiip.a']" />
+  <remove-node path="/api/package[@name='me.kiip.b']" />
+  <remove-node path="/api/package[@name='me.kiip.c']" />
+  <remove-node path="/api/package[@name='me.kiip.d']" />
+  <remove-node path="/api/package[@name='me.kiip.e']" />
+  <remove-node path="/api/package[@name='me.kiip.f']" />
+  <remove-node path="/api/package[@name='me.kiip.g']" />
+  <remove-node path="/api/package[@name='me.kiip.h']" />
+  <remove-node path="/api/package[@name='me.kiip.i']" />
+  <remove-node path="/api/package[@name='me.kiip.j']" />
+  <remove-node path="/api/package[@name='me.kiip.k']" />
+  <remove-node path="/api/package[@name='me.kiip.l']" />
+  <remove-node path="/api/package[@name='me.kiip.m']" />
+  <remove-node path="/api/package[@name='me.kiip.n']" />
+  <remove-node path="/api/package[@name='me.kiip.o']" />
+  <remove-node path="/api/package[@name='me.kiip.p']" />
+  <remove-node path="/api/package[@name='me.kiip.q']" />
+  <remove-node path="/api/package[@name='me.kiip.r']" />
+</metadata>

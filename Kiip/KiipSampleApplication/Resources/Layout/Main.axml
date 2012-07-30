@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content">
+<Button
+    android:id="@+id/getActivePromos"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Get Active Promo Resources"
+    />
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/achievementId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="achievement id"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        />
+    <Button
+        android:id="@+id/unlockAchievement"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Unlock Achievement"
+        />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/leaderboardId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="leaderboard id"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        />
+    <Button
+        android:id="@+id/saveLeaderboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Save Leaderboard"
+        />
+</LinearLayout>
+<Button
+    android:id="@+id/showNotification"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Show All Notifications"
+    />
+<Button
+    android:id="@+id/showFullscreen"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Show All Fullscreens"
+    />
+<ToggleButton
+    android:textOn="Show Rewards Instantly"
+    android:textOff="Queue Rewards"
+    android:checked="true"
+    android:id="@+id/rewardActionToggle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    />
+<ToggleButton
+    android:textOn="Show Notification"
+    android:textOff="Show Fullscreen"
+    android:checked="true"
+    android:id="@+id/positionToggle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    />
+<Button
+    android:id="@+id/newActivity"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:text="New Activity"
+    />
+</LinearLayout>
+</LinearLayout>
