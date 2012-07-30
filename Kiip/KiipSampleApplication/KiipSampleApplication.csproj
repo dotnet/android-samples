@@ -38,9 +38,6 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KiipAndroidBindingLibrary">
-      <HintPath>..\KiipAndroidBindingLibrary\bin\Debug\KiipAndroidBindingLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -99,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\kp_spinner_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KiipAndroidBindingLibrary\KiipAndroidBindingLibrary.csproj">
+      <Project>{51859351-9E8E-41FC-9CA8-4F043E6AE547}</Project>
+      <Name>KiipAndroidBindingLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
