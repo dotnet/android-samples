@@ -57,7 +57,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\bg_striped.xml" />
     <AndroidResource Include="Resources\drawable\bg_striped_split.xml" />
@@ -109,9 +108,9 @@
     <AndroidResource Include="Resources\raw\robot.png" />
     <AndroidResource Include="Resources\values\arrays.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\themes.xml" />
     <AndroidResource Include="Resources\xml\preferences.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
