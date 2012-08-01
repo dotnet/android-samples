@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{070236F3-8BC7-4123-82CB-EE00251F6D0D}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Mono.ActionbarsherlockTest</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>Mono.ActionBarSherlockTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleList.cs" />
+    <Compile Include="Simple.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\bg_striped.xml" />
+    <AndroidResource Include="Resources\drawable\bg_striped_split.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\bg_striped_img.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bg_striped_split_img.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_compose.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_compose_inverse.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher_settings.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_magnifying_glass.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_refresh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_refresh_inverse.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_search.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_search_inverse.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_title_share_default.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\bg_striped_img.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\bg_striped_split_img.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_compose.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_compose_inverse.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher_settings.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_magnifying_glass.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_refresh.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_refresh_inverse.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_search.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_search_inverse.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bg_striped_img.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bg_striped_split_img.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher_settings.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\layout\action_modes.xml" />
+    <AndroidResource Include="Resources\layout\collapsible_edittext.xml" />
+    <AndroidResource Include="Resources\layout\context_menus.xml" />
+    <AndroidResource Include="Resources\layout\custom_view.xml" />
+    <AndroidResource Include="Resources\layout\feature_toggles.xml" />
+    <AndroidResource Include="Resources\layout\iprogress.xml" />
+    <AndroidResource Include="Resources\layout\list_navigation.xml" />
+    <AndroidResource Include="Resources\layout\overlay.xml" />
+    <AndroidResource Include="Resources\layout\preferences.xml" />
+    <AndroidResource Include="Resources\layout\progress.xml" />
+    <AndroidResource Include="Resources\layout\settings_action_provider.xml" />
+    <AndroidResource Include="Resources\layout\tab_custom_view.xml" />
+    <AndroidResource Include="Resources\layout\tab_navigation.xml" />
+    <AndroidResource Include="Resources\layout\text.xml" />
+    <AndroidResource Include="Resources\layout-large-land\feature_toggles.xml" />
+    <AndroidResource Include="Resources\menu\settings_action_provider.xml" />
+    <AndroidResource Include="Resources\menu\share_action_provider.xml" />
+    <AndroidResource Include="Resources\raw\robot.png" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\themes.xml" />
+    <AndroidResource Include="Resources\xml\preferences.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\ActionBarSherlock\ActionBarSherlock.csproj">
+      <Project>{2D5471B2-8255-4E47-97E9-EEB28678CC82}</Project>
+      <Name>ActionBarSherlock</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

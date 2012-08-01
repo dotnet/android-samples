@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.ActionbarsherlockTest", "ActionBarSherlockTest\Mono.ActionbarsherlockTest.csproj", "{070236F3-8BC7-4123-82CB-EE00251F6D0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarSherlock", "ActionBarSherlock\ActionBarSherlock.csproj", "{2D5471B2-8255-4E47-97E9-EEB28678CC82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{070236F3-8BC7-4123-82CB-EE00251F6D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070236F3-8BC7-4123-82CB-EE00251F6D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070236F3-8BC7-4123-82CB-EE00251F6D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070236F3-8BC7-4123-82CB-EE00251F6D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ActionBarSherlockTest\Mono.ActionbarsherlockTest.csproj
+	EndGlobalSection
+EndGlobal
