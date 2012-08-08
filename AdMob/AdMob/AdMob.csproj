@@ -58,8 +58,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <InputJar Include="GoogleAdMobAdsSdk-6.0.0.jar">
-      <Link>Jars\GoogleAdMobAdsSdk-6.0.0.jar</Link>
+    <InputJar Include="GoogleAdMobAdsSdk-6.0.1.jar">
+      <Link>Jars\GoogleAdMobAdsSdk-6.0.1.jar</Link>
     </InputJar>
   </ItemGroup>
 </Project>
