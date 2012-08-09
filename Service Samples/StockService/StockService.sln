@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockService", "StockService.csproj", "{9FBF9370-B767-407A-9ECA-A5B3512EC381}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FBF9370-B767-407A-9ECA-A5B3512EC381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBF9370-B767-407A-9ECA-A5B3512EC381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBF9370-B767-407A-9ECA-A5B3512EC381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBF9370-B767-407A-9ECA-A5B3512EC381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = StockService.csproj
+	EndGlobalSection
+EndGlobal
