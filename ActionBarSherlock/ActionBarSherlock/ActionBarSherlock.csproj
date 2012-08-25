@@ -59,4 +59,7 @@
   <ItemGroup>
     <LibraryProjectZip Include="Jars\ActionBarSherlock-88fc341.zip" />
   </ItemGroup>
+  <ItemGroup>
+    <ReferenceJar Include="Jars\android-support-v4.jar" />
+  </ItemGroup>
 </Project>
