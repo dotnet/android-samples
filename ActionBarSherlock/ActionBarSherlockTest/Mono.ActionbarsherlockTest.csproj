@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -118,5 +119,10 @@
       <Project>{2D5471B2-8255-4E47-97E9-EEB28678CC82}</Project>
       <Name>ActionBarSherlock</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidJavaLibrary Include="..\ActionBarSherlock\Jars\android-support-v4.jar">
+      <Link>android-support-v4.jar</Link>
+    </AndroidJavaLibrary>
   </ItemGroup>
 </Project>
