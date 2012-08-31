@@ -18,6 +18,10 @@ namespace com.xamarin.sample.fragments.supportlib
             base.OnActivityCreated(savedInstanceState);
 
             var detailsFrame = Activity.FindViewById<View>(Resource.Id.details);
+
+            // If running on a tablet, then the layout in Resources/Layout-Large will be loaded. 
+            // That layout uses fragments, and defines the detailsFrame. We use the visiblity of 
+            // detailsFrame as this distinguisher between tablet and phone.
             _isDualPane = detailsFrame != null && detailsFrame.Visibility == ViewStates.Visible;
 
             var adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
