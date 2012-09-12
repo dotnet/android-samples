@@ -1,0 +1,8 @@
+﻿<enum-method-mappings>
+	<mapping jni-interface="org/osmdroid/api/IMapView">
+		<method jni-name="setBackgroundColor" parameter="p0" clr-enum-type="Android.Graphics.Color" />
+	</mapping>
+	<mapping jni-interface="org/osmdroid/api/IMyLocationOverlay">
+		<method jni-name="onStatusChanged" parameter="p1" clr-enum-type="Android.Locations.Availability" />
+	</mapping>
+</enum-method-mappings>
