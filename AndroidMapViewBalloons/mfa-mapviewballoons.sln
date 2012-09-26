@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfa-mapviewballoons", "mfa-mapviewballoons\mfa-mapviewballoons.csproj", "{0DB538E2-5024-4A3C-BA55-2F1BC81B4E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfa-mapviewballoons-example", "mfa-mapviewballoons-example\mfa-mapviewballoons-example.csproj", "{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DB538E2-5024-4A3C-BA55-2F1BC81B4E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB538E2-5024-4A3C-BA55-2F1BC81B4E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB538E2-5024-4A3C-BA55-2F1BC81B4E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB538E2-5024-4A3C-BA55-2F1BC81B4E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B9D3E3-7DD5-444F-80BB-81AB34378FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = mfa-mapviewballoons-example\mfa-mapviewballoons-example.csproj
+	EndGlobalSection
+EndGlobal

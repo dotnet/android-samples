@@ -10,3 +10,5 @@ obj
 *.DS_Store
 
 ContentControls/ContentControls/Resources/Values/PrivateStrings.xml
+
+/AndroidMapViewBalloons/android-mapviewballoons/

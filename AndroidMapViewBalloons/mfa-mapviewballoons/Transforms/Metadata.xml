@@ -1,0 +1,5 @@
+<metadata>
+<!-- Don't want any transforms for now -->
+<!--  <attr path="/api/package[@name='com.readystatesoftware.maps']" name="managedName">ReadyState.Maps</attr>-->
+<!--  <attr path="/api/package[@name='com.readystatesoftware.mapviewballoons']" name="managedName">ReadyState.MapviewBalloons</attr>-->
+</metadata>
