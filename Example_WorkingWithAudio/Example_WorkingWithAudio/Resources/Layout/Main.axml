@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+  <TextView
+  android:id="@+id/title"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:padding="5dp"
+  android:layout_marginTop="5dp"
+  android:layout_marginBottom="5dp"
+  android:text="MediaPlayer and MediaRecorder"
+  android:textSize="18sp"
+  android:layout_centerHorizontal="true" />
+  <Button
+    android:id="@+id/startRecordingButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="Start Recording"
+    android:layout_below="@id/title"
+    android:layout_alignLeft="@id/title" />
+
+  <Button
+    android:id="@+id/endRecordingButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="End Recording"
+    android:layout_below="@id/title"
+    android:layout_toRightOf="@id/startRecordingButton"
+    
+     />
+
+  <Button
+      android:id="@+id/startPlaybackButton"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:text="Start Playback "
+      android:layout_below="@id/startRecordingButton"
+      android:layout_alignLeft="@id/title" />
+
+  <Button
+    android:id="@+id/endPlaybackButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="End Playback"
+    android:layout_below="@id/startRecordingButton"
+    android:layout_toRightOf="@id/startPlaybackButton" />
+
+  <TextView
+  android:id="@+id/lowLevelTitle"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:padding="5dp"
+  android:layout_marginTop="5dp"
+  android:layout_marginBottom="5dp"
+  android:text="AudioTrack and AudioRecord"
+  android:textSize="18sp"
+  android:layout_below="@id/startPlaybackButton"
+  android:layout_centerHorizontal="true" />
+
+  <Button
+  android:id="@+id/llStartRecordingButton"
+  android:layout_width="120dp"
+  android:layout_height="wrap_content"
+  android:text="Start Recording"
+  android:layout_below="@id/lowLevelTitle"
+  android:layout_alignLeft="@id/title" />
+
+  <Button
+    android:id="@+id/llEndRecordingButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="End Recording"
+    android:layout_below="@id/lowLevelTitle"
+    android:layout_toRightOf="@id/llStartRecordingButton" />
+
+  <Button
+      android:id="@+id/llStartPlaybackButton"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:text="Start Playback"
+      android:layout_below="@id/llStartRecordingButton"
+      android:layout_alignLeft="@id/title" />
+
+  <Button
+    android:id="@+id/llEndPlaybackButton"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:text="End Playback"
+    android:layout_below="@id/llStartRecordingButton"
+    android:layout_toRightOf="@id/llStartPlaybackButton" />
+
+  <TextView
+    android:id="@+id/notificationsTitle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:text="Notifications"
+    android:textSize="18sp"
+    android:layout_below="@id/llStartPlaybackButton"
+    android:layout_centerHorizontal="true" />
+  <CheckBox
+        android:id="@+id/useNotificationsCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notificationsTitle"
+        android:text="Enable" />
+  <TextView
+    android:id="@+id/audioFocus"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="5dp"
+    android:text="Audiofocus"
+    android:textSize="18sp"
+    android:layout_below="@id/notificationsTitle"
+    android:layout_toRightOf="@id/useNotificationsCheckBox" />
+
+  <TextView
+    android:id="@+id/status"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="5dp"
+    android:text="None"
+    android:textSize="18sp"
+    android:layout_below="@id/notificationsTitle"
+    android:layout_toRightOf="@id/audioFocus" />
+
+
+</RelativeLayout>
