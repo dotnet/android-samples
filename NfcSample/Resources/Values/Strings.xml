@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">NFC Xample</string>
+  <string name="button_write_new_tag">Write new tag</string>
+  <string name="button_back_to_main_activity">Back to Main Activity</string>
+</resources>
