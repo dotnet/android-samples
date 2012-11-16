@@ -17,6 +17,10 @@
     [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
+        /// <summary>
+        /// A mime type for the the string that this app will write to the NFC tag. Will be
+        /// used to help this application identify NFC tags that is has written to.
+        /// </summary>
         public const string ViewApeMimeType = "application/vnd.xamarin.nfcxample";
         public static readonly string NfcAppRecord = "xamarin.nfxample";
         public static readonly string Tag = "NfcXample";
@@ -31,6 +35,8 @@
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
+            // Get a reference to the default NFC adapter for this device. This adapter 
+            // is how an Android application will interact with the actual hardware.
             _nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
             _writeTagButton = FindViewById<Button>(Resource.Id.write_tag_button);
@@ -39,21 +45,32 @@
             _textView = FindViewById<TextView>(Resource.Id.text_view);
         }
 
+        /// <summary>
+        /// This method is called when an NFC tag is discovered by the application.
+        /// </summary>
+        /// <param name="intent"></param>
         protected override void OnNewIntent(Intent intent)
         {
             if (_inWriteMode)
             {
                 _inWriteMode = false;
-                var tag = (Tag)intent.GetParcelableExtra(NfcAdapter.ExtraTag);
-                var appRecord = NdefRecord.CreateApplicationRecord(NfcAppRecord);
+                var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;
+
+                if (tag == null)
+                {
+                    return;
+                }
+
+                // These next few lines will create a payload (consisting of a string)
+                // and a mimetype. NFC record are arrays of bytes. 
                 var payload = Encoding.ASCII.GetBytes(GetRandomHominid());
                 var mimeBytes = Encoding.ASCII.GetBytes(ViewApeMimeType);
                 var apeRecord = new NdefRecord(NdefRecord.TnfMimeMedia, mimeBytes, new byte[0], payload);
-
                 var ndefMessage = new NdefMessage(new[] { apeRecord });
 
                 if (!TryAndWriteToTag(tag, ndefMessage))
                 {
+                    // Maybe the write couldn't happen because the tag wasn't formatted?
                     TryAndFormatTagWithMessage(tag, ndefMessage);                    
                 }
             }
@@ -62,6 +79,7 @@
         protected override void OnPause()
         {
             base.OnPause();
+            // App is paused, so no need to keep an eye out for NFC tags.
             _nfcAdapter.DisableForegroundDispatch(this);
         }
 
@@ -71,16 +89,32 @@
             Log.Info(Tag, message);
         }
 
+        /// <summary>
+        /// Identify to Android that this activity wants to be notified when 
+        /// an NFC tag is discovered. 
+        /// </summary>
         private void EnableWriteMode()
         {
             _inWriteMode = true;
-            var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
-            var pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
+
+            // Create an intent filter for when an NFC tag is discovered.  When
+            // the NFC tag is discovered, Android will u
             var tagDetected = new IntentFilter(NfcAdapter.ActionTagDiscovered);
             var filters = new[] { tagDetected };
+            
+            // When an NFC tag is detected, Android will use the PendingIntent to come back to this activity.
+            // The OnNewIntent method will invoked by Android.
+            var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
+            var pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
             _nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="ndefMessage"></param>
+        /// <returns></returns>
         private bool TryAndFormatTagWithMessage(Tag tag, NdefMessage ndefMessage)
         {
             var format = NdefFormatable.Get(tag);
@@ -107,6 +141,10 @@
             return false;
         }
 
+        /// <summary>
+        /// Pick one of the four hominids to display
+        /// </summary>
+        /// <returns>A string that corresponds to one of the images in this application.</returns>
         private string GetRandomHominid()
         {
             var random = new Random();
@@ -137,18 +175,29 @@
             }
         }
 
+        /// <summary>
+        /// This method will try and write the specified message to the provided tag. 
+        /// </summary>
+        /// <param name="tag">The NFC tag that was detected.</param>
+        /// <param name="ndefMessage">An NDEF message to write.</param>
+        /// <returns>true if the tag was written to.</returns>
         private bool TryAndWriteToTag(Tag tag, NdefMessage ndefMessage)
         {
-            var ndef = Ndef.Get(tag);
+
+            // This object is used to get information about the NFC tag as 
+            // well as perform operations on it.
+            var ndef = Ndef.Get(tag); 
             if (ndef != null)
             {
                 ndef.Connect();
 
+                // Once written to, a tag can be marked as read-only - check for this.
                 if (!ndef.IsWritable)
                 {
                     DisplayMessage("Tag is read-only.");
                 }
 
+                // NFC tags can only store a small amount of data, this depends on the type of tag its.
                 var size = ndefMessage.ToByteArray().Length;
                 if (ndef.MaxSize < size)
                 {
