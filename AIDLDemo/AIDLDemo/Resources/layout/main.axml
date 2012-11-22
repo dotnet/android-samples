@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical" android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+  <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/app_name"
+      android:textSize="22sp" />
+
+  <EditText android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:id="@+id/value1"
+    android:hint="Value 1"></EditText>
+  <TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:text="+"
+    android:textSize="36sp"></TextView>
+  <EditText android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:id="@+id/value2"
+    android:hint="Value 2"></EditText>
+  <Button android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:id="@+id/buttonCalc"
+    android:text="="></Button>
+  <TextView android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:text="result"
+    android:textSize="36sp" android:id="@+id/result"></TextView>
+</LinearLayout>
