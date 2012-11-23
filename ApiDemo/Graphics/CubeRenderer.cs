@@ -86,7 +86,7 @@ namespace MonoDroid.ApiDemo
 			gl.GlFrustumf (-ratio, ratio, -1, 1, 1, 10);
 		}
 
-		public void OnSurfaceCreated (IGL10 gl, EGLConfig config) 
+		public void OnSurfaceCreated (IGL10 gl, Javax.Microedition.Khronos.Egl.EGLConfig config) 
 		{
 			/*
 			 * By default, OpenGL enables features that improve quality
