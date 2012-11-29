@@ -43,7 +43,7 @@ namespace CalendarDemo
             ListAdapter = adapter;
             
             ListView.ItemClick += (sender, e) => { 
-                int i = (e as ItemEventArgs).Position;
+                int i = (e as Android.Widget.AdapterView.ItemClickEventArgs).Position;
                 
                 cursor.MoveToPosition(i);
                 int calId = cursor.GetInt (cursor.GetColumnIndex (calendarsProjection [0]));
