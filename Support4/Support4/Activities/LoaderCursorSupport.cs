@@ -41,6 +41,9 @@ namespace Support4
 		public class CursorLoaderListFragment : ListFragment, LoaderManager.ILoaderCallbacks
 		{
 			LoaderCursorSupport parent;
+
+            public CursorLoaderListFragment() {}
+
 			public CursorLoaderListFragment (LoaderCursorSupport parent)
 			{
 				this.parent = parent;
