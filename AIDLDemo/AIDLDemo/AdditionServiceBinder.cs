@@ -1,7 +1,8 @@
 using Android.Util;
 using System;
+using Com.Xamarin.Aidldemo;
 
-namespace com.xamarin.aidldemo
+namespace Xamarin.AidlDemo
 {
 	public class AdditionServiceBinder: IAdditionServiceStub, IAdditionService
 	{

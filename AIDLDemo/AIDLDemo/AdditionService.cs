@@ -12,7 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace com.xamarin.aidldemo
+namespace Xamarin.AidlDemo
 {
 	[Service]
 	[IntentFilter(new String[] {"com.xamarin.additionservice"})]

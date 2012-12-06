@@ -8,7 +8,7 @@
     <ProjectGuid>{ADC29EDE-F6F5-432A-AF11-9D8CA9542ECC}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>com.xamarin.aidldemo</RootNamespace>
+    <RootNamespace>Xamarin.AidlDemo</RootNamespace>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>

@@ -7,8 +7,9 @@ using Android.Views;
 using Android.Util;
 using Android.Widget;
 using Android.OS;
+using Com.Xamarin.Aidldemo;
 
-namespace com.xamarin.aidldemo
+namespace Xamarin.AidlDemo
 {
 	[Activity (Label = "AIDL Demo", MainLauncher = true)]
 	public class Activity1 : Activity

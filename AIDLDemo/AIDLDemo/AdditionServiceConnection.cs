@@ -10,8 +10,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Com.Xamarin.Aidldemo;
 
-namespace com.xamarin.aidldemo
+namespace Xamarin.AidlDemo
 {
 	class AdditionServiceConnection : Java.Lang.Object, IServiceConnection
 	{
