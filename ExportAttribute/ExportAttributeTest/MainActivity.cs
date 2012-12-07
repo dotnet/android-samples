@@ -29,16 +29,22 @@ namespace ExportAttributeTest
 		{
 			((Button)view).Text = "clicked!";
 			
+			Console.WriteLine ("Activity1.MyButton_OnClick: Writing into Bundle...");
+
 			Bundle b = new Bundle ();
 			var p = Parcel.Obtain ();
-			b.PutSerializable ("dummy", new MySerializable ());
-			b.PutParcelable ("dummy2", new MyParcelable ());
+			b.PutSerializable ("dummy", new MySerializable ("foo"));
+			b.PutParcelable ("dummy2", new MyParcelable ("bar"));
 			p.WriteBundle (b);
 			p.SetDataPosition (0);
+
+			Console.WriteLine ("Activity1.MyButton_OnClick: Reading from Parcel...");
 			var b2 = p.ReadBundle ();
-			Console.WriteLine (b2);
+			Console.WriteLine ("Read Bundle: {0}", b2);
+			var s  = b.GetSerializable ("dummy");
+			Console.WriteLine ("Read Serializable: {0}", s);
 			var p2 = b.GetParcelable ("dummy2");
-			Console.WriteLine (p2);
+			Console.WriteLine ("Read Parcelable: {0}", p2);
 		}
 	}
 	
@@ -47,46 +53,72 @@ namespace ExportAttributeTest
 		[ExportField ("CREATOR")]
 		static MyParcelableCreator InitializeCreator ()
 		{
-			Console.WriteLine ("I'm in InitializeCreator");
+			Console.WriteLine ("MyParcelable.InitializeCreator");
 			return new MyParcelableCreator ();
+		}
+
+		public string Value {get; private set;}
+
+		public MyParcelable (string value)
+		{
+			Value = value;
 		}
 
 		#region IParcelable implementation
 		public int DescribeContents ()
 		{
+			Console.WriteLine ("MyParcelable.DescribeContents");
 			return 0;
 		}
 
 		public void WriteToParcel (Parcel dest, ParcelableWriteFlags flags)
 		{
-			Console.WriteLine ("WriteToParcel");
+			Console.WriteLine ("MyParcelable.WriteToParcel");
+			dest.WriteString (Value);
 		}
 		#endregion
+
+		public override string ToString ()
+		{
+			return base.ToString () + " [Value=" + Value + "]";
+		}
 	}
 	
 	class MyParcelableCreator : Object, IParcelableCreator
 	{
 		public Object CreateFromParcel (Parcel source)
 		{
-			Console.WriteLine ("CreateFromParcel");
-			return new MyParcelable ();
+			Console.WriteLine ("MyParcelableCreator.CreateFromParcel");
+			return new MyParcelable (source.ReadString ());
 		}
 
 		public Object [] NewArray (int size)
 		{
-			Console.WriteLine ("NewArray");
-			return new Object [0];
+			Console.WriteLine ("MyParcelableCreator.NewArray");
+			return new Object [size];
 		}
 	}
 	
 	class MySerializable : Object, Java.IO.ISerializable
 	{
+		public string Value {get; private set;}
+
+		public MySerializable ()
+		{
+		}
+
+		public MySerializable (string value)
+		{
+			Value = value;
+		}
+
 		[Export ("readObject", Throws = new [] {
 			typeof (Java.IO.IOException),
 			typeof (Java.Lang.ClassNotFoundException)})]
 		private void ReadObjectDummy (Java.IO.ObjectInputStream source)
 		{
-			Console.WriteLine ("I'm in ReadObject");
+			Console.WriteLine ("MySerializable.ReadObjectDummy");
+			Value = source.ReadUTF ();
 		}
 		
 		[Export ("writeObject", Throws = new [] {
@@ -94,7 +126,13 @@ namespace ExportAttributeTest
 			typeof (Java.Lang.ClassNotFoundException)})]
 		private void WriteObjectDummy (Java.IO.ObjectOutputStream destination)
 		{
-			Console.WriteLine ("I'm in WriteObject");
+			Console.WriteLine ("MySerializable.WriteObjectDummy");
+			destination.WriteUTF (Value);
+		}
+
+		public override string ToString ()
+		{
+			return base.ToString () + "[Value=" + Value + "]";
 		}
 		
 		/*
