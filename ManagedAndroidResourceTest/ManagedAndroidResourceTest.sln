@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedAndroidResourceApp", "ManagedAndroidResourceApp\ManagedAndroidResourceApp.csproj", "{DE293710-977B-4A5E-AC80-08B7D5B6B1AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedAndroidResourceLibrary", "ManagedAndroidResourceLibrary\ManagedAndroidResourceLibrary.csproj", "{F96AD650-6E5A-4F4D-9E05-E059A70CFBCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE293710-977B-4A5E-AC80-08B7D5B6B1AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE293710-977B-4A5E-AC80-08B7D5B6B1AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE293710-977B-4A5E-AC80-08B7D5B6B1AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE293710-977B-4A5E-AC80-08B7D5B6B1AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96AD650-6E5A-4F4D-9E05-E059A70CFBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96AD650-6E5A-4F4D-9E05-E059A70CFBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96AD650-6E5A-4F4D-9E05-E059A70CFBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96AD650-6E5A-4F4D-9E05-E059A70CFBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ManagedAndroidResourceApp\ManagedAndroidResourceApp.csproj
+	EndGlobalSection
+EndGlobal
