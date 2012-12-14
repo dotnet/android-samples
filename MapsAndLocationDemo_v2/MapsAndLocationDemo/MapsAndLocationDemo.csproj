@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.GoogleMaps" />
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
@@ -79,4 +80,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\GooglePlayServices\GooglePlayServices.csproj">
+      <Project>{C388951C-C427-4F44-A54B-5A64BAE0DA39}</Project>
+      <Name>GooglePlayServices</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
