@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="mapsAppText">Show Maps App</string>
+	<string name="streetViewText">Show Street View</string>
+	<string name="showMapActivity">Show Map Activity</string>
+	<string name="showMapWithOverlays">Show Map with Overlays</string>
+	<string name="demoLocationServices">Demo Location Services</string>
+	<string name="app_name">MapsAndLocationDemo</string>
+</resources>
