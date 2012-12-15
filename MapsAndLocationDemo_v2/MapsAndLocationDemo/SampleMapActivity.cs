@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.Support.V4.App;
 using Android.Content;
 using Android.OS;
@@ -16,54 +17,62 @@ using Android.GoogleMaps;
 namespace MapsAndLocationDemo
 {
     [Activity (Label = "SampleMapActivity")]         
-    public class SampleMapActivity : FragmentActivity 
+    public class SampleMapActivity : FragmentActivity
     {
-        protected override void OnCreate (Bundle bundle)
+        private static readonly LatLng VimyRidge = new LatLng(50.379444, 2.773611);
+        private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
+        private GoogleMap _map;
+        protected override void OnResume()
         {
-            base.OnCreate (bundle);
-            SetContentView (Resource.Layout.MapLayout);
+            base.OnResume();
+            var mapFragment = SupportFragmentManager.FindFragmentByTag("map") as SupportMapFragment;
+            _map = mapFragment.Map;
+            System.Diagnostics.Debug.Assert(_map != null, "The _map cannot be null!");
 
-            var fragTx = SupportFragmentManager.BeginTransaction ();
-            var mapFragment = SupportMapFragment.NewInstance ();
-            fragTx.Add (Resource.Id.map, mapFragment, "map");
+            System.Diagnostics.Debug.Assert(VimyRidge != null, "The LatLng is null for some weird reason.");
+            var cameraUpdate = CameraUpdateFactory.NewLatLngZoom(VimyRidge, 15);
+            _map.MoveCamera(cameraUpdate);
+
+        }
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            SetContentView(Resource.Layout.MapLayout);
+
+            var mapOptions = new GoogleMapOptions()
+                .InvokeMapType(GoogleMap.MapTypeSatellite)
+                .InvokeZoomControlsEnabled(false)
+                .InvokeCompassEnabled(true);
+
+            var fragTx = SupportFragmentManager.BeginTransaction();
+            var mapFragment = SupportMapFragment.NewInstance(mapOptions);
+            fragTx.Add(Resource.Id.map, mapFragment, "map");
             fragTx.Commit();
 
+            var animateButton = FindViewById<Button> (Resource.Id.animateButton);
+            animateButton.Click += (sender, e) => {
+                // Move the camera to the Passchendaele Memorial in Belgium.
+                var builder = CameraPosition.InvokeBuilder();
+                builder.Target(Passchendaele);
+                builder.Zoom(18);  // Zoom level of 18
+                builder.Bearing(155);
+                builder.Tilt(25);
+                var cameraPosition = builder.Build();
 
+                _map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
+            };
 
-//            var map = FindViewById<MapView> (Resource.Id.map);
-//         
-//            map.Clickable = true;
-//            map.Traffic = false;
-//            map.Satellite = true;
-//         
-//            map.SetBuiltInZoomControls (true);   
-//            map.Controller.SetZoom (10);
-//            map.Controller.SetCenter (new GeoPoint ((int)42.374260E6, (int)-71.120824E6));
-//         
-//            var zoomInButton = FindViewById<Button> (Resource.Id.zoomInButton);
-//            var zoomOutButton = FindViewById<Button> (Resource.Id.zoomOutButton);
-//            var animateButton = FindViewById<Button> (Resource.Id.animateButton);
-//         
-//            zoomInButton.Click += (sender, e) => {
-//                map.Controller.ZoomIn ();
-//                //map.Controller.ZoomInFixing (200, 200);
-//            };
-//         
-//            zoomOutButton.Click += (sender, e) => {
-//                map.Controller.ZoomOut ();
-//                //map.Controller.ZoomOutFixing (200, 200);
-//            };
-//         
-//            animateButton.Click += (sender, e) => {
-//                //map.Controller.AnimateTo(new GeoPoint ((int)40.741773E6, (int)-74.004986E6));
-//             
-//                map.Controller.AnimateTo (
-//                 new GeoPoint ((int)40.741773E6, (int)-74.004986E6), () => {
-//                    var toast = Toast.MakeText (this, "Welcome to NY", ToastLength.Short);
-//                    toast.Show ();
-//                });
-//                                      
-//            };
+            var zoomInButton = FindViewById<Button> (Resource.Id.zoomInButton);
+         
+            zoomInButton.Click += (sender, e) => {
+                _map.AnimateCamera(CameraUpdateFactory.ZoomIn());
+            };
+         
+            var zoomOutButton = FindViewById<Button> (Resource.Id.zoomOutButton);
+            zoomOutButton.Click += (sender, e) => {
+                _map.AnimateCamera(CameraUpdateFactory.ZoomOut());
+            };
+         
         }
     }
 }
