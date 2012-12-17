@@ -13,12 +13,16 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2CC80FD8-6BDC-4872-A554-B3A2F6BEDC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CC80FD8-6BDC-4872-A554-B3A2F6BEDC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC80FD8-6BDC-4872-A554-B3A2F6BEDC8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{2CC80FD8-6BDC-4872-A554-B3A2F6BEDC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CC80FD8-6BDC-4872-A554-B3A2F6BEDC8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MapsAndLocationDemo\MapsAndLocationDemo.csproj

@@ -1,100 +1,83 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Locations;
-using System.Threading;
-
 namespace MapsAndLocationDemo
 {
-    [Activity (Label = "LocationActivity")]          
+    using System;
+    using System.Linq;
+    using System.Threading;
+
+    using Android.App;
+    using Android.Locations;
+    using Android.OS;
+    using Android.Widget;
+
+    [Activity(Label = "@string/activity_label_location")]
     public class LocationActivity : Activity, ILocationListener
     {
-        LocationManager _locMgr;
-     
-        protected override void OnCreate (Bundle bundle)
-        {
-            base.OnCreate (bundle);
+        private LocationManager _locMgr;
 
-            SetContentView (Resource.Layout.LocationView);
-            
-            // use location service directly       
-            _locMgr = GetSystemService (Context.LocationService) as LocationManager;
-        }
-     
-        protected override void OnResume ()
+        public void OnLocationChanged(Location location)
         {
-            base.OnResume ();
-         
-            var locationCriteria = new Criteria ();
-         
+            var locationText = FindViewById<TextView>(Resource.Id.locationTextView);
+
+            locationText.Text = String.Format("Latitude = {0}, Longitude = {1}", location.Latitude, location.Longitude);
+
+            // demo geocoder
+
+            new Thread(() =>
+                           {
+                               var geocdr = new Geocoder(this);
+
+                               var addresses = geocdr.GetFromLocation(location.Latitude, location.Longitude, 5);
+
+                               RunOnUiThread(() =>
+                                                 {
+                                                     var addrText = FindViewById<TextView>(Resource.Id.addressTextView);
+
+                                                     addresses.ToList().ForEach((addr) => addrText.Append(addr.ToString() + "\r\n\r\n"));
+                                                 });
+                           }).Start();
+        }
+
+        public void OnProviderDisabled(string provider)
+        {
+        }
+
+        public void OnProviderEnabled(string provider)
+        {
+        }
+
+        public void OnStatusChanged(string provider, Availability status, Bundle extras)
+        {
+        }
+
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+
+            SetContentView(Resource.Layout.LocationView);
+
+            // use location service directly       
+            _locMgr = GetSystemService(LocationService) as LocationManager;
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            _locMgr.RemoveUpdates(this);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            var locationCriteria = new Criteria();
+
             locationCriteria.Accuracy = Accuracy.NoRequirement;
             locationCriteria.PowerRequirement = Power.NoRequirement;
-         
-            string locationProvider = _locMgr.GetBestProvider (locationCriteria, true);
-            
-            _locMgr.RequestLocationUpdates (locationProvider, 2000, 1, this);
-            //_locMgr.RequestLocationUpdates (LocationManager.GpsProvider, 2000, 1, this);
-        }
-        
-        protected override void OnPause ()
-        {
-            base.OnPause ();
-            
-            _locMgr.RemoveUpdates (this);
-        }
 
-     #region ILocationListener implementation
-        public void OnLocationChanged (Location location)
-        {
-            var locationText = FindViewById<TextView> (Resource.Id.locationTextView);
-         
-            locationText.Text = String.Format ("Latitude = {0}, Longitude = {1}", location.Latitude, location.Longitude);
-         
-            // demo geocoder
-         
-            new Thread (new ThreadStart (() => {
-                var geocdr = new Geocoder (this);
-             
-                var addresses = geocdr.GetFromLocation (location.Latitude, location.Longitude, 5);
-             
-                //var addresses = geocdr.GetFromLocationName("Harvard University", 5);
-             
-                RunOnUiThread (() => {
-                    var addrText = FindViewById<TextView> (Resource.Id.addressTextView);
-         
-                    addresses.ToList ().ForEach ((addr) => {
-                        addrText.Append (addr.ToString () + "\r\n\r\n");
-                    });
-                });
-             
-            })).Start ();
+            var locationProvider = _locMgr.GetBestProvider(locationCriteria, true);
+
+            _locMgr.RequestLocationUpdates(locationProvider, 2000, 1, this);
         }
-
-        public void OnProviderDisabled (string provider)
-        {
-         
-        }
-
-        public void OnProviderEnabled (string provider)
-        {
-         
-        }
-
-        public void OnStatusChanged (string provider, Availability status, Bundle extras)
-        {
-         
-        }
-     #endregion
-
-
     }
 }
-
