@@ -1,0 +1,19 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <remove-node path="/api/package[@name='com.google.android.gms.maps']/class[@name='GoogleMapOptionsCreator']" />
+  <remove-node path="/api/package[@name!='com.google.android.gms.maps' and @name != 'com.google.android.gms.maps.model']" />
+  <remove-node path="/api/package[@name='com.google.android.gms.maps.model']/class[contains (@name, 'Creator')]" />
+  <attr path="/api/package[@name='com.google.android.gms.maps']" name="managedName">Android.Gms.Maps</attr>
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']" name="managedName">Android.Gms.Maps.Model</attr>
+  
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='icon']" name="managedName">SetIcon</attr>
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='position']" name="managedName">SetPosition</attr>
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='title']" name="managedName">SetTitle</attr>
+</metadata>

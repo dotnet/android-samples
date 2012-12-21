@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+  <string name="alpha">Alpha</string>
+  <string name="animate">Animate</string>
+  <string name="basic_map">Basic Map</string>
+  <string name="basic_description">Launches a map</string>
+  <string name="camera_demo">Camera</string>
+  <string name="camera_description">Demonstrates camera functions.</string>
+  <string name="clear_map">Clear</string>
+  <string name="compass">Compass</string>
+  <string name="custom_info_contents">Custom info contents</string>
+  <string name="custom_info_window">Custom info window</string>
+  <string name="default_info_window">Default info window</string>
+  <string name="demo_title">Google Maps API Demos</string>
+  <string name="down_arrow">\u2193</string>
+  <string name="drag_melbourne">Drag Melbourne</string>
+  <string name="hue">Hue</string>
+  <string name="events_demo">Events</string>
+  <string name="events_description">Demonstrates event handling.</string>
+  <string name="fill_alpha">Fill Alpha</string>
+  <string name="fill_hue">Fill Hue</string>
+  <string name="go_to_bondi">Go to Bondi</string>
+  <string name="go_to_sydney">Go to Sydney</string>
+  <string name="groundoverlay_demo">Ground Overlays</string>
+  <string name="groundoverlay_description">Demonstrates how to add a GroundOverlay to a map.</string>
+  <string name="hybrid">Hybrid</string>
+  <string-array name="layers_array">
+    <item>@string/normal</item>
+    <item>@string/hybrid</item>
+    <item>@string/satellite</item>
+    <item>@string/terrain</item>
+  </string-array>
+  <string name="layers_demo">Layers</string>
+  <string name="layers_description">Demonstrates the different map layers.</string>
+  <string name="left_arrow">\u2190</string>
+  <string name="locationsource_demo">Location Source Demo</string>
+  <string name="locationsource_description">Demonstrates how to use a custom location source.</string>
+  <string name="marker_demo">Markers</string>
+  <string name="marker_description">Demonstrates how to add Markers to a map.</string>
+  <string name="multi_map_demo">Multiple Maps</string>
+  <string name="multi_map_description">Demonstrates how to show multiple maps in a single activity.</string>
+  <string name="map_not_ready">Map is not ready yet</string>
+  <string name="move_the_camera">Move the camera</string>
+  <string name="my_location">My Location</string>
+  <string name="mylocation_button">MyLocation Button</string>
+  <string name="mylocation_layer">MyLocation Layer</string>
+  <string name="no_demos">No demos</string>
+  <string name="normal">Normal</string>
+  <string name="options_demo">Options</string>
+  <string name="options_description">Demonstrates how to use Options to initialize a map.</string>
+  <string name="polygon_demo">Polygons</string>
+  <string name="polygon_description">Demonstrates how to add Polygons to a map.</string>
+  <string name="polyline_demo">Polylines</string>
+  <string name="polyline_description">Demonstrates how to add Polylines to a map.</string>
+  <string name="programmatic_demo">Programmatically add map</string>
+  <string name="programmatic_description">Demonstrates how to add a MapFragment programmatically.</string>
+  <string name="properties_sydney_polyline">Properties for Sydney Polyline</string>
+  <string name="properties_sydney_polygon">Properties for Sydney Polygon</string>
+  <string name="rotate">Rotate Gestures</string>
+  <string name="raw_mapview_demo">Raw MapView</string>
+  <string name="raw_mapview_description">Demonstrates how to use a raw MapView.</string>
+  <string name="reset_map">Reset</string>
+  <string name="retain_map">Retain map</string>
+  <string name="retain_map_description">Demonstrates how to reuse a MapFragment.</string>
+  <string name="right_arrow">\u2192</string>
+  <string name="satellite">Satellite</string>
+  <string name="scroll">Scroll Gestures</string>
+  <string name="stop_animation">\u25A0</string>
+  <string name="stroke_width">Stroke Width</string>
+  <string name="tap_instructions">Tap or long press on the map</string>
+  <string name="terrain">Terrain</string>
+  <string name="tile_overlay_demo">Tile Overlays</string>
+  <string name="tile_overlay_description">Demonstrates how to add a tile overlay to a map.</string>
+  <string name="tilt">Tilt Gestures</string>
+  <string name="traffic">Traffic</string>
+  <string name="transparency">Transparency</string>
+  <string name="uisettings_demo">UI Settings</string>
+  <string name="uisettings_description">Demonstrates how to alter user interface settings.</string>
+  <string name="up_arrow">\u2191</string>
+  <string name="width">Width</string>
+  <string name="zoom_buttons">Zoom Buttons</string>
+  <string name="zoom_gestures">Zoom Gestures</string>
+  <string name="zoom_in">+</string>
+  <string name="zoom_out">-</string>
+</resources>
