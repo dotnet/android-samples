@@ -1,0 +1,11 @@
+<metadata>
+	<remove-node path="/api/package[@name='com.google.android.gms.maps']/class[@name='GoogleMapOptionsCreator']" />
+	<remove-node path="/api/package[@name!='com.google.android.gms.maps' and @name != 'com.google.android.gms.maps.model']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.maps.model']/class[contains (@name, 'Creator')]" />
+	<attr path="/api/package[@name='com.google.android.gms.maps']" name="managedName">Android.Gms.Maps</attr>
+	<attr path="/api/package[@name='com.google.android.gms.maps.model']" name="managedName">Android.Gms.Maps.Model</attr>
+  
+  <attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='position']" name="managedName">SetPosition</attr>
+	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
+	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='title']" name="managedName">SetTitle</attr>
+</metadata>
