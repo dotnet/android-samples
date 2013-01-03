@@ -5,7 +5,11 @@ This is the sample code for the [Maps and Location article](http://docs.xamarin.
 
 This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library.
 
-This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must add 
+This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
+
+**Note:** You must use Mono for Android 4.4.x or higher to compile the Java Binding project. It is recommended that you use the most recent stable build of Mono For Android, which is 4.4.54 as of January 3, 2013.
+
+**Note:** You must have the Android Support Packages installed.
 
 To include the Google Play services client library: 
 
