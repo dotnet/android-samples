@@ -120,9 +120,4 @@
       <Name>ActionBarSherlock</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <AndroidJavaLibrary Include="..\ActionBarSherlock\Jars\android-support-v4.jar">
-      <Link>android-support-v4.jar</Link>
-    </AndroidJavaLibrary>
-  </ItemGroup>
 </Project>

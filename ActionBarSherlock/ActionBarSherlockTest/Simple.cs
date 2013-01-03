@@ -10,13 +10,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Com.Actionbarsherlock.App;
-using Com.Actionbarsherlock.View;
+using ActionbarSherlock.App;
+using ActionbarSherlock.View;
 
-using IMenu = global::Com.Actionbarsherlock.View.IMenu;
-using IMenuItem = global::Com.Actionbarsherlock.View.IMenuItem;
-using MenuItem = global::Com.Actionbarsherlock.View.MenuItem;
-using ISubMenu = global::Com.Actionbarsherlock.View.ISubMenu;
+using IMenu = global::ActionbarSherlock.View.IMenu;
+using IMenuItem = global::ActionbarSherlock.View.IMenuItem;
+using MenuItem = global::ActionbarSherlock.View.MenuItem;
+using ISubMenu = global::ActionbarSherlock.View.ISubMenu;
 
 namespace Mono.ActionbarsherlockTest
 {

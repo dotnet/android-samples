@@ -24,13 +24,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Util;
-using Com.Actionbarsherlock.App;
-using Com.Actionbarsherlock.View;
+using ActionbarSherlock.App;
+using ActionbarSherlock.View;
 
-using IMenu = global::Com.Actionbarsherlock.View.IMenu;
-using IMenuItem = global::Com.Actionbarsherlock.View.IMenuItem;
-using MenuItem = global::Com.Actionbarsherlock.View.MenuItem;
-using ISubMenu = global::Com.Actionbarsherlock.View.ISubMenu;
+using IMenu = global::ActionbarSherlock.View.IMenu;
+using IMenuItem = global::ActionbarSherlock.View.IMenuItem;
+using MenuItem = global::ActionbarSherlock.View.MenuItem;
+using ISubMenu = global::ActionbarSherlock.View.ISubMenu;
 
 namespace Mono.ActionbarsherlockTest
 {
@@ -70,6 +70,7 @@ namespace Mono.ActionbarsherlockTest
 			sub.Add (0, Resource.Style.Theme_Sherlock_Light_DarkActionBar, 0, "Light (Dark Action Bar)");
 			sub.Item.SetShowAsAction (MenuItem.ShowAsActionAlways | MenuItem.ShowAsActionWithText);
 			return true;
+
 		}
 	
 		public override bool OnOptionsItemSelected (IMenuItem item)
