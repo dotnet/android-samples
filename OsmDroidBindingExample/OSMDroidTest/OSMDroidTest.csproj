@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="OsmDroid">
-      <HintPath>..\lib\OsmDroid.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -75,5 +72,11 @@
     <AndroidJavaLibrary Include="..\lib\osmdroid-android-3.0.8.jar">
       <Link>osmdroid-android-3.0.8.jar</Link>
     </AndroidJavaLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OsmDroidBinding\OsmDroid.csproj">
+      <Project>{F6F0D1F9-F1D0-4535-AAAE-F7737F606E06}</Project>
+      <Name>OsmDroid</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
