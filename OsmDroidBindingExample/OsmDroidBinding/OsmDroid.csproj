@@ -50,16 +50,6 @@
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <InputJar Include="..\lib\osmdroid-android-3.0.8.jar">
-      <Link>Jars\osmdroid-android-3.0.8.jar</Link>
-    </InputJar>
-  </ItemGroup>
-  <ItemGroup>
-    <ReferenceJar Include="..\lib\slf4j-android-1.5.8.jar">
-      <Link>Jars\slf4j-android-1.5.8.jar</Link>
-    </ReferenceJar>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -68,4 +58,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <EmbeddedJar Include="..\lib\osmdroid-android-3.0.8.jar">
+      <Link>Jars\osmdroid-android-3.0.8.jar</Link>
+    </EmbeddedJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="..\lib\slf4j-android-1.5.8.jar">
+      <Link>Jars\slf4j-android-1.5.8.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
 </Project>
