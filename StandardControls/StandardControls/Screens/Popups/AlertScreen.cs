@@ -30,7 +30,7 @@ namespace StandardControls {
                 Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 AlertDialog ad = builder.Create();
                 ad.SetTitle("An Alert");
-                ad.SetIcon(Resource.Drawable.Icon);
+                ad.SetIcon(Resource.Drawable.icon);
                 ad.SetMessage("Alert message...");
                 // Positive
                 ad.SetButton("OK", (s, e) => { Console.WriteLine("OK button clicked, alert dismissed"); });

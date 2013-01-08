@@ -20,7 +20,7 @@ namespace StandardControls {
         {
             // GroupId, ItemId, OrderId
             menu.Add(0, 0, 0, "Item 1").SetIcon(Android.Resource.Drawable.IcDialogEmail);
-            menu.Add(0, 1, 1, "Item 2").SetIcon(Resource.Drawable.Icon);
+            menu.Add(0, 1, 1, "Item 2").SetIcon(Resource.Drawable.icon);
             menu.Add(0, 2, 2, "Item 3").SetIcon(Android.Resource.Drawable.IcDialogMap);
             menu.Add(0, 3, 3, "Item 4").SetIcon(Android.Resource.Drawable.IcDialogInfo);
             menu.Add(0, 4, 4, "Item 5").SetIcon(Android.Resource.Drawable.IcMenuCamera);

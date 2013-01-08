@@ -67,6 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Source\" />
+    <Folder Include="Resources\drawable-ldpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\newark_nj_1922.png" />
@@ -77,11 +81,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\badge_victoria.png" />
     <AndroidResource Include="Resources\drawable-hdpi\badge_wa.png" />
     <AndroidResource Include="Resources\drawable-hdpi\custom_info_bubble.9.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-mdpi\arrow.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_info_bubble.9.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\layout\basic_demo.xml" />
     <AndroidResource Include="Resources\layout\camera_demo.xml" />
     <AndroidResource Include="Resources\layout\custom_info_contents.xml" />
@@ -100,5 +101,10 @@
     <AndroidResource Include="Resources\layout\raw_mapview_demo.xml" />
     <AndroidResource Include="Resources\layout\ui_settings_demo.xml" />
     <AndroidResource Include="Resources\values\demo_strings.xml" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
   </ItemGroup>
 </Project>

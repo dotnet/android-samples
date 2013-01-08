@@ -12,30 +12,31 @@
     <RootNamespace>Mono.Samples.SanityTests</RootNamespace>
     <AssemblyName>SanityTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidResgenFile>.\R.cs</AndroidResgenFile>
+    <AndroidResgenFile>R.cs</AndroidResgenFile>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidApplication>true</AndroidApplication>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;MONODROID_TIMING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <MandroidI18n>west</MandroidI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE;MONODROID_TIMING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <MandroidI18n>west</MandroidI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -59,14 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
-    <AndroidResource Include="Resources\Drawable-hdpi\Icon.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\StatSample.png" />
-    <AndroidResource Include="Resources\Drawable-mdpi\Icon.png" />
     <AndroidResource Include="Resources\Drawable-mdpi\StatSample.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidJavaLibrary Include="$(OutputPath)\custom.jar" />
     <AndroidJavaSource Include="TestCubeEngine.java" Condition="$(AndroidApiLevel) != '4'" />
+    <AndroidJavaLibrary Include="%24%28OutputPath%29\custom.jar" />
   </ItemGroup>
   <ItemGroup>
     <IncludeInCustomJar Include="Adder.java" />
@@ -83,16 +86,10 @@
       BuildNativeLibs;BuildNativeJars;$(BuildDependsOn)
     </BuildDependsOn>
   </PropertyGroup>
-  <Target Name="BuildNativeLibs"
-      Inputs="jni\foo.c;jni\bar.c;jni\Android.mk"
-      Outputs="@(AndroidNativeLibrary)"
-      >
+  <Target Name="BuildNativeLibs" Inputs="jni\foo.c;jni\bar.c;jni\Android.mk" Outputs="@(AndroidNativeLibrary)">
     <Exec Command="$(ANDROID_NDK_PATH)\ndk-build" />
   </Target>
-  <Target Name="BuildNativeJars"
-      Inputs="Adder.java"
-      Outputs="$(OutputPath)\custom.jar"
-      >
+  <Target Name="BuildNativeJars" Inputs="Adder.java" Outputs="$(OutputPath)\custom.jar">
     <MakeDir Directories="$(OutputPath)\classes" />
     <Exec Command="javac -d $(OutputPath)\classes @(IncludeInCustomJar)" />
     <Exec Command="jar cf $(OutputPath)\custom.jar -C $(OutputPath)\classes ." />
@@ -116,4 +113,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Resources\drawable-ldpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+  </ItemGroup>
 </Project>
