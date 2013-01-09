@@ -21,7 +21,7 @@ namespace StockService
 		public override void OnReceive (Context context, Intent intent)
 		{
 			var nMgr = (NotificationManager)context.GetSystemService (Context.NotificationService);
-			var notification = new Notification (Resource.Drawable.Icon, "New stock data is available");
+			var notification = new Notification (Resource.Drawable.icon, "New stock data is available");
 			var pendingIntent = PendingIntent.GetActivity (context, 0, new Intent (context, typeof(StockActivity)), 0);
 			notification.SetLatestEventInfo (context, "Stocks Updated", "New stock data is available", pendingIntent);
 			nMgr.Notify (0, notification);

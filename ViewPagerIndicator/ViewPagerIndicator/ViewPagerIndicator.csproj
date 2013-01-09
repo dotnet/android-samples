@@ -18,25 +18,25 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>False</ConsolePause>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
@@ -86,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\layout\vpi__tab.xml" />
     <AndroidResource Include="Resources\values\vpi__attrs.xml" />
     <AndroidResource Include="Resources\values\vpi__colors.xml" />
@@ -123,26 +122,28 @@
     <AndroidResource Include="Resources\drawable-hdpi\custom_tab_indicator_unselected.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\custom_tab_indicator_unselected_focused.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\custom_tab_indicator_unselected_pressed.9.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_selected.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_selected_focused.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_selected_pressed.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_unselected.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_unselected_focused.9.png" />
     <AndroidResource Include="Resources\drawable-mdpi\custom_tab_indicator_unselected_pressed.9.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_selected.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_selected_focused.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_selected_pressed.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_unselected.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_unselected_focused.9.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\custom_tab_indicator_unselected_pressed.9.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\layout\simple_circles.xml" />
     <AndroidResource Include="Resources\layout\simple_circles_vertical.xml" />
     <AndroidResource Include="Resources\layout\simple_titles.xml" />
     <AndroidResource Include="Resources\layout\themed_circles.xml" />
     <AndroidResource Include="Resources\layout\themed_titles.xml" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -153,5 +154,7 @@
     <Folder Include="Titles\" />
     <Folder Include="Tabs\" />
     <Folder Include="Library\" />
+    <Folder Include="Resources\drawable-ldpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
 </Project>

@@ -27,7 +27,7 @@ namespace DemoService
 
 		void StartServiceInForeground ()
 		{
-			var ongoing = new Notification (Resource.Drawable.Icon, "DemoService in foreground");
+			var ongoing = new Notification (Resource.Drawable.icon, "DemoService in foreground");
 			var pendingIntent = PendingIntent.GetActivity (this, 0, new Intent (this, typeof(DemoActivity)), 0);
 			ongoing.SetLatestEventInfo (this, "DemoService", "DemoService is running in the foreground", pendingIntent);
 
@@ -44,7 +44,7 @@ namespace DemoService
 		void SendNotification ()
 		{
 			var nMgr = (NotificationManager)GetSystemService (NotificationService);
-			var notification = new Notification (Resource.Drawable.Icon, "Message from demo service");
+			var notification = new Notification (Resource.Drawable.icon, "Message from demo service");
 			var pendingIntent = PendingIntent.GetActivity (this, 0, new Intent (this, typeof(DemoActivity)), 0);
 			notification.SetLatestEventInfo (this, "Demo Service Notification", "Message from demo service", pendingIntent);
 			nMgr.Notify (0, notification);
