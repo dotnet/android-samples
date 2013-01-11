@@ -58,7 +58,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\bg_striped.xml" />
     <AndroidResource Include="Resources\drawable\bg_striped_split.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\bg_striped_img.png" />
