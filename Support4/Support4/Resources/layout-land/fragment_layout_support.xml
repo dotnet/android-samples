@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <fragment
-        class="supportv4.app.FragmentLayoutSupport$TitlesFragment"
+        class="support4.FragmentLayoutSupport_TitlesFragment"
         android:id="@+id/titles"
         android:layout_weight="1"
         android:layout_width="0px"
