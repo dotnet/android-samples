@@ -135,7 +135,4 @@
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidJavaLibrary Include="SupportLib\android-support-v4.jar" />
-  </ItemGroup>
 </Project>
