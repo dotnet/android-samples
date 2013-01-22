@@ -1,9 +1,14 @@
 <metadata>
-	<!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+	<add-node path="/api/package[@name='com.slidingmenu.lib']/class[@name='SlidingMenu']">
+		<!-- 
+		We need this transform because the Java method setBehindCanvasTransformer can't be bound. The binding 
+		generator can't find the type com.slidingmenu.lib.R cannot be found. As a workaround we tell 
+		the binding generator to bind this method.
+		
+		See: http://forums.xamarin.com/discussion/comment/2868 
+		-->
+		<method abstract="false" deprecated="not deprecated" final="false" name="setBehindCanvasTransformer" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="t" type="com.slidingmenu.lib.SlidingMenu.CanvasTransformer" />
+		</method>
+	</add-node>
 </metadata>
