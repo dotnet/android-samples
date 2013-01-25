@@ -3,13 +3,14 @@ namespace MapsAndLocationDemo
     using System;
 
     using Android.App;
+    using Android.Content.PM;
     using Android.Gms.Maps;
     using Android.Gms.Maps.Model;
     using Android.OS;
     using Android.Support.V4.App;
     using Android.Widget;
 
-    [Activity(Label = "@string/activity_label_mapwithmarkers")]
+    [Activity(Label = "@string/activity_label_mapwithmarkers", ConfigurationChanges=ConfigChanges.Orientation)]
     public class MapWithMarkersActivity : FragmentActivity
     {
         private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);

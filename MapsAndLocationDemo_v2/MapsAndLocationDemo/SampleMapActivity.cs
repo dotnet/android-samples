@@ -1,6 +1,7 @@
 namespace MapsAndLocationDemo
 {
     using Android.App;
+    using Android.Content.PM;
     using Android.Gms.Maps;
     using Android.Gms.Maps.Model;
     using Android.OS;
@@ -9,7 +10,7 @@ namespace MapsAndLocationDemo
 
     using Debug = System.Diagnostics.Debug;
 
-    [Activity(Label = "@string/activity_label_samplemap")]
+    [Activity(Label = "@string/activity_label_samplemap", ConfigurationChanges=ConfigChanges.Orientation)]
     public class SampleMapActivity : FragmentActivity
     {
         private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
