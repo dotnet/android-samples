@@ -45,7 +45,7 @@ using Environment = Android.OS.Environment;
 namespace GestureBuilder
 {
 	[Activity (Label = "@string/application_name",
-               Icon="@drawable/icon"]
+               Icon="@drawable/icon")]
 	[IntentFilter (new string [] {"android.intent.action.MAIN"}, Categories = new string [] {
 		Intent.CategoryLauncher, Intent.CategoryDefault})]
 	public class GestureBuilderActivity : ListActivity
@@ -456,5 +456,4 @@ namespace GestureBuilder
 			}
 		}
 	}
-
-	}
+}
