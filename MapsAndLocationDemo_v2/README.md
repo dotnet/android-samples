@@ -17,9 +17,9 @@ To include the Google Play services client library:
 2. Copy the directory located at `extras/google/google_play_services/libproject/google-play-services_lib` into the same directory as this README.
 3. Build the project with `ant` like so:
     
-    cd google-play-services_lib
-    android project update -p .
-    ant debug
+        cd google-play-services_lib
+        android project update -p .
+        ant debug
 
 4. Open the `MapsAndLocationDemo.sln`. Add the file `google-play-services_lib/project.properties` to the `GooglePlayServices` project as a *linked* file.
 
