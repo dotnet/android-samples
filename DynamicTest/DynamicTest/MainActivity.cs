@@ -36,36 +36,45 @@ namespace DynamicTest
 				Directory.CreateDirectory (baseDir);
 
 			var data = new List<IDictionary<string,object>> ();
-			var hr = new HttpWebRequest (new Uri ("http://api.twitter.com/1/statuses/public_timeline.json"));
+			var urls = new Dictionary<Uri,List<string>> ();
+			var getUrl = new Uri ("https://api.github.com/users/mono/repos");
 #if REACTIVE
+			var hr = new HttpWebRequest (getUrl);
 			var req = Observable.FromAsyncPattern<WebResponse> (hr.BeginGetResponse, hr.EndGetResponse);
 			Observable.Defer (req).Subscribe (v => {
-#else
-			{
 				var v = hr.GetResponse ();
+				var json = (IEnumerable<JsonValue>) JsonValue.Load (v.GetResponseStream ());
+#else
+			var wc = new WebClient ();
+			wc.DownloadStringCompleted += (sender, e) => {
+				var v = e.Result;
+				var json = (IEnumerable<JsonValue>) JsonValue.Parse (v);
 #endif
-				var urls = new Dictionary<Uri,string> ();
-				var json = (IEnumerable<JsonValue>)JsonValue.Load (v.GetResponseStream ());
 #if REACTIVE
 				json.ToObservable ().Select (j => j.AsDynamic ()).Subscribe (jitem => {
 #else
-				var items = from item in json select item.AsDynamic ();
-				foreach (dynamic jitem in items) {
+				foreach (var item in json.Select (j => j.AsDynamic ())) {
 #endif
-					var dic = new Dictionary<string,object> ();
-					dic ["Text"] = (string) jitem.text;
-					dic ["Name"] = (string) jitem.user.name;
-					var uri = new Uri ((string) jitem.user.profile_image_url);
-					var file = Path.Combine (baseDir, (string) jitem.id + new FileInfo (uri.LocalPath).Extension);
-					urls.Add (uri, file);
-					dic ["Icon"] = Path.Combine (baseDir, file);
-					data.Add (dic);
+					var uri = new Uri ((string) item.owner.avatar_url);
+					var file = Path.Combine (baseDir, (string) item.id + new FileInfo (uri.LocalPath).Extension);
+					if (!urls.ContainsKey (uri))
+						urls.Add (uri, new List<string> () {file});
+					else
+						urls [uri].Add (file);
+					data.Add (new JavaDictionary<string,object> () { {"Text", item.description}, {"Name", item.name}, {"Icon", Path.Combine (baseDir, file) }});
 #if REACTIVE
 				});
 #else
 				}
 #endif
-				urls.ToList ().ForEach (p => new WebClient ().DownloadFileAsync (p.Key, p.Value));
+				urls.ToList ().ForEach (p => {
+						var iwc = new WebClient ();
+						iwc.DownloadDataCompleted += (isender, ie) => p.Value.ForEach (s => {
+							using (var fs = File.Create (s))
+								fs.Write (ie.Result, 0, ie.Result.Length);
+						});
+						iwc.DownloadDataAsync (p.Key);
+					});
 			
 				var from = new string [] {"Text", "Name", "Icon"};
 				var to = new int [] { Resource.Id.textMessage, Resource.Id.textName, Resource.Id.iconView};
@@ -76,7 +85,8 @@ namespace DynamicTest
 #if REACTIVE
 			});
 #else
-			}
+			};
+			wc.DownloadStringAsync (getUrl);
 #endif
 		}
 	}
