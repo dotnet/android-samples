@@ -38,6 +38,10 @@ The location of the debug.keystore file that Mono for Android uses depends on yo
 - **Windows Vista / Windows 7 / Windows 8**: `C:\Users\[USERNAME]\AppData\Local\Xamarin\Mono for Android\debug.keystore`
 - **OSX** : `/Users/[USERNAME]/.local/share/Xamarin/Mono for Android/debug.keystore`
 
+To obtain the SHA1 fingerprint of the debug keystore, you can use the `keytool` command that is a part of the JDK. This is an example of using `keytool` at the command-line:
+
+    $ keytool -V -list -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
+
 A Note About Google Play Services
 ---------------------------------
 
