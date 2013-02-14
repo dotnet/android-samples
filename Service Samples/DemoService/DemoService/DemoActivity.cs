@@ -106,13 +106,13 @@ namespace DemoService
 			public void OnServiceConnected (ComponentName name, IBinder service)
 			{
 				var demoServiceBinder = service as DemoServiceBinder;
+				
 				if (demoServiceBinder != null) {
-					var binder = (DemoServiceBinder)service;
-					activity.binder = binder;
+					activity.binder = demoServiceBinder;
 					activity.isBound = true;
 
 					// keep instance for preservation across configuration changes
-					this.binder = (DemoServiceBinder)service;
+					this.binder = demoServiceBinder;
 				}
 			}
 
