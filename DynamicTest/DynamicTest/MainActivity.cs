@@ -65,7 +65,7 @@ namespace DynamicTest
 						urls.Add (uri, new List<string> () {file});
 					else
 						urls [uri].Add (file);
-					data.Add (new JavaDictionary<string,object> () { {"Text", ((string) item.commit.message).Trim ()}, {"Name", item.author.login}, {"Icon", Path.Combine (baseDir, file) }});
+					data.Add (new JavaDictionary<string,object> () { {"Text", item.commit.message}, {"Name", item.author.login}, {"Icon", Path.Combine (baseDir, file) }});
 #if REACTIVE
 				});
 #else
