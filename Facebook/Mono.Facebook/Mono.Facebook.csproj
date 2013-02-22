@@ -41,9 +41,14 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Additions\Com.Facebook.RequestAsyncTask.cs">
+      <DependentUpon>Com.Facebook.RequestAsyncTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Additions\Com.Facebook.Session.AutoPublishAsyncTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
@@ -56,6 +61,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <LibraryProjectZip Include="com.android.facebook.zip" />
+    <LibraryProjectZip Include="Jars\facebook-android-sdk.zip" />
   </ItemGroup>
 </Project>
