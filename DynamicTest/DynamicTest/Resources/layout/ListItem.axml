@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:id="@+id/iconView"
         android:layout_marginRight="0.0dp"
         android:padding="10dp" />
