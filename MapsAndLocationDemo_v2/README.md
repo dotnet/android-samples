@@ -11,6 +11,8 @@ This project does not include the Google Play services client library, which is 
 
 **Note:** You must have the Android Support Packages installed.
 
+**Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
+
 
 Building the Client Library
 ---------------------------
