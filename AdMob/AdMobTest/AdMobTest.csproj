@@ -72,11 +72,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidJavaLibrary Include="..\AdMob\Jars\GoogleAdMobAdsSdk-6.0.1.jar">
-      <Link>GoogleAdMobAdsSdk-6.0.1.jar</Link>
-    </AndroidJavaLibrary>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-ldpi\" />
     <Folder Include="Resources\drawable-mdpi\" />
