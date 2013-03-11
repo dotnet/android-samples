@@ -1,8 +1,6 @@
 Maps and Location Demo v2
 =========================
 
-This is the sample code for the [Maps and Location article](http://docs.xamarin.com/android/tutorials/Maps_and_Location), which has been updated to [Google Maps for Android v2](https://developers.google.com/maps/documentation/android/). 
-
 This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library.
 
 This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
