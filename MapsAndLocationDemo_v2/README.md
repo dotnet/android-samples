@@ -21,7 +21,7 @@ To access Google Maps v2, it is necessary to create a Mono for Android binding f
 3. Build the project with `ant` like so:
     
         cd google-play-services_lib
-        android project update -p .
+        android update project -p .
         ant debug
 
 4. Open the `MapsAndLocationDemo.sln`. Add the file `google-play-services_lib/project.properties` to the `GooglePlayServices` project as a *linked* file.
