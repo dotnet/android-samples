@@ -58,9 +58,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <ReferenceJar Include="Jars\android-support-v4.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <LibraryProjectZip Include="Jars\ActionBarSherlock-4.2.0.zip" />
   </ItemGroup>
 </Project>

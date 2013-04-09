@@ -24,13 +24,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Util;
-using ActionbarSherlock.App;
-using ActionbarSherlock.View;
+using Xamarin.ActionbarSherlockBinding.App;
+using Xamarin.ActionbarSherlockBinding.Views;
 
-using IMenu = global::ActionbarSherlock.View.IMenu;
-using IMenuItem = global::ActionbarSherlock.View.IMenuItem;
-using MenuItem = global::ActionbarSherlock.View.MenuItem;
-using ISubMenu = global::ActionbarSherlock.View.ISubMenu;
+using IMenu = Xamarin.ActionbarSherlockBinding.Views.IMenu;
+using IMenuItem = Xamarin.ActionbarSherlockBinding.Views.IMenuItem;
+using MenuItem = Xamarin.ActionbarSherlockBinding.Views.MenuItem;
+using ISubMenu = Xamarin.ActionbarSherlockBinding.Views.ISubMenu;
 
 namespace Mono.ActionbarsherlockTest
 {
