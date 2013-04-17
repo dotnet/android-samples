@@ -11,7 +11,7 @@ in the project.[*1] To make it usable:
 
 	To build it with ant, run:
 
-		- android project update -p .
+		- android update project -p .
 		- ant debug
 
 - In GooglePlayServices project, add a missing project file 
