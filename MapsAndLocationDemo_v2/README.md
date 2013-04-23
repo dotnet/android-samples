@@ -5,9 +5,9 @@ This code shows how to use Google Maps v2 in an Android application and how to c
 
 This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
 
-**Note:** You must use Mono for Android 4.4.x or higher to compile the Java Binding project. It is recommended that you use the most recent stable build of Mono For Android, which is 4.4.54 as of January 3, 2013.
+According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 54% of all Android devices are running Android 4.0 (API level 14) or higher. This project has been updated to target Android 4.0 or higher. See the section below on backwards compatibility with the older API's.
 
-**Note:** You must have the Android Support Packages installed.
+**Note:** You must use Mono for Android 4.4.x or higher to compile the Java Binding project. It is recommended that you use the most recent stable build of Mono For Android, which is 4.6.4 as of April 23, 2013.
 
 **Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
 
@@ -82,4 +82,22 @@ If the device does not have Google Play Services installed, you will see a stack
 		at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:597)
 		at dalvik.system.NativeStart.main(Native Method)
 	Sending signal. PID: 19208 SIG: 9
+	
+	
+Backwards Compatibility with GingerBread / Froyo
+------------------------------------------------
+
+Google Play Services is supported on Android 2.2 (API level 8) or higher. This binding will work on these older API's, but some changes must be made to the binding library project and the sample project first:
+
+* In the GooglePlayServices binding library, change the target framework to **Android 2.2**.
+* In the GooglePlayServices binding library, add a reference to **Mono.Android.Support.v4**.
+* In the MapsAndLocationDemo project, change the target framework to **Android 2.2**.
+* In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.v4**.
+* In the MapsAndLocationDemo fix the compile errors: 
+	* Change <code>FragmentManager</code> to <code>SupportFragmentManager</code>
+	* Change <code>Activity</code> to <code>FragmentActivity</code>
+	* Change <code>MapFragment</code> to <code>SupportMapFragment</code>
+	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
+
+At this point the binding will target Android 2.2 and will run on older devices.
 	    
