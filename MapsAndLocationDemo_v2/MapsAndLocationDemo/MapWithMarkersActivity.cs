@@ -7,11 +7,10 @@ namespace MapsAndLocationDemo
     using Android.Gms.Maps;
     using Android.Gms.Maps.Model;
     using Android.OS;
-    using Android.Support.V4.App;
     using Android.Widget;
 
     [Activity(Label = "@string/activity_label_mapwithmarkers", ConfigurationChanges=ConfigChanges.Orientation)]
-    public class MapWithMarkersActivity : FragmentActivity
+    public class MapWithMarkersActivity : Activity
     {
         private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
         private static readonly LatLng LeaveFromHereToMaui = new LatLng(82.4986, -62.348);
@@ -103,8 +102,8 @@ namespace MapsAndLocationDemo
                 .InvokeZoomControlsEnabled(false)
                 .InvokeCompassEnabled(true);
 
-            var fragTx = SupportFragmentManager.BeginTransaction();
-            var mapFragment = SupportMapFragment.NewInstance(mapOptions);
+            var fragTx = FragmentManager.BeginTransaction();
+            var mapFragment = MapFragment.NewInstance(mapOptions);
             fragTx.Add(Resource.Id.mapWithOverlay, mapFragment, "map");
             fragTx.Commit();
         }
@@ -113,7 +112,7 @@ namespace MapsAndLocationDemo
         {
             if (_map == null)
             {
-                var fragment = SupportFragmentManager.FindFragmentByTag("map") as SupportMapFragment;
+                var fragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
                 if (fragment != null)
                 {
                     _map = fragment.Map;

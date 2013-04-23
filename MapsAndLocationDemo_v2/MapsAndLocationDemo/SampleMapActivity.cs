@@ -5,13 +5,12 @@ namespace MapsAndLocationDemo
     using Android.Gms.Maps;
     using Android.Gms.Maps.Model;
     using Android.OS;
-    using Android.Support.V4.App;
     using Android.Widget;
 
     using Debug = System.Diagnostics.Debug;
 
     [Activity(Label = "@string/activity_label_samplemap", ConfigurationChanges=ConfigChanges.Orientation)]
-    public class SampleMapActivity : FragmentActivity
+    public class SampleMapActivity : Activity
     {
         private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
         private static readonly LatLng VimyRidge = new LatLng(50.379444, 2.773611);
@@ -31,7 +30,7 @@ namespace MapsAndLocationDemo
         protected override void OnResume()
         {
             base.OnResume();
-            var mapFragment =  (SupportMapFragment) SupportFragmentManager.FindFragmentByTag("map");
+            var mapFragment =  (MapFragment) FragmentManager.FindFragmentByTag("map");
 
             // The value of mapFragment.Map may be null if the mapFragment isn't completely initialize yet.
             // This will cause problems with other things too, like the CameraUpdateFactory.
@@ -55,8 +54,8 @@ namespace MapsAndLocationDemo
                 .InvokeZoomControlsEnabled(false)
                 .InvokeCompassEnabled(true);
 
-            var fragTx = SupportFragmentManager.BeginTransaction();
-            var mapFragment = SupportMapFragment.NewInstance(mapOptions);
+            var fragTx = FragmentManager.BeginTransaction();
+            var mapFragment = MapFragment.NewInstance(mapOptions);
             fragTx.Add(Resource.Id.map, mapFragment, "map");
             fragTx.Commit();
         }
