@@ -7,14 +7,16 @@ This project does not include the Google Play services client library, which is 
 
 According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 54% of all Android devices are running Android 4.0 (API level 14) or higher. This project has been updated to target Android 4.0 or higher. See the section below on backwards compatibility with the older API's.
 
-**Note:** You must use Mono for Android 4.4.x or higher to compile the Java Binding project. It is recommended that you use the most recent stable build of Mono For Android, which is 4.6.4 as of April 23, 2013.
+**Note:** You must use Mono for Android 4.4.x or higher to compile the Java binding project. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.6.4 as of April 23, 2013.
 
 **Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
 
 
-Building the Client Library
----------------------------
-To access Google Maps v2, it is necessary to create a Mono for Android binding for the Google Play services client library. This example has a binding library already, but there are some manual steps that must be taken so that the project will compile:
+Building the Google Play Client Services Library
+------------------------------------------------
+To access Google Maps v2, it is necessary to create a Xamarin.Android binding for the Google Play services client library. This example has a Xamarin.Android Binding Library project, but it does not have the Google Play Services client library. It is necessary to first compile the Google Play Client Services library. This section will outline how to do so using [Apache Ant](http://ant.apache.org/). It is assumed that you already have Apache Ant installed.
+
+To compile the Google Play Client Services library using Ant, follow these steps:
 
 1. Use the Android SDK Manager to install Google Play Services.
 2. Copy the directory located at `extras/google/google_play_services/libproject/google-play-services_lib` into the same directory as this README.
@@ -24,7 +26,21 @@ To access Google Maps v2, it is necessary to create a Mono for Android binding f
         android update project -p .
         ant debug
 
-4. Open the `MapsAndLocationDemo.sln`. Add the file `google-play-services_lib/project.properties` to the `GooglePlayServices` project as a *linked* file.
+4. Open the `MapsAndLocationDemo.sln`. Add the file `google-play-services_lib/project.properties` to the `GooglePlayServices` project as a ***linked*** file. It is crucial that <code>project.properties</code> be linked and not added. The following screenshot shows how to link <code>project.properties</code>:
+
+![Link File](/images/link_file.png)
+
+If this file is moved or copied to into the project, the build will fail and Xamarin.Android will display an error message similar to the following in the Build Output:
+
+    Error   1   The "CreateLibraryResourceArchive" task failed unexpectedly.
+      System.IO.PathTooLongException: The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters.
+      at System.IO.PathHelper.GetFullPathName()
+      at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength)
+      at System.IO.Path.GetFullPathInternal(String path)
+      at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+      at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+      at Xamarin.Android.Tasks.MonoAndroidHelper.CopyIfChanged(String source, String destination)
+
 
 A bash script file has been provided which will automate this step for you. It assumes that you already have `ant` installed somewhere in your path and that the environment variable `$ANDROID_HOME` holds the path to your Android SDK.
 
@@ -33,7 +49,7 @@ Google Maps v2 API Key
 
 You must [obtain a new API Key](https://developers.google.com/maps/documentation/android/start#the_google_maps_api_key) for Google Maps v2, API keys from Google Maps v1 will not work. 
 
-The location of the debug.keystore file that Mono for Android uses depends on your platform:
+The location of the debug.keystore file that Xamarin.Android uses depends on your platform:
 
 - **Windows Vista / Windows 7 / Windows 8**: `C:\Users\[USERNAME]\AppData\Local\Xamarin\Mono for Android\debug.keystore`
 - **OSX** : `/Users/[USERNAME]/.local/share/Xamarin/Mono for Android/debug.keystore`
