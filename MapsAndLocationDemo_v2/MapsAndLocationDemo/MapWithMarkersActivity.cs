@@ -21,6 +21,7 @@ namespace MapsAndLocationDemo
                                                                                 new LatLng(41.311197, -72.902646)
                                                                             };
         private string _gotoMauiMarkerId;
+        private MapFragment _mapFragment;
         private GoogleMap _map;
         private Marker _polarBearMarker;
         private GroundOverlay _polarBearOverlay;
@@ -30,7 +31,26 @@ namespace MapsAndLocationDemo
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.MapWithOverlayLayout);
-            InitMap();
+            InitMapFragment();
+            SetupMapIfNeeded();
+        }
+
+
+        private void InitMapFragment ()
+        {
+            _mapFragment = FragmentManager.FindFragmentByTag ("map") as MapFragment;
+            if (_mapFragment == null) {
+                var mapOptions = new GoogleMapOptions ()
+                    .InvokeMapType (GoogleMap.MapTypeSatellite)
+                        .InvokeZoomControlsEnabled (false)
+                        .InvokeCompassEnabled (true);
+                
+                var fragTx = FragmentManager.BeginTransaction ();
+                _mapFragment = MapFragment.NewInstance (mapOptions);
+                fragTx.Add (Resource.Id.mapWithOverlay, _mapFragment, "map");
+                fragTx.Commit ();
+                
+            }
         }
 
         protected override void OnPause()
@@ -40,26 +60,21 @@ namespace MapsAndLocationDemo
             // Pause the GPS - we won't have to worry about showing the 
             // location.
             _map.MyLocationEnabled = false;
+
+            _map.MarkerClick -= MapOnMarkerClick;
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            if (MapIsSetup())
-            {
-                // Enable the my-location layer.
-                _map.MyLocationEnabled = true;
+            SetupMapIfNeeded();
 
-                AddMonkeyMarkersToMap();
-                AddInitialPolarBarToMap();
+            _map.MyLocationEnabled = true;
 
-                // Move the map so that it is showing the markers we added above.
-                _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
-
-                // Setup a handler for when the user clicks on a marker.
-                _map.MarkerClick += MapOnMarkerClick;
-            }
+            // Setup a handler for when the user clicks on a marker.
+            _map.MarkerClick += MapOnMarkerClick;
         }
+
 
         private void AddInitialPolarBarToMap()
         {
@@ -92,33 +107,22 @@ namespace MapsAndLocationDemo
             }
         }
 
-        /// <summary>
-        ///   All we do here is add a SupportMapFragment to the Activity.
-        /// </summary>
-        private void InitMap()
-        {
-            var mapOptions = new GoogleMapOptions()
-                .InvokeMapType(GoogleMap.MapTypeSatellite)
-                .InvokeZoomControlsEnabled(false)
-                .InvokeCompassEnabled(true);
 
-            var fragTx = FragmentManager.BeginTransaction();
-            var mapFragment = MapFragment.NewInstance(mapOptions);
-            fragTx.Add(Resource.Id.mapWithOverlay, mapFragment, "map");
-            fragTx.Commit();
-        }
-
-        private bool MapIsSetup()
+        private void SetupMapIfNeeded()
         {
             if (_map == null)
             {
-                var fragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
-                if (fragment != null)
+                _map = _mapFragment.Map;
+                if (_map != null) 
                 {
-                    _map = fragment.Map;
+                    AddMonkeyMarkersToMap();
+                    AddInitialPolarBarToMap();
+
+                    // Move the map so that it is showing the markers we added above.
+                    _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
+
                 }
             }
-            return _map != null;
         }
 
         private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)

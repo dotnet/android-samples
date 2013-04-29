@@ -9,86 +9,104 @@ namespace MapsAndLocationDemo
 
     using Debug = System.Diagnostics.Debug;
 
-    [Activity(Label = "@string/activity_label_samplemap", ConfigurationChanges=ConfigChanges.Orientation)]
+    [Activity(Label = "@string/activity_label_samplemap")]
     public class SampleMapActivity : Activity
     {
-        private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
-        private static readonly LatLng VimyRidge = new LatLng(50.379444, 2.773611);
+        private static readonly LatLng Passchendaele = new LatLng (50.897778, 3.013333);
+        private static readonly LatLng VimyRidge = new LatLng (50.379444, 2.773611);
         private GoogleMap _map;
+        private MapFragment _mapFragment;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate (Bundle bundle)
         {
-            base.OnCreate(bundle);
-            SetContentView(Resource.Layout.MapLayout);
+            base.OnCreate (bundle);
+            SetContentView (Resource.Layout.MapLayout);
 
-            InitMap();
-            SetupAnimateToButton();
-            SetupZoomInButton();
-            SetupZoomOutButton();
+            InitMapFragment ();
+
+            SetupMapIfNeeded (); // It's not gauranteed that the map will be available at this point.
+
+            SetupAnimateToButton ();
+            SetupZoomInButton ();
+            SetupZoomOutButton ();
         }
 
-        protected override void OnResume()
+        protected override void OnResume ()
         {
-            base.OnResume();
-            var mapFragment =  (MapFragment) FragmentManager.FindFragmentByTag("map");
-
-            // The value of mapFragment.Map may be null if the mapFragment isn't completely initialize yet.
-            // This will cause problems with other things too, like the CameraUpdateFactory.
-            // By initializing our GoogleMap here in OnResume, the MapFragment should be
-            // properly instantiated and ready for use.
-            _map = mapFragment.Map;
-            Debug.Assert(_map != null, "The _map cannot be null!");
-
-            // We create an instance of CameraUpdate, and move the map to it.
-            var cameraUpdate = CameraUpdateFactory.NewLatLngZoom(VimyRidge, 15);
-            _map.MoveCamera(cameraUpdate);
+            base.OnResume ();
+            SetupMapIfNeeded ();
         }
 
-        /// <summary>
-        ///   All we do here is add a SupportMapFragment
-        /// </summary>
-        private void InitMap()
+        private void InitMapFragment ()
         {
-            var mapOptions = new GoogleMapOptions()
-                .InvokeMapType(GoogleMap.MapTypeSatellite)
-                .InvokeZoomControlsEnabled(false)
-                .InvokeCompassEnabled(true);
+            _mapFragment = FragmentManager.FindFragmentByTag ("map") as MapFragment;
+            if (_mapFragment == null) {
+                var mapOptions = new GoogleMapOptions ()
+                .InvokeMapType (GoogleMap.MapTypeSatellite)
+                .InvokeZoomControlsEnabled (false)
+                .InvokeCompassEnabled (true);
 
-            var fragTx = FragmentManager.BeginTransaction();
-            var mapFragment = MapFragment.NewInstance(mapOptions);
-            fragTx.Add(Resource.Id.map, mapFragment, "map");
-            fragTx.Commit();
+                var fragTx = FragmentManager.BeginTransaction ();
+                _mapFragment = MapFragment.NewInstance (mapOptions);
+                fragTx.Add (Resource.Id.map, _mapFragment, "map");
+                fragTx.Commit ();
+
+            }
         }
 
-        private void SetupAnimateToButton()
+        private void SetupMapIfNeeded ()
         {
-            var animateButton = FindViewById<Button>(Resource.Id.animateButton);
+            if (_map == null) {
+                _map = _mapFragment.Map;
+                if (_map != null) {
+                    var marker1 = new MarkerOptions ();
+                    marker1.SetPosition (VimyRidge);
+                    marker1.SetTitle ("Vimy Ridge");
+                    _map.AddMarker (marker1);
+
+                    var marker2 = new MarkerOptions ();
+                    marker2.SetPosition (Passchendaele);
+                    marker2.SetTitle ("Passchendaele");
+                    _map.AddMarker (marker2);
+
+                    // We create an instance of CameraUpdate, and move the map to it.
+                    var cameraUpdate = CameraUpdateFactory.NewLatLngZoom (VimyRidge, 15);
+                    _map.MoveCamera (cameraUpdate);
+                }
+            }
+        }
+
+        private void SetupAnimateToButton ()
+        {
+            var animateButton = FindViewById<Button> (Resource.Id.animateButton);
             animateButton.Click += (sender, e) =>
-                                       {
-                                           // Move the camera to the Passchendaele Memorial in Belgium.
-                                           var builder = CameraPosition.InvokeBuilder();
-                                           builder.Target(Passchendaele);
-                                           builder.Zoom(18);
-                                           builder.Bearing(155);
-                                           builder.Tilt(25);
-                                           var cameraPosition = builder.Build();
+            {
+                // Move the camera to the Passchendaele Memorial in Belgium.
+                var builder = CameraPosition.InvokeBuilder ();
+                builder.Target (Passchendaele);
+                builder.Zoom (18);
+                builder.Bearing (155);
+                builder.Tilt (25);
+                var cameraPosition = builder.Build ();
 
-                                           // AnimateCamera provides a smooth, animation effect while moving
-                                           // the camera to the the position.
-                                           _map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
-                                       };
+                // AnimateCamera provides a smooth, animation effect while moving
+                // the camera to the the position.
+                _map.AnimateCamera (CameraUpdateFactory.NewCameraPosition (cameraPosition));
+            };
         }
 
-        private void SetupZoomInButton()
+        private void SetupZoomInButton ()
         {
-            var zoomInButton = FindViewById<Button>(Resource.Id.zoomInButton);
-            zoomInButton.Click += (sender, e) => { _map.AnimateCamera(CameraUpdateFactory.ZoomIn()); };
+            var zoomInButton = FindViewById<Button> (Resource.Id.zoomInButton);
+            zoomInButton.Click += (sender, e) => {
+                _map.AnimateCamera (CameraUpdateFactory.ZoomIn ()); };
         }
 
-        private void SetupZoomOutButton()
+        private void SetupZoomOutButton ()
         {
-            var zoomOutButton = FindViewById<Button>(Resource.Id.zoomOutButton);
-            zoomOutButton.Click += (sender, e) => { _map.AnimateCamera(CameraUpdateFactory.ZoomOut()); };
+            var zoomOutButton = FindViewById<Button> (Resource.Id.zoomOutButton);
+            zoomOutButton.Click += (sender, e) => {
+                _map.AnimateCamera (CameraUpdateFactory.ZoomOut ()); };
         }
     }
 }
