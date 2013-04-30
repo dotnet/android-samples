@@ -9,7 +9,7 @@ namespace MapsAndLocationDemo
     using Android.OS;
     using Android.Widget;
 
-    [Activity(Label = "@string/activity_label_mapwithmarkers", ConfigurationChanges=ConfigChanges.Orientation)]
+    [Activity(Label = "@string/activity_label_mapwithmarkers")]
     public class MapWithMarkersActivity : Activity
     {
         private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
