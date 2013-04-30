@@ -14,7 +14,16 @@ According to the [Android Dashboard](http://developer.android.com/about/dashboar
 
 Building the Google Play Client Services Library
 ------------------------------------------------
-To access Google Maps v2, it is necessary to create a Xamarin.Android binding for the Google Play services client library. This example has a Xamarin.Android Binding Library project, but it does not have the Google Play Services client library. It is necessary to first compile the Google Play Client Services library. This section will outline how to do so using [Apache Ant](http://ant.apache.org/). It is assumed that you already have Apache Ant installed.
+
+To access Google Maps v2, it is necessary to create a Xamarin.Android binding for the Google Play services client library. This example has a Xamarin.Android Binding Library project, but it does not have the Google Play Services client library. It is necessary to first compile the Google Play Client Services library. This section will outline how to do so .
+
+### Prequisites
+
+These directions assume that you have [Apache Ant](http://ant.apache.org/) installed and in your `$PATH`. 
+
+`android` is a command line utility that is required to prepare the Android Library project for compiliation. You must have the directory `$ANDROID_HOME/tools` has been added to your `PATH`. 
+
+### Compiling the Google Play Services client library
 
 To compile the Google Play Client Services library using Ant, follow these steps:
 
