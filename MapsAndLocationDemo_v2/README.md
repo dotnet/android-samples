@@ -1,11 +1,14 @@
 Maps and Location Demo v2
 =========================
 
-This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library.
+This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library. It contains two projects:
+
+* LocationDemo - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
+* SimpleMapDemo - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
 
 This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
 
-According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 54% of all Android devices are running Android 4.0 (API level 14) or higher. This project has been updated to target Android 4.0 or higher. See the section below on backwards compatibility with the older API's.
+According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 56% of all Android devices are running Android 4.0 (API level 14) or higher. To refelectit this, this sample has been updated to target Android 4.0 or higher. See the section below on backwards compatibility with the older API's.
 
 **Note:** You must use Mono for Android 4.4.x or higher to compile the Java binding project. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.6.4 as of April 23, 2013.
 
