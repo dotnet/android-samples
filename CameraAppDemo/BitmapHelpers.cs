@@ -9,7 +9,11 @@ namespace CameraAppDemo
         public static Bitmap LoadAndResizeBitmap(this string fileName, int width, int height)
         {
             // First we get the the dimensions of the file on disk
-            BitmapFactory.Options options = new BitmapFactory.Options { InJustDecodeBounds = true };
+            BitmapFactory.Options options = new BitmapFactory.Options
+                                                {
+                                                    InPurgeable = true,
+                                                    InJustDecodeBounds = true
+                                                };
             BitmapFactory.DecodeFile(fileName, options);
 
             // Next we calculate the ratio that we need to resize the image by
