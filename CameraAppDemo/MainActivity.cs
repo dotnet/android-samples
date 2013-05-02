@@ -36,8 +36,8 @@ namespace CameraAppDemo
             // display in ImageView. We will resize the bitmap to fit the display
             // Loading the full sized image will consume to much memory 
             // and cause the application to crash.
-            int height = Resources.DisplayMetrics.HeightPixels;
-            int width = _imageView.Height ;
+            int height = _imageView.Height;
+            int width = Resources.DisplayMetrics.WidthPixels;
             using (Bitmap bitmap = _file.Path.LoadAndResizeBitmap(width, height))
             {
                 _imageView.SetImageBitmap(bitmap);
