@@ -9,4 +9,6 @@
   <string name="app_name" >Simple Maps Demo</string>
   <string name="activity_label_samplemap" >Map Demo</string>
   <string name="activity_label_mapwithmarkers" >Map with Markers Demo</string>
+  <string name="basic_map">Basic Demo"</string>
+  <string name="basic_map_description">Display the MapFragment in an AXML file.</string>
 </resources>

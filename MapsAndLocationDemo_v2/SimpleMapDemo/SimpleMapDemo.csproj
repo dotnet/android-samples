@@ -29,7 +29,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -56,6 +55,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleMapActivity.cs" />
+    <Compile Include="Resources\BasicDemoActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -65,6 +65,7 @@
     <AndroidResource Include="Resources\Layout\Feature.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\BasicDemo.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -98,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GooglePlayServices\GooglePlayServices.csproj">
-      <Project>{c388951c-c427-4f44-a54b-5a64bae0da39}</Project>
+      <Project>{C388951C-C427-4F44-A54B-5A64BAE0DA39}</Project>
       <Name>GooglePlayServices</Name>
     </ProjectReference>
   </ItemGroup>

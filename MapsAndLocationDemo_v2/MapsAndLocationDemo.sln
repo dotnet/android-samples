@@ -13,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1316AF9A-0FBD-424F-B88C-2372661304DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1316AF9A-0FBD-424F-B88C-2372661304DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1316AF9A-0FBD-424F-B88C-2372661304DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -29,11 +25,15 @@ Global
 		{9999E674-10DA-49B2-91B3-D861F058939F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9999E674-10DA-49B2-91B3-D861F058939F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9999E674-10DA-49B2-91B3-D861F058939F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SimpleMapDemo\SimpleMapDemo.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MapsAndLocationDemo\MapsAndLocationDemo.csproj
 	EndGlobalSection
 EndGlobal

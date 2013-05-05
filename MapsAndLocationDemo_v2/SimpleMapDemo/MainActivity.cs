@@ -23,6 +23,7 @@
             _activities = new List<SampleActivity>
                               {
                                   new SampleActivity(Resource.String.mapsAppText, Resource.String.mapsAppTextDescription, null),
+								  new SampleActivity(Resource.String.basic_map, Resource.String.basic_map_description, typeof(BasicDemoActivity)),
                                   new SampleActivity(Resource.String.activity_label_samplemap, Resource.String.showMapActivityDescription, typeof(MapWithMarkersActivity)),
                                   new SampleActivity(Resource.String.activity_label_mapwithmarkers, Resource.String.showMapWithOverlaysDescription, typeof(SampleMapActivity))
                               };
