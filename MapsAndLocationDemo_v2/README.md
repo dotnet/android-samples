@@ -1,14 +1,20 @@
 Maps and Location Demo v2
 =========================
 
-This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library. It contains two projects:
+This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 56% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
 
-* LocationDemo - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
-* SimpleMapDemo - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
+The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
+
+* **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
+* **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
+* **GooglePlayServices** - this is a Java Binding project for the Google Play Services.
+
+In the `Debug_Froyo` build configuration, and it targets API level 8 and higher. This build configuration will only compile the following projects:
+
+* **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library. 
+* **GooglePlayServices_Froyo** - this is a Java Binding project for the Google Play Services.
 
 This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
-
-According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 56% of all Android devices are running Android 4.0 (API level 14) or higher. To refelectit this, this sample has been updated to target Android 4.0 or higher. See the section below on backwards compatibility with the older API's.
 
 **Note:** You must use Mono for Android 4.4.x or higher to compile the Java binding project. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.6.4 as of April 23, 2013.
 
@@ -118,14 +124,13 @@ Backwards Compatibility with GingerBread / Froyo
 Google Play Services is supported on Android 2.2 (API level 8) or higher. This binding will work on these older API's, but some changes must be made to the binding library project and the sample project first:
 
 * In the GooglePlayServices binding library, change the target framework to **Android 2.2**.
-* In the GooglePlayServices binding library, add a reference to **Mono.Android.Support.v4**.
+* In the GooglePlayServices binding library, add a reference to **Mono.Android.Support.V4**.
 * In the MapsAndLocationDemo project, change the target framework to **Android 2.2**.
-* In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.v4**.
+* In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.V4**.
 * In the MapsAndLocationDemo fix the compile errors: 
 	* Change <code>FragmentManager</code> to <code>SupportFragmentManager</code>
 	* Change <code>Activity</code> to <code>FragmentActivity</code>
 	* Change <code>MapFragment</code> to <code>SupportMapFragment</code>
 	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
 
-At this point the binding will target Android 2.2 and will run on older devices.
-	    
+At this point the binding will target Android 2.2 and will run on older devices. 
