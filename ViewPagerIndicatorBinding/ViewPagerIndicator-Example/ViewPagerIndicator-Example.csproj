@@ -38,7 +38,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -78,9 +77,6 @@
       <Project>{70E9CA2C-F457-436F-891E-F6FD8DD4C242}</Project>
       <Name>ViewPagerIndicator</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidJavaLibrary Include="android-support-v4.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
