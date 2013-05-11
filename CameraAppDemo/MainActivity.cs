@@ -7,6 +7,7 @@ namespace CameraAppDemo
     using Android.Content;
     using Android.Content.PM;
     using Android.Graphics;
+    using Android.Graphics.Drawables;
     using Android.OS;
     using Android.Provider;
     using Android.Widget;
@@ -40,6 +41,7 @@ namespace CameraAppDemo
             int width = Resources.DisplayMetrics.WidthPixels;
             using (Bitmap bitmap = _file.Path.LoadAndResizeBitmap(width, height))
             {
+                _imageView.RecycleBitmap ();
                 _imageView.SetImageBitmap(bitmap);
             }
         }
