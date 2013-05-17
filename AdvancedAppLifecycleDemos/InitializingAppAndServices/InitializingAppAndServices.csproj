@@ -53,9 +53,9 @@
     <Compile Include="Services\Service1.cs" />
     <Compile Include="Services\Service2.cs" />
     <Compile Include="Services\UpdatingEventArgs.cs" />
-    <Compile Include="Services\ServiceConnection&lt;T&gt;.cs" />
-    <Compile Include="Services\ServiceBinder&lt;T&gt;.cs" />
-    <Compile Include="Services\ServiceConnectedEventArgs&lt;T&gt;.cs" />
+    <Compile Include="Services\ServiceBinder_T.cs" />
+    <Compile Include="Services\ServiceConnectedEventArgs_T.cs" />
+    <Compile Include="Services\ServiceConnection_T.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
