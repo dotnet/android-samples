@@ -55,7 +55,7 @@ namespace Support4
 			}
 	    }
 		
-		public class TitlesFragment : ListFragment
+		public class TitlesFragment : Android.Support.V4.App.ListFragment
 		{
 			bool dualPane;
         	int curCheckPosition = 0;
@@ -119,7 +119,7 @@ namespace Support4
 						
 						var ft = FragmentManager.BeginTransaction();
 						ft.Replace(Resource.Id.details, details);
-						ft.SetTransition(FragmentTransaction.TransitFragmentFade);
+						ft.SetTransition(Android.Support.V4.App.FragmentTransaction.TransitFragmentFade);
 						ft.Commit();
 					}
 				}
@@ -133,7 +133,7 @@ namespace Support4
 			}
 		}
 		
-		public class DetailsFragment : Fragment
+		public class DetailsFragment : Android.Support.V4.App.Fragment
 		{
 			public DetailsFragment()
 			{

@@ -28,7 +28,7 @@ namespace Support4
 			}
 		}
 		
-		protected class UiFragment : Fragment
+		protected class UiFragment : Android.Support.V4.App.Fragment
 		{
 			RetainedFragment workFragment;
 			
@@ -65,7 +65,7 @@ namespace Support4
 			
 		}
 		
-		protected class RetainedFragment : Fragment
+		protected class RetainedFragment : Android.Support.V4.App.Fragment
 		{
 			ProgressBar progressBar;
 			int position;

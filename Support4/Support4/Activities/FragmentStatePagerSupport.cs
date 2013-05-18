@@ -45,7 +45,7 @@ namespace Support4
 		
 		protected class MyAdapter : FragmentStatePagerAdapter 
 		{
-	        public MyAdapter(FragmentManager fm) : base(fm)
+	        public MyAdapter(Android.Support.V4.App.FragmentManager fm) : base(fm)
 			{
 			}
 	
@@ -55,14 +55,14 @@ namespace Support4
 				}
 			}
 			
-			public override Fragment GetItem (int position)
+			public override Android.Support.V4.App.Fragment GetItem (int position)
 			{
 				return new ArrayListFragment(position);
 			}
 	
 	    }
 		
-		protected class ArrayListFragment : ListFragment
+		protected class ArrayListFragment : Android.Support.V4.App.ListFragment
 		{
 			int num;
 			

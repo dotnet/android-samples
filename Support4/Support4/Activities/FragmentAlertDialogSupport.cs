@@ -37,7 +37,7 @@ namespace Support4
 		}
 		
 		void ShowDialog() {
-			DialogFragment newFragment = new MyAlertDialogFragment(Resource.String.alert_dialog_two_buttons_title);
+			var newFragment = new MyAlertDialogFragment(Resource.String.alert_dialog_two_buttons_title);
 	        newFragment.Show(SupportFragmentManager, "dialog");
 	    }
 	
@@ -53,7 +53,7 @@ namespace Support4
 	        Log.Info("FragmentAlertDialog", "Negative click!");
 	    }
 		
-		public class MyAlertDialogFragment : DialogFragment 
+		public class MyAlertDialogFragment : Android.Support.V4.App.DialogFragment
 		{	
     	    public MyAlertDialogFragment (int title) 
 			{

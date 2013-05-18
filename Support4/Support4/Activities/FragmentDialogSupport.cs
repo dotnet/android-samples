@@ -81,7 +81,7 @@ namespace Support4
 	        return "STYLE_NORMAL";
     	}
 		
-		public class MyDialogFragment : DialogFragment
+		public class MyDialogFragment : Android.Support.V4.App.DialogFragment
 		{
 			int num;
 			
@@ -108,15 +108,15 @@ namespace Support4
 				num = Arguments.GetInt("num");
 	
 	            // Pick a style based on the num.
-	            int style = DialogFragment.StyleNormal, theme = 0;
+	            int style = Android.Support.V4.App.DialogFragment.StyleNormal, theme = 0;
 	            switch ((num-1)%6) {
-	                case 1: style = DialogFragment.StyleNoTitle; break;
-	                case 2: style = DialogFragment.StyleNoFrame; break;
-	                case 3: style = DialogFragment.StyleNoInput; break;
-	                case 4: style = DialogFragment.StyleNormal; break;
-	                case 5: style = DialogFragment.StyleNoTitle; break;
-	                case 6: style = DialogFragment.StyleNoFrame; break;
-	                case 7: style = DialogFragment.StyleNormal; break;
+	                case 1: style = Android.Support.V4.App.DialogFragment.StyleNoTitle; break;
+	                case 2: style = Android.Support.V4.App.DialogFragment.StyleNoFrame; break;
+	                case 3: style = Android.Support.V4.App.DialogFragment.StyleNoInput; break;
+	                case 4: style = Android.Support.V4.App.DialogFragment.StyleNormal; break;
+	                case 5: style = Android.Support.V4.App.DialogFragment.StyleNoTitle; break;
+	                case 6: style = Android.Support.V4.App.DialogFragment.StyleNoFrame; break;
+	                case 7: style = Android.Support.V4.App.DialogFragment.StyleNormal; break;
 	            }
 	            switch ((num-1)%6) {
 	                case 2: theme = Android.Resource.Style.ThemePanel; break;

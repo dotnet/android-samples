@@ -69,7 +69,7 @@ namespace Support4
 	            public string tag;
 	            public Class clss;
 	            public Bundle args;
-	            public Fragment fragment {get; set;}
+	            public Android.Support.V4.App.Fragment fragment {get; set;}
 	
 	            public TabInfo(string _tag, Class _class, Bundle _args) {
 	                tag = _tag;
@@ -136,7 +136,7 @@ namespace Support4
 	                }
 	                if (newTab != null) {
 	                    if (newTab.fragment == null) {
-							newTab.fragment = Fragment.Instantiate(_activity, newTab.clss.Name, newTab.args);
+							newTab.fragment = Android.Support.V4.App.Fragment.Instantiate(_activity, newTab.clss.Name, newTab.args);
 	                        ft.Add(_containerId, newTab.fragment, newTab.tag);
 	                    } else {
 	                        ft.Attach(newTab.fragment);

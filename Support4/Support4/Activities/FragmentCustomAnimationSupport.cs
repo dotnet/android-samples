@@ -68,7 +68,7 @@ namespace Support4
 	        ft.Commit();
 		}
 		
-		public class CountingFragment : Fragment
+		public class CountingFragment : Android.Support.V4.App.Fragment
 		{
 			int num;
 			

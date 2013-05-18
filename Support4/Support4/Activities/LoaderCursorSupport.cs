@@ -38,7 +38,7 @@ namespace Support4
 	        }
 		}
 		
-		public class CursorLoaderListFragment : ListFragment, LoaderManager.ILoaderCallbacks
+		public class CursorLoaderListFragment : Android.Support.V4.App.ListFragment, Android.Support.V4.App.LoaderManager.ILoaderCallbacks
 		{
 			LoaderCursorSupport parent;
 
@@ -145,7 +145,7 @@ namespace Support4
 	            // creating a Cursor for the data being displayed.
 	            string select = "((" + Contacts.People.InterfaceConsts.DisplayName + " NOTNULL) AND ("
 	                    + Contacts.People.InterfaceConsts.DisplayName + " != '' ))";
-	            return new CursorLoader(Activity, baseUri,
+	            return new Android.Support.V4.Content.CursorLoader(Activity, baseUri,
 	                    CONTACTS_SUMMARY_PROJECTION, select, null,
 	                    Contacts.People.InterfaceConsts.DisplayName + " COLLATE LOCALIZED ASC");
 			}

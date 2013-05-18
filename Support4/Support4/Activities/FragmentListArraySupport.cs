@@ -28,7 +28,7 @@ namespace Support4
 	        }
 		}
 		
-		public class ArrayListFragment : ListFragment 
+		public class ArrayListFragment : Android.Support.V4.App.ListFragment
 		{
 			public override void OnActivityCreated (Bundle p0)
 			{

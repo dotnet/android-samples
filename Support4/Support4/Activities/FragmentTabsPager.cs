@@ -77,7 +77,7 @@ namespace Support4
 	            public string tag;
 	            public Class clss;
 	            public Bundle args;
-	            public Fragment fragment {get; set;}
+	            public Android.Support.V4.App.Fragment fragment {get; set;}
 	
 	            public TabInfo(string _tag, Class _class, Bundle _args) {
 	                tag = _tag;
@@ -132,10 +132,10 @@ namespace Support4
 				}
 			}
 			
-			public override Fragment GetItem (int position)
+			public override Android.Support.V4.App.Fragment GetItem (int position)
 			{
 				var info = _tabs[position];
-            	return Fragment.Instantiate(_context, info.clss.Name, info.args);
+				return Android.Support.V4.App.Fragment.Instantiate(_context, info.clss.Name, info.args);
 			}
 			
 			public void OnTabChanged (string tabId)

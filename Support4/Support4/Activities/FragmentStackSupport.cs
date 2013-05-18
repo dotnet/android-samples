@@ -62,12 +62,12 @@ namespace Support4
 	        // on to the back stack.
 	        var ft = SupportFragmentManager.BeginTransaction();
 	        ft.Replace(Resource.Id.simple_fragment, newFragment);
-	        ft.SetTransition(FragmentTransaction.TransitFragmentOpen);
+	        ft.SetTransition(Android.Support.V4.App.FragmentTransaction.TransitFragmentOpen);
 	        ft.AddToBackStack(null);
 	        ft.Commit();
 		}
 		
-		public class CountingFragment : Fragment
+		public class CountingFragment : Android.Support.V4.App.Fragment
 		{
 			int _num;
 			
