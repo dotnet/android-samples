@@ -259,8 +259,9 @@ namespace Mono.Samples.TexturedCube {
 
 			int w, h;
 			int [] pixels = GetTextureFromBitmapResource (context, resourceId, out w, out h);
+			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
-			GL.TexImage2D (All.Texture2D, 0, (int)All.Rgba, w, h, 0, All.Rgba, All.UnsignedByte, pixels);
+			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0);              
 		}
 
 		static int[] GetTextureFromBitmapResource(Context context, int resourceId, out int width, out int height)
