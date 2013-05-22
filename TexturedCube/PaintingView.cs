@@ -257,25 +257,9 @@ namespace Mono.Samples.TexturedCube {
 			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
 			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
-			int w, h;
-			int [] pixels = GetTextureFromBitmapResource (context, resourceId, out w, out h);
 			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
 			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0);              
-		}
-
-		static int[] GetTextureFromBitmapResource(Context context, int resourceId, out int width, out int height)
-		{
-			using (Bitmap bitmap = BitmapFactory.DecodeResource(context.Resources, resourceId)) {
-				width = bitmap.Width;
-				height = bitmap.Height;
-
-				int [] pixels = new int [width * height];
-				
-				// Start writing from bottom row, to effectively flip it in Y-axis
-				bitmap.GetPixels  (pixels, pixels.Length - width, -width, 0, 0, width, height);
-				return pixels;
-			}
 		}
 
 		static float[][] cubeVertexCoords = new float[][] {
