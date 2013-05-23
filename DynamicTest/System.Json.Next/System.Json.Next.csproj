@@ -62,7 +62,11 @@
     <Compile Include="System.Json\NGenWrapper.cs" />
     <Compile Include="System.Json\Extensions\JsonValueExtensions.cs" />
     <Compile Include="System.Json\Properties\AssemblyInfo.cs" />
-    <Compile Include="System.Json\Properties\Resources.Designer.cs" />
+    <Compile Include="System.Json\Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile> 
     <Compile Include="RS.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,8 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="System.Json\Properties\Resources.resx">
-      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
-      <LogicalName>System.Json.Properties.Resources.resources</LogicalName>
-    </EmbeddedResource>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource> 
   </ItemGroup>
 </Project>
