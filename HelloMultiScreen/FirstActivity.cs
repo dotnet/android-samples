@@ -20,8 +20,9 @@ namespace HelloMultiScreen
             // Load the UI created in Main.axml          
             SetContentView (Resource.Layout.Main);
                 
-            // Get a reference to the button
+            // Get a reference to the buttons
             var showSecond = FindViewById<Button> (Resource.Id.showSecond);
+			var resultButton = FindViewById<Button> (Resource.Id.resultButton);
  
             // You can use either this short form of StartActivity, which will create 
             // an intent internally, or the long form shown below.           
@@ -36,6 +37,22 @@ namespace HelloMultiScreen
                 second.PutExtra("FirstData", "Data from FirstActivity");
                 StartActivity (second);
             };
+
+			resultButton.Click += delegate { 
+				//start the second activity to get the greeting
+				var myIntent = new Intent (this, typeof(SecondActivity));
+				StartActivityForResult (myIntent, 0);
+			}; 
+
         }
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			if (resultCode == Result.Ok) {
+				var aLabel = FindViewById<TextView> (Resource.Id.helloLabel);
+				aLabel.Text = data.GetStringExtra("greeting");
+			}
+		}
     }
 }
