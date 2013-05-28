@@ -54,6 +54,7 @@ namespace GooglePlayServicesTest
 			
 			internal CustomInfoWindowAdapter (MarkerDemoActivity parent) 
 			{
+				this.parent = parent;
 				mWindow = parent.LayoutInflater.Inflate (Resource.Layout.custom_info_window, null);
 				mContents = parent.LayoutInflater.Inflate (Resource.Layout.custom_info_contents, null);
 				mOptions = (RadioGroup) parent.FindViewById (Resource.Id.custom_info_window_options);
