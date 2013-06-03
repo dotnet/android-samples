@@ -224,14 +224,14 @@ namespace GooglePlayServicesTest
 			                           .SetPosition(BRISBANE)
 			                           .SetTitle("Brisbane")
 			                           .SetSnippet("Population: 2,074,200")
-			                           .SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueAzure)));
+			                           .InvokeIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueAzure)));
 			
 			// Uses a custom icon.
 			mSydney = mMap.AddMarker(new MarkerOptions()
 			                         .SetPosition(SYDNEY)
 			                         .SetTitle("Sydney")
 			                         .SetSnippet("Population: 4,627,300")
-			                         .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrow)));
+			                         .InvokeIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrow)));
 			
 			// Creates a draggable marker. Long press to drag.
 			mMelbourne = mMap.AddMarker(new MarkerOptions()
@@ -259,7 +259,7 @@ namespace GooglePlayServicesTest
 					-30 + 10 * Math.Sin(i * Math.PI / (numMarkersInRainbow - 1)),
 					135 - 10 * Math.Cos(i * Math.PI / (numMarkersInRainbow - 1))))
 				               .SetTitle("Marker " + i)
-				               .SetIcon(BitmapDescriptorFactory.DefaultMarker(i * 360 / numMarkersInRainbow)));
+				               .InvokeIcon(BitmapDescriptorFactory.DefaultMarker(i * 360 / numMarkersInRainbow)));
 			}
 		}
 		
