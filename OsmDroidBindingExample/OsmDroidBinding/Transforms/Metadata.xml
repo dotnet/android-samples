@@ -26,6 +26,11 @@
   <attr path="/api/package[@name='org.osmdroid.views.overlay']/class[@name='TilesOverlay']/method[@name='draw']" name="visibility">public</attr>
   <attr path="/api/package[@name='org.osmdroid.views.overlay']/class[@name='PathOverlay']/method[@name='draw']" name="visibility">public</attr>
   <remove-node path="/api/package[@name='org.osmdroid.tileprovider.tilesource']/class[@name='CloudmadeTileSource']" />
+  <!-- Return Object in OverlayManager.Get(int) so that we match ArrayList. -->
+<attr path="/api/package[@name='org.osmdroid.views.overlay']/class[@name='OverlayManager']/method[@name='get' and count(parameter)=1 and parameter[1][@type='int']]"
+		name="managedReturn">
+	Java.Lang.Object
+</attr>
   <!-- Return IMapController in MapView.Controller so that we match IMapView. -->
 <attr path="/api/package[@name='org.osmdroid.views']/class[@name='MapView']/method[@name='getController']" name="managedReturn">
 	OsmDroid.Api.IMapController
