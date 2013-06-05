@@ -128,7 +128,7 @@ namespace Mono.ActionbarsherlockTest
 						info.ActivityInfo.ApplicationInfo.PackageName,
 						info.ActivityInfo.Name));
 					} else {
-						if (entries.ContainsKey (nextLabel) == null) {
+						if (entries.ContainsKey (nextLabel)) {
 							AddItem (myData, nextLabel, BrowseIntent (prefix == "" ? nextLabel : prefix + "/" + nextLabel));
 							entries [nextLabel] = true;
 						}
