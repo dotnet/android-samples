@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// C# port by Atsushi Eno
+// Copyright (C) 2013 Xamarin Inc.
+
 using System;
 using Android.App;
 using Android.Content;

@@ -1,3 +1,7 @@
+
+// C# port by Atsushi Eno
+// Copyright (C) 2013 Xamarin Inc.
+
 using System;
 using Android.App;
 using Android.Content;

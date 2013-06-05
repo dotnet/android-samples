@@ -1,4 +1,7 @@
 
+// C# port by Atsushi Eno
+// Copyright (C) 2013 Xamarin Inc.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

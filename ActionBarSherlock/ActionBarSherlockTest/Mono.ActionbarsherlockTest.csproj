@@ -59,6 +59,17 @@
     <Compile Include="ShareActionProvider.cs" />
     <Compile Include="SearchViews.cs" />
     <Compile Include="Progress.cs" />
+    <Compile Include="Preference.cs" />
+    <Compile Include="Overlay.cs" />
+    <Compile Include="IndeterminateProgress.cs" />
+    <Compile Include="FeatureToggles.cs" />
+    <Compile Include="CustomNavigation.cs" />
+    <Compile Include="ContextMenus.cs" />
+    <Compile Include="CollapsibleActionItem.cs" />
+    <Compile Include="ActionProviders.cs" />
+    <Compile Include="ActionModesNoActionBar.cs" />
+    <Compile Include="ActionModes.cs" />
+    <Compile Include="ActionItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

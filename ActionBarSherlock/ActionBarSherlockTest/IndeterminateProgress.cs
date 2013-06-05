@@ -21,54 +21,17 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
+using Android.Widget;
 using Xamarin.ActionbarSherlockBinding.App;
-using Xamarin.ActionbarSherlockBinding.Views;
-using SherlockWindow = Xamarin.ActionbarSherlockBinding.Views.Window;
+using SherlockActionBar = Xamarin.ActionbarSherlockBinding.App.ActionBar;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Progress", Label = "@string/progress")]
+	[Activity (Name = "mono.actionbarsherlocktest.IntermediateProgress", Label = "@string/iprogress")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
-	public class Progress : SherlockActivity
+	public class IndeterminateProgress : SherlockActivity
 	{
-		Handler mHandler = new Handler ();
-		Runnable mProgressRunner;
-
-		public Progress ()
-		{
-			mProgressRunner = new Runnable (Run);
-		}
-		
-		public void Run ()
-		{
-			mProgress += 2;
-
-			//Normalize our progress along the progress bar's scale
-			int progress = (SherlockWindow.ProgressEnd - SherlockWindow.ProgressStart) / 100 * mProgress;
-			SetSupportProgress (progress);
-
-			if (mProgress < 100) {
-				mHandler.PostDelayed (mProgressRunner, 50);
-			}
-		}
-
-		class Runnable : Java.Lang.Object, Java.Lang.IRunnable
-		{
-			Action action;
-			public Runnable (Action action)
-			{
-				this.action = action;
-			}
-			public void Run ()
-			{
-				action ();
-			}
-		}
-
-		private int mProgress = 100;
-
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			SetTheme (SampleList.THEME); //Used for theme switching in samples
@@ -76,15 +39,15 @@ namespace Mono.ActionbarsherlockTest
 
 			//This has to be called before setContentView and you must use the
 			//class in com.actionbarsherlock.view and NOT android.view
-			RequestWindowFeature (WindowFeatures.Progress);
+			RequestWindowFeature (Android.Views.WindowFeatures.IndeterminateProgress);
 
-			SetContentView (Resource.Layout.progress);
+			SetContentView (Resource.Layout.iprogress);
 
-			FindViewById (Resource.Id.go).Click += (object sender, EventArgs e) => {
-				if (mProgress == 100) {
-					mProgress = 0;
-					mProgressRunner.Run ();
-				}
+			FindViewById (Resource.Id.enable).Click += (object sender, EventArgs e) => {
+				SetSupportProgressBarIndeterminateVisibility (true);
+			};
+			FindViewById (Resource.Id.disable).Click += (object sender, EventArgs e) => {
+				SetSupportProgressBarIndeterminateVisibility (false);
 			};
 		}
 	}

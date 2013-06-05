@@ -25,67 +25,41 @@ using Android.Views;
 using Xamarin.ActionbarSherlockBinding.App;
 using Xamarin.ActionbarSherlockBinding.Views;
 using SherlockWindow = Xamarin.ActionbarSherlockBinding.Views.Window;
+using IMenu = Xamarin.ActionbarSherlockBinding.Views.IMenu;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Progress", Label = "@string/progress")]
+	[Activity (Name = "mono.actionbarsherlocktest.Preference", Label = "@string/preference")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
-	public class Progress : SherlockActivity
+	public class Preference : SherlockPreferenceActivity
 	{
-		Handler mHandler = new Handler ();
-		Runnable mProgressRunner;
-
-		public Progress ()
+		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
-			mProgressRunner = new Runnable (Run);
+			//Used to put dark icons on light action bar
+			bool isLight = SampleList.THEME == Resource.Style.Theme_Sherlock_Light;
+
+			menu.Add ("Save")
+				.SetIcon (isLight ? Resource.Drawable.ic_compose_inverse : Resource.Drawable.ic_compose)
+					.SetShowAsAction (MenuItem.ShowAsActionIfRoom | MenuItem.ShowAsActionWithText);
+
+			menu.Add ("Search")
+				.SetIcon (isLight ? Resource.Drawable.ic_search_inverse : Resource.Drawable.ic_search)
+					.SetShowAsAction (MenuItem.ShowAsActionIfRoom | MenuItem.ShowAsActionWithText);
+
+			menu.Add ("Refresh")
+				.SetIcon (isLight ? Resource.Drawable.ic_refresh_inverse : Resource.Drawable.ic_refresh)
+					.SetShowAsAction (MenuItem.ShowAsActionIfRoom | MenuItem.ShowAsActionWithText);
+
+			return base.OnCreateOptionsMenu (menu);
 		}
-		
-		public void Run ()
-		{
-			mProgress += 2;
-
-			//Normalize our progress along the progress bar's scale
-			int progress = (SherlockWindow.ProgressEnd - SherlockWindow.ProgressStart) / 100 * mProgress;
-			SetSupportProgress (progress);
-
-			if (mProgress < 100) {
-				mHandler.PostDelayed (mProgressRunner, 50);
-			}
-		}
-
-		class Runnable : Java.Lang.Object, Java.Lang.IRunnable
-		{
-			Action action;
-			public Runnable (Action action)
-			{
-				this.action = action;
-			}
-			public void Run ()
-			{
-				action ();
-			}
-		}
-
-		private int mProgress = 100;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			SetTheme (SampleList.THEME); //Used for theme switching in samples
 			base.OnCreate (savedInstanceState);
 
-			//This has to be called before setContentView and you must use the
-			//class in com.actionbarsherlock.view and NOT android.view
-			RequestWindowFeature (WindowFeatures.Progress);
-
-			SetContentView (Resource.Layout.progress);
-
-			FindViewById (Resource.Id.go).Click += (object sender, EventArgs e) => {
-				if (mProgress == 100) {
-					mProgress = 0;
-					mProgressRunner.Run ();
-				}
-			};
+			AddPreferencesFromResource (Resource.Xml.preferences);
 		}
 	}
 }
