@@ -23,7 +23,7 @@ using ISubMenu = Xamarin.ActionbarSherlockBinding.Views.ISubMenu;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Simple", Label = "@string/simple")]
+	[Activity (Label = "@string/simple")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class Simple : SherlockActivity

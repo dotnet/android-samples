@@ -35,7 +35,7 @@ using IMenuItem = Xamarin.ActionbarSherlockBinding.Views.IMenuItem;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.ActionModesNoActionBar", Label = "@string/action_modes_no_action_bar")]
+	[Activity (Label = "@string/action_modes_no_action_bar")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ActionModesNoActionBar : SherlockActivity

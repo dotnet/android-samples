@@ -28,7 +28,7 @@ using System.Text;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Overlay", Label = "@string/overlay")]
+	[Activity (Label = "@string/overlay")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class Overlay : SherlockActivity

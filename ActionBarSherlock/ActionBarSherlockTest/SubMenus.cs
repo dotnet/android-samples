@@ -14,7 +14,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.SubMenus", Label = "@string/submenus")]
+	[Activity (Label = "@string/submenus")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class SubMenus : SherlockActivity

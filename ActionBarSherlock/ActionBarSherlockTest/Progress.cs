@@ -28,7 +28,7 @@ using SherlockWindow = Xamarin.ActionbarSherlockBinding.Views.Window;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Progress", Label = "@string/progress")]
+	[Activity (Label = "@string/progress")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class Progress : SherlockActivity

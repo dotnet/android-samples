@@ -29,7 +29,7 @@ using IMenu = Xamarin.ActionbarSherlockBinding.Views.IMenu;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Preference", Label = "@string/preference")]
+	[Activity (Label = "@string/preference")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class Preference : SherlockPreferenceActivity

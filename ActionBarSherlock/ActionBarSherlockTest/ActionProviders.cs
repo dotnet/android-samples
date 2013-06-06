@@ -39,7 +39,7 @@ namespace Mono.ActionbarsherlockTest
  * ActionProvider for launching the system settings and adds a menu item with that
  * provider.
  */
-	[Activity (Name = "mono.actionbarsherlocktest.ActionProviders", Label = "@string/action_providers")]
+	[Activity (Label = "@string/action_providers")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ActionProviders : SherlockActivity

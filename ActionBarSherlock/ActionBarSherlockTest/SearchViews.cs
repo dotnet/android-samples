@@ -40,7 +40,7 @@ using Android.Runtime;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.SearchViews", Label = "@string/search_views")]
+	[Activity (Label = "@string/search_views")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class SearchViews : SherlockActivity, SearchView.IOnQueryTextListener,

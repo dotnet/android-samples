@@ -31,7 +31,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.CollapsibleActionItem", Label = "@string/collapsible")]
+	[Activity (Label = "@string/collapsible")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class CollapsibleActionItem : SherlockActivity

@@ -12,7 +12,7 @@ using SherlockActionBar = Xamarin.ActionbarSherlockBinding.App.ActionBar;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.ListNavigation", Label = "@string/list_navigation")]
+	[Activity (Label = "@string/list_navigation")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ListNavigation : SherlockActivity, SherlockActionBar.IOnNavigationListener

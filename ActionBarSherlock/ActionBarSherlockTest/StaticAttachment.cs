@@ -30,7 +30,7 @@ using SherlockActionBar = Xamarin.ActionbarSherlockBinding.App.ActionBar;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.StaticAttachment", Label = "@string/static_attach")]
+	[Activity (Label = "@string/static_attach")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class StaticAttachment : Activity, ActionBarSherlock.IOnCreateOptionsMenuListener

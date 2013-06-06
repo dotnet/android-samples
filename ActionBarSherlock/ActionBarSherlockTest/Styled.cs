@@ -29,7 +29,7 @@ using Xamarin.ActionbarSherlockBinding.Views;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.Styled", Label = "@string/styled")]
+	[Activity (Label = "@string/styled")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class Styled : SherlockActivity 

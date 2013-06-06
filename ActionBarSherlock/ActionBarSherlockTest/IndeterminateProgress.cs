@@ -27,7 +27,7 @@ using SherlockActionBar = Xamarin.ActionbarSherlockBinding.App.ActionBar;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.IntermediateProgress", Label = "@string/iprogress")]
+	[Activity (Label = "@string/iprogress")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class IndeterminateProgress : SherlockActivity

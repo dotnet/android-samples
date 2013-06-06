@@ -31,7 +31,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.ContextMenus", Label = "@string/context_menus")]
+	[Activity (Label = "@string/context_menus")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ContextMenus : SherlockActivity

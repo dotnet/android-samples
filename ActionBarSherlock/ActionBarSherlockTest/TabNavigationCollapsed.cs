@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.TabNavigationCollapsed", Label = "@string/tab_navigation_collapsed")]
+	[Activity (Label = "@string/tab_navigation_collapsed")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class TabNavigationCollapsed : TabNavigation

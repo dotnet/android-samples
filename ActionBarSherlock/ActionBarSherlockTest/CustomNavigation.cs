@@ -30,7 +30,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.CustomNavigation", Label = "@string/custom_navigation")]
+	[Activity (Label = "@string/custom_navigation")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class CustomNavigation : SherlockActivity {

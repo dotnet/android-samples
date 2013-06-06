@@ -17,7 +17,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.FeatureToggles", Label = "@string/feature_toggles")]
+	[Activity (Label = "@string/feature_toggles")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class FeatureToggles : SherlockActivity, SherlockActionBar.ITabListener

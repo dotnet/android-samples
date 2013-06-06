@@ -39,7 +39,7 @@ namespace Mono.ActionbarsherlockTest
  * a menu item with ShareActionProvider as its action provider. The
  * ShareActionProvider is responsible for managing the UI for sharing actions.
  */
-	[Activity (Name = "mono.actionbarsherlocktest.ShareActionProviders", Label = "@string/share_action_providers")]
+	[Activity (Label = "@string/share_action_providers")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ShareActionProviders : SherlockActivity

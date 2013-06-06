@@ -36,7 +36,7 @@ using Android.Provider;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.ActionItems", Label = "@string/action_items")]
+	[Activity (Label = "@string/action_items")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class ActionItems : SherlockActivity

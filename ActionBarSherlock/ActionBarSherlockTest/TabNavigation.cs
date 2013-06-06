@@ -13,7 +13,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Mono.ActionbarsherlockTest
 {
-	[Activity (Name = "mono.actionbarsherlocktest.TabNavigation", Label = "@string/tab_navigation")]
+	[Activity (Label = "@string/tab_navigation")]
 	[IntentFilter (new string [] { Intent.ActionMain },
 		Categories = new string [] { Constants.DemoCategory })]
 	public class TabNavigation : SherlockActivity, SherlockActionBar.ITabListener
