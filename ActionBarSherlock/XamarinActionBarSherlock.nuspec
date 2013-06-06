@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XamarinActionBarSherlock</id>
-    <version>2.1.0</version>
+    <version>4.2.0_0</version>
     <authors>Jake Wharton</authors>
     <owners>Xamarin Inc.</owners>
     <licenseUrl>https://github.com/JakeWharton/ActionBarSherlock/blob/master/LICENSE.txt</licenseUrl>
