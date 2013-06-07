@@ -47,6 +47,6 @@ Feature showcase (from "FeatureToggles" sample):
 
 [1]: https://github.com/xamarin/monodroid-samples/tree/master/ActionBarSherlock
 [2]: http://developer.android.com/guide/topics/ui/actionbar.html
-[3]: sshot_ListNavigation.png
-[4]: sshot_FeatureToggles.png
+[3]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_ListNavigation.png
+[4]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_FeatureToggles.png
 [5]: https://github.com/xamarin/monodroid-samples/blob/master/ActionBarSherlock/ActionBarSherlock/Transforms/Metadata.xml

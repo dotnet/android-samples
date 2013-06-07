@@ -96,11 +96,11 @@ The features include:
 
 See the sample project sources to see how to write actual code.
 
-[1]: sshot_TargetFramework.png
-[2]: sshot_AndroidManifest.png
-[3]: sshot_SimpleTheme.png
+[1]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_TargetFramework.png
+[2]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_AndroidManifest.png
+[3]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_SimpleTheme.png
 [4]: https://github.com/xamarin/monodroid-samples/tree/master/ActionBarSherlock
-[5]: sshot_ListNavigation.png
-[6]: sshot_TabNavigation.png
-[7]: sshot_CollapsibleActionItems1.png
-[8]: sshot_CollapsibleActionItems2.png
+[5]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_ListNavigation.png
+[6]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_TabNavigation.png
+[7]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_CollapsibleActionItems1.png
+[8]: https://github.com/xamarin/monodroid-samples/raw/master/ActionBarSherlock/components/sshot_CollapsibleActionItems2.png
