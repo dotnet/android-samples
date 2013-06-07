@@ -10,6 +10,7 @@ mono xpkg.exe create XamarinActionBarSherlock-4.2.0.0.xam \
 	--details=Details.md \
 	--getting-started=GettingStarted.md \
 	--icon=XamarinActionBarSherlock_128x128.png \
+	--icon=XamarinActionBarSherlock_512x512.png \
    	--sample="Demo. Port of ActionBarSherlock demo - feature showcase.:../ActionBarSherlock.sln" \
 	--screenshot="Select Target Framework":sshot_TargetFramework.png \
 	--screenshot="Configure Minimum Target Framework":sshot_AndroidManifest.png \
