@@ -10,7 +10,7 @@
     <iconUrl>https://raw.github.com/JakeWharton/ActionBarSherlock/master/website/static/icon_web.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>C# binding for ActionBarSherlock: Library for implementing the action bar design pattern using the native action bar on Android 4.0+ and a custom implementation on pre-4.0 through a single API and theme. </description>
-    <releaseNotes>Initial NuGet package release.</releaseNotes>
+    <releaseNotes>Added some dependencies.</releaseNotes>
     <copyright>Copyright 2012 Jake Wharton</copyright>
     <tags>ActionBarSherlock Widget Xamarin Android</tags>
     <frameworkAssemblies>
