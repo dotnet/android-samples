@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XamarinActionBarSherlock</id>
-    <version>4.2.0_0</version>
+    <version>4.2.0.1</version>
     <authors>Jake Wharton</authors>
     <owners>Xamarin Inc.</owners>
     <licenseUrl>https://github.com/JakeWharton/ActionBarSherlock/blob/master/LICENSE.txt</licenseUrl>
@@ -15,6 +15,8 @@
     <tags>ActionBarSherlock Widget Xamarin Android</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Core" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android.Support.v4" targetFramework="MonoAndroid" />
     </frameworkAssemblies>
   </metadata>
   <files>
