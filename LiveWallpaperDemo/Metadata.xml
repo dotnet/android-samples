@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>c4a3e710-4e0c-4a64-b38f-654ce8c377f5</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Wallpapers</Tags>
+  <ID>c4a3e710-4e0c-4a64-b38f-654ce8c377f5</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Wallpapers</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>
