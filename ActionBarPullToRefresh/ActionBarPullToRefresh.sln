@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarPullToRefresh", "ActionBarPullToRefresh\ActionBarPullToRefresh.csproj", "{A9175D52-9729-42CA-877C-C348548DD7E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarPullToRefreshSample", "ActionBarPullToRefreshSample\ActionBarPullToRefreshSample.csproj", "{58932683-0B7F-449F-B84C-AE2776927527}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58932683-0B7F-449F-B84C-AE2776927527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58932683-0B7F-449F-B84C-AE2776927527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58932683-0B7F-449F-B84C-AE2776927527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58932683-0B7F-449F-B84C-AE2776927527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9175D52-9729-42CA-877C-C348548DD7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9175D52-9729-42CA-877C-C348548DD7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9175D52-9729-42CA-877C-C348548DD7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9175D52-9729-42CA-877C-C348548DD7E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ActionBarPullToRefreshSample\ActionBarPullToRefreshSample.csproj
+	EndGlobalSection
+EndGlobal
