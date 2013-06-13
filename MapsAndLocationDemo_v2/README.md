@@ -134,3 +134,17 @@ Google Play Services is supported on Android 2.2 (API level 8) or higher. This b
 	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
 
 At this point the binding will target Android 2.2 and will run on older devices. 
+
+#Troubleshooting
+
+##AAPT.EXE location incorrect
+
+Google changed the location of certain tools in r22 of the Android SDK (release in mid-May, 2013), which may cause Xamarin.Android to report this error. The forum post [aapt.exe location incorrect](http://forums.xamarin.com/discussion/comment/15360/#Comment_15360) contains some helpful advice for dealing with this issue.
+
+##"does not implement inherited abstract member" compile error
+
+This error is typically caused by one of two things:
+
+1. **Out of date version of Xamarin.Android** - As of June 13, 2013 please use Xamarin.Android 4.6.8 from the Stable update channel. Older versions of Xamarin.Android do not seem to work. The Beta and Alpha channels do not receive the same level of QA. Care and patience are required if you wish to use the Alpha or Beta builds for production applications.
+
+2. **A stale `google-play-services_lib` directory** - Ensure that you have an up-to-date version of the Google Play Services library via the Android SDK manager, and ensure that the Android Library project that your project is using is also up to date. The forum post [Google Maps v2 and "does not implement inherited abstract member" messages](http://forums.xamarin.com/discussion/5030/google-maps-v2-and-does-not-implement-inherited-abstract-member-messages) will also be useful in troubleshooting this issue.
