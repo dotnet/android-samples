@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>ef53a88b-f8aa-41e4-bb6a-4348c6324134</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>User Interface</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+</SampleMetadata>
