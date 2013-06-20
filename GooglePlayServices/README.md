@@ -19,6 +19,10 @@ in the project.[*1] To make it usable:
   "LibraryProjectProperties" [*2]. (You will have to use "add as a link"
   or MfA won't find the actual library files.)
 
+- Copy or create a symbolic link to extras/google/google_play_services/docs
+  under this directory, as "docs".
+  It will be used by GooglePlayServices binding project to get parameter names.
+
 - Open GooglePlayServices.sln. Then open Properties/AndroidManifest.xml in
   GooglePlayServices project, and insert your API Key there.
 
