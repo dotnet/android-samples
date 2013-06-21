@@ -28,9 +28,13 @@ To access Google Maps v2, it is necessary to create a Xamarin.Android binding fo
 
 ### Prequisites
 
-These directions assume that you have [Apache Ant](http://ant.apache.org/) installed and in your `$PATH`. 
+*Do not* skip these pre-requisites. They are **mandatory**.
 
-`android` is a command line utility that is required to prepare the Android Library project for compiliation. You must have the directory `$ANDROID_HOME/tools` has been added to your `PATH`. 
+These directions assume that you have [Apache Ant](http://ant.apache.org/) installed and in your `$PATH`. [Installing Apache Ant](http://ant.apache.org/manual/install.html) is beyond the scope of this document.
+
+`android` is a command line utility that is required to prepare the Android Library project for compiliation. You must have the directory `$ANDROID_HOME/tools` has been added to your `$PATH`. 
+
+**Note:** You *must* have these two command line utilities configured properly, or you will not be able to bind the Google Play Services in Xamarin.Android.
 
 ### Compiling the Google Play Services client library
 
