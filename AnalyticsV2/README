@@ -1,0 +1,18 @@
+How to build the entire package from source
+===========================================
+
+Prerequisites
+-------------
+
+- Android SDK.
+  - Environment variable ANDROID_HOME=/path/to/the/sdk
+
+Build steps
+-----------
+
+- Create docs directory.
+- From $ANDROID_HOME/extras/google/analytics_sdk_v2/ directory,
+  - copy libGoogleAnalyticsV2.jar to AnalyticsV2/Jars.
+  - copy javadocs.zip to docs and extract it there. (actually no need to copy)
+
+Then you can build the project as usual.
