@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mono xpkg.exe create XamarinActionBarSherlock-4.2.0.0.xam \
+mono xpkg.exe create XamarinActionBarSherlock-4.3.1.0.xam \
 	--name="ActionBarSherlock for Xamarin" \
 	--publisher="Xamarin, Inc." \
 	--website="http://www.xamarin.com" \

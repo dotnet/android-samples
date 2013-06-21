@@ -34,8 +34,8 @@ Run the following commands:
 	ant debug
 	zip -r ActionBarSherlock-4.3.1.zip bin/classes.jar bin/AndroidManifest.xml res 
 
-Copy ActionBarSherlock-4.3.1.zip to ../ActionBarSherlock/Jars
-(Note that ".." is *this* directory)
+Copy ActionBarSherlock-4.3.1.zip to ../../ActionBarSherlock/Jars
+(Note that "../.." is *this* directory)
 
 Edit ActionBarSherlock/ActionBarSherlock.csproj and look for <JavaDocPath>
 and ensure that the path specicifed there exists and points to API reference.
