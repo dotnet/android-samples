@@ -21,9 +21,6 @@ using Android.Content;
 using Android.OS;
 using Android.Util;
 using Java.Util;
-using System;
-using Android.App;
-using Android.Runtime;
 using System.Threading;
 
 namespace BluetoothChat
@@ -44,7 +41,8 @@ namespace BluetoothChat
 		private const string NAME = "BluetoothChat";
 	
 		// Unique UUID for this application
-		private static UUID MY_UUID = UUID.FromString ("00001101-0000-1000-8000-00805F9B34FB");
+		//If fa87c0d0-afac-11de-8a39-0800200c9a66 does not work, try 00001101-0000-1000-8000-00805F9B34FB
+		private static UUID MY_UUID = UUID.FromString ("fa87c0d0-afac-11de-8a39-0800200c9a66");
 		
 		// Member fields
 		protected static BluetoothAdapter _adapter;
@@ -405,7 +403,6 @@ namespace BluetoothChat
 
 					var methodInfo = device.GetType().GetMethod("CreateRfcommSocketToServiceRecord");//, new Class[] {int.class});
 					tmp = (BluetoothSocket) methodInfo.Invoke(device, new object[]{MY_UUID});
-					//tmp = device.CreateRfcommSocketToServiceRecord (MY_UUID);
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "create() failed", e);
 				}
@@ -465,12 +462,12 @@ namespace BluetoothChat
 		/// This thread runs during a connection with a remote device.
 		/// It handles all incoming and outgoing transmissions.
 		/// </summary>
-		// TODO: Convert to a .NET thread
-		private class ConnectedThread : Java.Lang.Thread
+		private class ConnectedThread
 		{
 			private BluetoothSocket mmSocket;
 			private Stream mmInStream;
 			private Stream mmOutStream;
+			private Thread mmConnectedThread;
 			private BluetoothChatService _service;
 	
 			public ConnectedThread (BluetoothSocket socket, BluetoothChatService service)
@@ -493,27 +490,31 @@ namespace BluetoothChat
 				mmOutStream = tmpOut;
 			}
 	
-			public override void Run ()
+			public void Start ()
 			{
-				Log.Info (TAG, "BEGIN mConnectedThread");
-				byte[] buffer = new byte[1024];
-				int bytes;
-	
-				// Keep listening to the InputStream while connected
-				while (true) {
-					try {
-						// Read from the InputStream
-						bytes = mmInStream.Read (buffer, 0, buffer.Length);
-	
-						// Send the obtained bytes to the UI Activity
-						_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
-							.SendToTarget ();
-					} catch (Java.IO.IOException e) {
-						Log.Error (TAG, "disconnected", e);
-						_service.ConnectionLost ();
-						break;
+				mmConnectedThread = new Thread (() => {
+					Log.Info (TAG, "BEGIN mConnectedThread");
+					byte[] buffer = new byte[1024];
+					int bytes;
+					
+					// Keep listening to the InputStream while connected
+					while (true) {
+						try {
+							// Read from the InputStream
+							bytes = mmInStream.Read (buffer, 0, buffer.Length);
+					
+							// Send the obtained bytes to the UI Activity
+							_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
+								.SendToTarget ();
+						} catch (Java.IO.IOException e) {
+							Log.Error (TAG, "disconnected", e);
+							_service.ConnectionLost ();
+							break;
+						}
 					}
-				}
+				});
+
+				mmConnectedThread.Start ();
 			}
 	
 			/// <summary>
