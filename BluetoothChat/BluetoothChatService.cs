@@ -398,7 +398,7 @@ namespace BluetoothChat
 				// Get a BluetoothSocket for a connection with the
 				// given BluetoothDevice
 				try {
-					tmp = _adapter.ListenUsingRfcommWithServiceRecord (NAME, MY_UUID);
+					tmp = device.CreateRfcommSocketToServiceRecord (MY_UUID);
 
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "create() failed", e);
