@@ -153,5 +153,9 @@
       <Project>{C4E1218B-C566-4367-BAB3-496A79E53FDC}</Project>
       <Name>Xamarin.UrbanAirshipBinding</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ActionBarSherlock\ActionBarSherlock\ActionBarSherlock.csproj">
+      <Project>{2D5471B2-8255-4E47-97E9-EEB28678CC82}</Project>
+      <Name>ActionBarSherlock</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
