@@ -45,7 +45,7 @@ namespace MonoDroid.ApiDemo
 			RadioButton radio_blue = FindViewById<RadioButton> (Resource.Id.radio_blue);
 
 			radio_red.Click += RadioButtonClick;
-			radio_red.Click += RadioButtonClick;
+			radio_blue.Click += RadioButtonClick;
 
 			ToggleButton togglebutton = FindViewById<ToggleButton> (Resource.Id.togglebutton);
 
