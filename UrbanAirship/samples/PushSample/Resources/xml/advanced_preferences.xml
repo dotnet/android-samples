@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory 
+        android:title="@string/advanced_preference_category_title" >
+        
+	    <com.urbanairship.preference.ApidPreference
+	        android:persistent="false"
+	        android:title="@string/apid_preference_title" />
+	        
+	    <com.urbanairship.push.sample.preference.SetAliasPreference
+	        android:persistent="false"
+	        android:title="@string/set_alias_preference_title" />
+
+	    <com.urbanairship.push.sample.preference.AddTagsPreference
+	        android:persistent="false"
+	        android:dialogLayout="@layout/tags_dialog_layout"
+	        android:title="@string/add_tags_preference_title" />
+
+    </PreferenceCategory>
+    
+</PreferenceScreen>

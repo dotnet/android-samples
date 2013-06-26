@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mark_read"
+        android:icon="@drawable/mark_read"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/mark_read" />
+    
+    <item
+        android:id="@+id/mark_unread"
+        android:icon="@drawable/mark_unread"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/mark_unread" />
+    
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/delete"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/delete"
+    />
+
+</menu>

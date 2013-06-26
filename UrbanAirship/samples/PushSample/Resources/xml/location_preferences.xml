@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        
+    <PreferenceCategory 
+        android:title="@string/location_preference_category_title" >
+        
+	     <com.urbanairship.preference.LocationEnablePreference
+	        android:persistent="false"
+	        android:key="location_preference"
+	        android:title="@string/location_preference_title" />
+	    
+	    <com.urbanairship.preference.LocationForegroundEnablePreference
+	        android:persistent="false"
+	        android:dependency="location_preference"
+	        android:key="foreground_location_preference"
+	        android:title="@string/foreground_location_preference_title" />
+	    
+	    <com.urbanairship.preference.LocationBackgroundEnablePreference
+	        android:persistent="false"
+	        android:dependency="location_preference"
+	        android:key="background_location_preference"
+	        android:title="@string/background_location_preference_title" />
+    
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>

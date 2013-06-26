@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.samples.urbanairship.pushsample">
+	<uses-sdk android:minSdkVersion="4" />
+	<application android:label="XamarinUAirshipPushSample">
+		<!-- REQUIRED for Urban Airship GCM-->
+		<receiver android:name="com.urbanairship.CoreReceiver" />
+		<receiver android:name="com.urbanairship.push.GCMPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<!-- MODIFICATION REQUIRED - Use your package name as the category -->
+				<category android:name="com.xamarin.samples.urbanairship.pushsample" />
+			</intent-filter>
+			<!-- REQUIRED for detecting when the application is upgraded so it can request a new GCM ID -->
+			<intent-filter>
+				<action android:name="android.intent.action.PACKAGE_REPLACED" />
+				<data android:scheme="package" />
+			</intent-filter>
+		</receiver>
+
+		<service android:name="com.urbanairship.push.PushWorkerService" android:label="Push Notification Worker Service" />
+		<service android:name="com.urbanairship.analytics.EventService" android:label="Event Service" />
+		<service android:name="com.urbanairship.push.PushService" android:label="Push Notification Service" />
+		<!-- This is required for persisting preferences related to push and location -->
+		<!-- MODIFICATION REQUIRED - Use your package name + ".urbanairship.provider" in the android:authorities -->
+		<provider android:name="com.urbanairship.UrbanAirshipProvider" android:authorities="com.xamarin.samples.urbanairship.pushsample.urbanairship.provider" android:exported="false" android:multiprocess="true" />
+		<!-- OPTIONAL (for segments support) -->
+		<service android:name="com.urbanairship.location.LocationService" android:label="Segments Service" />
+		<!-- OPTIONAL, if you want to receive push, push opened and registration completed intents -->
+		<!-- Replace the receiver below with your package and class name -->
+		<receiver android:name="com.xamarin.samples.urbanairship.pushsample.IntentReceiver" />
+	</application>
+</manifest>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Rich Push Sample</string>
+    <string name="no_messages">No messages</string>
+    <string name="inbox_title">Your Inbox</string>
+    <string name="add_message">Add Message</string>
+    <string name="mark_read">Mark Read</string>
+    <string name="mark_unread">Mark Unread</string>
+    <string name="delete">Delete</string>
+    <string name="ok">OK</string>
+    <string name="preferences">Preferences</string>
+    <string name="refresh">Refresh</string>
+    <string name="push_preference_category_title">Push Preferences</string>
+    <string name="rich_push_message_dialog_title">Rich Push Message</string>
+    <string name="inbox_refresh_failed_dialog_title">Unable to retrieve new messages</string>
+    <string name="inbox_refresh_failed_dialog_message">Please try again later</string>
+    <string name="location_preference_category_title">Location Preferences</string>
+    <string name="quiet_time_enable_preference_title">Enable Quiet Time</string>
+    <string name="quiet_time_start_preference_title">Quiet Time Start</string>
+    <string name="quiet_time_end_preference_title">Quiet Time End</string>
+    <string name="push_preference_title">Enable Push</string>
+    <string name="sound_preference_title">Enable Sound</string>
+    <string name="vibrate_preference_title">Enable Vibrate</string>
+    <string name="location_preference_title">Enable Location</string>
+    <string name="foreground_location_preference_title">Enable Foreground Location</string>
+    <string name="background_location_preference_title">Enable Background Location</string>
+    <string name="advanced_preference_category_title">Advanced</string>
+    <string name="apid_preference_title">APID</string>
+    <string name="user_id_preference_title">User ID</string>
+    <string name="set_alias_preference_title">Set Alias</string>
+    <string name="add_tags_preference_title">Add Tags</string>
+    <string name="duplicate_tag_warning">Tag already exists</string>
+    <string name="menu_deselect_all">Deselect all</string>
+    <string name="menu_select_all">Select all</string>
+    <string name="cab_selection">%d Selected</string>
+    <string name="your_app_here">Your App Here</string>
+    
+    <!-- Widget Values -->
+    <string name="empty_view_text">No messages found...</string>
+    <string name="toast_format_string">%1$s!</string>
+    <string name="item_format_string">%1$s</string>
+    <string name="header_format_string">%1$d unread</string>
+	<string name="inbox_name">Rich Push Sample Inbox</string>
+	
+	<!-- Inbox Notification -->
+	<plurals name="inbox_notification_title">
+	    <item quantity="one">1 New Message</item>
+	    <item quantity="other">%d <b>New</b> Messages</item>    
+	</plurals>
+	<string name="inbox_summary">+%d more</string>
+
+</resources>
+

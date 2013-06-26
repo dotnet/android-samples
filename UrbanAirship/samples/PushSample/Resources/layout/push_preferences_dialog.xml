@@ -1,0 +1,149 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+<LinearLayout android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="20dip">
+
+	<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/push_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="push_enabled_checkbox"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:text="Push Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+
+	</LinearLayout>
+	
+	<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/sound_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:text="Sound Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+
+	</LinearLayout>
+	
+		<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/vibrate_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:text="Vibrate Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+
+	</LinearLayout>
+	
+		<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/quiet_time_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:text="Quiet Time Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+
+	</LinearLayout>
+              
+<TextView
+    android:text="Start Time"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:textSize="16dip"/>
+            
+<TimePicker
+    android:enabled="false"
+    android:id="@+id/start_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+<TextView
+    android:paddingTop="10dip"
+    android:text="End Time"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:textSize="16dip"/>
+    
+<TimePicker
+    android:id="@+id/end_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+    
+		<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/location_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:id="@+id/location_enabled_label"
+            android:text="Location Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+        </LinearLayout>
+        
+		<LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+
+        <CheckBox android:id="@+id/background_location_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+
+        <TextView android:id="@+id/background_location_enabled_label"
+            android:text="Background Location Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+		</LinearLayout>
+	
+        <LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+                  
+        <CheckBox android:id="@+id/foreground_location_enabled"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_width="wrap_content"/>
+        
+        <TextView android:id="@+id/foreground_location_enabled_label"
+            android:text="Foreground Location Enabled"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dip"/>
+        </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

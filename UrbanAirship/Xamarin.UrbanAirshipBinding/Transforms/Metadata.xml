@@ -1,0 +1,39 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='com.urbanairship']" name="managedName">Xamarin.UrbanAirship</attr>
+  <attr path="/api/package[@name='com.urbanairship.analytics']" name="managedName">Xamarin.UrbanAirship.AnalyticsAPI</attr>
+  <attr path="/api/package[@name='com.urbanairship.location']" name="managedName">Xamarin.UrbanAirship.Locations</attr>
+  <attr path="/api/package[@name='com.urbanairship.push']" name="managedName">Xamarin.UrbanAirship.Push</attr>
+  <attr path="/api/package[@name='com.urbanairship.restclient']" name="managedName">Xamarin.UrbanAirship.RestClient</attr>
+  <attr path="/api/package[@name='com.urbanairship.richpush']" name="managedName">Xamarin.UrbanAirship.RichPush</attr>
+  <remove-node path="/api/package[@name='com.urbanairship.push.embedded']" />
+  
+  <!-- They are not exposed in the API reference, but used in the official samples(!) -->
+  <attr path="/api/package[@name='com.urbanairship.preference']" name="managedName">Xamarin.UrbanAirship.PreferencesAPI</attr>
+  <attr path="/api/package[@name='com.urbanairship.util']" name="managedName">Xamarin.UrbanAirship.Utils</attr>
+  <attr path="/api/package[@name='com.urbanairship.widget']" name="managedName">Xamarin.UrbanAirship.Widget</attr>
+
+  <attr path="/api/package[@name='com.urbanairship.preference']/class[@name='UACheckBoxPreference']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.urbanairship.preference']/class[@name='QuietTimePickerPreference']" name="visibility">public</attr>
+
+  <!-- FIXME: this should not be required: there is some override resolution failure that incorrectly
+       creates some with related to IComparable. -->
+  <remove-node path="/api/package[@name='com.urbanairship.preference']/class[@name='QuietTimePickerPreference']" />
+  <remove-node path="/api/package[@name='com.urbanairship.preference']/class[@name='UACheckBoxPreference']" />
+
+  <!-- FIXME: this should not be required: binding generator needs to deal with it to automatically mark it as override. -->
+  <remove-node path="/api/package[@name='com.urbanairship.preference']/class[@name='QuietTimeEndPreference']/method[@name='getSummary']" />
+  <remove-node path="/api/package[@name='com.urbanairship.preference']/class[@name='QuietTimeStartPreference']/method[@name='getSummary']" />
+
+  <attr path="/api/package/class[@extends='android.app.IntentService']" name="extends">mono.android.app.IntentService</attr>
+
+  <attr path="/api/package[@name='com.urbanairship']/class[@name='AirshipConfigOptions']/field[@name='transport']" name="managedName">TransportField</attr>
+
+  <attr path="/api/package/class/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+</metadata>

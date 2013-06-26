@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xamarin.samples.urbanairship.richpush.CustomSlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_pane_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <fragment
+        class="xamarin.samples.urbanairship.richpush.RichPushSampleInboxFragment"
+        android:id="@+id/inbox"
+        android:layout_width="250dp"
+        android:layout_height="fill_parent" />
+    <xamarin.samples.urbanairship.richpush.CustomViewPager
+        android:id="@+id/message_pager"
+        android:layout_width="400dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent" />
+</xamarin.samples.urbanairship.richpush.CustomSlidingPaneLayout>

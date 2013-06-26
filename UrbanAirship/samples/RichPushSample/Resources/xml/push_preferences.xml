@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory 
+        android:title="@string/push_preference_category_title" >
+        
+	    <com.urbanairship.preference.PushEnablePreference
+	        android:key="push_preference"
+	        android:persistent="false"
+	        android:title="@string/push_preference_title" />
+	    
+	    <com.urbanairship.preference.SoundEnablePreference
+	        android:dependency="push_preference"
+	        android:key="sound_preference"
+	        android:persistent="false"
+	        android:title="@string/sound_preference_title" />
+	    
+	    <com.urbanairship.preference.VibrateEnablePreference
+	        android:dependency="push_preference"
+	        android:key="vibrate_preference"
+	        android:persistent="false"
+	        android:title="@string/vibrate_preference_title" />
+	    
+	    <com.urbanairship.preference.QuietTimeEnablePreference
+	        android:dependency="push_preference"
+	        android:key="quiet_time_enabled_preference"
+	        android:persistent="false"
+	        android:title="@string/quiet_time_enable_preference_title" />
+		
+	    <com.urbanairship.preference.QuietTimeStartPreference
+	        android:dependency="quiet_time_enabled_preference"
+	        android:key="quiet_time_start_preference"
+	        android:persistent="false"
+	        android:title="@string/quiet_time_start_preference_title" />
+	    
+	    <com.urbanairship.preference.QuietTimeEndPreference
+	        android:dependency="quiet_time_enabled_preference"
+	        android:key="quiet_time_end_preference"
+	        android:persistent="false"
+	        android:title="@string/quiet_time_end_preference_title" />
+	    
+    </PreferenceCategory>
+    
+</PreferenceScreen>
