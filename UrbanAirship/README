@@ -5,8 +5,8 @@ Prerequisites
 -------------
 
 - Xamarin.Android 4.7.x is the verified version that runs the samples.
-  At least RichPushSample won't work with 4.6.x as it depends on 4.7.x
-  version of ActionBarSherlock.
+  At least samples won't build as those ported code contains some newly
+  bound API that did not exist in 4.6.x (it is not hard to remove them).
 
 Build steps
 -----------
@@ -38,13 +38,4 @@ The same problem would happen when you are to write your own application.
 
 On the other hand, RichPushSample is almost pure C# porting.
 
-Warning: ActionBarSherlock binding
-----------------------------------
-
-RichPushSample project uses ActionBarSherlock. Since we also have a
-binding for the library, we reuse it too. It is bundled in this sample
-as a binary form, so you don't have to build it for you.
-
-(The package is built for Xamarin.Android 4.7.x and hence won't build
-with 4.6.x. You might still be able to replace it with 4.6.x and build.)
 
