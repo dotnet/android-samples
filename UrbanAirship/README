@@ -11,8 +11,8 @@ Prerequisites
 Build steps
 -----------
 
-- Download Urban Airship Android SDK v3.0 and extract it in this directory.
-  It should create "urbanairship-sdk" directory.
+- Create "urbanairship-sdk" directory, then download Urban Airship
+  Android SDK v3.0, and extract it in this directory.
 - The binding dll should build only with that.
 - To build and run the samples, you need to set some required service API
   settings in "Assets/airshipconfig.properties" in each project.
