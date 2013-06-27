@@ -49,6 +49,7 @@ namespace DynamicTest
 				var json = (IEnumerable<JsonValue>) JsonValue.Load (v.GetResponseStream ());
 #else
 			var wc = new WebClient ();
+			wc.Headers ["USER-AGENT"] = "Xamarin Android sample HTTP client";
 			wc.DownloadStringCompleted += (sender, e) => {
 				data.Clear ();
 				var v = e.Result;
