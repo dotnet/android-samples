@@ -32,7 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <DefineConstants>MONODROID</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
@@ -66,7 +65,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile> 
+    </Compile>
     <Compile Include="RS.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +77,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource> 
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
