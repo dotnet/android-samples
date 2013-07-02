@@ -273,6 +273,7 @@ namespace GooglePlayServicesTest
 		}
 		
 		/** Called when the Clear button is clicked. */
+		[Java.Interop.Export ("onClearMap")]
 		public void OnClearMap (View view) 
 		{
 			if (!CheckReady()) {
@@ -282,6 +283,7 @@ namespace GooglePlayServicesTest
 		}
 		
 		/** Called when the Reset button is clicked. */
+		[Java.Interop.Export ("onResetMap")]
 		public void OnResetMap(View view) 
 		{
 			if (!CheckReady()) {
