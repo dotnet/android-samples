@@ -14,7 +14,7 @@ in the project[*1] to make it usable:
 	Run the following in the directory mentioned above to build with ant:
 
 		- $(ANDROID_SDK)/tools/android update project -p .
-		- $(ANDROID_SDK)/tools/ant debug
+		- ant debug
 
 - In the GooglePlayServices project, add the "project.properties" file[*2] from Google's Android SDK.  
   (You will have to use "add as a link" or MfA won't find the actual library files.)
@@ -46,7 +46,7 @@ resources bundled with it (if it were only *.jar then we could use InputJar).
 (The Google samples are Apache licensed, so we ported some of them
 to C# and included in this project.)
 
-[*2] $(ANDROID_SDK)/extras/google/google-play-services/libproject/google-plat-services_lib/project.properties
+[*2] $(ANDROID_SDK)/extras/google/google-play-services/libproject/google-play-services_lib/project.properties
 
 [*3] $(ANDROID_SDK)/extras/google/google_play_services/docs
 
