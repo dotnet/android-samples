@@ -30,8 +30,9 @@ using Android.Text;
 using Android.Views;
 using Android.Widget;
 using Xamarin.ActionBarPullToRefresh.Library;
-using Void = Java.Lang.Void;
-using Object = Java.Lang.Object;
+
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ActionBarPullToRefreshSample
 {
@@ -61,35 +62,9 @@ namespace ActionBarPullToRefreshSample
 
 			// Set Listener to know when a refresh should be started
 			mPullToRefreshAttacher.Refresh += delegate {
-				new MyTask (this).Execute ();
+				Task.Factory.StartNew(()=> { Thread.Sleep (5000); })
+				.ContinueWith(task => { mPullToRefreshAttacher.SetRefreshComplete(); });
 			};
-		}
-
-		class MyTask : AsyncTask<Void, Void, Void>
-		{
-			ScrollViewActivity owner;
-			public MyTask (ScrollViewActivity owner)
-			{
-				this.owner = owner;
-			}
-			
-			protected override Void RunInBackground (params Void[] @params)
-			{
-				try {
-					System.Threading.Thread.Sleep (4000);
-				} catch (Java.Lang.InterruptedException e) {
-					Console.WriteLine (e);
-				}
-				return null;
-			}
-
-			protected override void OnPostExecute (Void result)
-			{
-				base.OnPostExecute (result);
-
-				// Notify PullToRefreshAttacher that the refresh has finished
-				owner.mPullToRefreshAttacher.SetRefreshComplete ();
-			}
 		}
 	}
 }

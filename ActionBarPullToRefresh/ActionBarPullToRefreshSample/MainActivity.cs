@@ -21,6 +21,7 @@
 //
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
@@ -35,6 +36,14 @@ namespace ActionBarPullToRefreshSample
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true)]
 	public class MainActivity : ListActivity {
+
+		// We don't want to display these activities for a couple of different reasons:
+		// MainActivity - this is the current activity
+		// GridViewActivity - this doesn't seem to bind correctly with the stable release of Xamarin.Android (4.6.8)
+		private string[] _activitiesToExclude = new string[] {
+			"actionbarpulltorefreshsample.MainActivity",
+			"actionbarpulltorefreshsample.GridViewActivity"
+		};
 
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
@@ -55,9 +64,10 @@ namespace ActionBarPullToRefreshSample
 
 			try {
 				PackageInfo pInfo = PackageManager.GetPackageInfo (PackageName, PackageInfoFlags.Activities);
-				var aInfos = pInfo.Activities;
+				var aInfos = pInfo.Activities.Where (ai => !_activitiesToExclude.Contains(ai.Name));
 
 				foreach (ActivityInfo aInfo in aInfos) {
+					Console.WriteLine (aInfo.Name);
 					if (!thisClazzName.Equals(aInfo.Name)) {
 						items.Add(aInfo);
 					}
