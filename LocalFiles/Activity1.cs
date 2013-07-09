@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.IO;
 using Android.Util;
 
+using System.Threading.Tasks;
+using System.Threading;
+
 namespace LocalFiles
 {
 	[Activity (Label = "Local Files sample", MainLauncher = true)]
@@ -18,24 +21,23 @@ namespace LocalFiles
 	{
 		int count = 0;
 		static readonly string Filename = "count";
-		protected override void OnCreate (Bundle bundle)
+		string path;
+		string filename;
+
+
+		protected override async void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			string path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
-			string filename = Path.Combine (path, Filename);
-			if (File.Exists (filename)) {
-				using (var f = new StreamReader (OpenFileInput (Filename))) {
-					string line;
-					do {
-						line = f.ReadLine ();
-					} while (!f.EndOfStream);
-					int.TryParse (line, out count);
-				}
-			}
+			path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
+			filename = Path.Combine (path, Filename);
+
+			Task<int> loadCount = loadFileAsync ();
+
+			Console.WriteLine ("Could be excueted before load finished!");
 
 			// Get our button from the layout resource,
 			// and attach an event to it
@@ -48,20 +50,48 @@ namespace LocalFiles
 			button.Click += delegate {
 				button.Text = string.Format ("{0} clicks!", ++count); };
 
-			btnSave.Click += delegate {
-				using (var f = new StreamWriter (OpenFileOutput (Filename, FileCreationMode.Append | FileCreationMode.WorldReadable))) {
-					f.WriteLine (count);
-				}
+			btnSave.Click += async delegate {
+
 				btnSave.Text = string.Format ("Current count saved: {0}", count);
 				txtStored.Text = string.Format (this.GetString (Resource.String.stored), count);
+				await writeFileAsync();
 			};
 
 			btnReset.Click += delegate {
 				File.Delete (filename);
 				btnSave.Text = this.GetString (Resource.String.save);
+				txtStored.Text = string.Format (this.GetString (Resource.String.stored), 0);
 			};
+
+			count = await loadCount;
 			txtPath.Text = filename;
 			txtStored.Text = string.Format (this.GetString (Resource.String.stored), count);
+		}
+
+		async Task<int> loadFileAsync()
+		{
+
+			if (File.Exists (filename)) {
+				using (var f = new StreamReader (OpenFileInput (Filename))) {
+					string line;
+					do {
+						line =await f.ReadLineAsync();
+					} while (!f.EndOfStream);
+					Console.WriteLine ("Load Finished");
+					return int.Parse (line);
+
+				}
+			}
+			return 0;
+		}
+
+		async Task writeFileAsync()
+		{
+			using (var f = new StreamWriter (OpenFileOutput (Filename, FileCreationMode.Append | FileCreationMode.WorldReadable))) {
+				await f.WriteLineAsync (count.ToString ()).ConfigureAwait(false);
+			}
+			Console.WriteLine ("Save Finished!");
+
 		}
 	}
 }
