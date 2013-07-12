@@ -60,7 +60,7 @@ namespace DynamicTest
 #else
 				foreach (var item in json.Select (j => j.AsDynamic ())) {
 #endif
-					var uri = new Uri ((string) item.author.avatar_url);
+					var uri = new Uri (((string) item.author.avatar_url) ?? "http://www.gravatar.com/avatar/default.jpg");
 					var file = Path.Combine (baseDir, (string) item.author.id + new FileInfo (uri.LocalPath).Extension);
 					if (!urls.ContainsKey (uri))
 						urls.Add (uri, new List<string> () {file});
