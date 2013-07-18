@@ -30,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
@@ -59,13 +58,16 @@
   </Target>
   -->
   <ItemGroup>
-    <EmbeddedJar Include="..\lib\osmdroid-android-3.0.8.jar">
-      <Link>Jars\osmdroid-android-3.0.8.jar</Link>
-    </EmbeddedJar>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="..\lib\slf4j-android-1.5.8.jar">
       <Link>Jars\slf4j-android-1.5.8.jar</Link>
     </EmbeddedReferenceJar>
+    <EmbeddedReferenceJar Include="..\lib\osmbonuspack_v3.4.jar">
+      <Link>Jars\osmbonuspack_v3.4.jar</Link>
+    </EmbeddedReferenceJar>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="..\lib\osmdroid-android-3.0.8.jar">
+      <Link>Jars\osmdroid-android-3.0.8.jar</Link>
+    </EmbeddedJar>
   </ItemGroup>
 </Project>
