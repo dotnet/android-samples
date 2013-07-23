@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>e4212c3a-eacd-4d19-ae00-380d8daaf55e</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Media, Async</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+    	<LicenseRequirement>Starter</LicenseRequirement>
+</SampleMetadata>

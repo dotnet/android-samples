@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncImageAndroid", "AsyncImageAndroid\AsyncImageAndroid.csproj", "{0E88E31B-9315-4B96-AF3D-88B1A55CC0A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E88E31B-9315-4B96-AF3D-88B1A55CC0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E88E31B-9315-4B96-AF3D-88B1A55CC0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E88E31B-9315-4B96-AF3D-88B1A55CC0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E88E31B-9315-4B96-AF3D-88B1A55CC0A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AsyncImageAndroid\AsyncImageAndroid.csproj
+	EndGlobalSection
+EndGlobal
