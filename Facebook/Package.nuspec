@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Xamarin.FacebookBinding</id>
+    <version>1.0.0</version>
+    <authors>Atsushi Eno</authors>
+    <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://github.com/facebook/facebook-android-sdk/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/xamarin/monodroid-samples</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin Android Binding library for Facebook Android SDK</description>
+    <releaseNotes>Initial release, based on Facebook Andrdoid SDK version 3.0.1. Also works only with Xamarin.Android 4.7.x or later (due to Android API coverage).</releaseNotes>
+    <copyright>Copyright (C) 2010-present Facebook. / Copyright (C) 2013 Xamarin Inc.</copyright>
+    <tags>Android Facebook Binding Xamarin</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Core" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android.Support.v4" targetFramework="MonoAndroid" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file target="lib/MonoAndroid" src="Xamarin.Facebook/bin/Debug/Xamarin.Facebook.dll" />
+  </files>
+</package>
