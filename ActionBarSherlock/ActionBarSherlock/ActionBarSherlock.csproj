@@ -15,7 +15,7 @@
     <MonoAndroidTransformPrefix>Transforms</MonoAndroidTransformPrefix>
     <AssemblyName>ActionBarSherlock</AssemblyName>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
-    <JavaDocPaths>../JakeWharton-ActionBarSherlock-071a61c/target/apidocs/</JavaDocPaths>
+    <JavaDocPaths>../JakeWharton-ActionBarSherlock-5a15d92/target/apidocs/</JavaDocPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
