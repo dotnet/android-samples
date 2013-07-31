@@ -1,70 +1,28 @@
 Maps and Location Demo v2
 =========================
 
-This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 56% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
+This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
 
 The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
 
 * **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
 * **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
-* **GooglePlayServices** - this is a Java Binding project for the Google Play Services.
 
-In the `Debug_Froyo` build configuration, and it targets API level 8 and higher. This build configuration will only compile the following projects:
+In the `Debug_Froyo` build configuration, and it targets API level 8 and higher. This build configuration will only compile the following project:
 
 * **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library. 
-* **GooglePlayServices_Froyo** - this is a Java Binding project for the Google Play Services.
 
-This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
-
-**Note:** You must use Mono for Android 4.4.x or higher to compile the Java binding project. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.6.4 as of April 23, 2013.
+**Note:** You must use Xamarin.Android 4.8 or higher for this sample. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.8 as of July 30, 2013. If you have an older version of Xamarin.Android then you must create your own Java Binding project for Google Play Services.
 
 **Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
 
+## Prerequisites
 
-Building the Google Play Client Services Library
-------------------------------------------------
+These sample use the Google Play Services component that is available in the Xamarin Component Store.  There are two versions of this component: [one for Froyo](https://components.xamarin.com/view/googleplayservicesfroyo/) and [one for Ice Cream Sandwich](https://components.xamarin.com/view/googleplayservices/). You will need to install the Google Play Services client library and the components before these samples with work.
 
-To access Google Maps v2, it is necessary to create a Xamarin.Android binding for the Google Play services client library. This example has a Xamarin.Android Binding Library project, but it does not have the Google Play Services client library. It is necessary to first compile the Google Play Client Services library. This section will outline how to do so .
+You must also have the Google Play Client Services library installed. You can install this by using the Android SDK Manager. This library is available under the *Extras* folder:
 
-### Prequisites
-
-*Do not* skip these pre-requisites. They are **mandatory**.
-
-These directions assume that you have [Apache Ant](http://ant.apache.org/) installed and in your `$PATH`. [Installing Apache Ant](http://ant.apache.org/manual/install.html) is beyond the scope of this document.
-
-`android` is a command line utility that is required to prepare the Android Library project for compiliation. You must have the directory `$ANDROID_HOME/tools` has been added to your `$PATH`. 
-
-**Note:** You *must* have these two command line utilities configured properly, or you will not be able to bind the Google Play Services in Xamarin.Android.
-
-### Compiling the Google Play Services client library
-
-To compile the Google Play Client Services library using Ant, follow these steps:
-
-1. Use the Android SDK Manager to install Google Play Services.
-2. Copy the directory located at `extras/google/google_play_services/libproject/google-play-services_lib` into the same directory as this README.
-3. Build the project with `ant` like so:
-    
-        cd google-play-services_lib
-        android update project -p .
-        ant debug
-
-4. Open the `MapsAndLocationDemo.sln`. Add the file `google-play-services_lib/project.properties` to the `GooglePlayServices` project as a ***linked*** file. It is crucial that <code>project.properties</code> be linked and not added. The following screenshot shows how to link <code>project.properties</code>:
-
-![Link File](/images/link_file.png)
-
-If this file is moved or copied to into the project, the build will fail and Xamarin.Android will display an error message similar to the following in the Build Output:
-
-    Error   1   The "CreateLibraryResourceArchive" task failed unexpectedly.
-      System.IO.PathTooLongException: The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters.
-      at System.IO.PathHelper.GetFullPathName()
-      at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength)
-      at System.IO.Path.GetFullPathInternal(String path)
-      at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-      at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
-      at Xamarin.Android.Tasks.MonoAndroidHelper.CopyIfChanged(String source, String destination)
-
-
-A bash script file has been provided which will automate this step for you. It assumes that you already have `ant` installed somewhere in your path and that the environment variable `$ANDROID_HOME` holds the path to your Android SDK.
+![Link File](/images/android_sdk_manager.png)
 
 Google Maps v2 API Key
 ----------------------
@@ -127,8 +85,7 @@ Backwards Compatibility with GingerBread / Froyo
 
 Google Play Services is supported on Android 2.2 (API level 8) or higher. This binding will work on these older API's, but some changes must be made to the binding library project and the sample project first:
 
-* In the GooglePlayServices binding library, change the target framework to **Android 2.2**.
-* In the GooglePlayServices binding library, add a reference to **Mono.Android.Support.V4**.
+* Install the [Google Play Services (Froyo) component](https://components.xamarin.com/view/googleplayservicesfroyo/).
 * In the MapsAndLocationDemo project, change the target framework to **Android 2.2**.
 * In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.V4**.
 * In the MapsAndLocationDemo fix the compile errors: 
@@ -137,7 +94,7 @@ Google Play Services is supported on Android 2.2 (API level 8) or higher. This b
 	* Change <code>MapFragment</code> to <code>SupportMapFragment</code>
 	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
 
-At this point the binding will target Android 2.2 and will run on older devices. 
+At this point the projects will run on Android 2.2 and Android 2.3 devices. 
 
 #Troubleshooting
 
