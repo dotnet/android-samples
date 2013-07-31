@@ -40,6 +40,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -49,6 +50,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Android.Support.v4" />
+    <Reference Include="GooglePlayServicesFroyoLib">
+      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -107,9 +111,10 @@
   </Target>
   -->
   <ItemGroup>
-    <ProjectReference Include="..\GooglePlayServices_Froyo\GooglePlayServices_Froyo.csproj">
-      <Project>{70373165-8CA9-401F-908C-BFEC698A56B2}</Project>
-      <Name>GooglePlayServices_Froyo</Name>
-    </ProjectReference>
+    <XamarinComponentReference Include="googleplayservicesfroyo">
+      <InstallationInProgress>True</InstallationInProgress>
+      <Version>9.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>
