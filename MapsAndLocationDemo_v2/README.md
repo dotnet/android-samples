@@ -1,4 +1,4 @@
-Maps and Location Demo v2
+Maps and Location Demo v3
 =========================
 
 This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
@@ -12,13 +12,15 @@ In the `Debug_Froyo` build configuration, and it targets API level 8 and higher.
 
 * **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library. 
 
-**Note:** You must use Xamarin.Android 4.8 or higher for this sample. It is recommended that you use the most recent stable build of Xamarin.Android, which is 4.8 as of July 30, 2013. If you have an older version of Xamarin.Android then you must create your own Java Binding project for Google Play Services.
+**Note:** You must use Xamarin.Android 4.8 or higher for this sample. If you have an older version of Xamarin.Android then you must create your own Java Binding project for Google Play Services. For an example of how to do this, please consult the [MapsAndLocationDemo_V2](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v2) sample.
 
 **Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
 
 ## Prerequisites
 
-These sample use the Google Play Services component that is available in the Xamarin Component Store.  There are two versions of this component: [one for Froyo](https://components.xamarin.com/view/googleplayservicesfroyo/) and [one for Ice Cream Sandwich](https://components.xamarin.com/view/googleplayservices/). You will need to install the Google Play Services client library and the components before these samples with work.
+These sample use the Google Play Services component that is available in the Xamarin Component Store. You must have Xamarin.Android 4.8 in order to use this component.
+
+There are two versions of this component: [one for Froyo](https://components.xamarin.com/view/googleplayservicesfroyo/) and [one for Ice Cream Sandwich](https://components.xamarin.com/view/googleplayservices/). You will need to install the Google Play Services client library and the components before these samples with work.
 
 You must also have the Google Play Client Services library installed. You can install this by using the Android SDK Manager. This library is available under the *Extras* folder:
 
