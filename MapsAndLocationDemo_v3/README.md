@@ -3,6 +3,8 @@ Maps and Location Demo v3
 
 This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
 
+This sample is relevant for users of Xamarin.Android 4.8. If you are using Xamarin.Android 4.4 or Xamarin.Android 4.8, you will have to create a Java Binding project as demonstrated in the [MapsAndLocationDemo_v2](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v2) sample.
+
 The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
 
 * **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
