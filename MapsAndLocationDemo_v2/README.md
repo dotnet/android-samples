@@ -1,11 +1,11 @@
 Maps and Location Demo v2
 =========================
 
-This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library. 
+This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library.
 
 This sample is relevant for users of Xamarin.Android 4.4 or Xamarin 4.6. If you are using Xamarin.Android 4.8, it is recommended that you use the Google Play Services component as demonstrated in the [MapsAndLocationDemo_v3](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v3) sample.
 
-According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
+According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher.
 
 The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
 
@@ -73,7 +73,7 @@ A bash script file has been provided which will automate this step for you. It a
 Google Maps v2 API Key
 ----------------------
 
-You must [obtain a new API Key](https://developers.google.com/maps/documentation/android/start#the_google_maps_api_key) for Google Maps v2, API keys from Google Maps v1 will not work. 
+You must [obtain a new API Key](https://developers.google.com/maps/documentation/android/start#the_google_maps_api_key) for Google Maps v2. API keys from Google Maps v1 will not work. 
 
 The location of the debug.keystore file that Xamarin.Android uses depends on your platform:
 
@@ -84,10 +84,58 @@ To obtain the SHA1 fingerprint of the debug keystore, you can use the `keytool` 
 
     $ keytool -V -list -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
 
-A Note About Google Play Services
+Adding the API Key to your application
+--------------------------------------
+
+It goes in your application's manifest, contained in the file Properties/AndroidManifest.xml. From there, the Maps API reads the key value and passes it to the Google Maps server, which then confirms that you have access to Google Maps data. 
+
+In AndroidManifest.xml, add the following element as a child of the <application> element, by inserting it just before the closing tag </application> 
+
+	<application android:label="@string/app_name">
+
+		<!-- Put your Google Maps V2 API Key here. This key will not work for you.-->
+
+		<!-- See https://developers.google.com/maps/documentation/android/start#obtaining_an_api_key -->
+
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="SAzaSyC1O8yQaNtuur4t5y6u7ZBPnYdVDgYKHtfA8" />
+
+	</application>
+
+Specifying additional permissions
 ---------------------------------
 
-[Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms) must be installed on the device before Google Maps for Android v2 will work. *The emulator will not have Google Play Services installed*. Installing Google Play Services is beyond the scope of this example. 
+Besides permissions required by other parts of your application, you must add the following permissions to AndroidManifest.xml in order to use the Google Maps Android API: 
+
+	<!-- We need to be able to download map tiles and access Google Play Services-->
+
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- Allow the application to access Google web-based services. -->
+
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+	<!-- Google Maps for Android v2 will cache map tiles on external storage -->
+
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+	<!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+	<!-- These are optional, but recommended. They will allow Maps to use the My Location provider. -->
+
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  
+Verifying Google Play Services installation on your device or emulator
+----------------------------------------------------------------------
+
+[Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms) must be installed on a device or emulator before Google Maps for Android v2 will work.
+
+Emulators using the [Google APIs Add-On](https://developers.google.com/android/add-ons/google-apis/) with API 17 and higher have Google Play Services included in the Google APIs Add On.
+
+Emulators not using the Google APIs Add-On images, *will not have Google Play Services installed*. The appropriate APKs may be manually installed into the emulator image, but installing Google Play Services is beyond the scope of this example. 
 
 If the device does not have Google Play Services installed, you will see a stack trace similar to the following:
 
