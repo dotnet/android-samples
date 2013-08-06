@@ -20,8 +20,8 @@ using Android.Bluetooth;
 using Android.Content;
 using Android.OS;
 using Android.Util;
-using Java.Lang;
 using Java.Util;
+using System.Threading;
 
 namespace BluetoothChat
 {
@@ -41,6 +41,7 @@ namespace BluetoothChat
 		private const string NAME = "BluetoothChat";
 	
 		// Unique UUID for this application
+		//If fa87c0d0-afac-11de-8a39-0800200c9a66 does not work, try 00001101-0000-1000-8000-00805F9B34FB
 		private static UUID MY_UUID = UUID.FromString ("fa87c0d0-afac-11de-8a39-0800200c9a66");
 		
 		// Member fields
@@ -292,13 +293,13 @@ namespace BluetoothChat
 		/// like a server-side client. It runs until a connection is accepted
 		/// (or until cancelled).
 		/// </summary>
-		// TODO: Convert to a .NET thread
-		private class AcceptThread : Thread
+		private class AcceptThread
 		{
 			// The local server socket
 			private BluetoothServerSocket mmServerSocket;
 			private BluetoothChatService _service;
-			
+			public Thread mmAcceptThread;
+
 			public AcceptThread (BluetoothChatService service)
 			{
 				_service = service;
@@ -307,23 +308,23 @@ namespace BluetoothChat
 				// Create a new listening server socket
 				try {
 					tmp = _adapter.ListenUsingRfcommWithServiceRecord (NAME, MY_UUID);
-	
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "listen() failed", e);
 				}
 				mmServerSocket = tmp;
 			}
 	
-			public override void Run ()
+			public void Start ()
 			{
-				if (Debug)
-					Log.Debug (TAG, "BEGIN mAcceptThread " + this.ToString ());
-				
-				Name = "AcceptThread";
-				BluetoothSocket socket = null;
+				mmAcceptThread = new System.Threading.Thread (() =>	
+               	{
+               		if (Debug)
+						Log.Debug(TAG, "BEGIN AcceptThread " + this.ToString());
+
+					BluetoothSocket socket = null;
 	
-				// Listen to the server socket if we're not connected
-				while (_state != STATE_CONNECTED) {
+					// Listen to the server socket if we're not connected
+					while (_state != STATE_CONNECTED) {
 					try {
 						// This is a blocking call and will only return on a
 						// successful connection or an exception
@@ -354,10 +355,13 @@ namespace BluetoothChat
 							}
 						}
 					}
-				}
+					
+					if (Debug)
+						Log.Info (TAG, "END mAcceptThread");
+					}
+				});
 				
-				if (Debug)
-					Log.Info (TAG, "END mAcceptThread");
+				mmAcceptThread.Start ();
 			}
 	
 			public void Cancel ()
@@ -378,13 +382,13 @@ namespace BluetoothChat
 		/// with a device. It runs straight through; the connection either
 		/// succeeds or fails.
 		/// </summary>
-		// TODO: Convert to a .NET thread
-		protected class ConnectThread : Thread
+		protected class ConnectThread
 		{
 			private BluetoothSocket mmSocket;
 			private BluetoothDevice mmDevice;
 			private BluetoothChatService _service;
-			
+			private System.Threading.Thread mmConnectThread;
+
 			public ConnectThread (BluetoothDevice device, BluetoothChatService service)
 			{
 				mmDevice = device;
@@ -395,46 +399,50 @@ namespace BluetoothChat
 				// given BluetoothDevice
 				try {
 					tmp = device.CreateRfcommSocketToServiceRecord (MY_UUID);
+
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "create() failed", e);
 				}
 				mmSocket = tmp;
 			}
 			
-			public override void Run ()
+			public void Start ()
 			{
-				Log.Info (TAG, "BEGIN mConnectThread");
-				Name = "ConnectThread";
-	
-				// Always cancel discovery because it will slow down a connection
-				_adapter.CancelDiscovery ();
-	
-				// Make a connection to the BluetoothSocket
-				try {
-					// This is a blocking call and will only return on a
-					// successful connection or an exception
-					mmSocket.Connect ();
-				} catch (Java.IO.IOException e) {
-					_service.ConnectionFailed ();
-					// Close the socket
+				mmConnectThread = new System.Threading.Thread (() => {
+					Log.Info (TAG, "BEGIN mConnectThread");
+		
+					// Always cancel discovery because it will slow down a connection
+					_adapter.CancelDiscovery ();
+		
+					// Make a connection to the BluetoothSocket
 					try {
-						mmSocket.Close ();
-					} catch (Java.IO.IOException e2) {
-						Log.Error (TAG, "unable to close() socket during connection failure", e2);
-					}
+						// This is a blocking call and will only return on a
+						// successful connection or an exception
+						mmSocket.Connect ();
+					} catch (Java.IO.IOException e) {
+						_service.ConnectionFailed ();
+						// Close the socket
+						try {
+							mmSocket.Close ();
+						} catch (Java.IO.IOException e2) {
+							Log.Error (TAG, "unable to close() socket during connection failure", e2);
+						}
 
-					// Start the service over to restart listening mode
-					_service.Start ();
-					return;
-				}
-	
-				// Reset the ConnectThread because we're done
-				lock (this) {
-					_service.connectThread = null;
-				}
-	
-				// Start the connected thread
-				_service.Connected (mmSocket, mmDevice);
+						// Start the service over to restart listening mode
+						_service.Start ();
+						return;
+					}
+		
+					// Reset the ConnectThread because we're done
+					lock (this) {
+						_service.connectThread = null;
+					}
+		
+					// Start the connected thread
+					_service.Connected (mmSocket, mmDevice);
+				});
+
+				mmConnectThread.Start ();
 			}
 	
 			public void Cancel ()
@@ -451,12 +459,12 @@ namespace BluetoothChat
 		/// This thread runs during a connection with a remote device.
 		/// It handles all incoming and outgoing transmissions.
 		/// </summary>
-		// TODO: Convert to a .NET thread
-		private class ConnectedThread : Thread
+		private class ConnectedThread
 		{
 			private BluetoothSocket mmSocket;
 			private Stream mmInStream;
 			private Stream mmOutStream;
+			private Thread mmConnectedThread;
 			private BluetoothChatService _service;
 	
 			public ConnectedThread (BluetoothSocket socket, BluetoothChatService service)
@@ -479,27 +487,31 @@ namespace BluetoothChat
 				mmOutStream = tmpOut;
 			}
 	
-			public override void Run ()
+			public void Start ()
 			{
-				Log.Info (TAG, "BEGIN mConnectedThread");
-				byte[] buffer = new byte[1024];
-				int bytes;
-	
-				// Keep listening to the InputStream while connected
-				while (true) {
-					try {
-						// Read from the InputStream
-						bytes = mmInStream.Read (buffer, 0, buffer.Length);
-	
-						// Send the obtained bytes to the UI Activity
-						_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
-							.SendToTarget ();
-					} catch (Java.IO.IOException e) {
-						Log.Error (TAG, "disconnected", e);
-						_service.ConnectionLost ();
-						break;
+				mmConnectedThread = new Thread (() => {
+					Log.Info (TAG, "BEGIN mConnectedThread");
+					byte[] buffer = new byte[1024];
+					int bytes;
+					
+					// Keep listening to the InputStream while connected
+					while (true) {
+						try {
+							// Read from the InputStream
+							bytes = mmInStream.Read (buffer, 0, buffer.Length);
+					
+							// Send the obtained bytes to the UI Activity
+							_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
+								.SendToTarget ();
+						} catch (Java.IO.IOException e) {
+							Log.Error (TAG, "disconnected", e);
+							_service.ConnectionLost ();
+							break;
+						}
 					}
-				}
+				});
+
+				mmConnectedThread.Start ();
 			}
 	
 			/// <summary>
