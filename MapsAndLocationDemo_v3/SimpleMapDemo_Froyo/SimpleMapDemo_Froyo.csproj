@@ -112,7 +112,7 @@
   -->
   <ItemGroup>
     <XamarinComponentReference Include="googleplayservicesfroyo">
-      <InstallationInProgress>True</InstallationInProgress>
+      <InstallationInProgress>False</InstallationInProgress>
       <Version>9.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

@@ -1,91 +1,85 @@
 ﻿namespace MapsAndLocationDemo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using Android.App;
+	using Android.Locations;
+	using Android.OS;
+	using Android.Util;
+	using Android.Widget;
+	using LocationDemo;
 
-    using Android.App;
-    using Android.Locations;
-    using Android.OS;
-    using Android.Util;
-    using Android.Widget;
+	[Activity(Label = "@string/activity_label_location", MainLauncher = true)]
+	public class LocationActivity : Activity, ILocationListener
+	{
+		private LocationManager _locMgr;
 
-    using LocationDemo;
+		public void OnLocationChanged (Location location)
+		{
+			TextView locationText = FindViewById<TextView> (Resource.Id.locationTextView);
 
-    [Activity(Label = "@string/activity_label_location", MainLauncher = true)]
-    public class LocationActivity : Activity, ILocationListener
-    {
-        private LocationManager _locMgr;
+			locationText.Text = String.Format ("Latitude = {0}, Longitude = {1}", location.Latitude, location.Longitude);
 
-        public void OnLocationChanged(Location location)
-        {
-            TextView locationText = FindViewById<TextView>(Resource.Id.locationTextView);
+			Task.Factory.StartNew (() => {
+				// Do the reverse geocoding on a background thread.
+				Geocoder geocdr = new Geocoder (this);
+				IList<Address> addresses = geocdr.GetFromLocation (location.Latitude, location.Longitude, 5);
+				return addresses;
+			})
+				.ContinueWith (task => {
+				TextView addrText = FindViewById<TextView> (Resource.Id.addressTextView);
+				task.Result.ToList ().ForEach ((addr) => addrText.Append (addr.ToString () + "\r\n\r\n"));
 
-            locationText.Text = String.Format("Latitude = {0}, Longitude = {1}", location.Latitude, location.Longitude);
+			}, TaskScheduler.FromCurrentSynchronizationContext ());
+		}
 
-            // demo geocoder
+		public void OnProviderDisabled (string provider)
+		{
+		}
 
-            new Thread(() =>{
-                Geocoder geocdr = new Geocoder(this);
+		public void OnProviderEnabled (string provider)
+		{
+		}
 
-                IList<Address> addresses = geocdr.GetFromLocation(location.Latitude, location.Longitude, 5);
+		public void OnStatusChanged (string provider, Availability status, Bundle extras)
+		{
+		}
 
-                RunOnUiThread(() =>{
-                    TextView addrText = FindViewById<TextView>(Resource.Id.addressTextView);
+		protected override void OnCreate (Bundle bundle)
+		{
+			base.OnCreate (bundle);
 
-                    addresses.ToList().ForEach((addr) => addrText.Append(addr.ToString() + "\r\n\r\n"));
-                });
-            }).Start();
-        }
+			SetContentView (Resource.Layout.LocationView);
 
-        public void OnProviderDisabled(string provider)
-        {
-        }
+			// use location service directly       
+			_locMgr = GetSystemService (LocationService) as LocationManager;
+		}
 
-        public void OnProviderEnabled(string provider)
-        {
-        }
+		protected override void OnPause ()
+		{
+			base.OnPause ();
 
-        public void OnStatusChanged(string provider, Availability status, Bundle extras)
-        {
-        }
+			_locMgr.RemoveUpdates (this);
+		}
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
+		protected override void OnResume ()
+		{
+			base.OnResume ();
 
-            SetContentView(Resource.Layout.LocationView);
+			Criteria locationCriteria = new Criteria ();
+			locationCriteria.Accuracy = Accuracy.Coarse;
+			locationCriteria.PowerRequirement = Power.NoRequirement;
 
-            // use location service directly       
-            _locMgr = GetSystemService(LocationService) as LocationManager;
-        }
+			string locationProvider = _locMgr.GetBestProvider (locationCriteria, true);
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-
-            _locMgr.RemoveUpdates(this);
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-
-            Criteria locationCriteria = new Criteria();
-            locationCriteria.Accuracy = Accuracy.Coarse;
-            locationCriteria.PowerRequirement = Power.NoRequirement;
-
-            string locationProvider = _locMgr.GetBestProvider(locationCriteria, true);
-
-            if (!String.IsNullOrEmpty(locationProvider))
-            {
-                _locMgr.RequestLocationUpdates(locationProvider, 2000, 1, this);
-            }
-            else
-            {
-                Log.Warn("LocationDemo", "Could not determine a location provider.");
-            }
-        }
-    }
+			if (!String.IsNullOrEmpty (locationProvider)) {
+				_locMgr.RequestLocationUpdates (locationProvider, 2000, 1, this);
+			} else {
+				Log.Warn ("LocationDemo", "Could not determine a location provider.");
+			}
+		}
+	}
 }

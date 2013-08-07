@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.docs.android.mapsandlocationdemo2" android:versionName="4.5" android:versionCode="6">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.docs.android.mapsandlocationdemo3.froyo" android:versionName="4.5" android:versionCode="6">
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
 	<!-- Google Maps for Android v2 requires OpenGL ES v2 -->
 	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
