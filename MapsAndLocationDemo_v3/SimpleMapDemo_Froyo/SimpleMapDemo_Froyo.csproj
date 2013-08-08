@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="GooglePlayServicesFroyoLib">
-      <HintPath>..\Components\googleplayservicesfroyo-9.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+      <HintPath>..\Components\googleplayservicesfroyo-10.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -113,7 +113,7 @@
   <ItemGroup>
     <XamarinComponentReference Include="googleplayservicesfroyo">
       <InstallationInProgress>False</InstallationInProgress>
-      <Version>9.0</Version>
+      <Version>10.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

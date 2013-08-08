@@ -2,7 +2,14 @@
 	<remove-node path="/api/package[contains(@name, '.internal')]" />
 	<remove-node path="/api/package[@name='com.google.android.gms.maps']/class[@name='GoogleMapOptionsCreator']" />
 	<remove-node path="/api/package[@name='com.google.android.gms.maps.model']/class[contains (@name, 'Creator')]" />
-		
+	
+	<!--- Added these 5 remove-node so that the component compiles with rev. 10 of the Google Play Services client library -->	
+	<remove-node path="/api/package[@name='com.google.android.gms.games']/class[@name='GameEntityCreator']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games']/class[@name='PlayerEntityCreator']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/class[@name='InvitationEntityCreator']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/class[@name='ParticipantEntityCreator']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer.realtime']/class[@name='RoomEntityCreator']" />
+			
 	<attr path="/api/package[@name='com.google.android.gms.appstate']" name="managedName">Android.Gms.AppStates</attr>
 	<attr path="/api/package[@name='com.google.android.gms.auth']" name="managedName">Android.Gms.Auth</attr>
 	<attr path="/api/package[@name='com.google.android.gms.common']" name="managedName">Android.Gms.Common</attr>  

@@ -96,12 +96,6 @@
   <ItemGroup>
     <TransformFile Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GooglePlayServices\GooglePlayServices.csproj">
-      <Project>{C388951C-C427-4F44-A54B-5A64BAE0DA39}</Project>
-      <Name>GooglePlayServices</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
@@ -110,4 +104,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\GooglePlayServices\GooglePlayServices.csproj">
+      <Project>{C388951C-C427-4F44-A54B-5A64BAE0DA39}</Project>
+      <Name>GooglePlayServices</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
