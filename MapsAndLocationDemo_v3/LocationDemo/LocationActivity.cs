@@ -80,15 +80,16 @@ namespace MapsAndLocationDemo
 				// Does not work, must use Android.Hardware.SensorStatus
 				_locationManager.AddTestProvider ("MockLocationProvider", true, false, false, false, true, true, true, locationCriteria.PowerRequirement, Android.Hardware.SensorStatus.AccuracyHigh);
 
-				Location loc = new Location ("MockLocationProvider");
-				loc.Latitude = 37.763319;
-				loc.Longitude = -122.388255;
+				Location location = new Location ("MockLocationProvider");
+				location.Latitude = 37.763319;
+				location.Longitude = -122.388255;
+				location.Time = DateTime.Now.Ticks;
 
 				_locationManager.SetTestProviderEnabled ("MockLocationProvider", true);
 
 				_locationManager.RequestLocationUpdates ("MockLocationProvider", 2000, 0, this);
 
-				_locationManager.SetTestProviderLocation ("MockLocationProvider", loc);
+				_locationManager.SetTestProviderLocation ("MockLocationProvider", location);
 			};  
 		}
 
