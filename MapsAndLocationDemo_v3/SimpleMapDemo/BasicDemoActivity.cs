@@ -3,7 +3,7 @@ namespace SimpleMapDemo
     using Android.App;
     using Android.OS;
 
-    [Activity(Label = "@string/basic_map")]
+    [Activity(Label = "@string/activity_label_axml")]
     public class BasicDemoActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)

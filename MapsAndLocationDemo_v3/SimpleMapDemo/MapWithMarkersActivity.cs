@@ -1,7 +1,5 @@
 namespace SimpleMapDemo
 {
-    using System;
-
     using Android.App;
     using Android.Gms.Maps;
     using Android.Gms.Maps.Model;
@@ -11,80 +9,27 @@ namespace SimpleMapDemo
     [Activity(Label = "@string/activity_label_mapwithmarkers")]
     public class MapWithMarkersActivity : Activity
     {
-        private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
-        private static readonly LatLng LeaveFromHereToMaui = new LatLng(82.4986, -62.348);
-        private static readonly LatLng[] LocationForCustomIconMarkers = new[]
-                                                                            {
-                                                                                new LatLng(40.741773, -74.004986),
-                                                                                new LatLng(41.051696, -73.545667),
-                                                                                new LatLng(41.311197, -72.902646)
-                                                                            };
-        private string _gotoMauiMarkerId;
+        private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
+        private static readonly LatLng VimyRidge = new LatLng(50.379444, 2.773611);
         private GoogleMap _map;
         private MapFragment _mapFragment;
-        private Marker _polarBearMarker;
-        private GroundOverlay _polarBearOverlay;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            SetContentView(Resource.Layout.MapLayout);
 
-            SetContentView(Resource.Layout.MapWithOverlayLayout);
             InitMapFragment();
-            SetupMapIfNeeded();
-        }
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-
-            // Pause the GPS - we won't have to worry about showing the 
-            // location.
-            _map.MyLocationEnabled = false;
-
-            _map.MarkerClick -= MapOnMarkerClick;
+            SetupAnimateToButton();
+            SetupZoomInButton();
+            SetupZoomOutButton();
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             SetupMapIfNeeded();
-
-            _map.MyLocationEnabled = true;
-
-            // Setup a handler for when the user clicks on a marker.
-            _map.MarkerClick += MapOnMarkerClick;
-        }
-
-        private void AddInitialPolarBarToMap()
-        {
-            MarkerOptions markerOptions = new MarkerOptions()
-                .SetSnippet("Click me to go on vacation.")
-                .SetPosition(LeaveFromHereToMaui)
-                .SetTitle("Goto Maui");
-            _polarBearMarker = _map.AddMarker(markerOptions);
-            _polarBearMarker.ShowInfoWindow();
-
-            _gotoMauiMarkerId = _polarBearMarker.Id;
-
-            PositionPolarBearGroundOverlay(LeaveFromHereToMaui);
-        }
-
-        /// <summary>
-        ///   Add three markers to the map.
-        /// </summary>
-        private void AddMonkeyMarkersToMap()
-        {
-            for (int i = 0; i < LocationForCustomIconMarkers.Length; i++)
-            {
-                BitmapDescriptor icon = BitmapDescriptorFactory.FromResource(Resource.Drawable.monkey);
-                MarkerOptions mapOption = new MarkerOptions()
-                    .SetPosition(LocationForCustomIconMarkers[i])
-                    .InvokeIcon(icon)
-                    .SetSnippet(String.Format("This is marker #{0}.", i))
-                    .SetTitle(String.Format("Marker {0}", i));
-                _map.AddMarker(mapOption);
-            }
         }
 
         private void InitMapFragment()
@@ -99,42 +44,28 @@ namespace SimpleMapDemo
 
                 FragmentTransaction fragTx = FragmentManager.BeginTransaction();
                 _mapFragment = MapFragment.NewInstance(mapOptions);
-                fragTx.Add(Resource.Id.mapWithOverlay, _mapFragment, "map");
+                fragTx.Add(Resource.Id.map, _mapFragment, "map");
                 fragTx.Commit();
             }
         }
 
-        private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
+        private void SetupAnimateToButton()
         {
-            Marker marker = markerClickEventArgs.P0; // TODO [TO201212142221] Need to fix the name of this with MetaData.xml
-            if (marker.Id.Equals(_gotoMauiMarkerId))
-            {
-                PositionPolarBearGroundOverlay(InMaui);
-                _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(InMaui, 13));
-                _gotoMauiMarkerId = null;
-                _polarBearMarker.Remove();
-                _polarBearMarker = null;
-            }
-            else
-            {
-                Toast.MakeText(this, String.Format("You clicked on Marker ID {0}", marker.Id), ToastLength.Short).Show();
-            }
-        }
+            Button animateButton = FindViewById<Button>(Resource.Id.animateButton);
+            animateButton.Click += (sender, e) =>{
+                // Move the camera to the Passchendaele Memorial in Belgium.
+                CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+                builder.Target(Passchendaele);
+                builder.Zoom(18);
+                builder.Bearing(155);
+                builder.Tilt(65);
+                CameraPosition cameraPosition = builder.Build();
 
-        private void PositionPolarBearGroundOverlay(LatLng position)
-        {
-            if (_polarBearOverlay == null)
-            {
-                BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.polarbear);
-                GroundOverlayOptions groundOverlayOptions = new GroundOverlayOptions()
-                    .Position(position, 150, 200)
-                    .InvokeImage(image);
-                _polarBearOverlay = _map.AddGroundOverlay(groundOverlayOptions);
-            }
-            else
-            {
-                _polarBearOverlay.Position = InMaui;
-            }
+                // AnimateCamera provides a smooth, animation effect while moving
+                // the camera to the the position.
+
+                _map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
+            };
         }
 
         private void SetupMapIfNeeded()
@@ -144,13 +75,34 @@ namespace SimpleMapDemo
                 _map = _mapFragment.Map;
                 if (_map != null)
                 {
-                    AddMonkeyMarkersToMap();
-                    AddInitialPolarBarToMap();
+                    MarkerOptions markerOpt1 = new MarkerOptions();
+                    markerOpt1.SetPosition(VimyRidge);
+                    markerOpt1.SetTitle("Vimy Ridge");
+                    markerOpt1.InvokeIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueCyan));
+                    _map.AddMarker(markerOpt1);
 
-                    // Move the map so that it is showing the markers we added above.
-                    _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
+                    MarkerOptions markerOpt2 = new MarkerOptions();
+                    markerOpt2.SetPosition(Passchendaele);
+                    markerOpt2.SetTitle("Passchendaele");
+                    _map.AddMarker(markerOpt2);
+
+                    // We create an instance of CameraUpdate, and move the map to it.
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(VimyRidge, 15);
+                    _map.MoveCamera(cameraUpdate);
                 }
             }
+        }
+
+        private void SetupZoomInButton()
+        {
+            Button zoomInButton = FindViewById<Button>(Resource.Id.zoomInButton);
+            zoomInButton.Click += (sender, e) => { _map.AnimateCamera(CameraUpdateFactory.ZoomIn()); };
+        }
+
+        private void SetupZoomOutButton()
+        {
+            Button zoomOutButton = FindViewById<Button>(Resource.Id.zoomOutButton);
+            zoomOutButton.Click += (sender, e) => { _map.AnimateCamera(CameraUpdateFactory.ZoomOut()); };
         }
     }
 }
