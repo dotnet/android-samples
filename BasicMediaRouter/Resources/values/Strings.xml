@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="menu_present_to">Present to</string>
+    <string name="app_name">BasicMediaRouter Sample</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="intro">This sample demonstrates the use of the MediaRouter API to display
+ content on a secondary display.\n\nUse the <b>Media Route Action Item</b> in the ActionBar
+ to select an output device. If your device supports Miracast wireless displays,
+ you may need to enable <b>Wireless Display</b> functionality in the system settings.
+ Secondary screen simulation can also be enabled from the <b>Developer Options</b>.\n\n
+Once connected, use the <b>Change Color</b> button to change the background color of the secondary screen.
+</string>
+    <string name="secondary_connected">Connected to:\n%s</string>
+    <string name="secondary_notconnected">No secondary display connected.</string>
+    <string name="change_color">Change Color</string>
+    <string name="display_name">This display is: %s</string>
+    <string name="display_color">Background color: #%X</string>
+
+</resources>
