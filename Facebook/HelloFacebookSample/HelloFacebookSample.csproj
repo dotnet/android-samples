@@ -67,7 +67,7 @@
     <Folder Include="Resources\layout\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\home\atsushi\svn\monodroid-samples\Facebook\Xamarin.Facebook\Xamarin.Facebook.csproj">
+    <ProjectReference Include="..\Xamarin.Facebook\Xamarin.Facebook.csproj">
       <Project>{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}</Project>
       <Name>Xamarin.Facebook</Name>
     </ProjectReference>
