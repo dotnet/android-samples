@@ -81,7 +81,7 @@ namespace BluetoothLeGatt
 					BluetoothGattCharacteristic characteristic = groupPosition [e.ChildPosition];
 					var charaProp = characteristic.Properties;
 
-					if ((charaProp | GattProperty.Read) > 0) {
+					if ((charaProp & GattProperty.Read) > 0) {
 						// If there is an active notification on a characteristic, clear
 						// it first so it doesn't update the data field on the user interface.
 						if (mNotifyCharacteristic != null) {
@@ -91,7 +91,7 @@ namespace BluetoothLeGatt
 						}
 						mBluetoothLeService.ReadCharacteristic (characteristic);
 					}
-					if ((charaProp | GattProperty.Notify) > 0) {
+					if ((charaProp & GattProperty.Notify) > 0) {
 						mNotifyCharacteristic = characteristic;
 						mBluetoothLeService.SetCharacteristicNotification (characteristic, true);
 					}
