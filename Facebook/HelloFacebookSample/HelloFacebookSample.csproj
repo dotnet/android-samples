@@ -72,4 +72,7 @@
       <Name>Xamarin.Facebook</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <AndroidJavaSource Include="HelloFacebookSampleActivity_GraphObjectWithId.java" />
+  </ItemGroup>
 </Project>

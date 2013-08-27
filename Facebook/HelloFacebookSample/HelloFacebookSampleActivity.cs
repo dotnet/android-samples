@@ -259,18 +259,16 @@ namespace HelloFacebookSample
 			}
 		}
 
-		interface GraphObjectWithId : IGraphObject
-		{
-			String Id { get; }
-		}
-
 		private void ShowPublishResult (String message, IGraphObject result, FacebookRequestError error)
 		{
 			String title = null;
 			String alertMessage = null;
 			if (error == null) {
 				title = GetString (Resource.String.success);
-				String id = ((GraphObjectWithId)result.Cast (Java.Lang.Class.FromType (typeof(GraphObjectWithId)))).Id;
+				var cls = Java.Lang.Class.ForName ("hellofacebooksample.HelloFacebookSampleAcvitity_GraphObjectWithId");
+				var obj = (Java.Lang.Object) result.Cast (cls);
+				Java.Lang.Reflect.Method m = obj.Class.GetMethod ("getId");
+				String id = (String) m.Invoke (obj);
 				alertMessage = GetString (Resource.String.successfully_posted_post, message, id);
 			} else {
 				title = GetString (Resource.String.error);
