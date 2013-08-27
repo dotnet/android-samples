@@ -42,8 +42,12 @@
     <string-array name="clip_data_types">
         <item>No data in clipboard</item>
         <item>Text clip</item>
+        <item>HTML Text clip</item>
         <item>Intent clip</item>
         <item>Uri clip</item>
+        <item>Coerce to text</item>
+        <item>Coerce to styled text</item>
+        <item>Coerce to HTML text</item>
     </string-array>
 
     <!-- Used in App/SearchInvoke.java -->
@@ -117,6 +121,10 @@
         <item>REVERSE_LANDSCAPE</item>
         <item>REVERSE_PORTRAIT</item>
         <item>FULL_SENSOR</item>
+        <item>USER_LANDSCAPE</item>
+        <item>USER_PORTRAIT</item>
+        <item>FULL_USER</item>
+        <item>LOCKED</item>
     </string-array>
 
     <!-- Used in view/Secure View examples -->

@@ -30,16 +30,21 @@
     <style name="ThemeHolo" parent="android:Theme">
     </style>
 
+    <!-- This is a theme that will adjust itself depending on the API version.
+         The default definition is the safe one, using a theme that has always
+         been defined.  Look at values-11/styles.xml for a variation that is
+         selected when the holographic theme is available. -->
+    <style name="ThemeHoloDialog" parent="android:Theme.Dialog">
+    </style>
+
     <!-- Base application theme is the default theme. -->
     <style name="Theme" parent="android:Theme">
     </style>
-
-    <!-- Base application theme is the default theme. -->
-<!--
+    
+	<!-- Base application theme is the default theme.
     <style name="BadTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
     </style>
--->
-
+	-->
     <!-- Variation on our application theme that forces a plain
         text style. -->
     <style name="Theme.PlainText">
@@ -54,17 +59,17 @@
 
     <!-- A theme for a custom dialog appearance.  Here we use an ugly
          custom frame. -->
-<!--
     <style name="Theme.CustomDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/filled_box</item>
     </style>
--->
+
     <!-- A theme that has a wallpaper background.  Here we explicitly specify
          that this theme is to inherit from the system's wallpaper theme,
-         which sets up various attributes correctly. -->
+         which sets up various attributes correctly.
     <style name="Theme.Wallpaper" parent="android:style/Theme.Wallpaper">
         <item name="android:colorForeground">#fff</item>
     </style>
+    -->
 
     <!-- A theme that has a translucent background.  Here we explicitly specify
          that this theme is to inherit from the system's translucent theme,
@@ -100,7 +105,6 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-<!--
     <style name="ImageView120dpi">
         <item name="android:src">@drawable/stylogo120dpi</item>
         <item name="android:layout_width">wrap_content</item>
@@ -118,5 +122,4 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
--->
 </resources>

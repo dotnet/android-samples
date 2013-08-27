@@ -25,6 +25,9 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
+	/**
+ 	* Demonstration of overlays placed on top of a SurfaceView.
+ 	*/
 	[Activity (Label = "Graphics/SurfaceView Overlay")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class SurfaceViewOverlay : Activity

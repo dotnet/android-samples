@@ -27,7 +27,7 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "Mono API Demos", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Api Demo (XA)", MainLauncher = true)]
 	public class ApiDemo : ListActivity
 	{
 		public const string SAMPLE_CATEGORY = "mono.apidemo.sample";

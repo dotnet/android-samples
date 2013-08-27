@@ -43,8 +43,7 @@ namespace MonoDroid.ApiDemo
 			private Bitmap mBitmap3;
 			private Shader mShader;
 
-			public SampleView (Context context)
-				: base (context)
+			public SampleView (Context context) : base (context)
 			{
 				Focusable = true;
 

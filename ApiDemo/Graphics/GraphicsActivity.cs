@@ -17,10 +17,25 @@
 using System;
 using Android.App;
 using Android.OS;
+using Android.Views;
+using MonoDroid.ApiDemo.Graphics;
 
 namespace MonoDroid.ApiDemo
 {
 	public class GraphicsActivity : Activity
 	{
+		// set to true to test Picture
+		static bool TEST_PICTURE = false;
+
+		public override void SetContentView (Android.Views.View view)
+		{
+			if (TEST_PICTURE) {
+				ViewGroup vg = new PictureLayout(this);
+				vg.AddView (view);
+				view = vg;
+			}
+
+			base.SetContentView (view);
+		}
 	}
 }

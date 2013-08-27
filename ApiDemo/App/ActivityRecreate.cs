@@ -15,8 +15,6 @@
  */
 
 // This sample only works on Android API 11+
-#if __ANDROID_11__
-
 using System;
 
 using Android.App;
@@ -25,9 +23,9 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace MonoDroid.ApiDemo.App
+namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "App/Activity Recreate")]
+	[Activity (Label = "@string/activity_recreate")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActivityRecreate : Activity
 	{
@@ -55,7 +53,7 @@ namespace MonoDroid.ApiDemo.App
 				SetTheme (current_theme);
 			}
 
-			SetContentView (Resource.Layout.ActivityRecreate);
+			SetContentView (Resource.Layout.activity_recreate);
 
 			// Watch for button clicks
 			var button = FindViewById<Button> (Resource.Id.recreate);
@@ -70,4 +68,3 @@ namespace MonoDroid.ApiDemo.App
 		}
 	}
 }
-#endif

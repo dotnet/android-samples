@@ -15,8 +15,6 @@
  */
 
 // This sample only works on Android API 11+
-#if __ANDROID_11__
-
 using System;
 
 using Android.App;
@@ -25,17 +23,15 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace MonoDroid.ApiDemo.App
+namespace MonoDroid.ApiDemo
 {
 	// This demonstrates the basics of the Action Bar and how it interoperates with the
 	// standard options menu. This demo is for informative purposes only; see ActionBarUsage for
 	// an example of using the Action Bar in a more idiomatic manner.
-	[Activity (Label = "App/Action Bar Mechanics")]
+	[Activity (Label = "@string/action_bar_mechanics")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActionBarMechanics : Activity
 	{
-		private View custom_view;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -81,4 +77,3 @@ namespace MonoDroid.ApiDemo.App
 		}
 	}
 }
-#endif
