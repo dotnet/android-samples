@@ -71,7 +71,7 @@ namespace MonoDroid.ApiDemo
 		void OnFadeClicked (object sender, EventArgs e)
 		{
 			// Request the next activity transition (here starting a new one).
-			StartActivity (new Intent (this, typeof (AlertDialogSamples)));
+			StartActivity (new Intent (this, typeof (Controls1)));
 
 			// Supply a custom animation.  This one will just fade the new
 			// activity on top.  Note that we need to also supply an animation
@@ -83,7 +83,7 @@ namespace MonoDroid.ApiDemo
 		void OnZoomClicked (object sender, EventArgs e)
 		{
 			// Request the next activity transition (here starting a new one).
-			StartActivity (new Intent (this, typeof (AlertDialogSamples)));
+			StartActivity (new Intent (this, typeof (Controls1)));
 			// This is a more complicated animation, involving transformations
 			// on both this (exit) and the new (enter) activity.  Note how for
 			// the duration of the animation we force the exiting activity
