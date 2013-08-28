@@ -26,7 +26,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.Res;
 
-
 #if __FIX_14210__
 namespace MonoDroid.ApiDemo
 {

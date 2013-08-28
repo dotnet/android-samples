@@ -113,5 +113,49 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
+		<!---					  -->
+		<!--  	View examples     -->
+		<activity android:label="Views/Grid/3. Selection Mode" android:name="monodroid.apidemo.Grid3" android:enabled="@bool/atLeastHoneycomb">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/Layouts/GridLayout/1. Simple Form" android:name="monodroid.apidemo.GridLayout1" android:enabled="@bool/atLeastIceCreamSandwich">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+			<activity android:label="Views/Layouts/GridLayout/2. Form (XML)" android:name="monodroid.apidemo.GridLayout2" android:enabled="@bool/atLeastIceCreamSandwich">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/Layouts/GridLayout/3. Form (Java)" android:name="monodroid.apidemo.GridLayout3" android:enabled="@bool/atLeastIceCreamSandwich">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/Lists/15. Selection Mode" android:name="monodroid.apidemo.List15" android:enabled="@bool/atLeastHoneycomb">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/Lists/16. Border Selection Mode" android:name="monodroid.apidemo.List16" android:enabled="@bool/atLeastHoneycomb">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/Lists/17. Activate Items" android:name="monodroid.apidemo.List17" android:enabled="@bool/atLeastHoneycomb">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
 	</application>
 </manifest>
