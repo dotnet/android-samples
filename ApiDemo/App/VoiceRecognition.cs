@@ -140,7 +140,7 @@ namespace MonoDroid.ApiDemo
 			// We add "Default" at the beginning of the list to simulate default language.
 			languages.Add ("Default");
 
-			var adapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleSpinnerItem, (List<String>)languages);
+			var adapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleSpinnerItem, languages);
 			mSupportedLanguageView.Adapter = adapter;
 		}
 
