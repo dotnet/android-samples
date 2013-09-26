@@ -3,4 +3,5 @@
 	<uses-sdk />
 	<application android:label="AsyncImageAndroid" android:icon="@drawable/icon">
 	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>
