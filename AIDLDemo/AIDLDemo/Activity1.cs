@@ -33,10 +33,19 @@ namespace Xamarin.AidlDemo
 					var text2 = FindViewById<EditText> (Resource.Id.value2);
 					var result = FindViewById<TextView> (Resource.Id.result);
 
-					int v1 = Int32.Parse (text1.Text);
-					int v2 = Int32.Parse (text2.Text);
+					int v1;
+					int v2;
+					int v3;
 
-					int v3 = Service.Add (v1, v2);
+					if(Int32.TryParse (text2.Text, out v2) && Int32.TryParse (text1.Text, out v1)) {
+						v3 = Service.Add (v1, v2);
+					} else {
+						v3 = 0;
+						var builder = new AlertDialog.Builder(this);
+						builder.SetMessage("Spaces or special character are not allowed");
+						builder.SetNeutralButton("OK", (source, eventArgs) => {});
+						builder.Show();
+					}
 
 					result.Text = v3.ToString ();
 				} else {
