@@ -26,11 +26,7 @@ namespace ShareActionProviderDemo
         
         public override bool OnCreateOptionsMenu (IMenu menu)
         {
-            MenuInflater.Inflate (Resource.Menu.ActionBarMenu, menu);        
-            
-            var shareMenuItem = menu.FindItem (Resource.Id.shareMenuItem);            
-            var shareActionProvider = (ShareActionProvider)shareMenuItem.ActionProvider;
-            shareActionProvider.SetShareIntent (CreateIntent ());
+            MenuInflater.Inflate (Resource.Menu.ActionBarMenu, menu);     
             
             var overflow_item = menu.FindItem (Resource.Id.overflowMenuItem);
             var overflow_provider = (ShareActionProvider)overflow_item.ActionProvider;
