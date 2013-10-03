@@ -13,7 +13,7 @@ namespace Mono.Samples.GLTriangle20
 #if __ANDROID_11__
 		HardwareAccelerated=false,
 #endif
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
+		ConfigurationChanges = ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class GLTriangle20Activity : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
