@@ -52,7 +52,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="GooglePlayServicesLib">
-      <HintPath>..\Components\googleplayservices10-10.0\lib\android\GooglePlayServicesLib.dll</HintPath>
+      <HintPath>..\Components\googleplayservices12-12.0.0\lib\android\GooglePlayServicesLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -118,8 +118,9 @@
   </Target>
   -->
   <ItemGroup>
-    <XamarinComponentReference Include="googleplayservices10">
-      <Version>10.0</Version>
+    <XamarinComponentReference Include="googleplayservices12">
+      <InstallationInProgress>False</InstallationInProgress>
+      <Version>12.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
