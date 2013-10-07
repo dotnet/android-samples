@@ -57,7 +57,7 @@ Global
 		{C388951C-C427-4F44-A54B-5A64BAE0DA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SimpleMapDemo_Froyo\SimpleMapDemo_Froyo.csproj
+		StartupItem = SimpleMapDemo\SimpleMapDemo.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
