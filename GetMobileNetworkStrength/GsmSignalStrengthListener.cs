@@ -2,22 +2,22 @@ using Android.Telephony;
 
 namespace GetMobileNetworkStrength
 {
-	public class GsmSignalStrengthListener : PhoneStateListener
+public class GsmSignalStrengthListener : PhoneStateListener
+{
+	public delegate void SignalStrengthChangedDelegate(int strength);
+
+	public event SignalStrengthChangedDelegate SignalStrengthChanged;
+
+	public override void OnSignalStrengthsChanged(SignalStrength newSignalStrength)
 	{
-		public delegate void SignalStrengthChangedDelegate(int strength);
-
-		public event SignalStrengthChangedDelegate SignalStrengthChanged;
-
-		public override void OnSignalStrengthsChanged(SignalStrength newSignalStrength)
+		if (newSignalStrength.IsGsm)
 		{
-			if (newSignalStrength.IsGsm)
+			if (SignalStrengthChanged != null)
 			{
-				if (SignalStrengthChanged != null)
-				{
-					SignalStrengthChanged(newSignalStrength.GsmSignalStrength);
-				}
+				SignalStrengthChanged(newSignalStrength.GsmSignalStrength);
 			}
 		}
 	}
+}
 }
 
