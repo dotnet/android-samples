@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Froyo|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +52,8 @@
     <WarningLevel>4</WarningLevel>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Froyo|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
