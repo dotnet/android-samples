@@ -28,7 +28,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidStoreUncompressedFileExtensions />
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Froyo|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,7 +49,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidStoreUncompressedFileExtensions />
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Froyo|AnyCPU' ">

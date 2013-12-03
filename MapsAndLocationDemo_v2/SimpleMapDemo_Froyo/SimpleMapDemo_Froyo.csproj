@@ -61,7 +61,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
