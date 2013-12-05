@@ -95,11 +95,14 @@ namespace FusedLocationProvider
 				{
 					button.Text = "Getting Last Location";
 
-					Location location = locClient.LastLocation;
-					latitude.Text = "Latitude: " + location.Latitude.ToString();
-					longitude.Text = "Longitude: " + location.Longitude.ToString();
-					provider.Text = "Provider: " + location.Provider.ToString();
-					Log.Debug("LocationClient", "Last location printed");
+					if(locClient.LastLocation != null)
+					{
+						Location location = locClient.LastLocation;
+						latitude.Text = "Latitude: " + location.Latitude.ToString();
+						longitude.Text = "Longitude: " + location.Longitude.ToString();
+						provider.Text = "Provider: " + location.Provider.ToString();
+						Log.Debug("LocationClient", "Last location printed");
+					}
 				}
 				else
 				{

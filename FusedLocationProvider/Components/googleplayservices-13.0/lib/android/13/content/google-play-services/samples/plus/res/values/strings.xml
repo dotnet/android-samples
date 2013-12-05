@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">Google+ SDK Sample</string>
+    <string name="change_locale">Change Locale</string>
+    <string name="list_moments_title">Touch a moment to delete</string>
+    <string name="send_interactive_button_name">Send Interactive Post</string>
+    <string name="sign_out_button_name">Sign out</string>
+    <string name="revoke_access_button_name">Revoke access</string>
+    <string name="disconnect_button_name">Disconnect</string>
+    <string name="share_title">Prefill Text (optional)</string>
+    <string name="share_prefill_text">Welcome to the Google+ platform.</string>
+
+    <string name="offline_status_prefix">Offline:\u0020</string>
+    <string name="offline_server_error">Server error</string>
+
+    <string name="default_status"/>
+    <string name="greeting_status">Welcome, %s.</string>
+    <string name="greeting_status_sign_in_required">Sign-in required</string>
+    <string name="greeting_status_error">Error signing in: %s.</string>
+    <string name="loading_status">Loading…</string>
+    <string name="signing_in_status">Signing in with Google+.</string>
+    <string name="signed_in_status">Signed in as \"%s\".</string>
+
+    <!-- Used if there was an error loading the signed in user's name. -->
+    <string name="unknown_person">Unknown</string>
+    <string name="signed_out_status">Signed out.</string>
+    <string name="revoke_access_status">Revoked access.</string>
+    <string name="revoke_access_error_status">Unable to revoke access.</string>
+
+    <string name="plus_write_moment_status">Saving moment</string>
+    <string name="plus_remove_moment_status">Removing moment</string>
+
+    <string name="plus_one_small_name">Small +1 button</string>
+    <string name="plus_one_medium_name">Medium +1 button</string>
+    <string name="plus_one_tall_name">Tall +1 button</string>
+    <string name="plus_one_standard_name">Standard +1 button</string>
+    <string name="plus_one_standard_ann_name">Standard +1 button (with inline annotation)</string>
+
+    <string name="plus_example_deep_link_id">/+/mobile/android/</string>
+    <string name="plus_example_deep_link_url">
+        https://developers.google.com/+/mobile/android/
+    </string>
+    <string name="plus_generic_error">Sign in with Google is not available.</string>
+    <string name="progress_message">Signing in to Google&#8230;</string>
+</resources>
