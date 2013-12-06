@@ -16,13 +16,11 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi-v7a%3bx86</AndroidSupportedAbis>
     <MandroidI18n />
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidStoreUncompressedFileExtensions />
-    <JavaMaximumHeapSize />
-    <JavaOptions />
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Froyo|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +42,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <JavaMaximumHeapSize>
+    </JavaMaximumHeapSize>
+    <JavaOptions>
+    </JavaOptions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -52,7 +57,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="GooglePlayServicesLib">
-      <HintPath>..\Components\googleplayservices10-10.0\lib\android\GooglePlayServicesLib.dll</HintPath>
+      <HintPath>..\Components\googleplayservices-13.0\lib\android\GooglePlayServicesLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -118,8 +123,8 @@
   </Target>
   -->
   <ItemGroup>
-    <XamarinComponentReference Include="googleplayservices10">
-      <Version>10.0</Version>
+    <XamarinComponentReference Include="googleplayservices">
+      <Version>13.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

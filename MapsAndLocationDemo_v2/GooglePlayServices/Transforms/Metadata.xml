@@ -2,24 +2,36 @@
 	<remove-node path="/api/package[contains(@name, '.internal')]" />
 	<remove-node path="/api/package[@name='com.google.android.gms.maps']/class[@name='GoogleMapOptionsCreator']" />
 	<remove-node path="/api/package[@name='com.google.android.gms.maps.model']/class[contains (@name, 'Creator')]" />
-	
-	<!--- Added these 5 remove-node so that the component compiles with rev. 10 of the Google Play Services client library -->	
-	<remove-node path="/api/package[@name='com.google.android.gms.games']/class[@name='GameEntityCreator']" />
-	<remove-node path="/api/package[@name='com.google.android.gms.games']/class[@name='PlayerEntityCreator']" />
-	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/class[@name='InvitationEntityCreator']" />
-	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/class[@name='ParticipantEntityCreator']" />
-	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer.realtime']/class[@name='RoomEntityCreator']" />
-			
+	<remove-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='LineItem']/method[contains (@name, 'getRole')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='NotifyTransactionStatusRequest']/method[contains (@name, 'getStatus')]" />
+
+	<!--Google AdMob Metadata-->
+	<attr path="/api/package[@name='com.google.ads.mediation.customevent']" name="managedName">Com.Google.Ads.Mediation.CustomEvents</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onDismissScreen']" name="argsType">BannerDismissScreenEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onFailedToReceiveAd']" name="argsType">BannerFailedToReceiveAdEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onLeaveApplication']" name="argsType">BannerLeaveApplicationEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onPresentScreen']" name="argsType">BannerPresentScreenEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onReceivedAd']" name="argsType">BannerReceiveAdEventArgs</attr>
+
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onDismissScreen']" name="argsType">IntersitionalDismissScreenEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onFailedToReceiveAd']" name="argsType">IntersitionalFailedToReceiveAdEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onLeaveApplication']" name="argsType">InterstitialLeaveApplicationEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onPresentScreen']" name="argsType">InterstitialPresentScreenEventArgs</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationInterstitialListener']/method[@name='onReceivedAd']" name="argsType">InterstitialReceiveAdEventArgs</attr>
+	<!--End Google AdMob Metadata-->
+
 	<attr path="/api/package[@name='com.google.android.gms.appstate']" name="managedName">Android.Gms.AppStates</attr>
 	<attr path="/api/package[@name='com.google.android.gms.auth']" name="managedName">Android.Gms.Auth</attr>
-	<attr path="/api/package[@name='com.google.android.gms.common']" name="managedName">Android.Gms.Common</attr>  
+	<attr path="/api/package[@name='com.google.android.gms.common']" name="managedName">Android.Gms.Common</attr>
+	<attr path="/api/package[@name='com.google.android.gms.common.annotation']" name="managedName">Android.Gms.Common.Annotation</attr>
 	<attr path="/api/package[@name='com.google.android.gms.common.data']" name="managedName">Android.Gms.Common.Data</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.common.images']" name="managedName">Android.Gms.Common.Images</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.dynamic']" name="managedName">Android.Gms.Dynamic</attr>
 	<attr path="/api/package[@name='com.google.android.gms.games']" name="managedName">Android.Gms.Games</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.games.achievement']" name="managedName">Android.Gms.Games.Achievement</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.games.leaderboard']" name="managedName">Android.Gms.Games.LeaderBoard</attr>  
-	<attr path="/api/package[@name='com.google.android.gms.games.multiplayer']" name="managedName">Android.Gms.Games.MultiPlayer</attr>  
+	<attr path="/api/package[@name='com.google.android.gms.games.multiplayer']" name="managedName">Android.Gms.Games.MultiPlayer</attr>
+	<attr path="/api/package[@name='com.google.android.gms.games.multiplayer.realtime']" name="managedName">Android.Gms.Games.MultiPlayer.Realtime</attr>
 	<attr path="/api/package[@name='com.google.android.gms.gcm']" name="managedName">Android.Gms.Gcm</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.location']" name="managedName">Android.Gms.Location</attr>
 	<attr path="/api/package[@name='com.google.android.gms.maps']" name="managedName">Android.Gms.Maps</attr>
@@ -28,6 +40,16 @@
 	<attr path="/api/package[@name='com.google.android.gms.plus']" name="managedName">Android.Gms.Plus</attr>
 	<attr path="/api/package[@name='com.google.android.gms.plus.model.moments']" name="managedName">Android.Gms.Plus.Model.Moments</attr>
 	<attr path="/api/package[@name='com.google.android.gms.plus.model.people']" name="managedName">Android.Gms.Plus.Model.People</attr>
+	<attr path="/api/package[@name='com.google.ads']" name="managedName">Google.Ads</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation']" name="managedName">Google.Ads.Mediation</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation.admob']" name="managedName">Google.Ads.Mediation.Admob</attr>
+	<attr path="/api/package[@name='com.google.ads.mediation.customevent']" name="managedName">Google.Ads.Mediation.CustomEvent</attr>
+	<attr path="/api/package[@name='com.google.android.gms.ads']" name="managedName">Android.Gms.Ads</attr>
+	<attr path="/api/package[@name='com.google.android.gms.ads.identifier']" name="managedName">Android.Gms.Ads.Identifier</attr>
+	<attr path="/api/package[@name='com.google.android.gms.ads.mediation']" name="managedName">Android.Gms.Ads.Mediation</attr>
+	<attr path="/api/package[@name='com.google.android.gms.ads.mediation.admob']" name="managedName">Android.Gms.Ads.Mediation.Admob</attr>
+	<attr path="/api/package[@name='com.google.android.gms.ads.mediation.customevent']" name="managedName">Android.Gms.Ads.Mediation.CustomEvent</attr>
+	<attr path="/api/package[@name='com.google.android.gms.wallet']" name="managedName">Android.Gms.Wallet</attr>
 	
   	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='position']" name="managedName">SetPosition</attr>
 	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
@@ -50,4 +72,5 @@
 
 	<attr path="/api/package/class/method[@name='createFromParcel']" name="managedReturn">Java.Lang.Object</attr>
 	<attr path="/api/package/class/method[@name='newArray']" name="managedReturn">Java.Lang.Object[]</attr>
+	
 </metadata>

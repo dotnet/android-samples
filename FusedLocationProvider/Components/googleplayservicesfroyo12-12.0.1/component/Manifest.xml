@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="googleplayservicesfroyo12">
+  <name>Google Play Services (Froyo) Rev 12</name>
+  <publisher>Google Inc.</publisher>
+  <publisher-url>http://developer.android.com/google/play-services/index.html</publisher-url>
+  <version>12.0.1</version>
+  <summary>Give your apps more features to attract users on a wider range of devices.</summary>
+  <samples>
+    <sample id="MapsAndLocationDemo">
+      <name>“Advanced Sample"</name>
+      <summary>“Advanced Sample"</summary>
+    </sample>
+    <sample id="GooglePlayServicesApp">
+      <name>Simple Sample</name>
+      <summary>Simple Sample</summary>
+    </sample>
+  </samples>
+</component>

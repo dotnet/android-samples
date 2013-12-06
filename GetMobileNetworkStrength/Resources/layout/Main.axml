@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:text="GPS Signal Strength:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1"
+            android:src="@drawable/gsm_signal_strength"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView1" />
+    </RelativeLayout>
+</LinearLayout>

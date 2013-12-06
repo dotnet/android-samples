@@ -17,7 +17,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
-    <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
@@ -29,6 +28,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Froyo|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -49,9 +51,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="GooglePlayServicesFroyoLib">
-      <HintPath>..\Components\googleplayservicesfroyo10-10.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+      <HintPath>..\Components\googleplayservicesfroyo-12.0.0\lib\android\GooglePlayServicesFroyoLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\Components\googleplayservicesfroyo-12.0.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -111,8 +115,8 @@
   </Target>
   -->
   <ItemGroup>
-    <XamarinComponentReference Include="googleplayservicesfroyo10">
-      <Version>10.0</Version>
+    <XamarinComponentReference Include="googleplayservicesfroyo">
+      <Version>12.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

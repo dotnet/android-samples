@@ -323,7 +323,7 @@ namespace BluetoothChat
 				BluetoothSocket socket = null;
 	
 				// Listen to the server socket if we're not connected
-				while (_state != STATE_CONNECTED) {
+				while (_service._state != BluetoothChatService.STATE_CONNECTED) {
 					try {
 						// This is a blocking call and will only return on a
 						// successful connection or an exception
@@ -336,7 +336,7 @@ namespace BluetoothChat
 					// If a connection was accepted
 					if (socket != null) {
 						lock (this) {
-							switch (_state) {
+							switch (_service._state) {
 							case STATE_LISTEN:
 							case STATE_CONNECTING:
 								// Situation normal. Start the connected thread.

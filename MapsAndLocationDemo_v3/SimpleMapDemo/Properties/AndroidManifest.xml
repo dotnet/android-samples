@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="4.6" package="com.xamarin.docs.android.mapsandlocationdemo3" android:versionCode="7">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="17" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.docs.android.mapsandlocationdemo3" android:versionCode="9" android:versionName="4.9">
+	<uses-sdk android:minSdkVersion="14" />
 	<!-- Google Maps for Android v2 requires OpenGL ES v2 -->
 	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
 	<!-- We need to be able to download map tiles and access Google Play Services-->
@@ -20,6 +20,8 @@
 	<application android:label="@string/app_name">
 		<!-- Put your Google Maps V2 API Key here. This key will not work for you.-->
 		<!-- See https://developers.google.com/maps/documentation/android/start#obtaining_an_api_key -->
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyB7TWxyZ77kMMUc0gwAt9TED88TjJUMUsQ" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyC4pgUo1HA1EzBEjiPvxJ9Og8UijW1x1DQ" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />	  
 	</application>
+
 </manifest>

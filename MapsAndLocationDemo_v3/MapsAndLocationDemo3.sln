@@ -27,7 +27,7 @@ Global
 		{9999E674-10DA-49B2-91B3-D861F058939F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = LocationDemo\LocationDemo.csproj
+		StartupItem = SimpleMapDemo\SimpleMapDemo.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

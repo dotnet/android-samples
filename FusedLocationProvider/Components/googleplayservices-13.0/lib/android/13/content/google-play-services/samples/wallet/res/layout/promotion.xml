@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/promo_size">
+
+    <TextView
+        android:id="@+id/promo_title"
+        android:text="@string/promo"
+        android:textSize="@dimen/promo_title"
+        android:lineSpacingExtra="@dimen/promo_line_spacing"
+        android:background="@color/promo_background"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_large"
+        android:layout_toLeftOf="@+id/promo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/promo_size" />
+
+    <ImageView
+        android:id="@id/promo_image"
+        android:src="@drawable/xy000"
+        android:contentDescription="@null"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
+        android:layout_width="@dimen/promo_item_width"
+        android:layout_height="@dimen/promo_size" />
+
+    <TextView
+        android:text="@string/promo_label"
+        android:textSize="@dimen/promo_item_label"
+        android:textColor="@color/promo_item_label_color"
+        android:background="@color/promo_item_label_background"
+        android:gravity="center"
+        android:padding="@dimen/padding_small"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/promo_item_width"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

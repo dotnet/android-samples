@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_large">10dp</dimen>
+    <dimen name="padding_xlarge">20dp</dimen>
+    <dimen name="buy_button_width">300dp</dimen>
+    <dimen name="element_space">15dp</dimen>
+    <dimen name="separator_width">1dp</dimen>
+
+    <dimen name="promo_size">160dp</dimen>
+    <dimen name="promo_title">18sp</dimen>
+    <dimen name="promo_line_spacing">2dp</dimen>
+    <dimen name="promo_item_label">24sp</dimen>
+    <dimen name="promo_item_width">200dp</dimen>
+
+    <dimen name="image_thumbnail_size">50dp</dimen>
+    <dimen name="buy_button_height">48dp</dimen>
+    <dimen name="buy_button_min_width">200dp</dimen>
+
+</resources>
