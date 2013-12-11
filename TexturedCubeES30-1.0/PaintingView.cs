@@ -159,17 +159,8 @@ namespace Mono.Samples.TexturedCube {
 			return new System.IO.StreamReader (Context.Assets.Open (String.Format ("Resources/Shader{0}.{1}", suffix, extension))).ReadToEnd ();
 		}
 
-		static bool ModelUpdated = false;
 		internal void InitModel ()
 		{
-			if (!ModelUpdated) {
-				for (int i = 0; i < CubeModel.vertices.Length / 8; i++) {
-					CubeModel.vertices [i * 8 + 6] += .5f;
-					CubeModel.vertices [i * 8 + 7] += .5f;
-				}
-				ModelUpdated = true;
-			}
-
 			GL.GenBuffers (1, out vbo);
 			GL.BindBuffer (All.ArrayBuffer, vbo);
 			GL.BufferData (All.ArrayBuffer, (IntPtr)(CubeModel.vertices.Length * sizeof(float)), CubeModel.vertices, All.StaticDraw);
@@ -306,7 +297,7 @@ namespace Mono.Samples.TexturedCube {
 			if (Width <= 0 || Height <= 0)
 				return;
 
-			Matrix4 model = Matrix4.Mult (Matrix4.CreateTranslation (-9, -9, -9), Matrix4.Mult (Matrix4.CreateRotationX (-xangle), Matrix4.CreateRotationZ (-yangle)));
+			Matrix4 model = Matrix4.Mult (Matrix4.CreateRotationX (-xangle), Matrix4.CreateRotationZ (-yangle));
 
 			float aspect = (float)Width / Height;
 			if (aspect > 1) {
