@@ -306,9 +306,9 @@ namespace BluetoothLeGatt
 				Log.Info (BluetoothLeService.TAG, "Connected to GATT server.");
 				// Attempts to discover services after successful connection.
 				Log.Info (BluetoothLeService.TAG, "Attempting to start service discovery:" +
-				          BluetoothLeService.mBluetoothGatt.DiscoverServices ());
+					BluetoothLeService.mBluetoothGatt.DiscoverServices ());
 
-			} else if (newState == (int) ProfileState.Disconnected) {
+			} else if (newState == ProfileState.Disconnected) {
 				intentAction = BluetoothLeService.ACTION_GATT_DISCONNECTED;
 				BluetoothLeService.mConnectionState = State.Disconnected;
 				Log.Info (BluetoothLeService.TAG, "Disconnected from GATT server.");
