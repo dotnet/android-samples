@@ -59,6 +59,8 @@ namespace FusedLocationProvider
 
 			} else {
 				Log.Error ("OnCreate", "Google Play Services is not installed");
+				Toast.MakeText (this, "Google Play Services is not installed", ToastLength.Long).Show ();
+				Finish ();
 			}
 
 		}
