@@ -25,6 +25,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CommonSampleLibrary;
+using Android.Provider;
 
 namespace StorageProvider
 {
@@ -32,11 +33,11 @@ namespace StorageProvider
  	* Toggles the user's login status via a login menu option, and enables/disables the cloud storage
  	* content provider.
  	*/
-	class MyCloudFragment : Android.Support.V4.App.Fragment
+	public class MyCloudFragment : Android.Support.V4.App.Fragment
 	{
-		private const string TAG = "MyCloudFragment";
-		private const string AUTHORITY = "storageprovider.documents";
-		private bool mLoggedIn = false;
+		static readonly string TAG = "MyCloudFragment";
+		static readonly string AUTHORITY = "storageprovider.documents";
+		bool mLoggedIn = false;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -62,7 +63,7 @@ namespace StorageProvider
 				// Notify the system that the status of our roots has changed.  This will trigger
 				// a call to MyCloudProvider.queryRoots() and force a refresh of the system
 				// picker UI.  It's important to call this or stale results may persist.
-				//Activity.ContentResolver.NotifyChange (DocumentsContract.BuildRootsUri (AUTHORITY), null, false);
+				Activity.ContentResolver.NotifyChange (DocumentsContract.BuildRootsUri (AUTHORITY), null, false);
 			}
 			return true;
 		}
@@ -70,7 +71,7 @@ namespace StorageProvider
 		/**
      	* Dummy function to change the user's authorization status.
      	*/
-		private void ToggleLogin ()
+		void ToggleLogin ()
 		{
 			// Replace this with your standard method of authentication to determine if your app
 			// should make the user's documents available.
@@ -82,7 +83,7 @@ namespace StorageProvider
 		/**
      	* Dummy function to save whether the user is logged in.
      	*/
-		private void WriteLoginValue (bool loggedIn)
+		void WriteLoginValue (bool loggedIn)
 		{
 			ISharedPreferences sharedPreferences = Activity.GetSharedPreferences (
 				GetString (Resource.String.app_name), FileCreationMode.Private);
@@ -92,7 +93,7 @@ namespace StorageProvider
 		/**
      	* Dummy function to determine whether the user is logged in.
      	*/
-		private bool ReadLoginValue ()
+		bool ReadLoginValue ()
 		{
 			ISharedPreferences sharedPreferences = Activity.GetSharedPreferences (
 				GetString (Resource.String.app_name), FileCreationMode.Private);

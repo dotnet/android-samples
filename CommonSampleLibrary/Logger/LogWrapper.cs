@@ -35,7 +35,7 @@ namespace CommonSampleLibrary
 	public class LogWrapper : ILogNode
 	{
 		// For piping:  The next node to receive Log data after this one has done its work.
-		private ILogNode mNext;
+		ILogNode mNext;
 
 		/**
      	* Gets the next LogNode in the linked list.
@@ -66,7 +66,7 @@ namespace CommonSampleLibrary
 
 			// This is functionally identical to Log.x(tag, useMsg);
 			// For instance, if priority were Log.VERBOSE, this would be the same as Log.v(tag, useMsg)
-			Log.WriteLine (priority, tag, useMsg);
+			Android.Util.Log.WriteLine (priority, tag, useMsg);
 
 			// If this isn't the last node in the chain, move things along.
 			if (NextNode != null) {

@@ -35,7 +35,7 @@ namespace CommonSampleLibrary
  	*/
 	public class MessageOnlyLogFilter : ILogNode
 	{
-		private ILogNode mNext;
+		ILogNode mNext;
 
 		/**
      	* Gets the next LogNode in the chain.

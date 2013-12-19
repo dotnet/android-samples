@@ -40,7 +40,7 @@ namespace CommonSampleLibrary
 	public class Log
 	{
 		// Stores the beginning of the LogNode topology.
-		private static ILogNode mLogNode;
+		static ILogNode mLogNode;
 
 		// Returns the next LogNode in the linked list.
 		public static ILogNode LogNode { 

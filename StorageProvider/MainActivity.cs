@@ -63,12 +63,12 @@ namespace StorageProvider
 		public override void InitializeLogging ()
 		{
 			// Wraps Android's native log framework.
-			LogWrapper logWrapper = new LogWrapper ();
+			var logWrapper = new LogWrapper ();
 			// Using Log, front-end to the logging chain, emulates android.util.log method signatures.
 			Log.LogNode = logWrapper;
 
 			// Filter strips out everything except the message text.
-			MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter ();
+			var msgFilter = new MessageOnlyLogFilter ();
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.

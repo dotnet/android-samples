@@ -106,7 +106,7 @@ namespace CommonSampleLibrary
 
 
 		// The next LogNode in the chain.
-		private ILogNode mNext;
+		ILogNode mNext;
 
 		public ILogNode NextNode {
 			get { return mNext; }
@@ -117,7 +117,7 @@ namespace CommonSampleLibrary
      	* the logger takes so many arguments that might be null, this method helps cut out some of the
      	* agonizing tedium of writing the same 3 lines over and over.
      	*/
-		private StringBuilder AppendIfNotNull (StringBuilder source, string addStr, string delimiter)
+		StringBuilder AppendIfNotNull (StringBuilder source, string addStr, string delimiter)
 		{
 			if (addStr != null) {
 				if (addStr.Length == 0) {

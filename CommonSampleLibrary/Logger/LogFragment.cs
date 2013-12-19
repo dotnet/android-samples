@@ -36,8 +36,8 @@ namespace CommonSampleLibrary
 	*/
 	public class LogFragment : Fragment
 	{
-		private LogView mLogView;
-		private ScrollView mScrollView;
+		LogView mLogView;
+		ScrollView mScrollView;
 
 		public LogFragment ()
 		{
