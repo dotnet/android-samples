@@ -1,20 +1,4 @@
-/*
-* Copyright 2013 The Android Open Source Project
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -23,31 +7,30 @@ using Android.Widget;
 using Android.OS;
 using CommonSampleLibrary;
 
-namespace StorageProvider
+namespace StorageClient
 {
-
 	/**
  	* A simple launcher activity containing a summary sample description
  	* and a few action bar buttons.
  	*/
-	[Activity (Label = "StorageProvider", MainLauncher = true, Theme = "@style/MyAppTheme",
+	[Activity (Label = "StorageClient", MainLauncher = true,
 		UiOptions = Android.Content.PM.UiOptions.SplitActionBarWhenNarrow)]
 	public class MainActivity : SampleActivityBase
 	{
 		public override string TAG {
-			get { return "MainActivity"; }
+			get { return "MainActivity";}
 		}
 
-		public static readonly string FRAGTAG = "MyCloudFragment";
+		public static readonly string FRAGTAG = "StorageClientFragment";
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.Main);
+ 			SetContentView (Resource.Layout.Main);
 
 			if (SupportFragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
 				Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
-				var fragment = new MyCloudFragment ();
+				var fragment = new StorageClientFragment ();
 				transaction.Add (fragment, FRAGTAG);
 				transaction.Commit ();
 			}
