@@ -62,7 +62,7 @@ namespace DemoService
 
 			var demoServiceIntent = new Intent ("com.xamarin.DemoService");
 			demoServiceConnection = new DemoServiceConnection (this);
-			ApplicationContext.BindService (demoServiceIntent, demoServiceConnection, Bind.AutoCreate);
+			BindService (demoServiceIntent, demoServiceConnection, Bind.AutoCreate);
 		}
 
 		protected override void OnDestroy ()
