@@ -16,15 +16,15 @@
         public static int CalculateInSampleSize (BitmapFactory.Options options, int reqWidth, int reqHeight)
         {
             // Raw height and width of image
-            float height = (float) options.OutHeight;
-            float width = (float) options.OutWidth;
+            float height = (float)options.OutHeight;
+            float width = (float)options.OutWidth;
             double inSampleSize = 1D;
 
             if (height > reqHeight || width > reqWidth) {
                 inSampleSize = width > height ? height / reqHeight : width / reqWidth;
             }
 
-            return (int) inSampleSize;
+            return (int)inSampleSize;
         }
 
         public async Task<Bitmap> DecodeSampledBitmapFromResourceAsync (Resources res, int resId, int reqWidth, int reqHeight)
@@ -36,7 +36,7 @@
 			};
 
 			// Suspends the execution of the method until DecodeResourceAsync is complete
-			await BitmapFactory.DecodeResourceAsync (res, resId, options);
+			await BitmapFactory.DecodeResourceAsync (res, resId, options).ConfigureAwait (false);
 
             // Calculate inSampleSize
             options.InSampleSize = CalculateInSampleSize (options, reqWidth, reqHeight);
