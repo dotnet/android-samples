@@ -81,7 +81,6 @@ namespace StorageProvider
 			Log.Verbose (TAG, "onCreate");
 
 			mBaseDir = Context.FilesDir;
-
 			WriteDummyFilesToStorage ();
 
 			return true;
@@ -497,8 +496,7 @@ namespace StorageProvider
 				return target;
 			}
 		}
-
-
+			
 		/**
      	* Preload sample files packaged in the apk into the internal storage directory.  This is a
      	* dummy function specific to this demo.  The MyCloud mock cloud service doesn't actually
@@ -506,7 +504,7 @@ namespace StorageProvider
      	*/
 		void WriteDummyFilesToStorage ()
 		{
-			if (mBaseDir.List().Length > 0) {
+			if (mBaseDir.List().Length > 1) {
 				return;
 			}
 
@@ -534,23 +532,18 @@ namespace StorageProvider
      	*/
 		void WriteFileToInternalStorage (int resId, String extension)
 		{
-			var ins = Context.Resources.OpenRawResource (resId);
-			var outputStream = new ByteArrayOutputStream ();
-			int size;
-			byte[] buffer = new byte [1024];
-			try {
-				while ((size = ins.Read (buffer, 0, 1024)) >= 0) {
+			using (System.IO.Stream ins = Context.Resources.OpenRawResource (resId)) {
+				var outputStream = new ByteArrayOutputStream ();
+				int size;
+				byte[] buffer = new byte [1024];
+				while ((size = ins.Read (buffer, 0, 1024)) > 0) {
 					outputStream.Write (buffer, 0, size);
 				}
-				ins.Close ();
 				buffer = outputStream.ToByteArray ();
-				String filename = Context.Resources.GetResourceEntryName (resId) + extension;
-				var fos = Context.OpenFileOutput (filename, FileCreationMode.Private);
-				fos.Write (buffer, 0, buffer.Length);
-				fos.Close ();
-
-			} catch (IOException e) {
-				e.PrintStackTrace ();
+				var filename = Context.Resources.GetResourceEntryName (resId) + extension;
+				using (System.IO.Stream fos = Context.OpenFileOutput (filename, FileCreationMode.Private)) {
+					fos.Write (buffer, 0, buffer.Length);
+				}
 			}
 		}
 
