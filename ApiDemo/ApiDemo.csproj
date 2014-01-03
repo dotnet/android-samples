@@ -17,7 +17,7 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <MandroidI18n />
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -92,9 +92,7 @@
     <Compile Include="Resources\Resources.designer.cs" />
     <Compile Include="Text\LogTextBox.cs" />
     <Compile Include="Preferences\PreferenceWithHeaders.cs" />
-    <Compile Include="App\Animation.cs">
-      <DependentUpon>AlertDialogSamples.cs</DependentUpon>
-    </Compile>
+    <Compile Include="App\Animation.cs" />
     <Compile Include="View\Controls1.cs" />
     <Compile Include="Graphics\SurfaceViewOverlay.cs" />
     <Compile Include="Graphics\CubeRenderer.cs" />
@@ -176,6 +174,8 @@
     <Compile Include="View\Tabs04.cs" />
     <Compile Include="View\Tabs05.cs" />
     <Compile Include="View\Tabs06.cs" />
+    <Compile Include="App\PrintHtmlFromScreen.cs" />
+    <Compile Include="App\PrintHtmlOffScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml">
@@ -217,7 +217,6 @@
     <AndroidResource Include="Resources\drawable\AndroidPressed.png" />
     <AndroidResource Include="Resources\menu\ActionBarActionProvider.xml" />
     <AndroidResource Include="Resources\raw\robot.png" />
-    <AndroidResource Include="Resources\values\arrays.xml" />
     <AndroidResource Include="Resources\drawable\ic_popup_reminder.png" />
     <AndroidResource Include="Resources\layout\alert_dialog_text_entry.xml" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_settings_applications.png" />
@@ -268,7 +267,6 @@
     <AndroidResource Include="Resources\xml\taskbackconfig.xml" />
     <AndroidResource Include="Resources\layout\spinner_1.xml" />
     <AndroidResource Include="Resources\layout\appwidget_provider.xml" />
-    <AndroidResource Include="Resources\layout\accessibility_node_provider.xml" />
     <AndroidResource Include="Resources\layout\accessibility_service.xml" />
     <AndroidResource Include="Resources\layout\action_bar_display_options.xml" />
     <AndroidResource Include="Resources\layout\action_bar_display_options_custom.xml" />
@@ -476,7 +474,6 @@
     <AndroidResource Include="Resources\layout\custom_title_1.xml" />
     <AndroidResource Include="Resources\layout\custom_view_1.xml" />
     <AndroidResource Include="Resources\layout\custom_view_accessibility.xml" />
-    <AndroidResource Include="Resources\layout\date_widgets_example_1.xml" />
     <AndroidResource Include="Resources\layout\date_widgets_example_2.xml" />
     <AndroidResource Include="Resources\layout\buttons_1.xml" />
     <AndroidResource Include="Resources\layout\chronometer.xml" />
@@ -674,6 +671,23 @@
     <AndroidResource Include="Resources\values-v11\styles.xml" />
     <AndroidResource Include="Resources\values-xhdpi\strings.xml" />
     <AndroidResource Include="Resources\values-xlarge\layout.xml" />
+    <AndroidResource Include="Resources\values-v19\bools.xml" />
+    <AndroidResource Include="Resources\layout\print_bitmap.xml" />
+    <AndroidResource Include="Resources\layout\print_html_from_screen.xml" />
+    <AndroidResource Include="Resources\layout\print_html_off_screen.xml" />
+    <AndroidResource Include="Resources\menu\print_custom_content.xml" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\values\integers.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values-land\integers.xml" />
+    <AndroidResource Include="Resources\values-hdpi\strings.xml" />
+    <AndroidResource Include="Resources\values-ldpi\strings.xml" />
+    <AndroidResource Include="Resources\values-mdpi\strings.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\layout.xml" />
+    <AndroidResource Include="Resources\raw\android_logo.png" />
+    <AndroidResource Include="Resources\layout\date_widgets_example_1.xml" />
+    <AndroidResource Include="Resources\raw\motogp_stats.html" />
+    <AndroidResource Include="Resources\layout\motogp_stat_item.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\anim\layout_bottom_to_top_slide.xml" />
@@ -689,9 +703,6 @@
     <AndroidResource Include="Resources\layout\resources.xml" />
     <AndroidResource Include="Resources\layout\styled_text.xml" />
     <AndroidResource Include="Resources\layout\translucent_background.xml" />
-    <AndroidResource Include="Resources\values\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Text\Linkify.cs" />
@@ -715,6 +726,12 @@
     <Folder Include="Assets\" />
     <Folder Include="Assets\fonts\" />
     <Folder Include="Resources\values-v11\" />
+    <Folder Include="Resources\values-v19\" />
+    <Folder Include="Resources\values-land\" />
+    <Folder Include="Resources\values-hdpi\" />
+    <Folder Include="Resources\values-ldpi\" />
+    <Folder Include="Resources\values-mdpi\" />
+    <Folder Include="Resources\values-sw600dp\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />

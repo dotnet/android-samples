@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="mono.samples.apidemo" android:versionCode="1" android:versionName="1.0" android:installLocation="preferExternal">
-	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="17" />
+	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="19" />
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -24,11 +24,11 @@
              to be installed if it doesn't exist. -->
 		<uses-library android:name="com.example.will.never.exist" android:required="false" />
 		<activity android:label="Api Demo (XA)" android:name="monodroid.apidemo.ApiDemo">
-      		<intent-filter>
-        		<action android:name="android.intent.action.MAIN" />
-        		<category android:name="android.intent.category.LAUNCHER" />
-      		</intent-filter>
-   		</activity>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
 		<!--- Enable activities based on @BOOL value -->
 		<!---								-->
 		<!--  	Accessibility examples
@@ -113,6 +113,23 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
+		<activity android:name="monodroid.apidemo.PrintHtmlFromScreen"
+                android:label="@string/print_html_from_screen"
+                android:enabled="@bool/atLeastKitKat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="mono.apidemo.sample" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="monodroid.apidemo.PrintHtmlOffScreen"
+                android:label="@string/print_html_off_screen"
+                android:enabled="@bool/atLeastKitKat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="mono.apidemo.sample" />
+            </intent-filter>
+        </activity>
 		<!---					  -->
 		<!--  	View examples     -->
 		<activity android:label="Views/Grid/3. Selection Mode" android:name="monodroid.apidemo.Grid3" android:enabled="@bool/atLeastHoneycomb">
@@ -127,7 +144,7 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-			<activity android:label="Views/Layouts/GridLayout/2. Form (XML)" android:name="monodroid.apidemo.GridLayout2" android:enabled="@bool/atLeastIceCreamSandwich">
+		<activity android:label="Views/Layouts/GridLayout/2. Form (XML)" android:name="monodroid.apidemo.GridLayout2" android:enabled="@bool/atLeastIceCreamSandwich">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />

@@ -46,8 +46,9 @@ namespace MonoDroid.ApiDemo
 		int mHour;
 		int mMinute;
 
-		const int TIME_DIALOG_ID = 0;
-		const int DATE_DIALOG_ID = 1;
+		const int TIME_12_DIALOG_ID = 0;
+		const int TIME_24_DIALOG_ID = 1;
+		const int DATE_DIALOG_ID = 2;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -56,15 +57,9 @@ namespace MonoDroid.ApiDemo
 
 			mDateDisplay = FindViewById <TextView> (Resource.Id.dateDisplay);
 
-			Button pickDate = FindViewById <Button> (Resource.Id.pickDate);
-			pickDate.Click += delegate {
-				ShowDialog (DATE_DIALOG_ID);
-			};
-
-			Button pickTime = FindViewById <Button> (Resource.Id.pickTime);
-			pickTime.Click += delegate {
-				ShowDialog (TIME_DIALOG_ID);
-			};
+			SetDialogOnClickListener (Resource.Id.pickDate, DATE_DIALOG_ID);
+			SetDialogOnClickListener (Resource.Id.pickTime12, TIME_12_DIALOG_ID);
+			SetDialogOnClickListener (Resource.Id.pickTime24, TIME_24_DIALOG_ID);
 
 			Calendar c = Calendar.Instance;
 			mYear = c.Get (CalendarField.Year);
@@ -76,12 +71,20 @@ namespace MonoDroid.ApiDemo
 			UpdateDisplay ();
 		}
 
+		void SetDialogOnClickListener (int buttonId, int dialogId)
+		{
+			var b = FindViewById <Button> (buttonId);
+			b.Click += delegate {
+				ShowDialog (dialogId);
+			};
+		}
 
 		protected override Dialog OnCreateDialog (int id)
 		{
 			switch (id) {
-			case TIME_DIALOG_ID:
-				return new TimePickerDialog (this, mTimeSetListener, mHour, mMinute, false);
+			case TIME_12_DIALOG_ID:
+			case TIME_24_DIALOG_ID:
+				return new TimePickerDialog (this, mTimeSetListener, mHour, mMinute, id == TIME_24_DIALOG_ID);
 
 			case DATE_DIALOG_ID:
 				return new DatePickerDialog (this, mDateSetListener, mYear, mMonth, mDay);
@@ -92,7 +95,8 @@ namespace MonoDroid.ApiDemo
 		protected override void OnPrepareDialog (int id, Dialog dialog)
 		{
 			switch (id) {
-			case TIME_DIALOG_ID:
+			case TIME_12_DIALOG_ID:
+			case TIME_24_DIALOG_ID:
 				((TimePickerDialog) dialog).UpdateTime (mHour, mMinute);
 				break;
 
@@ -120,16 +124,12 @@ namespace MonoDroid.ApiDemo
 
 		void UpdateDisplay ()
 		{
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 			// Month is 0 based so add 1
-			sb.Append (mMonth + 1);
-			sb.Append ("-");
-			sb.Append (mDay);
-			sb.Append ("-");
-			sb.Append (mYear);
-			sb.Append (" ");
-			sb.Append (Pad (mHour));
-			sb.Append (":");
+			sb.Append (mMonth + 1).Append ("-");
+			sb.Append (mDay).Append ("-");
+			sb.Append (mYear).Append (" ");
+			sb.Append (Pad (mHour)).Append (":");
 			sb.Append (Pad (mMinute));
 
 			mDateDisplay.Text = sb.ToString ();
