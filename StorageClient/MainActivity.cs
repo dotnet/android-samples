@@ -55,8 +55,7 @@ namespace StorageClient
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			LogFragment logFragment = (LogFragment) SupportFragmentManager
-				.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");
