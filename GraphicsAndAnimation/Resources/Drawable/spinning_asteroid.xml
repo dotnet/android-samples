@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
+  <item android:drawable="@drawable/asteroid01" android:duration="100" />
+  <item android:drawable="@drawable/asteroid02" android:duration="100" />
+  <item android:drawable="@drawable/asteroid03" android:duration="100" />
+  <item android:drawable="@drawable/asteroid04" android:duration="100" />
+  <item android:drawable="@drawable/asteroid05" android:duration="100" />
+  <item android:drawable="@drawable/asteroid06" android:duration="100" />
+</animation-list>
