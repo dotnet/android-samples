@@ -38,7 +38,6 @@ namespace StorageClient
 		// A request code's purpose is to match the result of a "startActivityForResult" with
 		// the type of the original request.  Choose any value.
 		static readonly int READ_REQUEST_CODE = 1337;
-
 		public static readonly String TAG = "StorageClientFragment";
 
 		public override void OnCreate (Bundle savedInstanceState)
@@ -79,7 +78,7 @@ namespace StorageClient
 
 		public override void OnActivityResult (int requestCode, int resultCode, Intent data)
 		{
-			Log.Info(TAG, "Received an \"Activity Result\"");
+			Log.Info (TAG, "Received an \"Activity Result\"");
 			// The ACTION_OPEN_DOCUMENT intent was sent with the request code READ_REQUEST_CODE.
 			// If the request code seen here doesn't match, it's the response to some other intent,
 			// and the below code shouldn't run at all.
@@ -123,63 +122,12 @@ namespace StorageClient
 				mUri = uri;
 			}
 
-			public override Dialog OnCreateDialog (Bundle savedInstanceState)
-			{
-				mDialog = base.OnCreateDialog (savedInstanceState);
-
-				// To optimize for the "lightbox" style layout.  Since we're not actually displaying a
-				// title, remove the bar along the top of the fragment where a dialog title would
-				// normally go.
-				mDialog.Window.RequestFeature (WindowFeatures.NoTitle);
-				var imageView = new ImageView (Activity);
-				mDialog.SetContentView (imageView);
-
-				DumpImageMetaData (mUri);
-				imageView.SetImageBitmap (GetBitmapFromUri (mUri));
-
-				return mDialog;
-			}
-
-			public override void OnStop ()
-			{
-				base.OnStop ();
-				if (Dialog!= null) {
-					Dialog.Dismiss ();
-				}
-			}
-
-			/** 
-			 * Create a Bitmap from the URI for that image and return it.
-            */
-			Bitmap GetBitmapFromUri (Android.Net.Uri uri)
-			{
-				ParcelFileDescriptor parcelFileDescriptor = null;
-				try {
-					parcelFileDescriptor = Activity.ContentResolver.OpenFileDescriptor (uri, "r");
-					var fileDescriptor = parcelFileDescriptor.FileDescriptor;
-					var image = BitmapFactory.DecodeFileDescriptor (fileDescriptor);
-					parcelFileDescriptor.Close ();
-					return image;
-				} catch (Java.Lang.Exception e) {
-					Log.Error (TAG, "Failed to load image.", e);
-					return null;
-				} finally {
-					try {
-						if (parcelFileDescriptor != null) {
-							parcelFileDescriptor.Close ();
-						}
-					} catch (IOException e) {
-						e.PrintStackTrace ();
-						Log.Error (TAG, "Error closing ParcelFile Descriptor");
-					}
-				}
-			}
-
 			/**
      		* Grabs metadata for a document specified by URI, logs it to the screen.
      		*/
 			public void DumpImageMetaData (Android.Net.Uri uri)
 			{
+				Log.Info (TAG, "Fetching Image Meta Data:");
 
 				// The query, since it only applies to a single document, will only return one row.
 				// no need to filter, sort, or select fields, since we want all fields for one
@@ -194,7 +142,7 @@ namespace StorageClient
 						// Note it's called "Display Name".  This is provider-specific, and
 						// might not necessarily be the file name.
 						string displayName = cursor.GetString (
-							cursor.GetColumnIndex (OpenableColumns.DisplayName));
+							                     cursor.GetColumnIndex (OpenableColumns.DisplayName));
 						Log.Info (TAG, "Display Name: " + displayName);
 
 						int sizeIndex = cursor.GetColumnIndex (OpenableColumns.Size);
@@ -215,6 +163,71 @@ namespace StorageClient
 					}
 				} finally {
 					cursor.Close ();
+				}
+			}
+
+			/** 
+			 * Create a Bitmap from the URI for that image and return it.
+            */
+			public async Task<Bitmap> GetBitmapFromUriAsync (Android.Net.Uri uri)
+			{
+				ParcelFileDescriptor parcelFileDescriptor = null;
+				try {
+					parcelFileDescriptor = Activity.ContentResolver.OpenFileDescriptor (uri, "r");
+					var fileDescriptor = parcelFileDescriptor.FileDescriptor;
+					var image = await BitmapFactory.DecodeFileDescriptorAsync (fileDescriptor).ConfigureAwait (false);
+					parcelFileDescriptor.Close ();
+					Log.Info (TAG, "Asynchronous Bitmap Decoding Complete!");
+					return image;
+				} catch (Java.Lang.Exception e) {
+					Log.Error (TAG, "Failed to load image.", e);
+					return null;
+				} finally {
+					try {
+						if (parcelFileDescriptor != null) {
+							parcelFileDescriptor.Close ();
+						}
+					} catch (IOException e) {
+						e.PrintStackTrace ();
+						Log.Error (TAG, "Error closing ParcelFile Descriptor");
+					}
+				}
+			}
+
+			public async Task<Bitmap> LoadImageAsync ()
+			{
+				// Start decoding our Bitmap from its file descriptor.
+				var bitmapFromUri = GetBitmapFromUriAsync (mUri).ConfigureAwait (false);
+
+				// Get image meta data (independent of our bitmap decoding).
+				DumpImageMetaData (mUri);
+
+				return await bitmapFromUri;
+			}
+
+			public override Dialog OnCreateDialog (Bundle savedInstanceState)
+			{
+				mDialog = base.OnCreateDialog (savedInstanceState);
+
+				// To optimize for the "lightbox" style layout.  Since we're not actually displaying a
+				// title, remove the bar along the top of the fragment where a dialog title would
+				// normally go.
+				mDialog.Window.RequestFeature (WindowFeatures.NoTitle);
+				var imageView = new ImageView (Activity);
+				mDialog.SetContentView (imageView);
+
+				// Loading the image is going to require some sort of I/O, which should occur off the UI
+				// thread.  Changing the ImageView to display the image must occur ON the UI thread.
+				imageView.SetImageBitmap (LoadImageAsync ().Result);
+
+				return mDialog;
+			}
+
+			public override void OnStop ()
+			{
+				base.OnStop ();
+				if (Dialog != null) {
+					Dialog.Dismiss ();
 				}
 			}
 		}
