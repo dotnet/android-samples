@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityListItem.cs" />
@@ -176,6 +177,17 @@
     <Compile Include="View\Tabs06.cs" />
     <Compile Include="App\PrintHtmlFromScreen.cs" />
     <Compile Include="App\PrintHtmlOffScreen.cs" />
+    <Compile Include="Hardware\ConsumerIr.cs" />
+    <Compile Include="App\DoNothing.cs" />
+    <Compile Include="App\AppUpdateReciever.cs" />
+    <Compile Include="App\AppUpdateSspReceiver.cs" />
+    <Compile Include="View\ContentBrowserActivity.cs" />
+    <Compile Include="View\ContentBrowserNavActivity.cs" />
+    <Compile Include="Graphics\TouchPaint.cs" />
+    <Compile Include="View\GameActivity.cs" />
+    <Compile Include="App\PrintCustomContent.cs" />
+    <Compile Include="View\TranslucentBarsActivity.cs" />
+    <Compile Include="Animation\Transitions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml">
@@ -688,6 +700,18 @@
     <AndroidResource Include="Resources\layout\date_widgets_example_1.xml" />
     <AndroidResource Include="Resources\raw\motogp_stats.html" />
     <AndroidResource Include="Resources\layout\motogp_stat_item.xml" />
+    <AndroidResource Include="Resources\layout\consumer_ir.xml" />
+    <AndroidResource Include="Resources\layout\content_browser_nav.xml" />
+    <AndroidResource Include="Resources\layout\game.xml" />
+    <AndroidResource Include="Resources\layout\translucent_bars.xml" />
+    <AndroidResource Include="Resources\layout\transition.xml" />
+    <AndroidResource Include="Resources\layout\transition_scene1.xml" />
+    <AndroidResource Include="Resources\layout\transition_scene2.xml" />
+    <AndroidResource Include="Resources\layout\transition_scene3.xml" />
+    <AndroidResource Include="Resources\transition\changebounds_fadein_together.xml" />
+    <AndroidResource Include="Resources\transition\changebounds_fadeout_sequential.xml" />
+    <AndroidResource Include="Resources\transition\changebounds.xml" />
+    <AndroidResource Include="Resources\transition\transitions_mgr.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\anim\layout_bottom_to_top_slide.xml" />
@@ -732,6 +756,8 @@
     <Folder Include="Resources\values-ldpi\" />
     <Folder Include="Resources\values-mdpi\" />
     <Folder Include="Resources\values-sw600dp\" />
+    <Folder Include="Hardware\" />
+    <Folder Include="Resources\transition\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\read_asset.txt" />

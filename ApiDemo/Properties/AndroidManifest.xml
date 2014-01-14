@@ -17,6 +17,7 @@
 	<!-- We will request access to the camera, saying we require a camera
          of some sort but not one with autofocus capability. -->
 	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.TRANSMIT_IR" />
 	<uses-feature android:name="android.hardware.camera" />
 	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 	<application android:label="API Demo (XA)" android:hardwareAccelerated="true" android:supportsRtl="true" android:icon="@drawable/icon">
@@ -75,6 +76,14 @@
                 android:resource="@xml/taskbackconfig" />
         </service>
         -->
+        <!---					  -->
+		<!--  Animation examples  -->
+		<activity android:label="Animation/Simple Transitions" android:name="monodroid.apidemo.Transitions" android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
 		<!---					  -->
 		<!--  	App examples      -->
 		<activity android:label="@string/action_bar_display_options" android:name="monodroid.apidemo.ActionBarDisplayOptionsActivity" android:logo="@drawable/apidemo_androidlogo" android:enabled="@bool/atLeastHoneycomb">
@@ -113,25 +122,74 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:name="monodroid.apidemo.PrintHtmlFromScreen"
-                android:label="@string/print_html_from_screen"
-                android:enabled="@bool/atLeastKitKat">
+		<activity android:name="monodroid.apidemo.PrintHtmlFromScreen" android:label="@string/print_html_from_screen" android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:name="monodroid.apidemo.PrintHtmlOffScreen" android:label="@string/print_html_off_screen" android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:name="monodroid.apidemo.PrintCustomContent" android:label="@string/print_custom_content" android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<!-- Application Updating Samples -->
+        <receiver android:name="monodroid.apidemo.AppUpdateReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="mono.apidemo.sample" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="monodroid.apidemo.PrintHtmlOffScreen"
-                android:label="@string/print_html_off_screen"
-                android:enabled="@bool/atLeastKitKat">
+        </receiver>
+        <receiver android:name="monodroid.apidemo.AppUpdateSspReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="mono.apidemo.sample" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" android:ssp="monodroid.apidemo" />
             </intent-filter>
-        </activity>
+        </receiver>
+		<!---					  -->
+		<!--  Hardware examples   -->
+		<activity android:name="monodroid.apidemo.ConsumerIr" android:label="Hardware/Consumer IR" android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
 		<!---					  -->
 		<!--  	View examples     -->
+		<activity android:label="Views/System UI Visibility/Content Browser" android:name="monodroid.apidemo.ContentBrowserActivity"
+				android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+				android:uiOptions="splitActionBarWhenNarrow"
+		        android:enabled="@bool/atLeastJellyBean">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:label="Views/System UI Visibility/Content Browser Nav Bar" android:name="monodroid.apidemo.ContentBrowserNavActivity"
+				android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+                android:uiOptions="splitActionBarWhenNarrow"
+                android:enabled="@bool/atLeastKitKat">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+		</activity>
+		<activity android:name="monodroid.apidemo.GameActivity"
+                android:label="Views/System UI Visibility/Game"
+                android:theme="@android:style/Theme.Holo.NoActionBar"
+                android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize"
+                android:enabled="@bool/atLeastKitKat">
+            <intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="mono.apidemo.sample" />
+			</intent-filter>
+        </activity>
 		<activity android:label="Views/Grid/3. Selection Mode" android:name="monodroid.apidemo.Grid3" android:enabled="@bool/atLeastHoneycomb">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

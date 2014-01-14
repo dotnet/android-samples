@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/scene1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="selectScene"
+            android:text="Scene 1" />
+        <RadioButton
+            android:id="@+id/scene2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="selectScene"
+            android:text="Scene 2" />
+        <RadioButton
+            android:id="@+id/scene3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="selectScene"
+            android:text="Scene 3" />
+        <RadioButton
+            android:id="@+id/scene4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="selectScene"
+            android:text="Scene 4" />
+    </RadioGroup>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sceneRoot">
+        <include
+            layout="@layout/transition_scene1" />
+    </LinearLayout>
+</LinearLayout>
