@@ -1,37 +1,34 @@
-﻿namespace SimpleMapDemo
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Android.App;
+using Android.Content;
+using Android.Gms.Common;
+using Android.OS;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
+using AndroidUri = Android.Net.Uri;
+
+namespace SimpleMapDemo
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Android.App;
-    using Android.Content;
-	using Android.Gms.Common;
-    using Android.OS;
-	using Android.Util;
-    using Android.Views;
-    using Android.Widget;
-
-    using AndroidUri = Android.Net.Uri;
-
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : ListActivity
-    {
+	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon")]
+	public class MainActivity : ListActivity
+	{
 		public static readonly int InstallGooglePlayServicesId = 1000;
+		List<SampleActivity> _activities;
+		bool _isGooglePlayServicesInstalled;
 
-        private List<SampleActivity> _activities;
-		private bool _isGooglePlayServicesInstalled;
-
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-			_isGooglePlayServicesInstalled = TestIfGooglePlayServicesIsInstalled ();
-			InitializeListView ();
-        }
-
-		private void InitializeListView()
+		protected override void OnCreate(Bundle bundle)
 		{
-			if (_isGooglePlayServicesInstalled) 
+			base.OnCreate(bundle);
+			_isGooglePlayServicesInstalled = TestIfGooglePlayServicesIsInstalled();
+			InitializeListView();
+		}
+
+		void InitializeListView()
+		{
+			if (_isGooglePlayServicesInstalled)
 			{
 				_activities = new List<SampleActivity>
 				{
@@ -45,155 +42,155 @@
 			}
 			else
 			{
-				Log.Error ("MainActivity", "Google Play Services is not installed");
-				ListAdapter = new SimpleMapDemoActivityAdapter (this, null);
+				Log.Error("MainActivity", "Google Play Services is not installed");
+				ListAdapter = new SimpleMapDemoActivityAdapter(this, null);
 			}
 		}
 
-		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			switch (resultCode) 
+			switch (resultCode)
 			{
-			case Result.Ok:
+				case Result.Ok:
 				// Try again.
-				_isGooglePlayServicesInstalled = true;
-				break;
+					_isGooglePlayServicesInstalled = true;
+					break;
 
-			default:
-				Log.Debug ("MainActivity", "Unknown resultCode {0} for request {1}", resultCode, requestCode);
-				break;
+				default:
+					Log.Debug("MainActivity", "Unknown resultCode {0} for request {1}", resultCode, requestCode);
+					break;
 			}
 		}
 
-		private bool TestIfGooglePlayServicesIsInstalled()
+		bool TestIfGooglePlayServicesIsInstalled()
 		{
-			int queryResult = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (this);
+			int queryResult = GooglePlayServicesUtil.IsGooglePlayServicesAvailable(this);
 			if (queryResult == ConnectionResult.Success)
 			{
-				Log.Info ("SimpleMapDemo", "Google Play Services is installed on this device.");
+				Log.Info("SimpleMapDemo", "Google Play Services is installed on this device.");
 				return true;
 			}
 
-			if (GooglePlayServicesUtil.IsUserRecoverableError (queryResult)) 
+			if (GooglePlayServicesUtil.IsUserRecoverableError(queryResult))
 			{
-				string errorString = GooglePlayServicesUtil.GetErrorString (queryResult);
-				Log.Error ("SimpleMapDemo", "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
+				string errorString = GooglePlayServicesUtil.GetErrorString(queryResult);
+				Log.Error("SimpleMapDemo", "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
 				Dialog errorDialog = GooglePlayServicesUtil.GetErrorDialog(queryResult, this, InstallGooglePlayServicesId);
 				ErrorDialogFragment dialogFrag = new ErrorDialogFragment(errorDialog);
 
-				dialogFrag.Show (FragmentManager, "GooglePlayServicesDialog");
+				dialogFrag.Show(FragmentManager, "GooglePlayServicesDialog");
 			}
 			return false;
 		}
 
-        protected override void OnListItemClick(ListView l, View v, int position, long id)
-        {
-            if (position == 0)
-            {
-                AndroidUri geoUri = AndroidUri.Parse("geo:42.374260,-71.120824");
-                Intent mapIntent = new Intent(Intent.ActionView, geoUri);
-                StartActivity(mapIntent);
-                return;
-            }
+		protected override void OnListItemClick(ListView l, View v, int position, long id)
+		{
+			if (position == 0)
+			{
+				AndroidUri geoUri = AndroidUri.Parse("geo:42.374260,-71.120824");
+				Intent mapIntent = new Intent(Intent.ActionView, geoUri);
+				StartActivity(mapIntent);
+				return;
+			}
 
-            SampleActivity activity = _activities[position];
-            activity.Start(this);
-        }
-    }
+			SampleActivity activity = _activities[position];
+			activity.Start(this);
+		}
+	}
 
-	internal class ErrorDialogFragment :DialogFragment
+	class ErrorDialogFragment :DialogFragment
 	{
-		public ErrorDialogFragment(Dialog dialog) 
+		public ErrorDialogFragment(Dialog dialog)
 		{
 			Dialog = dialog;
 		}
 
 		public Dialog Dialog { get; private set; }
 
-		public override Dialog OnCreateDialog (Bundle savedInstanceState)
+		public override Dialog OnCreateDialog(Bundle savedInstanceState)
 		{
 			return Dialog;
 
 		}
-
-
 	}
 
-    internal class SimpleMapDemoActivityAdapter : BaseAdapter<SampleActivity>
-    {
-        private readonly List<SampleActivity> _activities;
-        private readonly Context _context;
+	class SimpleMapDemoActivityAdapter : BaseAdapter<SampleActivity>
+	{
+		readonly List<SampleActivity> _activities;
+		readonly Context _context;
 
-        public SimpleMapDemoActivityAdapter(Context context, IEnumerable<SampleActivity> sampleActivities)
-        {
-            _context = context;
+		public SimpleMapDemoActivityAdapter(Context context, IEnumerable<SampleActivity> sampleActivities)
+		{
+			_context = context;
 			if (sampleActivities == null)
 			{
 				_activities = new List<SampleActivity>(0);
 			}
-			else 
+			else
 			{
-            	_activities = sampleActivities.ToList();
+				_activities = sampleActivities.ToList();
 			}
-        }
+		}
 
-        public override int Count { get { return _activities.Count; } }
+		public override int Count { get { return _activities.Count; } }
 
-        public override SampleActivity this[int position] { get { return _activities[position]; } }
+		public override SampleActivity this [int position] { get { return _activities[position]; } }
 
-        public override long GetItemId(int position)
-        {
-            return position;
-        }
+		public override long GetItemId(int position)
+		{
+			return position;
+		}
 
-        public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            FeatureRowHolder row = convertView as FeatureRowHolder ?? new FeatureRowHolder(_context);
-            SampleActivity sample = _activities[position];
+		public override View GetView(int position, View convertView, ViewGroup parent)
+		{
+			FeatureRowHolder row = convertView as FeatureRowHolder ?? new FeatureRowHolder(_context);
+			SampleActivity sample = _activities[position];
 
-            row.UpdateFrom(sample);
-            return row;
-        }
-    }
+			row.UpdateFrom(sample);
+			return row;
+		}
+	}
 
-    internal class SampleActivity
-    {
-        public SampleActivity(int titleResourceId, int descriptionId, Type activityToLaunch)
-        {
-            ActivityToLaunch = activityToLaunch;
-            TitleResource = titleResourceId;
-            DescriptionResource = descriptionId;
-        }
+	class SampleActivity
+	{
+		public SampleActivity(int titleResourceId, int descriptionId, Type activityToLaunch)
+		{
+			ActivityToLaunch = activityToLaunch;
+			TitleResource = titleResourceId;
+			DescriptionResource = descriptionId;
+		}
 
-        public Type ActivityToLaunch { get; private set; }
-        public int DescriptionResource { get; private set; }
-        public int TitleResource { get; private set; }
+		public Type ActivityToLaunch { get; private set; }
 
-        public void Start(Activity context)
-        {
-            Intent i = new Intent(context, ActivityToLaunch);
-            context.StartActivity(i);
-        }
-    }
+		public int DescriptionResource { get; private set; }
 
-    internal class FeatureRowHolder : FrameLayout
-    {
-        private readonly TextView _description;
-        private readonly TextView _title;
+		public int TitleResource { get; private set; }
 
-        public FeatureRowHolder(Context context)
+		public void Start(Activity context)
+		{
+			Intent i = new Intent(context, ActivityToLaunch);
+			context.StartActivity(i);
+		}
+	}
+
+	class FeatureRowHolder : FrameLayout
+	{
+		readonly TextView _description;
+		readonly TextView _title;
+
+		public FeatureRowHolder(Context context)
             : base(context)
-        {
-            LayoutInflater inflater = (LayoutInflater)context.GetSystemService(Context.LayoutInflaterService);
-            View view = inflater.Inflate(Resource.Layout.Feature, this);
-            _title = view.FindViewById<TextView>(Resource.Id.title);
-            _description = view.FindViewById<TextView>(Resource.Id.description);
-        }
+		{
+			LayoutInflater inflater = (LayoutInflater)context.GetSystemService(Context.LayoutInflaterService);
+			View view = inflater.Inflate(Resource.Layout.Feature, this);
+			_title = view.FindViewById<TextView>(Resource.Id.title);
+			_description = view.FindViewById<TextView>(Resource.Id.description);
+		}
 
-        public void UpdateFrom(SampleActivity sample)
-        {
-            _title.SetText(sample.TitleResource);
-            _description.SetText(sample.DescriptionResource);
-        }
-    }
+		public void UpdateFrom(SampleActivity sample)
+		{
+			_title.SetText(sample.TitleResource);
+			_description.SetText(sample.DescriptionResource);
+		}
+	}
 }
