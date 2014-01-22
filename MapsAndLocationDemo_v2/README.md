@@ -1,22 +1,17 @@
 Maps and Location Demo v2
 =========================
 
-This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for Google Play services client library.
+This code shows how to use Google Maps v2 in an Android application and how to create the Java Binding Library project for most recent Google Play services client library.
 
-This sample is relevant for users of Xamarin.Android 4.4 or Xamarin 4.6. If you are using Xamarin.Android 4.8, it is recommended that you use the Google Play Services component as demonstrated in the [MapsAndLocationDemo_v3](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v3) sample.
+This sample is relevant for users of Xamarin.Android 4.4 or Xamarin 4.6. If you are using Xamarin.Android 4.8 or higher, it is recommended that you use the Google Play Services component as demonstrated in the [MapsAndLocationDemo_v3](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v3) sample.
 
-According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher.
+According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 77% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. Support for Android 2.2 (Froyo, API level 8) is only provided by revision 12 of Google Play Services. This means that the current revisions of Google Play Services client library do not support Android 2.2. This sample will only work with Android 4.0 or higher. 
 
 The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
 
 * **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
 * **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
 * **GooglePlayServices** - this is a Java Binding project for the Google Play Services.
-
-In the `Debug_Froyo` build configuration, and it targets API level 8 and higher. This build configuration will only compile the following projects:
-
-* **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library. 
-* **GooglePlayServices_Froyo** - this is a Java Binding project for the Google Play Services.
 
 This project does not include the Google Play services client library, which is a requirement for Google Maps v2. It is not possible for 3rd parties to distribute this API, so you must compile the binding project yourself.
 
@@ -89,15 +84,14 @@ Adding the API Key to your application
 
 It goes in your application's manifest, contained in the file Properties/AndroidManifest.xml. From there, the Maps API reads the key value and passes it to the Google Maps server, which then confirms that you have access to Google Maps data. 
 
-In AndroidManifest.xml, add the following element as a child of the <application> element, by inserting it just before the closing tag </application> 
+In `AndroidManifest.xml`, add the following two elements as a child of the <application> element, by inserting it just before the closing tag </application> 
 
 	<application android:label="@string/app_name">
 
 		<!-- Put your Google Maps V2 API Key here. This key will not work for you.-->
-
 		<!-- See https://developers.google.com/maps/documentation/android/start#obtaining_an_api_key -->
-
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="SAzaSyC1O8yQaNtuur4t5y6u7ZBPnYdVDgYKHtfA8" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="<YOUR API KEY HERE>" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
 	</application>
 
@@ -133,7 +127,7 @@ Verifying Google Play Services installation on your device or emulator
 
 [Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms) must be installed on a device or emulator before Google Maps for Android v2 will work.
 
-Emulators using the [Google APIs Add-On](https://developers.google.com/android/add-ons/google-apis/) with API 17 and higher have Google Play Services included in the Google APIs Add On.
+The [Google APIs Add-On](https://developers.google.com/android/add-ons/google-apis/) is only supported on emulator images that are running the most recent API level of Android. 
 
 Emulators not using the Google APIs Add-On images, *will not have Google Play Services installed*. The appropriate APKs may be manually installed into the emulator image, but installing Google Play Services is beyond the scope of this example. 
 
@@ -174,22 +168,10 @@ If the device does not have Google Play Services installed, you will see a stack
 	Sending signal. PID: 19208 SIG: 9
 	
 	
-Backwards Compatibility with GingerBread / Froyo
-------------------------------------------------
+Backwards Compatibility with Froyo
+----------------------------------
 
-Google Play Services is supported on Android 2.2 (API level 8) or higher. This binding will work on these older API's, but some changes must be made to the binding library project and the sample project first:
-
-* In the GooglePlayServices binding library, change the target framework to **Android 2.2**.
-* In the GooglePlayServices binding library, add a reference to **Mono.Android.Support.V4**.
-* In the MapsAndLocationDemo project, change the target framework to **Android 2.2**.
-* In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.V4**.
-* In the MapsAndLocationDemo fix the compile errors: 
-	* Change <code>FragmentManager</code> to <code>SupportFragmentManager</code>
-	* Change <code>Activity</code> to <code>FragmentActivity</code>
-	* Change <code>MapFragment</code> to <code>SupportMapFragment</code>
-	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
-
-At this point the binding will target Android 2.2 and will run on older devices. 
+Google Play Services rev 12 was the last update to support on Android 2.2 (API level 8) or higher. The binding in this project will not work with these older API's. 
 
 #Troubleshooting
 
