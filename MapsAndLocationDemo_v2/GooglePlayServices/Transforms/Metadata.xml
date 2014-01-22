@@ -5,6 +5,17 @@
 	<remove-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='LineItem']/method[contains (@name, 'getRole')]" />
 	<remove-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='NotifyTransactionStatusRequest']/method[contains (@name, 'getStatus')]" />
 
+	<!-- Google Play Services Rev 14 and Google Drive Android API's -->
+	<remove-node path="/api/package[@name='com.google.android.gms.drive']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.drive.metadata']" />
+
+	<remove-node path="/api/package[@name='com.google.ads.mediation.jsadapter']/class[@name='JavascriptAdapter']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.common.api']/class[@name='Status']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.common.api']/class[@name='StatusCreator']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer.turnbased']/class[@name='TurnBasedMatchEntity']" />
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer.turnbased']/class[@name='TurnBasedMatchEntityCreator']" />
+	<!-- End Google Play Services Rev 14 and Google Drive Android API's -->
+
 	<!--Google AdMob Metadata-->
 	<attr path="/api/package[@name='com.google.ads.mediation.customevent']" name="managedName">Com.Google.Ads.Mediation.CustomEvents</attr>
 	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onDismissScreen']" name="argsType">BannerDismissScreenEventArgs</attr>
