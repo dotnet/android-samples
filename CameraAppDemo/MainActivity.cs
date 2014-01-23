@@ -65,7 +65,7 @@ namespace CameraAppDemo
         private void CreateDirectoryForPictures()
         {
             _dir = new File(Environment.GetExternalStoragePublicDirectory(Environment.DirectoryPictures), "CameraAppDemo");
-            if (_dir.Exists())
+            if (!_dir.Exists())
             {
                 _dir.Mkdirs();
             }
