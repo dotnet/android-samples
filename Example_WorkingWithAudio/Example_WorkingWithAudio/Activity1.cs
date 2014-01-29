@@ -64,6 +64,7 @@ namespace Example_WorkingWithAudio
 				stopRecording.Enabled = true;
 				return;
 			}
+
 			if (isLlRecording) {
 				stopLlRecording.Enabled = true;
 				return;
@@ -72,20 +73,17 @@ namespace Example_WorkingWithAudio
 			if (isPlaying) {
 				stopPlayback.Enabled = true;
 				return;
-			} else {
-				if (haveRecording)
-					startPlayback.Enabled = true;
-                
+			} else if (haveRecording) {
+				startPlayback.Enabled = true;
 			}
                 
 			if (isLlPlaying) {
 				stopLlPlayback.Enabled = true;
 				return;
-			} else {
-				if (haveLlRecording)
-					startLlPlayback.Enabled = true;
-                
+			} else if (haveLlRecording) {
+				startLlPlayback.Enabled = true;
 			}
+
 			startRecording.Enabled = true;
 			startLlRecording.Enabled = true;
 		}
@@ -158,20 +156,21 @@ namespace Example_WorkingWithAudio
 			stopLlRecording.Click += delegate {
 				stopOperation (llRecordAudio);
 				isLlRecording = false;
-				handleButtonState ();
+				llRecordAudio.RecordingStateChanged += (recording) => {
+					if(!isRecording)
+						handleButtonState ();
+
+					llRecordAudio.RecordingStateChanged = null;
+				};
 			};
  
 			startLlPlayback = FindViewById<Button> (Resource.Id.llStartPlaybackButton);
 
 			startLlPlayback.Click += async delegate {
-				// Wait for the recording thread to exit so as to avoid file contention.
-				while (llRecordAudio.IsRecording) {
-					Thread.Sleep (100);
-				}
 				await startOperationAsync (llPlayAudio); 
 				disableAllButtons (); 
 				isLlPlaying = true;  
-				handleButtonState (); 
+				handleButtonState ();
 			};
 
 			stopLlPlayback = FindViewById<Button> (Resource.Id.llEndPlaybackButton);

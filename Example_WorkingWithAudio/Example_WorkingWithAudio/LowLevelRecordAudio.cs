@@ -17,6 +17,8 @@ namespace Example_WorkingWithAudio
 {
 	class LowLevelRecordAudio : INotificationReceiver
 	{
+		public Action<bool> RecordingStateChanged;
+
 		static string filePath = "/data/data/Example_WorkingWithAudio.Example_WorkingWithAudio/files/testAudio.mp4";
 		byte[] audioBuffer = null;
 		AudioRecord audioRecord = null;
@@ -50,12 +52,22 @@ namespace Example_WorkingWithAudio
 			audioRecord.Stop ();
 			audioRecord.Release ();
 			isRecording = false;
+
+			RaiseRecordingStateChangedEvent ();
+		}
+
+		private void RaiseRecordingStateChangedEvent()
+		{
+			if(RecordingStateChanged != null)
+				RecordingStateChanged (isRecording);
 		}
 
 		protected async Task StartRecorderAsync ()
 		{
 			endRecording = false;
 			isRecording = true;
+
+			RaiseRecordingStateChangedEvent ();
 
 			audioBuffer = new Byte[100000];
 			audioRecord = new AudioRecord (
