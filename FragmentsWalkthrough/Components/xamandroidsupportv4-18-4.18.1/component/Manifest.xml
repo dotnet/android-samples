@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="xamandroidsupportv4-18">
+  <name>Android Support Library v4</name>
+  <publisher>Google Inc.</publisher>
+  <publisher-url>http://developer.android.com/tools/support-library/index.html</publisher-url>
+  <version>4.18.1</version>
+  <summary>Provide backward-compatible versions of Android framework APIs.</summary>
+  <samples>
+    <sample id="AndroidSupportSample">
+      <name>Android Support Sample</name>
+      <summary>Android Support Sample</summary>
+    </sample>
+  </samples>
+</component>
