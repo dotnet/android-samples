@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>1b4acc8a-01ba-4f19-80de-8e5c3d49657b</ID>
-	<IsFullApplication>true</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>User Interface, Navigation</Tags>
+  <ID>1b4acc8a-01ba-4f19-80de-8e5c3d49657b</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>User Interface, Navigation</Tags>
+  <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

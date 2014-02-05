@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>f25d65e3-15f1-4180-b0fc-7bd68958bd2d</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>User Interface</Tags>
+  <ID>f25d65e3-15f1-4180-b0fc-7bd68958bd2d</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

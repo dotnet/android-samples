@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportV4_R13_NewLayout", "SupportV4_R13_NewLayout\SupportV4_R13_NewLayout.csproj", "{52530470-0059-4D98-8B23-4DA1DA26310A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52530470-0059-4D98-8B23-4DA1DA26310A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52530470-0059-4D98-8B23-4DA1DA26310A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52530470-0059-4D98-8B23-4DA1DA26310A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52530470-0059-4D98-8B23-4DA1DA26310A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SupportV4_R13_NewLayout\SupportV4_R13_NewLayout.csproj
+	EndGlobalSection
+EndGlobal
