@@ -1,0 +1,10 @@
+﻿<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/hce_service_description"
+    android:requireDeviceUnlock="false"
+    android:apduServiceBanner="@drawable/service_banner">
+    <aid-group android:description="@string/aid_group_description"
+                android:category="payment">
+        <aid-filter android:name="1111111111111111"/>
+        <aid-filter android:name="0123456789012345"/>
+    </aid-group>
+</host-apdu-service>
