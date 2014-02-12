@@ -61,7 +61,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\color\black.xml" />
     <AndroidResource Include="Resources\color\gray.xml" />
     <AndroidResource Include="Resources\color\white.xml" />
