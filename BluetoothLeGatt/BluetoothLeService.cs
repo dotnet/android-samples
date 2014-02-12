@@ -296,10 +296,10 @@ namespace BluetoothLeGatt
 			service = s;
 		}
 
-		public override void OnConnectionStateChange (BluetoothGatt gatt, GattStatus status, int newState)
+		public override void OnConnectionStateChange (BluetoothGatt gatt, GattStatus status, ProfileState newState)
 		{
 			String intentAction;
-			if (newState == (int) ProfileState.Connected) {
+			if (newState == ProfileState.Connected) {
 				intentAction = BluetoothLeService.ACTION_GATT_CONNECTED;
 				BluetoothLeService.mConnectionState = State.Connected;
 				service.BroadcastUpdate (intentAction);
