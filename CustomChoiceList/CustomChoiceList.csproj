@@ -62,7 +62,7 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\dimens.xml" />
     <AndroidResource Include="Resources\color\hideable_text_color.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_hideable_item_checked.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_hideable_item_unchecked.png" />
     <AndroidResource Include="Resources\drawable\ic_hideable_item.xml" />
