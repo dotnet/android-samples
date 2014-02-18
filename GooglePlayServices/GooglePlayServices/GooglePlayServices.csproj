@@ -61,7 +61,7 @@
     <Folder Include="Docs\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\play-services-4.1.32.aar" />
+    <LibraryProjectZip Include="Jars\play-services-4.2.42.aar" />
   </ItemGroup>
   <ItemGroup>
     <JavaDocIndex Include="Docs\reference\packages.html" />

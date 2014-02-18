@@ -16,6 +16,7 @@
 	<!-- FIXME: fix build issues and enable this -->
 	<!--attr path="/api/package[@name='com.google.android.gms.drive.metadata']" name="managedName">Android.Gms.Drives.MetadataTypes</attr-->
 	<remove-node path="/api/package[@name='com.google.android.gms.drive.metadata']" />
+	<attr path="/api/package[@name='com.google.android.gms.cast']" name="managedName">Android.Gms.Cast</attr>
 	<attr path="/api/package[@name='com.google.android.gms.dynamic']" name="managedName">Android.Gms.Dynamic</attr>
 	<attr path="/api/package[@name='com.google.android.gms.games']" name="managedName">Android.Gms.Games</attr>  
 	<attr path="/api/package[@name='com.google.android.gms.games.achievement']" name="managedName">Android.Gms.Games.Achievement</attr>  
@@ -50,6 +51,10 @@
 	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
 	<attr path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']/method[@name='title']" name="managedName">SetTitle</attr>
 
+	<attr path="/api/package[@name='com.google.android.gms.games']/class[@name='Games']" name="managedName">GamesClass</attr>
+	<!-- IMultiplayer is somehow used in some members, but since Multiplayer interface has no methods we only bind it to classes for consts.
+	     Probably we should still generate interfaces, but the member should be also obfuscated, so I just remove it. -->
+	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/interface[@name='Multiplayer']" />
 	<attr path="/api/package[@name='com.google.android.gms.games']/class[@name='GameBuffer']/method[@name='get']" name="managedReturn">Java.Lang.Object</attr>
 	<attr path="/api/package[@name='com.google.android.gms.appstate']/class[@name='AppStateBuffer']/method[@name='get']" name="managedReturn">Java.Lang.Object</attr>
 	<attr path="/api/package[@name='com.google.android.gms.games.achievement']/class[@name='AchievementBuffer']/method[@name='get']" name="managedReturn">Java.Lang.Object</attr>
@@ -77,7 +82,8 @@
     
     <attr path="/api/package[@name='com.google.android.gms.common.api']/class[@name='Status']" name="managedName">Statuses</attr>
 
-    <!-- FIXME: this type is removed only because javadoc-to-mdoc crashes because of it -->
+    <!-- FIXME: this type is removed only because javadoc-to-mdoc crashes because of the broken HTML
+         https://code.google.com/p/android/issues/detail?id=65544&thanks=65544&ts=1391512080 -->
     <remove-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='WalletConstants']" />
 
   <!-- AdMob -->
