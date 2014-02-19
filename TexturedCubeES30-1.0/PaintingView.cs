@@ -143,6 +143,8 @@ namespace Mono.Samples.TexturedCube {
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
 			GL.DepthFunc (All.Lequal);
+			GL.Enable (All.CullFace);
+			GL.CullFace (All.Back);
 
 			textureId = GL.GenTexture ();
 			LoadTexture (context, Resource.Drawable.texture1, textureId);
