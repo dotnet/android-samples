@@ -4,5 +4,6 @@
         <IsFullApplication>true</IsFullApplication>
         <Level>Beginning</Level>
         <Tags>Maps + Location</Tags>
+	<Gallery>true</Gallery>
 </SampleMetadata>
 

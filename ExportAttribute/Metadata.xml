@@ -4,4 +4,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
 </SampleMetadata>

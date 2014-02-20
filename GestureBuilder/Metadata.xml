@@ -4,4 +4,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Touch</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
 </SampleMetadata>
