@@ -78,6 +78,8 @@ However, because the sample galleries are powered by the github sample repos, ea
 
     * **SupportedPlatforms**: this is only for cross plat samples. It's a comma-separated list, and the valid values are iOS, Android, and Windows.
 
+    * **Gallery**: This tag must contain a value of true if you want the sample to show up in the samples gallery on the developer portal.
+
 * **Buildable Sln and CSProj file** - the project _must_ build and have the appropriate project scaffolding (solution + proj).
 
 A good example of this stuff is here in the drawing sample:[ https://github.com/xamarin/monotouch-samples/tree/master/Drawing](https://github.com/xamarin/monotouch-samples/tree/master/Drawing)
