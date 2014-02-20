@@ -74,7 +74,22 @@ However, because the sample galleries are powered by the github sample repos, ea
 
     * **Minimum License Requirement** - Starter, Indie, Business, or Enterprise: denotes the license that a user has to have in order to build/run the sample.
 
-    * **Tags**: a list of relevant tags for the app. These will be controlled more tightly later.
+    * **Tags**: a list of relevant tags for the app. These are:
+    	* **User Interface**
+		* **Data**
+		* **Games**
+		* **Graphics** (CoreDrawing, Animation, OpenGL...)
+		* **Media** (Video, Sound, recording, photos)
+		* **Platform Features** (Photo Library, Contacts, Calendars, etc.)
+		* **Device Features** (NFC, Accelerometer, Compass, Magnemometer, Bluetooth, RFID)
+		* **Cloud** (Web Services, Networking, etc.)
+		* **Backgrounding**
+		* **Maps & Location**
+		* **Binding + Interop** (Projections)
+		* **Notifications**
+		* **Touch**
+		* **Getting Started**
+		* **Async**
 
     * **SupportedPlatforms**: this is only for cross plat samples. It's a comma-separated list, and the valid values are iOS, Android, and Windows.
 
