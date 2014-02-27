@@ -65,7 +65,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\menu\main_menu.xml" />
-    <AndroidResource Include="Resources\values-sw600dp\.DS_Store" />
     <AndroidResource Include="Resources\values-sw600dp\template-dimens.xml" />
     <AndroidResource Include="Resources\values-sw600dp\template-styles.xml" />
     <AndroidResource Include="Resources\values\template-dimens.xml" />
