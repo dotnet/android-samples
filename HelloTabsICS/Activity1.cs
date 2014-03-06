@@ -21,11 +21,11 @@ namespace HelloTabsICS
    
             this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
                  
-            AddTab ("Tab 1", Resource.Drawable.ic_tab_white);
-            AddTab ("Tab 2", Resource.Drawable.ic_tab_white);
+            AddTab ("Tab 1", Resource.Drawable.ic_tab_white, new SampleTabFragment ());
+            AddTab ("Tab 2", Resource.Drawable.ic_tab_white, new SampleTabFragment ());
         }
         
-        void AddTab (string tabText, int iconResourceId)
+        void AddTab (string tabText, int iconResourceId, Fragment view)
         {
             var tab = this.ActionBar.NewTab ();            
             tab.SetText (tabText);
@@ -33,7 +33,10 @@ namespace HelloTabsICS
             
             // must set event handler before adding tab
             tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {              
-                e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SampleTabFragment ());
+                e.FragmentTransaction.Add (Resource.Id.fragmentContainer, view);
+            };
+            tab.TabUnselected += delegate(object sender, ActionBar.TabEventArgs e) {
+                e.FragmentTransaction.Remove(view);
             };
             
             this.ActionBar.AddTab (tab);
