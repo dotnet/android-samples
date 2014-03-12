@@ -278,7 +278,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.BindTexture (All.Texture2D, tex_id);
 
 			// setup texture parameters
-			GL.TexParameter (All.Texture2D, All.TextureMinFilter, (int)All.Nearest);
+			GL.TexParameter (All.Texture2D, All.TextureMinFilter, (int)All.NearestMipmapLinear);
 			GL.TexParameter (All.Texture2D, All.TextureMagFilter, (int)TextureMagFilter.Nearest);
 			GL.TexParameter (All.Texture2D, All.TextureWrapS, (int)TextureWrapMode.Repeat);
 			GL.TexParameter (All.Texture2D, All.TextureWrapT, (int)TextureWrapMode.Repeat);
@@ -286,6 +286,8 @@ namespace Mono.Samples.TexturedCube {
 			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
 			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0); 
+			b.Recycle ();
+			GL.GenerateMipmap (All.Texture2D);
 		}
 
 		internal Matrix4 view = new Matrix4 ();
