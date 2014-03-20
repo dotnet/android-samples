@@ -16,12 +16,111 @@
 	<remove-node path="/api/package[@name='com.google.android.gms.games.multiplayer.turnbased']/class[@name='TurnBasedMatchEntityCreator']" />
 	<!-- End Google Play Services Rev 14 and Google Drive Android API's -->
 
+	<!-- Need to implement IParcelable on some types -->
 	<!-- See https://bugzilla.xamarin.com/show_bug.cgi?id=15229 -->
 	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='CameraPosition']">
   		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable">
 		</implements>
 	</add-node>
-
+		<add-node path="/api/package[@name='com.google.android.gms.common.data']/class[@name='DataHolder']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.common.api']/class[@name='Status']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.cast']/class[@name='ApplicationMetadata']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.common.images']/class[@name='WebImage']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.cast']/class[@name='CastDevice']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.games.multiplayer']/class[@name='ParticipantResult']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.games.multiplayer.turnbased']/class[@name='TurnBasedMatchEntity']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.location']/class[@name='ActivityRecognitionResult']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.location']/class[@name='DetectedActivity']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.location']/class[@name='LocationRequest']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='LatLng']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='LatLngBounds']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='CircleOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='GroundOverlayOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='MarkerOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='PolygonOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='PolylineOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='TileOverlayOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='Tile']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps.model']/class[@name='VisibleRegion']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.maps']/class[@name='GoogleMapOptions']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='Address']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='LineItem']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='Cart']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='CountrySpecification']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='FullWallet']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='ProxyCard']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='FullWalletRequest']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='LoyaltyWalletObject']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='MaskedWallet']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='OfferWalletObject']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='MaskedWalletRequest']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
+	<add-node path="/api/package[@name='com.google.android.gms.wallet']/class[@name='NotifyTransactionStatusRequest']">
+		<implements name="android.os.Parcelable" name-generic-aware="android.os.Parcelable" />
+	</add-node>
 	<!--Google AdMob Metadata-->
 	<attr path="/api/package[@name='com.google.ads.mediation.customevent']" name="managedName">Com.Google.Ads.Mediation.CustomEvents</attr>
 	<attr path="/api/package[@name='com.google.ads.mediation']/interface[@name='MediationBannerListener']/method[@name='onDismissScreen']" name="argsType">BannerDismissScreenEventArgs</attr>
