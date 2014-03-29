@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <TextView
+        android:text="Forum Post Title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PostTitle"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:shadowColor="#ffe0e0e0"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="0.1"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp">
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:id="@+id/PostAvatar"
+                android:scaleType="fitXY"
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+            <TextView
+                android:text="Text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AuthorName"
+                android:textSize="8sp"
+                android:gravity="center"
+                android:textColor="#ff5a5a5a"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+        <TextView
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper est ligula. Nullam nec felis magna. Phasellus nulla quam, tempus eget lobortis a, gravida vitae enim. Vivamus quis odio sed mauris semper accumsan. Maecenas ac massa pulvinar lorem rhoncus imperdiet ac nec lectus."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/PostText"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:textSize="13sp"
+            android:maxLines="4"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="6dp"
+            android:fadingEdge="vertical"
+            android:requiresFadingEdge="vertical"
+            android:fadingEdgeLength="3dp"
+            android:fontFamily="sans-serif-condensed" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2"
+            android:layout_gravity="center">
+            <TextView
+                android:text="20 min"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PostTime"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#ff2d2d2d" />
+            <TextView
+                android:text="ago"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PostTimeSecondary"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textColor="#ff2d2d2d" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

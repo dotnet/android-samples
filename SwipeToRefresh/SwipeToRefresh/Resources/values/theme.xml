@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Colors -->
+	<color name="xam_purple">#B455B6</color>
+	<color name="xam_blue">#3498DB</color>
+	<color name="xam_dark_blue">#2C3E50</color>
+	<color name="xam_green">#77D065</color>
+	<color name="xam_gray">#738182</color>
+	<color name="xam_light_gray">#B4BCBC</color>
+
+	<color name="main_background">#eeeeee</color>
+	<color name="action_bar_title_color">@color/xam_gray</color>
+	<color name="ab_background">#ffffff</color>
+	<color name="ab_bottom_shadow_1">#30000000</color>
+	<color name="ab_bottom_shadow_2">#20000000</color>
+
+	<!-- Styles -->
+	<style name="XamActionBarTheme" parent="@android:style/Theme.Holo.Light">
+		<item name="android:actionBarStyle">@style/XamActionBarStyle</item>
+		<item name="android:windowBackground">@color/main_background</item>
+	</style>
+
+	<style name="XamActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+		<item name="android:titleTextStyle">@style/XamActionBarTitleStyle</item>
+		<item name="android:background">@drawable/ab_background</item>
+		<item name="android:backgroundStacked">@drawable/ab_background</item>
+		<item name="android:displayOptions">showTitle|showHome|useLogo</item>
+		<item name="android:logo">@drawable/ic_action_logo</item>
+	</style>
+
+	<style name="XamActionBarTitleStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+		<item name="android:textSize">17sp</item>
+		<item name="android:textColor">@color/action_bar_title_color</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+</resources>
