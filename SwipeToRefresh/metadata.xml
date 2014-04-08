@@ -5,4 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Platform Features</Tags>
 	<Gallery>true</Gallery>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
