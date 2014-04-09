@@ -59,7 +59,12 @@ namespace Location
 				// the minimum time between updates (in seconds), 
 				// the minimum distance the user needs to move to generate an update (in meters),
 				// and an ILocationListener (recall that this class impletents the ILocationListener interface)
-				locMgr.RequestLocationUpdates (LocationManager.NetworkProvider, 2000, 1, this);
+				if (locMgr.AllProviders.Contains (LocationManager.NetworkProvider)
+					&& locMgr.IsProviderEnabled (LocationManager.NetworkProvider)) {
+					locMgr.RequestLocationUpdates (LocationManager.NetworkProvider, 2000, 1, this);
+				} else {
+					Toast.MakeText (this, "The Network Provider does not exist or is not enabled!", ToastLength.Long).Show ();
+				}
 
 
 				// Comment the line above, and uncomment the following, to test 
