@@ -1,5 +1,5 @@
 <metadata>
-  <add-node path="/api/package[@name='com.slidingmenu.lib']/class[@name='SlidingMenu']">
+  <add-node path="/api/package[@name='com.jeremyfeinstein.slidingmenu.lib']/class[@name='SlidingMenu']">
 		<!-- 
 		We need this transform because the Java method setBehindCanvasTransformer can't be bound. The binding 
 		generator can't find the type com.slidingmenu.lib.R cannot be found. As a workaround we tell 
@@ -8,13 +8,35 @@
 		See: http://forums.xamarin.com/discussion/comment/2868 
 		-->
 		<method abstract="false" deprecated="not deprecated" final="false" name="setBehindCanvasTransformer" native="false" return="void" static="false" synchronized="false" visibility="public">
-			<parameter name="t" type="com.slidingmenu.lib.SlidingMenu.CanvasTransformer" />
+			<parameter name="t" type="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.CanvasTransformer" />
 		</method>
+
+		<method abstract="false" deprecated="not deprecated" final="false" name="setOnCloseListener" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="listener" type="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener" />
+		</method>
+
+		<method abstract="false" deprecated="not deprecated" final="false" name="setOnClosedListener" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="listener" type="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener" />
+		</method>
+
+
+		<method abstract="false" deprecated="not deprecated" final="false" name="setOnOpenListener" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="listener" type="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener" />
+		</method>
+
+		<method abstract="false" deprecated="not deprecated" final="false" name="setOnOpenedListener" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="listener" type="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener" />
+		</method>
+
+
 	</add-node>
 	
 	<remove-node path="/api/package[starts-with(@name, 'com.actionbarsherlock.internal')]" />
-	
+
 	<!-- Canonicalize the Java package names -->
+	<attr path="/api/package[@name='com.jeremyfeinstein.slidingmenu.lib']" name="managedName">Com.SlidingMenu.Lib</attr>
+	<attr path="/api/package[@name='com.jeremyfeinstein.slidingmenu.lib.app']" name="managedName">Com.SlidingMenu.Lib.App</attr>
+
 	<attr path="/api/package[@name='com.actionbarsherlock']" name="managedName">Xamarin.ActionbarSherlockBinding</attr>
 	<attr path="/api/package[@name='com.actionbarsherlock.widget']" name="managedName">Xamarin.ActionbarSherlockBinding.Widget</attr>
 	<attr path="/api/package[@name='com.actionbarsherlock.app']" name="managedName">Xamarin.ActionbarSherlockBinding.App</attr>

@@ -13,6 +13,8 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <AssemblyName>Mono.SlidingMenu</AssemblyName>
     <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <Java7DocPaths>Javadoc/</Java7DocPaths>
+    <JavaDocPaths>Javadoc/</JavaDocPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
