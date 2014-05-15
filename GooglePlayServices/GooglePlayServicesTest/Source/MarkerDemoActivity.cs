@@ -32,7 +32,7 @@ using Android.Gms.Maps.Model;
 
 namespace GooglePlayServicesTest
 {
-	[Activity (Label = "Mono GoogleMapV2 MarkerDemo")]
+	[Activity (Label = "XA GoogleMapV2 MarkerDemo")]
 	public class MarkerDemoActivity : Android.Support.V4.App.FragmentActivity,
 		GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener 
 	{

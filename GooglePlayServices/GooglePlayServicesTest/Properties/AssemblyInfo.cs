@@ -5,7 +5,6 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly:MetaData ("com.google.android.maps.v2.API_KEY", Value = "INSERT_YOUR_API_KEY_HERE")]
 [assembly:UsesPermission (Android.Manifest.Permission.WriteExternalStorage)]
 [assembly:UsesPermission (Android.Manifest.Permission.AccessCoarseLocation)]
 [assembly:UsesPermission (Android.Manifest.Permission.AccessFineLocation)]
