@@ -25,7 +25,7 @@ namespace com.xamarin.recipes.filepicker
         /// <returns> </returns>
         public static bool IsDirectory(this FileSystemInfo fsi)
         {
-            if (fsi == null)
+            if (fsi == null || !fsi.Exists)
             {
                 return false;
             }
@@ -34,18 +34,22 @@ namespace com.xamarin.recipes.filepicker
         }
 
         /// <summary>
-        ///   This method will tell us if the
+        ///   This method will tell us if the the given FileSystemInfo instance is a file.
         /// </summary>
         /// <param name="fsi"> </param>
         /// <returns> </returns>
         public static bool IsFile(this FileSystemInfo fsi)
         {
+            if (fsi == null || !fsi.Exists)
+            {
+                return false;
+            }
             return !IsDirectory(fsi);
         }
 
         public static bool IsVisible(this FileSystemInfo fsi)
         {
-            if (fsi == null)
+            if (fsi == null || !fsi.Exists)
             {
                 return false;
             }
