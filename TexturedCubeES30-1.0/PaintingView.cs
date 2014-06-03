@@ -141,10 +141,10 @@ namespace Mono.Samples.TexturedCube {
 			GL.ClearColor (0, 0, 0, 1);
 
 			GL.ClearDepth (1.0f);
-			GL.Enable (All.DepthTest);
-			GL.DepthFunc (All.Lequal);
-			GL.Enable (All.CullFace);
-			GL.CullFace (All.Back);
+			GL.Enable (EnableCap.DepthTest);
+			GL.DepthFunc (DepthFunction.Lequal);
+			GL.Enable (EnableCap.CullFace);
+			GL.CullFace (CullFaceMode.Back);
 
 			textureId = GL.GenTexture ();
 			LoadTexture (context, Resource.Drawable.texture1, textureId);
@@ -164,14 +164,14 @@ namespace Mono.Samples.TexturedCube {
 		internal void InitModel ()
 		{
 			GL.GenBuffers (1, out vbo);
-			GL.BindBuffer (All.ArrayBuffer, vbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr)(CubeModel.vertices.Length * sizeof(float)), CubeModel.vertices, All.StaticDraw);
-			GL.BindBuffer (All.ArrayBuffer, 0);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, vbo);
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(CubeModel.vertices.Length * sizeof(float)), CubeModel.vertices, BufferUsage.StaticDraw);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
 
 			GL.GenBuffers (1, out vbi);
-			GL.BindBuffer (All.ElementArrayBuffer, vbi);
-			GL.BufferData (All.ElementArrayBuffer, (IntPtr)(CubeModel.faceIndexes.Length * sizeof(ushort)), CubeModel.faceIndexes, All.StaticDraw);
-			GL.BindBuffer (All.ElementArrayBuffer, 0);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, vbi);
+			GL.BufferData (BufferTarget.ElementArrayBuffer, (IntPtr)(CubeModel.faceIndexes.Length * sizeof(ushort)), CubeModel.faceIndexes, BufferUsage.StaticDraw);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, 0);
 		}
 
 		public override bool OnTouchEvent (MotionEvent e)
@@ -237,26 +237,26 @@ namespace Mono.Samples.TexturedCube {
 
 		internal void DrawModel ()
 		{
-			GL.ActiveTexture (All.Texture0);
-			GL.BindTexture (All.Texture2D, textureId);
+			GL.ActiveTexture (TextureUnit.Texture0);
+			GL.BindTexture (TextureTarget.Texture2D, textureId);
 			GL.Uniform1 (uniforms [UNIFORM_TEXTURE], 0);
 
 			// Update attribute values.
-			GL.BindBuffer (All.ArrayBuffer, vbo);
-			GL.VertexAttribPointer (ATTRIB_VERTEX, 3, All.Float, false, sizeof(float)*8, IntPtr.Zero);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, vbo);
+			GL.VertexAttribPointer (ATTRIB_VERTEX, 3, VertexAttribPointerType.Float, false, sizeof(float)*8, IntPtr.Zero);
 			GL.EnableVertexAttribArray (ATTRIB_VERTEX);
 
-			GL.VertexAttribPointer (ATTRIB_NORMAL, 3, All.Float, false, sizeof(float)*8, new IntPtr (sizeof (float)*3));
+			GL.VertexAttribPointer (ATTRIB_NORMAL, 3, VertexAttribPointerType.Float, false, sizeof(float)*8, new IntPtr (sizeof (float)*3));
 			GL.EnableVertexAttribArray (ATTRIB_NORMAL);
 
-			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 3, All.Float, false, sizeof(float)*8, new IntPtr (sizeof (float)*6));
+			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 3, VertexAttribPointerType.Float, false, sizeof(float)*8, new IntPtr (sizeof (float)*6));
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
 
-			GL.BindBuffer (All.ElementArrayBuffer, vbi);
-			GL.DrawElementsInstanced (All.Triangles, CubeModel.faceIndexes.Length, All.UnsignedShort, IntPtr.Zero, 24);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, vbi);
+			GL.DrawElementsInstanced (PrimitiveType.Triangles, CubeModel.faceIndexes.Length, DrawElementsType.UnsignedShort, IntPtr.Zero, 24);
 
-			GL.BindBuffer (All.ArrayBuffer, 0);
-			GL.BindBuffer (All.ElementArrayBuffer, 0);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, 0);
 		}
 
 		protected override void Dispose (bool disposing)
@@ -275,19 +275,19 @@ namespace Mono.Samples.TexturedCube {
 
 		void LoadTexture (Context context, int resourceId, int tex_id)
 		{
-			GL.BindTexture (All.Texture2D, tex_id);
+			GL.BindTexture (TextureTarget.Texture2D, tex_id);
 
 			// setup texture parameters
-			GL.TexParameter (All.Texture2D, All.TextureMinFilter, (int)All.NearestMipmapLinear);
-			GL.TexParameter (All.Texture2D, All.TextureMagFilter, (int)TextureMagFilter.Nearest);
-			GL.TexParameter (All.Texture2D, All.TextureWrapS, (int)TextureWrapMode.Repeat);
-			GL.TexParameter (All.Texture2D, All.TextureWrapT, (int)TextureWrapMode.Repeat);
+			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.NearestMipmapLinear);
+			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
+			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
 			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
 			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0); 
 			b.Recycle ();
-			GL.GenerateMipmap (All.Texture2D);
+			GL.GenerateMipmap (TextureTarget.Texture2D);
 		}
 
 		internal Matrix4 view = new Matrix4 ();
@@ -324,12 +324,12 @@ namespace Mono.Samples.TexturedCube {
 			program = GL.CreateProgram ();
 
 			// Create and compile vertex shader.
-			if (!CompileShader (All.VertexShader, vertShaderSource, out vertShader)) {
+			if (!CompileShader (ShaderType.VertexShader, vertShaderSource, out vertShader)) {
 				Console.WriteLine ("Failed to compile vertex shader");
 				return false;
 			}
 			// Create and compile fragment shader.
-			if (!CompileShader (All.FragmentShader, fragShaderSource, out fragShader)) {
+			if (!CompileShader (ShaderType.FragmentShader, fragShaderSource, out fragShader)) {
 				Console.WriteLine ("Failed to compile fragment shader");
 				return false;
 			}
@@ -364,12 +364,12 @@ namespace Mono.Samples.TexturedCube {
 			}
 
 			// Get uniform locations.
-			uniforms [UNIFORM_PROJECTION] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("projection"));
-			uniforms [UNIFORM_VIEW] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("view"));
-			uniforms [UNIFORM_NORMAL_MATRIX] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("normalMatrix"));
-			uniforms [UNIFORM_TEXTURE] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("text"));
-			uniforms [UNIFORM_TEX_DEPTH] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("texDepth"));
-			uniforms [UNIFORM_LIGHT] = GL.GetUniformLocation (program, new System.Text.StringBuilder ("light"));
+			uniforms [UNIFORM_PROJECTION] = GL.GetUniformLocation (program, "projection");
+			uniforms [UNIFORM_VIEW] = GL.GetUniformLocation (program, "view");
+			uniforms [UNIFORM_NORMAL_MATRIX] = GL.GetUniformLocation (program, "normalMatrix");
+			uniforms [UNIFORM_TEXTURE] = GL.GetUniformLocation (program, "text");
+			uniforms [UNIFORM_TEX_DEPTH] = GL.GetUniformLocation (program, "texDepth");
+			uniforms [UNIFORM_LIGHT] = GL.GetUniformLocation (program, "light");
 
 			// Release vertex and fragment shaders.
 			if (vertShader != 0) {
@@ -397,7 +397,7 @@ namespace Mono.Samples.TexturedCube {
 			}
 		}
 
-		static bool CompileShader (All type, string src, out int shader)
+		static bool CompileShader (ShaderType type, string src, out int shader)
 		{
 			shader = GL.CreateShader (type);
 			GL.ShaderSource (shader, src);
@@ -405,7 +405,7 @@ namespace Mono.Samples.TexturedCube {
 
 			#if DEBUG || true
 			int logLength = 0;
-			GL.GetShader (shader, All.InfoLogLength, out logLength);
+			GL.GetShader (shader, ShaderParameter.InfoLogLength, out logLength);
 			if (logLength > 0) {
 				//GL.GetShaderInfoLog (shader, logLength, out logLength, infoLog);
 				Console.WriteLine ("Shader compile log:\n{0}", GL.GetShaderInfoLog (shader));
@@ -413,7 +413,7 @@ namespace Mono.Samples.TexturedCube {
 			#endif
 
 			int status = 0;
-			GL.GetShader (shader, All.CompileStatus, out status);
+			GL.GetShader (shader, ShaderParameter.CompileStatus, out status);
 			if (status == 0) {
 				GL.DeleteShader (shader);
 				return false;
@@ -428,12 +428,12 @@ namespace Mono.Samples.TexturedCube {
 
 			#if DEBUG
 			int logLength = 0;
-			GL.GetProgram (prog, All.InfoLogLength, out logLength);
+			GL.GetProgram (prog, ProgramParameter.InfoLogLength, out logLength);
 			if (logLength > 0)
 				Console.WriteLine ("Program link log:\n{0}", GL.GetProgramInfoLog (prog));
 			#endif
 			int status = 0;
-			GL.GetProgram (prog, All.LinkStatus, out status);
+			GL.GetProgram (prog, ProgramParameter.LinkStatus, out status);
 			if (status == 0)
 				return false;
 
@@ -442,8 +442,8 @@ namespace Mono.Samples.TexturedCube {
 
 		static void CheckGLError ()
 		{
-			All code = GL.GetError ();
-			if (code != All.NoError) {
+			ErrorCode code = GL.GetErrorCode ();
+			if (code != ErrorCode.NoError) {
 				Console.WriteLine ("GL Error {0}", code);
 			}
 		}
@@ -454,7 +454,7 @@ namespace Mono.Samples.TexturedCube {
 			CheckGLError ();
 
 			int logLength = 0;
-			GL.GetProgram (prog, All.InfoLogLength, out logLength);
+			GL.GetProgram (prog, ProgramParameter.InfoLogLength, out logLength);
 			CheckGLError ();
 			if (logLength > 0) {
 				var infoLog = new System.Text.StringBuilder (logLength);
@@ -463,7 +463,7 @@ namespace Mono.Samples.TexturedCube {
 			}
 
 			int status = 0;
-			GL.GetProgram (prog, All.LinkStatus, out status);
+			GL.GetProgram (prog, ProgramParameter.LinkStatus, out status);
 			CheckGLError ();
 			if (status == 0)
 				return false;
