@@ -44,79 +44,84 @@ namespace PushSample
 		IntentFilter boundServiceFilter;
 		IntentFilter apidUpdateFilter;
 
-		protected override void OnCreate(Bundle savedInstanceState) {
-			base.OnCreate(savedInstanceState);
+		protected override void OnCreate (Bundle savedInstanceState)
+		{
+			base.OnCreate (savedInstanceState);
 
-			SetContentView(Resource.Layout.main);
+			SetContentView (Resource.Layout.main);
 
-			locationButton = (Button)FindViewById(Resource.Id.location_button);
+			locationButton = (Button)FindViewById (Resource.Id.location_button);
 			locationButton.Click += delegate {
-					StartActivity(new Intent(BaseContext, typeof (LocationActivity)));
+				StartActivity (new Intent (BaseContext, typeof(LocationActivity)));
 			};
 
 			// Set up custom preference screen style button
-			Button customPreferencesButton = (Button)FindViewById(Resource.Id.push_custom_preferences_button);
+			Button customPreferencesButton = (Button)FindViewById (Resource.Id.push_custom_preferences_button);
 			customPreferencesButton.Click += delegate {
-					StartActivity(new Intent(BaseContext, typeof (CustomPreferencesActivity)));
+				StartActivity (new Intent (BaseContext, typeof(CustomPreferencesActivity)));
 			};
 
 			// Set up android built-in preference screen style button
-			Button preferencesButton = (Button)FindViewById(Resource.Id.push_preferences_button);
+			Button preferencesButton = (Button)FindViewById (Resource.Id.push_preferences_button);
 			preferencesButton.Click += delegate {
-				StartActivity(new Intent(BaseContext, typeof (PreferencesActivity)));
+				StartActivity (new Intent (BaseContext, typeof(PreferencesActivity)));
 			};
 
-			boundServiceFilter = new IntentFilter();
-			boundServiceFilter.AddAction(UALocationManager.GetLocationIntentAction(UALocationManager.ActionSuffixLocationServiceBound));
-			boundServiceFilter.AddAction(UALocationManager.GetLocationIntentAction(UALocationManager.ActionSuffixLocationServiceUnbound));
+			boundServiceFilter = new IntentFilter ();
+			boundServiceFilter.AddAction (UALocationManager.ActionLocationServiceBound);
+			boundServiceFilter.AddAction (UALocationManager.ActionLocationServiceUnbound);
 
-			apidUpdateFilter = new IntentFilter();
-			apidUpdateFilter.AddAction(UAirship.PackageName + IntentReceiver.APID_UPDATED_ACTION_SUFFIX);
+			apidUpdateFilter = new IntentFilter ();
+			apidUpdateFilter.AddAction (UAirship.PackageName + IntentReceiver.APID_UPDATED_ACTION_SUFFIX);
 		}
 
-		protected override void OnResume() 
+		protected override void OnResume ()
 		{
-			base.OnResume();
+			base.OnResume ();
 
 			// OPTIONAL! The following block of code removes all notifications from the status bar.
-			NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
-			notificationManager.CancelAll();
+			NotificationManager notificationManager = (NotificationManager)GetSystemService (Context.NotificationService);
+			notificationManager.CancelAll ();
 
-			HandleLocationButton();
+			HandleLocationButton ();
 
-			RegisterReceiver(boundServiceReceiver, boundServiceFilter);
-			RegisterReceiver(apidUpdateReceiver, apidUpdateFilter);
-			UpdateApidField();
+			RegisterReceiver (boundServiceReceiver, boundServiceFilter);
+			RegisterReceiver (apidUpdateReceiver, apidUpdateFilter);
+			UpdateApidField ();
 		}
 
-		private void HandleLocationButton() {
+		private void HandleLocationButton ()
+		{
 			if (UALocationManager.IsServiceBound) {
-				Logger.Info("LocationService is bound to MainActivity");
+				Logger.Info ("LocationService is bound to MainActivity");
 				locationButton.Enabled = (true);
 			} else {
-				Logger.Info("LocationService is not bound to MainActivity");
+				Logger.Info ("LocationService is not bound to MainActivity");
 				locationButton.Enabled = (false);
 			}
 		}
 
-		protected override void OnPause() {
-			base.OnPause();
+		protected override void OnPause ()
+		{
+			base.OnPause ();
 			try {
-				UnregisterReceiver(boundServiceReceiver);
-				UnregisterReceiver(apidUpdateReceiver);
+				UnregisterReceiver (boundServiceReceiver);
+				UnregisterReceiver (apidUpdateReceiver);
 			} catch (Java.Lang.IllegalArgumentException e) {
-				Logger.Error(e.Message);
+				Logger.Error (e.Message);
 			}
 		}
 
 		class DelegateBroadcastReceiver : BroadcastReceiver
 		{
 			Action<Context,Intent> onReceive;
+
 			public DelegateBroadcastReceiver (Action<Context,Intent> onReceive)
 			{
 				this.onReceive = onReceive;
 			}
-			public override void OnReceive(Context context, Intent intent)
+
+			public override void OnReceive (Context context, Intent intent)
 			{
 				onReceive (context, intent);
 			}
@@ -130,30 +135,32 @@ namespace PushSample
 
 		private BroadcastReceiver boundServiceReceiver;
 
-		void BoundServiceReceiver_OnReceive(Context context, Intent intent) 
+		void BoundServiceReceiver_OnReceive (Context context, Intent intent)
 		{
-				if (UALocationManager.GetLocationIntentAction(UALocationManager.ActionSuffixLocationServiceBound).Equals(intent.Action)) {
-					locationButton.Enabled = true;
-				} else {
-					locationButton.Enabled = false;
-				}
+			if (UALocationManager.ActionLocationServiceBound == intent.Action) {
+				locationButton.Enabled = true;
+			} else {
+				locationButton.Enabled = false;
+			}
 		}
 
 		private BroadcastReceiver apidUpdateReceiver;
-		void ApidUpdateReceiver_OnReceive(Context context, Intent intent) 
+
+		void ApidUpdateReceiver_OnReceive (Context context, Intent intent)
 		{
-				UpdateApidField();
+			UpdateApidField ();
 		}
 
-		private void UpdateApidField() {
-			String apidString = PushManager.Shared().APID;
-			if (!PushManager.Shared().Preferences.IsPushEnabled || apidString == null) {
+		private void UpdateApidField ()
+		{
+			String apidString = PushManager.Shared ().APID;
+			if (!PushManager.Shared ().Preferences.IsPushEnabled || apidString == null) {
 				apidString = "";
 			}
 
 			// fill in apid text
-			EditText apidTextField = (EditText)FindViewById(Resource.Id.apidText);
-			if (!apidString.Equals(apidTextField.Text)) {
+			EditText apidTextField = (EditText)FindViewById (Resource.Id.apidText);
+			if (!apidString.Equals (apidTextField.Text)) {
 				apidTextField.Text = (apidString);
 			}
 		}

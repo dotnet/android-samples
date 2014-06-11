@@ -41,7 +41,7 @@ namespace PushSample
 			gpsUpdateButton = (Button)FindViewById (Resource.Id.gps_update_button);
 
 			locationFilter = new IntentFilter ();
-			locationFilter.AddAction (UALocationManager.GetLocationIntentAction (UALocationManager.ActionSuffixLocationUpdate));
+			locationFilter.AddAction (UALocationManager.ActionLocationUpdate);
 
 			newCriteria = new Criteria ();
 			newCriteria.Accuracy = Accuracy.Fine;
@@ -113,14 +113,13 @@ namespace PushSample
 
 		void LocationUpdateReceiver_OnReceive (Context context, Intent intent)
 		{
-			if (UALocationManager.GetLocationIntentAction (UALocationManager.ActionSuffixLocationUpdate) == intent.Action) {
+			if (UALocationManager.ActionLocationUpdate == intent.Action) {
 				Location newLocation = (Location)intent.Extras.Get (UALocationManager.LocationKey);
 
 				String text = string.Format ("lat: {0}, lon: {1}", newLocation.Latitude, newLocation.Longitude);
 
 				Toast.MakeText (UAirship.Shared ().ApplicationContext,
-				                text, ToastLength.Long).Show ();
-
+					text, ToastLength.Long).Show ();
 			}
 		}
 	}
