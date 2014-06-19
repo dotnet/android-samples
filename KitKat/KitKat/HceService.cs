@@ -6,9 +6,9 @@ using Android.Nfc.CardEmulators;
 namespace KitKat
 {
 	// Setup for an NFC HCE payments application 
-	[Service(Exported=true, Permission="android.permissions.BIND_NFC_SERVICE"), 
-		IntentFilter(new[] {"android.nfc.cardemulation.HOST_APDU_SERVICE"}), 
-		MetaData("andorid.nfc.cardemulation.host.apdu_service", 
+	[Service(Exported=true, Permission=Android.Manifest.Permission.BindNfcService),
+		IntentFilter(new[] { HostApduService.ServiceInterface }),
+		MetaData(HostApduService.ServiceMetaData,
 			Resource="@xml/hceservice")]
 
 	// The hceservice.xml resource contains important information for pairing the HCE Service
