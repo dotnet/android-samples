@@ -76,7 +76,9 @@ namespace DynamicTest
 						var iwc = new WebClient ();
 						iwc.DownloadDataCompleted += (isender, ie) => p.Value.ForEach (s => {
 							using (var fs = File.Create (s))
+							if (ie.Result != null) {
 								fs.Write (ie.Result, 0, ie.Result.Length);
+							}
 						});
 						iwc.DownloadDataAsync (p.Key);
 					});
