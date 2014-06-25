@@ -38,7 +38,7 @@ namespace ActionBarPullToRefreshSample
  * This sample shows how to use ActionBar-PullToRefresh with a {@link android.widget.GridView
  * GridView}, and manually creating (and attaching) a {@link PullToRefreshAttacher} to the view.
  */
-	[Activity (Label = "@string/activity_gridview", MainLauncher = true)]
+	[Activity (Label = "@string/activity_gridview")]
 	public class GridViewActivity : Activity
 	{
 		private static string[] ITEMS = new string[] {"Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam",

@@ -46,7 +46,7 @@ namespace ActionBarPullToRefreshSample
  * passing it the PullToRefreshLayout's ID. From there you can set your
  * {@link PullToRefreshAttacher.OnRefreshListener OnRefreshListener} as usual.
  */
-	[Activity (Label = "@string/activity_scrollview", MainLauncher = true)]
+	[Activity (Label = "@string/activity_scrollview")]
 	public class ScrollViewActivity : Activity
 	{
 

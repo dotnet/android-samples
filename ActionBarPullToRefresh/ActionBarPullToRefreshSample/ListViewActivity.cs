@@ -39,7 +39,7 @@ namespace ActionBarPullToRefreshSample
  * {@link android.widget.ListView ListView}, and manually creating (and attaching) a
  * {@link PullToRefreshAttacher} to the view.
  */
-	[Activity (Label = "@string/activity_listview", MainLauncher = true)]
+	[Activity (Label = "@string/activity_listview")]
 	public class ListViewActivity : ListActivity
 	{
 		private static string[] ITEMS = new string [] {"Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam",
