@@ -53,7 +53,13 @@ namespace TextureViewDemo
         
         public void OnSurfaceTextureAvailable (Android.Graphics.SurfaceTexture surface, int width, int height)
         {
-            _camera = Camera.Open ();
+			if (Camera.NumberOfCameras == 0) {
+				Toast.MakeText (this, Resource.String.no_camera, ToastLength.Long).Show ();
+				return;
+			}
+			_camera = Camera.Open();
+			if (_camera == null)
+				_camera = Camera.Open (0);
             
             var previewSize = _camera.GetParameters ().PreviewSize;
             _textureView.LayoutParameters = 
