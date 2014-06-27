@@ -40,6 +40,7 @@ namespace AccelerometerPlay
 
 		private Bitmap ball_bitmap;
 		private Bitmap wood_bitmap;
+		private Bitmap wood_bitmap2;
 
 		private PointF origin = new PointF ();
 		private PointF sensor_values = new PointF ();
@@ -79,6 +80,7 @@ namespace AccelerometerPlay
 			opts.InDither = true;
 			opts.InPreferredConfig = Bitmap.Config.Rgb565;
 			wood_bitmap = BitmapFactory.DecodeResource (Resources, Resource.Drawable.Wood, opts);
+			wood_bitmap2 = BitmapFactory.DecodeResource (Resources, Resource.Drawable.Wood, opts);
 
 			display = window.DefaultDisplay;
 			particles = new ParticleSystem (this);
@@ -115,6 +117,7 @@ namespace AccelerometerPlay
 		{
 			// Draw the background
 			canvas.DrawBitmap (wood_bitmap, 0, 0, null);
+			canvas.DrawBitmap (wood_bitmap2, wood_bitmap.Width, 0, null);
 
 			// Compute the new position of our object, based on accelerometer
 			// data and present time.			
