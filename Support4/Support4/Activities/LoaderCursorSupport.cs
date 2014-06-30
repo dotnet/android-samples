@@ -154,7 +154,7 @@ namespace Support4
 			{
 				// Swap the new cursor in.  (The framework will take care of closing the
 	            // old cursor once we return.)
-	            _adapter.SwapCursor((ICursor) data);
+				_adapter.SwapCursor(data.JavaCast<ICursor>());
 				
 	            // The list should now be shown.
 				if (IsResumed)
