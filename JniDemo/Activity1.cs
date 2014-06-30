@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace GoogleMaps
+namespace JNIDemo
 {
 	[Activity(Label = "JNI Test", MainLauncher = true)]
 	public class Activity1 : Activity
