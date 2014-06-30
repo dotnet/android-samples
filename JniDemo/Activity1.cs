@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace GoogleMaps
 {
-	[Activity(Label = "Managed Maps", MainLauncher = true)]
+	[Activity(Label = "JNI Test", MainLauncher = true)]
 	public class Activity1 : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -24,7 +24,7 @@ namespace GoogleMaps
 			Button button = FindViewById<Button> (Resource.Id.MyButton);
 			
 			button.Click += delegate {
-				StartActivity (new Intent (this, Java.Lang.Class.ForName ("mono.samples.googlemaps.MyMapActivity")));
+				StartActivity (new Intent (this, Java.Lang.Class.ForName ("mono.samples.jnitest.MyActivity")));
 			};
 		}
 	}
