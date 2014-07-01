@@ -9,7 +9,7 @@ using Android.Content.PM;
 
 namespace Mono.Samples.GLTriangle30
 {
-	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_gltriangle",
+	[Activity (Label = "@string/app_name", MainLauncher = false, Icon = "@drawable/app_gltriangle",
 #if __ANDROID_11__
 		HardwareAccelerated=false,
 #endif
