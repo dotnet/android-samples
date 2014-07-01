@@ -15,7 +15,7 @@ namespace GLNativeES30
 	// keyboard is shown (highly recommended for all GL apps)
 	[Activity (Label = "GLNativeES30",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-		MainLauncher = true)]
+		MainLauncher = false)]
 	public class GLNativeES30Activity : Activity
 	{
 		private GLSurfaceView mGLView;
