@@ -15,3 +15,15 @@ ContentControls/ContentControls/Resources/Values/PrivateStrings.xml
 google-play-services_lib
 /MapsAndLocationDemo_v2/update_play_services.sh
 /MapsAndLocationDemo_v3/Components/
+/OneABIPerAPK/.idea/
+
+/OneABIPerAPK/obj.x86/
+/OneABIPerAPK/obj.armeabi/
+/OneABIPerAPK/obj.armeabi-v7a/
+/OneABIPerAPK/bin.x86/
+/OneABIPerAPK/bin.armeabi/
+/OneABIPerAPK/bin.armeabi-v7a/
+
+/OneABIPerAPK/Properties/AndroidManifest.xml.x86
+/OneABIPerAPK/Properties/AndroidManifest.xml.armeabi-v7a
+/OneABIPerAPK/Properties/AndroidManifest.xml.armeabi
