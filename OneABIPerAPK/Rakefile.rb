@@ -60,7 +60,7 @@ task :build =>[:clean] do
     puts "==> Building an APK for ABI #{abi} with ./#{build_manifest}, android:versionCode = #{versionCode}."
 
     #Step Three: Build one APK per ABI.
-    `xbuild /t:SignAndroidPackage /p:AndroidSupportedAbis=#{abi} /p:IntermediateOutputPath=obj.#{abi}/ /p:AndroidManifest=#{build_manifest} /p:OutputPath=bin.#{abi}   /p:Configuration=Release HelloWorld.csproj`
+    `xbuild /t:Package /p:AndroidSupportedAbis=#{abi} /p:IntermediateOutputPath=obj.#{abi}/ /p:AndroidManifest=#{build_manifest} /p:OutputPath=bin.#{abi}   /p:Configuration=Release HelloWorld.csproj`
 
     # Make sure to sign the APK with your keystore, and then zipalign it.
     `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/work/keystores/xample.keystore -storepass password -signedjar bin.#{abi}/xamarin.helloworld-signed.apk bin.#{abi}/com.xamarin.multipleapk.helloworld.apk publishingdoc`
