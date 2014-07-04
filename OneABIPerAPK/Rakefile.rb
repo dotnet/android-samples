@@ -22,12 +22,15 @@ end
 
 desc "Compiles the project, creating one APK for each ABI that is supported."
 task :build =>[:clean] do
-  versionName = "1.2.0"
+  # This could be more sophisticated, for example one number could automatically increment
+  # with each build.
+  publicVersion = "1.2.0"
+
   # Explanation of this version number:
   #   08  - is the minimum API level (API 8 or higher)
   #   14  - the screen sizes supported (from small to extra large)
   #   120 - the version name, but without the dots.
-  version="0814" << versionName.gsub('.', '')
+  version="0814" << publicVersion.gsub('.', '')
 
   @supported_abis.each { |abi| 
     # Step One: Determine the android:versionCode value for each ABI. The first digit in the version code
@@ -35,10 +38,13 @@ task :build =>[:clean] do
     versionCode = "1"
     if abi == "armeabi" then
       versionCode = "1" << version
+      versionName= publicVersion + "-armeabi"
     elsif abi == "armeabi-v7a" then
       versionCode = "2" << version
+      versionName = publicVersion + "-armeabi-v7a"
     elsif abi == "x86" then
       versionCode = "6" << version
+      versionName = publicVersion + "-x86"
     end
 
     # Step Two: We need to update the versionCode AndroidManifest.XML before each
@@ -46,7 +52,11 @@ task :build =>[:clean] do
     # save the changes to AndroidManifest.XML.
     doc = REXML::Document.new(File.new("Properties/AndroidManifest.xml"))
     root = doc.root
+
+    #Update the versionCode
     root.attributes["android:versionCode"] = versionCode
+
+    # Include the ABI in the versionName
     root.attributes["android:versionName"] = versionName
 
     # We could also create a custom AndroidManifest XML, and then
@@ -62,7 +72,7 @@ task :build =>[:clean] do
     #Step Three: Build one APK per ABI.
     `xbuild /t:Package /p:AndroidSupportedAbis=#{abi} /p:IntermediateOutputPath=obj.#{abi}/ /p:AndroidManifest=#{build_manifest} /p:OutputPath=bin.#{abi}   /p:Configuration=Release HelloWorld.csproj`
 
-    # Make sure to sign the APK with your keystore, and then zipalign it.
+    # Step Four: Make sure to sign the APK with your keystore, and then zipalign it.
     `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/work/keystores/xample.keystore -storepass password -signedjar bin.#{abi}/xamarin.helloworld-signed.apk bin.#{abi}/com.xamarin.multipleapk.helloworld.apk publishingdoc`
     `zipalign -f -v 4 bin.#{abi}/xamarin.helloworld-signed.apk bin.#{abi}/xamarin.helloworld.apk`
   }
