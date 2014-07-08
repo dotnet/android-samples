@@ -25,7 +25,7 @@ namespace KitKat
 			webView.SetWebViewClient (new MyWebViewClient (this));
 
 			// Load some HTML content
-			webView.LoadData ("<!DOCTYPE html><html><body><p>Hello world!</p><p><em>This is some html.</em></p><p>Click on the three dots in the top right to print.</p></body></html>", 
+			webView.LoadData ("<!DOCTYPE html><html><body><p>Hello world!</p><p><em>This is some html.</em></p><p>Click on the three dots in the top right or press device menu button to print.</p></body></html>",
 				"text/html", 
 				"utf8");
 		}
