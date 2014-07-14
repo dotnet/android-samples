@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+  <TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Vegetable Groups"
+    android:textSize="30dp"
+    android:background="#00000000"
+    android:textColor="#FF267F00"
+    android:textStyle="bold"
+    android:padding="5dp"/>
+  <ListView android:id="@+id/List"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:cacheColorHint="#FFDAFF7F"
+	/>
+</LinearLayout>

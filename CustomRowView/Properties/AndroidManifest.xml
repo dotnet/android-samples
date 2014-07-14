@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.xamarin.samples.customrowview" android:versionCode="1" android:versionName="1.0">
+  <application android:label="CustomRowView">
+  </application>
+  <uses-sdk android:minSdkVersion="8" />
+</manifest>
