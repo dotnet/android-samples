@@ -1,16 +1,3 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
 /*
  * Copyright (C) 2014 The Android Open Source Project
  *
@@ -54,7 +41,7 @@ namespace ActivitySceneTransitionBasic
 
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.activity_main);
+			SetContentView(Resource.Layout.grid);
 
 			FileCache.SaveLocation = CacheDir.AbsolutePath;
 
