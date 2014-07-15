@@ -28,7 +28,7 @@ namespace CursorTableAdapter {
             listView.ItemClick += OnListItemClick;
         }
 
-        protected void OnListItemClick(object sender, ItemEventArgs e)
+		protected void OnListItemClick(object sender, Android.Widget.ListView.ItemClickEventArgs e)
         {
             var obj = listView.Adapter.GetItem(e.Position);
             var curs = (ICursor)obj;
