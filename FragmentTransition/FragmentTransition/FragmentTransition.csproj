@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{E8BD07D7-92AA-4BA4-8B16-0617D1D449E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FragmentTransition</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AssemblyName>FragmentTransition</AssemblyName>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Resources\values\template-dimens.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="DetailFragment.cs" />
+    <Compile Include="FragmentTransitionFragment.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Meat.cs" />
+    <Compile Include="MeatAdapter.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\title.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\p1.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p10.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p11.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p3.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p4.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p5.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p6.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p7.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p8.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\p9.jpg" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
+    <AndroidResource Include="Resources\layout\fragment_detail.xml" />
+    <AndroidResource Include="Resources\layout\fragment_detail_content.xml" />
+    <AndroidResource Include="Resources\layout\fragment_fragment_transition.xml" />
+    <AndroidResource Include="Resources\layout\item_meat_grid.xml" />
+    <AndroidResource Include="Resources\layout-w720dp\activity_main.xml" />
+    <AndroidResource Include="Resources\menu\main.xml" />
+    <AndroidResource Include="Resources\values\Dimens.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\base-strings.xml" />
+    <AndroidResource Include="Resources\values\template-styles.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-dimens.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-styles.xml" />
+    <AndroidResource Include="Resources\values-v11\template-styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonSampleLibrary\CommonSampleLibrary.csproj">
+      <Project>{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}</Project>
+      <Name>CommonSampleLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
