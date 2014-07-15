@@ -33,8 +33,7 @@ namespace CardReader {
 	 * For devices with displays with a width of 720dp or greater, the sample log is always visible,
 	 * on other devices it's visibility is controlled by an item on the Action Bar.
 	 */
-	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon",
-		UiOptions = UiOptions.SplitActionBarWhenNarrow)]
+	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	public class MainActivity : SampleActivityBase
 	{
 
@@ -66,7 +65,6 @@ namespace CardReader {
 			IMenuItem logToggle = menu.FindItem(Resource.Id.menu_toggle_log);
 			logToggle.SetVisible(FindViewById(Resource.Id.sample_output) is ViewAnimator);
 			logToggle.SetTitle(mLogShown ? Resource.String.sample_hide_log : Resource.String.sample_show_log);
-			Console.WriteLine ("Hide Log: " + Resources.GetString (Resource.String.sample_hide_log));
 
 			return base.OnPrepareOptionsMenu(menu);
 		}
