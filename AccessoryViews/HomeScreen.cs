@@ -24,16 +24,22 @@ namespace AccessoryViews {
             //ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemMultipleChoice, items);
 
             ListView lv = FindViewById<ListView>(Android.Resource.Id.List);
-#if __ANDROID_11__
+
+			// For targeting Gingerbread the ChoiceMode is an int, otherwise it is an
+			// enumeration.
+			 
             lv.ChoiceMode = Android.Widget.ChoiceMode.Single; // 1
             //lv.ChoiceMode = Android.Widget.ChoiceMode.Multiple; // 2
             //lv.ChoiceMode = Android.Widget.ChoiceMode.None; // 0
-#else
-            lv.ChoiceMode = 1; // Single
+
+			// Use this block if targeting Gingerbread or Lower
+			/*
+			lv.ChoiceMode = Android.Widget.ChoiceMode.Single; // Single
             //lv.ChoiceMode = 0; // none
             //lv.ChoiceMode = 2; // Multiple
             //lv.ChoiceMode = 3; // MultipleModal
-#endif
+			*/
+
             // Set the initially checked row ("Fruits")
             lv.SetItemChecked(1, true);
 
