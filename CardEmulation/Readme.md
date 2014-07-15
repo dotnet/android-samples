@@ -8,4 +8,6 @@ How to build
 ------------
 Download the latest version of Xamarin Studio. Open CardEmulation.sln in Xamarin Studio and either build or run the project.
 
-In order to test this sample, you will need two NFC-capable physical devices. One with this project (CardEmulation) installed, and another with the CardReader sample installed. Run each on the device it was installed on, then place the backs of the two devices together in order to allow NFC communication to occur.
+Running the sample
+-------------------
+In order to run this sample, you will need two NFC-capable physical devices. One with this project (CardEmulation) installed, and another with the CardReader sample installed. Run each on the device it was installed on, then place the backs of the two devices together in order to allow NFC communication to occur.
