@@ -11,6 +11,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1B8E3BFA-A5B1-4698-A177-4101501CB6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B8E3BFA-A5B1-4698-A177-4101501CB6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8E3BFA-A5B1-4698-A177-4101501CB6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8E3BFA-A5B1-4698-A177-4101501CB6D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = BasicManagedProfile\BasicManagedProfile.csproj
