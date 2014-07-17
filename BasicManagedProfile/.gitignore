@@ -1,0 +1,11 @@
+bin
+obj
+*/_ReSharper.*/*
+*.user
+*.suo
+*.pidb
+*.userprefs
+*.Designer.cs
+*.designer.cs
+*.DS_Store
+Error Logs/
