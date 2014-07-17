@@ -220,13 +220,21 @@ namespace Mono.Samples.TexturedCube {
 			GL.BindTexture(All.Texture2D, textureIds [cur_texture]);
 			GL.EnableClientState(All.VertexArray);
 			GL.EnableClientState(All.TextureCoordArray);
+
 			for (int i = 0; i < 6; i++) // draw each face
 			{
 				float [] v = cubeVertexCoords [i];
 				float [] t = cubeTextureCoords [i];
-				GL.VertexPointer(3, All.Float, 0, v);
-				GL.TexCoordPointer(2, All.Float, 0, t);
-				GL.DrawArrays(All.TriangleFan, 0, 4);
+				// pin the data, so that GC doesn't move them, while used
+				// by native code
+				unsafe {
+					fixed (float* pv = v, pt = t) {
+						GL.VertexPointer(3, All.Float, 0, new IntPtr (pv));
+						GL.TexCoordPointer(2, All.Float, 0, new IntPtr (pt));
+						GL.DrawArrays(All.TriangleFan, 0, 4);
+						GL.Finish ();
+					}
+				}
 			}
 			GL.DisableClientState(All.VertexArray);
 			GL.DisableClientState(All.TextureCoordArray);
