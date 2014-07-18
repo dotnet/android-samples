@@ -10,7 +10,7 @@ namespace VisualGameController
 	{
 		private bool visible = true;
 
-		public SystemUiHiderBase(Activity activity, View anchor_view, int flags) : base(activity,anchor_view,flags) {
+		public SystemUiHiderBase(Activity activity, View anchorView, int flags) : base(activity,anchorView,flags) {
 		}
 
 		public override void Setup ()

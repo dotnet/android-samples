@@ -23,17 +23,17 @@ namespace VisualGameController
 
 		public OnVisibilityChangeListner on_visibility_change_listener = dummy_listener;
 
-		public static SystemUiHider GetInstance(Activity activity, View anchor_view, int flags) {
+		public static SystemUiHider GetInstance(Activity activity, View anchorView, int flags) {
 			if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Honeycomb) {
-				return new SystemUiHiderHoneyComb (activity, anchor_view, flags);
+				return new SystemUiHiderHoneyComb (activity, anchorView, flags);
 			} else {
-				return new SystemUiHiderBase (activity,anchor_view,flags);
+				return new SystemUiHiderBase (activity,anchorView,flags);
 			}
 		}
 
-		protected SystemUiHider(Activity activity, View anchor_view, int flags) {
+		protected SystemUiHider(Activity activity, View anchorView, int flags) {
 			this.activity = activity;
-			this.anchor_view = anchor_view;
+			anchor_view = anchorView;
 			this.flags = flags;
 		}
 

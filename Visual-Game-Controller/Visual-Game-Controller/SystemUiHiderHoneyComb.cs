@@ -17,7 +17,7 @@ namespace VisualGameController
 
 		public bool visible = true;
 
-		public SystemUiHiderHoneyComb (Activity activity, View anchor_view, int flags) : base(activity,anchor_view,flags)
+		public SystemUiHiderHoneyComb (Activity activity, View anchorView, int flags) : base(activity,anchorView,flags)
 		{
 			system_visibility_change_listener = new MyOnSystemUiChangeListener(this);
 			show_flags = (int)SystemUiFlags.Visible;
