@@ -24,8 +24,7 @@ namespace TvLeanback
 			int count = 0;
 
 			try {
-				return;
-				RecommendationBuilder builder = new RecommendationBuilder()
+				var builder = new RecommendationBuilder()
 					.SetContext(Application.ApplicationContext)
 					.SetSmallIcon(Resource.Drawable.videos_by_google_icon);
 				foreach(var entry in recommendations){
@@ -54,17 +53,17 @@ namespace TvLeanback
 		}
 
 		private PendingIntent BuildPendingIntent(Movie movie) {
-			Intent detailsIntent = new Intent(this, typeof( DetailsActivity));
+			var detailsIntent = new Intent(this, typeof( DetailsActivity));
 			detailsIntent.PutExtra(GetString(Resource.String.movie), Utils.Serialize(movie));
 
-			TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+			var stackBuilder = TaskStackBuilder.Create(this);
 			stackBuilder.AddParentStack(Utils.ToJavaClass(typeof(DetailsActivity)));
 			stackBuilder.AddNextIntent(detailsIntent);
 			// Ensure a unique PendingIntents, otherwise all recommendations end up with the same
 			// PendingIntent
 			detailsIntent.SetAction(Java.Lang.Long.ToString(movie.Id));
 
-			PendingIntent intent = stackBuilder.GetPendingIntent (0, PendingIntentFlags.UpdateCurrent);
+			var intent = stackBuilder.GetPendingIntent (0, PendingIntentFlags.UpdateCurrent);
 			return intent;
 		}
 

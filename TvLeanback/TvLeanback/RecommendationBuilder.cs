@@ -108,7 +108,7 @@ namespace TvLeanback
 				.Resize (Utils.dpToPx (CARD_WIDTH, mContext), Utils.dpToPx (CARD_HEIGHT, mContext))
 				.Get ();
 
-			Notification notification = new NotificationCompat.BigPictureStyle (
+			var notification = new NotificationCompat.BigPictureStyle (
 				                            new NotificationCompat.Builder (mContext)
 				.SetContentTitle (mTitle)
 				.SetContentText (mDescription)

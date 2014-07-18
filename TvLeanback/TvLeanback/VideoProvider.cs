@@ -120,7 +120,7 @@ namespace TvLeanback
 		                                     string studio, string videoUrl, string cardImageUrl,
 		                                     string bgImageUrl)
 		{
-			Movie movie = new Movie ();
+			var movie = new Movie ();
 			movie.Id = Movie.count;
 			Movie.incCount ();
 			movie.Title = title.Replace ("\"", "");

@@ -135,7 +135,7 @@ namespace TvLeanback
 		{
 			var data = Utils.GetDictionary (raw);
 			mRowsAdapter = new ArrayObjectAdapter (new ListRowPresenter ());
-			CardPresenter cardPresenter = new CardPresenter ();
+			var cardPresenter = new CardPresenter ();
 
 			int i = 0;
 			foreach (var entry in  data) {
@@ -199,7 +199,6 @@ namespace TvLeanback
 
 		private void StartBackgroundTimer ()
 		{
-			return; //TODO remove
 			if (null != mBackgroundTimer) {
 				mBackgroundTimer.Cancel ();
 			}
@@ -237,7 +236,7 @@ namespace TvLeanback
 
 			public override ViewHolder OnCreateViewHolder (ViewGroup parent)
 			{
-				TextView view = new TextView (parent.Context);
+				var view = new TextView (parent.Context);
 				view.LayoutParameters = (new ViewGroup.LayoutParams (GRID_ITEM_WIDTH, GRID_ITEM_HEIGHT));
 				view.Focusable = (true);
 				view.FocusableInTouchMode = (true);
@@ -260,7 +259,7 @@ namespace TvLeanback
 
 		private void UpdateRecommendations ()
 		{
-			Intent recommendationIntent = new Intent (this.Activity, typeof(UpdateRecommendationsService));
+			var recommendationIntent = new Intent (this.Activity, typeof(UpdateRecommendationsService));
 			this.Activity.StartService (recommendationIntent);
 		}
 

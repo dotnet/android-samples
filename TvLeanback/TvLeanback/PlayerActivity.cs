@@ -76,7 +76,7 @@ namespace TvLeanback
 
 		private void StartVideoPlayer ()
 		{
-			Bundle b = this.Intent.Extras;
+			var b = this.Intent.Extras;
 			mSelectedMovie = Utils.Deserialize(this.Intent.GetStringExtra (
 				Resources.GetString (Resource.String.movie)));
 			if (null != b) {
@@ -91,56 +91,56 @@ namespace TvLeanback
 					}
 					mVideoView.Start ();
 					mPlayPause.RequestFocus ();
-					startControllersTimer ();
+					StartControllersTimer ();
 				} else {
-					updatePlaybackLocation ();
+					UpdatePlaybackLocation ();
 					mPlaybackState = PlaybackState.PAUSED;
 					UpdatePlayButton (mPlaybackState);
 				}
 			}
 		}
 
-		private void updatePlaybackLocation ()
+		private void UpdatePlaybackLocation ()
 		{
 			if (mPlaybackState == PlaybackState.PLAYING ||
 			    mPlaybackState == PlaybackState.BUFFERING) {
-				startControllersTimer ();
+				StartControllersTimer ();
 			} else {
-				stopControllersTimer ();
+				StopControllersTimer ();
 			}
 		}
 
-		private void play (int position)
+		private void Play (int position)
 		{
-			startControllersTimer ();
+			StartControllersTimer ();
 			mVideoView.SeekTo (position);
 			mVideoView.Start ();
-			restartSeekBarTimer ();
+			RestartSeekBarTimer ();
 		}
 
-		private void stopSeekBarTimer ()
+		private void StopSeekBarTimer ()
 		{
 			if (null != mSeekbarTimer) {
 				mSeekbarTimer.Cancel ();
 			}
 		}
 
-		private void restartSeekBarTimer ()
+		private void RestartSeekBarTimer ()
 		{
-			stopSeekBarTimer ();
+			StopSeekBarTimer ();
 			mSeekbarTimer = new Timer ();
 			mSeekbarTimer.ScheduleAtFixedRate (new UpdateSeekbarTask (this), SEEKBAR_DELAY_TIME,
 				SEEKBAR_INTERVAL_TIME);
 		}
 
-		private void stopControllersTimer ()
+		private void StopControllersTimer ()
 		{
 			if (null != mControllersTimer) {
 				mControllersTimer.Cancel ();
 			}
 		}
 
-		private void startControllersTimer ()
+		private void StartControllersTimer ()
 		{
 			if (null != mControllersTimer) {
 				mControllersTimer.Cancel ();
@@ -183,8 +183,8 @@ namespace TvLeanback
 		protected override void OnDestroy ()
 		{
 			Log.Debug (TAG, "onDestroy() is called");
-			stopControllersTimer ();
-			stopSeekBarTimer ();
+			StopControllersTimer ();
+			StopSeekBarTimer ();
 			base.OnDestroy ();
 		}
 
@@ -202,7 +202,6 @@ namespace TvLeanback
 
 		private void SetupController ()
 		{
-
 			int w = (int)(mMetrics.WidthPixels * MEDIA_BAR_WIDTH);
 			int h = (int)(mMetrics.HeightPixels * MEDIA_BAR_HEIGHT);
 			int marginLeft = (int)(mMetrics.WidthPixels * MEDIA_BAR_LEFT_MARGIN);
@@ -242,10 +241,10 @@ namespace TvLeanback
 			mDuration = mp.Duration;
 			mEndText.Text = FormatTimeSignature (mDuration);
 			mSeekbar.Max = mDuration;
-			restartSeekBarTimer ();
+			RestartSeekBarTimer ();
 		}
 		public void OnCompletion(MediaPlayer mp){
-				stopSeekBarTimer ();
+				StopSeekBarTimer ();
 				mPlaybackState = PlaybackState.IDLE;
 				UpdatePlayButton (PlaybackState.IDLE);
 				mControllersTimer = new Timer ();
@@ -275,13 +274,13 @@ namespace TvLeanback
 				currentPos = mVideoView.CurrentPosition;
 				currentPos -= delta;
 				if (currentPos > 0)
-					play (currentPos);
+					Play (currentPos);
 				return true;
 			case Keycode.DpadRight:
 				currentPos = mVideoView.CurrentPosition;
 				currentPos += delta;
 				if (currentPos < mDuration)
-					play (currentPos);
+					Play (currentPos);
 				return true;
 			case Keycode.DpadUp:
 				return true;
@@ -353,12 +352,12 @@ namespace TvLeanback
 				mPlaybackState = PlaybackState.PLAYING;
 				UpdatePlayButton (mPlaybackState);
 				mVideoView.Start ();
-				startControllersTimer ();
+				StartControllersTimer ();
 			} else {
 				mVideoView.Pause ();
 				mPlaybackState = PlaybackState.PAUSED;
 				UpdatePlayButton (PlaybackState.PAUSED);
-				stopControllersTimer ();
+				StopControllersTimer ();
 			}
 		}
 		private String FormatTimeSignature (int timeSignature)

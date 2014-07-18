@@ -9,8 +9,6 @@ using Android.Widget;
 
 using Android.Util;
 
- //TODO remove, only used for the Log call that will be removed in future
-
 namespace TvLeanback
 {
 	public class Utils

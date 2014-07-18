@@ -30,7 +30,7 @@ namespace TvLeanback
 		private void SetupFragment() {
 			var gridPresenter = new VerticalGridPresenter();
 			gridPresenter.NumberOfColumns = NUM_COLUMNS;
-			GridPresenter = gridPresenter;
+			this.GridPresenter = gridPresenter;
 			mAdapter = new ArrayObjectAdapter (new CardPresenter ());
 
 			long seed = System.Diagnostics.Stopwatch.GetTimestamp(); //a pseudorandom seed based on system time
@@ -44,7 +44,7 @@ namespace TvLeanback
 					mAdapter.Add ((Movie) movie);
 			}
 
-			Adapter = mAdapter;
+			this.Adapter = mAdapter;
 			SetOnItemSelectedListener (this);
 			OnItemClickedListener = this;
 
