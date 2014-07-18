@@ -20,9 +20,8 @@ namespace Camera2VideoSample
 
 		public override void OnConfigureFailed (CameraCaptureSession session)
 		{
-			if (null != fragment.Activity) {
+			if (null != fragment.Activity) 
 				Toast.MakeText (fragment.Activity, "Failed", ToastLength.Short).Show ();
-			}
 		}
 	}
 }

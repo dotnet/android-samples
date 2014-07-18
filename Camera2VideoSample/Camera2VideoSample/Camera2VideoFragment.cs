@@ -128,9 +128,8 @@ namespace Camera2VideoSample
 		//Tries to open a CameraDevice
 		public void openCamera()
 		{
-			if (null == Activity || Activity.IsFinishing || opening_camera) {
+			if (null == Activity || Activity.IsFinishing || opening_camera) 
 				return;
-			}
 
 			opening_camera = true;
 			CameraManager manager = (CameraManager)Activity.GetSystemService (Context.CameraService);
@@ -156,9 +155,9 @@ namespace Camera2VideoSample
 		//Start the camera preview
 		public void startPreview()
 		{
-			if (null == camera_device || !texture_view.IsAvailable || null == preview_size) {
+			if (null == camera_device || !texture_view.IsAvailable || null == preview_size) 
 				return;
-			}
+
 			try {
 				SurfaceTexture texture = texture_view.SurfaceTexture;
 				//Assert.IsNotNull(texture);
@@ -179,9 +178,9 @@ namespace Camera2VideoSample
 		//Update the preview
 		public void updatePreview() 
 		{
-			if (null == camera_device) {
+			if (null == camera_device) 
 				return;
-			}
+
 			try {
 				setUpCaptureRequestBuilder(preview_builder);
 				HandlerThread thread = new HandlerThread("CameraPreview");
@@ -202,9 +201,9 @@ namespace Camera2VideoSample
 		//Configures the neccesary matrix transformation to apply to the texture_view
 		public void configureTransform(int viewWidth, int viewHeight) 
 		{
-			if (null == Activity || null == preview_size || null == texture_view) {
+			if (null == Activity || null == preview_size || null == texture_view) 
 				return;
-			}
+
 			int rotation = (int)Activity.WindowManager.DefaultDisplay.Rotation;
 			var matrix = new Matrix ();
 			var view_rect = new RectF (0, 0, viewWidth, viewHeight);
@@ -225,9 +224,9 @@ namespace Camera2VideoSample
 		}
 
 		private void startRecordingVideo() {
-			if (null == Activity) {
+			if (null == Activity) 
 				return;
-			}
+
 
 			media_recorder = new MediaRecorder ();
 			File file = getVideoFile (Activity);

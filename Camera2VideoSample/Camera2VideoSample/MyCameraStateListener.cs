@@ -16,9 +16,8 @@ namespace Camera2VideoSample
 			fragment.camera_device = camera;
 			fragment.startPreview ();
 			fragment.opening_camera = false;
-			if (null != fragment.texture_view) {
+			if (null != fragment.texture_view) 
 				fragment.configureTransform (fragment.texture_view.Width, fragment.texture_view.Height);
-			}
 		}
 
 		public override void OnDisconnected (CameraDevice camera)
@@ -32,9 +31,9 @@ namespace Camera2VideoSample
 		{
 			camera.Close ();
 			fragment.camera_device = null;
-			if (null != fragment.Activity) {
+			if (null != fragment.Activity) 
 				fragment.Activity.Finish ();
-			}
+
 			fragment.opening_camera = false;
 		}
 
