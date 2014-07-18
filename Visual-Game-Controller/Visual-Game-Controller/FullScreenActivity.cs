@@ -46,9 +46,9 @@ namespace VisualGameController
 		}
 		public bool OnTouch(View view, MotionEvent motion_event)
 		{
-			if (FullScreenActivity.AUTO_HIDE) {
+			if (FullScreenActivity.AUTO_HIDE) 
 				activity.DelayedHide(FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
-			}
+
 			return false;
 		}
 	}
@@ -78,20 +78,19 @@ namespace VisualGameController
 		public void OnVisibilityChange(bool visible)
 		{
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb) {
-				if (controls_height == 0) {
+				if (controls_height == 0) 
 					controls_height = activity.controlsView.Height;
-				}
-				if (short_anim_time == 0) {
+
+				if (short_anim_time == 0) 
 					short_anim_time = activity.Resources.GetInteger (Android.Resource.Integer.ConfigShortAnimTime);
-				}
+
 				activity.controlsView.Animate ().TranslationY (visible ? 0 : controls_height).SetDuration (short_anim_time);
 			} else {
 				activity.controlsView.Visibility = (visible ? ViewStates.Visible : ViewStates.Gone);
 			}
 
-			if (visible && FullScreenActivity.AUTO_HIDE) {
+			if (visible && FullScreenActivity.AUTO_HIDE) 
 				activity.DelayedHide (FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
-			}
 		}
 	}
 
@@ -148,12 +147,12 @@ namespace VisualGameController
 			contentView = FindViewById (Resource.Id.fullscreen_content);
 
 			controller_view = (ControllerView)FindViewById (Resource.Id.controller);
-			for (int i = 0; i < buttons.Length; i++) {
+
+			for (int i = 0; i < buttons.Length; i++) 
 				buttons [i] = 0;
-			}
-			for (int i = 0; i < axes.Length; i++) {
+			for (int i = 0; i < axes.Length; i++) 
 				axes [i] = 0.0f;
-			}
+
 			controller_view.SetButtonAxes (buttons, axes);
 
 			//Set up a UI hider to control the UI visibility for the activity
@@ -241,9 +240,8 @@ namespace VisualGameController
 			if (range != null) {
 				float flat = range.Flat;
 				float value = e.GetAxisValue (axis);
-				if (System.Math.Abs (value) > flat) {
+				if (System.Math.Abs (value) > flat) 
 					return value;
-				}
 			}
 
 			return 0;
@@ -309,9 +307,9 @@ namespace VisualGameController
 		{
 			Log.Debug (TAG, "OnInputDeviceRemoved: ", deviceId);
 			connected_devices.Remove (deviceId);
-			if (current_device_id == deviceId) {
+			if (current_device_id == deviceId) 
 				current_device_id = -1;
-			}
+
 			if (connected_devices.Count == 0) {
 				controller_view.SetCurrentControllerNumber (-1);
 				controller_view.Invalidate ();

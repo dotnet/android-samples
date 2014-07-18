@@ -304,9 +304,8 @@ namespace VisualGameController
 			}
 
 			SetMeasuredDimension (width, height);
-			if (width > 0 && height > 0) {
+			if (width > 0 && height > 0) 
 				LoadBitmaps (width, height);
-			}
 		}
 
 

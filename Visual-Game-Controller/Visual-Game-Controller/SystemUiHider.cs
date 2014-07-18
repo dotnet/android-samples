@@ -54,9 +54,9 @@ namespace VisualGameController
 		}
 
 		public void SetOnVisibilityChangeListener(OnVisibilityChangeListner listener) {
-			if (listener == null) {
+			if (listener == null) 
 				listener = dummy_listener;
-			}
+
 			on_visibility_change_listener = listener;
 		}
 
