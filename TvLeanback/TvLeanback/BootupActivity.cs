@@ -11,6 +11,7 @@ using Android.Util;
 namespace TvLeanback
 {
 	[BroadcastReceiver (Label = "BootupActivity", Enabled = true, Exported = false)]
+	[IntentFilter (new[]{ "android.intent.action.BOOT_COMPLETED" })]
 	public class BootupActivity : BroadcastReceiver
 	{
 		private const string TAG = "BootupActivity";

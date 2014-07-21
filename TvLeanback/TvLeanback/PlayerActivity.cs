@@ -268,7 +268,7 @@ namespace TvLeanback
 			switch (keyCode) {
 			case Keycode.DpadCenter:
 				return true;
-			case Keycode.DpadDown://KeyEvent.KEYCODE_DPAD_DOWN:
+			case Keycode.DpadDown:
 				return true;
 			case Keycode.DpadLeft:
 				currentPos = mVideoView.CurrentPosition;
