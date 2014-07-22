@@ -109,7 +109,7 @@ namespace GLSharedContext20
 				bitmap = BitmapFactory.DecodeResource (Context.Resources, Resource.Drawable.f_spot);
 
 				// the device may or may not support a background Context. But rather than 
-				// duplicating this codewe just create an Action which we can invoke on this
+				// duplicating this code we just create an Action which we can invoke on this
 				// background thread later or queue to be executed on the rendering thread.
 				Action acton = new Action (() => {
 					GL.Enable (EnableCap.Texture2D);
