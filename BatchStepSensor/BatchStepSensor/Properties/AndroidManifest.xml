@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="BatchStepSensor.BatchStepSensor">
+	<uses-sdk />
+	<application android:label="BatchStepSensor" android:theme="@style/AppTheme">
+		<uses-feature android:name="android.hardware.sensor.stepcounter" />
+	    <uses-feature android:name="android.hardware.sensor.stepdetector" />
+	</application>
+</manifest>

@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+  <fragment class="com.xamarin.sample.fragments.supportlib.TitlesFragment"
+            android:id="@+id/titles_fragment"
+            android:layout_weight="1"
+            android:layout_width="0px"
+            android:layout_height="match_parent" />
+
+  <FrameLayout android:id="@+id/details" 
+               android:layout_weight="1"
+               android:layout_width="0px"
+               android:layout_height="match_parent" />
+
+</LinearLayout>
