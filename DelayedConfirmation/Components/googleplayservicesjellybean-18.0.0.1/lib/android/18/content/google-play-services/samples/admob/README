@@ -1,8 +1,0 @@
-This sample app demonstrates how you can integrate Google Mobile Ads into your
-Android applications.
-
-Before running this application, add your own ad unit ID to the "ad_unit_id"
-string in res/values/strings.xml
-
-For more information about Google Mobile Ads, please visit:
-https://developers.google.com/mobile-ads-sdk/
