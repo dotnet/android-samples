@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <string name="app_name">Awesome Bike Store App</string>
+    <string name="store_name">Awesome Bike Store</string>
+    <string name="title_details">Details</string>
+    <string name="title_checkout">Checkout</string>
+    <string name="title_confirmation">Order Confirmation</string>
+    <string name="title_login">Login</string>
+    <string name="title_payment">Payment Options</string>
+    <string name="title_order_complete">Order Complete</string>
+    <string name="menu_settings">Settings</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="continue_checkout">Continue checkout</string>
+    <string name="return_to_shopping">Return to shopping</string>
+    <string name="not_implemented">Not implemented</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="estimated_shipping">Estimated shipping:</string>
+    <string name="shipping">Shipping:</string>
+    <string name="tax">Tax:</string>
+    <string name="total">Total:</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="price_format">$%.2f</string>
+    <string name="price_decimal">%.2f</string>
+    <string name="google_wallet_unavailable">Google Wallet is unavailable</string>
+    <string name="error_code">Error code: %d</string>
+    <string name="buy_with">Buy with:</string>
+    <string name="ship_to">Ship to:</string>
+    <string name="address_format">%1$s\n%2$s\n%3$s%4$s%5$s %6$s %7$s</string>
+    <string name="change">Change</string>
+    <string name="edit">Edit</string>
+    <string name="preferred_account">Preferred Account</string>
+    <string name="preferred_account_prompt">Choose an account</string>
+    <string name="generic_error">An error occurred: %d</string>
+    <string name="network_error">An error occurring while contacting Google. Please try again later.</string>
+    <string name="spending_limit_exceeded">You have exceeded your spending limit</string>
+    <string name="confirm_order">Confirm order</string>
+    <string name="thanks_for_your_order">Thanks for your order</string>
+    <string name="confirmation_details">Confirmation details</string>
+    <string name="secured_by">Secured by</string>
+    <string name="confirmation_text">Your order confirmation number is ABC123.\n\nYour purchase will be shipped within two business days.</string>
+    <string name="credit_card_title">Credit Card</string>
+    <string name="card_number">Card Number</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="submit">Submit</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
+    <string name="login_google">Login with Google</string>
+    <string name="login_bikestore">Bikestore Login</string>
+    <string name="login_guest">Guest Login</string>
+    <string name="login_bikestore_message">Not implemented. Merchant specific login flow.</string>
+    <string name="select_account">Select Account</string>
+    <string name="permission_denied_message">Permission to fetch Google profile information denied. Cannot login.</string>
+    <string name="welcome_user">Welcome, %s.</string>
+    <string name="logged_out">You are now logged out</string>
+    <string name="login_email">Email Address</string>
+    <string name="login_password">Password</string>
+    <string name="enter_new_credit_card">Enter new credit card</string>
+    <string name="saved_card_info">Issuer-1234</string>
+    <string name="no_google_account">The device does not a Google account associated with it. Please add one and try again.</string>
+    <string name="promo_label">Conference Bike</string>
+    <string name="promo"><![CDATA[
+        <font color="#3C72C4"><b>Free shipping on</b></font>
+        <font color="#919397">Check if your address qualifies</font>
+        <br />
+        <b>Tap here</b>
+    ]]></string>
+    <string name="loyalty_label">Loyalty:</string>
+    <string name="promo_eligible">Congratulations! We can ship Conference bike free to %s</string>
+    <string name="no_address">Unfortunately we did not find any address eligible for this promotion</string>
+    <string name="checkout_bikestore_message">Not implemented. Merchant specific payment flow</string>
+
+</resources>

@@ -1,0 +1,14 @@
+{
+  "adjective": "Cute",
+  "_category_comment": 'GTM does not support structured types, so we add double \
+       quotes around the value to convert it to a string. The json string can \
+       be converted to a JSON array; each value of the array is a JSON object \
+       representing an animal category.',
+  "category": '[ \
+    {"name": "Bunny", "image_files": ["bunny_1", "bunny_2", "bunny_3"]}, \
+    {"name": "Cat", "image_files": ["cat_1", "cat_2", "cat_3", "cat_4"]}, \
+    {"name": "Lion", "image_files": ["lion_1", "lion_2", "lion_3", "lion_4"]}, \
+    {"name": "Monkey", "image_files": ["monkey_1", "monkey_2", "monkey_3", "monkey_4", "monkey_5"]}, \
+    {"name": "Tiger", "image_files": ["tiger_1", "tiger_2"]} \
+  ]'
+}
