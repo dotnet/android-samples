@@ -1,8 +1,10 @@
-#Note: this sample is incomplete and uploaded for testing purposes only.
 TvLeanback
 ==========
 This sample shows a basic Android-TV application by showcasing various video provided by Google. 
 
+
+#Note:
+This sample may crash due to a [bug](https://code.google.com/p/android/issues/detail?id=73920) in the native Android System. 
 
 #Requirements:
 This sample is designed for Android-TV but can run on the Android L developer preview. 
