@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visual-Game-Controller", "Visual-Game-Controller\Visual-Game-Controller.csproj", "{F55B33C3-B687-4260-B8B2-366B33204A4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualGameController", "Visual-Game-Controller\VisualGameController.csproj", "{F55B33C3-B687-4260-B8B2-366B33204A4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,6 @@ Global
 		{F55B33C3-B687-4260-B8B2-366B33204A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Visual-Game-Controller\Visual-Game-Controller.csproj
+		StartupItem = Visual-Game-Controller\VisualGameController.csproj
 	EndGlobalSection
 EndGlobal
