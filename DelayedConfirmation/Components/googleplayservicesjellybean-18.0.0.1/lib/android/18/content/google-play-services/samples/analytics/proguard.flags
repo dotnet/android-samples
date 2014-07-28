@@ -1,0 +1,9 @@
+
+-keep public class com.google.android.gms.analytics.** {
+    public *;
+}
+
+# AppCompat
+-keep class android.support.v7.app.** { *; }
+-keep class android.support.v4.app.** { *; }
+-keep interface android.support.v4.app.** { *; }

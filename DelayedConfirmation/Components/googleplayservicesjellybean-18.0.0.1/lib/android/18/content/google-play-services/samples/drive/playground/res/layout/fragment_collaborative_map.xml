@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="0"
+        android:text="@string/collab_map_descr"
+        android:padding="5dp"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="0"
+        android:text="@string/collab_map_edit"
+        android:textStyle="bold"
+        android:padding="5dp"/>
+    <ListView
+        android:id="@+id/items_list"
+        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:choiceMode="singleChoice"></ListView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:measureWithLargestChild="false"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/map_key"/>
+
+                <EditText
+                    android:id="@+id/key_edit_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:enabled="true"
+                    android:layout_column="2"
+                    android:textColor="@android:color/primary_text_dark"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/map_value"/>
+
+                <EditText
+                    android:id="@+id/value_edit_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:enabled="true"
+                    android:layout_column="3"
+                    style="@android:style/Widget.Holo.EditText"
+                    android:textColor="@android:color/primary_text_dark"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@id/set_item_button"
+                android:layout_weight="0"
+                android:src="@android:drawable/ic_menu_save"
+                android:contentDescription="@string/map_put"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@id/remove_item_button"
+                android:layout_weight="0"
+                android:src="@android:drawable/ic_menu_delete"
+                android:cropToPadding="true"
+                android:contentDescription="@string/map_remove"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@id/clear_button"
+                android:layout_weight="0"
+                android:src="@android:drawable/ic_menu_revert"
+                android:contentDescription="@string/map_clear"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

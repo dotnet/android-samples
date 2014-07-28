@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MobilePlayground</string>
+    <string name="dispatch">Dispatch</string>
+
+    <!-- Screenview -->
+    <string name="screenTabName">Screenview</string>
+    <string name="sendPrefix">Send\u0020</string>
+    <string name="homePath">/homeScreen</string>
+    <string name="helpPath">Help Screen</string>
+
+    <!-- Event -->
+    <string name="eventTabName">Event</string>
+    <string name="videoCategory">Videos</string>
+    <string name="videoPlay">Play</string>
+    <string name="videoPause">Pause</string>
+    <string name="video1">The Wizard of Oz</string>
+    <string name="video2">Gone With the Wind</string>
+    <string name="bookCategory">Books</string>
+    <string name="bookView">View</string>
+    <string name="bookShare">Share</string>
+    <string name="book1">The Fellowship of the Ring</string>
+
+    <!-- Ecommerce -->
+    <string name="ecommerceTabName">Ecommerce</string>
+    <string name="storeNameLabel">Store name</string>
+    <string name="storeName">Role Playing Supplier</string>
+    <string name="orderIdLabel">Order ID (Unique to each order)</string>
+    <string name="orderId">O-</string>
+    <string name="itemName">Item name</string>
+    <string name="itemCategory">Item category</string>
+    <string name="itemSku">Item SKU</string>
+    <string name="item1Name">Sword</string>
+    <string name="item1Category">Weapon</string>
+    <string name="item1Sku">W-S-1</string>
+    <string name="item1Quantity">2</string>
+    <string name="item1Price">2.50</string>
+    <string name="item2Name">Wand</string>
+    <string name="item2Category">Weapon</string>
+    <string name="item2Sku">W-M-1</string>
+    <string name="item2Quantity">1</string>
+    <string name="item2Price">3.00</string>
+    <string name="itemTime">X $</string>
+    <string name="itemTotal">= $</string>
+    <string name="itemsTotal">Total = $</string>
+    <string name="totalTaxLabel">Total Tax</string>
+    <string name="totalTax">1.5</string>
+    <string name="shippingCostLabel">Shipping Cost</string>
+    <string name="shippingCost">2.5</string>
+    <string name="ecommerceCancel">Cancel</string>
+    <string name="ecommerceSend">Send</string>
+    <string name="orderIdWarning">Please set an order ID</string>
+    <string name="item1SkuWarning">Please set a SKU for the first item</string>
+    <string name="item2SkuWarning">Please set a SKU for the second item</string>
+
+    <!-- Exception -->
+    <string name="exceptionTabName">Exception</string>
+    <string name="isFatal">Fatal</string>
+    <string name="exceptionLocation">Exception Location (file name and line number)</string>
+    <string name="exceptionMethod">Exception Method</string>
+    <string name="exceptionType">Exception Type</string>
+    <string name="exceptionTypeHint">ExceptionType</string>
+    <string name="exceptionMethodHint">methodName</string>
+    <string name="exceptionLocationHint">fileName:123456</string>
+    <string name="exceptionTrack">Track Exception</string>
+
+    <!--  Social -->
+    <string name="socialTabName">Social</string>
+    <string name="socialNetwork">Social Network</string>
+    <string name="socialAction">Social Action</string>
+    <string name="socialTarget">Social Target</string>
+    <string name="socialSend">Send Social</string>
+    <string name="socialNetworkHint">Social Network</string>
+    <string name="socialActionHint">Social Action</string>
+    <string name="socialTargetHint">Social Target</string>
+    <string name="socialNetworkWarning">Please set a social network</string>
+    <string name="socialActionWarning">Please set a social action</string>
+
+    <!--  Timing -->
+    <string name="timingTabName">Timing</string>
+    <string name="timingCategory">Timing Category</string>
+    <string name="timingInterval">Timing Interval (in millis)</string>
+    <string name="timingName">Timing Name</string>
+    <string name="timingLabel">Timing Label</string>
+    <string name="timingCategoryHint">Timing Category</string>
+    <string name="timingIntervalHint">Timing Interval</string>
+    <string name="timingNameHint">Timing Name</string>
+    <string name="timingLabelHint">Timing Label</string>
+    <string name="timingSend">Send Timing</string>
+    <string name="currencyCode">Currency Code</string>
+    <string name="currencyCodeDefault">USD</string>
+</resources>

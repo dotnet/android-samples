@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/storeNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/storeNameLabel" />
+
+        <EditText
+            android:id="@+id/storeName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/storeName" />
+
+        <TextView
+            android:id="@+id/orderIdLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orderIdLabel" />
+
+        <EditText
+            android:id="@+id/orderId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/item1Name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemName"
+            android:singleLine="true"
+            android:text="@string/item1Name" />
+
+        <EditText
+            android:id="@+id/item1Category"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemCategory"
+            android:singleLine="true"
+            android:text="@string/item1Category" />
+
+        <EditText
+            android:id="@+id/item1Sku"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemSku"
+            android:singleLine="true"
+            android:text="@string/item1Sku" />
+
+        <EditText
+            android:id="@+id/item1CurrencyCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/currencyCode"
+            android:text="@string/currencyCodeDefault" >
+
+            <requestFocus android:layout_width="wrap_content" />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.74" >
+
+            <EditText
+                android:id="@+id/item1Quantity"
+                android:layout_width="59dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:numeric="integer"
+                android:singleLine="true"
+                android:text="@string/item1Quantity" >
+
+                <requestFocus android:layout_width="wrap_content" />
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/itemTime" />
+
+            <EditText
+                android:id="@+id/item1Price"
+                android:layout_width="84dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:numeric="decimal"
+                android:singleLine="true"
+                android:text="@string/item1Price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.03"
+                android:text="@string/itemTotal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item1Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/item2Name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemName"
+            android:singleLine="true"
+            android:text="@string/item2Name" />
+
+        <EditText
+            android:id="@+id/item2Category"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemCategory"
+            android:singleLine="true"
+            android:text="@string/item2Category" />
+
+        <EditText
+            android:id="@+id/item2Sku"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/itemSku"
+            android:singleLine="true"
+            android:text="@string/item2Sku" />
+
+        <EditText
+            android:id="@+id/item2CurrencyCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/currencyCode"
+            android:text="@string/currencyCodeDefault" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/item2Quantity"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:singleLine="true"
+                android:text="@string/item2Quantity" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/itemTime" />
+
+            <EditText
+                android:id="@+id/item2Price"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="@string/item2Price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/itemTotal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item2Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/itemsTotal" />
+
+        <TextView
+            android:id="@+id/itemTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/totalTaxLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/totalTaxLabel" />
+
+        <EditText
+            android:id="@+id/totalTax"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:numeric="integer"
+            android:singleLine="true"
+            android:text="@string/totalTax" />
+
+        <TextView
+            android:id="@+id/shippingCostLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shippingCostLabel" />
+
+        <EditText
+            android:id="@+id/shippingCost"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:numeric="integer"
+            android:singleLine="true"
+            android:text="@string/shippingCost" />
+
+        <Button
+            android:id="@+id/ecommerceSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ecommerceSend" />
+
+        <Button
+            android:id="@+id/ecommerceCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ecommerceCancel" />
+
+        <Button
+            android:id="@+id/ecommerceDispatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dispatch" />
+    </LinearLayout>
+
+</ScrollView>

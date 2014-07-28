@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<resources>
+  <string name="mapsAppText" >Show Maps App</string>
+  <string name="mapsAppTextDescription">Start up the Android Map application.</string>
+  <string name="streetViewText" >Show Street View</string>
+  <string name="showMapActivityDescription">Show how use a MapFragment in an Activity.</string>
+  <string name="showMapWithOverlaysDescription">Shows how to use overlays in a an Activity.</string>
+  <string name="app_name" >Simple Maps Demo</string>
+  <string name="activity_label_samplemap" >Map Demo</string>
+  <string name="activity_label_mapwithmarkers" >Map with Markers Demo</string>
+  <string name="basic_map">Basic Demo"</string>
+  <string name="basic_map_description">Display the MapFragment in an AXML file.</string>
+</resources>
