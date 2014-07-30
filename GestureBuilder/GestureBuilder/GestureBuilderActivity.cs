@@ -298,6 +298,7 @@ namespace GestureBuilder
 						sStore.RemoveGesture (gesture.Name, gesture.Gesture);
 						gesture.Name = mInput.Text.ToString ();
 						sStore.AddGesture (gesture.Name, gesture.Gesture);
+						sStore.Save ();
 						break;
 					}
 				}
