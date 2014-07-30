@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (C) 2014 The Android Open Source Project
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">ActivityDemo</string>
+
+    <string name="pregame">Get Ready</string>
+    <string name="start_running">Start Running</string>
+    <string name="start_walking">Start Walking</string>
+    <string name="stop">Stop</string>
+    <string name="game_started">Game Started</string>
+    <string name="game_over">Game Over</string>
+    <string name="game_over_notification_text">How fun was that?!</string>
+    <string name="game_in_progress">Game in progress.</string>
+
+    <string-array name="approve">
+        <item>Yes!</item>
+        <item>Alright!</item>
+        <item>You\'re doing it!</item>
+        <item>Keep it up!</item>
+    </string-array>
+
+    <string-array name="disaprove">
+        <item>Oh no!</item>
+        <item>Almost!</item>
+        <item>Oops!</item>
+        <item>Keep trying!</item>
+    </string-array>
+
+</resources>
