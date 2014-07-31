@@ -61,6 +61,7 @@ namespace KitKat
 				if (counterAvailabe && counter != null) {
 					// Set sensor delay to normal, the default rate for batching sensor data
 					senMgr.RegisterListener(this, counter, SensorDelay.Normal);
+					Toast.MakeText(this,"Count sensor started",ToastLength.Long).Show();
 				} else {
 					Toast.MakeText(this, "Count sensor unavailable", ToastLength.Long).Show();
 				}
