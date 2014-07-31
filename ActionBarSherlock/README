@@ -23,6 +23,10 @@ Extract it under this directory.
 
 Go to JakeWhatron-ActonBarSherlock-whatever directory.
 
+Edit pom.xml and replace <version>3.5.3</version> with
+<version>3.8.0</version>.
+(seealso http://stackoverflow.com/questions/17293940/)
+
 Run: mvn verify javadoc:aggregate-jar
 
 Go to actionbarsherlock dir.
