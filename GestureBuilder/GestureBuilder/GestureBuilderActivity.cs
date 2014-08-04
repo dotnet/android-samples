@@ -299,6 +299,7 @@ namespace GestureBuilder
 						gesture.Name = mInput.Text.ToString ();
 						sStore.AddGesture (gesture.Name, gesture.Gesture);
 						sStore.Save ();
+						ReloadGestures (null);
 						break;
 					}
 				}
