@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DriveRealtimePlaygroundSample</string>
+    <string name="realtime_playground">Realtime Playground</string>
+    <string name="create_or_edit">You need to create a new document or open an existing document on
+        which to collaborate. We use the Drive Android API Open or Create File Activities.</string>
+    <string name="collab_string_descr">
+      Collaborative strings are just like normal strings, except that all browser sessions will be
+      notified and updated when the string changes. Events are fired when strings are inserted to
+      the collaborative string or when part of the string is deleted.</string>
+    <string name="collab_string_edit">Edit the demo Collaborative String:</string>
+    <string name="create">Create</string>
+    <string name="open">Open</string>
+
+
+    <string name="collab_list_descr">
+      A collaborative list state is shared across sessions. Events are fired when items are added or
+      removed to the list or when an existing item\'s value is set.</string>
+    <string name="collab_list_edit">Add, remove or set items on the demo Collaborative List:
+    </string>
+    <string name="list_remove">Remove selected item</string>
+    <string name="list_add">Add an item</string>
+    <string name="list_clear">Clear the list</string>
+    <string name="list_set">Set selected item\'s value</string>
+
+
+    <string name="collab_map_descr">
+      Collaborative maps share key/value state across sessions. They support standard map
+        operations. Events are fired when key-value pairs are changed.</string>
+    <string name="collab_map_edit">Add, change or remove key-value pairs on the demo Collaborative
+        Map:
+    </string>
+    <string name="map_remove">Remove selected item</string>
+    <string name="map_clear">Clear the map</string>
+    <string name="map_put">Put key-value pair</string>
+    <string name="map_key">Key:</string>
+    <string name="map_value">Value:</string>
+</resources>
