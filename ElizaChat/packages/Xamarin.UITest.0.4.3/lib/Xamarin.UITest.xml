@@ -1,0 +1,1792 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xamarin.UITest</name>
+    </assembly>
+    <members>
+        <member name="T:Xamarin.UITest.Android.AndroidApp">
+            <summary>
+            Represents a running Android application.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.IApp">
+            <summary>
+            Represents the main gateway to interact with an app. This interface contains shared
+            functionality between <see cref="T:Xamarin.UITest.Android.AndroidApp"/> and <see cref="T:Xamarin.UITest.iOS.iOSApp"/>.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Queries view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Queries web view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Query``1(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppTypedSelector{``0}})">
+            <summary>
+            Queries properties on view objects using the fluent API. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the type of the property.</param>
+            <typeparam name="T">The type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.PressEnter">
+            <summary>
+            Presses the enter key in the app. 
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.TapCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a tap / touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to tap.</param>
+            <param name="y">The y coordinate to tap.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.TouchAndHold(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a continuous touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.TouchAndHoldCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a continuous touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to touch.</param>
+            <param name="y">The y coordinate to touch.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.WaitFor(System.Func{System.Boolean},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Generic wait function that will repeatly call the <code>predicate</code> function until it returns <code>true</code>. Throws a <see cref="T:System.TimeoutException"/> if the predicate is not fullfilled within the time limit.
+            </summary>
+            <param name="predicate">Predicate function that should return <code>true</code> when waiting is complete.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each call to the predicate.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the predicate returns <code>true</code>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Screenshot(System.String)">
+            <summary>
+            Takes a screenshot of the app in it's current state. This is used to denote test steps in the Xamarin Test Cloud.
+            </summary>
+            <param name="title">The title of screenshot, used as step name.</param>
+            <returns>The screenshot file.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.SwipeRight">
+            <summary>
+            Performs a right to left swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.SwipeLeft">
+            <summary>
+            Performs a left to right swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.ScrollUp">
+            <summary>
+            Performs a touch gesture that scrolls up.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.ScrollDown">
+            <summary>
+            Performs a touch gesture that scrolls down.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.SetOrientationPortrait">
+            <summary>
+            Changes the device orientation to portrait mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.SetOrientationLandscape">
+            <summary>
+            Changes the device orientation to landscape mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.IApp.Repl">
+            <summary>
+            Starts an interactive REPL (Read-Eval-Print-Loop) for app exploration and pauses test execution until it is closed.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.IApp.Print">
+            <summary>
+            Contains helper methods for outputting the result of queries instead of resorting to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.#ctor(Xamarin.UITest.Configuration.IAndroidAppConfiguration)">
+            <summary>
+            Main entry point for creating Android applications. Should not be called directly
+            but instead be invoked through the use of <see cref="T:Xamarin.UITest.ConfigureApp"/>.
+            </summary>
+            <param name="appConfiguration">The app configuration. Should be generated from <see cref="T:Xamarin.UITest.ConfigureApp"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Queries view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Queries web view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Query``1(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppTypedSelector{``0}})">
+            <summary>
+            Queries view objects values using the fluent API.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array containing the values of the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.TapCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a tap / touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to tap.</param>
+            <param name="y">The y coordinate to tap.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.TouchAndHold(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a continuous touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.TouchAndHoldCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a continuous touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to touch.</param>
+            <param name="y">The y coordinate to touch.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.DragCoordinates(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Performs a continuous drag gesture between 2 points.
+            </summary>
+            <param name="fromX">The x coordinate to start dragging from.</param>
+            <param name="fromY">The y coordinate to start dragging from.</param>
+            <param name="toX">The x coordinate to drag to.</param>
+            <param name="toY">The y coordinate to drag to.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.SwipeRight">
+            <summary>
+            Performs a right to left swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.SwipeLeft">
+            <summary>
+            Performs a left to right swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.ScrollUp">
+            <summary>
+            Performs a touch gesture that scrolls up.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.ScrollDown">
+            <summary>
+            Performs a touch gesture that scrolls down.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Back">
+            <summary>
+            Presses the back button of the device. 
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.PressMenu">
+            <summary>
+            Presses the menu button of the device. 
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.PressEnter">
+            <summary>
+            Presses the enter key in the app. 
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.SetOrientationPortrait">
+            <summary>
+            Changes the device orientation to portrait mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.SetOrientationLandscape">
+            <summary>
+            Changes the device orientation to landscape mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.WaitFor(System.Func{System.Boolean},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Generic wait function that will repeatly call the <code>predicate</code> function until it returns <code>true</code>. Throws a <see cref="T:System.TimeoutException"/> if the predicate is not fullfilled within the time limit.
+            </summary>
+            <param name="predicate">Predicate function that should return <code>true</code> when waiting is complete.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each call to the predicate.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the predicate returns <code>true</code>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Screenshot(System.String)">
+            <summary>
+            Takes a screenshot of the app in it's current state. This is used to denote test steps in the Xamarin Test Cloud.
+            </summary>
+            <param name="title">The title of screenshot, used as step name.</param>
+            <returns>The screenshot file.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidApp.Repl">
+            <summary>
+            Starts an interactive REPL (Read-Eval-Print-Loop) for app exploration and pauses test execution until it is closed.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Android.AndroidApp.Print">
+            <summary>
+            Contains helper methods for outputting the result of queries instead of resorting to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Android.AndroidApp.Config">
+            <summary>
+            Contains runtime information about the currently running app / device.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Android.AndroidConfig">
+            <summary>
+            Represents runtime information about the currently running app / device.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Android.AndroidConfig.#ctor(System.Uri,System.IO.FileInfo)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="deviceUri">The uri of the device.</param>
+            <param name="apkFile">The running apk file.</param>
+        </member>
+        <member name="P:Xamarin.UITest.Android.AndroidConfig.DeviceUri">
+            <summary>
+            The uri of the device.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Android.AndroidConfig.ApkFile">
+            <summary>
+            The currently running apk file.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.IGenericAppConfiguration">
+            <summary>
+            Shared configuration for apps. Not to be used directly, should be created by using the fluent <see cref="T:Xamarin.UITest.ConfigureApp"/> API.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IGenericAppConfiguration.Debug">
+            <summary>
+            Enable debug logging.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IGenericAppConfiguration.DeviceIp">
+            <summary>
+            The ip adress of the device.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IGenericAppConfiguration.DevicePort">
+            <summary>
+            The port to use for communication with the test server.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IGenericAppConfiguration.EnableScreenshots">
+            <summary>
+            Enable screenshots. Local screenshots are disabled by default to speed up tests.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.StartAction">
+            <summary>
+            The desired state of the app after test initialization. Either the test framework can start the app or connect to an already running app in more advanced scenarios.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.Configuration.StartAction.LaunchApp">
+            <summary>
+            Start the app after successful configuration.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.Configuration.StartAction.ConnectToApp">
+            <summary>
+            Use the given configuration to connect to an already running app.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.ConfigureApp">
+            <summary>
+            Main entry point for <c>Xamarin.UITest</c>. This is a fluent API that allows you to 
+            configure your app for either Android or iOS and start it.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.ConfigureApp.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.ConfigureApp.iOS">
+            <summary>
+            Specifies that the app is an iOS app.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.ConfigureApp.Android">
+            <summary>
+            Specifies that the app is an Android app.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.iOS.iOSConfig">
+            <summary>
+            Represents runtime information about the currently running app / device.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.iOS.iOSConfig.DeviceUri">
+            <summary>
+            The uri of the device.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.iOS.iOSConfig.IsPhone">
+            <summary>
+            Whether the current test is running on a phone.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.iOS.iOSConfig.IsTablet">
+            <summary>
+            Whether the current test is running on a tablet.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppPrintHelper">
+            <summary>
+            A fluent API for making test output easier. Mirrored query methods from the app classes that print directly to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Utils.IFluentInterface">
+            <summary>
+            Interface that is used to build fluent interfaces and hides methods declared by <see cref="T:System.Object"/> from IntelliSense.
+            </summary>
+            <remarks>
+            Code that consumes implementations of this interface should expect one of two things:
+            <list type="number">
+              <item>When referencing the interface from within the same solution (project reference), you will still see the methods this interface is meant to hide.</item>
+              <item>When referencing the interface through the compiled output assembly (external reference), the standard Object methods will be hidden as intended.</item>
+            </list>
+            See http://bit.ly/ifluentinterface for more information.
+            </remarks>
+        </member>
+        <member name="M:Xamarin.UITest.Utils.IFluentInterface.GetType">
+            <summary>
+            Redeclaration that hides the <see cref="M:System.Object.GetType"/> method from IntelliSense.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Utils.IFluentInterface.GetHashCode">
+            <summary>
+            Redeclaration that hides the <see cref="M:System.Object.GetHashCode"/> method from IntelliSense.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Utils.IFluentInterface.ToString">
+            <summary>
+            Redeclaration that hides the <see cref="M:System.Object.ToString"/> method from IntelliSense.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Utils.IFluentInterface.Equals(System.Object)">
+            <summary>
+            Redeclaration that hides the <see cref="M:System.Object.Equals(System.Object)"/> method from IntelliSense.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppPrintHelper.Visible">
+            <summary>
+            Prints all the visible view elements to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppPrintHelper.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Prints the view elements matched by <code>query</code> to <see cref="T:System.Console"/>.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppPrintHelper.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Prints the view elements matched by <code>query</code> to <see cref="T:System.Console"/>.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppPrintHelper.Query``1(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppTypedSelector{``0}})">
+            <summary>
+            Prints the properties matched by <code>query</code> to <see cref="T:System.Console"/>.
+            </summary>
+            <param name="typedSelector">Entry point for the fluent API to specify the property.</param>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppResult">
+            <summary>
+            Representation of a view element in the app.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.UITest.Queries.AppResult"/> class.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Id">
+            <summary>
+            The identifier of the view element.
+            For Android: The id of the element.
+            For iOS: The accessibilityIdentifier of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Description">
+            <summary>
+            A platform specific text representation of the view element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Rect">
+            <summary>
+            The <see cref="T:Xamarin.UITest.Queries.AppRect"/> rectangle representing the elements position and size. 
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Label">
+            <summary>
+            The label of the view element.
+            For Android: Empty
+            For iOS: The accessibilityLabel of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Text">
+            <summary>
+            The text of the view element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Class">
+            <summary>
+            The class of the view element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppResult.Enabled">
+            <summary>
+            Whether the element is enabled or not.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppRect">
+            <summary>
+            Representation of a view elements position and size.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppRect.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Xamarin.UITest.Queries.AppRect"/>.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.Width">
+            <summary>
+            The width of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.Height">
+            <summary>
+            The height of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.X">
+            <summary>
+            The X coordinate of the top left corner of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.Y">
+            <summary>
+            The Y coordinate of the top left corner of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.CenterX">
+            <summary>
+            The X coordinate of the center of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppRect.CenterY">
+            <summary>
+            The Y coordinate of the center of the element.
+            </summary>
+            <value>The center y.</value>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppWebQuery">
+            <summary>
+            Fluent query API for specifying view elements predicates for web elements.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.ITokenContainer">
+            <summary>
+            Helper interface for exposing tokens from the fluent query API without cluttering the fluent API itself (when using explicit interface implementation). 
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.ITokenContainer.Tokens">
+            <summary>
+            The tokens of the current query.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppWebQuery.#ctor(System.Collections.Generic.IEnumerable{Xamarin.UITest.Queries.Tokens.IQueryToken},Xamarin.UITest.Queries.QueryPlatform,System.Object[])">
+            <summary>
+            Initial constructor for web element queries. Should not be called directly, but used as part of the fluent API in the app classes.
+            </summary>
+            <param name="initialTokens">The tokens of the existing <see cref="T:Xamarin.UITest.Queries.AppQuery"/>.</param>
+            <param name="queryPlatform">The query target platform.</param>
+            <param name="tokens">The additional tokens to add.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppWebQuery.ToString">
+            <summary>
+            Converts the string into it's Calabash query equivalent.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebQuery.Xamarin#UITest#Queries#ITokenContainer#Tokens">
+            <summary>
+            The tokens of the current query.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppWebRect">
+            <summary>
+            Representation of a web elements position and size.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Width">
+            <summary>
+            The width of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Height">
+            <summary>
+             The height of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.CenterX">
+            <summary>
+             The X coordinate of the center of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.CenterY">
+            <summary>
+            The Y coordinate of the center of the element."
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Top">
+            <summary>
+            The top property of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Bottom">
+            <summary>
+            The bottom property of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Left">
+            <summary>
+            The left property of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebRect.Right">
+            <summary>
+            The right property of the element.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppWebResult">
+            <summary>
+            Representation of a web element in the app.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.Id">
+            <summary>
+            The HTML id of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.NodeType">
+            <summary>
+            The node type of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.NodeName">
+            <summary>
+            The tag name of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.Class">
+            <summary>
+            The CSS class of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.Html">
+            <summary>
+            The raw HTML of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.Value">
+            <summary>
+            The form value of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.WebView">
+            <summary>
+            A platform specific text representation of the containgin web view.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.TextContent">
+            <summary>
+            The text content of the element.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppWebResult.Rect">
+            <summary>
+            The <see cref="T:Xamarin.UITest.Queries.AppWebRect"/> rectangle representing the elements position and size. 
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.IAppTypedSelector">
+            <summary>
+            Helper interface for exposing property from the fluent query API without cluttering the fluent API itself (when using explicit interface implementation). 
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.IAppTypedSelector.QueryParams">
+            <summary>
+            Query parameters.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.PropertyAppQuery">
+            <summary>
+            Fluent query API for specifying view elements predicates for properties.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.#ctor(Xamarin.UITest.Queries.QueryPlatform,Xamarin.UITest.Queries.AppQuery,System.String)">
+            <summary>
+            Initial constructor for property queries. Should not be called directly, but used as part of the fluent API in the app classes.
+            </summary>
+            <param name="queryPlatform">The query target platform.</param>
+            <param name="appQuery">The existing <see cref="T:Xamarin.UITest.Queries.AppQuery"/> to build on.</param>
+            <param name="propertyName">The name of the property to filter on.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.StartsWith(System.String)">
+            <summary>
+            Matches properties starting with the given text.
+            </summary>
+            <param name="text">The text to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.EndsWith(System.String)">
+            <summary>
+            Matches properties ending with the given text.
+            </summary>
+            <param name="text">The text to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.Contains(System.String)">
+            <summary>
+            Matches properties containing with the given text.
+            </summary>
+            <param name="text">The text to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.Like(System.String)">
+            <summary>
+            Matches properties like the given text. Supports * wildcards.
+            </summary>
+            <param name="text">The text to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.Predicate(System.String,System.String)">
+            <summary>
+            Matches properties matching the given predicate and text. Allows using unexposed Calabash predicates.
+            </summary>
+            <param name="predicate">The Calabash predicate to use.</param>
+            <param name="text">The text to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.PropertyAppQuery.Value``1">
+            <summary>
+            Extracts the value of the property.
+            </summary>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.PropertyAppQuery.QueryPlatform">
+            <summary>
+            The target platform of the query. Useful when writing extensions methods for queries for platform differences.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.Tokens.IQueryToken">
+            <summary>
+            A query token. Part of a query for matching view elements for queries and gestures.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.Tokens.IQueryToken.ToQueryString(Xamarin.UITest.Queries.QueryPlatform)">
+            <summary>
+            Converts the query token to a Calabash query string.
+            </summary>
+            <param name="queryPlatform">The target query platform.</param>
+            <returns>A valid Calabash query string.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.Tokens.IQueryToken.ToCodeString">
+            <summary>
+            Returns a string representation of the code representing the query. Used for output. 
+            </summary>
+            <returns>A string representation of the query code.</returns>
+        </member>
+        <member name="T:Xamarin.UITest.iOS.iOSApp">
+            <summary>
+            Represents a running iOS application.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.#ctor(Xamarin.UITest.Configuration.IiOSAppConfiguration)">
+            <summary>
+            Main entry point for creating iOS applications. Should not be called directly
+            but instead be invoked through the use of <see cref="T:Xamarin.UITest.ConfigureApp"/>.
+            </summary>
+            <param name="appConfiguration">The app configuration. Should be generated from <see cref="T:Xamarin.UITest.ConfigureApp"/>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Queries view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Query(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Queries web view objects using the fluent API. Defaults to only return view objects that are visible.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element. If left as <code>null</code> returns all visible view objects.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Query``1(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppTypedSelector{``0}})">
+            <summary>
+            Queries properties on view objects using the fluent API. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the type of the property.</param>
+            <typeparam name="T">The type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.EnterText(System.String)">
+            <summary>
+            Enters text into the currently focused element. Will fail if no keyboard is visible.
+            </summary>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.EnterText(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String)">
+            <summary>
+            Enters text into a matching element that supports it. 
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="text">The text to enter.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PressEnter">
+            <summary>
+            Presses the enter key in the app. 
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SetOrientationPortrait">
+            <summary>
+            Changes the device orientation to portrait mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SetOrientationLandscape">
+            <summary>
+            Changes the device orientation to landscape mode.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Tap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery})">
+            <summary>
+            Performs a tap / touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.TapCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a tap / touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to tap.</param>
+            <param name="y">The y coordinate to tap.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SwipeRight">
+            <summary>
+            Performs a right to left swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SwipeLeft">
+            <summary>
+            Performs a left to right swipe gesture.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SwipeRight(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a right to left swipe gesture on the matching element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.SwipeLeft(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a left to right swipe gesture on the matching element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.ScrollUp">
+            <summary>
+            Performs a touch gesture that scrolls up.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.ScrollDown">
+            <summary>
+            Performs a touch gesture that scrolls down.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.ScrollUp(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a touch gesture that scrolls up on the matching element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.ScrollDown(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a touch gesture that scrolls down on the matching element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.TouchAndHold(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a continuous touch gesture on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.TouchAndHoldCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a continuous touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to touch.</param>
+            <param name="y">The y coordinate to touch.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.DoubleTap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs two quick tap / touch gestures on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.DoubleTapCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a quick double tap / touch gesture on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to touch.</param>
+            <param name="y">The y coordinate to touch.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.TwoFingerTap(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery})">
+            <summary>
+            Performs a tap / touch gestures with 2 fingers on the matched element. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.TwoFingerTapCoordinates(System.Single,System.Single)">
+            <summary>
+            Performs a tap / touch gesture with 2 fingers on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate to touch.</param>
+            <param name="y">The y coordinate to touch.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.FlickCoordinates(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Performs a quick continuous flick gesture between 2 points.
+            </summary>
+            <param name="fromX">The x coordinate to start from.</param>
+            <param name="fromY">The y coordinate to start from.</param>
+            <param name="toX">The x coordinate to end at.</param>
+            <param name="toY">The y coordinate to end at.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PanCoordinates(System.Single,System.Single,System.Single,System.Single,System.Nullable{System.TimeSpan})">
+            <summary>
+            Performs a continuous pan gesture between 2 points.
+            </summary>
+            <param name="fromX">The x coordinate to start from.</param>
+            <param name="fromY">The y coordinate to start from.</param>
+            <param name="toX">The x coordinate to end at.</param>
+            <param name="toY">The y coordinate to end at.</param>
+            <param name="duration">The <see cref="T:System.TimeSpan"/> duration of the pan gesture.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PinchToZoomIn(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Nullable{System.TimeSpan})">
+            <summary>
+            Performs a pinch gestures on the matched element to zoom the view in. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="duration">The <see cref="T:System.TimeSpan"/> duration of the pinch gesture.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PinchToZoomInCoordinates(System.Single,System.Single,System.Nullable{System.TimeSpan})">
+            <summary>
+            Performs a pinch gestures to zoom the view in on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate of the center of the pinch.</param>
+            <param name="y">The y coordinate of the center of the pinch.</param>
+            <param name="duration">The <see cref="T:System.TimeSpan"/> duration of the pinch gesture.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PinchToZoomOut(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Nullable{System.TimeSpan})">
+            <summary>
+            Performs a pinch gestures on the matched element to zoom the view out. If multiple elements are matched, the first one will be used.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="duration">The <see cref="T:System.TimeSpan"/> duration of the pinch gesture.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PinchToZoomOutCoordinates(System.Single,System.Single,System.Nullable{System.TimeSpan})">
+            <summary>
+            Performs a pinch gestures to zoom the view in on the given coordinates.
+            </summary>
+            <param name="x">The x coordinate of the center of the pinch.</param>
+            <param name="y">The y coordinate of the center of the pinch.</param>
+            <param name="duration">The <see cref="T:System.TimeSpan"/> duration of the pinch gesture.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PressVolumeUp">
+            <summary>
+            Presses the volume up button on the device.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.PressVolumeDown">
+            <summary>
+            Presses the volume down button on the device.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.WaitFor(System.Func{System.Boolean},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Generic wait function that will repeatly call the <code>predicate</code> function until it returns <code>true</code>. Throws a <see cref="T:System.TimeoutException"/> if the predicate is not fullfilled within the time limit.
+            </summary>
+            <param name="predicate">Predicate function that should return <code>true</code> when waiting is complete.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each call to the predicate.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the predicate returns <code>true</code>.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.WaitForElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is found. Throws a <see cref="T:System.TimeoutException"/> if no element is found within the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element has been found.</param>
+            <returns>An array representing the matched view objects.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.WaitForNoElement(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppWebQuery},System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Wait function that will repeatly query the app until a matching element is no longer found. Throws a <see cref="T:System.TimeoutException"/> if the element is visible at the end of the time limit.
+            </summary>
+            <param name="query">Entry point for the fluent API to specify the element.</param>
+            <param name="timeoutMessage">The message used in the <see cref="T:System.TimeoutException"/>.</param>
+            <param name="timeout">The <see cref="T:System.TimeSpan"/> to wait before failing.</param>
+            <param name="retryFrequency">The <see cref="T:System.TimeSpan"/> to wait between each query call to the app.</param>
+            <param name="postTimeout">The final <see cref="T:System.TimeSpan"/> to wait after the element is no longer visible.</param>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Screenshot(System.String)">
+            <summary>
+            Takes a screenshot of the app in it's current state. This is used to denote test steps in the Xamarin Test Cloud.
+            </summary>
+            <param name="title">The title of screenshot, used as step name.</param>
+            <returns>The screenshot file.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.iOS.iOSApp.Repl">
+            <summary>
+            Starts an interactive REPL (Read-Eval-Print-Loop) for app exploration and pauses test execution until it is closed.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.iOS.iOSApp.Print">
+            <summary>
+            Contains helper methods for outputting the result of queries instead of resorting to <see cref="T:System.Console"/>.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.iOS.iOSApp.Config">
+            <summary>
+            Contains runtime information about the currently running app / device.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.IiOSAppConfiguration">
+            <summary>
+            Configuration for iOS apps. Not to be used directly, should be created by using the fluent <see cref="T:Xamarin.UITest.ConfigureApp"/> API.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.IiOSAppConfiguration.Verify">
+            <summary>
+            Verify the state of a configuration. Throw exception if invalid.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.Debug">
+            <summary>
+            Enable debug logging.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.EnableScreenshots">
+            <summary>
+            Enable screenshots. Local screenshots are disabled by default to speed up tests.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.DeviceUri">
+            <summary>
+            The uri of the device test server.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.DeviceIdentifier">
+            <summary>
+            The device identifier.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.InstalledAppBundleId">
+            <summary>
+            The bundle id of an already installed to test.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.AppBundleDirectory">
+            <summary>
+            The location of an app bundle for a simulator test.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.AppBundleZip">
+            <summary>
+            The location of a zip archive for a simulator test.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.StartAction">
+            <summary>
+            The desired state of the app after test initialization. Either the test framework can start the app or connect to an already running app in more advanced scenarios.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.IAndroidAppConfiguration">
+            <summary>
+            Configuration for Android apps. Not to be used directly, should be created by using the fluent <see cref="T:Xamarin.UITest.ConfigureApp"/> API.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.IAndroidAppConfiguration.Verify">
+            <summary>
+            Verifies the configuration.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.KeyStore">
+            <summary>
+            The location of the keystore that was used to sign the tested app. If left empty a new keystore will be built.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.KeyStorePassword">
+            <summary>
+            The store password of the given keystore. Corresponds to the <code>-storepass</code> argument in jarsigner.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.KeyStoreKeyPassword">
+            <summary>
+            The private key password of the given keystore key. Corresponds to the <code>-keypass</code> argument in jarsigner.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.KeyStoreKeyAlias">
+            <summary>
+            The key alias to use for given keystore. Corresponds to the alias argument in jarsigner.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.SIFile">
+            <summary>
+            The location of the SI file used for generating the signed test server.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.ApkFile">
+            <summary>
+            The location of the apk file to test.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.Debug">
+            <summary>
+            Enable debug logging.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.StartAction">
+            <summary>
+            The desired state of the app after test initialization. Either the test framework can start the app or connect to an already running app in more advanced scenarios.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.DeviceUri">
+            <summary>
+            The uri of the device test server.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.DeviceSerial">
+            <summary>
+            The serial of the device. Can be found using adb.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.IAndroidAppConfiguration.EnableScreenshots">
+            <summary>
+            Enable screenshots. Local screenshots are disabled by default to speed up tests.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.iOSAppConfigurator">
+            <summary>
+            Represents the iOS specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.#ctor(Xamarin.UITest.Configuration.GenericAppConfigurator)">
+            <summary>
+            Part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.EnableLocalScreenshots">
+            <summary>
+            Enables local screenshot saving. Always enabled in the cloud.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AppBundle(System.String)">
+            <summary>
+            Configures the app bundle to use. Will force a run on simulator.
+            </summary>
+            <param name="path">Path to the directory containing the app bundle.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AppBundleZip(System.String)">
+            <summary>
+            Configures the zipped app bundle to use. Will force a run on simulator.
+            </summary>
+            <param name="path">Path to the directory containing the zipped app bundle.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.InstalledApp(System.String)">
+            <summary>
+            Configures the installed app to use. Will force a run on physical device. 
+            Ip address of the device should also be provided.
+            </summary>
+            <param name="bundleId">The bundle id of the installed application.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.DeviceIdentifier(System.String)">
+            <summary>
+            Configures the device to use with the device identifier (UUID).
+            </summary>
+            <param name="deviceIdentifier">The device identifier (UUID) found in the XCode Organizer.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp">
+            <summary>
+            Builds the configuration and launches the app on the selected device or simulator.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.iOS.iOSApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp">
+            <summary>
+            Builds the configuration and connects to an already running app. 
+            Used for advanced scenarios. Regular users should use <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/>
+            instead.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.iOS.iOSApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.GetConfiguration(Xamarin.UITest.Configuration.StartAction)">
+            <summary>
+            Builds the iOS app configuration which can be used for input for <see cref="T:Xamarin.UITest.iOS.iOSApp"/>.
+            The <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp"/> methods should be used instead unless
+            you have specific needs for the configuration.
+            </summary>
+            <param name="startAction">The start action for the configuration. See <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.iOSAppConfigurator.ConnectToApp"/> methods.</param>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IiOSAppConfiguration"/> which can used for input for <see cref="T:Xamarin.UITest.iOS.iOSApp"/>.</returns>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.AndroidAppConfigurator">
+            <summary>
+            Represents the Android specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.#ctor(Xamarin.UITest.Configuration.GenericAppConfigurator)">
+            <summary>
+            Part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.EnableLocalScreenshots">
+            <summary>
+            Enables local screenshot saving. Always enabled in the cloud.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.DeviceSerial(System.String)">
+            <summary>
+            Configures the adb serial  of the device. Generally best left unset unless you want to run a specific device.
+            </summary>
+            <param name="deviceSerial">The device serial from adb devices.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.KeyStore(System.String,System.String,System.String,System.String)">
+            <summary>
+            Configures the keystore that the provided apk file is signed with. 
+            A keystore is not required, but will ensure that the apk file is pristine and unchanged. 
+            If a keystore is provided, it will be used to sign the auxiliary apks installed along with the app on the device. 
+            If a keystore is not provided, Xamarin.UITest will generate a keystore and resign the apk.
+            </summary>
+            <param name="path">Path to the keystore file.</param>
+            <param name="storePassword">Password to the keystore. Corresponds to the <code>-storepass</code> argument in jarsigner.</param>
+            <param name="keyPassword">Password to the matching private key in the keystore. Corresponds to the <code>-keypass</code> argument in jarsigner.</param>
+            <param name="keyAlias">Alias to the key in the keystore. Corresponds to the <code>alias</code> argument in jarsigner.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.SigningInfoFile(System.String)">
+            <summary>
+            Configures the signing info file that the test server will be "signed" with.
+            A signing info file is not required, but can be used instead of a keystore for signing the test server. The signing info file can be freely shared 
+            without the risk of leaking keying material.
+            The signing info file can be generated using the console tool.  
+            </summary>
+            <param name="path">Path to the signing info file.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ApkFile(System.String)">
+            <summary>
+            Configures the apk file to use.
+            </summary>
+            <param name="path">Path to the apk file.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp">
+            <summary>
+            Builds the configuration and launches the app on the selected device.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.Android.AndroidApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp">
+            <summary>
+            Builds the configuration and connects to an already running app. 
+            Used for advanced scenarios. Regular users should use <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/>
+            instead.
+            </summary>
+            <returns>The <see cref="T:Xamarin.UITest.Android.AndroidApp"/> to use in the tests.</returns>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.GetConfiguration(Xamarin.UITest.Configuration.StartAction)">
+            <summary>
+            Builds the Android app configuration which can be used for input for <see cref="T:Xamarin.UITest.Android.AndroidApp"/>.
+            The <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp"/> methods should be used instead unless
+            you have specific needs for the configuration.
+            </summary>
+            <param name="startAction">The start action for the configuration. See <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.StartApp"/> and <see cref="M:Xamarin.UITest.Configuration.AndroidAppConfigurator.ConnectToApp"/> methods.</param>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IAndroidAppConfiguration"/> which can used for input for <see cref="T:Xamarin.UITest.Android.AndroidApp"/>.</returns>
+        </member>
+        <member name="T:Xamarin.UITest.Configuration.GenericAppConfigurator">
+            <summary>
+            Represents the generic specific part of the <see cref="T:Xamarin.UITest.ConfigureApp"/> fluent API. Should not be used directly.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.Debug">
+            <summary>
+            Enables debug logging from the test runner.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.EnableLocalScreenshots">
+            <summary>
+            Enables local screenshot saving. Always enabled in the cloud.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.DeviceIp(System.String)">
+            <summary>
+            Configures the ip address of the device. Generally best left unset unless you are 
+            running an iOS application on a physical device.
+            </summary>
+            <param name="ipAddress">The ip address of the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.DevicePort(System.Int32)">
+            <summary>
+            Configures the port of the device. Generally best left unset.
+            </summary>
+            <param name="port">The port of the Calabash HTTP server on the device.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Configuration.GenericAppConfigurator.GetConfiguration">
+            <summary>
+            Builds the generic app configuration which contains the shared configuration
+            across platforms.
+            The <see cref="P:Xamarin.UITest.Configuration.GenericAppConfigurator.Android"/> or <see cref="P:Xamarin.UITest.Configuration.GenericAppConfigurator.iOS"/> properties should be used
+            instead as part of the fluent API unless the configuration is needed.
+            </summary>
+            <returns>An <see cref="T:Xamarin.UITest.Configuration.IGenericAppConfiguration"/> to be consumed by the 
+            platform specific configurations.</returns>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.GenericAppConfigurator.iOS">
+            <summary>
+            Specifies that the app is an iOS app.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Configuration.GenericAppConfigurator.Android">
+            <summary>
+            Specifies that the app is an Android app.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppQuery">
+            <summary>
+            Fluent query API for specifying view elements to match for queries and gestures.
+            </summary>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.#ctor(Xamarin.UITest.Queries.QueryPlatform)">
+            <summary>
+            Initial constructor for queries. Should not be called directly, but used as part of the fluent API in the app classes.
+            </summary>
+            <param name="queryPlatform">The query target platform.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.#ctor(Xamarin.UITest.Queries.AppQuery,System.Object[])">
+            <summary>
+            Constructor for adding more tokens to an existing query in an immutable fashion. Takes the tokens from the old query plus the additional tokens.
+            </summary>
+            <param name="appQuery">The existing query.</param>
+            <param name="tokens">The new query tokens.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Button(System.String)">
+            <summary>
+            Matches a button. 
+            For Android: An element that has class (or inherits from) <code>android.widget.Button</code>. 
+            For iOS: An element with class <code>UIButton</code>.
+            </summary>
+            <param name="marked">Optional argument for matching using marked classification. See <see cref="M:Xamarin.UITest.Queries.AppQuery.Marked(System.String)"/> for more.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Class(System.String)">
+            <summary>
+            Matches element class.
+            For Android: An element which has a class (or super class) name that ends with the value (case insensitive).
+            For iOS (first char lowercase): An element that has the class (or super class) name of the given value prepended with "UI". Example: <code>button</code> becomes <code>UIButton</code>.
+            For iOS (first char uppercase): An element that has the class (or super class) name of the given value.
+            </summary>
+            <param name="className">The class name to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.ClassFull(System.String)">
+            <summary>
+            Matches element class.
+            For Android: An element with the given fully quantified class (or super class) name.
+            For iOS: An element that has the class (or super class) name of the given value.
+            </summary>
+            <param name="className">The class name to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Marked(System.String)">
+            <summary>
+            Matches common values. 
+            For Android: An element with the given value as either <code>id</code>, <code>contentDescription</code> or <code>text</code>.
+            For iOS: An element with the given value as either <code>accessibilityLabel</code> or <code>accessibilityId</code>.
+            </summary>
+            <param name="text">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Id(System.String)">
+            <summary>
+            Matches element id. 
+            For Android: An element with the given value as <code>id</code>.
+            For iOS: An element with the given value as <code>accessibilityId</code>.
+            </summary>
+            <param name="id">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Sibling(System.String)">
+            <summary>
+            Changes the query to return sibling elements of the currently matched ones.
+            </summary>
+            <param name="className">Optional class name of elements to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Descendant(System.String)">
+            <summary>
+            Changes the query to return descendant elements of the currently matched ones.
+            </summary>
+            <param name="className">Optional class name of elements to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Parent(System.String)">
+            <summary>
+            Changes the query to return parent elements of the currently matched ones.
+            </summary>
+            <param name="className">Optional class name of elements to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Child(System.String)">
+            <summary>
+            Changes the query to return child elements of the currently matched ones.
+            </summary>
+            <param name="className">Optional class name of elements to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.All(System.String)">
+            <summary>
+            Changes the query to return all elements instead of just the visible ones.
+            </summary>
+            <param name="className">Optional class name of elements to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Text(System.String)">
+            <summary>
+            Matches element text. 
+            </summary>
+            <param name="text">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Index(System.Int32)">
+            <summary>
+            Matches the nth element of the currently matched elements.
+            </summary>
+            <param name="index">The zero-based index of the element to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw(System.String)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <param name="arg2">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <param name="arg2">A raw argument to pass to the Calabash query.</param>
+            <param name="arg3">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <param name="arg2">A raw argument to pass to the Calabash query.</param>
+            <param name="arg3">A raw argument to pass to the Calabash query.</param>
+            <param name="arg4">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <param name="arg2">A raw argument to pass to the Calabash query.</param>
+            <param name="arg3">A raw argument to pass to the Calabash query.</param>
+            <param name="arg4">A raw argument to pass to the Calabash query.</param>
+            <param name="arg5">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Raw``1(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            A raw Calabash selector. Allows for string based Calabash queries.
+            </summary>
+            <param name="calabashQuery">The Calabash query to match.</param>
+            <param name="arg1">A raw argument to pass to the Calabash query.</param>
+            <param name="arg2">A raw argument to pass to the Calabash query.</param>
+            <param name="arg3">A raw argument to pass to the Calabash query.</param>
+            <param name="arg4">A raw argument to pass to the Calabash query.</param>
+            <param name="arg5">A raw argument to pass to the Calabash query.</param>
+            <param name="arg6">A raw argument to pass to the Calabash query.</param>
+            <typeparam name="T">The expected result type of the property.</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Css(System.String)">
+            <summary>
+            Matches elements in web views matching the given css selector.
+            </summary>
+            <param name="cssSelector">The css selector to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Property(System.String,System.String)">
+            <summary>
+            Matches a property or getter method value on the element. 
+            </summary>
+            <param name="propertyName">The name of the property.</param>
+            <param name="value">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Property(System.String,System.Int32)">
+            <summary>
+            Matches a property or getter method value on the element. 
+            </summary>
+            <param name="propertyName">The name of the property.</param>
+            <param name="value">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Property(System.String,System.Boolean)">
+            <summary>
+            Matches a property or getter method value on the element. 
+            </summary>
+            <param name="propertyName">The name of the property.</param>
+            <param name="value">The value to match.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.Property(System.String)">
+            <summary>
+            Allows for further filtering on a given property value.
+            </summary>
+            <param name="propertyName">The name of the property.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppQuery.ToString">
+            <summary>
+            Converts the string into it's Calabash query equivalent.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppQuery.QueryPlatform">
+            <summary>
+            The target platform of the query. Useful when writing extensions methods for queries for platform differences.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.QueryPlatform">
+            <summary>
+            Representation of the different platforms a query can be targettet at.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.Queries.QueryPlatform.Android">
+            <summary>
+            The Android platform.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.Queries.QueryPlatform.iOS">
+            <summary>
+            The iOS platform.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.TestEnvironment">
+            <summary>
+            Contains runtime information about the current test environment.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.TestEnvironment.Platform">
+            <summary>
+            Provides the current runtime platform. Useful for complicated test setup scenarios.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.TestEnvironment.IsTestCloud">
+            <summary>
+            Determines at runtime whether the current test run is in the Xamarin Test Cloud.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.TestPlatform">
+            <summary>
+            Enum containing the various different test platforms.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.TestPlatform.Local">
+            <summary>
+            A local test run.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.TestPlatform.TestCloudAndroid">
+            <summary>
+            An Android test run in the Xamarin Test Cloud.
+            </summary>
+        </member>
+        <member name="F:Xamarin.UITest.TestPlatform.TestCloudiOS">
+            <summary>
+            An iOS test run in the Xamarin Test Cloud.
+            </summary>
+        </member>
+        <member name="T:Xamarin.UITest.Queries.AppTypedSelector`1">
+            <summary>
+            Fluent query API for specifying the type of property.
+            </summary>
+            <typeparam name="T">Type of property</typeparam>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppTypedSelector`1.#ctor(Xamarin.UITest.Queries.AppQuery,System.Object[])">
+            <summary>
+            Constructor for selectors. Should not be called directly, but used as part of the fluent API in the Property class.
+            </summary>
+            <param name="appQuery">The query for property</param>
+            <param name="queryParams">The parameters passed to the query.</param>
+        </member>
+        <member name="M:Xamarin.UITest.Queries.AppTypedSelector`1.ToString">
+            <summary>
+            Converts the string into it's Calabash query equivalent.
+            </summary>
+        </member>
+        <member name="P:Xamarin.UITest.Queries.AppTypedSelector`1.Xamarin#UITest#Queries#ITokenContainer#Tokens">
+            <summary>
+            The tokens of the current query.
+            </summary>
+        </member>
+    </members>
+</doc>
