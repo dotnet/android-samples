@@ -1,0 +1,31 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='com.squareup.picasso']" name="managedName">Squareup.Picasso</attr>
+  <attr path="/api/package[@name='com.squareup.okhttp']" name="managedName">Squareup.OkHttp</attr>
+
+  <attr path="/api/package[@name='com.squareup.picasso']/class[@name='Picasso']" name="name">Picasso</attr>
+
+  <attr path="/api/package[@name='com.squareup.okhttp.internal.http']/class[@name='AbstractHttpInputStream']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.squareup.okhttp.internal.http']/class[@name='RetryableOutputStream']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.squareup.okhttp.internal.http']/interface[@name='Transport']" name="name">ITransport</attr>
+
+  <remove-node path="/api/package[@name='com.squareup.okhttp']/class[@name='HttpResponseCache.Entry']" />
+  <remove-node path="/api/package[@name='com.squareup.okhttp']/class[@name='HttpResponseCache.EntryCacheResponse']" />
+  <remove-node path="/api/package[@name='com.squareup.okhttp']/class[@name='HttpResponseCache.EntrySecureCacheResponse']" />
+  <remove-node path="/api/package[@name='com.squareup.okhttp']/class[@name='HttpResponseCache.CacheRequestImpl']" />
+
+ 
+  <remove-node path="/api/package[@name='com.squareup.okhttp']/class[@name='HttpResponseCache']/method[@name='get']" />
+  <remove-node path="/api/package[starts-with(@name, 'com.squareup.okhttp.internal')]" />
+  
+  
+  
+ 
+</metadata>
