@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="androidwearpreview">
+  <name>Android Wear Developer Preview</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <version>1.0.0.1</version>
+  <summary>Extends the Android platform to a new generation of wearable devices.</summary>
+  <screenshots>
+    <img src="screenshots/screen_watch1.png" title="screen_watch1" />
+    <img src="screenshots/screen_watch4.png" title="screen_watch4" />
+  </screenshots>
+  <samples>
+    <sample id="MultiPageSample">
+      <name>Android Wear Multi Page</name>
+      <summary>Android Wear Multi Page</summary>
+    </sample>
+  </samples>
+</component>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+  <string name="go_to_invalid">Go to Invalid Point</string>
+  <string name="go_to_san_fran">Go to San Fran</string>
+  <string name="navigate_to_another_panorama">navigate to another panorama</string>
+  <string name="navigation">Navigation</string>
+  <string name="pan_camera">pan camera</string>
+  <string name="panning">Panning Gestures</string>
+  <string name="panorama_not_ready">Panorama is not ready yet</string>
+  <string name="request_position">Position</string>
+  <string name="split_street_view_panorama_and_map_demo_description">Demonstrates how to show a Street View panorama and map.</string>
+  <string name="split_street_view_panorama_and_map_demo_label">Street View Panorama and Map</string>
+  <string name="street_view_panorama_basic_demo_description">Standard Street View Panorama using a Fragment.</string>
+  <string name="street_view_panorama_basic_demo_label">Street View Panorama</string>
+  <string name="street_view_panorama_events_demo_description">Standard Street View Panorama with event handling.</string>
+  <string name="street_view_panorama_events_demo_label">Street View Panorama events</string>
+  <string name="street_view_panorama_navigation_demo_description">Street View Panorama with programatic navigation</string>
+  <string name="street_view_panorama_navigation_demo_label">Street View Panorama navigation</string>
+  <string name="street_view_panorama_options_demo_description">Street View Panorama with toggles for options</string>
+  <string name="street_view_panorama_options_demo_label">Street View Panorama options</string>
+  <string name="street_view_panorama_view_demo_description">Standard Street View Panorama using a View</string>
+  <string name="street_view_panorama_view_demo_label">Street View Panorama View</string>
+  <string name="streetnames">Streetnames</string>
+  <string name="tap_screen">tap screen</string>
+  <string name="walk_panorama">Walk</string>
+</resources>

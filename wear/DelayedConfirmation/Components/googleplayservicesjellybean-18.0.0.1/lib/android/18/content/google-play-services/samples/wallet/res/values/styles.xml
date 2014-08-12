@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="BikestoreWalletFragmentDetailsTextAppearance">
+        <item name="android:textColor">@color/wallet_details_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="BikestoreWalletFragmentDetailsHeaderTextAppearance"
+        parent="BikestoreWalletFragmentDetailsTextAppearance">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ButtonBikestore" parent="android:Widget.Button">
+        <item name="android:background">@drawable/bikestore_btn_default_holo_light</item>
+        <item name="android:minHeight">@dimen/bikestore_button_min_width</item>
+        <item name="android:minWidth">@dimen/bikestore_button_max_width</item>
+        <item name="android:textColor">@color/bikestore_button_text</item>
+        <item name="android:textSize">@dimen/bikestore_button_text</item>
+    </style>
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hello world</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="get_color">Get Color</string>
+    <string name="refresh">Refresh</string>
+    <string name="load_error">Failed to load container</string>
+</resources>
