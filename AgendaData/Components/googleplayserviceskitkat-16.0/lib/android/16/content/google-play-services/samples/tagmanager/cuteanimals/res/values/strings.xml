@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cute Animals</string>
+    <string name="menu_settings">Settings</string>
+    <string name="get_color">Get Color</string>
+    <string name="refresh">Refresh</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="pictures">Pictures!</string>
+    <string name="images">Images</string>
+    <string name="animals">Animals</string>
+    <string name="load_error">Failed to load container</string>
+</resources>

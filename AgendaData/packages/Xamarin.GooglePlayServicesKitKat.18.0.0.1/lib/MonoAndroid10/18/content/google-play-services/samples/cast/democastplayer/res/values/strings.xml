@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+
+    <string name="app_name">Demo Cast Player</string>
+    <string name="select_media">Select Media&#8230;</string>
+    <string name="select_tracks">Select Tracks&#8230;</string>
+    <string name="attach_to_session">Attach to Session</string>
+    <string name="scan_failed_network_error">Unable to scan for devices. Check your network settings.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_device">(No Device Selected)</string>
+    <string name="error">Error</string>
+    <string name="launch_app">Launch App</string>
+    <string name="join_app">Join App</string>
+    <string name="leave_app">Leave App</string>
+    <string name="stop_app">Stop App</string>
+    <string name="start_session">Start Session</string>
+    <string name="end_session">End Session</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+    <string name="no_time">--:--</string>
+    <string name="select_mode">Select a mode:</string>
+    <string name="select_notifications_mode">Select alert type(s):</string>
+    <string name="sdk_mode_button">Cast SDK Mode</string>
+    <string name="mrp_mode_button">MediaRouter Mode</string>
+    <string name="mrp_request_failed">The MediaRoute request has failed.</string>
+    <string name="device_volume">Device Vol:</string>
+    <string name="stream_volume">Stream Vol:</string>
+    <string name="mute">Mute</string>
+    <string name="select_media_title">Select Media</string>
+    <string name="select_tracks_title">Select Media Tracks</string>
+    <string name="media_art_description">Image that represents the currently playing media</string>
+    <string name="media_route_menu_title">Play on&#8230;</string>
+    <string name="list_empty">No items available</string>
+    <string name="after_seek">After seeking:</string>
+    <string name="autoplay">Autoplay</string>
+    <string name="status_app_disconnected">Connection to receiver application has closed.</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_wifi_settings">Wi-Fi Settings</string>
+    <string name="action_accessibility_settings">Accessibility Settings</string>
+    <string name="action_locale_settings">Language Settings</string>
+
+    <string-array name="seek_behaviors">
+        <item>Do Nothing</item>
+        <item>Play</item>
+        <item>Pause</item>
+    </string-array>
+
+    <!-- Application preferences -->
+    <string name="media_list_url"></string>
+    <string name="media_list_url_pref">Media list URL</string>
+    <string name="summary_media_list_url_pref">Specify the URL from which the media list should be downloaded.</string>
+    <string name="dialog_title_media_list_url_pref">Enter the media list URL:</string>
+
+    <string name="receiver_application_id_pref">Receiver application ID</string>
+    <string name="summary_receiver_application_id_pref">Specify the receiver application ID.</string>
+    <string name="dialog_title_receiver_application_id_pref">Enter the receiver application ID:</string>
+
+    <string name="relaunch_app_pref">Always relaunch receiver app</string>
+    <string name="summary_relaunch_app_pref">If checked, launch always relaunches; otherwise, it tries to join first.</string>
+
+    <string name="stop_app_pref">Stop receiver app when ending session</string>
+    <string name="summary_stop_app_pref">If checked, ending a session will terminate the receiver application.</string>
+
+    <string name="timeout_interval_pref">Timeout interval</string>
+    <string name="summary_timeout_interval_pref">The connection inactivity timeout, in seconds.</string>
+
+    <!-- Media operations. -->
+    <string name="mediaop_load">load</string>
+    <string name="mediaop_seek">seek</string>
+    <string name="mediaop_pause">pause</string>
+    <string name="mediaop_play">play</string>
+    <string name="mediaop_stop">stop</string>
+    <string name="mediaop_set_stream_volume">set stream volume</string>
+    <string name="mediaop_toggle_stream_mute">toggle stream mute</string>
+    <string name="mediaop_set_active_media_tracks">set active media tracks</string>
+    <string name="mediaop_set_text_track_style">set text track style</string>
+
+    <!-- Error messages. -->
+    <string name="error_load_media_failed">Failed to load the media.</string>
+    <string name="error_no_controller">Unable to acquire controller.</string>
+    <string name="error_no_device_connection">Unable to connect to device.</string>
+    <string name="error_lost_device_connection">Lost connection to device.</string>
+    <string name="error_app_launch_failed">Unable to launch application.</string>
+    <string name="error_app_join_failed">Unable to join application.</string>
+    <string name="error_app_leave_failed">Unable to leave application.</string>
+    <string name="error_app_stop_failed">Unable to stop application.</string>
+    <string name="error_operation_failed">Operation \'%1$s\' failed.</string>
+
+</resources>

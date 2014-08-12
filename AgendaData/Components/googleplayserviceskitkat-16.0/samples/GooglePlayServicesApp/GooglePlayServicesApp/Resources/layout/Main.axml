@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/linearLayout1">
+    <TextView
+        p1:text="Simple google maps test"
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:id="@+id/textView1"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content" />
+</LinearLayout>

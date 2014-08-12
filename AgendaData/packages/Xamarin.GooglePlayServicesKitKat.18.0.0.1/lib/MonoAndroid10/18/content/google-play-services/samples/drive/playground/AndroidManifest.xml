@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.gms.drive.sample.realtimeplayground"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/drive_AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".RealtimePlaygroundHomeActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PlaygroundDocumentActivity"
+            android:label="@string/realtime_playground"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize">
+        </activity>
+    </application>
+</manifest>
+
