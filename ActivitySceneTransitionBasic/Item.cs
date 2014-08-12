@@ -23,7 +23,7 @@ using System;
 namespace ActivitySceneTransitionBasic
 {
 
-	public class Item
+	public class Item : Java.Lang.Object
 	{
 
 		private static readonly string LARGE_BASE_URL = "http://storage.googleapis.com/androiddevelopers/sample_data/activity_transition/large/";

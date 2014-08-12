@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Util;
 
 using ActivitySceneTransitionBasic.ImageLoader;
+using Java.Interop;
 
 namespace ActivitySceneTransitionBasic
 {
@@ -33,7 +34,7 @@ namespace ActivitySceneTransitionBasic
  	* framework to animatedly do so.
  	*/
 	[Activity (Label="@string/app_name", MainLauncher=true)]
-	public class MainActivity : Activity
+	public class MainActivity : Activity, AdapterView.IOnItemClickListener
 	{
 
 		private GridView mGridView;
@@ -47,8 +48,28 @@ namespace ActivitySceneTransitionBasic
 
 			// Setup the GridView and set the adapter
 			mGridView = (GridView) FindViewById (Resource.Id.grid);
+			mGridView.OnItemClickListener = this;
 			mAdapter = new GridAdapter(this);
 			mGridView.Adapter = mAdapter;
+		}
+
+		public void OnItemClick (AdapterView parent, View view, int position, long id)
+		{
+			Item item = parent.GetItemAtPosition (position).JavaCast<Item>();
+
+			// Construct an Intent as normal
+			Intent intent = new Intent (this, typeof(DetailActivity));
+			intent.PutExtra (DetailActivity.EXTRA_PARAM_ID, item.id);
+
+			ActivityOptions activityOptions = ActivityOptions.MakeSceneTransitionAnimation (
+				                                  this,
+				// Now we provide a list of Pair items which contain the view we can transition from, and the name of the view it is 
+				// transitioning to, in the launched activity
+				                                  new Pair (view.FindViewById (Resource.Id.imageview_item), DetailActivity.VIEW_NAME_HEADER_IMAGE),
+				                                  new Pair (view.FindViewById (Resource.Id.textview_name), DetailActivity.VIEW_NAME_HEADER_TITLE)
+			                                  );
+			// Now we can start the Activity, providing the activity options as a bundle
+			StartActivity (intent, activityOptions.ToBundle ());
 		}
 	} 
 
@@ -104,35 +125,6 @@ namespace ActivitySceneTransitionBasic
              */
 			image.ViewName = "grid:image:" + item.id;
 			name.ViewName = "grid:name:" + item.id;
-
-			/**
-		     * Called when an item in the GridView is clicked. Here will launch the
-		     * DetailActivity, using the Scene Transition animation functionality.
-		     */
-			view.Click += delegate(object sender, EventArgs e) {
-				// Construct an Intent as normal
-				Intent intent = new Intent (context, typeof(DetailActivity));
-				intent.PutExtra (DetailActivity.EXTRA_PARAM_ID, item.id);
-
-				/**
-		         * Now create an ActivityOptions instance using the
-		         * ActivityOptions#makeSceneTransitionAnimation(Activity, android.util.Pair[]) factory method.
-		         */
-				ActivityOptions activityOptions = ActivityOptions.MakeSceneTransitionAnimation (context,
-					// Now we provide a list of Pair items which contain the view we can transitioning
-					// from, and the name of the view it is transitioning to, in the launched activity
-					                                  new Pair (
-						                                  view.FindViewById (Resource.Id.imageview_item),
-						                                  DetailActivity.VIEW_NAME_HEADER_IMAGE),
-					                                  new Pair (
-						                                  view.FindViewById (Resource.Id.textview_name),
-						                                  DetailActivity.VIEW_NAME_HEADER_TITLE)
-				                                  );
-
-				// Now we can start the Activity, providing the activity options as a bundle
-				context.StartActivity (intent, activityOptions.ToBundle ());
-
-			};
 
 			return view;
 		}
