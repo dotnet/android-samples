@@ -6,5 +6,5 @@
   <Tags>User Interface, Network</Tags>
   <SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <Gallery>false</Gallery>
+    <Gallery>true</Gallery>
 </SampleMetadata>
