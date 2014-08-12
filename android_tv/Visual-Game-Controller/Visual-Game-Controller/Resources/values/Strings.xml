@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VisualGameController</string>
+    <string name="message">Connect a game controller</string>
+
+</resources>
