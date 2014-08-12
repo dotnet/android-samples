@@ -5,4 +5,4 @@ This sample demonstrates how to use the new Camera2 APIs to render a preview of 
 
 How to build
 ------------
-Download Xamarin Studio 5.3.0.5 or later, and install Monodroid 4.15.0-x or later, if it does not already come with Xamarin Studio. Open Camera2Basic.sln in Xamarin Studio, and build.
+Update Xamarin Studio and Monodroid to their latest versions. Open Camera2Basic.sln in Xamarin Studio, and build.
