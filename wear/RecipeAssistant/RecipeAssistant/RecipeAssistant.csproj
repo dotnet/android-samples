@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{8A3F85F8-F9B8-4B1F-9889-066604EB62D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RecipeAssistant</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>RecipeAssistant</AssemblyName>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0.3\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetUtils.cs">
+    </Compile>
+    <Compile Include="RecipeListAdapter.cs">
+    </Compile>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Recipe.cs" />
+    <Compile Include="RecipeActivity.cs" />
+    <Compile Include="RecipeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_noimage.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_noimage.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_noimage.png" />
+    <AndroidResource Include="Resources\layout\list_item.xml" />
+    <AndroidResource Include="Resources\layout\recipe.xml" />
+    <AndroidResource Include="Resources\layout\step_item.xml" />
+    <AndroidResource Include="Resources\menu\main.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_app_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_notification_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_app_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_notification_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_app_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_notification_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_app_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_notification_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_app_recipe.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_notification_recipe.png" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <AndroidAsset Include="Assets\beef-brisket-chili.json" />
+    <AndroidAsset Include="Assets\chili.jpg" />
+    <AndroidAsset Include="Assets\guacamole.jpg" />
+    <AndroidAsset Include="Assets\guacamole.json" />
+    <AndroidAsset Include="Assets\irish-stew.jpg" />
+    <AndroidAsset Include="Assets\northern-irish-vegetable-soup.json" />
+    <AndroidAsset Include="Assets\recipelist.json" />
+    <AndroidAsset Include="Assets\step-1-grind-spices.jpg" />
+    <AndroidAsset Include="Assets\step-2-score-beef.jpg" />
+    <AndroidAsset Include="Assets\step-3-brown-beef.jpg" />
+    <AndroidAsset Include="Assets\step-3-lime.jpg" />
+    <AndroidAsset Include="Assets\step-4-fry-onion.jpg" />
+    <AndroidAsset Include="Assets\step-6-combine.jpg" />
+    <AndroidAsset Include="Assets\step-8-pull.jpg" />
+  </ItemGroup>
+</Project>
