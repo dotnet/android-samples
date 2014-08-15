@@ -15,6 +15,6 @@ Update Xamarin Studio and Monodroid to their latest versions. Open Camera2Basic.
 
 Author
 ------
-Copyright (c) 2005-2008, The Android Open Source Project
+Copyright (c) 2005-2008, The Android Open Source Project  
 Ported to Xamarin.Android by Christopher Blackman
 
