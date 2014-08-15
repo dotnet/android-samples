@@ -25,8 +25,10 @@ namespace FlashlightSample
 			v = view;
 		}
 
+		//Continually sends and recieves messages to cycle through the colors
 		public override void HandleMessage (Message msg)
 		{
+			//Cycle through every combination of the colors in the array
 			v.current_color = v.GetColor (v.progress, v.colors [v.from_color_index], v.colors [v.to_color_index]);
 			v.PostInvalidate ();
 			v.progress += 0.1f;
@@ -55,6 +57,7 @@ namespace FlashlightSample
 		public int from_color_index;
 		public int to_color_index;
 
+		//value between 0 and 1
 		public float progress;
 
 		private ArgbEvaluator evaluator;
@@ -92,6 +95,7 @@ namespace FlashlightSample
 			canvas.DrawColor (new Color(current_color));
 			base.OnDraw (canvas);
 		}
+
 		public void StartCycling()
 		{
 			handler.SendEmptyMessage (0);
@@ -101,7 +105,9 @@ namespace FlashlightSample
 		{
 			handler.RemoveMessages (0);
 		}
-	
+
+		//Combines the start color, end color, and progress value (fraction)
+		//to generate the ARGB value for the resulting color when combined
 		public int GetColor(float fraction, int colorStart, int colorEnd)
 		{
 			int startInt = colorStart;
