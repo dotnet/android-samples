@@ -5,11 +5,11 @@ This sample demonstrates how to use the new Camera2 APIs to render a preview of 
 
 Instructions
 ------------
-Touch the Picture button to take a photo that will automatically be saved on your device.
+* Touch the Picture button to take a photo that will automatically be saved on your device.
 
-Touch the info button to find out a little bit more about the app.
+* Touch the info button to find out a little bit more about the app.
 
-How to build
+Build Requirements
 ------------
 Update Xamarin Studio and Monodroid to their latest versions. Open Camera2Basic.sln in Xamarin Studio, and build.
 
