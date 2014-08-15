@@ -25,6 +25,9 @@ namespace BuiltInViews {
             tableItems.Add(new TableItem(){ Heading="Bulbs", SubHeading = "18 items", ImageResourceId = Resource.Drawable.Bulbs });
             tableItems.Add(new TableItem(){ Heading="Tubers", SubHeading = "43 items", ImageResourceId = Resource.Drawable.Tubers });
 
+            // Select multiple rows for activated ListViews:
+            // ListView.ChoiceMode = ChoiceMode.Multiple;
+            ListView.ChoiceMode = ChoiceMode.Single;
 
             ListAdapter = new HomeScreenAdapter(this, tableItems);
         }
