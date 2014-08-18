@@ -19,10 +19,10 @@
             that do not contain NDEF or Android Beam data. This sample is designed to read the virtual
             loyalty card implemented in the "CardEmulation" sample.
     </string>
-    <string name="app_name">CardReader</string>
     <string name="sample_show_log">Show Log</string>
     <string name="sample_hide_log">Hide Log</string>
     <string name="card_title">Visa</string>
     <string name="account_number">1234432167895467</string>
     <string name="service_name">JP Morgan Chase</string>
+    <string name="app_name">CardReader</string>
 </resources>
