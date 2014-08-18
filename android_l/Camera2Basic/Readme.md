@@ -13,7 +13,7 @@ Instructions
 
 Build Requirements
 ------------
-Update Xamarin Studio and Monodroid to their latest versions. Open Camera2Basic.sln in Xamarin Studio, and build.
+Using this sample requires a device that is Android L or later and Xamarin.Android 4.17 or later.
 
 Author
 ------
