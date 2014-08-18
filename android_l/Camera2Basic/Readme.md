@@ -9,6 +9,8 @@ Instructions
 
 * Touch the info button to find out a little bit more about the app.
 
+* Requires a device with a rear facing camera
+
 Build Requirements
 ------------
 Update Xamarin Studio and Monodroid to their latest versions. Open Camera2Basic.sln in Xamarin Studio, and build.
