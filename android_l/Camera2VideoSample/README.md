@@ -11,7 +11,7 @@ Instructions
 
 Build Requirements
 ------------------
-Using this sample requires a device that is Android L or later and Xamarin.Android 4.17 or later.
+Using this sample requires a device that is Android L or later that has a rear camera and Xamarin.Android 4.17 or later.
 
 Author
 ------
