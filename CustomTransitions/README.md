@@ -13,5 +13,5 @@ This sample requires the SDK platform level 19 to build and a device that is lev
 
 Author
 ------
-Copyright (c) 2005-2008, The Android Open Source Project
+Copyright (c) 2005-2008, The Android Open Source Project  
 Ported to Xamarin.Android by John Pilczak
