@@ -27,7 +27,7 @@ Global
 		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BuiltInExpandableViews\BuiltInExpandableViews.csproj
+		StartupItem = BuiltInViews\BuiltInViews.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
