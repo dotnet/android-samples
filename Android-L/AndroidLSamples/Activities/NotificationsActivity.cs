@@ -17,6 +17,8 @@ namespace AndroidLSamples
 	[Activity (Label = "Notifications", ParentActivity=typeof(HomeActivity))]			
 	public class NotificationsActivity : Activity
 	{
+		Spinner spinner;
+		Switch highPriority;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -24,6 +26,7 @@ namespace AndroidLSamples
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
 			ActionBar.SetDisplayShowHomeEnabled (true);
 			ActionBar.SetIcon (Android.Resource.Color.Transparent);
+			highPriority = FindViewById<Switch> (Resource.Id.high_priority);
 
 			var intent = new Intent (this, typeof(NotificationsActivity));
 			var contentIntent = PendingIntent.GetActivity (this, 0, intent, PendingIntentFlags.CancelCurrent);
@@ -41,7 +44,12 @@ namespace AndroidLSamples
 					.SetContentText("I went to the zoo and saw a monkey!")
 					.SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					.SetAutoCancel(true);
+
+				SetMetadata(builder);
+
 				var notification = builder.Build();
+				if(highPriority.Checked)
+					notification.Defaults |= NotificationDefaults.Sound;
 				manager.Notify(0, notification);
 			};
 				
@@ -57,8 +65,13 @@ namespace AndroidLSamples
 					.SetContentText("I went to the zoo and saw a monkey!")
 					.SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					.SetAutoCancel(true);
+
+				SetMetadata(builder);
+
 				var notification = builder.Build();
-				manager.Notify(0, notification);
+				if(highPriority.Checked)
+					notification.Defaults |= NotificationDefaults.Sound;
+				manager.Notify(1, notification);
 			};
 
 			FindViewById<Button>(Resource.Id.extended).Click += (sender, e) => {
@@ -77,8 +90,13 @@ namespace AndroidLSamples
 					.SetContentText(message)
 					.SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					.SetAutoCancel(true);
+
+				SetMetadata(builder);
+
 				var notification = builder.Build();
-				manager.Notify(0, notification);
+				if(highPriority.Checked)
+					notification.Defaults |= NotificationDefaults.Sound;
+				manager.Notify(2, notification);
 			};
 
 			FindViewById<Button>(Resource.Id.extended_photo).Click += (sender, e) => {
@@ -97,9 +115,46 @@ namespace AndroidLSamples
 					.SetContentText(message)
 					.SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
 					.SetAutoCancel(true);
+
+				SetMetadata(builder);
+
 				var notification = builder.Build();
-				manager.Notify(0, notification);
+				if(highPriority.Checked)
+					notification.Defaults |= NotificationDefaults.Sound;
+				manager.Notify(3, notification);
 			};
+
+			spinner = FindViewById<Spinner>(Resource.Id.spinner_visibility);
+			// Create an ArrayAdapter using the string array and a default spinner layout
+			var adapter = ArrayAdapter.CreateFromResource(this,
+				Resource.Array.notification_priority, Android.Resource.Layout.SimpleSpinnerItem);
+			// Specify the layout to use when the list of choices appears
+			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			// Apply the adapter to the spinner
+			spinner.Adapter = adapter;
+		}
+
+		private void SetMetadata(Notification.Builder builder)
+		{
+			builder.SetCategory (Notification.CategoryMessage);
+
+			if ((int)Build.VERSION.SdkInt >= 16) {
+
+
+				builder.SetPriority(highPriority.Checked ? (int)NotificationPriority.High : (int)NotificationPriority.Default);
+			}
+
+			if ((int)Build.VERSION.SdkInt >= 20) {
+
+				var visibility = NotificationVisibility.Public;
+				if(spinner.SelectedItemPosition == 1)
+					visibility = NotificationVisibility.Private;
+				else if(spinner.SelectedItemPosition == 2)
+					visibility = NotificationVisibility.Secret;
+					
+				builder.SetVisibility(visibility);
+			}
+
 		}
 	}
 }

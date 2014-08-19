@@ -24,4 +24,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/extended_photo" />
+    <TextView
+        android:text="Visibility"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_visibility" />
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/high_priority"
+        android:text="High Priority" />
 </LinearLayout>

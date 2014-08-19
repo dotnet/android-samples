@@ -122,6 +122,7 @@
     <AndroidResource Include="Resources\menu\menu1.xml" />
     <AndroidResource Include="Resources\menu\menu2.xml" />
     <AndroidResource Include="Resources\layout\activity_elevation.axml" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
