@@ -6,7 +6,7 @@ NavigationDrawer
   the action bar's Up affordance as a signal to open and close the navigation drawer. The
   ActionBarDrawerToggle facilitates this behavior.
   Items within the drawer should fall into one of two categories:  
-  * **View switches**. A view switch follows the same basic policies as
+ *  **View switches**. A view switch follows the same basic policies as
   list or tab navigation in that a view switch does not create navigation history.
   This pattern should only be used at the root activity of a task, leaving some form
   of Up navigation active for activities further down the navigation hierarchy.
