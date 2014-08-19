@@ -40,6 +40,7 @@ namespace AndroidLSamples
 				new ActivityItem{ Title = "RecyclerView - v7",	Intent = new Intent(this, typeof(RecyclerViewActivity)) },
 				new ActivityItem{ Title = "RecyclerView Add/Remove - v7",	Intent = new Intent(this, typeof(RecyclerViewActivityAddRemove)) },
 				new ActivityItem{ Title = "Palette - v7", Intent = new Intent(this, typeof(ImageListActivity))},
+				new ActivityItem{ Title = "Animations - Reveal - v21",	Intent = new Intent(this, typeof(AnimationRevealActivity))},
 				new ActivityItem{ Title = "Animations - Explode - v21",	Intent = new Intent(this, typeof(AnimationsActivity1))},
 				new ActivityItem{ Title = "Animations - Move Image - v21",	Intent = new Intent(this, typeof(AnimationsActivityMoveImage1))},
 				new ActivityItem{ Title = "Notifications - v21", Intent = new Intent(this, typeof(NotificationsActivity)) }

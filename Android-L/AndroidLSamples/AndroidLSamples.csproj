@@ -73,6 +73,7 @@
     <Compile Include="Activities\AnimationActivityMoveImage1.cs" />
     <Compile Include="Activities\AnimationActivityMoveImage2.cs" />
     <Compile Include="Activities\EvelvationActivity.cs" />
+    <Compile Include="Activities\AnimationRevealActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -123,6 +124,8 @@
     <AndroidResource Include="Resources\menu\menu2.xml" />
     <AndroidResource Include="Resources\layout\activity_elevation.axml" />
     <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\layout\activity_reveal.axml" />
+    <AndroidResource Include="Resources\drawable\monkey.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
