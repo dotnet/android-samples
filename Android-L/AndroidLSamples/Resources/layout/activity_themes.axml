@@ -19,6 +19,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/button1"
             android:layout_marginBottom="@dimen/activity_margin" />
+        <ImageView
+            android:src="@drawable/xamarin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground" />
         <RadioGroup
             android:minWidth="25px"
             android:minHeight="25px"
