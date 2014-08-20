@@ -126,6 +126,8 @@
     <AndroidResource Include="Resources\values\arrays.xml" />
     <AndroidResource Include="Resources\layout\activity_reveal.axml" />
     <AndroidResource Include="Resources\drawable\monkey.png" />
+    <AndroidResource Include="Resources\drawable\xamarin_white.png" />
+    <AndroidResource Include="Resources\drawable\mycircle.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

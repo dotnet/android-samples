@@ -136,7 +136,7 @@ namespace AndroidLSamples
 
 		private void SetMetadata(Notification.Builder builder)
 		{
-			builder.SetCategory (Notification.CategoryMessage);
+
 
 			if ((int)Build.VERSION.SdkInt >= 16) {
 
@@ -145,7 +145,7 @@ namespace AndroidLSamples
 			}
 
 			if ((int)Build.VERSION.SdkInt >= 20) {
-
+				builder.SetCategory (Notification.CategoryMessage);
 				var visibility = NotificationVisibility.Public;
 				if(spinner.SelectedItemPosition == 1)
 					visibility = NotificationVisibility.Private;

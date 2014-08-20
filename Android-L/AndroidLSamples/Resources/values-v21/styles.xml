@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
  <!-- inherit from the material theme -->
+
   <style name="AppTheme" parent="android:Theme.Material.Light">
     <!-- Main theme colors -->
     <!--   your app's branding color (for the app bar) -->
     <item name="android:colorPrimary">@color/xam_blue</item>
-    <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+    <!--   darker variant of colorPrimary -->
     <item name="android:colorPrimaryDark">@color/xam_dark_blue</item>
     <!--   theme UI controls like checkboxes and text fields -->
     <item name="android:colorAccent">@color/xam_purple</item>
-
-    <item name="android:statusBarColor">@color/xam_purple</item>
-
   </style>
 
   <style name="CardView.XamBlue">

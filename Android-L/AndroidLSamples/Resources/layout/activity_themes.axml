@@ -61,16 +61,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/seekBar1" />
-        <ImageView
-            android:src="@drawable/xamarin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView1" />
-        <ImageView
-            android:src="@drawable/xamarin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:tint="@color/xam_purple" />
     </LinearLayout>
 </ScrollView>
