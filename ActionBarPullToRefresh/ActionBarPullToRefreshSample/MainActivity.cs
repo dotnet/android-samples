@@ -39,11 +39,9 @@ namespace ActionBarPullToRefreshSample
 
 		// We don't want to display these activities for a couple of different reasons:
 		// MainActivity - this is the current activity
-		// GridViewActivity - this doesn't seem to bind correctly with the stable release of Xamarin.Android (4.6.8)
 		// ignore generated splash screen activity for trial users
 		private string[] _activitiesToExclude = new string[] {
 			"actionbarpulltorefreshsample.MainActivity",
-			"actionbarpulltorefreshsample.GridViewActivity",
 			"actionbarpulltorefreshsample.actionbarpulltorefreshsample.TrialSplashScreen"
 		};
 

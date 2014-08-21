@@ -10,7 +10,7 @@
   <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library.delegate']" name="managedName">Xamarin.ActionBarPullToRefresh.Library.Delegates</attr>
   <attr path="/api/package/class/field[@name='delegate']" name="managedName">DelegateField</attr>
   <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']/class[@name='PullToRefreshAttacher.Delegate']" name="managedName">PullToRefreshAttacher.DelegateClass</attr>
-  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']/class[@name='PullToRefreshAttacher']/constructor/parameter[@type='V']" name="type">java.lang.Object</attr>
+  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']/class[@name='PullToRefreshAttacher']/constructor/parameter[@type='V']" name="type">android.view.View</attr>
 
 
 </metadata>
