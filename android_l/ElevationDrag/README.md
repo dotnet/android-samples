@@ -1,4 +1,4 @@
-Elevation Basic
+Elevation Drag
 ==============
 
 This sample demonstrates a drag and drop action on different shapes. Elevation and z-translation are used to render the shadows. The views are clipped using different outlines.
