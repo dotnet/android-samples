@@ -28,6 +28,11 @@ Instructions
 * Bring up the Navigation Drawer by hitting the three horizontal bars or by swipping in from the left side of the device
 * Select a planet to display
 
+Build Requirements
+-----------------
+* Xamarin Studio 5.3+
+* Xamarin Android 4.17+
+
 Author
 ------
 Copyright (c) 2005-2008, The Android Open Source Project  
