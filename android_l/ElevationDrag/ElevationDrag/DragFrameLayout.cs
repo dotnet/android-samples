@@ -26,7 +26,7 @@ namespace ElevationDrag
 		/**
 	     * The {@link DragFrameLayoutController} that will be notify on drag.
 	     */
-		internal DragFrameLayoutController DragFrameLayoutController;
+		internal DragFrameLayoutController mDragFrameLayoutController;
 
 		private ViewDragHelper mDragHelper;
 
@@ -113,8 +113,8 @@ namespace ElevationDrag
 		public override void OnViewCaptured (View capturedChild, int activePointerId)
 		{
 			base.OnViewCaptured (capturedChild, activePointerId);
-			if (owner.DragFrameLayoutController != null)
-				owner.DragFrameLayoutController.OnDragDrop (false);
+			if (owner.mDragFrameLayoutController != null)
+				owner.mDragFrameLayoutController.OnDragDrop (false);
 		}
 	}
 
