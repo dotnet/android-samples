@@ -6,8 +6,12 @@ GridViewPager is a view that separates each item onto a different page, and can 
 
 GridViewPager is very similar to the notifications layout on the Android Wear home screen. As such, each page / item may have a background, and the control will automatically perform parallax effects between the foreground and background.
 
-Build and Deploy
-================
-Install the latest version of Xamarin Studio, select either an Android Wear device or emulator as the target device, then click either 'Run with debugging' or 'Run without debugging.'
+Build Requirements
+------------------
+Xamarin Studio 5.3+  
+Xamarin.Android 4.17+
 
-This sample uses the Xamarin Android Wearable Library package. If there are any issues with it, you may reinstall the package from NuGet.
+Author
+------   
+Copyright (c) 2005-2008, The Android Open Source Project  
+Ported to Xamarin.Android by Christopher Blackman
