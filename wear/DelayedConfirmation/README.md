@@ -12,7 +12,7 @@ Full instructions for how to connect and prepare a Wearable for use please see [
 
 Build Requirements
 ------------------
-Xamarin.Android 4.17+
+Xamarin.Android 4.17+  
 Xamarin Studio 5.3+
 
 
