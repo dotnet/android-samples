@@ -2,8 +2,18 @@ RecipeAssistant
 ===============
 This sample demonstrates sending a list of notifications pages to an Android Wear device, with each page describing a step in a recipe. The actual creation of the notification is done in RecipeService.cs.
 
-Build and Deploy
-================
-In order to build and deploy this project, you will need a physical device running Android 4.3 Jelly Bean, which is connected to either a physical Android Wear device or the Android Wear emulator.
+Instructions
+------------
+* Deploy the RecipeAssistant project to a physical Android device that is 4.3 Jelly Bean or above.
+* Pick a recipe from the app to send to the wearable device
+* The wearable device will recieve a multi-page notification with a page for each step of the recipe. You can move on to the next page by swiping left on the device.
 
-Opening the project on your device, tapping a recipe then tapping start will send the notification to the wearable.
+Build Requirements
+------------------
+Xamarin Studio 5.3+  
+Xamarin.Android 4.17+
+
+Author
+------   
+Copyright (c) 2005-2008, The Android Open Source Project  
+Ported to Xamarin.Android by Christopher Blackman
