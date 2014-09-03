@@ -4,7 +4,7 @@ This sample shows the basic outline of a wearable project including Gridviews on
 
 Build Requirements
 ------------------
-Xamarin Studio 5.3+
+Xamarin Studio 5.3+  
 Xamarin.Android 4.17+
 
 Author
