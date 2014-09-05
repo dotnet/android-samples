@@ -46,7 +46,7 @@ namespace RotationDemo
 										authRequest.Method = "POST";
 										authRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 										authRequest.Headers.Add ("Accept-Encoding", "gzip");
-										authRequest.Timeout = 10000;
+										authRequest.Timeout = 15000;
 										authRequest.KeepAlive = true;
 
 										using (var stream = authRequest.GetRequestStream ()) {
