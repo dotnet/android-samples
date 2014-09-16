@@ -16,6 +16,11 @@
         android:background="#ddd"
         android:maxLines="1"
         android:padding="16dp" />
+    <Button
+        android:id="@+id/apply_palette"
+        android:text="Apply Palette"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -38,12 +38,15 @@ namespace AndroidLSamples
 			image.SetImageResource (item.Image);
 			name.Text = ActionBar.Title = item.Name;
 
-			var bitmap = await BitmapFactory.DecodeResourceAsync (Resources, item.Image);
+			FindViewById<Button> (Resource.Id.apply_palette).Click += async (sender, e) => {
 
-			//generates the pallet with 16 samples(default)
-			//Contact images/avatars: optimal values are 24-32
-			//Landscapes: optimal values are 8-16
-			Palette.GenerateAsync (bitmap, 16, this);
+				var bitmap = await BitmapFactory.DecodeResourceAsync (Resources, item.Image);
+
+				//generates the pallet with 16 samples(default)
+				//Contact images/avatars: optimal values are 24-32
+				//Landscapes: optimal values are 8-16
+				Palette.GenerateAsync (bitmap, 16, this);
+			};
 
 		}
 
@@ -58,6 +61,7 @@ namespace AndroidLSamples
 			//Muted light: palette.LightMutedColor
 			if (palette == null)
 				return;
+				
 
 			//must check each palette as there is no guarantee
 			//that it was generated.

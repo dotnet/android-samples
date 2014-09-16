@@ -7,4 +7,6 @@
   <color name="xam_light_gray">#B4BCBC</color>
   <color name="xam_gray">#738182</color>
   <color name="xam_medium_blue">#2980B9</color>
+	<color name="color_1">#E91E63</color>
+	<color name="color_2">#673AB7</color>
 </resources>

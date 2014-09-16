@@ -1,5 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Widget;
+
+
 namespace AndroidLSamples
 {
 	[Activity (Label = "Themed Controls", ParentActivity=typeof(HomeActivity))]			
@@ -12,6 +15,7 @@ namespace AndroidLSamples
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
 			ActionBar.SetDisplayShowHomeEnabled (true);
 			ActionBar.SetIcon (Android.Resource.Color.Transparent);
+
 		}
 
 		public override bool OnCreateOptionsMenu (Android.Views.IMenu menu)

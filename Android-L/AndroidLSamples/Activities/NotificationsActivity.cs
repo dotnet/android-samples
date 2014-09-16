@@ -36,6 +36,8 @@ namespace AndroidLSamples
 
 			FindViewById<Button>(Resource.Id.simple).Click += (sender, e) => {
 
+				manager.Cancel(0);
+
 				//Generate a notification with just short text and small icon
 				var builder = new Notification.Builder(this)
 					.SetContentIntent(contentIntent)
@@ -56,11 +58,14 @@ namespace AndroidLSamples
 
 			FindViewById<Button>(Resource.Id.simple_photo).Click += (sender, e) => {
 
+				manager.Cancel(1);
+
+				var icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there);
 				//Generate a notification with just short text, small icon & large icon
 				var builder = new Notification.Builder(this)
 					.SetContentIntent(contentIntent)
 					.SetSmallIcon(Resource.Drawable.ic_notification)
-					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there))
+					.SetLargeIcon(icon)
 					.SetContentTitle("Daniel")
 					.SetContentText("I went to the zoo and saw a monkey!")
 					.SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
@@ -72,9 +77,15 @@ namespace AndroidLSamples
 				if(highPriority.Checked)
 					notification.Defaults |= NotificationDefaults.Sound;
 				manager.Notify(1, notification);
+
+				icon.Recycle();
 			};
 
 			FindViewById<Button>(Resource.Id.extended).Click += (sender, e) => {
+
+				manager.Cancel(2);
+
+				var icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there);
 
 				//Extended with big text
 				var message = "I went to the zoo and saw a monkey! And then I saw even more awesome stuff and itt was great and then we went back to see the monkeys again.";
@@ -84,7 +95,7 @@ namespace AndroidLSamples
 				var builder = new Notification.Builder(this)
 					.SetContentIntent(contentIntent)
 					.SetSmallIcon(Resource.Drawable.ic_notification)
-					.SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there))
+					.SetLargeIcon(icon)
 					.SetStyle(style)
 					.SetContentTitle("Daniel")
 					.SetContentText(message)
@@ -97,14 +108,19 @@ namespace AndroidLSamples
 				if(highPriority.Checked)
 					notification.Defaults |= NotificationDefaults.Sound;
 				manager.Notify(2, notification);
+				icon.Recycle();
 			};
 
 			FindViewById<Button>(Resource.Id.extended_photo).Click += (sender, e) => {
 
+				manager.Cancel(3);
+
 				//Extended with big text
 				var message = "I went to the zoo and saw a monkey! And then I saw even more awesome stuff and itt was great and then we went back to see the monkeys again.";
 				var style = new Notification.BigPictureStyle();
-				style.BigPicture(BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there));
+				var icon = BitmapFactory.DecodeResource(Resources, Resource.Drawable.over_there);
+
+				style.BigPicture(icon);
 				style.SetSummaryText(message);
 				var builder = new Notification.Builder(this)
 					.SetContentIntent(contentIntent)
@@ -122,6 +138,8 @@ namespace AndroidLSamples
 				if(highPriority.Checked)
 					notification.Defaults |= NotificationDefaults.Sound;
 				manager.Notify(3, notification);
+
+				icon.Recycle();
 			};
 
 			spinner = FindViewById<Spinner>(Resource.Id.spinner_visibility);

@@ -4,6 +4,8 @@ using Android.Views;
 using Android.Transitions;
 namespace AndroidLSamples
 {
+
+
 	[Activity (Label = "Move Image 2", ParentActivity=typeof(HomeActivity))]			
 	public class AnimationsActivityMoveImage2 : Activity
 	{
