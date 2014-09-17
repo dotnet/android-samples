@@ -29,7 +29,7 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
         <fragment
-            android:name="ElevationDrag.LogFragment"
+            android:name="CommonSampleLibrary.LogFragment"
             android:id="@+id/log_fragment"
             android:layout_width="match_parent"
             android:layout_height="0px"
