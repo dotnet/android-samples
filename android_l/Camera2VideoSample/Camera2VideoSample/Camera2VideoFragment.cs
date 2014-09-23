@@ -149,6 +149,9 @@ namespace Camera2VideoSample
 			} catch (CameraAccessException) {
 				Toast.MakeText (Activity, "Cannot access the camera.", ToastLength.Short).Show ();
 				Activity.Finish ();
+			} catch (NullPointerException) {
+				var dialog = new ErrorDialog ();
+				dialog.Show (FragmentManager, "dialog");
 			}
 		}
 
@@ -290,6 +293,30 @@ namespace Camera2VideoSample
 					ToastLength.Short).Show ();
 			}
 			startPreview ();
+		}
+
+		public class ErrorDialog : DialogFragment {
+			public override Dialog OnCreateDialog (Bundle savedInstanceState)
+			{
+				var alert = new AlertDialog.Builder (Activity);
+				alert.SetMessage ("This device doesn't support Camera2 API.");
+				alert.SetPositiveButton (Android.Resource.String.Ok, new MyDialogOnClickListener (this));
+				return alert.Show();
+
+			}
+		}
+
+		private class MyDialogOnClickListener : Java.Lang.Object,IDialogInterfaceOnClickListener
+		{
+			ErrorDialog er;
+			public MyDialogOnClickListener(ErrorDialog e)
+			{
+				er = e;
+			}
+			public void OnClick(IDialogInterface dialogInterface, int i)
+			{
+				er.Activity.Finish ();
+			}
 		}
 	}
 
