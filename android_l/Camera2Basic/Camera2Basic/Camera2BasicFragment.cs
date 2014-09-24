@@ -20,6 +20,7 @@ using Android.Content.Res;
 using Android.Media;
 using Java.IO;
 using Java.Nio;
+using Java.Lang;
 
 namespace Camera2Basic
 {
@@ -255,7 +256,7 @@ namespace Camera2Basic
 			CameraManager manager = (CameraManager)activity.GetSystemService (Context.CameraService);
 			try 
 			{
-				String cameraId = manager.GetCameraIdList()[0];
+				string cameraId = manager.GetCameraIdList()[0];
 
 				// To get a list of available sizes of camera preview, we retrieve an instance of
 				// StreamConfigurationMap from CameraCharacteristics
@@ -275,9 +276,12 @@ namespace Camera2Basic
 				// We are opening the camera with a listener. When it is ready, OnOpened of mStateListener is called.
 				manager.OpenCamera(cameraId, mStateListener, null);
 			}
-			catch (Exception ex) {
+			catch (CameraAccessException ex) {
 				Toast.MakeText (activity, "Cannot access the camera.", ToastLength.Short).Show ();
 				Activity.Finish ();
+			} catch (NullPointerException) {
+				var dialog = new ErrorDialog ();
+				dialog.Show (FragmentManager, "dialog");
 			}
 		}
 
@@ -326,7 +330,7 @@ namespace Camera2Basic
 
 
 			}
-			catch (Exception ex) {
+			catch (CameraAccessException ex) {
 				Log.WriteLine (LogPriority.Info, "Camera2BasicFragment", ex.StackTrace);
 			}
 		}
@@ -351,7 +355,7 @@ namespace Camera2Basic
 				// Finally, we start displaying the camera preview
 				mPreviewSession.SetRepeatingRequest(mPreviewBuilder.Build(), null, backgroundHandler);
 			}
-			catch (Exception ex) {
+			catch (CameraAccessException ex) {
 				Log.WriteLine (LogPriority.Info, "Camera2BasicFragment", ex.StackTrace);
 			}
 		}
@@ -388,7 +392,7 @@ namespace Camera2Basic
 			if (rotation == SurfaceOrientation.Rotation90 || rotation == SurfaceOrientation.Rotation270) {
 				bufferRect.Offset (centerX - bufferRect.CenterX(), centerY - bufferRect.CenterY());
 				matrix.SetRectToRect (viewRect, bufferRect, Matrix.ScaleToFit.Fill);
-				float scale = Math.Max ((float)viewHeight / mPreviewSize.Height, (float)viewWidth / mPreviewSize.Width);
+				float scale = System.Math.Max ((float)viewHeight / mPreviewSize.Height, (float)viewWidth / mPreviewSize.Width);
 				matrix.PostScale (scale, scale, centerX, centerY);
 				matrix.PostRotate (90 * ((int)rotation - 2), centerX, centerY);
 			}
@@ -462,14 +466,14 @@ namespace Camera2Basic
 							{
 								session.Capture(captureBuilder.Build(), captureListener, backgroundHandler);
 							}
-							catch (Exception ex)
+							catch (CameraAccessException ex)
 							{
 								Log.WriteLine(LogPriority.Info, "Capture Session error: ", ex.ToString());
 							}
 						}
 					}, backgroundHandler );
 			}
-			catch (Exception ex) {
+			catch (CameraAccessException ex) {
 				Log.WriteLine(LogPriority.Info, "Taking picture error: ", ex.StackTrace);
 			}
 		}
@@ -490,6 +494,30 @@ namespace Camera2Basic
 							.Show ();
 				}
 				break;
+			}
+		}
+
+		public class ErrorDialog : DialogFragment {
+			public override Dialog OnCreateDialog (Bundle savedInstanceState)
+			{
+				var alert = new AlertDialog.Builder (Activity);
+				alert.SetMessage ("This device doesn't support Camera2 API.");
+				alert.SetPositiveButton (Android.Resource.String.Ok, new MyDialogOnClickListener (this));
+				return alert.Show();
+
+			}
+		}
+
+		private class MyDialogOnClickListener : Java.Lang.Object,IDialogInterfaceOnClickListener
+		{
+			ErrorDialog er;
+			public MyDialogOnClickListener(ErrorDialog e)
+			{
+				er = e;
+			}
+			public void OnClick(IDialogInterface dialogInterface, int i)
+			{
+				er.Activity.Finish ();
 			}
 		}
 	}
