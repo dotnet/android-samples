@@ -1,5 +1,6 @@
 bin
 obj
+Components/
 */_ReSharper.*/*
 *.user
 *.suo
