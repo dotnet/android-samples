@@ -39,7 +39,7 @@ namespace MonoIO
 		public override void OnCreate (Bundle p0)
 		{
 			base.OnCreate (p0);
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 			//AnalyticsUtils.getInstance(getActivity()).trackPageView("/Map");
 		}
 		

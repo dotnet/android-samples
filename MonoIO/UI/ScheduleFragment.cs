@@ -106,8 +106,8 @@ namespace MonoIO.UI
 			mHandler = new NotifyingAsyncQueryHandler(Activity.ContentResolver, this);
 			mSessionChangesObserver = new SessionChangesObserver(this);
 			mReceiver = new MyBroadcastReceiver(this);
-			
-	        SetHasOptionsMenu(true);
+
+			HasOptionsMenu = true;
 	        //AnalyticsUtils.getInstance(Activity).trackPageView("/Schedule");
 		}
 		
