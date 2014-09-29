@@ -44,7 +44,7 @@ namespace StorageProvider
 			base.OnCreate (savedInstanceState);
 			mLoggedIn = ReadLoginValue ();
 
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 
 		public override void OnPrepareOptionsMenu (IMenu menu)

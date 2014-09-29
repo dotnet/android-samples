@@ -76,7 +76,7 @@ namespace Support4
 			{
 				base.OnCreate (p0);
 				
-				SetHasOptionsMenu(true);
+				HasOptionsMenu = true;
 			}
 			
 			public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
@@ -97,7 +97,7 @@ namespace Support4
 			{
 				base.OnCreate (p0);
 				
-				SetHasOptionsMenu(true);
+				HasOptionsMenu = true;
 			}
 			
 			public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
