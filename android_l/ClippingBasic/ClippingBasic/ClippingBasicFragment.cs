@@ -34,7 +34,7 @@ namespace ClippingBasic
 			base.OnCreate (savedInstanceState);
 
 			// Create your fragment here
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 			clip = new Outline ();
 			sample_texts = Resources.GetStringArray (Resource.Array.sample_texts);
 		}

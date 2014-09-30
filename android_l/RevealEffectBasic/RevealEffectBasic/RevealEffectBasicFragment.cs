@@ -17,7 +17,7 @@ namespace RevealEffectBasic
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

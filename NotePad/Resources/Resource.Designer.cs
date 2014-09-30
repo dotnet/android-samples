@@ -15,9 +15,14 @@ namespace NotePad
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Novell.MonoDroid.Build.Tasks", "1.0.0.0")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
+		
+		static Resource()
+		{
+			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+		}
 		
 		public static void UpdateIdValues()
 		{
@@ -25,6 +30,11 @@ namespace NotePad
 		
 		public partial class Attribute
 		{
+			
+			static Attribute()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Attribute()
 			{
@@ -40,6 +50,11 @@ namespace NotePad
 			// aapt resource value: 0x7f040001
 			public const int transparent_green = 2130968577;
 			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private Color()
 			{
 			}
@@ -54,6 +69,11 @@ namespace NotePad
 			// aapt resource value: 0x7f050000
 			public const int standard_border = 2131034112;
 			
+			static Dimension()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private Dimension()
 			{
 			}
@@ -64,6 +84,11 @@ namespace NotePad
 			
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
+			
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Drawable()
 			{
@@ -85,6 +110,11 @@ namespace NotePad
 			// aapt resource value: 0x7f080000
 			public const int title = 2131230720;
 			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private Id()
 			{
 			}
@@ -101,6 +131,11 @@ namespace NotePad
 			
 			// aapt resource value: 0x7f030002
 			public const int notes_row = 2130903042;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Layout()
 			{
@@ -134,6 +169,11 @@ namespace NotePad
 			// aapt resource value: 0x7f060004
 			public const int title = 2131099652;
 			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private String()
 			{
 			}
@@ -147,6 +187,11 @@ namespace NotePad
 			
 			// aapt resource value: 0x7f070001
 			public const int SmallText = 2131165185;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Style()
 			{

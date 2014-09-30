@@ -15,9 +15,14 @@ namespace Mono.Samples.Snake
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Novell.MonoDroid.Build.Tasks", "1.0.0.0")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
+		
+		static Resource()
+		{
+			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+		}
 		
 		public static void UpdateIdValues()
 		{
@@ -28,6 +33,11 @@ namespace Mono.Samples.Snake
 			
 			// aapt resource value: 0x7f010000
 			public const int tileSize = 2130771968;
+			
+			static Attribute()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Attribute()
 			{
@@ -49,6 +59,11 @@ namespace Mono.Samples.Snake
 			// aapt resource value: 0x7f020003
 			public const int yellowstar = 2130837507;
 			
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private Drawable()
 			{
 			}
@@ -66,6 +81,11 @@ namespace Mono.Samples.Snake
 			// aapt resource value: 0x7f050002
 			public const int text = 2131034114;
 			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private Id()
 			{
 			}
@@ -76,6 +96,11 @@ namespace Mono.Samples.Snake
 			
 			// aapt resource value: 0x7f030000
 			public const int snake_layout = 2130903040;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Layout()
 			{
@@ -100,6 +125,11 @@ namespace Mono.Samples.Snake
 			// aapt resource value: 0x7f040004
 			public const int snake_layout_text_text = 2130968580;
 			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
 			private String()
 			{
 			}
@@ -114,6 +144,11 @@ namespace Mono.Samples.Snake
 			
 			// aapt resource value: 0
 			public const int TileView_tileSize = 0;
+			
+			static Styleable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
 			private Styleable()
 			{
