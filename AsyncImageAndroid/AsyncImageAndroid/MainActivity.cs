@@ -60,7 +60,6 @@ namespace AsyncImageAndroid
 
 			SetDownloading ();
 
-
 			string filePath = string.Empty;
 			try {
 				filePath = await manager.DownloadAsync(downloadUrl, "downloaded.png");
