@@ -122,13 +122,7 @@ namespace AsyncImageAndroid
 				webClient.CancelAsync ();
 
 			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
-
-			this.downloadButton.Click -= cancelDownload;
-			this.downloadButton.Click += downloadAsync;
-			this.downloadButton.Text = "Download";
-			this.downloadProgress.Progress = 0;
-
-			infoLabel.Text = "Click Dowload button to download the image";
+			SetReadyToDownload ();
 		}
 	}
 }
