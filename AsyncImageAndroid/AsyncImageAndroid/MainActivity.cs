@@ -18,13 +18,16 @@ namespace AsyncImageAndroid
 	           ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation)]
 	public class MainActivity : Activity
 	{
+		const string downloadUrl = "http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg";
+
 		int count = 1;
-		WebClient webClient;
 		Button downloadButton;
 		Button clickButton;
 		TextView infoLabel;
 		ImageView imageview;
 		ProgressBar downloadProgress;
+
+		DownloadManager manager;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -39,33 +42,35 @@ namespace AsyncImageAndroid
 			this.imageview = FindViewById<ImageView> (Resource.Id.imageView1);
 			this.downloadProgress = FindViewById<ProgressBar> (Resource.Id.progressBar);
 
-			downloadButton.Click += downloadAsync;
+			downloadButton.Click += DownloadAsync;
 
 			clickButton.Click += delegate {
 				clickButton.Text = string.Format ("{0} clicks!", count++);
 			};
 		}
 
-		async void downloadAsync(object sender, System.EventArgs ea)
+		async void DownloadAsync(object sender, EventArgs args)
 		{
-			var manager = new DownloadManager ();
+			manager = manager ?? new DownloadManager ();
+			manager.DownloadProgressChanged += HandleDownloadProgressChanged;
 			SetDownloading ();
 
-			string localPath = string.Empty;
+			string filePath = string.Empty;
 			try {
-				localPath = await manager.StartDownload();
-			} catch(TaskCanceledException){
+				filePath = await manager.DownloadAsync(downloadUrl, "downloaded.png");
+			} catch(TaskCanceledException) {
 				Console.WriteLine ("Task Canceled!");
+				SetReadyToDownload ();
 				return;
-			} catch(Exception e) {
-				Console.WriteLine (e.ToString());
+			} catch(Exception exc) {
+				Console.WriteLine (exc);
 				SetReadyToDownload ();
 				return;
 			}
 
 			infoLabel.Text = "Resizing Image...";
 
-			var bitmap = await FetchBitmap (localPath);
+			var bitmap = await FetchBitmap (filePath);
 			imageview.SetImageBitmap (bitmap);
 			SetReadyToDownload ();
 		}
@@ -74,8 +79,8 @@ namespace AsyncImageAndroid
 		{
 			infoLabel.Text = "Click Dowload button to download the image";
 
-			downloadButton.Click -= cancelDownload;
-			downloadButton.Click += downloadAsync;
+			downloadButton.Click -= CancelDownload;
+			downloadButton.Click += DownloadAsync;
 			downloadButton.Text = "Download";
 
 			downloadProgress.Progress = 0;
@@ -84,8 +89,8 @@ namespace AsyncImageAndroid
 		void SetDownloading ()
 		{
 			downloadButton.Text = "Cancel";
-			downloadButton.Click -= downloadAsync;
-			downloadButton.Click += cancelDownload;
+			downloadButton.Click -= DownloadAsync;
+			downloadButton.Click += CancelDownload;
 
 			infoLabel.Text = "Downloading...";
 		}
@@ -108,13 +113,13 @@ namespace AsyncImageAndroid
 			this.downloadProgress.Progress = e.ProgressPercentage;
 		}
 
-		void cancelDownload(object sender, System.EventArgs ea)
+		void CancelDownload(object sender, System.EventArgs ea)
 		{
 			Console.WriteLine ("Cancel clicked!");
-			if(webClient!=null)
-				webClient.CancelAsync ();
-
-			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
+//			if(webClient!=null)
+//				webClient.CancelAsync ();
+//
+//			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
 			SetReadyToDownload ();
 		}
 	}
