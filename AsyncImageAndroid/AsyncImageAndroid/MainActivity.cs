@@ -124,10 +124,6 @@ namespace AsyncImageAndroid
 		void CancelDownload(object sender, System.EventArgs ea)
 		{
 			Console.WriteLine ("Cancel clicked!");
-//			if(webClient!=null)
-//				webClient.CancelAsync ();
-//
-//			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
 			SetReadyToDownload ();
 		}
 	}
