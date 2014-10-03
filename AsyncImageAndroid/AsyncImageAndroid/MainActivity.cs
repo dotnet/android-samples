@@ -48,49 +48,24 @@ namespace AsyncImageAndroid
 
 		async void downloadAsync(object sender, System.EventArgs ea)
 		{
-			webClient = new WebClient ();
-			var url = new Uri ("http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg");
-			byte[] bytes = null;
-
-			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
+			var manager = new DownloadManager ();
 			SetDownloading ();
 
-			try{
-				bytes = await webClient.DownloadDataTaskAsync(url);
-			}
-			catch(TaskCanceledException){
+			string localPath = string.Empty;
+			try {
+				localPath = await manager.StartDownload();
+			} catch(TaskCanceledException){
 				Console.WriteLine ("Task Canceled!");
 				return;
-			}
-			catch(Exception e){
+			} catch(Exception e) {
 				Console.WriteLine (e.ToString());
 				SetReadyToDownload ();
 				return;
 			}
-			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
-			string localFilename = "downloaded.png";
-			string localPath = System.IO.Path.Combine (documentsPath, localFilename);
-			infoLabel.Text = "Download Complete";
-
-			//Sive the Image using writeAsync
-			FileStream fs = new FileStream (localPath, FileMode.OpenOrCreate);
-			await fs.WriteAsync (bytes, 0, bytes.Length);
-
-			Console.WriteLine("localPath:"+localPath);
-			fs.Close ();
 
 			infoLabel.Text = "Resizing Image...";
-			BitmapFactory.Options options = new BitmapFactory.Options ();
-			options.InJustDecodeBounds = true;
-			await BitmapFactory.DecodeFileAsync (localPath, options);
 
-			options.InSampleSize = options.OutWidth > options.OutHeight ? options.OutHeight / imageview.Height : options.OutWidth / imageview.Width;
-			options.InJustDecodeBounds = false;
-
-			Bitmap bitmap = await BitmapFactory.DecodeFileAsync (localPath, options);
-
-			Console.WriteLine ("Loaded!");
-
+			var bitmap = await FetchBitmap (localPath);
 			imageview.SetImageBitmap (bitmap);
 			SetReadyToDownload ();
 		}
@@ -113,6 +88,19 @@ namespace AsyncImageAndroid
 			downloadButton.Click += cancelDownload;
 
 			infoLabel.Text = "Downloading...";
+		}
+
+		async Task<Bitmap> FetchBitmap(string imagePath)
+		{
+			BitmapFactory.Options options = new BitmapFactory.Options ();
+			options.InJustDecodeBounds = true;
+			await BitmapFactory.DecodeFileAsync (imagePath, options);
+
+			options.InSampleSize = options.OutWidth > options.OutHeight ? options.OutHeight / imageview.Height : options.OutWidth / imageview.Width;
+			options.InJustDecodeBounds = false;
+
+			Bitmap bitmap = await BitmapFactory.DecodeFileAsync (imagePath, options);
+			return bitmap;
 		}
 
 		void HandleDownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e)
