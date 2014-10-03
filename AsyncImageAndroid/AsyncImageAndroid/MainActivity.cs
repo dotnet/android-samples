@@ -51,9 +51,15 @@ namespace AsyncImageAndroid
 
 		async void DownloadAsync(object sender, EventArgs args)
 		{
-			manager = manager ?? new DownloadManager ();
+			var manager = new DownloadManager ();
+			// We can leave this unsubscribed because manager is shortlive object and Target of event (this) is longlive
 			manager.DownloadProgressChanged += HandleDownloadProgressChanged;
+			// Here is a problem. clickButton is longlive object and manager is shortlive.
+			// This means that we will prolong livetime of manager, because we reference to manager will be stored implicitly 
+			clickButton.Click += manager.EventHandler;
+
 			SetDownloading ();
+
 
 			string filePath = string.Empty;
 			try {
@@ -73,6 +79,9 @@ namespace AsyncImageAndroid
 			var bitmap = await FetchBitmap (filePath);
 			imageview.SetImageBitmap (bitmap);
 			SetReadyToDownload ();
+
+			// Solution is here
+//			clickButton.Click -= manager.EventHandler;
 		}
 
 		void SetReadyToDownload ()
