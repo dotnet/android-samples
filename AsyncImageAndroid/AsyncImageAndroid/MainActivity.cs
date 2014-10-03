@@ -52,13 +52,9 @@ namespace AsyncImageAndroid
 			var url = new Uri ("http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg");
 			byte[] bytes = null;
 
-
 			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
+			SetDownloading ();
 
-			this.downloadButton.Text = "Cancel";
-			this.downloadButton.Click -= downloadAsync;
-			this.downloadButton.Click += cancelDownload;
-			infoLabel.Text = "Downloading...";
 			try{
 				bytes = await webClient.DownloadDataTaskAsync(url);
 			}
@@ -71,7 +67,7 @@ namespace AsyncImageAndroid
 				SetReadyToDownload ();
 				return;
 			}
-			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);	
+			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
 			string localFilename = "downloaded.png";
 			string localPath = System.IO.Path.Combine (documentsPath, localFilename);
 			infoLabel.Text = "Download Complete";
@@ -108,6 +104,15 @@ namespace AsyncImageAndroid
 			downloadButton.Text = "Download";
 
 			downloadProgress.Progress = 0;
+		}
+
+		void SetDownloading ()
+		{
+			downloadButton.Text = "Cancel";
+			downloadButton.Click -= downloadAsync;
+			downloadButton.Click += cancelDownload;
+
+			infoLabel.Text = "Downloading...";
 		}
 
 		void HandleDownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e)
