@@ -68,13 +68,7 @@ namespace AsyncImageAndroid
 			}
 			catch(Exception e){
 				Console.WriteLine (e.ToString());
-				infoLabel.Text = "Click Dowload button to download the image";
-
-
-				this.downloadButton.Click -= cancelDownload;
-				this.downloadButton.Click += downloadAsync;
-				this.downloadButton.Text = "Download";
-				this.downloadProgress.Progress = 0;
+				SetReadyToDownload ();
 				return;
 			}
 			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);	
@@ -102,14 +96,18 @@ namespace AsyncImageAndroid
 			Console.WriteLine ("Loaded!");
 
 			imageview.SetImageBitmap (bitmap);
+			SetReadyToDownload ();
+		}
 
+		void SetReadyToDownload ()
+		{
 			infoLabel.Text = "Click Dowload button to download the image";
 
+			downloadButton.Click -= cancelDownload;
+			downloadButton.Click += downloadAsync;
+			downloadButton.Text = "Download";
 
-			this.downloadButton.Click -= cancelDownload;
-			this.downloadButton.Click += downloadAsync;
-			this.downloadButton.Text = "Download";
-			this.downloadProgress.Progress = 0;
+			downloadProgress.Progress = 0;
 		}
 
 		void HandleDownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e)
