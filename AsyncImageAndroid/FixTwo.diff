@@ -1,0 +1,23 @@
+diff --git a/AsyncImageAndroid/AsyncImageAndroid/DownloadManager.cs b/AsyncImageAndroid/AsyncImageAndroid/DownloadManager.cs
+index cf494ea..7e35e34 100644
+--- a/AsyncImageAndroid/AsyncImageAndroid/DownloadManager.cs
++++ b/AsyncImageAndroid/AsyncImageAndroid/DownloadManager.cs
+@@ -16,9 +16,6 @@ namespace AsyncImageAndroid
+ 		public event DownloadProgressChangedEventHandler DownloadProgressChanged;
+ 
+ 		WebClient webClient;
+-		// memory leak here. If you wona reuse DownloadManager it will hold downladed data.
+-		// use local variable instead field.
+-		byte[] bytes;
+ 
+ 		string DocumentsFolder {
+ 			get {
+@@ -32,7 +29,7 @@ namespace AsyncImageAndroid
+ 			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
+ 
+ 			var url = new Uri (downloadUrl);
+-			bytes = await webClient.DownloadDataTaskAsync(url);
++			byte[] bytes = await webClient.DownloadDataTaskAsync(url);
+ 
+ 			string localPath = FetchStorePath (fileName);
+ 			await StoreData (bytes, localPath);
