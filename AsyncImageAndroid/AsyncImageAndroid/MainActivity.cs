@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace AsyncImageAndroid
 {
 
-	[Activity (Label = "AsyncImageAndroid", MainLauncher = true,
+	[Activity (Label = "AsyncImageAndroid", 
 	           ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation)]
 	public class MainActivity : Activity
 	{
