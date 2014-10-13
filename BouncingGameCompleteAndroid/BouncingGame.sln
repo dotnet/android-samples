@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncingGame", "BouncingGame\BouncingGame.csproj", "{DFDA9005-1C2F-457C-850C-BE8F33DF089C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncingGame.Android", "BouncingGame.Android\BouncingGame.Android.csproj", "{8EAF56C1-1FBF-48A3-85F5-9CA322BFCE64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EAF56C1-1FBF-48A3-85F5-9CA322BFCE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EAF56C1-1FBF-48A3-85F5-9CA322BFCE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EAF56C1-1FBF-48A3-85F5-9CA322BFCE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EAF56C1-1FBF-48A3-85F5-9CA322BFCE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDA9005-1C2F-457C-850C-BE8F33DF089C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDA9005-1C2F-457C-850C-BE8F33DF089C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDA9005-1C2F-457C-850C-BE8F33DF089C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDA9005-1C2F-457C-850C-BE8F33DF089C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BouncingGame.Android\BouncingGame.Android.csproj
+	EndGlobalSection
+EndGlobal
