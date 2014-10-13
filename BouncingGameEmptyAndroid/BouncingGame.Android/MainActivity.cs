@@ -15,6 +15,7 @@ namespace BouncingGame.Andriod
 		Theme = "@android:style/Theme.NoTitleBar",
 		LaunchMode = LaunchMode.SingleInstance,
 		MainLauncher = true,
+		ScreenOrientation = ScreenOrientation.Portrait,
 		ConfigurationChanges =  ConfigChanges.Keyboard | 
 		ConfigChanges.KeyboardHidden)
 	]

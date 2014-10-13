@@ -10,8 +10,6 @@ namespace BouncingGame
 			application.PreferMultiSampling = false;
 			application.ContentRootDirectory = "Content";
 
-			mainWindow.SupportedDisplayOrientations = CCDisplayOrientation.Portrait;
-
 			// todo:  Add our GameScene initialization here
 		}
 
