@@ -48,7 +48,6 @@
     <Reference Include="Xamarin.Android.Support.v13">
       <HintPath>packages\Xamarin.Android.Support.v13.20.0.0.4\lib\MonoAndroid32\Xamarin.Android.Support.v13.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationDrawableActivity.cs" />
