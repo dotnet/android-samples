@@ -1,4 +1,4 @@
-Reveal Effect Basic
+Drawable Tinting
 ==============
 
 Sample that shows applying tinting and color filters to Drawables both programmatically and as Drawable resources in XML
