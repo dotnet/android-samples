@@ -88,7 +88,6 @@
     <AndroidResource Include="Resources\drawable\rect_red.xml" />
     <AndroidResource Include="Resources\drawable\rect_orange.xml" />
     <AndroidResource Include="Resources\drawable\xamarin.png" />
-    <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\drawable\evolve.jpg" />
     <AndroidResource Include="Resources\layout\activity_recycler_view.axml" />
@@ -111,7 +110,6 @@
     <AndroidResource Include="Resources\drawable-nodpi\sample1.jpg" />
     <AndroidResource Include="Resources\drawable-nodpi\sample2.jpg" />
     <AndroidResource Include="Resources\drawable-nodpi\caterpiller.jpg" />
-    <AndroidResource Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\values\attrs.xml" />
     <AndroidResource Include="Resources\layout\recycleritem_card.axml" />
     <AndroidResource Include="Resources\layout\activity_recycler_view_add_remove.axml" />
@@ -131,12 +129,12 @@
     <AndroidResource Include="Resources\drawable\shape.xml" />
     <AndroidResource Include="Resources\drawable\shape2.xml" />
     <AndroidResource Include="Resources\drawable\gear.jpg" />
+    <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\drawable-nodpi\" />
     <Folder Include="Utils\" />
-    <Folder Include="Resources\values-v21\" />
     <Folder Include="Activities\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-hdpi\" />
