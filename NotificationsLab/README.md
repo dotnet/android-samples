@@ -18,6 +18,8 @@ the "ingredients" of a notification:
  
 -  A selector for the priority of the notification (low, mimimum, default, 
    high, maximum). 
+ 
+-  A selector for the category of the notification.
 
 -  Switches for enabling/disabling large icon, sound, and vibrate
    options.
