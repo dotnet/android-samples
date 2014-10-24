@@ -29,6 +29,7 @@ namespace ClippingBasic
 		// A reference to a TextView that shows different strings when clicked
 		private TextView text_view;
 
+
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -72,13 +73,17 @@ namespace ClippingBasic
 					Log.Debug (TAG, string.Format ("Clipping was removed."));
 					(bt as Button).SetText (Resource.String.clip_button);
 				} else {
+					var v = new ClipProvider(frag);
 					// If it is not clipped, it sets the dimensions and shapes of the clip and then clips the view.
 					// In this case, it creates a rounded rectangle with a margin determined by width or height.
+					/*
 					int margin = Math.Min (clippedView.Width, clippedView.Height) / 10;
 					frag.clip.SetRoundRect (margin, margin, clippedView.Width - margin,
 						clippedView.Height - margin, margin / 2);
+						*/
 					// Sets the outline of the View
-					clippedView.SetOutline (frag.clip);
+					clippedView.OutlineProvider = v;
+					//clippedView.SetOutline (frag.clip);
 					// Enables clipping on the View
 					clippedView.ClipToOutline = true;
 
@@ -87,6 +92,24 @@ namespace ClippingBasic
 				}
 			}
 		}
+
+		public class ClipProvider : ViewOutlineProvider
+		{
+			ClippingBasicFragment frag;
+			public ClipProvider(ClippingBasicFragment f)
+			{
+				frag = f;
+			}
+			public override void GetOutline (View view, Android.Graphics.Outline outline)
+			{
+				View clippedView = frag.View.FindViewById (Resource.Id.frame);
+				int margin = Math.Min (clippedView.Width, clippedView.Height) / 10;
+				frag.clip.SetRoundRect (margin, margin, clippedView.Width - margin,
+					clippedView.Height - margin, margin / 2);
+					
+			}
+		}
+
 
 		private class TextListener : Java.Lang.Object,View.IOnClickListener
 		{

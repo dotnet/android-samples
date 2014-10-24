@@ -120,9 +120,11 @@ namespace JobScheduler
 			bool requiresUnmetered = wiFiConnectivityRadioButton.Checked;
 			bool requiresAnyConnectivity = anyConnectivityRadioButton.Checked;
 			if (requiresUnmetered) {
-				builder.SetRequiredNetworkCapabilities (NetworkTypeValue.Unmetered);
+				builder.SetRequiredNetworkType (NetworkType.Unmetered);
+				//builder.SetRequiredNetworkCapabilities (NetworkTypeValue.Unmetered);
 			} else if (requiresAnyConnectivity) {
-				builder.SetRequiredNetworkCapabilities (NetworkTypeValue.Any);
+				builder.SetRequiredNetworkType (NetworkType.Any);
+				//builder.SetRequiredNetworkCapabilities (NetworkTypeValue.Any);
 			}
 			builder.SetRequiresDeviceIdle (requiresIdleCheckbox.Checked);
 			builder.SetRequiresCharging (requiresChargingCheckBox.Checked);
