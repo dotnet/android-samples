@@ -1,14 +1,14 @@
-Drawable Tinting
+RecyclerView
 ==============
 
-Sample that shows applying tinting and color filters to Drawables both programmatically and as Drawable resources in XML
+Demonstration of using RecyclerView with a LinearLayoutManager to create a vertical ListView.
 
 Instructions
 ------------
 
 * Run the project
-* Adjust the sliders and tint mode and see how it affects the images on the screen
-* To see the log output, tap the Show Log button
+* Tap the Show Log button to show the log
+* Scroll through the elements and watch the log to see the RecyclerView in action.
 
 Build Requirements
 ------------------
