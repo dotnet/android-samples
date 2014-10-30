@@ -91,7 +91,7 @@ namespace FloatingActionButtonBasic
 			this.check = check;
 
 			// Create and start the ValueAnimator that shows the new state
-			ValueAnimator anim = CreateAnimator ();
+			Animator anim = CreateAnimator ();
 			anim.SetDuration( Resources.GetInteger (Android.Resource.Integer.ConfigShortAnimTime));
 			anim.Start ();
 
@@ -118,7 +118,7 @@ namespace FloatingActionButtonBasic
 			void OnCheckedChanged (FloatingActionButton fabView, bool isChecked);
 		}
 
-		protected ValueAnimator CreateAnimator() 
+		protected Animator CreateAnimator() 
 		{
 			// Calculate the longest distance from the hot spot to the edge of the circle.
 			int endRadius = Width / 2 + ((int)Math.Sqrt (Math.Pow (Width / 2 - touchPoint.Y, 2)
@@ -128,7 +128,7 @@ namespace FloatingActionButtonBasic
 			if (touchPoint == null)
 				touchPoint = new Point (Width / 2, Height / 2);
 
-			ValueAnimator anim = ViewAnimationUtils.CreateCircularReveal (revealView, touchPoint.X, touchPoint.Y, 0, endRadius);
+			Animator anim = ViewAnimationUtils.CreateCircularReveal (revealView, touchPoint.X, touchPoint.Y, 0, endRadius);
 			anim.AddListener (new MyAnimatorListenerAdapter (this));
 			return anim;
 
@@ -175,9 +175,18 @@ namespace FloatingActionButtonBasic
 			base.OnSizeChanged (w, h, oldw, oldh);
 
 			var outline = new Outline ();
+			OutlineProvider = new OutlineProv ();
 			outline.SetOval (0, 0, w, h);
-			SetOutline (outline);
+			OutlineProvider.GetOutline (this, outline);
 			ClipToOutline = true;
+		}
+
+		private class OutlineProv : ViewOutlineProvider
+		{
+			public override void GetOutline (View view, Outline outline)
+			{
+				outline.SetOval (0, 0, view.Width, view.Height);
+			}
 		}
 
 		protected override int[] OnCreateDrawableState (int extraSpace)
