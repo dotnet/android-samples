@@ -22,7 +22,7 @@ limitations under the License.
         AppBaseTheme from BOTH res/values/sample-styles.xml and
         res/values-v11/sample-styles.xml on API 14+ devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="android:Theme.DeviceDefault.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
     </style>
 
