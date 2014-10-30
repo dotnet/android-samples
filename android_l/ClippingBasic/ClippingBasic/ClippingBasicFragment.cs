@@ -28,7 +28,7 @@ namespace ClippingBasic
 
 		// A reference to a TextView that shows different strings when clicked
 		private TextView text_view;
-
+		View clippedView;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -49,9 +49,13 @@ namespace ClippingBasic
 
 			// Sets initial text for the TextView
 			text_view = (TextView)view.FindViewById (Resource.Id.text_view);
+			clippedView = view.FindViewById (Resource.Id.frame);
 			ChangeText ();
 			view.FindViewById (Resource.Id.button).SetOnClickListener (new ClippingListener (this));
 			view.FindViewById (Resource.Id.text_view).SetOnClickListener (new TextListener (this));
+			var v = new ClipProvider(this);
+			v.GetOutline (clippedView, clip);
+			clippedView.OutlineProvider = v;
 
 		}
 
@@ -65,15 +69,15 @@ namespace ClippingBasic
 			public void OnClick(View bt)
 			{
 				// When the button is clicked, the text is clipped or un-clipped
-				View clippedView = frag.View.FindViewById (Resource.Id.frame);
+
 				// If the view is clipped then ClipToOutline is true
-				if (clippedView.ClipToOutline) {
-					clippedView.ClipToOutline = false;
+				if (frag.clippedView.ClipToOutline) {
+					frag.clippedView.ClipToOutline = false;
 
 					Log.Debug (TAG, string.Format ("Clipping was removed."));
 					(bt as Button).SetText (Resource.String.clip_button);
 				} else {
-					var v = new ClipProvider(frag);
+
 					// If it is not clipped, it sets the dimensions and shapes of the clip and then clips the view.
 					// In this case, it creates a rounded rectangle with a margin determined by width or height.
 					/*
@@ -82,10 +86,11 @@ namespace ClippingBasic
 						clippedView.Height - margin, margin / 2);
 						*/
 					// Sets the outline of the View
-					clippedView.OutlineProvider = v;
+
+
 					//clippedView.SetOutline (frag.clip);
 					// Enables clipping on the View
-					clippedView.ClipToOutline = true;
+					frag.clippedView.ClipToOutline = true;
 
 					Log.Debug (TAG, string.Format ("View was clipped"));
 					(bt as Button).SetText (Resource.String.unclip_button);
@@ -102,10 +107,9 @@ namespace ClippingBasic
 			}
 			public override void GetOutline (View view, Android.Graphics.Outline outline)
 			{
-				View clippedView = frag.View.FindViewById (Resource.Id.frame);
-				int margin = Math.Min (clippedView.Width, clippedView.Height) / 10;
-				frag.clip.SetRoundRect (margin, margin, clippedView.Width - margin,
-					clippedView.Height - margin, margin / 2);
+				int margin = Math.Min (view.Width, view.Height) / 10;
+				outline.SetRoundRect (margin, margin, view.Width - margin,
+					view.Height - margin, margin / 2);
 					
 			}
 		}
