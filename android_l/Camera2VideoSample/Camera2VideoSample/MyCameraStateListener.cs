@@ -4,7 +4,7 @@ using Android.Widget;
 
 namespace Camera2VideoSample
 {
-	public class MyCameraStateListener : CameraDevice.StateListener
+	public class MyCameraStateListener : CameraDevice.StateCallback
 	{
 		Camera2VideoFragment fragment;
 		public MyCameraStateListener(Camera2VideoFragment frag)
@@ -27,7 +27,7 @@ namespace Camera2VideoSample
 			fragment.opening_camera = false;
 		}
 
-		public override void OnError (CameraDevice camera, CameraErrorType error)
+		public override void OnError (CameraDevice camera, CameraError error)
 		{
 			camera.Close ();
 			fragment.camera_device = null;

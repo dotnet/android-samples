@@ -232,26 +232,28 @@ namespace Camera2VideoSample
 
 
 			media_recorder = new MediaRecorder ();
-			File file = getVideoFile (Activity);
+			File file = GetVideoFile (Activity);
 			try {
 				//UI
 				button_video.SetText (Resource.String.stop);
 				is_recording_video = true;
 
 				//Configure the MediaRecorder
+
 				media_recorder.SetAudioSource (AudioSource.Mic);
 				media_recorder.SetVideoSource (VideoSource.Surface);
 				media_recorder.SetOutputFormat (OutputFormat.Mpeg4);
 				media_recorder.SetOutputFile (System.IO.Path.GetFullPath (file.ToString()));
 				media_recorder.SetVideoEncodingBitRate (10000000);
 				media_recorder.SetVideoFrameRate (30);
-				media_recorder.SetVideoSize (1440, 1080);
+				media_recorder.SetVideoSize (720, 480);
 				media_recorder.SetVideoEncoder (VideoEncoder.H264);
 				media_recorder.SetAudioEncoder (AudioEncoder.Aac);
 				int rotation = (int)Activity.WindowManager.DefaultDisplay.Rotation;
 				int orientation = ORIENTATIONS.Get (rotation);
 				media_recorder.SetOrientationHint (orientation);
 				media_recorder.Prepare ();
+
 				Surface surface = media_recorder.Surface;
 
 				//Set up CaptureRequest
@@ -273,7 +275,7 @@ namespace Camera2VideoSample
 			}
 
 		}
-		private File getVideoFile(Context context) 
+		private File GetVideoFile(Context context) 
 		{
 			return new File (context.GetExternalFilesDir (null), "video.mp4");
 		}
@@ -289,7 +291,7 @@ namespace Camera2VideoSample
 			media_recorder.Release ();
 			media_recorder = null;
 			if (null != Activity) {
-				Toast.MakeText (Activity, "Video saved: " + getVideoFile (Activity),
+				Toast.MakeText (Activity, "Video saved: " + GetVideoFile (Activity),
 					ToastLength.Short).Show ();
 			}
 			startPreview ();
