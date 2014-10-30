@@ -53,8 +53,14 @@ namespace ClippingBasic
 			ChangeText ();
 			view.FindViewById (Resource.Id.button).SetOnClickListener (new ClippingListener (this));
 			view.FindViewById (Resource.Id.text_view).SetOnClickListener (new TextListener (this));
+
+			// Create a new ViewOutlineProvider
 			var v = new ClipProvider(this);
+
+			// Set the dimensions of the outline
 			v.GetOutline (clippedView, clip);
+
+			// Set the ViewOutlineProvider to the view to be clipped
 			clippedView.OutlineProvider = v;
 
 		}
@@ -77,18 +83,6 @@ namespace ClippingBasic
 					Log.Debug (TAG, string.Format ("Clipping was removed."));
 					(bt as Button).SetText (Resource.String.clip_button);
 				} else {
-
-					// If it is not clipped, it sets the dimensions and shapes of the clip and then clips the view.
-					// In this case, it creates a rounded rectangle with a margin determined by width or height.
-					/*
-					int margin = Math.Min (clippedView.Width, clippedView.Height) / 10;
-					frag.clip.SetRoundRect (margin, margin, clippedView.Width - margin,
-						clippedView.Height - margin, margin / 2);
-						*/
-					// Sets the outline of the View
-
-
-					//clippedView.SetOutline (frag.clip);
 					// Enables clipping on the View
 					frag.clippedView.ClipToOutline = true;
 
