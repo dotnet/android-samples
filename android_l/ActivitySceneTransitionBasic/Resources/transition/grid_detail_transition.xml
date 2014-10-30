@@ -33,7 +33,7 @@
     </changeBounds>
 
     <!-- moveImage is used for the ImageViews which are shared -->
-    <moveImage>
+    <changeImageTransform>
         <!--
             Set this transitions target IDs to be those which point to the ImageViews in both the
             starting and result Activities
@@ -42,7 +42,7 @@
             <target android:targetId="@id/imageview_header" />
             <target android:targetId="@id/imageview_item" />
         </targets>
-    </moveImage>
+    </changeImageTransform>
 
 </transitionSet>
 

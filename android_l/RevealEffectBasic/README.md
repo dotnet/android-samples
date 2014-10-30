@@ -12,8 +12,7 @@ Instructions
 Build Requirements
 ------------------
 * Xamarin Studio 5.3+
-* Xamarin Android 4.17+
-* Android SDK (L Preview)
+* Xamarin Android 4.20+
 
 Author
 ------ 

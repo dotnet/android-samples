@@ -9,7 +9,7 @@ Instructions
 
 Build Requirements
 ------------------
-This sample requires Xamarin.Android 4.17 or later and an Android L or later device.
+This sample requires Xamarin.Android 4.20 or later and an Android Lollipop or later device.
 
 Author
 ------
