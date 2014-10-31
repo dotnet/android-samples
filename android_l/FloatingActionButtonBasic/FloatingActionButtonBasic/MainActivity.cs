@@ -13,7 +13,7 @@ using CommonSampleLibrary;
 
 namespace FloatingActionButtonBasic
 {
-	[Activity (Label = "FloatingActionButtonBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
+	[Activity (Label = "FloatingActionButtonBasic", MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	public class MainActivity : SampleActivityBase
 	{
 		public const string TAG = "MainActivity";
