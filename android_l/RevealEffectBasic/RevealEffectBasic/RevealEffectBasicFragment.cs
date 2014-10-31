@@ -17,7 +17,7 @@ namespace RevealEffectBasic
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -46,9 +46,8 @@ namespace RevealEffectBasic
 					View shape = f.rootView.FindViewById (Resource.Id.circle);
 					/* Create a reveal ValueAnimator that starts clipping the view from
 					 * the top left corner until the whole view is covered. */
-
-					var animator = ViewAnimationUtils.CreateCircularReveal (shape, 0, 0, 0,
-						(float)Math.Sqrt (Math.Pow (shape.Width, 2) + Math.Pow (shape.Height, 2)));
+					ValueAnimator animator = ViewAnimationUtils.CreateCircularReveal (shape, 0, 0, 0,
+						                         (float)Math.Sqrt (Math.Pow (shape.Width, 2) + Math.Pow (shape.Height, 2)));
 
 					// Set a natural ease-in/ease-out interpolator
 					animator.SetInterpolator (new AccelerateDecelerateInterpolator ());

@@ -62,8 +62,8 @@ namespace ActivitySceneTransitionBasic
         	* This could be done in the layout XML, but exposing it via static variables allows easy
 	        * querying from other Activities
 	        */
-			mHeaderImageView.TransitionName = VIEW_NAME_HEADER_IMAGE;
-			mHeaderTitle.TransitionName = VIEW_NAME_HEADER_TITLE;
+			mHeaderImageView.ViewName = VIEW_NAME_HEADER_IMAGE;
+			mHeaderTitle.ViewName = VIEW_NAME_HEADER_TITLE;
 
 			LoadItem (item);
 

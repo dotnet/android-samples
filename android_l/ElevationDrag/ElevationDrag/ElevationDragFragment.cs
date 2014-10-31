@@ -24,10 +24,9 @@ namespace ElevationDrag
 		private static int ELEVATION_STEP = 40;
 
 		/* Different outlines: */
-		internal Outline mOutline;
+		internal Outline mOutlineCircle;
 
-		CircleOutlineProvider circleProvider;
-		RectOutlineProvider rectProvider;
+		internal Outline mOutlineRect;
 
 		View floatingShape;
 
@@ -37,27 +36,17 @@ namespace ElevationDrag
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			var rootView = inflater.Inflate (Resource.Layout.ztranslation, container, false);
-
+			//Create the outlines
+			CreateOutline ();
 
 			//Find view to apply Z-translation to
 			floatingShape = rootView.FindViewById (Resource.Id.circle);
-
-			//Create the outlines
-			mOutline = new Outline ();
-			mOutline = new Outline ();
-
-			circleProvider = new CircleOutlineProvider ();
-			circleProvider.GetOutline (floatingShape, mOutline);
-
-			rectProvider = new RectOutlineProvider ();
-			rectProvider.GetOutline (floatingShape, mOutline);
-			/*
-			//Define the view's shape
-			floatingShape.OutlineProvider = circleProvider;
-
+			//Define its shape
+			floatingShape.SetOutline (mOutlineCircle);
 			//Clip view to outline
+
 			floatingShape.ClipToOutline = true;
-			*/
+
 			var dragLayout = rootView.FindViewById<DragFrameLayout> (Resource.Id.main_layout);
 
 			dragLayout.mDragFrameLayoutController = new DragFrameLayoutController ((bool captured) => {
@@ -92,21 +81,36 @@ namespace ElevationDrag
 			return rootView;
 		}
 
+		private void CreateOutline ()
+		{
+			/* Outlines define the shape that's used for clipping the View and its shadow.  */
+
+			/* Get the size of the shape from resources. */
+			int shapeSize = this.Resources.GetDimensionPixelSize (Resource.Dimension.shape_size);
+
+			/* Create a circular outline. */
+			mOutlineCircle = new Outline ();
+			mOutlineCircle.SetRoundRect (0, 0, shapeSize, shapeSize, shapeSize / 2);
+
+			/* Create a rectangular outline. */
+			mOutlineRect = new Outline ();
+			mOutlineRect.SetRoundRect (0, 0, shapeSize, shapeSize, shapeSize / 10);
+		}
+
 		public void OnItemSelected (AdapterView parent, View view, int position, long id)
 		{
 			/* Set the corresponding Outline to the shape. */
-
 			switch (position) {
 			case 0:
-				floatingShape.OutlineProvider = circleProvider;
+				floatingShape.SetOutline (mOutlineCircle);
 				floatingShape.ClipToOutline = true;
 				break;
 			case 1:
-				floatingShape.OutlineProvider = rectProvider;
+				floatingShape.SetOutline (mOutlineRect);
 				floatingShape.ClipToOutline = true;
 				break;
 			default:
-				floatingShape.OutlineProvider = circleProvider;
+				floatingShape.SetOutline (mOutlineCircle);
 				/* Don't clip the view to the outline in the last case. */
 				floatingShape.ClipToOutline = false;
 				break;
@@ -115,27 +119,9 @@ namespace ElevationDrag
 
 		public void OnNothingSelected (AdapterView parent)
 		{
-			floatingShape.OutlineProvider = circleProvider;
+			floatingShape.SetOutline (mOutlineCircle);
+			floatingShape.ClipToOutline = true;
 		}
-
-		private class RectOutlineProvider : ViewOutlineProvider
-		{
-			public override void GetOutline (View view, Outline outline)
-			{
-				int shapeSize = view.Resources.GetDimensionPixelSize (Resource.Dimension.shape_size);
-				outline.SetRoundRect (0, 0, shapeSize, shapeSize, shapeSize / 10);
-			}
-		}
-
-		private class CircleOutlineProvider : ViewOutlineProvider
-		{
-			public override void GetOutline (View view, Outline outline)
-			{
-				int shapeSize = view.Resources.GetDimensionPixelSize (Resource.Dimension.shape_size);
-				outline.SetRoundRect (0, 0, shapeSize, shapeSize, shapeSize / 2);
-			}
-		}
-
 
 	}
 

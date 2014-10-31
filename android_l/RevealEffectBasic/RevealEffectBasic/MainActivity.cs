@@ -10,7 +10,7 @@ using CommonSampleLibrary;
 
 namespace RevealEffectBasic
 {
-	[Activity (Label = "RevealEffectBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
+	[Activity (Label = "RevealEffectBasic", MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	public class MainActivity : SampleActivityBase
 	{
 		public const string TAG = "MainActivity";
