@@ -22,8 +22,6 @@ using Java.IO;
 using Java.Nio;
 using Java.Lang;
 
-using CameraError = Android.Hardware.Camera2.CameraError;
-
 namespace Camera2Basic
 {
 	public class Camera2BasicFragment : Fragment, View.IOnClickListener
@@ -81,7 +79,7 @@ namespace Camera2Basic
 
 		// CameraDevice.StateListener is called when a CameraDevice changes its state
 		private CameraStateListener mStateListener;
-		private class CameraStateListener : CameraDevice.StateCallback
+		private class CameraStateListener : CameraDevice.StateListener
 		{
 			public Camera2BasicFragment Fragment;
 			public override void OnOpened (CameraDevice camera)
@@ -103,7 +101,7 @@ namespace Camera2Basic
 				}
 			}
 
-			public override void OnError (CameraDevice camera, CameraError error)
+			public override void OnError (CameraDevice camera, CameraErrorType error)
 			{
 				camera.Close();
 				if (Fragment != null) {
@@ -162,7 +160,7 @@ namespace Camera2Basic
 			}
 		}
 
-		private class CameraCaptureListener : CameraCaptureSession.CaptureCallback 
+		private class CameraCaptureListener : CameraCaptureSession.CaptureListener 
 		{
 			public Camera2BasicFragment Fragment;
 			public File File;
@@ -181,7 +179,7 @@ namespace Camera2Basic
 		}
 		
 		// This CameraCaptureSession.StateListener uses Action delegates to allow the methods to be defined inline, as they are defined more than once
-		private class CameraCaptureStateListener : CameraCaptureSession.StateCallback
+		private class CameraCaptureStateListener : CameraCaptureSession.StateListener
 		{
 			public Action<CameraCaptureSession> OnConfigureFailedAction;
 			public override void OnConfigureFailed (CameraCaptureSession session)
