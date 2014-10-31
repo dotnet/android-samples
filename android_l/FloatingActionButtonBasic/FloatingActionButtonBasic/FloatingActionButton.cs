@@ -31,8 +31,6 @@ namespace FloatingActionButtonBasic
 		// A listener to communicate that the FAB has changed states
 		private IOnCheckedChangeListener onCheckedChangeListener;
 
-		public int size;
-
 		public bool Checked {
 			get{ return check; }
 			set{ check = value; }
@@ -59,7 +57,6 @@ namespace FloatingActionButtonBasic
 			// When a view is clickable it will change its state to "pressed" on every click.
 			Clickable = true;
 
-			size = Resources.GetDimensionPixelSize (Resource.Dimension.fab_size);
 			// Create a GestureDetector to detect single taps
 			gestureDetector = new GestureDetector (context, new MySimpleOnGestureListener (this));
 
@@ -94,7 +91,7 @@ namespace FloatingActionButtonBasic
 			this.check = check;
 
 			// Create and start the ValueAnimator that shows the new state
-			var anim = CreateAnimator ();
+			Animator anim = CreateAnimator ();
 			anim.SetDuration( Resources.GetInteger (Android.Resource.Integer.ConfigShortAnimTime));
 			anim.Start ();
 
@@ -131,7 +128,7 @@ namespace FloatingActionButtonBasic
 			if (touchPoint == null)
 				touchPoint = new Point (Width / 2, Height / 2);
 
-			var anim = ViewAnimationUtils.CreateCircularReveal (revealView, touchPoint.X, touchPoint.Y, 0, endRadius);
+			Animator anim = ViewAnimationUtils.CreateCircularReveal (revealView, touchPoint.X, touchPoint.Y, 0, endRadius);
 			anim.AddListener (new MyAnimatorListenerAdapter (this));
 			return anim;
 
@@ -176,15 +173,20 @@ namespace FloatingActionButtonBasic
 		protected override void OnSizeChanged (int w, int h, int oldw, int oldh)
 		{
 			base.OnSizeChanged (w, h, oldw, oldh);
-			/*
+
 			var outline = new Outline ();
-
+			OutlineProvider = new OutlineProv ();
 			outline.SetOval (0, 0, w, h);
-
-			SetOutline (outline);
-			*/
-			OutlineProvider = new FabOutlineProvider (this);
+			OutlineProvider.GetOutline (this, outline);
 			ClipToOutline = true;
+		}
+
+		private class OutlineProv : ViewOutlineProvider
+		{
+			public override void GetOutline (View view, Outline outline)
+			{
+				outline.SetOval (0, 0, view.Width, view.Height);
+			}
 		}
 
 		protected override int[] OnCreateDrawableState (int extraSpace)
@@ -196,21 +198,6 @@ namespace FloatingActionButtonBasic
 			return drawableState;
 		}
 
-		private class FabOutlineProvider : ViewOutlineProvider
-		{
-			FloatingActionButton b;
-			public FabOutlineProvider(FloatingActionButton b)
-			{
-				this.b = b;
-			}
-			public override void GetOutline(View view, Outline outline) {
-				// Or read size directly from the view's width/height
-
-				outline.SetOval(0, 0, b.size, b.size);
-			}
-		}
-
 
 	}
 }
-

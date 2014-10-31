@@ -245,7 +245,7 @@ namespace Camera2VideoSample
 				media_recorder.SetOutputFile (System.IO.Path.GetFullPath (file.ToString()));
 				media_recorder.SetVideoEncodingBitRate (10000000);
 				media_recorder.SetVideoFrameRate (30);
-				media_recorder.SetVideoSize (1440, 1080);
+				media_recorder.SetVideoSize (720, 480);
 				media_recorder.SetVideoEncoder (VideoEncoder.H264);
 				media_recorder.SetAudioEncoder (AudioEncoder.Aac);
 				int rotation = (int)Activity.WindowManager.DefaultDisplay.Rotation;
