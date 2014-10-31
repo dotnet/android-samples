@@ -4,7 +4,7 @@ using Android.Widget;
 
 namespace Camera2VideoSample
 {
-	public class RecordingCaptureStateListener: CameraCaptureSession.StateCallback
+	public class RecordingCaptureStateListener: CameraCaptureSession.StateListener
 	{
 		Camera2VideoFragment fragment;
 		public RecordingCaptureStateListener(Camera2VideoFragment frag)

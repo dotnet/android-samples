@@ -12,7 +12,7 @@ Instructions
 
 Build Requirements
 ------------------
-Using this sample requires a device that is Android L or later and Xamarin.Android 4.20 or later.
+Using this sample requires a device that is Android L or later and Xamarin.Android 4.17 or later.
 
 Author
 ------
