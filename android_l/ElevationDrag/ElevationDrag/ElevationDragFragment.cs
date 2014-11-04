@@ -25,7 +25,6 @@ namespace ElevationDrag
 
 		/* Different outlines: */
 		internal Outline mOutline;
-		internal Outline mOutline2;
 		CircleOutlineProvider circleProvider;
 		RectOutlineProvider rectProvider;
 
@@ -44,13 +43,12 @@ namespace ElevationDrag
 
 			//Create the outlines
 			mOutline = new Outline ();
-			mOutline2 = new Outline ();
 
 			circleProvider = new CircleOutlineProvider ();
 			circleProvider.GetOutline (floatingShape, mOutline);
 
 			rectProvider = new RectOutlineProvider ();
-			rectProvider.GetOutline (floatingShape, mOutline2);
+			rectProvider.GetOutline (floatingShape, mOutline);
 			/*
 			//Define the view's shape
 			floatingShape.OutlineProvider = circleProvider;
