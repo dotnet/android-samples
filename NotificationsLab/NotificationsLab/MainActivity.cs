@@ -26,10 +26,6 @@ namespace NotificationsLab
             // Get the notifications manager:
             NotificationManager notificationManager = GetSystemService(Context.NotificationService) as NotificationManager;
 
-            // Setup an intent so that notifications can return to this app:
-            var intent = new Intent (this, typeof(MainActivity));
-            var pendingIntent = PendingIntent.GetActivity (this, 0, intent, PendingIntentFlags.CancelCurrent);
-
             //..........................................................................
             // Edit box:
 
@@ -103,7 +99,6 @@ namespace NotificationsLab
             {
                 // Instantiate the notification builder:
 				Notification.Builder builder = new Notification.Builder(this)
-                    .SetContentIntent(pendingIntent)
 					.SetContentTitle("Sample Notification")
                     .SetContentText(notifyMsg.Text)
                     .SetSmallIcon(Resource.Drawable.ic_notification)
@@ -276,6 +271,32 @@ namespace NotificationsLab
                         builder.SetCategory(Notification.CategoryStatus);
                         break;
                 }
+					
+                // Setup an intent for SecondActivity:
+                Intent secondIntent = new Intent (this, typeof(SecondActivity));
+
+                // Pass the current notification string value to SecondActivity:
+				secondIntent.PutExtra ("message", notifyMsg.Text);
+
+                // Pressing the Back button in SecondActivity exits the app:
+                TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+
+				// Add the back stack for the intent:
+				stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(SecondActivity)));
+
+				// Push the intent (that starts SecondActivity) onto the stack. The
+				// pending intent can be used only once (one shot):
+                stackBuilder.AddNextIntent(secondIntent);
+                PendingIntent pendingIntent = stackBuilder.GetPendingIntent(0, PendingIntentFlags.OneShot);
+
+				// Uncomment this code to setup an intent so that notifications return to this app:
+				// Intent intent = new Intent (this, typeof(MainActivity));
+				// const int pendingIntentId = 0;
+				// pendingIntent = PendingIntent.GetActivity (this, pendingIntentId, intent, PendingIntentFlags.OneShot);
+				// builder.SetContentText("Hello World! This is my first action notification!");
+
+                // Launch SecondActivity when the users taps the notification:
+				builder.SetContentIntent(pendingIntent);
 
                 // Build the notification:
                 Notification notification = builder.Build();
