@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Visual_Game_Controller.Visual_Game_Controller">
-	<uses-sdk android:minSdkVersion="L" android:targetSdkVersion="L" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
 	<application android:label="Visual-Game-Controller">
 	</application>
 </manifest>

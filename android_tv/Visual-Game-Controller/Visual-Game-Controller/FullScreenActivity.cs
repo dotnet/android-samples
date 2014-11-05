@@ -13,89 +13,14 @@ using Android.Annotation;
 using Android.Hardware.Input;
 using Android.Util;
 using VisualGameController;
+using Android.Content.PM;
 
 using Java.Lang;
 
 namespace VisualGameController
 {
-	//A group of small classes used in the control of the navigation
-	public class MyOnClickListener: Java.Lang.Object,View.IOnClickListener
-	{
-		FullScreenActivity activity;
-		public MyOnClickListener(FullScreenActivity activity)
-		{
-			this.activity = activity;
-		}
-
-		public void OnClick(View View)
-		{
-			if (FullScreenActivity.TOGGLE_ON_CLICK) {
-				activity.system_ui_hider.Toggle();
-			} else {
-				activity.system_ui_hider.Show();
-			}
-		}
-	}
-
-	public class MyOnTouchListener : Java.Lang.Object,View.IOnTouchListener
-	{
-		FullScreenActivity activity;
-		public MyOnTouchListener(FullScreenActivity activity)
-		{
-			this.activity = activity;
-		}
-		public bool OnTouch(View view, MotionEvent motion_event)
-		{
-			if (FullScreenActivity.AUTO_HIDE) 
-				activity.DelayedHide(FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
-
-			return false;
-		}
-	}
-
-	public class MyRunnable : Java.Lang.Object,IRunnable
-	{
-		FullScreenActivity activity;
-		public MyRunnable(FullScreenActivity activity)
-		{
-			this.activity = activity;
-		}
-		public void Run()
-		{
-			activity.system_ui_hider.Hide();
-		}
-	}
-
-	public class MyOnVisibilityChangeListener: SystemUiHider.OnVisibilityChangeListner 
-	{
-		FullScreenActivity activity;
-		int controls_height;
-		int short_anim_time;
-		public MyOnVisibilityChangeListener(FullScreenActivity activity)
-		{
-			this.activity = activity;
-		}
-		public void OnVisibilityChange(bool visible)
-		{
-			if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb) {
-				if (controls_height == 0) 
-					controls_height = activity.controlsView.Height;
-
-				if (short_anim_time == 0) 
-					short_anim_time = activity.Resources.GetInteger (Android.Resource.Integer.ConfigShortAnimTime);
-
-				activity.controlsView.Animate ().TranslationY (visible ? 0 : controls_height).SetDuration (short_anim_time);
-			} else {
-				activity.controlsView.Visibility = (visible ? ViewStates.Visible : ViewStates.Gone);
-			}
-
-			if (visible && FullScreenActivity.AUTO_HIDE) 
-				activity.DelayedHide (FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
-		}
-	}
-
-
-	[Activity (Label = "Visual-Game-Controller", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (ConfigurationChanges = ConfigChanges.Orientation|ConfigChanges.KeyboardHidden|ConfigChanges.ScreenSize, Label = "Visual-Game-Controller",
+		MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.NoTitleBar.Fullscreen", ScreenOrientation = ScreenOrientation.Landscape)]
 	public class FullScreenActivity : Activity,InputManager.IInputDeviceListener
 	{
 		private const string TAG = "FullscreenActivity";
@@ -330,6 +255,82 @@ namespace VisualGameController
 			controller_view.Invalidate ();
 		}
 			
+	}
+
+	//A group of small classes used in the control of the navigation
+	public class MyOnClickListener: Java.Lang.Object,View.IOnClickListener
+	{
+		FullScreenActivity activity;
+		public MyOnClickListener(FullScreenActivity activity)
+		{
+			this.activity = activity;
+		}
+
+		public void OnClick(View View)
+		{
+			if (FullScreenActivity.TOGGLE_ON_CLICK) {
+				activity.system_ui_hider.Toggle();
+			} else {
+				activity.system_ui_hider.Show();
+			}
+		}
+	}
+
+	public class MyOnTouchListener : Java.Lang.Object,View.IOnTouchListener
+	{
+		FullScreenActivity activity;
+		public MyOnTouchListener(FullScreenActivity activity)
+		{
+			this.activity = activity;
+		}
+		public bool OnTouch(View view, MotionEvent motion_event)
+		{
+			if (FullScreenActivity.AUTO_HIDE) 
+				activity.DelayedHide(FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
+
+			return false;
+		}
+	}
+
+	public class MyRunnable : Java.Lang.Object,IRunnable
+	{
+		FullScreenActivity activity;
+		public MyRunnable(FullScreenActivity activity)
+		{
+			this.activity = activity;
+		}
+		public void Run()
+		{
+			activity.system_ui_hider.Hide();
+		}
+	}
+
+	public class MyOnVisibilityChangeListener: SystemUiHider.OnVisibilityChangeListner 
+	{
+		FullScreenActivity activity;
+		int controls_height;
+		int short_anim_time;
+		public MyOnVisibilityChangeListener(FullScreenActivity activity)
+		{
+			this.activity = activity;
+		}
+		public void OnVisibilityChange(bool visible)
+		{
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb) {
+				if (controls_height == 0) 
+					controls_height = activity.controlsView.Height;
+
+				if (short_anim_time == 0) 
+					short_anim_time = activity.Resources.GetInteger (Android.Resource.Integer.ConfigShortAnimTime);
+
+				activity.controlsView.Animate ().TranslationY (visible ? 0 : controls_height).SetDuration (short_anim_time);
+			} else {
+				activity.controlsView.Visibility = (visible ? ViewStates.Visible : ViewStates.Gone);
+			}
+
+			if (visible && FullScreenActivity.AUTO_HIDE) 
+				activity.DelayedHide (FullScreenActivity.AUTO_HIDE_DELAY_MILLIS);
+		}
 	}
 }
 

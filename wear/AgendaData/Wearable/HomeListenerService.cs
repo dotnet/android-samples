@@ -103,7 +103,7 @@ namespace Wearable
 				.AddAction (Resource.Drawable.ic_menu_delete, GetText (Resource.String.delete), deleteIntent)
 				.SetDeleteIntent (silentDeleteIntent)
 				.SetLocalOnly (true)
-				.SetPriority ((int)NotificationPriority.Min);
+				.SetPriority (NotificationPriority.Min);
 
 			// Set the event owner's profile picture as the notification background
 			Asset asset = data.GetAsset (Constants.PROFILE_PIC);
