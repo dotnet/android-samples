@@ -41,7 +41,7 @@ namespace FindMyPhoneSample
 					.SetContentAction (0)
 					.SetHintHideIcon (true))
 				.SetLocalOnly (true)
-				.SetPriority (NotificationPriority.Max);
+				.SetPriority ((int)NotificationPriority.Max);
 			((NotificationManager)GetSystemService (NotificationService))
 				.Notify (FIND_PHONE_NOTIFICATION_ID, notification.Build ());
 

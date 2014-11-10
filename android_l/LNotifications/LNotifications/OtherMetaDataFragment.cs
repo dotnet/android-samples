@@ -124,7 +124,7 @@ namespace LNotifications
 			var builder = new Notification.Builder (Activity)
 				.SetContentTitle ("Notification with other metadata")
 				.SetSmallIcon (Resource.Drawable.ic_launcher_notification)
-				.SetPriority (priority.priority)
+				.SetPriority ((int)priority.priority)
 				.SetCategory (category.ToString ())
 				.SetContentText(string.Format("Category {0}, Priority {1}",category.ToString(),priority.ToString()));
 			if (contactUri != null) {

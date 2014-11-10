@@ -19,7 +19,7 @@ namespace FindMyPhoneSample
 				.SetVibrate (new long[]{ 0, 200 })
 				.SetSmallIcon (Resource.Drawable.ic_launcher)
 				.SetLocalOnly (true)
-				.SetPriority (NotificationPriority.Max);
+				.SetPriority ((int)NotificationPriority.Max);
 			Notification card = notificationBuilder.Build ();
 			((NotificationManager)GetSystemService (NotificationService))
 				.Notify (FORGOT_PHONE_NOTIFICATION_ID, card);
