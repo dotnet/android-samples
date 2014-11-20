@@ -206,19 +206,19 @@ namespace NotificationsLab
                 switch (prioritySpinner.SelectedItem.ToString())
                 {
                     case "High":
-					builder.SetPriority((int)NotificationPriority.High);
+					builder.SetPriority(NotificationPriority.High);
                         break;
                     case "Low":
-                        builder.SetPriority((int)NotificationPriority.Low);
+                        builder.SetPriority(NotificationPriority.Low);
                         break;
                     case "Maximum":
-                        builder.SetPriority((int)NotificationPriority.Max);
+                        builder.SetPriority(NotificationPriority.Max);
                         break;
                     case "Minimum":
-                        builder.SetPriority((int)NotificationPriority.Min);
+                        builder.SetPriority(NotificationPriority.Min);
                         break;
                     default:
-                        builder.SetPriority((int)NotificationPriority.Default);
+                        builder.SetPriority(NotificationPriority.Default);
                         break;
                 }
 
@@ -287,7 +287,8 @@ namespace NotificationsLab
 				// Push the intent (that starts SecondActivity) onto the stack. The
 				// pending intent can be used only once (one shot):
                 stackBuilder.AddNextIntent(secondIntent);
-                PendingIntent pendingIntent = stackBuilder.GetPendingIntent(0, PendingIntentFlags.OneShot);
+                const int pendingIntentId = 0;
+                PendingIntent pendingIntent = stackBuilder.GetPendingIntent(pendingIntentId, PendingIntentFlags.OneShot);
 
 				// Uncomment this code to setup an intent so that notifications return to this app:
 				// Intent intent = new Intent (this, typeof(MainActivity));
