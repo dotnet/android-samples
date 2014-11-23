@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="AndroidSupportSample.AppCompatSample">
-	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="18" />
-	<supports-screens android:requiresSmallestWidthDp="320" android:compatibleWidthLimitDp="480" />
-	<application android:label="@string/activity_sample_code" android:icon="@drawable/app_sample_code" android:hardwareAccelerated="true">
-		<activity android:name="androidsupportsample.ActionBarDisplayOptions" android:label="@string/action_bar_display_options" android:logo="@drawable/apidemo_androidlogo" android:theme="@style/Theme.AppCompat" />
-	</application>
-</manifest>

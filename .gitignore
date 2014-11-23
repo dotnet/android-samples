@@ -10,7 +10,7 @@ packages/
 *.Designer.cs
 *.designer.cs
 *.DS_Store
-
+*Thumbs.db
 ContentControls/ContentControls/Resources/Values/PrivateStrings.xml
 
 /AndroidMapViewBalloons/android-mapviewballoons/
@@ -29,3 +29,4 @@ google-play-services_lib
 /OneABIPerAPK/Properties/AndroidManifest.xml.x86
 /OneABIPerAPK/Properties/AndroidManifest.xml.armeabi-v7a
 /OneABIPerAPK/Properties/AndroidManifest.xml.armeabi
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        style="@style/Widget.SampleMessageTile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            style="@style/Widget.SampleMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horizontal_page_margin"
+            android:layout_marginRight="@dimen/horizontal_page_margin"
+            android:layout_marginTop="@dimen/vertical_page_margin"
+            android:text="@string/intro_message" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/new_document_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:text="@string/new_document_button_text" />
+        <CheckBox
+            android:id="@+id/multiple_task_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/multiple_task_checkbox_label" />
+    </LinearLayout>
+</LinearLayout>

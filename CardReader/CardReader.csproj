@@ -86,7 +86,4 @@
       <Name>CommonSampleLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\values\" />
-  </ItemGroup>
 </Project>

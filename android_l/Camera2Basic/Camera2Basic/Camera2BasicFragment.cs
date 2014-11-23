@@ -179,7 +179,7 @@ namespace Camera2Basic
 				}
 			}
 		}
-		
+
 		// This CameraCaptureSession.StateListener uses Action delegates to allow the methods to be defined inline, as they are defined more than once
 		private class CameraCaptureStateListener : CameraCaptureSession.StateCallback
 		{
@@ -483,17 +483,17 @@ namespace Camera2Basic
 		public void OnClick (View v)
 		{
 			switch (v.Id) {
-				case Resource.Id.picture:
-					TakePicture ();
-					break;
+			case Resource.Id.picture:
+				TakePicture ();
+				break;
 			case Resource.Id.info:
 				EventHandler<DialogClickEventArgs> nullHandler = null;
 				Activity activity = Activity;
 				if (activity != null) {
 					new AlertDialog.Builder (activity)
-							.SetMessage ("This sample demonstrates the basic use of the Camera2 API. ...")
-							.SetPositiveButton (Android.Resource.String.Ok, nullHandler)
-							.Show ();
+						.SetMessage ("This sample demonstrates the basic use of the Camera2 API. ...")
+						.SetPositiveButton (Android.Resource.String.Ok, nullHandler)
+						.Show ();
 				}
 				break;
 			}

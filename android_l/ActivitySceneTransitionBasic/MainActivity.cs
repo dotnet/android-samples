@@ -124,7 +124,7 @@ namespace ActivitySceneTransitionBasic
              * item's ID so that the names are unique.
              */
 			image.TransitionName = "grid:image:" + item.id;
-			name.TransitionName= "grid:name:" + item.id;
+			name.TransitionName = "grid:name:" + item.id;
 
 			return view;
 		}

@@ -99,12 +99,12 @@ namespace ClippingBasic
 			{
 				frag = f;
 			}
+
 			public override void GetOutline (View view, Android.Graphics.Outline outline)
 			{
 				int margin = Math.Min (view.Width, view.Height) / 10;
 				outline.SetRoundRect (margin, margin, view.Width - margin,
 					view.Height - margin, margin / 2);
-					
 			}
 		}
 

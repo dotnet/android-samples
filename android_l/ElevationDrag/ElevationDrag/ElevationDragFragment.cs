@@ -44,7 +44,6 @@ namespace ElevationDrag
 
 			//Create the outlines
 			mOutline = new Outline ();
-			mOutline = new Outline ();
 
 			circleProvider = new CircleOutlineProvider ();
 			circleProvider.GetOutline (floatingShape, mOutline);
@@ -102,6 +101,7 @@ namespace ElevationDrag
 				break;
 			case 1:
 				floatingShape.OutlineProvider = rectProvider;
+				floatingShape.Invalidate ();
 				floatingShape.ClipToOutline = true;
 				break;
 			default:
