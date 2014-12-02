@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--For all properties see: http://developer.android.com/guide/topics/resources/menu-resource.html-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!--Update strings and icons-->
+   <!--Update strings and icons-->
+  <item android:id="@+id/action_edit"
+	      android:title="Edit"
+	      android:icon="@android:drawable/ic_menu_edit"
+	      android:showAsAction="never"/>
+
+  <item android:id="@+id/action_save"
+         android:title="Save"
+         android:icon="@android:drawable/ic_menu_save"
+         android:showAsAction="never"/>
+</menu>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Supportv7Pallete</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>PalleteSample</AssemblyName>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.0.0-beta1\lib\MonoAndroid\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.21.0.0.0-beta1\lib\MonoAndroid\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.21.0.0.0-beta1\lib\MonoAndroid\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.Palette">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.Palette.21.0.0.0-beta1\lib\MonoAndroid10\Xamarin.Android.Support.v7.Palette.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Photos.cs" />
+    <Compile Include="Utils\HeightAdjustableImageView.cs" />
+    <Compile Include="Activities\ImageDetailPaletteActivity.cs" />
+    <Compile Include="Activities\ImageListActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\evolve.jpg" />
+    <AndroidResource Include="Resources\layout\activity_image_list.axml" />
+    <AndroidResource Include="Resources\layout\activity_image_detail.axml" />
+    <AndroidResource Include="Resources\layout\grid_item.axml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\flying_in_the_light_large.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\jelly_fish_2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\lone_pine_sunset.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\look_me_in_the_eye.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\over_there.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\rainbow.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\sample1.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\sample2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\caterpiller.jpg" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\menu\menu1.xml" />
+    <AndroidResource Include="Resources\menu\menu2.xml" />
+    <AndroidResource Include="Resources\drawable\monkey.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass1.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass3.jpeg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass4.jpeg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bassnectar.jpg" />
+    <AndroidResource Include="Resources\anim\paper_state_list_anim_material.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_mtrl_alpha.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_mtrl_alpha.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\btn_mtrl_alpha.9.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass7.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass6.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\bass5.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\layout\toolbar.axml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Activities\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\menu\" />
+    <Folder Include="Resources\anim\" />
+    <Folder Include="Resources\values-v21\" />
+  </ItemGroup>
+</Project>

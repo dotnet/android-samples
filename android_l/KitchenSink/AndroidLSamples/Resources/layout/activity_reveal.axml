@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/activity_margin">
+    <ImageView
+        android:src="@drawable/monkey"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:id="@+id/my_view"
+        android:visibility="invisible" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="Center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:id="@+id/animate" />
+        <Button
+            android:text="Bottom Left"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:id="@+id/animate_bottom" />
+    </LinearLayout>
+</LinearLayout>
