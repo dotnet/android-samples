@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-	<ID>c3ff1973-12db-4bdc-bdfc-769fb3e490f7</ID>
+	<ID>b0f64fc9-93d5-462c-805f-501dd666471f</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>User Interface, Support v7</Tags>
+	<Tags>User Interface, AndroidL, Support v7</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
