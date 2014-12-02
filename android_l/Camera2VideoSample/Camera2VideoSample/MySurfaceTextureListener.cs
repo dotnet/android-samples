@@ -14,14 +14,12 @@ namespace Camera2VideoSample
 
 		public void OnSurfaceTextureAvailable(SurfaceTexture surface_texture,int width, int height)
 		{
-			fragment.configureTransform (width, height);
-			fragment.startPreview ();
+			fragment.openCamera (width,height);
 		}
 
 		public void OnSurfaceTextureSizeChanged(SurfaceTexture surface_texture, int width, int height)
 		{
 			fragment.configureTransform (width, height);
-			fragment.startPreview ();
 		}
 
 		public bool OnSurfaceTextureDestroyed(SurfaceTexture surface_texture)

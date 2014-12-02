@@ -4,37 +4,36 @@ using Android.Widget;
 
 namespace Camera2VideoSample
 {
-	public class MyCameraStateListener : CameraDevice.StateCallback
+	public class MyCameraStateCallback : CameraDevice.StateCallback
 	{
 		Camera2VideoFragment fragment;
-		public MyCameraStateListener(Camera2VideoFragment frag)
+		public MyCameraStateCallback(Camera2VideoFragment frag)
 		{
 			fragment = frag;
 		}
 		public override void OnOpened (CameraDevice camera)
 		{
-			fragment.camera_device = camera;
+			fragment.cameraDevice = camera;
 			fragment.startPreview ();
-			fragment.opening_camera = false;
-			if (null != fragment.texture_view) 
-				fragment.configureTransform (fragment.texture_view.Width, fragment.texture_view.Height);
+			fragment.cameraOpenCloseLock.Release ();
+			if (null != fragment.textureView) 
+				fragment.configureTransform (fragment.textureView.Width, fragment.textureView.Height);
 		}
 
 		public override void OnDisconnected (CameraDevice camera)
 		{
+			fragment.cameraOpenCloseLock.Release ();
 			camera.Close ();
-			fragment.camera_device = null;
-			fragment.opening_camera = false;
+			fragment.cameraDevice = null;
 		}
 
 		public override void OnError (CameraDevice camera, CameraError error)
 		{
+			fragment.cameraOpenCloseLock.Release ();
 			camera.Close ();
-			fragment.camera_device = null;
+			fragment.cameraDevice = null;
 			if (null != fragment.Activity) 
 				fragment.Activity.Finish ();
-
-			fragment.opening_camera = false;
 		}
 
 
