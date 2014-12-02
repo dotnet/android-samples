@@ -39,7 +39,7 @@ namespace ElevationBasic
 		public override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
