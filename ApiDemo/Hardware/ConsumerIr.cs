@@ -35,7 +35,7 @@ namespace MonoDroid.ApiDemo
  	*
  	* Hardware / Consumer IR
  	*/
-	[Activity (Label = "Hardware/Consumer IR")]
+	[Activity (Label = "Hardware/Consumer IR", Name = "monodroid.apidemo.ConsumerIr")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]			
 	public class ConsumerIr : Activity
 	{

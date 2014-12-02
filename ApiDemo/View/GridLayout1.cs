@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo
  	* Demonstrates using GridLayout to build the same "Simple Form" as in the
  	* LinearLayout and RelativeLayout demos.
  	*/
-	[Activity (Label = "Views/Layouts/GridLayout/1. Simple Form")]
+	[Activity (Label = "Views/Layouts/GridLayout/1. Simple Form", Name = "monodroid.apidemo.GridLayout1")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]			
 	public class GridLayout1 : Activity
 	{

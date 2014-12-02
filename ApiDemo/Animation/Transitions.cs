@@ -35,7 +35,7 @@ namespace MonoDroid.ApiDemo
  	* are loaded from resource files and transitions are run between those scenes
  	* as well as a dynamically-configured scene.
  	*/
-	[Activity (Label = "Animation/Simple Transitions")]
+	[Activity (Label = "Animation/Simple Transitions", Name = "monodroid.apidemo.Transitions")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]		
 	public class Transitions : Activity
 	{

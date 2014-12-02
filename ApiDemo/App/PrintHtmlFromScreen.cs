@@ -37,7 +37,7 @@ namespace MonoDroid.ApiDemo
  	* and allows the user to print that content via an action in the
  	* action bar. The shown WebView is doing the printing.
  	*/
-	[Activity (Label = "@string/print_html_from_screen")]
+	[Activity (Label = "@string/print_html_from_screen", Name = "monodroid.apidemo.PrintHtmlFromScreen")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]		
 	public class PrintHtmlFromScreen : Activity
 	{

@@ -35,8 +35,10 @@ namespace MonoDroid.ApiDemo
  	* a content browser style of UI (such as a book reader) that hides the
  	* nav bar as well as the status bar.
  	*/
-	[Activity (Label = "Views/System UI Visibility/Content Browser Nav Bar",
-		Theme = "@android:style/Theme.Holo.Light.DarkActionBar", UiOptions = UiOptions.SplitActionBarWhenNarrow)]
+	[Activity (Label = "Views/System UI Visibility/Content Browser Nav Bar", 
+		Name = "monodroid.apidemo.ContentBrowserNavActivity",
+		Theme = "@android:style/Theme.Holo.Light.DarkActionBar", 
+		UiOptions = UiOptions.SplitActionBarWhenNarrow)]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ContentBrowserNavActivity : Activity, SearchView.IOnQueryTextListener, ActionBar.ITabListener
 	{
@@ -45,6 +47,7 @@ namespace MonoDroid.ApiDemo
      	* flags to transition in and out of modes where the user is focused on that
      	* content.
      	*/
+		[Register ("monodroid.apidemo.ContentBrowserNavActivity_Content")]
 		public class Content : ScrollView, View.IOnSystemUiVisibilityChangeListener, View.IOnClickListener
 		{
 			TextView mText;

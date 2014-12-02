@@ -33,7 +33,7 @@ namespace MonoDroid.ApiDemo
  	* couple with the new simple_list_item_activated_1 which uses a highlighted border for selected
  	* items.
  	*/
-	[Activity (Label = "Views/Lists/16. Border selection mode")]
+	[Activity (Label = "Views/Lists/16. Border selection mode", Name = "monodroid.apidemo.List16")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]					
 	public class List16 : ListActivity
 	{

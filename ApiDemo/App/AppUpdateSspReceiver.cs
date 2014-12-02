@@ -27,10 +27,7 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	/**
- 	* Executed when a new version of the application is is installed.
- 	*/
-	[BroadcastReceiver]
+	[BroadcastReceiver (Name = "monodroid.apidemo.AppUpdateSspReceiver")]
 	public class AppUpdateSspReceiver : BroadcastReceiver
 	{
 		public override void OnReceive (Context context, Intent intent)

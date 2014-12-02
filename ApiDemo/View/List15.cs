@@ -30,7 +30,7 @@ namespace MonoDroid.ApiDemo
 	/**
  	* This demo illustrates the use of CHOICE_MODE_MULTIPLE_MODAL, a.k.a. selection mode on ListView.
  	*/
-	[Activity (Label = "Views/Lists/15. Selection Mode")]
+	[Activity (Label = "Views/Lists/15. Selection Mode", Name = "monodroid.apidemo.List15")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]						
 	public class List15 : ListActivity
 	{
