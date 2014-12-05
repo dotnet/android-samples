@@ -32,6 +32,7 @@ using Mono.Data.Sqlite;
 
 namespace MonoDroid.ContentProviderDemo
 {
+	[Register ("monodroid.contentproviderdemo.LocationProvider")]
     class LocationContentProvider : ContentProvider
     {
         public static string PROVIDER_NAME = "monodroid.contentproviderdemo.LocationProvider";
