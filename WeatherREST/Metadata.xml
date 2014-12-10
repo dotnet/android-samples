@@ -3,8 +3,8 @@
 	<ID>5EA039BB-FA95-4BB2-B4F4-CCE35B82CA96</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>AndroidL, Notifications</Tags>
+	<Tags>Android, HTTP, REST</Tags>
     <SupportedPlatforms>Android</SupportedPlatforms>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
