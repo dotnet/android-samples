@@ -16,6 +16,7 @@ namespace Mono.Samples.Tetrahedron
 	{
 		float prevX, prevY;
 		bool setViewport = true;
+		bool glContextCreated = false;
 
 		readonly Tetrahedron tetrahedron = new Tetrahedron ();
 
@@ -117,12 +118,16 @@ namespace Mono.Samples.Tetrahedron
 		protected override void OnContextSet (EventArgs e)
 		{
 			base.OnContextSet (e);
+			glContextCreated = true;
 			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
 			tetrahedron.Initialize ();
 		}
 
 		protected override void OnLoad (EventArgs e)
 		{
+			if (!glContextCreated)
+				return;
+
 			tetrahedron.SetupProjection (Width, Height);
 
 			Run (60);
