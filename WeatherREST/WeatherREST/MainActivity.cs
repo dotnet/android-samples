@@ -41,14 +41,15 @@ namespace WeatherREST
                              longitude.Text +
                              "&username=demo";
 
-                // Fetch the weather information asynchronously, then update the screen:
-                JsonValue json = await FetchAndDisplayAsync (url);
+                // Fetch the weather information asynchronously, parse the results,
+                // then update the screen:
+                JsonValue json = await FetchWeatherAsync (url);
                 ParseAndDisplay (json);
             };
         }
 
         // Gets weather data from the passed URL.  
-        private async Task<JsonValue> FetchAndDisplayAsync (string url)
+        private async Task<JsonValue> FetchWeatherAsync (string url)
         {
             // Create an HTTP web request using the URL:
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
@@ -75,15 +76,15 @@ namespace WeatherREST
         // location to the screen.
         private void ParseAndDisplay (JsonValue json)
         {
-            // Extract the array of name/value results for the field name "weatherObservation":
-            // Note that there is no exception handling for when this field is not found.
-            JsonValue weatherResults = json["weatherObservation"];
-
             // Get the weather reporting fields from the layout resource: 
             TextView location = FindViewById<TextView>(Resource.Id.locationText);
             TextView temperature = FindViewById<TextView>(Resource.Id.tempText);
             TextView humidity = FindViewById<TextView>(Resource.Id.humidText);
             TextView conditions = FindViewById<TextView>(Resource.Id.condText);
+
+            // Extract the array of name/value results for the field name "weatherObservation":
+            // Note that there is no exception handling for when this field is not found.
+            JsonValue weatherResults = json["weatherObservation"];
 
             // Extract the "stationName" (location string) and write it to the location TextBox:
             location.Text = weatherResults["stationName"];
