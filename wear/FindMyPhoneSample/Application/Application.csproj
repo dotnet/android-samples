@@ -86,4 +86,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wearable\Wearable.csproj">
+      <Project>{A946B582-2FBE-4A70-82B5-38772DA65865}</Project>
+      <Name>Wearable</Name>
+      <IsAppExtension>True</IsAppExtension>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
