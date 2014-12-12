@@ -27,7 +27,7 @@ namespace WeatherREST
 
             EditText latitude = FindViewById<EditText>(Resource.Id.latText);
             EditText longitude = FindViewById<EditText>(Resource.Id.longText);
-            Button button = FindViewById<Button>(Resource.Id.GetWeatherButton);
+            Button button = FindViewById<Button>(Resource.Id.getWeatherButton);
 
             // When the user clicks the button, send the REST request to geonames.org,
             button.Click += async (sender, e) => {
@@ -70,45 +70,41 @@ namespace WeatherREST
                     // Note that there is no exception handling for when this field is not found.
                     JsonValue weatherResults = jsonDoc["weatherObservation"];
 
-                    // Update the screen while in the UI context:
-                    RunOnUiThread(() =>
-                    {
-                        //.......................................................................
-                        // The remainder of this example formats the resulting weather
-                        // information to the lower half of the screen.
+                    //.......................................................................
+                    // The remainder of this example formats the resulting weather
+                    // information to the lower half of the screen.
 
-                        // Get the weather reporting fields from the layout resource: 
-                        TextView location = FindViewById<TextView>(Resource.Id.locationText);
-                        TextView temperature = FindViewById<TextView>(Resource.Id.tempText);
-                        TextView humidity = FindViewById<TextView>(Resource.Id.humidText);
-                        TextView conditions = FindViewById<TextView>(Resource.Id.condText);
+                    // Get the weather reporting fields from the layout resource: 
+                    TextView location = FindViewById<TextView>(Resource.Id.locationText);
+                    TextView temperature = FindViewById<TextView>(Resource.Id.tempText);
+                    TextView humidity = FindViewById<TextView>(Resource.Id.humidText);
+                    TextView conditions = FindViewById<TextView>(Resource.Id.condText);
 
-                        // Extract the "stationName" (location string) and write it to the location TextBox:
-                        location.Text = weatherResults["stationName"];
+                    // Extract the "stationName" (location string) and write it to the location TextBox:
+                    location.Text = weatherResults["stationName"];
 
-                        // The temperature is expressed in Celsius:
-                        double temp = weatherResults["temperature"];
-                        // Convert to Fahrenheit:
-                        temp = ((9.0 / 5.0) * temp) + 32;
-                        // Write the temperature (one decimal place) to the temperature TextBox:
-                        temperature.Text = String.Format("{0:F1}", temp) + "° F";
+                    // The temperature is expressed in Celsius:
+                    double temp = weatherResults["temperature"];
+                    // Convert to Fahrenheit:
+                    temp = ((9.0 / 5.0) * temp) + 32;
+                    // Write the temperature (one decimal place) to the temperature TextBox:
+                    temperature.Text = String.Format("{0:F1}", temp) + "° F";
 
-                        // Get the percent humidity and write it to the humidity TextBox:
-                        double humidPercent = weatherResults["humidity"];
-                        humidity.Text = humidPercent.ToString() + "%";
+                    // Get the percent humidity and write it to the humidity TextBox:
+                    double humidPercent = weatherResults["humidity"];
+                    humidity.Text = humidPercent.ToString() + "%";
 
-                        // Get the "clouds" and "weatherConditions" strings and combine them.
-                        // Ignore strings that are reported as "n/a":
-                        string cloudy = weatherResults["clouds"];
-                        if (cloudy.Equals("n/a"))
-                            cloudy = "";
-                        string cond = weatherResults["weatherCondition"];
-                        if (cond.Equals("n/a"))
-                            cond = "";
+                    // Get the "clouds" and "weatherConditions" strings and combine them.
+                    // Ignore strings that are reported as "n/a":
+                    string cloudy = weatherResults["clouds"];
+                    if (cloudy.Equals("n/a"))
+                        cloudy = "";
+                    string cond = weatherResults["weatherCondition"];
+                    if (cond.Equals("n/a"))
+                        cond = "";
 
-                        // Write the result to the conditions TextBox:
-                        conditions.Text = cloudy + " " + cond;
-                    });
+                    // Write the result to the conditions TextBox:
+                    conditions.Text = cloudy + " " + cond;
                 }
             }
         }

@@ -17,8 +17,8 @@ display:
 ![](Screenshots/example-screen.png)
 
 This example uses `System.Json` to parse the results of the HTTP 
-request. Parsing and display are handled asynchronously in a
-callback delegate. 
+request. The HTTP request, response, parsing, and display are handled 
+asynchronously via `async`/`await`. 
 
 Note that this sample uses a geonames.org demo account, which supports 
 a limited number of accesses. If the display is not reporting weather 
