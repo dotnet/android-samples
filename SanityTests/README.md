@@ -13,3 +13,8 @@ such as how to use Android.Runtime.JNIEnv, Java integration, and more.
 Ideally such things will be split out into separate, easily digestible
 samples in the future (presumably as part of ApiDemo), but in the
 interest of expediency...
+
+Note: Building this project requires that the Android NDK be installed.
+The Android NDK is currently installed as part of the current installer,
+but previous installs may lack it or require additional configuration
+within your IDE to provide the path to the Android NDK.
