@@ -60,7 +60,7 @@ namespace LoadingLargeBitmaps
             _imageView = FindViewById<ImageView>(Resource.Id.resized_imageview);
 
 
-			BitmapFactory.Options options = GetBitmapOptionsOfImage();
+			BitmapFactory.Options options = await GetBitmapOptionsOfImage();
 
 			Bitmap bitmapToDisplay = await LoadScaledDownBitmapForDisplayAsync (Resources, options, 150, 150);
 			_imageView.SetImageBitmap(bitmapToDisplay);
@@ -69,16 +69,16 @@ namespace LoadingLargeBitmaps
         }
 
 
-        BitmapFactory.Options GetBitmapOptionsOfImage()
+        async Task<BitmapFactory.Options> GetBitmapOptionsOfImage()
         {
             BitmapFactory.Options options = new BitmapFactory.Options
                                             {
                                                 InJustDecodeBounds = true
                                             };
 
-            Task<Bitmap> getBitmapOptionsTask = BitmapFactory.DecodeResourceAsync(Resources, Resource.Drawable.samoyed, options);
+			// The result will be null because InJustDecodeBounds == true.
+			Bitmap result=  await BitmapFactory.DecodeResourceAsync(Resources, Resource.Drawable.samoyed, options);
 
-            Bitmap result = getBitmapOptionsTask.Result; // Synchronous wait
 
             int imageHeight = options.OutHeight;
             int imageWidth = options.OutWidth;
