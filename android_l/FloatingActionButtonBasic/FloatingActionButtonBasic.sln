@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatingActionButtonBasic", "FloatingActionButtonBasic\FloatingActionButtonBasic.csproj", "{8D23F5EE-52D9-45C0-8828-8E147A4C5156}"
 EndProject

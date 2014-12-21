@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>62df8bc4-3ea3-453e-b7b7-d96b0ca5f382</ID>
+	<Gallery>true</Gallery>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Binding + Interop</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<Brief>The sample code for the Java Binding walkthrough.</Brief>
+	<LicenseRequirement>Indie</LicenseRequirement>
+</SampleMetadata>

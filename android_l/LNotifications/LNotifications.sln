@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LNotifications", "LNotifications\LNotifications.csproj", "{1E33E06B-0047-4C42-AAB3-049855238C6D}"
 EndProject

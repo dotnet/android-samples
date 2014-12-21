@@ -22,6 +22,8 @@ using Java.IO;
 using Java.Nio;
 using Java.Lang;
 
+using CameraError = Android.Hardware.Camera2.CameraError;
+
 namespace Camera2Basic
 {
 	public class Camera2BasicFragment : Fragment, View.IOnClickListener
@@ -79,7 +81,7 @@ namespace Camera2Basic
 
 		// CameraDevice.StateListener is called when a CameraDevice changes its state
 		private CameraStateListener mStateListener;
-		private class CameraStateListener : CameraDevice.StateListener
+		private class CameraStateListener : CameraDevice.StateCallback
 		{
 			public Camera2BasicFragment Fragment;
 			public override void OnOpened (CameraDevice camera)
@@ -101,7 +103,7 @@ namespace Camera2Basic
 				}
 			}
 
-			public override void OnError (CameraDevice camera, CameraErrorType error)
+			public override void OnError (CameraDevice camera, CameraError error)
 			{
 				camera.Close();
 				if (Fragment != null) {
@@ -160,7 +162,7 @@ namespace Camera2Basic
 			}
 		}
 
-		private class CameraCaptureListener : CameraCaptureSession.CaptureListener 
+		private class CameraCaptureListener : CameraCaptureSession.CaptureCallback
 		{
 			public Camera2BasicFragment Fragment;
 			public File File;
@@ -177,9 +179,9 @@ namespace Camera2Basic
 				}
 			}
 		}
-		
+
 		// This CameraCaptureSession.StateListener uses Action delegates to allow the methods to be defined inline, as they are defined more than once
-		private class CameraCaptureStateListener : CameraCaptureSession.StateListener
+		private class CameraCaptureStateListener : CameraCaptureSession.StateCallback
 		{
 			public Action<CameraCaptureSession> OnConfigureFailedAction;
 			public override void OnConfigureFailed (CameraCaptureSession session)
@@ -481,17 +483,17 @@ namespace Camera2Basic
 		public void OnClick (View v)
 		{
 			switch (v.Id) {
-				case Resource.Id.picture:
-					TakePicture ();
-					break;
+			case Resource.Id.picture:
+				TakePicture ();
+				break;
 			case Resource.Id.info:
 				EventHandler<DialogClickEventArgs> nullHandler = null;
 				Activity activity = Activity;
 				if (activity != null) {
 					new AlertDialog.Builder (activity)
-							.SetMessage ("This sample demonstrates the basic use of the Camera2 API. ...")
-							.SetPositiveButton (Android.Resource.String.Ok, nullHandler)
-							.Show ();
+						.SetMessage ("This sample demonstrates the basic use of the Camera2 API. ...")
+						.SetPositiveButton (Android.Resource.String.Ok, nullHandler)
+						.Show ();
 				}
 				break;
 			}

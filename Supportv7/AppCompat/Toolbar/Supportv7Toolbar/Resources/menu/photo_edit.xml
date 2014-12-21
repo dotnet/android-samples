@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+	  xmlns:local="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/menu_share" 
+		  android:icon="@drawable/ic_action_content_create" 
+		  local:showAsAction="always" 
+		  android:title="Edit" />
+	<item android:id="@+id/menu_share" 
+		  android:icon="@drawable/ic_action_content_undo" 
+		  local:showAsAction="always" 
+		  android:title="Undo" />
+	<item android:id="@+id/menu_share" 
+		  android:icon="@drawable/ic_action_content_redo" 
+		  local:showAsAction="always" 
+		  android:title="Redo" />
+  	<item android:id="@+id/menu_share" 
+		  android:icon="@drawable/ic_action_content_save" 
+		  local:showAsAction="always" 
+		  android:title="Save" />
+</menu>

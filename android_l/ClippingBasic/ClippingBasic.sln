@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClippingBasic", "ClippingBasic\ClippingBasic.csproj", "{B10ADC61-6585-409D-ABD0-2811D5061BD1}"
 EndProject

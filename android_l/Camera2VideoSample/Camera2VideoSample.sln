@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera2VideoSample", "Camera2VideoSample\Camera2VideoSample.csproj", "{11E9FAD2-1DA1-4ED0-ABA9-F8A37161F4DF}"
 EndProject

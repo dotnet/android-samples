@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRestrictionSchema", "AppRestrictionSchema\AppRestrictionSchema.csproj", "{4B9A3B58-905E-440C-BEDC-1E1D0D269053}"
 EndProject

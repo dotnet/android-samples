@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="TvLeanback">
-	<uses-sdk android:minSdkVersion="L" />
+	<uses-sdk android:minSdkVersion="21" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />

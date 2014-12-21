@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawableTinting", "DrawableTinting\DrawableTinting.csproj", "{C16E2404-9549-4433-AAD0-FFEB30DD9F34}"
 EndProject

@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentCentricRelinquishIdentity", "DocumentCentricRelinquishIdentity\DocumentCentricRelinquishIdentity.csproj", "{45A6A321-A04E-49AF-8BA3-7BBE1EE83C98}"
 EndProject

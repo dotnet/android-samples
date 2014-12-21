@@ -15,8 +15,10 @@
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>Camera2VideoSample</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidSdkBuildToolsVersion>20.0.0</AndroidSdkBuildToolsVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,10 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Camera2VideoFragment.cs" />
     <Compile Include="AutoFitTextureView.cs" />
-    <Compile Include="MyCameraStateListener.cs" />
     <Compile Include="MySurfaceTextureListener.cs" />
-    <Compile Include="RecordingCaptureStateListener.cs" />
-    <Compile Include="PreviewCaptureStateListener.cs" />
+    <Compile Include="PreviewCaptureStateCallback.cs" />
+    <Compile Include="MyCameraStateCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

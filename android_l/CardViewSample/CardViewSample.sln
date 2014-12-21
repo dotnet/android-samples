@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardViewSample", "CardViewSample\CardViewSample.csproj", "{3B43D66A-7626-4AD3-9380-C63681F3F1A8}"
 EndProject

@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivitySceneTransitionBasic", "ActivitySceneTransitionBasic.csproj", "{AFE00355-696B-4C81-AF3D-21F952397E63}"
 EndProject

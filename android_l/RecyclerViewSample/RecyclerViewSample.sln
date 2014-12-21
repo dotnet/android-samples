@@ -1,5 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecyclerViewSample", "RecyclerViewSample\RecyclerViewSample.csproj", "{815D722D-47C5-4745-8D8E-4688C8B92B72}"
 EndProject

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="@dimen/activity_margin">
+        <CheckBox
+            android:text="CheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox1"
+            android:layout_marginBottom="@dimen/activity_margin" />
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:layout_marginBottom="@dimen/activity_margin" />
+        <ImageView
+            android:src="@drawable/xamarin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground" />
+        <RadioGroup
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup1"
+            android:layout_marginBottom="@dimen/activity_margin">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="RadioButton"
+                android:id="@+id/radioButton1" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RadioButton"
+                android:id="@+id/radioButton2" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RadioButton"
+                android:id="@+id/radioButton3" />
+        </RadioGroup>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText1"
+            android:layout_marginBottom="@dimen/activity_margin" />
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch1"
+            android:layout_marginBottom="@dimen/activity_margin" />
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton1" />
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar1" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/xamarin_white"
+                android:background="@drawable/mycircle" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/xamarin_white"
+                android:background="@drawable/mycircle"
+                android:tint="#2C3E50" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/xamarin_white"
+                android:background="@drawable/mycircle"
+                android:tint="#B4BCBC" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/gear"
+                android:background="@drawable/mycircle" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/gear"
+                android:background="@drawable/mycircle"
+                android:tint="#2C3E50" />
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:src="@drawable/gear"
+                android:background="@drawable/mycircle"
+                android:tint="#B4BCBC" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
