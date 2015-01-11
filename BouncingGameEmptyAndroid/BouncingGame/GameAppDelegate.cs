@@ -10,6 +10,9 @@ namespace BouncingGame
 			application.PreferMultiSampling = false;
 			application.ContentRootDirectory = "Content";
 
+			var bounds = mainWindow.WindowSizeInPixels;
+			CCScene.SetDefaultDesignResolution(bounds.Width, bounds.Height, CCSceneResolutionPolicy.ShowAll);
+
 			// todo:  Add our GameScene initialization here
 		}
 
