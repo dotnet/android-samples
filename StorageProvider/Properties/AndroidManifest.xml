@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="StorageProvider.StorageProvider">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<application android:label="StorageProvider" android:icon="@drawable/icon" android:allowBackup="true" android:theme="@style/MyAppTheme">
+	  <!--
+        Declare the document provider class MyCloudProvider to the system.  The MANAGE_DOCUMENTS
+        permission belongs only to the Android system, ensuring this provider will never be used
+        directly by another app.  The provider must grant URI permissions in order to expose the
+        specific documents(s) chosen, while not sharing all of its data by default.  It must be
+        exported to be visible outside the application, and it must include a filter with the intent
+        "android.content.action.DOCUMENTS_PROVIDER" in order to be shown in the system document
+        picker UI.
+        -->
+        <provider
+            android:name="storageprovider.MyCloudProvider"
+            android:authorities="storageprovider.documents"
+            android:grantUriPermissions="true"
+            android:exported="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS">
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER"/>
+            </intent-filter>
+        </provider>
+        </application>
+</manifest>

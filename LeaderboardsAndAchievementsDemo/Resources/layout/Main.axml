@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/controlslayout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/signout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out" />
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Achievements" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/achievementsRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <EditText
+                    android:id="@+id/achievementcode"
+                    android:text="CgkIl8Dgls4FEAIQAg"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:hint="Achievement Code" />
+                <Button
+                    android:id="@+id/awardachievement"
+                    android:text="Unlock" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/achievementsRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <Button
+                    android:id="@+id/showachievement"
+                    android:text="Show Achievements" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Leaderboards" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <EditText
+                    android:id="@+id/leaderboardcode"
+                    android:text="CgkIl8Dgls4FEAIQBw"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:hint="Leaderboard Code" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <EditText
+                    android:id="@+id/score"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:hint="Score"
+                    android:numeric="integer"
+                    android:layout_width="91.7dp"
+                    android:layout_marginRight="106.4dp" />
+                <Button
+                    android:id="@+id/submitscore"
+                    android:text="Submit" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <Button
+                    android:id="@+id/showleaderboard"
+                    android:text="Show Leaderboard" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip">
+                <Button
+                    android:id="@+id/showallleaderboards"
+                    android:text="Show All Leaderboards" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/signinlayout"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="center">
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</LinearLayout>

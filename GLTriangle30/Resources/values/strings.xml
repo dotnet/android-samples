@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">GLTriangle30</string>
+	<string name="unsupported">This application requires OpenGL 3.0 support. OpenGL 3.0 requires Android 4.3 or higher and hardware support. This device does not have hardware support.</string>
+</resources>

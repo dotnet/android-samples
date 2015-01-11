@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ElevationDrag.DragFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <Spinner
+        android:id="@+id/shapes_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="center_horizontal" />
+    <View
+        android:id="@+id/circle"
+        android:layout_width="@dimen/shape_size"
+        android:layout_height="@dimen/shape_size"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape" />
+    <LinearLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/raise_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Z+" />
+        <Button
+            android:id="@+id/lower_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Z-" />
+    </LinearLayout>
+</ElevationDrag.DragFrameLayout>

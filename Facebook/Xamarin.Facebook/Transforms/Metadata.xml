@@ -1,0 +1,47 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+    <attr path="/api/package[@name='com.facebook']" name="managedName">Xamarin.FacebookBinding</attr>
+    <attr path="/api/package[@name='com.facebook.android']" name="managedName">Xamarin.FacebookBinding.XAndroid</attr>
+    <attr path="/api/package[@name='com.facebook.internal']" name="managedName">Xamarin.FacebookBinding.Internal</attr>
+    <attr path="/api/package[@name='com.facebook.model']" name="managedName">Xamarin.FacebookBinding.Model</attr>
+    <attr path="/api/package[@name='com.facebook.widget']" name="managedName">Xamarin.FacebookBinding.Widget</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.DialogListener']/method[@name='onComplete']" name="argsType">DialogCompleteEventArgs</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.DialogListener']/method[@name='onError']" name="argsType">DialogErrorEventArgs</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.DialogListener']/method[@name='onFacebookError']" name="argsType">DialogFacebookErrorEventArgs</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.ServiceListener']/method[@name='onComplete']" name="argsType">ServiceCompleteEventArgs</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.ServiceListener']/method[@name='onError']" name="argsType">ServiceErrorEventArgs</attr>
+	<attr path="/api/package[@name='com.facebook.android']/interface[@name='Facebook.ServiceListener']/method[@name='onFacebookError']" name="argsType">ServiceFacebookErrorEventArgs</attr>
+	<remove-node path="/api/package[@name='com.facebook']/class[@name='RequestAsyncTask']/method[@name='doInBackground'][parameter[1]/@type = 'void...']" />
+	<remove-node path="/api/package[@name='com.facebook']/class[@name='Session.AutoPublishAsyncTask']/method[@name='doInBackground']" />
+	<attr path="/api/package[@name='com.facebook']/class[@name='Session.AutoPublishAsyncTask']/method[@name='onPostExecute']/parameter[1]" name="type">java.util.Collection&lt;com.facebook.Response&gt;</attr>
+	
+	<remove-node path="/api/package[@name='com.facebook.model']/interface[@name='GraphObjectList']/implements" />
+	<add-node path="/api/package[@name='com.facebook.model']/interface[@name='GraphObjectList']">
+      <implements name="java.util.Collection" name-generic-aware="java.util.Collection&lt;T&gt;" />
+	</add-node>
+	
+	<!-- These are hacky, but without them couple of classes fail to be bound -->
+	<!-- FIXME: it is rejected at javac, so it's not an option -->
+	<remove-node path="/api/package[@name='com.facebook.widget']/interface[@name='GraphObjectAdapter.DataNeededListener']" />
+	
+	<attr path="/api/package[@name='com.facebook.widget']/class[@extends='com.facebook.widget.GraphObjectAdapter']" name="extends">android.widget.BaseAdapter&lt;T&gt;</attr>
+	<attr path="/api/package[@name='com.facebook.widget']/class/field[@type='com.facebook.widget.GraphObjectAdapter']" name="type">android.widget.BaseAdapter</attr>
+	<attr path="/api/package[@name='com.facebook.widget']/class/field[@type-generic-aware='com.facebook.widget.GraphObjectAdapter&lt;T&gt;']" name="type">android.widget.BaseAdapter&lt;T&gt;</attr>
+
+	<remove-node path="/api/package[@name='com.facebook.widget']/interface[@name='GraphObjectPagingLoader.OnErrorListener']" />
+	<attr path="/api/package[@name='com.facebook.widget']/class[@extends='com.facebook.widget.GraphObjectPagingLoader']" name="extends">android.support.v4.content.Loader</attr>
+	<attr path="/api/package[@name='com.facebook.widget']/class/field[@type='com.facebook.widget.GraphObjectPagingLoader']" name="type">android.support.v4.content.Loader</attr>
+	
+	<attr path="/api/package[@name='com.facebook.widget']/class[@name='FacebookFragment']" name="visibility">public</attr>
+	
+	<attr path="/api/package[@name='com.facebook']/class[@name='RequestBatch']/method[@name='get']" name="return">java.lang.Object</attr>
+	<attr path="/api/package[@name='com.facebook']/class[@name='RequestBatch']/method[@name='remove']" name="return">java.lang.Object</attr>
+	
+	<attr path="/api/package[@name='com.facebook.widget']/class[@name='GraphObjectAdapter.SectionAndItem']/method[@name='getType']" name="managedName">getSectionItemType</attr>
+</metadata>

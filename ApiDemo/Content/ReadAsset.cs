@@ -23,14 +23,16 @@ using System.IO;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "Content/Read Asset")]
+	/**
+ 	* Demonstration of styled text resources.
+ 	*/
+	[Activity (Label = "@string/activity_read_asset")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ReadAsset : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
 			SetContentView (Resource.Layout.read_asset);
 
 			// Programmatically load text from an asset and place it into the

@@ -106,8 +106,7 @@ namespace MonoDroid.ApiDemo
 			else
 				gl.GlClearColor (1,1,1,1);
 			
-			// FIXME: Mono.Android.dll misses this constant. Filed as #3531.
-			gl.GlEnable(2884);//GL10.GlCullFace);
+			gl.GlEnable (GL10.GlCullFaceCapability);
 			gl.GlShadeModel(GL10.GlSmooth);
 			gl.GlEnable(GL10.GlDepthTest);
 		}

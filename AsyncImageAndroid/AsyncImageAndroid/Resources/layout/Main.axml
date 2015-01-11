@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:gravity="center_horizontal">
+    <TextView
+        p1:text="Click Dowload button to download the image"
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:layout_marginTop="10.7dp"
+        p1:gravity="center_horizontal" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView1"
+        p1:id="@+id/progressBar"
+        p1:layout_marginBottom="11.3dp" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/progressBar"
+        p1:id="@+id/linearLayout1">
+        <Button
+            p1:text="Download"
+            p1:id="@+id/downloadButton"
+            p1:layout_width="wrap_content"
+            p1:layout_height="fill_parent"
+            p1:layout_weight="1" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="wrap_content"
+            p1:layout_height="fill_parent"
+            p1:id="@+id/textView2"
+            p1:layout_weight="1" />
+        <Button
+            p1:text="Click Me"
+            p1:id="@+id/clickButton"
+            p1:layout_width="wrap_content"
+            p1:layout_height="fill_parent"
+            p1:layout_weight="1" />
+    </LinearLayout>
+    <ImageView
+        p1:src="@android:drawable/ic_menu_gallery"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:layout_below="@id/linearLayout1"
+        p1:id="@+id/imageView1" />
+</RelativeLayout>

@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
     <!-- This resource is true if running under at least Honeycomb's
          API level.  The default value is false; an alternative value
@@ -22,5 +21,31 @@
     <!-- This resource is true if running under at least Honeycomb MR2's
          API level.  The default value is false; an alternative value
          for Honeycomb MR2 is true. -->
+
     <bool name="atLeastHoneycombMR2">false</bool>
+
+    <!-- This resource is true if running under at least IceCreamSandwich
+         API level.  The default value is false; an alternative value
+         for IceCreamSandwich is true. -->
+    <bool name="atLeastIceCreamSandwich">false</bool>
+
+    <!-- This resource is true if running under at least JellyBean
+         API level.  The default value is false; an alternative value
+         for JellyBean is true. -->
+    <bool name="atLeastJellyBean">false</bool>
+
+    <!-- This resource is true if running under at least JellyBean MR1
+         API level.  The default value is false; an alternative value
+         for JellyBean MR 1 is true. -->
+    <bool name="atLeastJellyBeanMR1">false</bool>
+
+    <!-- This resource is true if running under at least JellyBean MR2
+         API level.  The default value is false; an alternative value
+         for JellyBean MR 2 is true. -->
+    <bool name="atLeastJellyBeanMR2">false</bool>
+
+    <!-- This resource is true if running under at least KitKat
+         API level.  The default value is false; an alternative value
+         for KitKat is true. -->
+    <bool name="atLeastKitKat">false</bool>
 </resources>

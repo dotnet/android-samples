@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!-- This is the outer area of the entire game screen, extending out under
+         system UI elements. -->
+    <view
+        class="monodroid.apidemo.GameActivity_Content"
+        android:id="@+id/content"
+        android:src="@drawable/frantic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center" />
+<!-- This is the inner area of the game, not covered by system UI elements.
+        Any UI elements that need to be accessible when the game is paused or other
+        states where the system UI is shown (such as in menus) should go here. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:animateLayoutChanges="true">
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:textSize="28dp" />
+    </FrameLayout>
+</FrameLayout>

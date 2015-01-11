@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<SampleMetadata>
+	<ID>0952041f-023a-49a5-b750-f1f09b1ee7cd</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Device Features, Android Wear</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+</SampleMetadata>
+

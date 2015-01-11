@@ -44,12 +44,12 @@ namespace BluetoothChat
 		private static UUID MY_UUID = UUID.FromString ("fa87c0d0-afac-11de-8a39-0800200c9a66");
 		
 		// Member fields
-		protected static BluetoothAdapter _adapter;
-		protected static Handler _handler;
+		protected BluetoothAdapter _adapter;
+		protected Handler _handler;
 		private AcceptThread acceptThread;
 		protected ConnectThread connectThread;
 		private ConnectedThread connectedThread;
-		protected static int _state;
+		protected int _state;
 	
 		// Constants that indicate the current connection state
 		// TODO: Convert to Enums
@@ -306,7 +306,7 @@ namespace BluetoothChat
 	
 				// Create a new listening server socket
 				try {
-					tmp = _adapter.ListenUsingRfcommWithServiceRecord (NAME, MY_UUID);
+					tmp = _service._adapter.ListenUsingRfcommWithServiceRecord (NAME, MY_UUID);
 	
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "listen() failed", e);
@@ -323,7 +323,7 @@ namespace BluetoothChat
 				BluetoothSocket socket = null;
 	
 				// Listen to the server socket if we're not connected
-				while (_state != STATE_CONNECTED) {
+				while (_service._state != BluetoothChatService.STATE_CONNECTED) {
 					try {
 						// This is a blocking call and will only return on a
 						// successful connection or an exception
@@ -336,7 +336,7 @@ namespace BluetoothChat
 					// If a connection was accepted
 					if (socket != null) {
 						lock (this) {
-							switch (_state) {
+							switch (_service._state) {
 							case STATE_LISTEN:
 							case STATE_CONNECTING:
 								// Situation normal. Start the connected thread.
@@ -407,7 +407,7 @@ namespace BluetoothChat
 				Name = "ConnectThread";
 	
 				// Always cancel discovery because it will slow down a connection
-				_adapter.CancelDiscovery ();
+				_service._adapter.CancelDiscovery ();
 	
 				// Make a connection to the BluetoothSocket
 				try {
@@ -492,7 +492,7 @@ namespace BluetoothChat
 						bytes = mmInStream.Read (buffer, 0, buffer.Length);
 	
 						// Send the obtained bytes to the UI Activity
-						_handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
+						_service._handler.ObtainMessage (BluetoothChat.MESSAGE_READ, bytes, -1, buffer)
 							.SendToTarget ();
 					} catch (Java.IO.IOException e) {
 						Log.Error (TAG, "disconnected", e);
@@ -514,7 +514,7 @@ namespace BluetoothChat
 					mmOutStream.Write (buffer, 0, buffer.Length);
 	
 					// Share the sent message back to the UI Activity
-					_handler.ObtainMessage (BluetoothChat.MESSAGE_WRITE, -1, -1, buffer)
+					_service._handler.ObtainMessage (BluetoothChat.MESSAGE_WRITE, -1, -1, buffer)
 						.SendToTarget ();
 				} catch (Java.IO.IOException e) {
 					Log.Error (TAG, "Exception during write", e);

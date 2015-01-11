@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 using Android.App;
 using Android.Content;
@@ -10,7 +11,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V4.App;
-using Java.Lang;
 
 namespace Support4
 {
@@ -28,7 +28,7 @@ namespace Support4
 			}
 		}
 		
-		protected class UiFragment : Fragment
+		protected class UiFragment : Android.Support.V4.App.Fragment
 		{
 			RetainedFragment workFragment;
 			
@@ -39,7 +39,7 @@ namespace Support4
 				// Watch for button clicks.
 				var button = v.FindViewById<Button> (Resource.Id.restart);
 				button.Click += (sender, e) => {
-					//workFragment.Restart ();
+					workFragment.Restart ();
 				};
 	
 				return v;
@@ -65,13 +65,14 @@ namespace Support4
 			
 		}
 		
-		protected class RetainedFragment : Fragment
+		protected class RetainedFragment : Android.Support.V4.App.Fragment
 		{
 			ProgressBar progressBar;
 			int position;
 			bool ready = false;
 			bool quiting = false;
-			MyThread myThread;
+			Thread myThread;
+			object myThreadMonitor = new object ();
 			
 			public override void OnCreate (Bundle p0)
 			{
@@ -82,20 +83,57 @@ namespace Support4
 				RetainInstance = true;
 	
 				// Start up the worker thread.
-				myThread = new MyThread (this);
+				myThread = new Thread (new ThreadStart (delegate {
+					int max = 10000;
+
+					// This thread runs almost forever.
+					while (true) {
+
+						// Update our shared state with the UI.
+						lock (myThreadMonitor) {
+							// Our thread is stopped if the UI is not ready
+							// or it has completed its work.
+							while (!ready || position >= max) {
+								if (quiting) {
+									return;
+								}
+								try {
+									Monitor.Wait (myThreadMonitor);
+								} catch (ThreadInterruptedException) {
+								}
+							}
+
+							// Now update the progress.  Note it is important that
+							// we touch the progress bar with the lock held, so it
+							// doesn't disappear on us.
+							position++;
+							max = progressBar.Max;
+							progressBar.Progress = position;
+						}
+
+						// Normally we would be doing some work, but put a kludge
+						// here to pretend like we are.
+						lock (myThreadMonitor) {
+							try {
+								Monitor.Wait (myThreadMonitor, 50);
+							} catch (ThreadInterruptedException) {
+							}
+						}
+					}
+				}));
 				myThread.Start ();
 			}
 			
 			public override void OnActivityCreated (Bundle savedInstanceState)
 			{
 				base.OnActivityCreated (savedInstanceState);
-				
+
 				// Retrieve the progress bar from the target's view hierarchy.
 				progressBar = (ProgressBar)TargetFragment.View.FindViewById (Resource.Id.progress_horizontal);
 				// We are ready for our thread to go.
-				lock (myThread) {
+				lock (myThreadMonitor) {
 					ready = true;
-					myThread.Notify ();
+					Monitor.Pulse (myThreadMonitor);
 				}
 			}
 			
@@ -103,10 +141,10 @@ namespace Support4
 			{
 				
 				// Make the thread go away.
-				lock (myThread) {
+				lock (myThreadMonitor) {
 					ready = false;
 					quiting = true;
-					myThread.Notify ();
+					Monitor.Pulse (myThreadMonitor);
 				}
 				
 				base.OnDestroy ();
@@ -117,63 +155,13 @@ namespace Support4
 				// This fragment is being detached from its activity.  We need
 				// to make sure its thread is not going to touch any activity
 				// state after returning from this function.
-				lock (myThread) {
+				lock (myThreadMonitor) {
 					progressBar = null;
 					ready = false;
-					myThread.Notify ();
+					Monitor.Pulse (myThreadMonitor);
 				}
 				
 				base.OnDetach ();
-			}
-			
-			protected class MyThread : Thread
-			{
-				RetainedFragment _fragment;
-				
-				public MyThread (RetainedFragment fragment)
-				{
-					_fragment = fragment;	
-				}
-				
-				public override void Run ()
-				{
-					int max = 10000;
-
-					// This thread runs almost forever.
-					while (true) {
-	
-						// Update our shared state with the UI.
-						lock (_fragment) {
-							// Our thread is stopped if the UI is not ready
-							// or it has completed its work.
-							while (!_fragment.ready || _fragment.position >= max) {
-								if (_fragment.quiting) {
-									return;
-								}
-								try {
-									Wait ();
-								} catch (InterruptedException e) {
-								}
-							}
-	
-							// Now update the progress.  Note it is important that
-							// we touch the progress bar with the lock held, so it
-							// doesn't disappear on us.
-							_fragment.position++;
-							max = _fragment.progressBar.Max;
-							_fragment.progressBar.Progress = _fragment.position;
-						}
-	
-						// Normally we would be doing some work, but put a kludge
-						// here to pretend like we are.
-						lock (this) {
-							try {
-								Wait (50);
-							} catch (InterruptedException e) {
-							}
-						}
-					}
-				}
 			}
 			
 			/**
@@ -181,9 +169,9 @@ namespace Support4
 	         */
 			public void Restart ()
 			{
-				lock (myThread) {
+				lock (myThreadMonitor) {
 					position = 0;
-					myThread.Notify ();
+					Monitor.Pulse (myThreadMonitor);
 				}
 			}
 		}

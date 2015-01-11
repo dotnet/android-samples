@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+  <ID>008afe06-8fab-47d5-bfc9-4e5d77e7bd14</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Data, Nfc</Tags>
+  <SupportedPlatforms>Android</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+</SampleMetadata>

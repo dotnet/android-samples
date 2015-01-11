@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>XamarinActionBarSherlock</id>
+    <version>4.4.0.0</version>
+    <authors>Jake Wharton</authors>
+    <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://github.com/JakeWharton/ActionBarSherlock/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/xamarin/monodroid-samples/tree/master/ActionBarSherlock</projectUrl>
+    <iconUrl>https://raw.github.com/JakeWharton/ActionBarSherlock/master/website/static/icon_web.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# binding for ActionBarSherlock: Library for implementing the action bar design pattern using the native action bar on Android 4.0+ and a custom implementation on pre-4.0 through a single API and theme. </description>
+    <releaseNotes>Now the methods in the public API contain parameter names.</releaseNotes>
+    <copyright>Copyright 2012 Jake Wharton</copyright>
+    <tags>ActionBarSherlock Widget Xamarin Android</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Core" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android" targetFramework="MonoAndroid" />
+      <frameworkAssembly assemblyName="Mono.Android.Support.v4" targetFramework="MonoAndroid" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+	<file target="lib/MonoAndroid" src="ActionBarSherlock/bin/Debug/ActionBarSherlock.dll" />
+  </files>
+</package>

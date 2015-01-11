@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="demoLocationServices" >Demo Location Services 3</string>
+  <string name="app_name" >Location Demo 3</string>
+  <string name="activity_label_location" >Location Demo 3</string>
+</resources>

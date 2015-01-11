@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <style name="KitKatTheme" parent="android:Theme.Holo.Light">
+    	<item name="android:windowBackground">@color/xamgray</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    	<item name="android:actionBarStyle">@style/ActionBar.Solid.KitKat</item>
+    </style>
+ 
+    <style name="ActionBar.Solid.KitKat" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@color/xampurple</item>
+    </style>
+</resources>

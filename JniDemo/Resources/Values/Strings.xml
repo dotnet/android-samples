@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="StartMaps">Open Maps</string>
-	<string name="app_name">Managed Maps</string>
+	<string name="StartActivity">Start Activity (with Java source)</string>
+	<string name="app_name">JNIDemo</string>
 </resources>

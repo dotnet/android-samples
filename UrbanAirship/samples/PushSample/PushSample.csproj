@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PushSample</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>PushSample</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PushPreferencesActivity.cs" />
+    <Compile Include="CustomPreferencesActivity.cs" />
+    <Compile Include="LocationActivity.cs" />
+    <Compile Include="IntentReceiver.cs" />
+    <Compile Include="UrbanAirshipApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\color\black.xml" />
+    <AndroidResource Include="Resources\color\gray.xml" />
+    <AndroidResource Include="Resources\color\white.xml" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable\icon_small.png" />
+    <AndroidResource Include="Resources\drawable\kitten_icon.jpg" />
+    <AndroidResource Include="Resources\drawable\stripes.png" />
+    <AndroidResource Include="Resources\drawable\tiledstripes.xml" />
+    <AndroidResource Include="Resources\layout\location.xml" />
+    <AndroidResource Include="Resources\layout\main.xml" />
+    <AndroidResource Include="Resources\layout\notification.xml" />
+    <AndroidResource Include="Resources\layout\notification_large.xml" />
+    <AndroidResource Include="Resources\layout\notification_multi_line.xml" />
+    <AndroidResource Include="Resources\layout\notification_three_lines.xml" />
+    <AndroidResource Include="Resources\layout\push_preferences_dialog.xml" />
+    <AndroidResource Include="Resources\layout-v9\notification.xml" />
+    <AndroidResource Include="Resources\layout-v9\notification_large.xml" />
+    <AndroidResource Include="Resources\layout-v9\notification_multi_line.xml" />
+    <AndroidResource Include="Resources\layout-v9\notification_three_lines.xml" />
+    <AndroidResource Include="Resources\raw\cat.wav" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\text_styles.xml" />
+    <AndroidResource Include="Resources\layout\tag_preference_item.xml" />
+    <AndroidResource Include="Resources\layout\tags_dialog_layout.xml" />
+    <AndroidResource Include="Resources\xml\advanced_preferences.xml" />
+    <AndroidResource Include="Resources\xml\location_preferences.xml" />
+    <AndroidResource Include="Resources\xml\push_preferences.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <AndroidAsset Include="Assets\airshipconfig.properties" />
+    <AndroidAsset Include="Assets\location.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xamarin.UrbanAirshipBinding\Xamarin.UrbanAirshipBinding.csproj">
+      <Project>{C4E1218B-C566-4367-BAB3-496A79E53FDC}</Project>
+      <Name>Xamarin.UrbanAirshipBinding</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

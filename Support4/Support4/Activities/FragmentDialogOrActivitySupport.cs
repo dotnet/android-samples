@@ -40,11 +40,11 @@ namespace Support4
 		
 		void ShowDialog() {
 	        // Create the fragment and show it as a dialog.
-	        DialogFragment newFragment = new MyDialogFragment();
+	        var newFragment = new MyDialogFragment();
 	        newFragment.Show(SupportFragmentManager, "dialog");
 	    }
 		
-		public class MyDialogFragment : DialogFragment 
+		public class MyDialogFragment : Android.Support.V4.App.DialogFragment
 		{	
 	
 			public MyDialogFragment()

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{908007A2-6DBC-4C47-AD95-6B19DA926E8B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TvLeanback</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AssemblyName>TvLeanback</AssemblyName>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="System.Json" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.21.0.0-rc1v2\lib\MonoAndroid10\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v17.Leanback">
+      <HintPath>..\packages\Xamarin.Android.Support.v17.Leanback.21.0.0-rc1v4\lib\MonoAndroid10\Xamarin.Android.Support.v17.Leanback.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BootupActivity.cs" />
+    <Compile Include="CardPresenter.cs" />
+    <Compile Include="DetailsActivity.cs" />
+    <Compile Include="DetailsDescriptionPresenter.cs" />
+    <Compile Include="LeanbackDetailsFragment.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="MainFragment.cs" />
+    <Compile Include="Movie.cs" />
+    <Compile Include="PicassoBackgroundManagerTarget.cs" />
+    <Compile Include="PlayerActivity.cs" />
+    <Compile Include="RecommendationBuilder.cs" />
+    <Compile Include="SearchActivity.cs" />
+    <Compile Include="UpdateRecommendationsService.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VerticalGridActivity.cs" />
+    <Compile Include="VideoItemLoader.cs" />
+    <Compile Include="VideoProvider.cs" />
+    <Compile Include="VertivalGridFragment.cs" />
+    <Compile Include="SearchFragment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\app_icon_quantum.png" />
+    <AndroidResource Include="Resources\drawable\app_icon_quantum_card.png" />
+    <AndroidResource Include="Resources\drawable\details_img.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_a.png" />
+    <AndroidResource Include="Resources\drawable\ic_title.png" />
+    <AndroidResource Include="Resources\drawable\movie.png" />
+    <AndroidResource Include="Resources\drawable\player_bg_gradient_dark.xml" />
+    <AndroidResource Include="Resources\drawable\shadow7.9.png" />
+    <AndroidResource Include="Resources\drawable\videos_by_google_banner.png" />
+    <AndroidResource Include="Resources\drawable\videos_by_google_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\app_icon_quantum.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\app_icon_quantum_card.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_av_play_dark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\videos_by_google_banner.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\videos_by_google_icon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\app_icon_quantum.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\app_icon_quantum_card.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_av_pause_dark.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\videos_by_google_banner.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\videos_by_google_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\app_icon_quantum.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\app_icon_quantum_card.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_background_default.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\default_background.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grid_bg.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_playcontrol_focussed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_playcontrol_normal.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_playcontrol_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_action_focussed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_action_normal.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_action_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_playcontrol_focussed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_playcontrol_normal.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_playcontrol_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scrubber_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scrubber_focussed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scrubber_normal.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scrubber_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\shadow7.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\videos_by_google_banner.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\videos_by_google_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\app_icon_quantum.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\app_icon_quantum_card.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\videos_by_google_banner.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\videos_by_google_icon.png" />
+    <AndroidResource Include="Resources\layout\details.xml" />
+    <AndroidResource Include="Resources\layout\movie_card.xml" />
+    <AndroidResource Include="Resources\layout\player_activity.xml" />
+    <AndroidResource Include="Resources\layout\search.xml" />
+    <AndroidResource Include="Resources\layout\vertical_grid.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\layout\main.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Picasso\Picasso\PicassoDroid.csproj">
+      <Project>{C67ED37F-64BF-4E99-8F99-1CDB16646C17}</Project>
+      <Name>PicassoDroid</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

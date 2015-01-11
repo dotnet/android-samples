@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TexturedCube</string>
+    <string name="switch_texture">Switch Texture</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+</resources>

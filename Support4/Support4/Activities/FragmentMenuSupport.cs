@@ -18,8 +18,8 @@ namespace Support4
 	[IntentFilter (new[]{Intent.ActionMain}, Categories = new[]{ "mono.support4demo.sample" })]
 	public class FragmentMenuSupport : FragmentActivity
 	{
-		Fragment fragment1;
-	    Fragment fragment2;
+		Android.Support.V4.App.Fragment fragment1;
+	    Android.Support.V4.App.Fragment fragment2;
 	    CheckBox checkBox1;
 	    CheckBox checkBox2;
 		
@@ -70,7 +70,7 @@ namespace Support4
 			ft.Commit();
 		}
 		
-		protected class MenuFragment : Fragment
+		protected class MenuFragment : Android.Support.V4.App.Fragment
 		{
 			public override void OnCreate (Bundle p0)
 			{
@@ -91,7 +91,7 @@ namespace Support4
 			}
 		}
 		
-		protected class Menu2Fragment : Fragment
+		protected class Menu2Fragment : Android.Support.V4.App.Fragment
 		{
 			public override void OnCreate (Bundle p0)
 			{

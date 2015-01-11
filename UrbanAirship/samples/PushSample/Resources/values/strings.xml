@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Push Sample</string>
+  <string name="short_app_name">PushSample</string>
+
+  <string name="app_description">
+      © 2013 Urban Airship, Inc. All Rights Reserved.\n\n
+  </string>
+  
+    <string name="push_preference_category_title">Push Preferences</string>
+    <string name="rich_push_message_dialog_title">Rich Push Message</string>
+    <string name="location_preference_category_title">Location Preferences</string>
+    <string name="quiet_time_enable_preference_title">Enable Quiet Time</string>
+    <string name="quiet_time_start_preference_title">Quiet Time Start</string>
+    <string name="quiet_time_end_preference_title">Quiet Time End</string>
+    <string name="push_preference_title">Enable Push</string>
+    <string name="sound_preference_title">Enable Sound</string>
+    <string name="vibrate_preference_title">Enable Vibrate</string>
+    <string name="location_preference_title">Enable Location</string>
+    <string name="foreground_location_preference_title">Enable Foreground Location</string>
+    <string name="background_location_preference_title">Enable Background Location</string>
+    <string name="apid_preference_title">APID</string>
+    <string name="advanced_preference_category_title">Advanced</string>
+    <string name="set_alias_preference_title">Set Alias</string>
+    <string name="add_tags_preference_title">Add Tags</string>
+    <string name="duplicate_tag_warning">Tag already exists</string>
+</resources>

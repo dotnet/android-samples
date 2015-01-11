@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Xamarin.Samples.UrbanAirship.RichPush</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>RichPushSample</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\MainActivity.cs" />
+    <Compile Include="Sources\Inbox\InboxActivity.cs" />
+    <Compile Include="Sources\Inbox\MessageActivity.cs" />
+    <Compile Include="Sources\Inbox\InboxFragment.cs" />
+    <Compile Include="Sources\Inbox\MessageFragment.cs" />
+    <Compile Include="Sources\Views\CustomViewPager.cs" />
+    <Compile Include="Sources\Views\CustomSlidingPaneLayout.cs" />
+    <Compile Include="Sources\Inbox\RichPushMessageAdapter.cs" />
+    <Compile Include="Sources\Widget\RichPushWidgetUtils.cs" />
+    <Compile Include="Sources\Inbox\MessageFragmentAdapter.cs" />
+    <Compile Include="Sources\Preferences\PushPreferencesActivity.cs" />
+    <Compile Include="Sources\Inbox\RichPushMessageDialogFragment.cs" />
+    <Compile Include="Sources\Inbox\RichPushSampleInboxFragment.cs" />
+    <Compile Include="Sources\Widget\RichPushWidgetProvider.cs" />
+    <Compile Include="Sources\Widget\RemoteViewsFactory.cs" />
+    <Compile Include="Sources\Widget\RichPushWidgetService.cs" />
+    <Compile Include="Sources\Preferences\AddTagsPreference.cs" />
+    <Compile Include="Sources\Preferences\SetAliasPreferences.cs" />
+    <Compile Include="Sources\PushReceiver.cs" />
+    <Compile Include="Sources\RichNotificationBuilder.cs" />
+    <Compile Include="Sources\RichPushApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\widget_preview.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\android_splash_logo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\inbox_close.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\inbox_open.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\mark_read.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\mark_unread.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\settings.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ua_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ua_notification_icon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ua_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\android_splash_logo.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\delete.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\inbox_close.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\inbox_open.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\mark_read.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\mark_unread.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\settings.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ua_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ua_notification_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\android_splash_logo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\delete.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\inbox_close.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\inbox_open.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\mark_read.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\mark_unread.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\settings.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ua_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ua_notification_icon.png" />
+    <AndroidResource Include="Resources\layout\cab_selection_dropdown.xml" />
+    <AndroidResource Include="Resources\layout\inbox.xml" />
+    <AndroidResource Include="Resources\layout\inbox_message.xml" />
+    <AndroidResource Include="Resources\layout\main.xml" />
+    <AndroidResource Include="Resources\layout\message.xml" />
+    <AndroidResource Include="Resources\layout\message_dialog.xml" />
+    <AndroidResource Include="Resources\layout\message_fragment.xml" />
+    <AndroidResource Include="Resources\layout\tag_preference_item.xml" />
+    <AndroidResource Include="Resources\layout\tags_dialog_layout.xml" />
+    <AndroidResource Include="Resources\layout\widget_item.xml" />
+    <AndroidResource Include="Resources\layout\widget_layout.xml" />
+    <AndroidResource Include="Resources\layout\widget_layout_small.xml" />
+    <AndroidResource Include="Resources\layout-sw600dp\inbox.xml" />
+    <AndroidResource Include="Resources\menu\inbox_actions_menu.xml" />
+    <AndroidResource Include="Resources\menu\inbox_menu.xml" />
+    <AndroidResource Include="Resources\menu\main_menu.xml" />
+    <AndroidResource Include="Resources\menu\selection.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values-v14\dimens.xml" />
+    <AndroidResource Include="Resources\xml\advanced_preferences.xml" />
+    <AndroidResource Include="Resources\xml\location_preferences.xml" />
+    <AndroidResource Include="Resources\xml\push_preferences.xml" />
+    <AndroidResource Include="Resources\xml\widgetinfo.xml" />
+    <AndroidResource Include="Resources\xml-v11\widgetinfo.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Sources\" />
+    <Folder Include="Sources\Inbox\" />
+    <Folder Include="Sources\Views\" />
+    <Folder Include="Sources\Widget\" />
+    <Folder Include="Sources\Preferences\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\airshipconfig.properties" />
+    <AndroidAsset Include="Assets\location.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xamarin.UrbanAirshipBinding\Xamarin.UrbanAirshipBinding.csproj">
+      <Project>{C4E1218B-C566-4367-BAB3-496A79E53FDC}</Project>
+      <Name>Xamarin.UrbanAirshipBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ActionBarSherlock\ActionBarSherlock\ActionBarSherlock.csproj">
+      <Project>{2D5471B2-8255-4E47-97E9-EEB28678CC82}</Project>
+      <Name>ActionBarSherlock</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

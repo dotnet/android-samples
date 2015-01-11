@@ -3,5 +3,6 @@
 	<ID>78b80217-ee5e-455b-9a0a-b270f7c99ae4</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>User Interface, Graphics, Shared Resources</Tags>
+	<Tags>User Interface, Graphics</Tags>
+	<Gallery>true</Gallery>
 </SampleMetadata>

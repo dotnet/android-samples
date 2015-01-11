@@ -26,7 +26,7 @@ using Android.OS;
 
 namespace GooglePlayServicesTest
 {
-	[Activity (Label = "Mono GoogleMapV2 Basic Map")]
+	[Activity (Label = "XA GoogleMapV2 Basic Map")]
 	public class BasicMapActivity : Android.Support.V4.App.FragmentActivity
 	{
 		/**

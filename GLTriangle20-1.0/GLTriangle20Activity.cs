@@ -10,7 +10,10 @@ using Android.Content.PM;
 namespace Mono.Samples.GLTriangle20
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_gltriangle",
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
+#if __ANDROID_11__
+		HardwareAccelerated=false,
+#endif
+		ConfigurationChanges = ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class GLTriangle20Activity : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)

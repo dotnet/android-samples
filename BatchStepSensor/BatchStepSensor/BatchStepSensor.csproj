@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{DB3F4FFF-FAA1-4869-8884-94A7282CB700}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BatchStepSensor</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>BatchStepSensor</AssemblyName>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BatchStepSensorFragment.cs" />
+    <Compile Include="CardStream\CardStreamFragment.cs" />
+    <Compile Include="CardStream\CardStreamLinearLayout.cs" />
+    <Compile Include="CardStream\Card.cs" />
+    <Compile Include="CardStream\OnCardClickListener.cs" />
+    <Compile Include="CardStream\CardStreamAnimator.cs" />
+    <Compile Include="InterfaceActionImplementations.cs" />
+    <Compile Include="CardStream\DefaultCardStreamAnimator.cs" />
+    <Compile Include="CardStream\StreamRetentionFragment.cs" />
+    <Compile Include="CardStream\CardStreamState.cs" />
+    <Compile Include="CardStream\CardStream.cs" />
+    <Compile Include="CardStream\CardLayout.cs" />
+    <Compile Include="CardStream\CardActionButton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\card_action_bg.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_bg_negative.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_bg_positive.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_icon_negative.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_icon_neutral.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_icon_positive.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_text.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_text_negative.xml" />
+    <AndroidResource Include="Resources\drawable\card_action_text_positive.xml" />
+    <AndroidResource Include="Resources\drawable\card_overlay_focused.xml" />
+    <AndroidResource Include="Resources\drawable\card_separator.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_cancel.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tile.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_cancel.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_bg.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_negative.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_negative_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_neutral.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_neutral_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_positive.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cardaction_positive_pressed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_cancel.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
+    <AndroidResource Include="Resources\layout\card.xml" />
+    <AndroidResource Include="Resources\layout\card_button_negative.xml" />
+    <AndroidResource Include="Resources\layout\card_button_neutral.xml" />
+    <AndroidResource Include="Resources\layout\card_button_positive.xml" />
+    <AndroidResource Include="Resources\layout\card_button_seperator.xml" />
+    <AndroidResource Include="Resources\layout\card_progress.xml" />
+    <AndroidResource Include="Resources\layout\cardstream.xml" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\values\base-strings.xml" />
+    <AndroidResource Include="Resources\values\color.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\ids.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\template-dimens.xml" />
+    <AndroidResource Include="Resources\values\template-styles.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-dimens.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-styles.xml" />
+    <AndroidResource Include="Resources\values-sw720dp-land\dimens.xml" />
+    <AndroidResource Include="Resources\values-v11\styles.xml" />
+    <AndroidResource Include="Resources\values-v11\template-styles.xml" />
+    <AndroidResource Include="Resources\values-v14\styles.xml" />
+    <AndroidResource Include="Resources\values-v16\styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CardStream\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonSampleLibrary\CommonSampleLibrary.csproj">
+      <Project>{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}</Project>
+      <Name>CommonSampleLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

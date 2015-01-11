@@ -34,8 +34,9 @@ namespace MonoIO
 		private LocalExecutor mLocalExecutor;
 		// MonoIO TODO: Get remote data working.
 		//private RemoteExecutor mRemoteExecutor;
-		
-		public SyncService () : base(TAG)
+
+		// We need an empty constructor, so let's not call base(String)...
+		public SyncService () // : base(TAG)
 		{
 		}
 		

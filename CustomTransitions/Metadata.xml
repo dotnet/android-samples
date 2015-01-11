@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<SampleMetadata>
+	<ID>3951bb26-f36e-456b-976b-27339ccb4681</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>User Interface</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+</SampleMetadata>
+

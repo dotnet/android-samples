@@ -10,8 +10,8 @@
 	
 	
 	<!-- Canonicalize the Java package names -->
-	<attr path="/api/package[@name='com.actionbarsherlock']" name="managedName">ActionbarSherlock</attr>
-	<attr path="/api/package[@name='com.actionbarsherlock.widget']" name="managedName">ActionbarSherlock.Widget</attr>
-	<attr path="/api/package[@name='com.actionbarsherlock.app']" name="managedName">ActionbarSherlock.App</attr>
-	<attr path="/api/package[@name='com.actionbarsherlock.view']" name="managedName">ActionbarSherlock.View</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock']" name="managedName">Xamarin.ActionbarSherlockBinding</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.widget']" name="managedName">Xamarin.ActionbarSherlockBinding.Widget</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.app']" name="managedName">Xamarin.ActionbarSherlockBinding.App</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.view']" name="managedName">Xamarin.ActionbarSherlockBinding.Views</attr>
 </metadata>

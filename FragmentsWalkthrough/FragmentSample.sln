@@ -22,10 +22,10 @@ Global
 		{BEBF76AF-22F3-43F4-965F-ED02A27631C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBF76AF-22F3-43F4-965F-ED02A27631C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SupportLibFragments\SupportLibFragments.csproj
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = AllAndroid\SupportLibFragments.csproj
 	EndGlobalSection
 EndGlobal

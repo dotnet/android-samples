@@ -41,6 +41,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidSupportedAbis>armeabi,x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_Honeycomb|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -960,9 +961,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <AndroidJavaLibrary Include="Library\android-support-v4.jar" />
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Phone\" />
     <Folder Include="UI\Tablet\" />

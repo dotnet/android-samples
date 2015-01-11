@@ -23,7 +23,7 @@ using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "App/Text Notify")]
+	[Activity (Label = "App/Notification/Notify With Text")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class NotifyWithText : Activity
 	{
@@ -45,7 +45,7 @@ namespace MonoDroid.ApiDemo
 			Button button;
 
 			// short notification
-			button = (Button)FindViewById (Resource.Id.short_notify);
+			button = FindViewById <Button> (Resource.Id.short_notify);
 
 			button.Click += delegate {
 				// Note that we create the Toast object and call the show() method
@@ -64,7 +64,7 @@ namespace MonoDroid.ApiDemo
 			// The only difference here is that the notification stays up longer.
 			// You might want to use this if there is more text that they're going
 			// to read.
-			button = (Button)FindViewById (Resource.Id.long_notify);
+			button = FindViewById <Button> (Resource.Id.long_notify);
 
 			button.Click += delegate {
 				Toast.MakeText (this, Resource.String.long_notification_text, ToastLength.Long).Show ();

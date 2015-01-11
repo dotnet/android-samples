@@ -30,7 +30,7 @@ namespace Support4
 	        AddShowHideListener(Resource.Id.frag2hide, fm.FindFragmentById(Resource.Id.fragment2));
 		}
 		
-		void AddShowHideListener(int buttonId, Fragment fragment) 
+		void AddShowHideListener(int buttonId, Android.Support.V4.App.Fragment fragment)
 		{
 	        var button = FindViewById<Button>(buttonId);
 			button.Click += (sender, e) => {
@@ -47,7 +47,7 @@ namespace Support4
 			};
 	    }
 		
-		protected class FirstFragment : Fragment 
+		protected class FirstFragment : Android.Support.V4.App.Fragment
 		{
 			TextView textView;
 			
@@ -73,7 +73,7 @@ namespace Support4
 			}
 		}
 		
-		protected class SecondFragment : Fragment
+		protected class SecondFragment : Android.Support.V4.App.Fragment
 		{
 			public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 			{

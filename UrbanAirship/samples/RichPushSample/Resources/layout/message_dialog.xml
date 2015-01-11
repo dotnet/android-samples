@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="300dp">
+    
+    <com.urbanairship.widget.RichPushMessageView 
+            android:id="@+id/message_browser"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:contentDescription="Rich push message dialog" />
+    
+</LinearLayout>

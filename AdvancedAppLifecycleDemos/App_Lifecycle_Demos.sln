@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlingCrashes", "HandlingCrashes\HandlingCrashes.csproj", "{CE15F9BF-3A7F-467C-9861-92D96E86B675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializingAppAndServices", "InitializingAppAndServices\InitializingAppAndServices.csproj", "{972C8726-7645-4A73-9EC9-B7EF968887AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInitialization", "AppInitialization\AppInitialization.csproj", "{539B8A06-4BE6-4CE7-89AF-1AD4FAAA510D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityLifecycle", "ActivityLifecycle\ActivityLifecycle.csproj", "{22351A6B-84F7-433B-88BB-26CA77461584}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22351A6B-84F7-433B-88BB-26CA77461584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22351A6B-84F7-433B-88BB-26CA77461584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22351A6B-84F7-433B-88BB-26CA77461584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22351A6B-84F7-433B-88BB-26CA77461584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539B8A06-4BE6-4CE7-89AF-1AD4FAAA510D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539B8A06-4BE6-4CE7-89AF-1AD4FAAA510D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539B8A06-4BE6-4CE7-89AF-1AD4FAAA510D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539B8A06-4BE6-4CE7-89AF-1AD4FAAA510D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{972C8726-7645-4A73-9EC9-B7EF968887AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{972C8726-7645-4A73-9EC9-B7EF968887AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{972C8726-7645-4A73-9EC9-B7EF968887AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{972C8726-7645-4A73-9EC9-B7EF968887AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE15F9BF-3A7F-467C-9861-92D96E86B675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE15F9BF-3A7F-467C-9861-92D96E86B675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE15F9BF-3A7F-467C-9861-92D96E86B675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE15F9BF-3A7F-467C-9861-92D96E86B675}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ActivityLifecycle\ActivityLifecycle.csproj
+	EndGlobalSection
+EndGlobal

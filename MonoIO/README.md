@@ -1,7 +1,7 @@
-Google IO App in Mono for Android
+Google IO 2011 App in Mono for Android
 =================================
 
-This is a port of the [Google IO Schedule App][1]
+This is a port of the [Google IO 2011 Schedule App][1] - it only works on Android 2.2 to Android 4.0.3 and it is not a port of the Google IO 2012 application.
 
 License
 =======
@@ -21,4 +21,4 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[1]: http://code.google.com/p/iosched/
+[1]: https://code.google.com/p/iosched/source/detail?r=27a82ff10b436da5914a3961df245ff8f66b6252

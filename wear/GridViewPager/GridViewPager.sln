@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridViewPagerSample", "GridViewPager\GridViewPagerSample.csproj", "{CDC26D3D-2B71-472A-987B-A688AA46E7DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDC26D3D-2B71-472A-987B-A688AA46E7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC26D3D-2B71-472A-987B-A688AA46E7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC26D3D-2B71-472A-987B-A688AA46E7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC26D3D-2B71-472A-987B-A688AA46E7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = GridViewPager\GridViewPagerSample.csproj
+	EndGlobalSection
+EndGlobal

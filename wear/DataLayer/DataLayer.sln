@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{9A80815D-70F8-484F-A345-8CF23148DEE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wearable", "Wearable\Wearable.csproj", "{0A13546B-8D0F-4368-B17A-C33D8322A86D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A13546B-8D0F-4368-B17A-C33D8322A86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A13546B-8D0F-4368-B17A-C33D8322A86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A13546B-8D0F-4368-B17A-C33D8322A86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A13546B-8D0F-4368-B17A-C33D8322A86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A80815D-70F8-484F-A345-8CF23148DEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A80815D-70F8-484F-A345-8CF23148DEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A80815D-70F8-484F-A345-8CF23148DEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A80815D-70F8-484F-A345-8CF23148DEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Wearable\Wearable.csproj
+	EndGlobalSection
+EndGlobal

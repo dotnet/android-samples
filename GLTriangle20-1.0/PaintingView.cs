@@ -203,25 +203,33 @@ namespace Mono.Samples.GLTriangle20 {
 		    // Enable a handle to the triangle vertices
 			GL.EnableVertexAttribArray (mPositionHandle);
 
-			// Prepare the triangle coordinate data
-			GL.VertexAttribPointer (0, 3, All.Float, false, 0, vertices);
+			// pin the data, so that GC doesn't move them, while used
+			// by native code
+			unsafe {
+				fixed (float* pvertices = vertices) {
+					// Prepare the triangle coordinate data
+					GL.VertexAttribPointer (0, 3, All.Float, false, 0, new IntPtr (pvertices));
 
-			// get handle to fragment shader's vColor member
-		    mColorHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("vColor"));
+					// get handle to fragment shader's vColor member
+				    mColorHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("vColor"));
 
-		    // Set color for drawing the triangle
-	        GL.Uniform4(mColorHandle, 1, color);
+				    // Set color for drawing the triangle
+			        GL.Uniform4(mColorHandle, 1, color);
 
-			// get handle to shape's transformation matrix
-		    mMVPMatrixHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("uMVPMatrix"));
+					// get handle to shape's transformation matrix
+				    mMVPMatrixHandle = GL.GetUniformLocation(mProgramHandle, new StringBuilder("uMVPMatrix"));
 
-		    // Apply the projection and view transformation
-		    GL.UniformMatrix4(mMVPMatrixHandle, false, ref mModelViewProjectionMatrix);
+				    // Apply the projection and view transformation
+				    GL.UniformMatrix4(mMVPMatrixHandle, false, ref mModelViewProjectionMatrix);
 
-			GL.DrawArrays (All.Triangles, 0, 3);
+					GL.DrawArrays (All.Triangles, 0, 3);
+
+					GL.Finish ();
+				}
+			}
 
 			// Disable vertex array
-        	GL.DisableVertexAttribArray(mPositionHandle);
+			GL.DisableVertexAttribArray(mPositionHandle);
 
 			SwapBuffers ();
 		}

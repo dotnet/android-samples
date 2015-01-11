@@ -147,9 +147,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <AndroidJavaLibrary Include="android-support-v4.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Circles\" />
     <Folder Include="Titles\" />
     <Folder Include="Tabs\" />

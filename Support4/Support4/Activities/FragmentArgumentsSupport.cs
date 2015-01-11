@@ -25,14 +25,14 @@ namespace Support4
 			
 	        if (bundle == null) {
 	            // First-time init; create fragment to embed in activity.
-	            FragmentTransaction ft = SupportFragmentManager.BeginTransaction();
+	            var ft = SupportFragmentManager.BeginTransaction();
 	            var newFragment = new MyFragment("From Arguments");
 				ft.Add(Resource.Id.created, newFragment);
 				ft.Commit();
 	        }
 		}
 		
-		public class MyFragment : Fragment
+		public class MyFragment : Android.Support.V4.App.Fragment
 		{
 			string mLabel;
 			

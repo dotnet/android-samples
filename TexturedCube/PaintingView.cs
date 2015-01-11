@@ -220,13 +220,21 @@ namespace Mono.Samples.TexturedCube {
 			GL.BindTexture(All.Texture2D, textureIds [cur_texture]);
 			GL.EnableClientState(All.VertexArray);
 			GL.EnableClientState(All.TextureCoordArray);
+
 			for (int i = 0; i < 6; i++) // draw each face
 			{
 				float [] v = cubeVertexCoords [i];
 				float [] t = cubeTextureCoords [i];
-				GL.VertexPointer(3, All.Float, 0, v);
-				GL.TexCoordPointer(2, All.Float, 0, t);
-				GL.DrawArrays(All.TriangleFan, 0, 4);
+				// pin the data, so that GC doesn't move them, while used
+				// by native code
+				unsafe {
+					fixed (float* pv = v, pt = t) {
+						GL.VertexPointer(3, All.Float, 0, new IntPtr (pv));
+						GL.TexCoordPointer(2, All.Float, 0, new IntPtr (pt));
+						GL.DrawArrays(All.TriangleFan, 0, 4);
+						GL.Finish ();
+					}
+				}
 			}
 			GL.DisableClientState(All.VertexArray);
 			GL.DisableClientState(All.TextureCoordArray);
@@ -257,24 +265,9 @@ namespace Mono.Samples.TexturedCube {
 			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
 			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
-			int w, h;
-			int [] pixels = GetTextureFromBitmapResource (context, resourceId, out w, out h);
+			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
-			GL.TexImage2D (All.Texture2D, 0, (int)All.Rgba, w, h, 0, All.Rgba, All.UnsignedByte, pixels);
-		}
-
-		static int[] GetTextureFromBitmapResource(Context context, int resourceId, out int width, out int height)
-		{
-			using (Bitmap bitmap = BitmapFactory.DecodeResource(context.Resources, resourceId)) {
-				width = bitmap.Width;
-				height = bitmap.Height;
-
-				int [] pixels = new int [width * height];
-				
-				// Start writing from bottom row, to effectively flip it in Y-axis
-				bitmap.GetPixels  (pixels, pixels.Length - width, -width, 0, 0, width, height);
-				return pixels;
-			}
+			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0);              
 		}
 
 		static float[][] cubeVertexCoords = new float[][] {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="mono.samples.texturedcube">
+    <application android:icon="@drawable/app_texturedcube" android:label="@string/app_name"
+				android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+    </application>
+</manifest>

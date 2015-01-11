@@ -28,7 +28,7 @@ using Android.OS;
 
 namespace GooglePlayServicesTest
 {
-	[Activity (Label = "Mono GoogleMapsV2 Demo", MainLauncher = true)]
+	[Activity (Label = "XA GoogleMapsV2 Demo", MainLauncher = true)]
 	public class MainActivity : ListActivity
 	{
 		class DemoDetails : Java.Lang.Object

@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Com.Android.Example.Beam
 {
-	//[Activity (Label = "MonoDroid BeamDemo", MainLauncher = true)]
+	[Activity (Label = "MonoDroid BeamDemo", MainLauncher = true)]
 	public class Beam : Activity, NfcAdapter.ICreateNdefMessageCallback, NfcAdapter.IOnNdefPushCompleteCallback
 	{
 		public Beam ()
@@ -27,17 +27,21 @@ namespace Com.Android.Example.Beam
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			mInfoText = (TextView) FindViewById (Resource.Id.textView);
+			this.SetContentView (Resource.Layout.Main);
+
+			mInfoText = FindViewById <TextView> (Resource.Id.textView);
 			// Check for available NFC Adapter
 			mNfcAdapter = NfcAdapter.GetDefaultAdapter (this);
+
 			if (mNfcAdapter == null) {
-				mInfoText = (TextView) FindViewById (Resource.Id.textView);
+				mInfoText = FindViewById <TextView> (Resource.Id.textView);
 				mInfoText.Text = "NFC is not available on this device.";
+			} else {
+				// Register callback to set NDEF message
+				mNfcAdapter.SetNdefPushMessageCallback (this, this);
+				// Register callback to listen for message-sent success
+				mNfcAdapter.SetOnNdefPushCompleteCallback (this, this);
 			}
-			// Register callback to set NDEF message
-			mNfcAdapter.SetNdefPushMessageCallback (this, this);
-			// Register callback to listen for message-sent success
-			mNfcAdapter.SetOnNdefPushCompleteCallback (this, this);
 		}
 		
 		public NdefMessage CreateNdefMessage (NfcEvent evt) 

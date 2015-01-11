@@ -38,7 +38,7 @@ namespace Support4
 			// Create your application here
 		}
 		
-		public class ReceiveResultFragment : Fragment
+		public class ReceiveResultFragment : Android.Support.V4.App.Fragment
 		{
 			private const int GET_CODE = 0;
 			private TextView results;

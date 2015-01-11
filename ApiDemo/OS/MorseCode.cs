@@ -23,6 +23,11 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
+	/**
+ 	* App that vibrates the vibrator with the Morse Code for a string.
+	* This demonstrates the {@link android.os.Vibrator android.os.Vibrator} class.
+	* OS / Morse Code Vibrator
+	*/
 	[Activity (Label = "OS/Morse Code")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class MorseCode : Activity
@@ -50,6 +55,7 @@ namespace MonoDroid.ApiDemo
 			mTextView = (TextView)FindViewById (Resource.Id.text);
 		}
 
+		/** Called when the button is pushed */
 		private void MorseCode_Click (object sender, EventArgs e)
 		{
 			// Get the text out of the view

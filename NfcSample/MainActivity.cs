@@ -80,7 +80,8 @@
         {
             base.OnPause();
             // App is paused, so no need to keep an eye out for NFC tags.
-            _nfcAdapter.DisableForegroundDispatch(this);
+			if (_nfcAdapter != null)
+            	_nfcAdapter.DisableForegroundDispatch(this);
         }
 
         private void DisplayMessage(string message)
@@ -106,7 +107,18 @@
             // The OnNewIntent method will invoked by Android.
             var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, 0);
-            _nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
+
+			if (_nfcAdapter == null) {
+				var alert = new AlertDialog.Builder (this).Create ();
+				alert.SetMessage ("NFC is not supported on this device.");
+				alert.SetTitle ("NFC Unavailable");
+				alert.SetButton ("OK", delegate {
+					_writeTagButton.Enabled = false;
+					_textView.Text = "NFC is not supported on this device.";
+				});
+				alert.Show ();
+			} else
+            	_nfcAdapter.EnableForegroundDispatch(this, pendingIntent, filters, null);
         }
 
         /// <summary>

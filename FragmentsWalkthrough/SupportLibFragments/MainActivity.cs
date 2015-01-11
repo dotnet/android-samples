@@ -4,7 +4,7 @@ using Android.Support.V4.App;
 
 namespace com.xamarin.sample.fragments.supportlib
 {
-	[Activity(Label = "Fragments Walkthrough", MainLauncher = true, Icon = "@drawable/launcher")]
+	[Activity(Label = "Fragments Walkthrough", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : FragmentActivity
 	{
 		protected override void OnCreate (Bundle bundle)

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{070236F3-8BC7-4123-82CB-EE00251F6D0D}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,7 +36,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
@@ -51,6 +50,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleList.cs" />
     <Compile Include="Simple.cs" />
+    <Compile Include="ListNavigation.cs" />
+    <Compile Include="TabNavigation.cs" />
+    <Compile Include="TabNavigationCollapsed.cs" />
+    <Compile Include="SubMenus.cs" />
+    <Compile Include="Styled.cs" />
+    <Compile Include="StaticAttachment.cs" />
+    <Compile Include="ShareActionProvider.cs" />
+    <Compile Include="SearchViews.cs" />
+    <Compile Include="Progress.cs" />
+    <Compile Include="Preference.cs" />
+    <Compile Include="Overlay.cs" />
+    <Compile Include="IndeterminateProgress.cs" />
+    <Compile Include="FeatureToggles.cs" />
+    <Compile Include="CustomNavigation.cs" />
+    <Compile Include="ContextMenus.cs" />
+    <Compile Include="CollapsibleActionItem.cs" />
+    <Compile Include="ActionProviders.cs" />
+    <Compile Include="ActionModesNoActionBar.cs" />
+    <Compile Include="ActionModes.cs" />
+    <Compile Include="ActionItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -111,6 +130,7 @@
     <AndroidResource Include="Resources\values\themes.xml" />
     <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable\monoandroidsplash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

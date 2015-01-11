@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicTableAdapter", "BasicTableAdapter.csproj", "{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

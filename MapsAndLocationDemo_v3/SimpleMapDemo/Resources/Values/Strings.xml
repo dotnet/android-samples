@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="app_name" >Xamarin Maps Demo</string>
+
+  <string name="mapsAppText" >Show Maps App</string>
+  <string name="mapsAppTextDescription">Start up the Android Map application.</string>
+  
+  <string name="streetViewText" >Show Street View</string>
+
+  <string name="activity_label_axml">AXML demo"</string>
+  <string name="activity_description_axml">Load the MapFrament in the layout file.</string>
+
+  <string name="activity_label_mapwithmarkers">Markers Demo</string>
+  <string name="activity_description_mapwithmarkers">Shows how to add some markers.</string>
+
+  <string name="activity_label_mapwithoverlays">Overlays Demo</string>
+  <string name="activity_description_mapwithoverlays">Shows how to use overlays.</string>
+
+</resources>

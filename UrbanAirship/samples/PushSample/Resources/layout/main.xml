@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:background="@drawable/tiledstripes"
+    android:layout_height="fill_parent">
+    
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/apidLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APID"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <EditText
+            android:id="@+id/apidText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="0dip"
+            android:editable="false"
+            android:contentDescription="apid"
+            android:selectAllOnFocus="true"
+            android:textSize="12dip" >
+
+	        <!--  <requestFocus /> -->
+	    </EditText>
+        
+    </LinearLayout>
+    
+  <Button
+        android:id="@+id/push_custom_preferences_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Preferences" />
+  
+  <Button
+        android:id="@+id/push_preferences_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Preferences" />
+
+  <Button
+      android:id="@+id/location_button"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="View Location" />
+       
+</LinearLayout>

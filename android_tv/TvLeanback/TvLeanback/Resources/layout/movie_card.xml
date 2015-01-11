@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_height="wrap_content"
+              android:layout_width="wrap_content"
+              android:scaleType="centerCrop"
+              android:focusable="true"
+              android:focusableInTouchMode="true">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/poster" android:layout_gravity="center"/>
+    <TextView
+       android:id="@+id/poster_text"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:paddingTop="10dp"
+       android:paddingRight="10dp"       
+       android:paddingBottom="10dp"
+       android:paddingLeft="10dp" />
+</LinearLayout>

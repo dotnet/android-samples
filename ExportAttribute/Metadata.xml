@@ -2,6 +2,7 @@
 	<ID>71097d7e-c1b7-4df5-b07a-40f7db5980fc</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Attribute</Tags>
+	<Tags>Data</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
 </SampleMetadata>

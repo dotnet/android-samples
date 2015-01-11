@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Get GSM Signal Strength</string>
+	<string name="app_name">GetMobileNetworkStrength</string>
+</resources>

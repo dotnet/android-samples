@@ -3,5 +3,7 @@
 	<ID>eb40e6b8-38fd-4a78-a15a-0103d68f9225</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Media, Graphics, User Interface, Resources, Services</Tags>
+	<Tags>Media, Graphics, User Interface, Platform Features, Device Features</Tags>
+	<Gallery>true</Gallery>
+	<LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

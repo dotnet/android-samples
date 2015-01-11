@@ -25,14 +25,24 @@ using Android.Content;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "Content/Resources Sample")]
+	/**
+ 	* Demonstration of loading resources.
+ 	* 
+ 	*
+ 	* Each context has a resources object that you can access.  Additionally,
+ 	* the Context class (an Activity is a Context) has a getString convenience
+ 	* method getString() that looks up a string resource.
+ 	*
+ 	* @see StyledText for more depth about using styled text, both with getString()
+ 	*                 and in the layout xml files.
+ 	*/
+	[Activity (Label = "@string/activity_resources")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ResourcesSample : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
 			SetContentView (Resource.Layout.resources);
 
 			TextView tv;
@@ -45,13 +55,13 @@ namespace MonoDroid.ApiDemo
 			// resource that hapepns to have style information.  Note the use of
 			// CharSequence instead of String so we don't lose the style info.
 			cs = GetTextFormatted (Resource.String.styled_text);
-			tv = (TextView)FindViewById (Resource.Id.styled_text);
+			tv = FindViewById <TextView> (Resource.Id.styled_text);
 			tv.TextFormatted = cs;
 
 			// Use the same resource, but convert it to a string, which causes it
 			// to lose the style information.
 			str = GetString (Resource.String.styled_text);
-			tv = (TextView)FindViewById (Resource.Id.plain_text);
+			tv = FindViewById <TextView> (Resource.Id.plain_text);
 			tv.Text = str;
 
 			// ====== Using the Resources object =================================
@@ -66,7 +76,7 @@ namespace MonoDroid.ApiDemo
 
 			// Get the string resource, like above.
 			cs = res.GetTextFormatted (Resource.String.styled_text);
-			tv = (TextView)FindViewById (Resource.Id.res1);
+			tv = FindViewById <TextView> (Resource.Id.res1);
 			tv.TextFormatted = cs;
 
 			// Note that the Resources class has methods like getColor(),

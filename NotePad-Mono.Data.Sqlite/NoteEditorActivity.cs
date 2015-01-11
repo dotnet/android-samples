@@ -29,7 +29,7 @@ namespace Mono.Samples.Notepad
 		private Note note;
 		private EditText text_view;
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override async void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
@@ -45,7 +45,7 @@ namespace Mono.Samples.Notepad
 			if (note_id < 0)
 				note = new Note ();
 			else
-				note = NoteRepository.GetNote (note_id);
+				note =await NoteRepository.GetNoteAsync (note_id);
 		}
 
 		protected override void OnResume ()
@@ -59,7 +59,7 @@ namespace Mono.Samples.Notepad
 			text_view.SetTextKeepState (note.Body);
 		}
 
-		protected override void OnPause ()
+		protected override async void OnPause ()
 		{
 			base.OnPause ();
 
@@ -69,7 +69,8 @@ namespace Mono.Samples.Notepad
 
 			// Save the note
 			note.Body = text_view.Text;
-			NoteRepository.SaveNote (note);
+//			NoteRepository.SaveNote (note);
+			await NoteRepository.SaveNoteAsync (note);
 		}
 	}
 }

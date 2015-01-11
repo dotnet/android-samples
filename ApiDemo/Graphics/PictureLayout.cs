@@ -111,7 +111,8 @@ namespace MonoDroid.ApiDemo.Graphics
 			int x = Width / 2;
 			int y = Height / 2;
 
-			if (false)
+			bool canvasDraw = false;
+			if (canvasDraw)
 				canvas.DrawPicture (mPicture);
 			else {
 				DrawPict (canvas, 0, 0, x, y, 1, 1);

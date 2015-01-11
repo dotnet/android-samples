@@ -1,6 +1,8 @@
 android-mapviewballoons
 =======================
 
+**Note:** This project is for the older Android Maps API v1 which has been deprecated.  It will not work with Android Maps API v2.
+
 This project contains the binding for the Android Library Project [android-mapviewballons](https://github.com/jgilfelt/android-mapviewballoons). 
 
 The directory `android-mapviewballoons` holds the Java source code. 

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticsV2", "AnalyticsV2\AnalyticsV2.csproj", "{FA69D0E7-2E38-4FB2-B6BC-377A15819D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticsV2Test", "AnalyticsV2Test\AnalyticsV2Test.csproj", "{4C48750B-7FD9-4B89-A2B7-942B69363CFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C48750B-7FD9-4B89-A2B7-942B69363CFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C48750B-7FD9-4B89-A2B7-942B69363CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C48750B-7FD9-4B89-A2B7-942B69363CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C48750B-7FD9-4B89-A2B7-942B69363CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA69D0E7-2E38-4FB2-B6BC-377A15819D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA69D0E7-2E38-4FB2-B6BC-377A15819D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA69D0E7-2E38-4FB2-B6BC-377A15819D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA69D0E7-2E38-4FB2-B6BC-377A15819D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AnalyticsV2Test\AnalyticsV2Test.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView
+        android:src="@drawable/doge"
+        android:layout_width="match_parent"
+        android:layout_height="268.0dp"
+        android:id="@+id/imageView1"
+        android:layout_marginBottom="0.0dp" />
+    <Button
+        android:text="Print Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagePrintButton" />
+    <Button
+        android:text="Print Web Content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/webPrintButton" />
+</LinearLayout>

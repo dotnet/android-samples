@@ -10,6 +10,9 @@ using Android.Content.PM;
 namespace Mono.Samples.GLCube
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_glcube",
+#if __ANDROID_11__
+		HardwareAccelerated=false,
+#endif
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class GLCubeActivity : Activity
 	{

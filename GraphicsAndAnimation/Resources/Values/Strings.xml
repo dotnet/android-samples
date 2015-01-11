@@ -1,0 +1,18 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" >
+  <string name="app_name" >Animations Demo</string>
+
+  <string name="title_animationdrawable" >Animation Drawable</string>
+  <string name="title_spinasteroid" >Spin Asteroid</string>
+  <string name="title_zoom" >Zoom</string>
+  <string name="title_viewanimation" >View Animation</string>
+  <string name="title_propertyanimation" >Property Animation</string>
+  <string name="title_hyperspace" >Animate Hyperspace</string>
+  <string name="title_setkarma" >Give or take Karma</string>
+  <string name="title_drawing"> Drawing</string>
+  <string name="title_shapedrawables">Shape Drawable</string>
+  <string name="message_zoom_touch_expand" >Touch a photo to expand it.</string>
+  <string name="message_shapedrawable">Textview with a custom background drawable \n with a gradient and rounded corners</string>
+  <string name="description_image_1" >Image 1</string>
+  <string name="description_image_2" >Image 2</string>
+  <string name="description_zoom_touch_close" >Expanded image (touch to close)</string>
+</resources>

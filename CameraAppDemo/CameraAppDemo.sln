@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraAppDemo", "CameraAppDemo.csproj", "{EF14197A-6C3D-46AF-9F1A-A13769267580}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF14197A-6C3D-46AF-9F1A-A13769267580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF14197A-6C3D-46AF-9F1A-A13769267580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF14197A-6C3D-46AF-9F1A-A13769267580}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EF14197A-6C3D-46AF-9F1A-A13769267580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF14197A-6C3D-46AF-9F1A-A13769267580}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CameraAppDemo.csproj
+	EndGlobalSection
+EndGlobal

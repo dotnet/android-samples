@@ -1,0 +1,22 @@
+<metadata>
+  <add-node path="/api/package[@name='com.slidingmenu.lib']/class[@name='SlidingMenu']">
+		<!-- 
+		We need this transform because the Java method setBehindCanvasTransformer can't be bound. The binding 
+		generator can't find the type com.slidingmenu.lib.R cannot be found. As a workaround we tell 
+		the binding generator to bind this method.
+		
+		See: http://forums.xamarin.com/discussion/comment/2868 
+		-->
+		<method abstract="false" deprecated="not deprecated" final="false" name="setBehindCanvasTransformer" native="false" return="void" static="false" synchronized="false" visibility="public">
+			<parameter name="t" type="com.slidingmenu.lib.SlidingMenu.CanvasTransformer" />
+		</method>
+	</add-node>
+	
+	<remove-node path="/api/package[starts-with(@name, 'com.actionbarsherlock.internal')]" />
+	
+	<!-- Canonicalize the Java package names -->
+	<attr path="/api/package[@name='com.actionbarsherlock']" name="managedName">Xamarin.ActionbarSherlockBinding</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.widget']" name="managedName">Xamarin.ActionbarSherlockBinding.Widget</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.app']" name="managedName">Xamarin.ActionbarSherlockBinding.App</attr>
+	<attr path="/api/package[@name='com.actionbarsherlock.view']" name="managedName">Xamarin.ActionbarSherlockBinding.Views</attr>
+</metadata>

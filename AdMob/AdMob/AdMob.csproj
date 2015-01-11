@@ -15,6 +15,7 @@
     <MonoAndroidTransformPrefix>Transforms</MonoAndroidTransformPrefix>
     <AssemblyName>AdMob</AssemblyName>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <Java7DocPaths>..\admob_ads_sdk\docs</Java7DocPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +35,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
@@ -58,8 +58,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <InputJar Include="GoogleAdMobAdsSdk-6.0.1.jar">
-      <Link>Jars\GoogleAdMobAdsSdk-6.0.1.jar</Link>
-    </InputJar>
+    <EmbeddedJar Include="..\admob_ads_sdk\GoogleAdMobAdsSdk-6.4.1.jar">
+      <Link>Jars\GoogleAdMobAdsSdk-6.4.1.jar</Link>
+    </EmbeddedJar>
   </ItemGroup>
 </Project>

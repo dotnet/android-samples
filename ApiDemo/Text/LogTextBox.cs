@@ -23,6 +23,10 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
+	/**
+ 	* This is a TextView that is Editable and by default scrollable,
+ 	* like EditText without a cursor.
+ 	*/
 	public class LogTextBox : TextView
 	{
 		public LogTextBox (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
@@ -46,10 +50,8 @@ namespace MonoDroid.ApiDemo
 			get { return ScrollingMovementMethod.Instance; }
 		}
 
-		// TODO: Crashes due to bug #640194 
-		//public override Java.Lang.CharSequence Text {
-		//        get { return base.Text; }
-		//        set { base.SetText (Text, BufferType.Editable); }
-		//}
+		public override void SetText (Java.Lang.ICharSequence text, BufferType type) {
+			base.SetText (text, BufferType.Editable);
+		}
 	}
 }

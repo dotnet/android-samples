@@ -132,12 +132,20 @@ namespace Mono.Samples.GLCube {
 			GL.ClearColor (0, 0, 0, 1.0f);
 			GL.Clear ((uint) All.ColorBufferBit);
 
-			GL.VertexPointer(3, All.Float, 0, cube);
-			GL.EnableClientState (All.VertexArray);
-			GL.ColorPointer (4, All.Float, 0, cubeColors);
-			GL.EnableClientState (All.ColorArray);
-			GL.DrawElements(All.Triangles, 36, All.UnsignedByte, triangles);
-
+			// pin the data, so that GC doesn't move them, while used
+			// by native code
+			unsafe {
+				fixed (float* pcube = cube, pcubeColors = cubeColors) {
+					fixed (byte* ptriangles = triangles) {
+						GL.VertexPointer (3, All.Float, 0, new IntPtr (pcube));
+						GL.EnableClientState (All.VertexArray);
+						GL.ColorPointer (4, All.Float, 0, new IntPtr (pcubeColors));
+						GL.EnableClientState (All.ColorArray);
+						GL.DrawElements (All.Triangles, 36, All.UnsignedByte, new IntPtr (ptriangles));
+						GL.Finish ();
+					}
+				}
+			}
 			SwapBuffers ();
 		}
 

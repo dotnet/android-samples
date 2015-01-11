@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item android:drawable="@color/ab_bottom_shadow_2" />
+	<item android:bottom="1px" android:drawable="@color/ab_bottom_shadow_1" />
+    <item android:bottom="2px" android:drawable="@color/ab_background" />
+</layer-list>

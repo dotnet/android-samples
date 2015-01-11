@@ -3,5 +3,6 @@
 	<ID>ffaecf29-e9cd-419b-8400-0ea72f4d3299</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Bindings</Tags>
+	<Tags>Binding + Interop</Tags>
+	<Gallery>true</Gallery>
 </SampleMetadata>

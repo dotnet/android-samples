@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+﻿Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanAngeles", "SanAngeles_NDK\SanAngeles.csproj", "{6B72DBC6-0817-457B-AF1A-C66140F6D4F8}"
 EndProject

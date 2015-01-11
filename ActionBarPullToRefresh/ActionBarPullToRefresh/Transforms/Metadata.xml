@@ -1,0 +1,16 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']" name="managedName">Xamarin.ActionBarPullToRefresh.Library</attr>
+  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library.delegate']" name="managedName">Xamarin.ActionBarPullToRefresh.Library.Delegates</attr>
+  <attr path="/api/package/class/field[@name='delegate']" name="managedName">DelegateField</attr>
+  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']/class[@name='PullToRefreshAttacher.Delegate']" name="managedName">PullToRefreshAttacher.DelegateClass</attr>
+  <attr path="/api/package[@name='uk.co.senab.actionbarpulltorefresh.library']/class[@name='PullToRefreshAttacher']/constructor/parameter[@type='V']" name="type">android.view.View</attr>
+
+
+</metadata>

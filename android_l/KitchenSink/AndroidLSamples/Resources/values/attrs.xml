@@ -1,0 +1,7 @@
+﻿<resources>
+  <!--Styleable custom imageview with height adjustable-->
+  <declare-styleable name="HeightAdjustableImageView">
+    <attr name="ratio" format="reference|float"/><!--Ratio of width to height, deafult 1 so a .5 is height is half as hight as width-->
+  </declare-styleable>
+
+</resources>

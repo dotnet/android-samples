@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dp" 
+    android:contentDescription="Inbox message">
+
+    <LinearLayout
+        android:id="@+id/unread_indicator"
+        android:layout_width="6dp"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+    
+    <CheckBox
+        android:id="@+id/message_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/unread_indicator"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/message_checkbox"
+        android:layout_toRightOf="@id/message_checkbox"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+    
+    <TextView
+        android:id="@+id/date_sent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/message_checkbox"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/message_checkbox"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+
+</RelativeLayout>

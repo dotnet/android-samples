@@ -35,4 +35,4 @@ using Android.App;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion ("1.0.0.0")]
 [assembly: AssemblyFileVersion ("1.0.0.0")]
-[assembly: Application (Label = "@string/app_name", Icon = "@drawable/ic_launcher", Logo = "@drawable/title_logo" , Theme = "@style/Theme.IOSched")]
+[assembly: Application (Label = "@string/app_name", Icon = "@drawable/icon", Logo = "@drawable/title_logo" , Theme = "@style/Theme.IOSched")]

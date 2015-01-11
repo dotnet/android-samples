@@ -33,7 +33,6 @@ namespace MonoDroid.ApiDemo
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
 			SetContentView (Resource.Layout.link);
 
 			// text1 shows the android:autoLink property, which
@@ -56,13 +55,13 @@ namespace MonoDroid.ApiDemo
 			// illustrate how you might display text that came from a
 			// dynamic source (eg, the network).
 
-			//TextView t3 = (TextView)FindViewById (Resource.Id.text3);
-			//t3.Text = Html.FromHtml(
-			//        "<b>text3:</b>  Text with a " +
-			//        "<a href=\"http://www.google.com\">link</a> " +
-			//        "created in the Java source code using HTML.");
+			TextView t3 = (TextView)FindViewById (Resource.Id.text3);
+			t3.TextFormatted = Html.FromHtml (
+			        "<b>text3:</b>  Text with a " +
+			        "<a href=\"http://www.xamarin.com\">link</a> " +
+				"created in the Java source code using HTML.");
 
-			//t3.MovementMethod = LinkMovementMethod.Instance;
+			t3.MovementMethod = LinkMovementMethod.Instance;
 
 			// text4 illustrates constructing a styled string containing a
 			// link without using HTML at all.  Again, for a fixed string

@@ -60,16 +60,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
-    <AndroidResource Include="Resources\Drawable-hdpi\StatSample.png" />
-    <AndroidResource Include="Resources\Drawable-mdpi\StatSample.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\StatSample.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\StatSample.png" />
     <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\Drawable-mdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidJavaSource Include="TestCubeEngine.java" Condition="$(AndroidApiLevel) != '4'" />
-    <AndroidJavaLibrary Include="%24%28OutputPath%29\custom.jar" />
+    <AndroidJavaLibrary Include="$(OutputPath)\custom.jar" />
   </ItemGroup>
   <ItemGroup>
     <IncludeInCustomJar Include="Adder.java" />
@@ -87,7 +86,8 @@
     </BuildDependsOn>
   </PropertyGroup>
   <Target Name="BuildNativeLibs" Inputs="jni\foo.c;jni\bar.c;jni\Android.mk" Outputs="@(AndroidNativeLibrary)">
-    <Exec Command="$(ANDROID_NDK_PATH)\ndk-build" />
+    <Error Text="Could not locate Android NDK." Condition="!Exists ('$(_AndroidNdkDirectory)\ndk-build')" />
+    <Exec Command="&quot;$(_AndroidNdkDirectory)\ndk-build&quot;" />
   </Target>
   <Target Name="BuildNativeJars" Inputs="Adder.java" Outputs="$(OutputPath)\custom.jar">
     <MakeDir Directories="$(OutputPath)\classes" />

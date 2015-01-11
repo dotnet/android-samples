@@ -174,11 +174,16 @@ namespace Mono.Samples.GLTriangle20 {
 			GL.Viewport (0, 0, viewportWidth, viewportHeight);
 			GL.UseProgram (program);
 
-			GL.VertexAttribPointer (0, 3, All.Float, false, 0, vertices);
-			GL.EnableVertexAttribArray (0);
-
-			GL.DrawArrays (All.Triangles, 0, 3);
-
+			// pin the data, so that GC doesn't move them, while used
+			// by native code
+			unsafe {
+				fixed (float* pvertices = vertices) {
+					GL.VertexAttribPointer (0, 3, All.Float, false, 0, new IntPtr (pvertices));
+					GL.EnableVertexAttribArray (0);
+					GL.DrawArrays (All.Triangles, 0, 3);
+					GL.Finish ();
+				}
+			}
 			SwapBuffers ();
 		}
 

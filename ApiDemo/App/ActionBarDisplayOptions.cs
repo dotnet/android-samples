@@ -15,7 +15,6 @@
  */
 
 // This sample only works on Android API 11+
-#if __ANDROID_11__
 
 using System;
 
@@ -24,20 +23,20 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 
-namespace MonoDroid.ApiDemo.App
+namespace MonoDroid.ApiDemo
 {
 	// This demo shows how various action bar display option flags can be combined and their effects.
-	[Activity (Label = "App/Action Bar Display Options")]
+	[Activity (Label = "@string/action_bar_display_options")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
-	public class ActionBarDisplayOptionsActivity : Activity, Android.App.ActionBar.ITabListener
+	public class ActionBarDisplayOptionsActivity : Activity, ActionBar.ITabListener
 	{
 		private View custom_view;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			SetContentView (Resource.Layout.ActionBarDisplayOptions);
+			Window.RequestFeature (WindowFeatures.ActionBar);
+			SetContentView (Resource.Layout.action_bar_display_options);
 
 			// Set up handlers for each of our buttons
 			var home_as_up = FindViewById (Resource.Id.toggle_home_as_up);
@@ -64,7 +63,24 @@ namespace MonoDroid.ApiDemo.App
 			var cycle_gravity = FindViewById (Resource.Id.cycle_custom_gravity);
 			cycle_gravity.Click += CycleGravity;
 
-			custom_view = LayoutInflater.Inflate (Resource.Layout.ActionBarDisplayOptionsCustom, null);
+			var visibility = FindViewById (Resource.Id.toggle_visibility);
+			visibility.Click += delegate {
+				if (ActionBar.IsShowing)
+					ActionBar.Hide ();
+				else
+					ActionBar.Show ();
+			};
+
+			var system_ui = FindViewById (Resource.Id.toggle_system_ui);
+			system_ui.Click += delegate {
+
+				if ((Window.DecorView.SystemUiVisibility & (StatusBarVisibility) SystemUiFlags.Fullscreen) != 0)
+					Window.DecorView.SystemUiVisibility = 0;
+				else 
+					Window.DecorView.SystemUiVisibility = (StatusBarVisibility) SystemUiFlags.Fullscreen;
+			};
+
+			custom_view = LayoutInflater.Inflate (Resource.Layout.action_bar_display_options_custom, null);
 
 			// Configure several action bar elements that will be toggled by display options.
 			ActionBar.SetCustomView (custom_view, new ActionBar.LayoutParams (WindowManagerLayoutParams.WrapContent, WindowManagerLayoutParams.WrapContent));
@@ -83,6 +99,12 @@ namespace MonoDroid.ApiDemo.App
 			tab3.SetText ("Tab 3");
 			tab3.SetTabListener (this);
 			ActionBar.AddTab (tab3);
+		}
+
+		public override bool OnCreateOptionsMenu (IMenu menu)
+		{
+			MenuInflater.Inflate (Resource.Menu.display_options_actions, menu);
+			return true;
 		}
 
 		private void AddActionBarFlag (ActionBarDisplayOptions flag)
@@ -130,4 +152,3 @@ namespace MonoDroid.ApiDemo.App
 		#endregion
 	}
 }
-#endif

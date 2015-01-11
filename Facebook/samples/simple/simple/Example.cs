@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Json;
-
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -20,7 +19,7 @@ namespace Com.Facebook.Android
 	public abstract class BaseDialogListener : Object, Facebook.IDialogListener
 	{
 		public abstract void OnComplete (Bundle bundle);
-		
+
 		public void OnFacebookError (FacebookError e)
 		{
 			e.PrintStackTrace ();
@@ -46,7 +45,7 @@ namespace Com.Facebook.Android
 		}
 
 		public void OnFileNotFoundException (FileNotFoundException e,
-                                        Object state)
+		                                     Object state)
 		{
 			Log.Error ("Facebook", e.Message);
 			e.PrintStackTrace ();
@@ -59,11 +58,11 @@ namespace Com.Facebook.Android
 		}
 
 		public void OnMalformedURLException (MalformedURLException e,
-                                        Object state)
+		                                     Object state)
 		{
 			Log.Error ("Facebook", e.Message);
 			e.PrintStackTrace ();
-		}    
+		}
 
 		public abstract void OnComplete (string response, Java.Lang.Object state);
 	}
@@ -76,30 +75,30 @@ namespace Com.Facebook.Android
 		private SessionListener mSessionListener;
 		private String[] mPermissions;
 		private Activity mActivity;
-    
+
 		public LoginButton (Context context)
 			: base (context)
 		{
 			mSessionListener = new SessionListener (this);
 		}
-    
+
 		public LoginButton (Context context, IAttributeSet attrs)
 			: base (context, attrs)
 		{
 			mSessionListener = new SessionListener (this);
 		}
-    
+
 		public LoginButton (Context context, IAttributeSet attrs, int defStyle)
 			: base (context, attrs, defStyle)
 		{
 			mSessionListener = new SessionListener (this);
 		}
-    
+
 		public void Init (Activity activity, Facebook fb)
 		{
-			Init (activity, fb, new String[] {});
+			Init (activity, fb, new String[] { });
 		}
-    
+
 		public void Init (Activity activity, Facebook fb, String[] permissions)
 		{
 			mActivity = activity;
@@ -118,15 +117,16 @@ namespace Com.Facebook.Android
 			SessionEvents.AddLogoutListener (mSessionListener);
 			SetOnClickListener (new ButtonOnClickListener (this));
 		}
-    
+
 		class ButtonOnClickListener : Object, IOnClickListener
 		{
 			public ButtonOnClickListener (LoginButton parent)
 			{
 				this.parent = parent;
 			}
+
 			LoginButton parent;
-        
+
 			public void OnClick (View arg0)
 			{
 				if (parent.mFb.IsSessionValid) {
@@ -135,7 +135,7 @@ namespace Com.Facebook.Android
 					asyncRunner.Logout (parent.Context, new LogoutRequestListener (parent));
 				} else {
 					parent.mFb.Authorize (parent.mActivity, parent.mPermissions,
-                              new LoginDialogListener ());
+					                      new LoginDialogListener ());
 				}
 			}
 		}
@@ -151,7 +151,7 @@ namespace Com.Facebook.Android
 			{
 				SessionEvents.OnLoginError (error.Message);
 			}
-        
+
 			public void OnError (DialogError error)
 			{
 				SessionEvents.OnLoginError (error.Message);
@@ -162,16 +162,16 @@ namespace Com.Facebook.Android
 				SessionEvents.OnLoginError ("Action Canceled");
 			}
 		}
-    
+
 		private class LogoutRequestListener : BaseRequestListener
 		{
 			public LogoutRequestListener (LoginButton parent)
 			{
 				this.parent = parent;
 			}
-			
+
 			LoginButton parent;
-			
+
 			public override void OnComplete (String response, Object state)
 			{
 				// callback should be run in the original thread, 
@@ -181,16 +181,16 @@ namespace Com.Facebook.Android
 				});
 			}
 		}
-    
+
 		class SessionListener : Object, SessionEvents.IAuthListener, SessionEvents.ILogoutListener
 		{        
 			public SessionListener (LoginButton parent)
 			{
 				this.parent = parent;
 			}
-			
+
 			LoginButton parent;
-			
+
 			public void OnAuthSucceed ()
 			{
 				parent.SetImageResource (Resource.Drawable.logout_button);
@@ -200,17 +200,17 @@ namespace Com.Facebook.Android
 			public void OnAuthFail (String error)
 			{
 			}
-        
+
 			public void OnLogoutBegin ()
 			{           
 			}
-        
+
 			public void OnLogoutFinish ()
 			{
 				SessionStore.Clear (parent.Context);
 				parent.SetImageResource (Resource.Drawable.login_button);
 			}
-		}    
+		}
 	}
 
 	public class SessionEvents
@@ -272,35 +272,35 @@ namespace Com.Facebook.Android
 		{
 			mLogoutListeners.Remove (listener);
 		}
-    
+
 		public static void OnLoginSuccess ()
 		{
 			foreach (var listener in mAuthListeners) {
 				listener.OnAuthSucceed ();
 			}
 		}
-    
+
 		public static void OnLoginError (String error)
 		{
 			foreach (var listener in mAuthListeners) {
 				listener.OnAuthFail (error);
 			}
 		}
-    
+
 		public static void OnLogoutBegin ()
 		{
 			foreach (var l in mLogoutListeners) {
 				l.OnLogoutBegin ();
 			}
 		}
-    
+
 		public static void OnLogoutFinish ()
 		{
 			foreach (var l in mLogoutListeners) {
 				l.OnLogoutFinish ();
 			}   
 		}
-    
+
 		/**
      * Callback interface for authorization events.
      *
@@ -325,7 +325,7 @@ namespace Com.Facebook.Android
          */
 			void OnAuthFail (String error);
 		}
-    
+
 		/**
      * Callback interface for logout events.
      *
@@ -348,7 +348,6 @@ namespace Com.Facebook.Android
          */
 			void OnLogoutFinish ();
 		}
-    
 	}
 
 	public class SessionStore
@@ -356,10 +355,10 @@ namespace Com.Facebook.Android
 		const string TOKEN = "access_token";
 		const string EXPIRES = "expires_in";
 		const string KEY = "facebook-session";
-    
+
 		public static bool Save (Facebook session, Context context)
 		{
-			var editor = context.GetSharedPreferences (KEY,FileCreationMode.Private).Edit ();
+			var editor = context.GetSharedPreferences (KEY, FileCreationMode.Private).Edit ();
 			editor.PutString (TOKEN, session.AccessToken);
 			editor.PutLong (EXPIRES, session.AccessExpires);
 			return editor.Commit ();
@@ -378,9 +377,9 @@ namespace Com.Facebook.Android
 			var editor = context.GetSharedPreferences (KEY, FileCreationMode.Private).Edit ();
 			editor.Clear ();
 			editor.Commit ();
-		}    
+		}
 	}
-	
+
 	[Activity (Label = "simple", MainLauncher = true)]
 	public class Example : Activity
 	{
@@ -404,16 +403,16 @@ namespace Com.Facebook.Android
 
 			if (APP_ID == null) {
 				Util.ShowAlert (this, "Warning", "Facebook Applicaton ID must be " +
-                    "specified before running this example: see Example.java");
+					"specified before running this example: see Example.java");
 			}
 
 			SetContentView (Resource.Layout.main);
-			mLoginButton = (LoginButton) FindViewById (Resource.Id.login);
-			mText = (TextView) FindViewById (Resource.Id.txt);
-			mRequestButton = (Button) FindViewById (Resource.Id.requestButton);
-			mPostButton = (Button) FindViewById (Resource.Id.postButton);
-			mDeleteButton = (Button) FindViewById (Resource.Id.deletePostButton);
-			mUploadButton = (Button) FindViewById (Resource.Id.uploadButton);
+			mLoginButton = (LoginButton)FindViewById (Resource.Id.login);
+			mText = (TextView)FindViewById (Resource.Id.txt);
+			mRequestButton = (Button)FindViewById (Resource.Id.requestButton);
+			mPostButton = (Button)FindViewById (Resource.Id.postButton);
+			mDeleteButton = (Button)FindViewById (Resource.Id.deletePostButton);
+			mUploadButton = (Button)FindViewById (Resource.Id.uploadButton);
 
 			mFacebook = new Facebook (APP_ID);
 			mAsyncRunner = new AsyncFacebookRunner (mFacebook);
@@ -430,26 +429,26 @@ namespace Com.Facebook.Android
                 ViewStates.Visible :
                 ViewStates.Invisible;
 
-			mUploadButton.Click += delegate {
+			mUploadButton.Click += async delegate {
 				Bundle parameters = new Bundle ();
 				parameters.PutString ("method", "photos.upload");
 
 				URL uploadFileUrl = null;
 				try {
 					uploadFileUrl = new URL (
-                        "http://www.facebook.com/images/devsite/iphone_connect_btn.jpg");
+						"http://www.facebook.com/images/devsite/iphone_connect_btn.jpg");
 				} catch (MalformedURLException e) {
 					e.PrintStackTrace ();
 				}
 				try {
-					HttpURLConnection conn = (HttpURLConnection) uploadFileUrl.OpenConnection ();
+					HttpURLConnection conn = (HttpURLConnection)uploadFileUrl.OpenConnection ();
 					conn.DoInput = true;
-					conn.Connect ();
+					await conn.ConnectAsync ();
 					int length = conn.ContentLength;
 
 					byte[] imgData = new byte[length];
 					var ins = conn.InputStream;
-					ins.Read (imgData, 0, imgData.Length);
+					await ins.ReadAsync (imgData, 0, imgData.Length);
 					parameters.PutByteArray ("picture", imgData);
 
 				} catch (IOException e) {
@@ -457,7 +456,7 @@ namespace Com.Facebook.Android
 				}
 
 				mAsyncRunner.Request (null, parameters, "POST",
-                        new SampleUploadListener (this), null);
+				                      new SampleUploadListener (this), null);
 			};
 			mUploadButton.Visibility = mFacebook.IsSessionValid ?
                 ViewStates.Visible :
@@ -465,7 +464,7 @@ namespace Com.Facebook.Android
 
 			mPostButton.Click += delegate {
 				mFacebook.Dialog (this, "feed",
-                        new SampleDialogListener (this));
+				                  new SampleDialogListener (this));
 			};
 			mPostButton.Visibility = mFacebook.IsSessionValid ?
                 ViewStates.Visible :
@@ -474,7 +473,7 @@ namespace Com.Facebook.Android
 
 		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
-			mFacebook.AuthorizeCallback (requestCode, (int) resultCode, data);
+			mFacebook.AuthorizeCallback (requestCode, (int)resultCode, data);
 		}
 
 		public class SampleAuthListener : SessionEvents.IAuthListener
@@ -483,6 +482,7 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
+
 			Example parent;
 
 			public void OnAuthSucceed ()
@@ -505,6 +505,7 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
+
 			Example parent;
 
 			public void OnLogoutBegin ()
@@ -527,15 +528,15 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
-			Example parent;
 
+			Example parent;
 
 			public override void OnComplete (String response, Object state)
 			{
 				try {
 					// process the response here: executed in background thread
 					Log.Debug ("Facebook-Example", "Response: " + response);
-					var json = (JsonObject) JsonValue.Parse (response);
+					var json = (JsonObject)JsonValue.Parse (response);
 					String name = json ["name"];
 
 					// then post the processed result back to the UI thread
@@ -545,8 +546,8 @@ namespace Com.Facebook.Android
 					parent.RunOnUiThread (delegate {
 						parent.mText.Text = ("Hello there, " + name + "!");
 					});
-				//} catch (JSONException e) {
-				//	Log.Warn ("Facebook-Example", "JSON Error in response");
+					//} catch (JSONException e) {
+					//	Log.Warn ("Facebook-Example", "JSON Error in response");
 				} catch (FacebookError e) {
 					Log.Warn ("Facebook-Example", "Facebook Error: " + e.Message);
 				}
@@ -559,15 +560,15 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
-			Example parent;
 
+			Example parent;
 
 			public override void OnComplete (String response, Object state)
 			{
 				try {
 					// process the response here: (executed in background thread)
 					Log.Debug ("Facebook-Example", "Response: " + response.ToString ());
-					var json = (JsonObject) JsonValue.Parse (response);
+					var json = (JsonObject)JsonValue.Parse (response);
 					String src = json ["src"];
 
 					// then post the processed result back to the UI thread
@@ -577,8 +578,8 @@ namespace Com.Facebook.Android
 					parent.RunOnUiThread (delegate {
 						parent.mText.Text = ("Hello there, photo has been uploaded at \n" + src);
 					});
-				//} catch (JSONException e) {
-				//	Log.Warn ("Facebook-Example", "JSON Error in response");
+					//} catch (JSONException e) {
+					//	Log.Warn ("Facebook-Example", "JSON Error in response");
 				} catch (FacebookError e) {
 					Log.Warn ("Facebook-Example", "Facebook Error: " + e.Message);
 				}
@@ -591,18 +592,18 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
-			Example parent;
 
+			Example parent;
 
 			public override void OnComplete (String response, Object state)
 			{
 				Log.Debug ("Facebook-Example", "Got response: " + response);
 				String message = "<empty>";
 				try {
-					var json = (JsonObject) JsonValue.Parse (response);
+					var json = (JsonObject)JsonValue.Parse (response);
 					message = json ["message"];
-				//} catch (JSONException e) {
-				//	Log.Warn ("Facebook-Example", "JSON Error in response");
+					//} catch (JSONException e) {
+					//	Log.Warn ("Facebook-Example", "JSON Error in response");
 				} catch (FacebookError e) {
 					Log.Warn ("Facebook-Example", "Facebook Error: " + e.Message);
 				}
@@ -619,8 +620,8 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
-			Example parent;
 
+			Example parent;
 
 			public override void OnComplete (String response, Object state)
 			{
@@ -642,8 +643,8 @@ namespace Com.Facebook.Android
 			{
 				this.parent = parent;
 			}
-			Example parent;
 
+			Example parent;
 
 			public override void OnComplete (Bundle values)
 			{
@@ -653,7 +654,7 @@ namespace Com.Facebook.Android
 					parent.mAsyncRunner.Request (postId, new WallPostRequestListener (parent));
 					parent.mDeleteButton.Click += delegate {
 						parent.mAsyncRunner.Request (postId, new Bundle (), "DELETE",
-                                new WallPostDeleteListener (parent), null);
+						                             new WallPostDeleteListener (parent), null);
 					};
 					parent.mDeleteButton.Visibility = (ViewStates.Visible);
 				} else {
@@ -661,7 +662,6 @@ namespace Com.Facebook.Android
 				}
 			}
 		}
-
 	}
 }
 

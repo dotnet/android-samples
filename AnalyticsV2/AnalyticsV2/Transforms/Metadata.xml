@@ -1,0 +1,16 @@
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <remove-node path="/api/package[@name='com.google.android.gms.analytics.internal']" />
+  <remove-node path="/api/package[@name='com.google.android.gms.common.util']" />
+  <attr path="/api/package[@name='com.google.analytics.tracking.android']" name="managedName">Xamarin.GoogleAnalyticsV2.Tracking</attr>
+  <remove-node path="/api/package[@name='com.google.analytics.tracking.android']/class[@name='GoogleAnalytics']/implements" />
+
+  <!-- This special case binding change is required for Xamarin.Android internal -->
+  <attr path="/api/package[@name='com.google.analytics.tracking.android']/class[@name='CampaignTrackingService']" name="extends">mono.android.app.IntentService</attr>
+</metadata>

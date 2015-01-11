@@ -32,7 +32,7 @@ using Android.Gms.Maps.Model;
 
 namespace GooglePlayServicesTest
 {
-	[Activity (Label = "Mono GoogleMapV2 MarkerDemo")]
+	[Activity (Label = "XA GoogleMapV2 MarkerDemo")]
 	public class MarkerDemoActivity : Android.Support.V4.App.FragmentActivity,
 		GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener 
 	{
@@ -54,6 +54,7 @@ namespace GooglePlayServicesTest
 			
 			internal CustomInfoWindowAdapter (MarkerDemoActivity parent) 
 			{
+				this.parent = parent;
 				mWindow = parent.LayoutInflater.Inflate (Resource.Layout.custom_info_window, null);
 				mContents = parent.LayoutInflater.Inflate (Resource.Layout.custom_info_contents, null);
 				mOptions = (RadioGroup) parent.FindViewById (Resource.Id.custom_info_window_options);
@@ -224,14 +225,14 @@ namespace GooglePlayServicesTest
 			                           .SetPosition(BRISBANE)
 			                           .SetTitle("Brisbane")
 			                           .SetSnippet("Population: 2,074,200")
-			                           .SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueAzure)));
+			                           .InvokeIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueAzure)));
 			
 			// Uses a custom icon.
 			mSydney = mMap.AddMarker(new MarkerOptions()
 			                         .SetPosition(SYDNEY)
 			                         .SetTitle("Sydney")
 			                         .SetSnippet("Population: 4,627,300")
-			                         .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrow)));
+			                         .InvokeIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrow)));
 			
 			// Creates a draggable marker. Long press to drag.
 			mMelbourne = mMap.AddMarker(new MarkerOptions()
@@ -259,7 +260,7 @@ namespace GooglePlayServicesTest
 					-30 + 10 * Math.Sin(i * Math.PI / (numMarkersInRainbow - 1)),
 					135 - 10 * Math.Cos(i * Math.PI / (numMarkersInRainbow - 1))))
 				               .SetTitle("Marker " + i)
-				               .SetIcon(BitmapDescriptorFactory.DefaultMarker(i * 360 / numMarkersInRainbow)));
+				               .InvokeIcon(BitmapDescriptorFactory.DefaultMarker(i * 360 / numMarkersInRainbow)));
 			}
 		}
 		
@@ -273,6 +274,7 @@ namespace GooglePlayServicesTest
 		}
 		
 		/** Called when the Clear button is clicked. */
+		[Java.Interop.Export ("onClearMap")]
 		public void OnClearMap (View view) 
 		{
 			if (!CheckReady()) {
@@ -282,6 +284,7 @@ namespace GooglePlayServicesTest
 		}
 		
 		/** Called when the Reset button is clicked. */
+		[Java.Interop.Export ("onResetMap")]
 		public void OnResetMap(View view) 
 		{
 			if (!CheckReady()) {

@@ -28,6 +28,10 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
+	/**
+ 	* Using a LogTextBox to display a scrollable text area
+ 	* to which text is appended.
+ 	*/
 	[Activity (Label = "Text/Log TextBox")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class LogTextBox1 : Activity
@@ -37,12 +41,11 @@ namespace MonoDroid.ApiDemo
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
 			SetContentView (Resource.Layout.log_text_box_1);
 
-			text_box = FindViewById<LogTextBox> (Resource.Id.text);
+			text_box = FindViewById <LogTextBox> (Resource.Id.text);
 
-			Button addButton = FindViewById<Button> (Resource.Id.add);
+			Button addButton = FindViewById <Button> (Resource.Id.add);
 			addButton.Click += new EventHandler (addButton_Click);
 		}
 

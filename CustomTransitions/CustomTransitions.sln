@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTransitions", "CustomTransitions\CustomTransitions.csproj", "{A7D7BF1D-96A2-4717-BD54-CDC4B112A964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A4D6760-F944-42A8-9C9C-5FC26EF72667}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "..\..\monodroid-samples\CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D7BF1D-96A2-4717-BD54-CDC4B112A964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D7BF1D-96A2-4717-BD54-CDC4B112A964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D7BF1D-96A2-4717-BD54-CDC4B112A964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D7BF1D-96A2-4717-BD54-CDC4B112A964}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CustomTransitions\CustomTransitions.csproj
+	EndGlobalSection
+EndGlobal

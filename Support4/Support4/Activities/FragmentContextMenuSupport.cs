@@ -27,7 +27,7 @@ namespace Support4
 	        SupportFragmentManager.BeginTransaction().Add(Android.Resource.Id.Content, content).Commit();
 		}
 		
-		public class ContextMenuFragment : Fragment
+		public class ContextMenuFragment : Android.Support.V4.App.Fragment
 		{	
 			public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle p2)
 			{

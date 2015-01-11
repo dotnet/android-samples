@@ -1,0 +1,41 @@
+How to build the entire package from source
+===========================================
+
+Prerequisites
+-------------
+
+- Xamarin.Android 4.7.x is the verified version that runs the samples.
+  At least samples won't build as those ported code contains some newly
+  bound API that did not exist in 4.6.x (it is not hard to remove them).
+
+Build steps
+-----------
+
+- Create "urbanairship-sdk" directory, then download Urban Airship
+  Android SDK v3.0, and extract it in this directory. Get the sdk from http://urbanairship.com/resources/developer-resources
+- The binding dll should build only with that.
+- To build and run the samples, you need to set some required service API
+  settings in "Assets/airshipconfig.properties" in each project.
+  This is exactly the same steps to configure Java-based Android UAirship
+  projects, so see Urban Airship documentation (you will have to read
+  their documentation to properly setup the server side anyways).
+
+Building and running the applications doesn't mean it's finished. You
+should try sending push messages via urbanairship.com server.
+
+Warning: InstrumentedActivity
+-----------------------------
+
+There are two samples that are ported from Urban Airship samples (licensed
+under Apache 2). One is PushSample and the other is RichPushSample.
+While the purpose look similar, they have different activity models in
+Java code. However, for PushSample, its InstrumentedActivity approach
+crashed due to some application initialization glitch, and we had to
+use our own Android.App.Application class that initializes UAirship
+in an appropriate timing before the activity tries to actually use it.
+
+The same problem would happen when you are to write your own application.
+
+On the other hand, RichPushSample is almost pure C# porting.
+
+

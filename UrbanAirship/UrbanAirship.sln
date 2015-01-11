@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSample", "samples\PushSample\PushSample.csproj", "{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichPushSample", "samples\RichPushSample\RichPushSample.csproj", "{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.UrbanAirshipBinding", "Xamarin.UrbanAirshipBinding\Xamarin.UrbanAirshipBinding.csproj", "{C4E1218B-C566-4367-BAB3-496A79E53FDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarSherlock", "..\ActionBarSherlock\ActionBarSherlock\ActionBarSherlock.csproj", "{2D5471B2-8255-4E47-97E9-EEB28678CC82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CFF81C-57DD-4EC9-AF6F-7BBE962D589E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E1218B-C566-4367-BAB3-496A79E53FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E1218B-C566-4367-BAB3-496A79E53FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E1218B-C566-4367-BAB3-496A79E53FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E1218B-C566-4367-BAB3-496A79E53FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3962E8B-AE6D-450D-98B5-18D7BBCD1E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = samples\RichPushSample\RichPushSample.csproj
+	EndGlobalSection
+EndGlobal

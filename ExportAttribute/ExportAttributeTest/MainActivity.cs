@@ -13,7 +13,7 @@ using Object = Java.Lang.Object;
 
 namespace ExportAttributeTest
 {
-	[Activity (Label = "ExportAttributeTest", MainLauncher = true)]
+	[Activity (Label = "XA [Export] Demo", MainLauncher = true)]
 	public class Activity1 : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -40,10 +40,11 @@ namespace ExportAttributeTest
 
 			Console.WriteLine ("Activity1.MyButton_OnClick: Reading from Parcel...");
 			var b2 = p.ReadBundle ();
+			b2.ClassLoader = ClassLoader;
 			Console.WriteLine ("Read Bundle: {0}", b2);
-			var s  = b.GetSerializable ("dummy");
+			var s  = b2.GetSerializable ("dummy");
 			Console.WriteLine ("Read Serializable: {0}", s);
-			var p2 = b.GetParcelable ("dummy2");
+			var p2 = b2.GetParcelable ("dummy2");
 			Console.WriteLine ("Read Parcelable: {0}", p2);
 		}
 	}
@@ -51,7 +52,7 @@ namespace ExportAttributeTest
 	class MyParcelable : Object, IParcelable
 	{
 		[ExportField ("CREATOR")]
-		static MyParcelableCreator InitializeCreator ()
+		public static MyParcelableCreator InitializeCreator ()
 		{
 			Console.WriteLine ("MyParcelable.InitializeCreator");
 			return new MyParcelableCreator ();
@@ -102,6 +103,11 @@ namespace ExportAttributeTest
 	class MySerializable : Object, Java.IO.ISerializable
 	{
 		public string Value {get; private set;}
+
+		public MySerializable (IntPtr handle, JniHandleOwnership transfer)
+			: base (handle, transfer)
+		{
+		}
 
 		public MySerializable ()
 		{

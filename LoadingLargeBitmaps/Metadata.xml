@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>{9E6E0ADF-3E34-4300-8AC0-C3EC3C029EA1}</ID>
+	<Gallery>true</Gallery>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Graphics</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<Brief>A sample application for the Load Large Bitmaps Efficiently recipe which demonstrates how to resize a bitmap for a view.</Brief>
+	<LicenseRequirement>Indie</LicenseRequirement>
+</SampleMetadata>
