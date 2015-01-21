@@ -31,31 +31,37 @@ You must also add the **Xamarin.Android.Support.v7.CardView** and
 
 To add these packages in Xamarin Studio:
 
-1. Open the project, right-click <span
-   class="uiitem">Packages</span> and select <span class="uiitem">Add
-   Packages</span>.
-2. In the <span class="uiitem">Add Packages</span> dialog, search for
-   <span class="uiitem">CardView</span>.
-3. Select <span class="uiitem">Xamarin Support Library v7 CardView</span>,
-   then click <span class="uiitem">Add Package</span>.
-4. In the <span class="uiitem">Add Packages</span> dialog, search for
-   <span class="uiitem">RecyclerView</span>.
-5. Select <span class="uiitem">Xamarin Support Library v7 RecyclerView</span>,
-   then click <span class="uiitem">Add Package</span>.
+1. Open the project, right-click **Packages** and 
+   select **Add Packages**. 
+
+2. In the **Add Packages** dialog, search for **CardView**.
+
+3. Select **Xamarin Support Library v7 CardView**,
+   then click **Add Package**.
+
+4. In the **Add Packages** dialog, search for
+   **RecyclerView**.
+
+5. Select **Xamarin Support Library v7 RecyclerView**,
+   then click **Add Package**.
 
 To add these packages in Microsoft Visual Studio:
 
-1. Open the project, right-click the <span class="uiitem">References</span>
-   node (in the <span class="uiitem">Solution Explorer</span>
-   pane) and select <span class="uiitem">Manage NuGet Packages...</span>.
-2. When the <span class="uiitem">Manage NuGet Packages</span> dialog is displayed,
-   enter <span class="uiitem">CardView</span> in the search box.
-3. When <span class="uiitem">Xamarin Support Library v7 CardView</span>
-   appears, click <span class="uiitem">Install</span>.
-4. In the <span class="uiitem">Manage NuGet Packages</span> dialog,
-   enter <span class="uiitem">RecyclerView</span> in the search box.
-5. When <span class="uiitem">Xamarin Support Library v7 RecyclerView</span>
-   appears, click <span class="uiitem">Install</span>.
+1. Open the project, right-click the **References**
+   node (in the **Solution Explorer** pane) and select 
+   **Manage NuGet Packages...**.
+
+2. When the **Manage NuGet Packages** dialog is displayed,
+   enter **CardView** in the search box.
+
+3. When **Xamarin Support Library v7 CardView**
+   appears, click **Install**.
+
+4. In the **Manage NuGet Packages** dialog,
+   enter **RecyclerView** in the search box.
+
+5. When **Xamarin Support Library v7 RecyclerView**
+   appears, click **Install**.
 
 Author
 ------ 
