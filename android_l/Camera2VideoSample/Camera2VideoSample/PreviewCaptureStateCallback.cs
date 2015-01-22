@@ -4,22 +4,17 @@ using Android.Widget;
 
 namespace Camera2VideoSample
 {
-	public class RecordingCaptureStateListener: CameraCaptureSession.StateCallback
+	public class PreviewCaptureStateCallback: CameraCaptureSession.StateCallback
 	{
 		Camera2VideoFragment fragment;
-		public RecordingCaptureStateListener(Camera2VideoFragment frag)
+		public PreviewCaptureStateCallback(Camera2VideoFragment frag)
 		{
 			fragment = frag;
 		}
 		public override void OnConfigured (CameraCaptureSession session)
 		{
-			//Start Recording
-			try {
-				session.SetRepeatingRequest(fragment.builder.Build(),null,null);
-				fragment.media_recorder.Start();
-			} catch (CameraAccessException e) {
-				e.PrintStackTrace ();
-			}
+			fragment.previewSession = session;
+			fragment.updatePreview ();
 
 		}
 

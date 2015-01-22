@@ -3,5 +3,5 @@
   <uses-permission android:name="android.permission.INTERNET" />
 
 	<!-- to ensure that @drawable/Icon is converted to @drawable/icon -->
-	<activity android:enabled="false" android:icon="@drawable/icon" android:label="DO NOT USE" />
+	<activity android:enabled="false" android:icon="@drawable/icon" android:label="DO NOT USE" android:name="invalid" />
 </manifest>

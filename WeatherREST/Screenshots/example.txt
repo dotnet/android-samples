@@ -1,0 +1,28 @@
+# Example URL sent in request:
+
+http://api.geonames.org/findNearByWeatherJSON?lat=47.7&lng=-122.5&username=demo
+
+# Resulting JSON payload:
+
+{
+    "weatherObservation": {
+        "ICAO": "KBFI",
+        "clouds": "broken clouds",
+        "cloudsCode": "BKN",
+        "countryCode": "US",
+        "datetime": "2014-12-05 22:53:00",
+        "dewPoint": "8.3",
+        "elevation": 4,
+        "humidity": 79,
+        "lat": 47.55,
+        "lng": -122.31666666666666,
+        "observation": "KBFI 052253Z 32003KT 10SM BKN070 BKN090 12/08 A2989 RMK AO2 SLP122 T01170083",
+        "seaLevelPressure": 1012.2,
+        "stationName": "Seattle, Seattle Boeing Field",
+        "temperature": "11.7",
+        "weatherCondition": "n/a",
+        "windDirection": 320,
+        "windSpeed": "03"
+    }
+}
+

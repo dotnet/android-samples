@@ -43,22 +43,19 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="box2d">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\box2d.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.3.0.0\lib\MonoAndroid10\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.3.0.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.3.0.0\lib\MonoAndroid10\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.3.0.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework.Net">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.0.1.0\lib\MonoAndroid10\MonoGame.Framework.Net.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.3.0.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -69,8 +66,8 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <None Include="packages.config" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

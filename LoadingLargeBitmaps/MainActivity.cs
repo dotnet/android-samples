@@ -1,93 +1,91 @@
-﻿namespace LoadingLargeBitmaps
+﻿using System.Threading.Tasks;
+
+using Android.App;
+using Android.Content.Res;
+using Android.Graphics;
+using Android.OS;
+using Android.Widget;
+using Android.Graphics.Drawables;
+
+namespace LoadingLargeBitmaps
 {
-    using System;
-    using System.Threading;
-	using System.Threading.Tasks;
-
-    using Android.App;
-    using Android.Content.Res;
-    using Android.Graphics;
-    using Android.OS;
-    using Android.Widget;
-
-    [Activity (Label = "LoadingLargeBitmaps", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "@string/ApplicationName", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        public static int CalculateInSampleSize (BitmapFactory.Options options, int reqWidth, int reqHeight)
+        ImageView _imageView;
+        TextView _originalDimensions;
+        TextView _resizedDimensions;
+
+        public static int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
         {
             // Raw height and width of image
-            float height = (float)options.OutHeight;
-            float width = (float)options.OutWidth;
+            float height = options.OutHeight;
+            float width = options.OutWidth;
             double inSampleSize = 1D;
 
-            if (height > reqHeight || width > reqWidth) {
-                inSampleSize = width > height ? height / reqHeight : width / reqWidth;
-            }
+            if (height > reqHeight || width > reqWidth)
+            {
+                int halfHeight = (int)(height / 2);
+                int halfWidth = (int)(width / 2);
+
+                // Calculate a inSampleSize that is a power of 2 - the decoder will use a value that is a power of two anyway.
+                while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth)
+                {
+                    inSampleSize *= 2;
+                }
+
+			}
 
             return (int)inSampleSize;
         }
 
-        public async Task<Bitmap> DecodeSampledBitmapFromResourceAsync (Resources res, int resId, int reqWidth, int reqHeight)
+        public async Task<Bitmap> LoadScaledDownBitmapForDisplayAsync(Resources res, BitmapFactory.Options options, int reqWidth, int reqHeight)
         {
-            // First decode with inJustDecodeBounds=true to check dimensions
-            BitmapFactory.Options options = new BitmapFactory.Options {
-				InJustDecodeBounds = true,
-				InPurgeable = true
-			};
-
-			// Suspends the execution of the method until DecodeResourceAsync is complete
-			await BitmapFactory.DecodeResourceAsync (res, resId, options).ConfigureAwait (false);
-
             // Calculate inSampleSize
-            options.InSampleSize = CalculateInSampleSize (options, reqWidth, reqHeight);
+            options.InSampleSize = CalculateInSampleSize(options, reqWidth, reqHeight);
 
             // Decode bitmap with inSampleSize set
-            options.InJustDecodeBounds = false;
+			options.InJustDecodeBounds = false;
 
-			// Don't configure an awaiter to avoid deadlock due to Result call from synchronous OnCreate
-			return await BitmapFactory.DecodeResourceAsync (res, resId, options).ConfigureAwait (false);
-		}
+            return await BitmapFactory.DecodeResourceAsync(res, Resource.Drawable.samoyed, options);
+        }
 
-        protected override void OnCreate (Bundle bundle)
+		protected async override void OnCreate(Bundle bundle)
         {
-            base.OnCreate (bundle);
-            SetContentView (Resource.Layout.Main);
-            ImageView imageView = FindViewById <ImageView> (Resource.Id.imageView);
+            base.OnCreate(bundle);
+            SetContentView(Resource.Layout.Main);
 
-            BitmapFactory.Options options = new BitmapFactory.Options {
-				InJustDecodeBounds = true
-			};
+            _originalDimensions = FindViewById<TextView>(Resource.Id.original_image_dimensions_textview);
+            _resizedDimensions = FindViewById<TextView>(Resource.Id.resized_image_dimensions_textview);
+            _imageView = FindViewById<ImageView>(Resource.Id.resized_imageview);
 
-			// Update the GUI while DecodeResourceAsync executes
-			var task = BitmapFactory.DecodeResourceAsync (Resources, Resource.Drawable.Koala, options);
-			Toast.MakeText (this, "Decoding Completed: " + task.IsCompleted, ToastLength.Long).Show ();
 
-			var bitmap = task.Result; // Synchronous wait
-			Toast.MakeText (this, "Decoding Completed: " + task.IsCompleted, ToastLength.Long).Show ();
+			BitmapFactory.Options options = await GetBitmapOptionsOfImage();
 
-			// Get the size and mime type of the image after calling DecodeResource
-			int imageHeight = options.OutHeight;
-			int imageWidth = options.OutWidth;
-			string imageType = options.OutMimeType;
+			Bitmap bitmapToDisplay = await LoadScaledDownBitmapForDisplayAsync (Resources, options, 150, 150);
+			_imageView.SetImageBitmap(bitmapToDisplay);
 
-            Toast.MakeText (this, string.Format ("Size=[{0}, {1}] - Type=[{2}]", imageWidth, imageHeight, imageType), ToastLength.Long).Show();
+			_resizedDimensions.Text = string.Format("Reduced the image {0}x", options.InSampleSize);
+        }
 
-			// Load the large image into the ImageView by waiting for the tasks result (bitmap)
-			using (var bmpTask = DecodeSampledBitmapFromResourceAsync (Resources, Resource.Drawable.Koala, 100, 100)) {
-				imageView.SetImageBitmap (bmpTask.Result); // Synchronous wait
-			}
 
-            ThreadPool.QueueUserWorkItem (async delegate {
-				// This is an infinte loop that should never cause the app to crash
-				while (true) {
-					using (Bitmap bmp = await BitmapFactory.DecodeResourceAsync (Resources, Resource.Drawable.Koala)) {
-						Console.WriteLine ("Processing...");
+        async Task<BitmapFactory.Options> GetBitmapOptionsOfImage()
+        {
+            BitmapFactory.Options options = new BitmapFactory.Options
+                                            {
+                                                InJustDecodeBounds = true
+                                            };
 
-						// Dispose of the image in both Mono and Java
-						bmp.Recycle ();
-					}
-				}
-			});
+			// The result will be null because InJustDecodeBounds == true.
+			Bitmap result=  await BitmapFactory.DecodeResourceAsync(Resources, Resource.Drawable.samoyed, options);
+
+
+            int imageHeight = options.OutHeight;
+            int imageWidth = options.OutWidth;
+
+            _originalDimensions.Text = string.Format("Original Size= {0}x{1}", imageWidth, imageHeight);
+
+            return options;
         }
     }
 }

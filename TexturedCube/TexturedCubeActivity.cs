@@ -37,7 +37,7 @@ namespace Mono.Samples.TexturedCube
 
 			// Wire each button to a click listener
 			showButton.Click += delegate { SetVisibility (ViewStates.Visible); };
-			hideButton.Click += delegate { SetVisibility (ViewStates.Invisible); };
+			hideButton.Click += delegate { SetVisibility (ViewStates.Gone); };
 		}
 
 		void SetVisibility (ViewStates state)
