@@ -16,14 +16,14 @@ namespace HelloToolbar
 			base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView (Resource.Layout.main);
 
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 
 			//Toolbar will now take on default actionbar characteristics
 			SetSupportActionBar (toolbar);
 
-			SupportActionBar.Title = "Hello from Toolbar";
+			SupportActionBar.Title = "Hello from Appcompat Toolbar";
 
 
 			var toolbarBottom = FindViewById<Toolbar> (Resource.Id.toolbar_bottom);
@@ -31,7 +31,7 @@ namespace HelloToolbar
 			toolbarBottom.Title = "Photo Editing";
 			toolbarBottom.InflateMenu (Resource.Menu.photo_edit);
 			toolbarBottom.MenuItemClick += (sender, e) => {
-				Toast.MakeText(this, "Bottom toolbar pressed: " + e.P0.TitleFormatted, ToastLength.Short).Show();
+				Toast.MakeText(this, "Bottom toolbar pressed: " + e.Item.TitleFormatted, ToastLength.Short).Show();
 			};
 
 			FindViewById<ImageView>(Resource.Id.image).Click += (sender, e) => {

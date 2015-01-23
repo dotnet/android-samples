@@ -21,7 +21,7 @@ namespace HelloToolbar
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.Detail);
+			SetContentView (Resource.Layout.detail);
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 
 			//Toolbar will now take on default actionbar characteristics
