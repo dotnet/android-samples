@@ -15,7 +15,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <AndroidApplication>true</AndroidApplication>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -61,13 +61,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
-    <AndroidResource Include="Resources\drawable-nodpi\texture1.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\TexturedCubeES30.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\SierpinskiTetrahedron.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\SierpinskiTetrahedron.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\SierpinskiTetrahedron.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\SierpinskiTetrahedron.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\SierpinskiTetrahedron.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\SierpinskiTetrahedron.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
