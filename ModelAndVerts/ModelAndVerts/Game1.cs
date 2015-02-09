@@ -11,7 +11,7 @@ namespace ModelAndVerts
 		// our XNB into:
 		Model model;
 
-		VertexPositionNormalTexture[] floorVerts;
+		VertexPositionTexture[] floorVerts;
 
 		BasicEffect effect;
 
@@ -29,7 +29,7 @@ namespace ModelAndVerts
 
 		protected override void Initialize ()
 		{
-			floorVerts = new VertexPositionNormalTexture[6];
+			floorVerts = new VertexPositionTexture[6];
 
 			floorVerts [0].Position = new Vector3 (-20, -20, 0);
 			floorVerts [1].Position = new Vector3 (-20,  20, 0);
