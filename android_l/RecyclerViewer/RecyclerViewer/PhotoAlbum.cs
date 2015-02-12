@@ -10,16 +10,16 @@ using System.Collections.Generic;
 
 namespace RecyclerViewer
 {
-    // Photo album, holds image resource IDs and title text:
+    // Photo album, holds image resource IDs and caption:
     public class PhotoAlbum
     {
         // Resource IDs to the photos that make up my photo album.
-        static int[] m_imageIds 
+        static int[] m_builtInImageIds 
             = new int[] { Resource.Drawable.before_mobile_phones,
+                          Resource.Drawable.louvre_1,
                           Resource.Drawable.la_tour_eiffel,
                           Resource.Drawable.buckingham_guards,
                           Resource.Drawable.big_ben_1,
-                          Resource.Drawable.louvre_1,
                           Resource.Drawable.big_ben_2,
                           Resource.Drawable.london_eye,
                           Resource.Drawable.eurostar,
@@ -52,14 +52,14 @@ namespace RecyclerViewer
                           Resource.Drawable.pompidou_centre,
                           Resource.Drawable.heres_lookin_at_ya};
 
-        // Titles for the photos in the above list. The order must
+        // Captions for the photos in the above list. The order must
         // match m_imageIds.
-        static string[] m_imageTitles 
+        static string[] m_builtInCaptions 
             = new string[] { "Before mobile phones",
+                             "The Lourve",
                              "The Eiffel Tower",
                              "Buckingham Palace",
                              "Big Ben skyline",
-                             "The Lourve",
                              "Big Ben from below",
                              "The London Eye",
                              "Eurostar Train",
@@ -92,22 +92,64 @@ namespace RecyclerViewer
                              "Pompidou Centre",
                              "Here's Lookin' at Ya!"};
 
-        // Returns the number of photos in the photo album.
-        public static int NumPhotos 
+        // The following code simulates a photo album database: 
+
+        // List of image IDs for this instance:
+        private int[] m_imageIds; 
+
+        // List of captions for this instance:
+        private string[] m_captions; 
+
+        // Random number generator for shuffling the photos:
+        Random m_random;
+
+        // Create instance copies of the two static arrays and 
+        // the random number generator:
+        public PhotoAlbum ()
+        {
+            m_imageIds = m_builtInImageIds;
+            m_captions = m_builtInCaptions;
+            m_random = new Random();
+        }
+
+        // Return the number of photos in the photo album:
+        public int NumPhotos 
         { 
             get { return m_imageIds.Length; } 
         }
 
-        // Returns the array of photo album titles.
-        public static string[] Titles
+        // Get the caption for the specified photo position:
+        public string GetCaption(int position)
         {
-            get { return m_imageTitles; }
+            return m_captions[position];
         }
 
-        // Returns the array of photo album image IDs.
-        public static int[] ImageIds
+        // Get the imaged ID for the specified photo position:
+        public int GetImage(int position)
         {
-            get { return m_imageIds; }
+            return m_imageIds[position];
+        }
+
+        // Shuffle the order of the photos:
+        public void Shuffle ()
+        {  
+            // Use the Fisher-Yates shuffle algorithm:
+            for (int idx = 0; idx < m_imageIds.Length; ++idx)
+            {
+                // Get the temporary caption and image ID at idx:
+                string tmpCaption = m_captions[idx];
+                int tmpId = m_imageIds[idx];
+
+                // Generate a next random index between idx (inclusive) to 
+                // Length (noninclusive):
+                int rnd = m_random.Next(idx, m_imageIds.Length);
+
+                // Exchange with temporary caption/ID:
+                m_captions[idx] = m_captions[rnd];
+                m_captions[rnd] = tmpCaption;
+                m_imageIds[idx] = m_imageIds[rnd];
+                m_imageIds[rnd] = tmpId;
+            }
         }
     }
 }

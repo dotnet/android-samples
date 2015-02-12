@@ -7,15 +7,24 @@ This sample app accompanies the articles
 You can use this sample to learn how to use the new `RecyclerView` widget
 introduced in Android 5.0 Lollipop.
 
-This app is a simple "Photo Album Viewer" that lets the user scroll up and 
-down to view a collection of photos. Each photo has associated title 
-text that describes the photo. Each photo/title combination is 
-displayed using a `CardView`, and the app uses a single `RecyclerView` 
-instance to hold and display over thirty unique `CardView` instances. A 
-basic *adapter* is used to connect the "Photo Album" data with the 
-`RecyclerView`. 
+This app is a simple "Photo Album Viewer" that lets the user scroll up 
+and down to view a collection of photos. Each photo has associated 
+caption text that describes the photo. The <span 
+class="uiitem">Shuffle</span> button randomly rearranges the order of 
+the photos (to demonstrate how `RecyclerView` is notified when the data 
+set changes). When the user taps a photo, a toast appears to display 
+the number of the photo within the collection (this demonstrates how item 
+view click handlers work). 
 
 ![](Screenshots/example-screens.png)
+
+Each photo/caption combination is displayed using a `CardView`, and the 
+app uses a single `RecyclerView` instance to hold and display over 
+thirty unique `CardView` instances. An *adapter* is used to connect the 
+`RecyclerView` with a simple "Photo Album" database, a *view-holder* is 
+used to cache view references, and a linear *layout manager* positions 
+`CardView` items within the `RecyclerView`. 
+
 
 
 Requirements
