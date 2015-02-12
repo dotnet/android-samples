@@ -58,7 +58,7 @@ namespace RecyclerViewer
             new Photo { m_photoId = Resource.Drawable.arc_de_triomphe,
                         m_caption = "Arc de Triomphe" },
             new Photo { m_photoId = Resource.Drawable.louvre_2,
-                        m_caption = "Inside the Lourve" },
+                        m_caption = "Inside the Louvre" },
             new Photo { m_photoId = Resource.Drawable.versailles_fountains,
                         m_caption = "Versailles fountains" },
             new Photo { m_photoId = Resource.Drawable.modest_accomodations,
