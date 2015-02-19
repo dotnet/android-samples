@@ -51,7 +51,7 @@ namespace Mono.Samples.Tetrahedron
 			try {
 				Log.Verbose ("SierpinskiTetrahedron", "Loading with high quality settings");
 
-				GraphicsMode = new GraphicsMode (new ColorFormat (32), 24, 0, 0);
+				GraphicsMode = new GraphicsMode (new ColorFormat (32), 24, 0, 4);
 				// if you don't call this, the context won't be created
 				base.CreateFrameBuffer ();
 				return;
