@@ -1,20 +1,20 @@
-Android 5.0 RecyclerViewer
-==========================
+RecyclerViewer
+==============
 
 This sample app accompanies the articles
-[CardView](http://developer.xamarin.com/guides/android/platform_features/android_l/cardview) and
-[RecyclerView](http://developer.xamarin.com/guides/android/platform_features/android_l/recyclerview).
+[CardView](http://developer.xamarin.com/guides/android/user_interface/cardview) and
+[RecyclerView](http://developer.xamarin.com/guides/android/user_interface/recyclerview).
 You can use this sample to learn how to use the new `RecyclerView` widget
-introduced in Android 5.0 Lollipop.
+introduced with Android 5.0 Lollipop.
 
 This app is a simple "Photo Album Viewer" that lets the user scroll up 
 and down to view a collection of photos. Each photo has associated 
-caption text that describes the photo. The <span 
-class="uiitem">Shuffle</span> button randomly rearranges the order of 
-the photos (to demonstrate how `RecyclerView` is notified when the data 
-set changes). When the user taps a photo, a toast appears to display 
-the number of the photo within the collection (this demonstrates how item 
-view click handlers work). 
+caption text that describes the photo. The <span class="uiitem">Random 
+Pick</span> button randomly swaps a photo in the collection with the 
+first photo (to demonstrate how `RecyclerView` is notified when the 
+data set changes). When the user taps a photo, a toast appears to 
+display the number of the photo within the collection (this 
+demonstrates how item view click handlers work). 
 
 ![](Screenshots/example-screens.png)
 
@@ -26,15 +26,11 @@ used to cache view references, and a linear *layout manager* positions
 `CardView` items within the `RecyclerView`. 
 
 
-
 Requirements
 ------------
 
-To build and run this sample, you must first enable Android 5.0 support as 
-described in 
-[Setting Up an Android 5.0 Project](http://developer.xamarin.com/guides/android/platform_features/android_l/introduction_to_android_l#settingup).
-
-You must also add the **Xamarin.Android.Support.v7.CardView** and 
+To build and run this sample, you must add the 
+**Xamarin.Android.Support.v7.CardView** and 
 **Xamarin.Android.Support.v7.RecyclerView** packages to the 
 **RecyclerViewer** project as described next. 
 
