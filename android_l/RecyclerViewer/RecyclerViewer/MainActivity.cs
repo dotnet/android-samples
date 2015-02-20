@@ -14,73 +14,75 @@ namespace RecyclerViewer
                Theme = "@android:style/Theme.Material.Light.DarkActionBar")]
 	public class MainActivity : Activity
 	{
-        // Recyclerview instance that displays the photo album:
-		RecyclerView m_recyclerView;
+        // RecyclerView instance that displays the photo album:
+		RecyclerView mRecyclerView;
 
         // Layout manager that lays out each card in the RecyclerView:
-		RecyclerView.LayoutManager m_layoutManager;
+		RecyclerView.LayoutManager mLayoutManager;
 
         // Adapter that accesses the data set (a photo album):
-		MyAdapter m_adapter;
+		PhotoAlbumAdapter mAdapter;
 
         // Photo album that is managed by the adapter:
-        PhotoAlbum m_album;
+        PhotoAlbum mPhotoAlbum;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
             // Instantiate the photo album:
-            m_album = new PhotoAlbum();
+            mPhotoAlbum = new PhotoAlbum();
 
 			// Set our view from the "main" layout resource:
 			SetContentView (Resource.Layout.Main);
 
             // Get our RecyclerView layout:
-			m_recyclerView = FindViewById<RecyclerView> (Resource.Id.recyclerView);
+			mRecyclerView = FindViewById<RecyclerView> (Resource.Id.recyclerView);
 
             //............................................................
             // Layout Manager Setup:
 
             // Use the built-in linear layout manager:
-			m_layoutManager = new LinearLayoutManager (this);
+			mLayoutManager = new LinearLayoutManager (this);
 
             // Or use the built-in grid layout manager (two horizontal rows):
-            // m_layoutManager = new GridLayoutManager
+            // mLayoutManager = new GridLayoutManager
             //        (this, 2, GridLayoutManager.Horizontal, false);
 
             // Plug the layout manager into the RecyclerView:
-            m_recyclerView.SetLayoutManager (m_layoutManager);
+            mRecyclerView.SetLayoutManager (mLayoutManager);
 
             //............................................................
             // Adapter Setup:
 
             // Create an adapter for the RecyclerView, and pass it the
             // data set (the photo album) to manage:
-			m_adapter = new MyAdapter (m_album);
+			mAdapter = new PhotoAlbumAdapter (mPhotoAlbum);
 
-            // Register the item click handler (see below) with the adapter:
-            m_adapter.ItemClick += OnItemClick;
+            // Register the item click handler (below) with the adapter:
+            mAdapter.ItemClick += OnItemClick;
 
             // Plug the adapter into the RecyclerView:
-			m_recyclerView.SetAdapter (m_adapter);
+			mRecyclerView.SetAdapter (mAdapter);
 
             //............................................................
-            // Shuffle Button:
+            // Random Pick Button:
 
-            // Get the button for shuffling the photo album:
-            Button shuffleBtn = FindViewById<Button>(Resource.Id.shuffleButton);
+            // Get the button for randomly swapping a photo:
+            Button randomPickBtn = FindViewById<Button>(Resource.Id.randPickButton);
 
-            // Handler for the Shuffle Button:
-            shuffleBtn.Click += delegate
+            // Handler for the Random Pick Button:
+            randomPickBtn.Click += delegate
             {
-                if (m_album != null)
+                if (mPhotoAlbum != null)
                 {
-                    // Shuffle the order of the photos:
-                    m_album.Shuffle();
+                    // Randomly swap a photo with the top:
+                    int idx = mPhotoAlbum.RandomSwap();
 
                     // Update the RecyclerView by notifying the adapter:
-                    m_adapter.NotifyDataSetChanged();
+                    // Notify that the top and a randomly-chosen photo has changed (swapped):
+                    mAdapter.NotifyItemChanged(0);
+                    mAdapter.NotifyItemChanged(idx);
                 }
             };
 		}
@@ -98,28 +100,24 @@ namespace RecyclerViewer
     // VIEW HOLDER
 
     // Implement the ViewHolder pattern: each ViewHolder holds references
-    // to the UI components (ImageView and TextView) of a CardView in 
-    // the RecyclerView:
-    public class MyViewHolder : RecyclerView.ViewHolder
+    // to the UI components (ImageView and TextView) within the CardView 
+    // that is displayed in a row of the RecyclerView:
+    public class PhotoViewHolder : RecyclerView.ViewHolder
     {
-        public ImageView Image { get; set; }
-        public TextView Caption { get; set; }
+        public ImageView Image { get; private set; }
+        public TextView Caption { get; private set; }
 
-        // Get the references to the views defined in the CardView layout.
-        // (Note: best practice dictates that view references are looked up
-        // in the Adapter and passed here rather than looked up here.)
-
-        public MyViewHolder (
-            View itemView, ImageView imageView, TextView textView, Action<int> listener) 
+        // Get references to the views defined in the CardView layout.
+        public PhotoViewHolder (View itemView, Action<int> listener) 
             : base (itemView)
         {
-            // Detect user clicks on the item view and report which item
-            // was clicked (by position) to the adapter:
-            itemView.Click += (sender, e) => listener (base.Position);
+            // Locate and cache view references:
+            Image = itemView.FindViewById<ImageView> (Resource.Id.imageView);
+            Caption = itemView.FindViewById<TextView> (Resource.Id.textView);
 
-            // Cache view references:
-            Image = imageView;
-            Caption = textView;
+            // Detect user clicks on the item view and report which item
+            // was clicked (by position) to the listener:
+            itemView.Click += (sender, e) => listener (base.Position);
         }
     }
 
@@ -127,18 +125,18 @@ namespace RecyclerViewer
     // ADAPTER
 
     // Adapter to connect the data set (photo album) to the RecyclerView: 
-    public class MyAdapter : RecyclerView.Adapter
+    public class PhotoAlbumAdapter : RecyclerView.Adapter
     {
-        // Underlying data set (a photo album):
-        public PhotoAlbum m_photoAlbum;
-
         // Event handler for item clicks:
         public event EventHandler<int> ItemClick;
 
+        // Underlying data set (a photo album):
+        public PhotoAlbum mPhotoAlbum;
+
         // Load the adapter with the data set (photo album) at construction time:
-        public MyAdapter (PhotoAlbum photoAlbum)
+        public PhotoAlbumAdapter (PhotoAlbum photoAlbum)
         {
-            m_photoAlbum = photoAlbum;
+            mPhotoAlbum = photoAlbum;
         }
 
         // Create a new photo CardView (invoked by the layout manager): 
@@ -149,13 +147,9 @@ namespace RecyclerViewer
             View itemView = LayoutInflater.From (parent.Context).
                         Inflate (Resource.Layout.PhotoCardView, parent, false);
 
-            // Locate views inside the inflated layout file:
-            ImageView imageView = itemView.FindViewById<ImageView> (Resource.Id.imageView);
-            TextView textView = itemView.FindViewById<TextView> (Resource.Id.textView);
-
-            // Create a ViewHolder to hold these view references, and register a
-            // callback (OnClick) with the view holder:
-            MyViewHolder vh = new MyViewHolder (itemView, imageView, textView, OnClick); 
+            // Create a ViewHolder to find and hold these view references, and 
+            // register OnClick with the view holder:
+            PhotoViewHolder vh = new PhotoViewHolder (itemView, OnClick); 
             return vh;
         }
 
@@ -163,18 +157,18 @@ namespace RecyclerViewer
         public override void 
             OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
-            MyViewHolder vh = holder as MyViewHolder;
+            PhotoViewHolder vh = holder as PhotoViewHolder;
 
             // Set the ImageView and TextView in this ViewHolder's CardView 
             // from this position in the photo album:
-            vh.Image.SetImageResource (m_photoAlbum[position].PhotoID);
-            vh.Caption.Text = m_photoAlbum[position].Caption;
+            vh.Image.SetImageResource (mPhotoAlbum[position].PhotoID);
+            vh.Caption.Text = mPhotoAlbum[position].Caption;
         }
 
         // Return the number of photos available in the photo album:
         public override int ItemCount
         {
-            get { return m_photoAlbum.NumPhotos; }
+            get { return mPhotoAlbum.NumPhotos; }
         }
 
         // Raise an event when the item-click takes place:
