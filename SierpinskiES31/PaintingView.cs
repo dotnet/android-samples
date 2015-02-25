@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
+using Android.Widget;
 
 namespace Mono.Samples.Tetrahedron
 {
@@ -119,6 +120,18 @@ namespace Mono.Samples.Tetrahedron
 			base.OnContextSet (e);
 			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
 			tetrahedron.Initialize ();
+		}
+
+		protected override void OnRenderThreadExited (EventArgs e)
+		{
+			base.OnRenderThreadExited (e);
+
+			global::Android.App.Application.SynchronizationContext.Send (_ => {
+				Console.WriteLine ("render thread exited\nexception:\n{0}", RenderThreadException);
+				TextView view = ((LinearLayout) Parent).FindViewById (Resource.Id.TextNotSupported) as TextView;
+				view.LayoutParameters = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
+				view.Visibility = ViewStates.Visible;
+			}, null);
 		}
 
 		protected override void OnLoad (EventArgs e)
