@@ -10,104 +10,170 @@ using System.Collections.Generic;
 
 namespace RecyclerViewer
 {
-    // Photo album, holds image resource IDs and title text:
+    // Photo: contains image resource ID and caption:
+    public class Photo
+    {
+        // Photo ID for this photo:
+        public int mPhotoID;
+
+        // Caption text for this photo:
+        public string mCaption;
+
+        // Return the ID of the photo:
+        public int PhotoID 
+        { 
+            get { return mPhotoID; } 
+        }
+
+        // Return the Caption of the photo:
+        public string Caption 
+        { 
+            get { return mCaption; } 
+        }
+    }
+
+    // Photo album: holds image resource IDs and caption:
     public class PhotoAlbum
     {
-        // Resource IDs to the photos that make up my photo album.
-        static int[] m_imageIds 
-            = new int[] { Resource.Drawable.before_mobile_phones,
-                          Resource.Drawable.la_tour_eiffel,
-                          Resource.Drawable.buckingham_guards,
-                          Resource.Drawable.big_ben_1,
-                          Resource.Drawable.louvre_1,
-                          Resource.Drawable.big_ben_2,
-                          Resource.Drawable.london_eye,
-                          Resource.Drawable.eurostar,
-                          Resource.Drawable.arc_de_triomphe,
-                          Resource.Drawable.louvre_2,
-                          Resource.Drawable.versailles_fountains,
-                          Resource.Drawable.modest_accomodations,
-                          Resource.Drawable.notre_dame,
-                          Resource.Drawable.inside_notre_dame,
-                          Resource.Drawable.seine_river,
-                          Resource.Drawable.rue_cler,
-                          Resource.Drawable.champ_elysees,
-                          Resource.Drawable.seine_barge,
-                          Resource.Drawable.versailles_gates,
-                          Resource.Drawable.edinburgh_castle_2,
-                          Resource.Drawable.edinburgh_castle_1,
-                          Resource.Drawable.old_meets_new,
-                          Resource.Drawable.edinburgh_from_on_high,
-                          Resource.Drawable.edinburgh_station,
-                          Resource.Drawable.scott_monument,
-                          Resource.Drawable.view_from_holyrood_park,
-                          Resource.Drawable.tower_of_london,
-                          Resource.Drawable.tower_visitors,
-                          Resource.Drawable.one_o_clock_gun,
-                          Resource.Drawable.victoria_albert,
-                          Resource.Drawable.royal_mile,
-                          Resource.Drawable.museum_and_castle,
-                          Resource.Drawable.portcullis_gate,
-                          Resource.Drawable.to_notre_dame,
-                          Resource.Drawable.pompidou_centre,
-                          Resource.Drawable.heres_lookin_at_ya};
+        // Built-in photo collection - this could be replaced with
+        // a photo database:
 
-        // Titles for the photos in the above list. The order must
-        // match m_imageIds.
-        static string[] m_imageTitles 
-            = new string[] { "Before mobile phones",
-                             "The Eiffel Tower",
-                             "Buckingham Palace",
-                             "Big Ben skyline",
-                             "The Lourve",
-                             "Big Ben from below",
-                             "The London Eye",
-                             "Eurostar Train",
-                             "Arc de Triomphe",
-                             "Inside the Lourve",
-                             "Versailles fountains",
-                             "Modest accomodations",
-                             "Notre Dame",
-                             "Inside Notre Dame",
-                             "The Seine",
-                             "Rue Cler",
-                             "The Avenue des Champs-Elysees",
-                             "Seine barge",
-                             "Gates of Versailles",
-                             "Edinburgh Castle",
-                             "Edinburgh Castle up close",
-                             "Old meets new",
-                             "Edinburgh from on high",
-                             "Edinburgh station",
-                             "Scott Monument",
-                             "View from Holyrood Park",
-                             "Outside the Tower of London",
-                             "Tower of London visitors",
-                             "One O'Clock Gun",
-                             "Victoria and Albert Museum",
-                             "The Royal Mile",
-                             "Edinburgh Museum and Castle",
-                             "Portcullis Gate",
-                             "Left or right?",
-                             "Pompidou Centre",
-                             "Here's Lookin' at Ya!"};
+        static Photo[] mBuiltInPhotos = {
+            new Photo { mPhotoID = Resource.Drawable.buckingham_guards,
+                        mCaption = "Buckingham Palace" },
+            new Photo { mPhotoID = Resource.Drawable.la_tour_eiffel,
+                        mCaption = "The Eiffel Tower" },
+            new Photo { mPhotoID = Resource.Drawable.louvre_1,
+                        mCaption = "The Louvre" },
+            new Photo { mPhotoID = Resource.Drawable.before_mobile_phones,
+                        mCaption = "Before mobile phones" },
+            new Photo { mPhotoID = Resource.Drawable.big_ben_1,
+                        mCaption = "Big Ben skyline" },
+            new Photo { mPhotoID = Resource.Drawable.big_ben_2,
+                        mCaption = "Big Ben from below" },
+            new Photo { mPhotoID = Resource.Drawable.london_eye,
+                        mCaption = "The London Eye" },
+            new Photo { mPhotoID = Resource.Drawable.eurostar,
+                        mCaption = "Eurostar Train" },
+            new Photo { mPhotoID = Resource.Drawable.arc_de_triomphe,
+                        mCaption = "Arc de Triomphe" },
+            new Photo { mPhotoID = Resource.Drawable.louvre_2,
+                        mCaption = "Inside the Louvre" },
+            new Photo { mPhotoID = Resource.Drawable.versailles_fountains,
+                        mCaption = "Versailles fountains" },
+            new Photo { mPhotoID = Resource.Drawable.modest_accomodations,
+                        mCaption = "Modest accomodations" },
+            new Photo { mPhotoID = Resource.Drawable.notre_dame,
+                        mCaption = "Notre Dame" },
+            new Photo { mPhotoID = Resource.Drawable.inside_notre_dame,
+                        mCaption = "Inside Notre Dame" },
+            new Photo { mPhotoID = Resource.Drawable.seine_river,
+                        mCaption = "The Seine" },
+            new Photo { mPhotoID = Resource.Drawable.rue_cler,
+                        mCaption = "Rue Cler" },
+            new Photo { mPhotoID = Resource.Drawable.champ_elysees,
+                        mCaption = "The Avenue des Champs-Elysees" },
+            new Photo { mPhotoID = Resource.Drawable.seine_barge,
+                        mCaption = "Seine barge" },
+            new Photo { mPhotoID = Resource.Drawable.versailles_gates,
+                        mCaption = "Gates of Versailles" },
+            new Photo { mPhotoID = Resource.Drawable.edinburgh_castle_2,
+                        mCaption = "Edinburgh Castle" },
+            new Photo { mPhotoID = Resource.Drawable.edinburgh_castle_1,
+                        mCaption = "Edinburgh Castle up close" },
+            new Photo { mPhotoID = Resource.Drawable.old_meets_new,
+                        mCaption = "Old meets new" },
+            new Photo { mPhotoID = Resource.Drawable.edinburgh_from_on_high,
+                        mCaption = "Edinburgh from on high" },
+            new Photo { mPhotoID = Resource.Drawable.edinburgh_station,
+                        mCaption = "Edinburgh station" },
+            new Photo { mPhotoID = Resource.Drawable.scott_monument,
+                        mCaption = "Scott Monument" },
+            new Photo { mPhotoID = Resource.Drawable.view_from_holyrood_park,
+                        mCaption = "View from Holyrood Park" },
+            new Photo { mPhotoID = Resource.Drawable.tower_of_london,
+                        mCaption = "Outside the Tower of London" },
+            new Photo { mPhotoID = Resource.Drawable.tower_visitors,
+                        mCaption = "Tower of London visitors" },
+            new Photo { mPhotoID = Resource.Drawable.one_o_clock_gun,
+                        mCaption = "One O'Clock Gun" },
+            new Photo { mPhotoID = Resource.Drawable.victoria_albert,
+                        mCaption = "Victoria and Albert Museum" },
+            new Photo { mPhotoID = Resource.Drawable.royal_mile,
+                        mCaption = "The Royal Mile" },
+            new Photo { mPhotoID = Resource.Drawable.museum_and_castle,
+                        mCaption = "Edinburgh Museum and Castle" },
+            new Photo { mPhotoID = Resource.Drawable.portcullis_gate,
+                        mCaption = "Portcullis Gate" },
+            new Photo { mPhotoID = Resource.Drawable.to_notre_dame,
+                        mCaption = "Left or right?" },
+            new Photo { mPhotoID = Resource.Drawable.pompidou_centre,
+                        mCaption = "Pompidou Centre" },
+            new Photo { mPhotoID = Resource.Drawable.heres_lookin_at_ya,
+                        mCaption = "Here's Lookin' at Ya!" },
+            };
 
-        // Returns the number of photos in the photo album.
-        public static int NumPhotos 
+        // Array of photos that make up the album:
+        private Photo[] mPhotos;
+
+        // Random number generator for shuffling the photos:
+        Random mRandom;
+
+        // Create an instance copy of the built-in photo list and
+        // create the random number generator:
+        public PhotoAlbum ()
+        {
+            mPhotos = mBuiltInPhotos;
+            mRandom = new Random();
+        }
+
+        // Return the number of photos in the photo album:
+        public int NumPhotos 
         { 
-            get { return m_imageIds.Length; } 
+            get { return mPhotos.Length; } 
         }
 
-        // Returns the array of photo album titles.
-        public static string[] Titles
+        // Indexer (read only) for accessing a photo:
+        public Photo this[int i] 
         {
-            get { return m_imageTitles; }
+            get { return mPhotos[i]; }
         }
 
-        // Returns the array of photo album image IDs.
-        public static int[] ImageIds
+        // Pick a random photo and swap it with the top:
+        public int RandomSwap()
         {
-            get { return m_imageIds; }
+            // Save the photo at the top:
+            Photo tmpPhoto = mPhotos[0];
+
+            // Generate a next random index between 1 and 
+            // Length (noninclusive):
+            int rnd = mRandom.Next(1, mPhotos.Length);
+
+            // Exchange top photo with randomly-chosen photo:
+            mPhotos[0] = mPhotos[rnd];
+            mPhotos[rnd] = tmpPhoto;
+
+            // Return the index of which photo was swapped with the top:
+            return rnd;
+        }
+
+        // Shuffle the order of the photos:
+        public void Shuffle ()
+        {  
+            // Use the Fisher-Yates shuffle algorithm:
+            for (int idx = 0; idx < mPhotos.Length; ++idx)
+            {
+                // Save the photo at idx:
+                Photo tmpPhoto = mPhotos[idx];
+
+                // Generate a next random index between idx (inclusive) and 
+                // Length (noninclusive):
+                int rnd = mRandom.Next(idx, mPhotos.Length);
+
+                // Exchange photo at idx with randomly-chosen (later) photo:
+                mPhotos[idx] = mPhotos[rnd];
+                mPhotos[rnd] = tmpPhoto;
+            }
         }
     }
 }
