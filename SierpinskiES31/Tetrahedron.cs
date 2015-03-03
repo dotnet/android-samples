@@ -127,14 +127,14 @@ namespace Mono.Samples.Tetrahedron
 		{
 			GL.UseProgram (programCompute);
 
-			GL.BindBufferBase ((BufferRangeTarget)All.ShaderStorageBuffer, vboBinding, vbo); //FIXME: enum
-			GL.BindBufferBase ((BufferRangeTarget)All.ShaderStorageBuffer, vbiBinding, vbi);
+			GL.BindBufferBase (BufferRangeTarget.ShaderStorageBuffer, vboBinding, vbo);
+			GL.BindBufferBase (BufferRangeTarget.ShaderStorageBuffer, vbiBinding, vbi);
 
 			GL.DispatchCompute (pieces, 1, 1);
-			GL.MemoryBarrier ((int)All.VertexAttribArrayBarrierBit | (int)All.ElementArrayBarrierBit); // FIXME: enum
+			GL.MemoryBarrier (MemoryBarrierMask.VertexAttribArrayBarrierBit | MemoryBarrierMask.ElementArrayBarrierBit);
 
-			GL.BindBufferBase ((BufferRangeTarget)All.ShaderStorageBuffer, vboBinding, 0);
-			GL.BindBufferBase ((BufferRangeTarget)All.ShaderStorageBuffer, vbiBinding, 0);
+			GL.BindBufferBase (BufferRangeTarget.ShaderStorageBuffer, vboBinding, 0);
+			GL.BindBufferBase (BufferRangeTarget.ShaderStorageBuffer, vbiBinding, 0);
 		}
 
 		internal void DrawModel ()

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/latSection">
+        <TextView
+            android:text="Enter Latitude:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:gravity="right"
+            android:id="@+id/latLabel" />
+        <EditText
+            android:text="47.7"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/latText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/longSection">
+        <TextView
+            android:text="Enter Longitude:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:gravity="right"
+            android:id="@+id/longLabel" />
+        <EditText
+            android:text="-122.5"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/longText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/getSection">
+        <Button  
+            android:id="@+id/getWeatherButton"
+            android:layout_width="300dp" 
+            android:layout_height="wrap_content" 
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Get Weather" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locSection">
+        <TextView
+            android:text="Location:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/locLabel" />
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="left"
+            android:id="@+id/locationText" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tempSection">
+        <TextView
+            android:text="Temperature:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/tempLabel" />
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/tempText" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/humidSection">
+        <TextView
+            android:text="Humidity:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/humidLabel" />
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/humidText" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/condSection">
+        <TextView
+            android:text="Conditions:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="left"
+            android:id="@+id/condLabel" />
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="left"
+            android:id="@+id/condText" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/main_content"
+        android:layout_below="@id/toolbar">
+        <TextView
+            android:layout_margin="16dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="You made it!"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/moon"
+            android:clickable="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type something" />
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:text="One"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:text="Two"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Switch" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

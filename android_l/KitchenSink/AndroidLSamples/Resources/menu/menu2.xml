@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--For all properties see: http://developer.android.com/guide/topics/resources/menu-resource.html-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!--Update strings and icons-->
+   <!--Update strings and icons-->
+  <item android:id="@+id/action_edit"
+	      android:title="Edit"
+	      android:icon="@drawable/ic_action_edit"
+	      android:showAsAction="ifRoom"/>
+
+  <item android:id="@+id/action_save"
+         android:title="Save"
+         android:icon="@drawable/ic_action_content_save"
+         android:showAsAction="ifRoom"/>
+
+   <item android:id="@+id/action_0"
+         android:title="Option 1"
+         android:showAsAction="never"/>
+
+ <item android:id="@+id/action_1"
+         android:title="Option 2"
+         android:showAsAction="never"/>
+
+ <item android:id="@+id/action_2"
+         android:title="Option 3"
+         android:showAsAction="never"/>
+</menu>

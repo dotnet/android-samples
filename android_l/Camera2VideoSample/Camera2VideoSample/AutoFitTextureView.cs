@@ -16,8 +16,8 @@ namespace Camera2VideoSample
 {
 	public class AutoFitTextureView : TextureView
 	{
-		private int ratio_width = 0;
-		private int ratio_height = 0;
+		private int ratioWidth = 0;
+		private int ratioHeight = 0;
 
 		public AutoFitTextureView (Context context) : this(context,null)
 		{
@@ -37,8 +37,8 @@ namespace Camera2VideoSample
 		public void SetAspectRatio(int width,int height) {
 			if (width < 0 || height < 0)
 				throw new Exception ("Size cannot be negative.");
-			ratio_width = width;
-			ratio_height = height;
+			ratioWidth = width;
+			ratioHeight = height;
 			RequestLayout ();
 		}
 
@@ -47,13 +47,13 @@ namespace Camera2VideoSample
 			base.OnMeasure (widthMeasureSpec, heightMeasureSpec);
 			int width = MeasureSpec.GetSize (widthMeasureSpec);
 			int height = MeasureSpec.GetSize (heightMeasureSpec);
-			if (0 == ratio_width || 0 == ratio_height)
+			if (0 == ratioWidth || 0 == ratioHeight)
 				SetMeasuredDimension (width, height);
 			else {
-				if (width < height * ratio_width / ratio_height) {
-					SetMeasuredDimension (width, width * ratio_height / ratio_width);
+				if (width < height * ratioWidth / ratioHeight) {
+					SetMeasuredDimension (width, width * ratioHeight / ratioWidth);
 				} else {
-					SetMeasuredDimension (height * ratio_width / ratio_height, height);
+					SetMeasuredDimension (height * ratioWidth / ratioHeight, height);
 				}
 			}
 		}

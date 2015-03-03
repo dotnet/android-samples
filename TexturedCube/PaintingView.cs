@@ -248,6 +248,12 @@ namespace Mono.Samples.TexturedCube {
 			GL.DeleteTextures (2, textureIds);
 		}
 
+		protected override void OnResize (EventArgs e)
+		{
+			base.OnResize (e);
+			RenderCube ();
+		}
+
 		public static float ToRadians (float degrees)
 		{
 			//pi/180

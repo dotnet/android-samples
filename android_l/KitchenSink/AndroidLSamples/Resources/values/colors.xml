@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <color name="xam_dark_blue">#2C3E50</color>
+  <color name="xam_purple">#B455B6</color>
+  <color name="xam_blue">#3498DB</color>
+  <color name="xam_green">#77D065</color>
+  <color name="xam_light_gray">#B4BCBC</color>
+  <color name="xam_gray">#738182</color>
+  <color name="xam_medium_blue">#2980B9</color>
+	<color name="color_1">#E91E63</color>
+	<color name="color_2">#673AB7</color>
+</resources>

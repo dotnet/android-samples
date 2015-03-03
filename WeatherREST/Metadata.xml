@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>5EA039BB-FA95-4BB2-B4F4-CCE35B82CA96</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Android, HTTP, REST</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<LicenseRequirement>Indie</LicenseRequirement>
+</SampleMetadata>
