@@ -75,7 +75,7 @@ namespace BluetoothLeGatt
 			// This is special handling for the Heart Rate Measurement profile.  Data parsing is
 			// carried out as per profile specifications:
 			// http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
-			if (UUID_HEART_RATE_MEASUREMENT == (characteristic.Uuid)) {
+			if (UUID_HEART_RATE_MEASUREMENT.Equals(characteristic.Uuid)) {
 				GattProperty flag = characteristic.Properties;
 				GattFormat format = (GattFormat) (-1);
 
@@ -89,7 +89,7 @@ namespace BluetoothLeGatt
 
 				var heartRate = characteristic.GetIntValue (format, 1);
 				Log.Debug (TAG, String.Format ("Received heart rate: {0}", heartRate));
-				intent.PutExtra (EXTRA_DATA, heartRate);
+				intent.PutExtra (EXTRA_DATA, heartRate.ToString());
 			} else {
 				// For all other profiles, writes the data formatted in HEX.
 				byte[] data = characteristic.GetValue ();

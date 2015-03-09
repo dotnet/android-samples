@@ -48,6 +48,8 @@ namespace BluetoothLeGatt
 
 		public static String Lookup (String key, String defaultName) 
 		{
+            if (Attributes.ContainsKey(key) == false)
+                return defaultName;
 			String name = Attributes [key];
 			return name == null ? defaultName : name;
 		}
