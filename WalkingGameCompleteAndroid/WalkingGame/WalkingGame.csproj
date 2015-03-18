@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{2DC0C3EE-5FBF-4BEE-838D-DA33916568BC}</ProjectGuid>
+    <ProjectGuid>{DD6F97D9-5A2C-4501-ABF2-2DAB690F303D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>WalkingGame</RootNamespace>
     <AssemblyName>WalkingGame</AssemblyName>
@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="MainGame.cs" />
     <Compile Include="CharacterEntity.cs" />
     <Compile Include="AnimationFrame.cs" />
     <Compile Include="Animation.cs" />
@@ -39,7 +39,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame-Portable.3.2.1\lib\portable-net45+wp8+win8\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Framework.Portable.3.2.99.1-Beta\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+MonoTouch10\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
