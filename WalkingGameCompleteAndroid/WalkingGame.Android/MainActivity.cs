@@ -1,12 +1,16 @@
-using Android.App;
-using Android.Content.PM;
-using Android.OS;
-using Android.Views;
+﻿using System;
 
-namespace WalkingGame.Android
+using Android.App;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Android.OS;
+using Android.Content.PM;
+
+namespace WalkingGame
 {
 	[Activity(Label = "MonoGame"
-		, Theme = "@android:style/Theme.Black.NoTitleBar.Fullscreen"
 		, MainLauncher = true
 		, Icon = "@drawable/icon"
 		, AlwaysRetainTaskState = true
@@ -15,15 +19,16 @@ namespace WalkingGame.Android
 		, ConfigurationChanges = ConfigChanges.Orientation | 
 		ConfigChanges.Keyboard | 
 		ConfigChanges.KeyboardHidden)]
-	public class GameActivity : Microsoft.Xna.Framework.AndroidGameActivity
+	public class MainActivity : Microsoft.Xna.Framework.AndroidGameActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			WalkingGame.Game1.Activity = this;
-			var g = new WalkingGame.Game1 ();
-			SetContentView (g.Window);
+			var g = new MainGame ();
+			SetContentView((View)g.Services.GetService(typeof(View)));
 			g.Run ();
 		}
 	}
 }
+
+
