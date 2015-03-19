@@ -26,8 +26,6 @@ namespace SimpleWidget
 	[Service]
 	public class UpdateService : Service
 	{
-		private Context context;
-
 		public override void OnStart (Intent intent, int startId)
 		{
 			// Build the widget update for today
@@ -44,18 +42,19 @@ namespace SimpleWidget
 			// We don't need to bind to this service
 			return null;
 		}
+	
 
 		// Build a widget update to show the current Wiktionary
 		// "Word of the day." Will block until the online API returns.
 		public RemoteViews buildUpdate (Context context)
 		{
-			var entry = WordEntry.GetWordOfTheDay ();
+			var entry = BlogPost.GetBlogPost ();
 
 			// Build an update that holds the updated widget contents
 			var updateViews = new RemoteViews (context.PackageName, Resource.Layout.widget_word);
 
-			updateViews.SetTextViewText (Resource.Id.word_title, entry.Title);
-			updateViews.SetTextViewText (Resource.Id.definition, entry.Description);
+			updateViews.SetTextViewText (Resource.Id.blog_title, entry.Title);
+			updateViews.SetTextViewText (Resource.Id.creator, entry.Creator);
 
 			// When user clicks on widget, launch to Wiktionary definition page
 			if (!string.IsNullOrEmpty (entry.Link)) {

@@ -51,8 +51,8 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateService.cs" />
-    <Compile Include="WordEntry.cs" />
     <Compile Include="WordWidget.cs" />
+    <Compile Include="BlogPost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
