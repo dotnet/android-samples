@@ -19,40 +19,38 @@ using System.Xml.Linq;
 
 namespace SimpleWidget
 {
-	class WordEntry
+	class BlogPost
 	{
 		public string Title { get; set; }
-		public string Description { get; set; }
+		public string Creator { get; set; }
 		public string Link { get; set; }
 
-		public WordEntry ()
+		public BlogPost ()
 		{
 			Title = string.Empty;
-			Description = string.Empty;
+			Creator = string.Empty;
 			Link = string.Empty;
 		}
 
-		public static WordEntry GetWordOfTheDay ()
+		public static BlogPost GetBlogPost ()
 		{
-			var entry = new WordEntry ();
+			var entry = new BlogPost ();
 
 			try {
-				string url = "http://toolserver.org/~enwikt/wotd/";
+				string url = "http://blog.xamarin.com/feed/";
+
+				XNamespace dc = "http://purl.org/dc/elements/1.1/";
 
 				XDocument doc = XDocument.Load (url);
 
-				XElement today = doc.Root.Element ("channel").Element ("item");
+				XElement latest = doc.Root.Element ("channel").Element ("item");
 
-				entry.Title = today.Element ("title").Value;
-				entry.Description = today.Element ("description").Value;
-				entry.Link = today.Element ("link").Value;
-
-				// Remove the date from the title
-				entry.Title = entry.Title.Substring (entry.Title.IndexOf (':') + 1).Trim ();
-
+				entry.Title = latest.Element ("title").Value;
+				entry.Creator = latest.Element (dc + "creator").Value;
+				entry.Link = latest.Element ("link").Value;
 			} catch (Exception ex) {
 				entry.Title = "Error";
-				entry.Description = ex.Message;
+				entry.Creator = ex.Message;
 			}
 
 			return entry;
