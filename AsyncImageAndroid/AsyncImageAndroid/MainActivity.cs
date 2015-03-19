@@ -14,17 +14,20 @@ using System.Threading.Tasks;
 namespace AsyncImageAndroid
 {
 
-	[Activity (Label = "AsyncImageAndroid", MainLauncher = true,
+	[Activity (Label = "AsyncImageAndroid", 
 	           ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation)]
 	public class MainActivity : Activity
 	{
+		const string downloadUrl = "http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg";
+
 		int count = 1;
-		WebClient webClient;
 		Button downloadButton;
 		Button clickButton;
 		TextView infoLabel;
 		ImageView imageview;
 		ProgressBar downloadProgress;
+
+		DownloadManager manager;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -39,77 +42,78 @@ namespace AsyncImageAndroid
 			this.imageview = FindViewById<ImageView> (Resource.Id.imageView1);
 			this.downloadProgress = FindViewById<ProgressBar> (Resource.Id.progressBar);
 
-			downloadButton.Click += downloadAsync;
+			downloadButton.Click += DownloadAsync;
 
 			clickButton.Click += delegate {
 				clickButton.Text = string.Format ("{0} clicks!", count++);
 			};
 		}
 
-		async void downloadAsync(object sender, System.EventArgs ea)
+		async void DownloadAsync(object sender, EventArgs args)
 		{
-			webClient = new WebClient ();
-			var url = new Uri ("http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg");
-			byte[] bytes = null;
+			var manager = new DownloadManager ();
+			// We can leave this unsubscribed because manager is shortlive object and Target of event (this) is longlive
+			manager.DownloadProgressChanged += HandleDownloadProgressChanged;
+			// Here is a problem. clickButton is longlive object and manager is shortlive.
+			// This means that we will prolong livetime of manager, because we reference to manager will be stored implicitly 
+			clickButton.Click += manager.EventHandler;
 
+			SetDownloading ();
 
-			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
-
-			this.downloadButton.Text = "Cancel";
-			this.downloadButton.Click -= downloadAsync;
-			this.downloadButton.Click += cancelDownload;
-			infoLabel.Text = "Downloading...";
-			try{
-				bytes = await webClient.DownloadDataTaskAsync(url);
-			}
-			catch(TaskCanceledException){
+			string filePath = string.Empty;
+			try {
+				filePath = await manager.DownloadAsync(downloadUrl, "downloaded.png");
+			} catch(TaskCanceledException) {
 				Console.WriteLine ("Task Canceled!");
+				SetReadyToDownload ();
+				return;
+			} catch(Exception exc) {
+				Console.WriteLine (exc);
+				SetReadyToDownload ();
 				return;
 			}
-			catch(Exception e){
-				Console.WriteLine (e.ToString());
-				infoLabel.Text = "Click Dowload button to download the image";
-
-
-				this.downloadButton.Click -= cancelDownload;
-				this.downloadButton.Click += downloadAsync;
-				this.downloadButton.Text = "Download";
-				this.downloadProgress.Progress = 0;
-				return;
-			}
-			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);	
-			string localFilename = "downloaded.png";
-			string localPath = System.IO.Path.Combine (documentsPath, localFilename);
-			infoLabel.Text = "Download Complete";
-
-			//Sive the Image using writeAsync
-			FileStream fs = new FileStream (localPath, FileMode.OpenOrCreate);
-			await fs.WriteAsync (bytes, 0, bytes.Length);
-
-			Console.WriteLine("localPath:"+localPath);
-			fs.Close ();
 
 			infoLabel.Text = "Resizing Image...";
+
+			var bitmap = await FetchBitmap (filePath);
+			imageview.SetImageBitmap (bitmap);
+			SetReadyToDownload ();
+
+			// Solution is here
+//			clickButton.Click -= manager.EventHandler;
+		}
+
+		void SetReadyToDownload ()
+		{
+			infoLabel.Text = "Click Dowload button to download the image";
+
+			downloadButton.Click -= CancelDownload;
+			downloadButton.Click += DownloadAsync;
+			downloadButton.Text = "Download";
+
+			downloadProgress.Progress = 0;
+		}
+
+		void SetDownloading ()
+		{
+			downloadButton.Text = "Cancel";
+			downloadButton.Click -= DownloadAsync;
+			downloadButton.Click += CancelDownload;
+
+			infoLabel.Text = "Downloading...";
+		}
+
+		async Task<Bitmap> FetchBitmap(string imagePath)
+		{
 			BitmapFactory.Options options = new BitmapFactory.Options ();
 			options.InJustDecodeBounds = true;
-			await BitmapFactory.DecodeFileAsync (localPath, options);
+			await BitmapFactory.DecodeFileAsync (imagePath, options);
 
 			options.InSampleSize = options.OutWidth > options.OutHeight ? options.OutHeight / imageview.Height : options.OutWidth / imageview.Width;
 			options.InJustDecodeBounds = false;
 
-			Bitmap bitmap = await BitmapFactory.DecodeFileAsync (localPath, options);
-
-			Console.WriteLine ("Loaded!");
-
-			imageview.SetImageBitmap (bitmap);
-
-			infoLabel.Text = "Click Dowload button to download the image";
-
-
-			this.downloadButton.Click -= cancelDownload;
-			this.downloadButton.Click += downloadAsync;
-			this.downloadButton.Text = "Download";
-			this.downloadProgress.Progress = 0;
+			Bitmap bitmap = await BitmapFactory.DecodeFileAsync (imagePath, options);
+			return bitmap;
 		}
 
 		void HandleDownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e)
@@ -117,20 +121,10 @@ namespace AsyncImageAndroid
 			this.downloadProgress.Progress = e.ProgressPercentage;
 		}
 
-		void cancelDownload(object sender, System.EventArgs ea)
+		void CancelDownload(object sender, System.EventArgs ea)
 		{
 			Console.WriteLine ("Cancel clicked!");
-			if(webClient!=null)
-				webClient.CancelAsync ();
-
-			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
-
-			this.downloadButton.Click -= cancelDownload;
-			this.downloadButton.Click += downloadAsync;
-			this.downloadButton.Text = "Download";
-			this.downloadProgress.Progress = 0;
-
-			infoLabel.Text = "Click Dowload button to download the image";
+			SetReadyToDownload ();
 		}
 	}
 }

@@ -1,0 +1,31 @@
+diff --git a/AsyncImageAndroid/AsyncImageAndroid/MainActivity.cs b/AsyncImageAndroid/AsyncImageAndroid/MainActivity.cs
+index 5583c3b..acd78ad 100644
+--- a/AsyncImageAndroid/AsyncImageAndroid/MainActivity.cs
++++ b/AsyncImageAndroid/AsyncImageAndroid/MainActivity.cs
+@@ -47,13 +47,14 @@ namespace AsyncImageAndroid
+ 			clickButton.Click += delegate {
+ 				clickButton.Text = string.Format ("{0} clicks!", count++);
+ 			};
++
++			manager = new DownloadManager ();
++			// We can leave this unsubscribed because manager is shortlive object and Target of event (this) is longlive
++			manager.DownloadProgressChanged += HandleDownloadProgressChanged;
+ 		}
+ 
+ 		async void DownloadAsync(object sender, EventArgs args)
+ 		{
+-			var manager = new DownloadManager ();
+-			// We can leave this unsubscribed because manager is shortlive object and Target of event (this) is longlive
+-			manager.DownloadProgressChanged += HandleDownloadProgressChanged;
+ 			// Here is a problem. clickButton is longlive object and manager is shortlive.
+ 			// This means that we will prolong livetime of manager, because we reference to manager will be stored implicitly 
+ 			clickButton.Click += manager.EventHandler;
+@@ -80,7 +81,7 @@ namespace AsyncImageAndroid
+ 			SetReadyToDownload ();
+ 
+ 			// Solution is here
+-//			clickButton.Click -= manager.EventHandler;
++			clickButton.Click -= manager.EventHandler;
+ 		}
+ 
+ 		void SetReadyToDownload ()
