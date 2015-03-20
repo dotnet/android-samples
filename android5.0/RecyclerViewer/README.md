@@ -27,40 +27,6 @@ the `RecyclerView` with a simple "Photo Album" database, a
 manager* positions the `CardView` row items within the `RecyclerView`. 
 
 
-Requirements
-------------
-
-To build and run this sample, you must add the 
-**Xamarin.Android.Support.v7.CardView** and 
-**Xamarin.Android.Support.v7.RecyclerView** packages to the 
-**RecyclerViewer** project as described next. 
-
-To add these packages in Xamarin Studio:
-
-1. In the **Solution** pad, right-click the **RecyclerViewer** 
-   project and click **Add > Add NuGet Packages**.
-2. In the **Add Packages** dialog, search for **CardView**.
-3. Select **Xamarin Support Library v7 CardView**,
-   then click **Add Package**.
-4. In the **Add Packages** dialog, search for
-   **RecyclerView**.
-5. Select **Xamarin Support Library v7 RecyclerView**,
-   then click **Add Package**.
-
-To add these packages in Microsoft Visual Studio:
-
-1. Open the project, right-click the **References**
-   node (in the **Solution Explorer** pane) and select 
-   **Manage NuGet Packages...**.
-2. When the **Manage NuGet Packages** dialog is displayed,
-   enter **CardView** in the search box.
-3. When **Xamarin Support Library v7 CardView**
-   appears, click **Install**.
-4. In the **Manage NuGet Packages** dialog,
-   enter **RecyclerView** in the search box.
-5. When **Xamarin Support Library v7 RecyclerView**
-   appears, click **Install**.
-
 Author
 ------ 
 
