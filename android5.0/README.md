@@ -1,4 +1,4 @@
-Android L Preview
-============================
+Android 5.0 Lollipop
+====================
 
-This folder contains samples for the Android L Preview.
+This folder contains samples for Android 5.0 Lollipop.
