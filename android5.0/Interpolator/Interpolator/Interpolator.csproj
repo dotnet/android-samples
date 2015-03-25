@@ -16,6 +16,8 @@
     <AssemblyName>Interpolator</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,7 +30,6 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -65,12 +66,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\CommonSampleLibrary\CommonSampleLibrary.csproj">
-      <Project>{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}</Project>
-      <Name>CommonSampleLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\layout\" />
     <Folder Include="Resources\values\" />
     <Folder Include="Resources\drawable-hdpi\" />
@@ -103,5 +98,11 @@
     <AndroidResource Include="Resources\values-sw600dp\template-styles.xml" />
     <AndroidResource Include="Resources\values-v11\template-styles.xml" />
     <AndroidResource Include="Resources\values-v21\template-styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonSampleLibrary\CommonSampleLibrary.csproj">
+      <Project>{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}</Project>
+      <Name>CommonSampleLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -36,7 +36,7 @@ namespace MonoDroid.ApiDemo
  	* print option from the overflow menu an HTML page with content that
 	* is not on the screen is printed via an off-screen WebView.
  	*/
-	[Activity (Label = "@string/print_html_off_screen")]
+	[Activity (Label = "@string/print_html_off_screen", Name = "monodroid.apidemo.PrintHtmlOffScreen")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]		
 	public class PrintHtmlOffScreen : Activity
 	{

@@ -35,7 +35,7 @@ namespace ClippingBasic
 			base.OnCreate (savedInstanceState);
 
 			// Create your fragment here
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 			clip = new Outline ();
 			sample_texts = Resources.GetStringArray (Resource.Array.sample_texts);
 		}
@@ -99,12 +99,12 @@ namespace ClippingBasic
 			{
 				frag = f;
 			}
+
 			public override void GetOutline (View view, Android.Graphics.Outline outline)
 			{
 				int margin = Math.Min (view.Width, view.Height) / 10;
 				outline.SetRoundRect (margin, margin, view.Width - margin,
 					view.Height - margin, margin / 2);
-
 			}
 		}
 

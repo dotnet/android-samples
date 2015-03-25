@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo
 	/**
  	* This demo illustrates the use of CHOICE_MODE_MULTIPLE_MODAL, a.k.a. selection mode on GridView.
  	*/
-	[Activity (Label = "Views/Grid/3. Selection Mode")]
+	[Activity (Label = "Views/Grid/3. Selection Mode", Name = "monodroid.apidemo.Grid3")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]				
 	public class Grid3 : Activity
 	{

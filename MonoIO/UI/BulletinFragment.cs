@@ -47,7 +47,7 @@ namespace MonoIO.UI
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			SetHasOptionsMenu(true);
+			HasOptionsMenu = true;
 			//AnalyticsUtils.getInstance(getActivity()).trackPageView("/Bulletin");
 		}
 

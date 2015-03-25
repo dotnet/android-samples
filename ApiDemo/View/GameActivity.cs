@@ -16,13 +16,16 @@ namespace MonoDroid.ApiDemo
  	* This activity demonstrates how to use the system UI flags to
  	* implement an immersive game.
  	*/
-	[Activity (Label = "Views/System UI Visibility/Game", Theme = "@android:style/Theme.Holo.NoActionBar")]
+	[Activity (Label = "Views/System UI Visibility/Game", 
+		Name = "monodroid.apidemo.GameActivity",
+		Theme = "@android:style/Theme.Holo.NoActionBar")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class GameActivity : Activity
 	{
 		/**
      	* Implementation of a view for the game, filling the entire screen.
      	*/
+		[Register ("monodroid.apidemo.GameActivity_Content")]
 		public class Content : TouchPaint.PaintView, View.IOnSystemUiVisibilityChangeListener, View.IOnClickListener
 		{
 			Button mPlayButton;

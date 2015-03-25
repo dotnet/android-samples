@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace Camera2VideoSample
 {
-	[Activity (Label = "Camera2VideoSample", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity (Label = "Camera2VideoSample", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme="@style/AppTheme")]
 	public class MainActivity : Activity
 	{
 

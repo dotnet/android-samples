@@ -34,7 +34,8 @@ namespace MonoDroid.ApiDemo
 	// for adding functionality to the Action Bar. In particular this demo is adding
 	// a menu item with ShareActionProvider as its action provider. The
 	// ShareActionProvider is responsible for managing the UI for sharing actions.
-	[Activity (Label = "@string/action_bar_share_action_provider")]
+	[Activity (Label = "@string/action_bar_share_action_provider",
+		Name = "monodroid.apidemo.ActionBarShareActionProviderActivity")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActionBarShareActionProviderActivity : Activity
 	{

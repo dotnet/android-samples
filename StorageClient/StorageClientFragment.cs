@@ -43,7 +43,7 @@ namespace StorageClient
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

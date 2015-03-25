@@ -113,17 +113,21 @@ namespace JobScheduler
 			if (delay != null && !TextUtils.IsEmpty (delay)) {
 				builder.SetMinimumLatency (long.Parse (delay) * 1000);
 			}
+
 			var deadline = deadlineEditText.Text;
 			if (deadline != null && !TextUtils.IsEmpty (deadline)) {
 				builder.SetOverrideDeadline (long.Parse (deadline) * 1000);
 			}
+
 			bool requiresUnmetered = wiFiConnectivityRadioButton.Checked;
 			bool requiresAnyConnectivity = anyConnectivityRadioButton.Checked;
+
 			if (requiresUnmetered) {
 				builder.SetRequiredNetworkType (NetworkType.Unmetered);
 			} else if (requiresAnyConnectivity) {
 				builder.SetRequiredNetworkType (NetworkType.Any);
 			}
+
 			builder.SetRequiresDeviceIdle (requiresIdleCheckbox.Checked);
 			builder.SetRequiresCharging (requiresChargingCheckBox.Checked);
 

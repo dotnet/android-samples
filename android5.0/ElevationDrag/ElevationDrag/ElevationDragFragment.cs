@@ -25,6 +25,7 @@ namespace ElevationDrag
 
 		/* Different outlines: */
 		internal Outline mOutline;
+
 		CircleOutlineProvider circleProvider;
 		RectOutlineProvider rectProvider;
 
@@ -92,6 +93,7 @@ namespace ElevationDrag
 		public void OnItemSelected (AdapterView parent, View view, int position, long id)
 		{
 			/* Set the corresponding Outline to the shape. */
+
 			switch (position) {
 			case 0:
 				floatingShape.OutlineProvider = circleProvider;
@@ -130,7 +132,6 @@ namespace ElevationDrag
 			{
 				int shapeSize = view.Resources.GetDimensionPixelSize (Resource.Dimension.shape_size);
 				outline.SetRoundRect (0, 0, shapeSize, shapeSize, shapeSize / 2);
-
 			}
 		}
 
@@ -138,4 +139,3 @@ namespace ElevationDrag
 	}
 
 }
-

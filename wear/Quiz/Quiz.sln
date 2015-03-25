@@ -20,7 +20,4 @@ Global
 		{EFA55CF8-AF67-4D20-B04C-17E7500ADE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFA55CF8-AF67-4D20-B04C-17E7500ADE8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Wearable\Wearable.csproj
-	EndGlobalSection
 EndGlobal

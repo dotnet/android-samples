@@ -16,8 +16,12 @@ namespace FloatingActionButtonBasic
 	[Activity (Label = "FloatingActionButtonBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public const string TAG = "MainActivity";
-
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
+			
 		// Whether the Log Fragment is currently shown
 		private bool logShown;
 

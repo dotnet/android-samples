@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="DelayedConfirmation">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="xamarin.android.delayedconfirmation">
 	<application android:label="Wearable">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 	</application>
-	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="20" />
+	<uses-sdk />
 </manifest>

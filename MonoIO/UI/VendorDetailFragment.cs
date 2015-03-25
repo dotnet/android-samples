@@ -51,7 +51,7 @@ namespace MonoIO
 				return;
 			}
 	
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 		
 		public override void OnActivityCreated (Bundle p0)

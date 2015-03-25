@@ -40,7 +40,7 @@ namespace Mono.ActionbarsherlockTest
 			FindViewById<TextView> (Resource.Id.text).SetText(Resource.String.styled_content);
 
 			//This is a workaround for http://b.android.com/15340 from http://stackoverflow.com/a/5852198/132047
-			if (Build.VERSION.SdkInt < Build.VERSION_CODES.IceCreamSandwich) {
+			if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.IceCreamSandwich) {
 				BitmapDrawable bg = (BitmapDrawable) Resources.GetDrawable (Resource.Drawable.bg_striped);
 				bg.SetTileModeXY (Shader.TileMode.Repeat, Shader.TileMode.Repeat);
 				SupportActionBar.SetBackgroundDrawable (bg);

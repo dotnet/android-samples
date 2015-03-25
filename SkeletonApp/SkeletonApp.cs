@@ -8,7 +8,7 @@ using Android.Widget;
 
 namespace Mono.Samples.SkeletonApp
 {
-	[Activity (MainLauncher = true)]
+	[Activity (MainLauncher = true, Name = "mono.samples.skeleton.SkeletonActivity")]
 	public class SkeletonActivity : Activity
 	{
 		EditText mEditor;

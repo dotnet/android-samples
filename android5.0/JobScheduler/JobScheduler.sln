@@ -1,8 +1,6 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
-EndProject
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobScheduler", "JobScheduler\JobScheduler.csproj", "{96811AA0-923A-45D2-9013-1CAC44CF58B7}"
 EndProject
 Global
@@ -11,10 +9,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96811AA0-923A-45D2-9013-1CAC44CF58B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96811AA0-923A-45D2-9013-1CAC44CF58B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96811AA0-923A-45D2-9013-1CAC44CF58B7}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,9 +1,9 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevealEffectBasic", "RevealEffectBasic\RevealEffectBasic.csproj", "{F127DDA6-15D1-45B9-A493-8224FD342F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "..\..\CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

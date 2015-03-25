@@ -34,7 +34,7 @@ namespace MonoDroid.ApiDemo
  	* This activity demonstrates how to use system UI flags to implement
  	* a content browser style of UI (such as a book reader).
  	*/
-	[Activity (Label = "Views/System UI Visibility/Content Browser",
+	[Activity (Label = "Views/System UI Visibility/Content Browser", Name = "monodroid.apidemo.ContentBrowserActivity",
 		Theme = "@android:style/Theme.Holo.Light.DarkActionBar", UiOptions = UiOptions.SplitActionBarWhenNarrow)]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ContentBrowserActivity : Activity, SearchView.IOnQueryTextListener, ActionBar.ITabListener
@@ -44,6 +44,7 @@ namespace MonoDroid.ApiDemo
      	* flags to transition in and out of modes where the user is focused on that
      	* content.
      	*/
+		[Register ("monodroid.apidemo.ContentBrowserActivity_Content")]
 		public class Content : ScrollView, View.IOnSystemUiVisibilityChangeListener, View.IOnClickListener
 		{
 			TextView mText;

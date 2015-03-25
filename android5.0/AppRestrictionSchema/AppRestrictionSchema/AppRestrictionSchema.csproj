@@ -16,6 +16,8 @@
     <AssemblyName>AppRestrictionSchema</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,7 +102,7 @@
     <AndroidResource Include="Resources\values\template-styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonSampleLibrary\CommonSampleLibrary.csproj">
+    <ProjectReference Include="..\..\..\CommonSampleLibrary\CommonSampleLibrary.csproj">
       <Project>{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}</Project>
       <Name>CommonSampleLibrary</Name>
     </ProjectReference>

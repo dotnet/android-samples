@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelayedConfirmationWear", "DelayedConfirmationWear\DelayedConfirmationWear.csproj", "{354747EB-FD49-486A-BD49-96A086088E62}"
@@ -19,8 +19,5 @@ Global
 		{354747EB-FD49-486A-BD49-96A086088E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{354747EB-FD49-486A-BD49-96A086088E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{354747EB-FD49-486A-BD49-96A086088E62}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Wearable\DelayedConfirmationWear.csproj
 	EndGlobalSection
 EndGlobal

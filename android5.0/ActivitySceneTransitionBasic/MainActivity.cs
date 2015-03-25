@@ -123,7 +123,7 @@ namespace ActivitySceneTransitionBasic
              * As we're in an adapter we need to set each view's name dynamically, using the
              * item's ID so that the names are unique.
              */
-			image.TransitionName= "grid:image:" + item.id;
+			image.TransitionName = "grid:image:" + item.id;
 			name.TransitionName = "grid:name:" + item.id;
 
 			return view;

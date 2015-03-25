@@ -31,7 +31,7 @@ namespace MonoDroid.ApiDemo
  	* A list view where the last item the user clicked is placed in
  	* the "activated" state, causing its background to highlight.
  	*/
-	[Activity (Label = "Views/Lists/17. Activate items")]
+	[Activity (Label = "Views/Lists/17. Activate items", Name = "monodroid.apidemo.List17")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]				
 	public class List17 : ListActivity
 	{
