@@ -34,7 +34,8 @@ namespace Support4
 	     * type or arguments are not part of a target platform APIs makes your application
 	     * not backwards compatible with that platform version.
 	     */
-		
+
+		[Register ("support4.AccessibilityDelegateSupportActivity_AccessibilityDelegateSupportView")]
 		public class AccessibilityDelegateSupportView : View 
 		{
 	        public AccessibilityDelegateSupportView(Context context, IAttributeSet attrs) : base(context, attrs)
