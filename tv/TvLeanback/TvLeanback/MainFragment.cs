@@ -83,7 +83,7 @@ namespace TvLeanback
 
 			SetOnItemSelectedListener (this);
 			ItemClicked += (object sender, ItemClickedEventArgs e) => {
-				var item = e.P0;
+				var item = e.Item;
 				if (item is Movie) {
 					Movie movie = (Movie)item;
 					Log.Debug (TAG, "Item: " + item.ToString ());
