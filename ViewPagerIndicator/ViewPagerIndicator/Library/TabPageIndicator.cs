@@ -199,7 +199,7 @@ namespace ViewPagerIndicator
 		{
 			mListener = listener;
 		}
-		
+		[Register ("viewpagerindicator.TabPageIndicator_TabView")]
 		public class TabView : LinearLayout
 		{
 			private TabPageIndicator mParent;
