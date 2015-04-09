@@ -21,7 +21,6 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using System.Threading.Tasks;
 
 namespace Mono.Samples.Notepad
 {
@@ -33,7 +32,7 @@ namespace Mono.Samples.Notepad
 		public const int MENU_ITEM_DELETE = Menu.First;
 		public const int MENU_ITEM_INSERT = Menu.First + 1;
 
-		protected override async void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
@@ -41,10 +40,8 @@ namespace Mono.Samples.Notepad
 
 			// Inform the list we provide context menus for items
 			ListView.SetOnCreateContextMenuListener (this);
-
-//			PopulateList ();
-
-			await PopulateListAsync ();
+		
+			PopulateList ();
 		}
 
 		public void PopulateList ()
@@ -53,15 +50,6 @@ namespace Mono.Samples.Notepad
 			var notes = NoteRepository.GetAllNotes ();
 			//var adapter = new ArrayAdapter<Note> (this, Resource.Layout.noteslist_item, notes.ToList ());
 			var adapter = new NoteAdapter (this, this, Resource.Layout.NoteListRow, notes.ToArray ());
-			ListAdapter = adapter;
-		}
-
-		async Task PopulateListAsync ()
-		{
-			// Retrieve all our notes and put them in the list
-			var notes =await NoteRepository.GetAllNotesAsync ();
-			//var adapter = new ArrayAdapter<Note> (this, Resource.Layout.noteslist_item, notes.ToList ());
-			var adapter = new NoteAdapter (this, this, Resource.Layout.NoteListRow, notes);
 			ListAdapter = adapter;
 		}
 
@@ -83,7 +71,7 @@ namespace Mono.Samples.Notepad
 				case MENU_ITEM_INSERT:
 					// Launch activity to insert a new item
 					var intent = new Intent (this, typeof (NoteEditorActivity));
-					intent.PutExtra ("note_id", -1);
+					intent.PutExtra ("note_id", -1L);
 
 					StartActivityForResult (intent, 0);
 					return true;
@@ -111,7 +99,6 @@ namespace Mono.Samples.Notepad
 						// Delete the note that the context menu is for
 						NoteRepository.DeleteNote (note);
 						PopulateList ();
-//						await PopulateListAsync ();
 						return true;
 				}
 			}
@@ -130,15 +117,13 @@ namespace Mono.Samples.Notepad
 			StartActivityForResult (intent, 0);
 		}
 
-		protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult (requestCode, resultCode, data);
 
 			// The only thing we care about is refreshing the list
 			// in case it changed
-//			PopulateList ();
-
-			await PopulateListAsync ();
+			PopulateList ();
 		}
 	}
 }
