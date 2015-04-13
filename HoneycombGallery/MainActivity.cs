@@ -19,6 +19,7 @@ using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Content.Res;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Views;
@@ -26,6 +27,8 @@ using Android.Widget;
 
 namespace com.example.monodroid.hcgallery
 {
+	[Activity (Label = "@string/app_name", MainLauncher = true, LaunchMode = LaunchMode.SingleTop)]
+	[IntentFilter (new [] { "com.example.monodroid.hcgallery.action.DIALOG" }, Categories = new[]{ Intent.CategoryDefault })]
 	public class MainActivity : Activity, ActionBar.ITabListener
 	{
 		private const int NotificationDefault = 1;
