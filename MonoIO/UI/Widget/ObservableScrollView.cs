@@ -13,6 +13,7 @@ using Android.Util;
 
 namespace MonoIO
 {
+	[Register ("monoio.ObservableScrollView")]
 	public class ObservableScrollView : ScrollView
 	{
 		private OnScrollListener mScrollListener;

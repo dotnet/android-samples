@@ -23,6 +23,7 @@ namespace MonoIO
 	 * progression of a single day. Usually shown along with {@link BlockView}
 	 * instances to give a spatial sense of time.
 	 */
+	[Register ("monoio.TimeRulerView")]
 	public class TimeRulerView : View
 	{
 		private int mHeaderWidth = 70;

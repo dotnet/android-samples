@@ -17,6 +17,7 @@ using Math = Java.Lang.Math;
 
 namespace MonoIO.UI.Widget
 {
+	[Register ("monoio.ui.widget.Workspace")]
 	public class Workspace : ViewGroup
 	{
 		private string TAG = "Workspace";
