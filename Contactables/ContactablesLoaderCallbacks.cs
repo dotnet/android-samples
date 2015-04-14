@@ -76,7 +76,7 @@ namespace Contactables
 
 		public void OnLoadFinished (Loader loader, Java.Lang.Object data)
 		{
-			ICursor cursor = (ICursor) data;
+			var cursor = data.JavaCast<ICursor> ();
 
 			TextView tv = ((Activity) mContext).FindViewById <TextView> (Resource.Id.sample_output);
 
