@@ -5,6 +5,7 @@
   <Level>Intermediate</Level>
   <Tags>Platform Features, AndroidL</Tags>
   <SupportedPlatforms>Android</SupportedPlatforms>
-    <LicenseRequirement>Starter</LicenseRequirement>
-    <Gallery>true</Gallery>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>This sample demonstrates how to change the label of a document activity in recents using the Document-Centric API.</Brief>
 </SampleMetadata>

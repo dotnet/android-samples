@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Binding + Interop</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This demonstrates C# - to - JavaScript interoperability in WebView (through Java interface).</Brief>
 </SampleMetadata>

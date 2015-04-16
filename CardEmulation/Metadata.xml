@@ -4,4 +4,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Backgrounding, Device Features</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>This sample demonstrates the use of the new Host Card Emulation (HCE) APIs in Android 4.4 (KitKat).</Brief>
 </SampleMetadata>

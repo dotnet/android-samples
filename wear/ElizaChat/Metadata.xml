@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features, Android Wear</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates how a personal assistant may work on a wearable device.</Brief>
 </SampleMetadata>

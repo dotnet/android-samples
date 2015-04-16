@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Data, Graphics, Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a port of the [Google IO 2011 Schedule App].</Brief>
 </SampleMetadata>

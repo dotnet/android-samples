@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features, User Interface, Android Wear</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates the basic outline of a wearable project including Gridviews on Wearable devices and interactive notifications.</Brief>
 </SampleMetadata>

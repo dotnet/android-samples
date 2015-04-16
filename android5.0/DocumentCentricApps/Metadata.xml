@@ -7,4 +7,5 @@
   <SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>This sample demonstrates the basic usage of the new Document-Centric Apps API.</Brief>
 </SampleMetadata>

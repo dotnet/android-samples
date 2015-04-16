@@ -5,4 +5,5 @@
 	<Tags>User Interface, Android Wear</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Demonstrates using the WatchViewStub control which will automatically select a layout suited for round or rectangular screens.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates how a Content Provider can be implemented in Mono for Android.</Brief>
 </SampleMetadata>

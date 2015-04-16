@@ -5,6 +5,7 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, Async</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
-    	<LicenseRequirement>Starter</LicenseRequirement>
+    <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.Android 4.8.</Brief>
 </SampleMetadata>

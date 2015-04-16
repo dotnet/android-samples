@@ -6,4 +6,5 @@
 	<Tags>Data, Android Wear</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates using the wearable APIs to send messages and stream data (an image in this sample) from an Android device to an Android Wear device.</Brief>
 </SampleMetadata>

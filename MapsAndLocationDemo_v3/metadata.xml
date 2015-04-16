@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>false</Gallery>
+	<Brief>This code shows how to use Google Maps v2 in an Android application.</Brief>
 </SampleMetadata>

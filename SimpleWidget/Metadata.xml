@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample shows a simple widget which fetches the word of the day from Wiktionary.</Brief>
 </SampleMetadata>

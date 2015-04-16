@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a simple example showing how to use activities to create multiscreen applications.</Brief>
 </SampleMetadata>

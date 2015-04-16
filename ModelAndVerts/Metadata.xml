@@ -6,4 +6,5 @@
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Tags>Getting Started, Games</Tags>
 	<Gallery>false</Gallery>
+	<Brief>This project shows how to combine Model rendering with vertex array rendering in MonoGame.</Brief>
 </SampleMetadata>

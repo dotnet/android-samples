@@ -7,4 +7,5 @@
     <SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>false</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Use this sample to try out the different notification styles and options in Android 5.0.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Graphics</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates a couple of new APIs in Honeycomb e.g. fragments, ActionBar and the new animation framework.</Brief>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>Maps + Location</Tags>
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Uses the Google Play Services (Froyo) component to demonstrate a few uses of the maps API included within Google Play Services.</Brief>
 </SampleMetadata>

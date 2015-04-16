@@ -7,5 +7,6 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Demonstrates the use of input from a game controller by displaying input events on the screen on a virtual controller as they happen.</Brief>
 </SampleMetadata>
 

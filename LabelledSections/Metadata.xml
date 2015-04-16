@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>The `Labelled Sections` demo is a port from the [Alphabetically ordered ListView with labelled sections] sample.</Brief>
 </SampleMetadata>

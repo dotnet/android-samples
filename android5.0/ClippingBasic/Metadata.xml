@@ -6,4 +6,5 @@
 	<Tags>Graphics, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates simple clipping in Android L.</Brief>
 </SampleMetadata>

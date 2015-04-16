@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics</Tags>
 	<Gallery>false</Gallery>
+	<Brief>OpenGL ES 2.0 Demonstration.</Brief>
 </SampleMetadata>

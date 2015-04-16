@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Port of [ViewPagerIndicator library by JakeWharton]</Brief>
 </SampleMetadata>

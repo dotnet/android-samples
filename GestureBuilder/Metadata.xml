@@ -5,4 +5,5 @@
 	<Tags>Touch</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
+	<Brief>This is a port of Android SDK sample "GestureBuilder" which is a showcase for android.gesture API.</Brief>
 </SampleMetadata>
