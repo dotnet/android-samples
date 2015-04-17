@@ -27,7 +27,8 @@ using Android.Widget;
 
 namespace com.example.monodroid.hcgallery
 {
-	[Activity (Label = "@string/app_name", MainLauncher = true, LaunchMode = LaunchMode.SingleTop)]
+	[Activity (Label = "@string/app_name", MainLauncher = true, 
+		LaunchMode = LaunchMode.SingleTop, ScreenOrientation = ScreenOrientation.Landscape)]
 	[IntentFilter (new [] { "com.example.monodroid.hcgallery.action.DIALOG" }, Categories = new[]{ Intent.CategoryDefault })]
 	public class MainActivity : Activity, ActionBar.ITabListener
 	{
