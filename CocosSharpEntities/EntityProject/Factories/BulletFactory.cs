@@ -4,18 +4,15 @@ namespace EntityProject
 {
 	public class BulletFactory
 	{
-		static BulletFactory self;
+		static Lazy<BulletFactory> self = 
+			new Lazy<BulletFactory>(()=>new BulletFactory());
 
 		// simple singleton implementation
 		public static BulletFactory Self
 		{
 			get
 			{
-				if (self == null)
-				{
-					self = new BulletFactory ();
-				}
-				return self;
+				return self.Value;
 			}
 		}
 
@@ -39,4 +36,3 @@ namespace EntityProject
 		}
 	}
 }
-
