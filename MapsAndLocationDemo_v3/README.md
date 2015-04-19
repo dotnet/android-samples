@@ -1,30 +1,25 @@
 Maps and Location Demo v3
 =========================
 
-This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), nearly 61% of all Android devices are running Android 4.0 (API level 14) or higher so the focus of this sample is on API 14 and higher. 
+This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), about 93% of all Android devices are running Android 4.0.3 (API level 15) or higher so the focus of this sample is on API 15 and higher. 
 
-This sample is relevant for users of Xamarin.Android 4.8. If you are using an Xamarin.Android 4.4 or 4.6, you will have to create a Java Binding project as demonstrated in the [MapsAndLocationDemo_v2](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v2) sample.
+This sample is relevant for users of Xamarin.Android 4.8 or greater.
 
-The `Debug` build configuration contains the following projects, and targets API level 14 or higher. This build configuration will only compile the following projects:
+The `Debug` and `Release` build configurations contain the following projects:
 
 * **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
-* **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library.
-
-In the `Debug_Froyo` build configuration, and it targets API level 8 and higher. This build configuration will only compile the following project:
-
-* **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library. 
-
-**Note:** You must use Xamarin.Android 4.8 or higher for this sample. If you have an older version of Xamarin.Android then you must create your own Java Binding project for Google Play Services. For an example of how to do this, please consult the [MapsAndLocationDemo_V2](https://github.com/xamarin/monodroid-samples/tree/master/MapsAndLocationDemo_v2) sample.
+* **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library, and should run on API 15 devices and up.
+* **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library, and should run on API 8 devices and up. 
 
 **Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
 
 ## Prerequisites
 
-These sample use the Google Play Services component that is available in the Xamarin Component Store. You must have Xamarin.Android 4.8 in order to use this component.
+The SimpleMapDemo_Froyo sample uses the Google Play Services NuGet package.
 
-There are two versions of this component: [one for Froyo](https://components.xamarin.com/view/googleplayservicesfroyo/) and [one for Ice Cream Sandwich](https://components.xamarin.com/view/googleplayservices/). You will need to install the Google Play Services client library and the components before these samples with work.
+The SimpleMapDemo sample uses the Google Play Services component that is available in the Xamarin Component Store.
 
-You must also have the Google Play Client Services library installed. You can install this by using the Android SDK Manager. This library is available under the *Extras* folder:
+You must also have the Google Play Client Services library installed in order to use the Component. You can install this by using the Android SDK Manager. This library is available under the *Extras* folder:
 
 ![Link File](/images/android_sdk_manager.png)
 

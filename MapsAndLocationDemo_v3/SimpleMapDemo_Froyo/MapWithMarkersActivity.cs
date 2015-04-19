@@ -109,7 +109,7 @@ namespace SimpleMapDemo
 
         private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
         {
-            Marker marker = markerClickEventArgs.P0; // TODO [TO201212142221] Need to fix the name of this with MetaData.xml
+			Marker marker = markerClickEventArgs.Marker;
             if (marker.Id.Equals(_gotoMauiMarkerId))
             {
                 PositionPolarBearGroundOverlay(InMaui);

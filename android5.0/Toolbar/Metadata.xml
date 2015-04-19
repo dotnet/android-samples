@@ -7,4 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Basic sample of replacing the ActionBar with the new ToolBar.</Brief>
 </SampleMetadata>

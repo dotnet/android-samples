@@ -6,4 +6,5 @@
 	<Tags>Platform Features, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the new JobScheduler API.</Brief>
 </SampleMetadata>

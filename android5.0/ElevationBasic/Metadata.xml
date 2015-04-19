@@ -6,4 +6,5 @@
 	<Tags>Platform Features, AndroidL, User Interface</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates two alternative ways to move a view in the z-axis.</Brief>
 </SampleMetadata>

@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
+using Android.Runtime;
 
 namespace Mono.Samples.Notepad
 {
@@ -29,7 +30,7 @@ namespace Mono.Samples.Notepad
 		private Note note;
 		private EditText text_view;
 
-		protected override async void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
@@ -40,12 +41,12 @@ namespace Mono.Samples.Notepad
 			text_view = FindViewById<EditText> (Resource.Id.note);
 
 			// Get the note
-			var note_id = Intent.GetLongExtra ("note_id", -1);
+			var note_id = Intent.GetLongExtra ("note_id", -1L);
 
 			if (note_id < 0)
 				note = new Note ();
 			else
-				note =await NoteRepository.GetNoteAsync (note_id);
+				note = NoteRepository.GetNote (note_id);
 		}
 
 		protected override void OnResume ()
@@ -59,7 +60,7 @@ namespace Mono.Samples.Notepad
 			text_view.SetTextKeepState (note.Body);
 		}
 
-		protected override async void OnPause ()
+		protected override void OnPause ()
 		{
 			base.OnPause ();
 
@@ -69,8 +70,7 @@ namespace Mono.Samples.Notepad
 
 			// Save the note
 			note.Body = text_view.Text;
-//			NoteRepository.SaveNote (note);
-			await NoteRepository.SaveNoteAsync (note);
+			NoteRepository.SaveNote (note);
 		}
 	}
 }

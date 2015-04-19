@@ -6,4 +6,5 @@
 	<Tags>User Interface, AndroidL, Support v7</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Demonstration of the CardView API introduced in Android L.</Brief>
 </SampleMetadata>

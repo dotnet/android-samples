@@ -7,4 +7,5 @@
   <SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Demonstrates how new features for notifications added in Android L are used.</Brief>
 </SampleMetadata>

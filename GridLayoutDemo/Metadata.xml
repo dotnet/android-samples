@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This example shows how to use a GridLayout with Ice Cream Sandwich.</Brief>
 </SampleMetadata>

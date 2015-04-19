@@ -7,4 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>false</Gallery>
+	<Brief>This solution demonstrates how to create a unique `android:versionCode` for each APK.</Brief>
 </SampleMetadata>

@@ -7,4 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Basic sample of custom theming your application with the Palette support library.</Brief>
 </SampleMetadata>

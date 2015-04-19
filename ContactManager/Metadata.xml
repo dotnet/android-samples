@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates how to interact with Android's contact manager.</Brief>
 </SampleMetadata>

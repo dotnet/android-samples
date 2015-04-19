@@ -6,4 +6,5 @@
 	<Tags>User Interface</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates letting users show or hide the status bar and navigation bar with a swipe.</Brief>
 </SampleMetadata>

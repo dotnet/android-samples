@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Data</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a port of the Android Searchable Dictionary v2 sample, demonstrating the use of Android's search framework.</Brief>
 </SampleMetadata>

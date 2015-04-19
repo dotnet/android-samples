@@ -6,4 +6,5 @@
 	<Tags>User Interface, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Basic sample to demonstrate the reveal effect.</Brief>
 </SampleMetadata>

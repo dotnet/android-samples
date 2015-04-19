@@ -6,4 +6,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates new Android L features including support v7.</Brief>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>User Interface, Binding + Interop</Tags>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Shows how to manually bind to a Java library so it can be consumed by a Mono for Android application.</Brief>
 </SampleMetadata>

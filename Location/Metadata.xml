@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample provides an example of gathering location data using the Android location system service.</Brief>
 </SampleMetadata>

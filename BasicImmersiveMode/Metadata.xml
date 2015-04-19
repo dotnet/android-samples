@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates how to let users show or hide the status bar and navigation bar with a swipe programmatically.</Brief>
 </SampleMetadata>

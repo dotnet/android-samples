@@ -356,14 +356,21 @@ namespace Camera2VideoSample
 			isRecordingVideo = false;
 			buttonVideo.SetText (Resource.String.record);
 
-			//Stop recording
-			mediaRecorder.Stop ();
-			mediaRecorder.Reset ();
 			if (null != Activity) {
 				Toast.MakeText (Activity, "Video saved: " + GetVideoFile (Activity),
 					ToastLength.Short).Show ();
 			}
+
+			//Stop recording
+			/*
+			mediaRecorder.Stop ();
+			mediaRecorder.Reset ();
 			startPreview ();
+			*/
+
+			// Workaround for https://github.com/googlesamples/android-Camera2Video/issues/2
+			CloseCamera ();
+			openCamera (textureView.Width, textureView.Height);
 		}
 
 		public class ErrorDialog : DialogFragment {

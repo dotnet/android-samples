@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on the usage of the accelerometer to animate balls rolling on a wooden table.</Brief>
 </SampleMetadata>

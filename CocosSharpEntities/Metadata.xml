@@ -6,4 +6,5 @@
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Tags>Getting Started, Games</Tags>
 	<Gallery>false</Gallery>
+	<Brief>Demonstrates how to create game entities in CocosSharp by inheriting from CCNode.</Brief>
 </SampleMetadata>

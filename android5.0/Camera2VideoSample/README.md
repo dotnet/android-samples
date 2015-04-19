@@ -14,6 +14,10 @@ Build Requirements
 ------------------
 Using this sample requires a device that is Android L or later and Xamarin.Android 4.17 or later.
 
+Notes
+-----
+This sample is known to crash on various device and Lollipop version combinations. See https://github.com/googlesamples/android-Camera2Video/issues/2 for more info.
+
 Author
 ------
 Copyright (c) 2005-2008, The Android Open Source Project  
