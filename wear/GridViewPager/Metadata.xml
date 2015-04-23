@@ -5,5 +5,5 @@
 	<Tags>User Interface, Android Wear</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
-    <Brief>Demonstrates how to use the GridViewPager and GridPagerAdapter view for Android Wear devices.</Brief>
+    <Brief>Demonstrates the use of GridViewPager and GridPagerAdapter for Android Wear.</Brief>
 </SampleMetadata>

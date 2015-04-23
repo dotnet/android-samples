@@ -6,5 +6,5 @@
 	<Tags>Platform Features, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>This sample shows a basic demonstration of using a profile owner to set app restrictions in Android.</Brief>
+	<Brief>Demonstrates using a profile owner to set app restrictions in Android.</Brief>
 </SampleMetadata>

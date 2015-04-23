@@ -7,5 +7,5 @@
     <SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>false</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>This sample app accompanies the article, [Hello, Android (Quickstart)].</Brief>
+	<Brief>Demonstrates how to convert telephone number 'words' into digits.</Brief>
 </SampleMetadata>

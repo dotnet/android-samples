@@ -6,5 +6,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>Demonstrates sending calendar events from an Android handheld device to an Android Wear device, as well as deleting those events.</Brief>
+	<Brief>Demonstrates sending calendar events from an Android handheld device to an Android Wear device.</Brief>
 </SampleMetadata>

@@ -6,5 +6,5 @@
 	<Tags>Media, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>Dmonstrates how to use new Camera2 APIs to render a preview of a camera's viewport, capture an image and save it to the device's storage.</Brief>
+	<Brief>Dmonstrates the basic use of the new Camera2 APIs.</Brief>
 </SampleMetadata>

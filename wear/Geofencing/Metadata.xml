@@ -7,5 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>Demonstrates the use of geofencing with wearable devices, by sending a notification to the watch when you are within a certain area.</Brief>
+	<Brief>Demonstrates the use of geofencing with wearable devices.</Brief>
 </SampleMetadata>

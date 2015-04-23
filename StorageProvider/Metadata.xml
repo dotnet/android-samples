@@ -6,5 +6,5 @@
 	<Tags>Data, Platform Features</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>This sample demonstrates how to use the DocumentsProvider API to manage documents and expose them to the Android system for sharing.</Brief>
+	<Brief>Demonstrates how to manage documents and expose them to the Android system for sharing.</Brief>
 </SampleMetadata>

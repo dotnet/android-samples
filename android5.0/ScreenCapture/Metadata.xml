@@ -5,5 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, AndroidL</Tags>
 	<Gallery>true</Gallery>
-	<Brief>Demonstrates how to use Media Projection API to capture device screen in real time and show it on a SurfaceView.</Brief>
+	<Brief>Demonstrates use of Media Projection API to capture device screen and show it on a SurfaceView.</Brief>
 </SampleMetadata>

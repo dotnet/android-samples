@@ -6,7 +6,6 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
-	<Brief>A sample application for the Load Large Bitmaps Efficiently recipe which demonstrates how to resize a bitmap for a view.</Brief>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>This is a sample project that shows how to efficiently resample large images before displaying them in an Android application.</Brief>
+	<Brief>Demonstrates how to efficiently resample large images before displaying them.</Brief>
 </SampleMetadata>

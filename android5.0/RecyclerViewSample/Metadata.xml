@@ -6,5 +6,5 @@
 	<Tags>User Interface, AndroidL, Support v7</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>Demonstration of using RecyclerView with a LinearLayoutManager to create a vertical ListView.</Brief>
+	<Brief>Demonstrates use of RecyclerView with a LinearLayoutManager.</Brief>
 </SampleMetadata>

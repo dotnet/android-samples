@@ -7,6 +7,6 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
-    <Brief>Demonstrates how to create something similar to a flashlight on an android wear device by changing the color of the screen to a flat white color.</Brief>
+    <Brief>Demonstrates how change the color of an android wear device's screen to a flat white color.</Brief>
 </SampleMetadata>
 

@@ -7,5 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.Android 4.8.</Brief>
+	<Brief>Demonstrates how to use the new Async/Await feature available in Xamarin.Android 4.8.</Brief>
 </SampleMetadata>

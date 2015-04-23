@@ -5,5 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>A super simple hello world application that uses a TextView to display a plain old hello world message via a string resource.</Brief>
+	<Brief>Demonstrates the use of TextView to display a plain old hello world message via a string resource.</Brief>
 </SampleMetadata>

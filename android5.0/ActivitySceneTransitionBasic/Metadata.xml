@@ -7,5 +7,5 @@
   <SupportedPlatforms>Android</SupportedPlatforms>
   <LicenseRequirement>Starter</LicenseRequirement>
   <Gallery>true</Gallery>
-  <Brief>This sample demonstrates how to the use Activity scene transitions when transitioning from one activity to another.</Brief>
+  <Brief>Demonstrates how to use Activity scene transitions when transitioning from one activity to another.</Brief>
 </SampleMetadata>

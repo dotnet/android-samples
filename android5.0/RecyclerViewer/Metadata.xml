@@ -7,5 +7,5 @@
     <SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>Use this sample to learn how to use the new `CardView` and `RecyclerView` widgets introduced with Android 5.0 Lollipop.</Brief>
+	<Brief>Demonstrates the use of `CardView` and `RecyclerView` widgets introduced with Android 5.0.</Brief>
 </SampleMetadata>

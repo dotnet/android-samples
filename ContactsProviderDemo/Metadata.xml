@@ -5,5 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features</Tags>
 	<Gallery>true</Gallery>
-	<Brief>This example shows how to use the ContactsProvider as well as the device owner's profile in Ice Cream Sandwich.</Brief>
+	<Brief>Demonstrates how to use ContactsProvider and the device owner's profile in Ice Cream Sandwich.</Brief>
 </SampleMetadata>

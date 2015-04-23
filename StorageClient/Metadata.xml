@@ -6,5 +6,5 @@
 	<Tags>Data, Platform Features</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>This sample demonstrates how to use the ACTION_OPEN_DOCUMENT intent to let users choose a file via the system's file browser.</Brief>
+	<Brief>Demonstrates how to let users choose a file via the system's file browser.</Brief>
 </SampleMetadata>
