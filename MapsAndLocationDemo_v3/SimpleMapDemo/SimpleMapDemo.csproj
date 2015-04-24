@@ -36,7 +36,7 @@
     <OutputPath>bin\Release</OutputPath>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>    
+    <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
