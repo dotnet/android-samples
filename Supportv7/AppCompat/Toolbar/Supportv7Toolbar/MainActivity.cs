@@ -8,7 +8,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace HelloToolbar
 {
 	[Activity (Label = "Support v7 Toolbar", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : ActionBarActivity
+	public class MainActivity : AppCompatActivity
 	{
 
 		protected override void OnCreate (Bundle bundle)

@@ -1,13 +1,7 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -15,7 +9,7 @@ using Android.Support.V7.Widget;
 namespace HelloToolbar
 {
 	[Activity (Label = "DetailActivity")]			
-	public class DetailActivity : ActionBarActivity
+	public class DetailActivity : AppCompatActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
