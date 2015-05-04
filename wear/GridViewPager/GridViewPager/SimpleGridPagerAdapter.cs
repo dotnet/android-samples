@@ -32,6 +32,7 @@ namespace GridViewPagerSample
 			public float ExpansionFactor = 1;
 			public int ExpansionDirection = CardFragment.ExpandDown;
 
+
 			public Page (int titleRes, int textRes, bool expansion)
 			 :this(titleRes, textRes, 0) 
 			{
@@ -94,9 +95,9 @@ namespace GridViewPagerSample
 			return fragment;
 		}
 
-		public override ImageReference GetBackground (int p0, int p1)
+		public override Android.Graphics.Drawables.Drawable GetBackgroundForPage (int row, int col)
 		{
-			return ImageReference.ForDrawable (BgImages [RowCount % BgImages.Length]);
+			return context.Resources.GetDrawable (BgImages [row % BgImages.Length]);
 		}
 
 		public override int RowCount {
