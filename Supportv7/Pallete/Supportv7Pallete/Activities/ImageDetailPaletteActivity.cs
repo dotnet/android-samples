@@ -15,7 +15,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace Supportv7Pallete
 {
 	[Activity (Label = "Palette Example", ParentActivity=typeof(ImageListActivity))]			
-	public class ImageDetailPaletteActivity : ActionBarActivity, Palette.IPaletteAsyncListener
+	public class ImageDetailPaletteActivity : AppCompatActivity, Palette.IPaletteAsyncListener
 	{
 		PhotoItem item;
 		TextView name;
@@ -24,7 +24,6 @@ namespace Supportv7Pallete
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_image_detail);
-
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 
 			SetSupportActionBar (toolbar);
@@ -46,21 +45,25 @@ namespace Supportv7Pallete
 			name.Text =  item.Name;
 			SupportActionBar.Title = item.Author;
 			var paletteButton = FindViewById<Button> (Resource.Id.apply_palette);
+
 			paletteButton.Click += async (sender, e) => {
 				paletteButton.Visibility = ViewStates.Gone;
-
-				var bitmap = await BitmapFactory.DecodeResourceAsync (Resources, item.Image);
 
 				//generates the pallet with 16 samples(default)
 				//Contact images/avatars: optimal values are 24-32
 				//Landscapes: optimal values are 8-16
-				Palette.GenerateAsync (bitmap, 16, this);
+				var bitmap = await BitmapFactory.DecodeResourceAsync (Resources, item.Image);
+				Palette.From(bitmap)
+					.MaximumColorCount(16)
+					.Generate(this);
+				
 			};
 
 		}
 
 		public void OnGenerated (Palette palette)
 		{
+			
 			//Pallet has been generated with 6 coors to pick from:
 			//Vibrant: palette.VibrantColor
 			//Vibrant dark: palette.DarkVibrantColor

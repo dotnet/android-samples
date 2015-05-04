@@ -10,7 +10,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace Supportv7Pallete
 {
 	[Activity (Label = "Pallete Sample", MainLauncher = true)]			
-	public class ImageListActivity : ActionBarActivity
+	public class ImageListActivity : AppCompatActivity
 	{
 		GridView grid;
 		protected override void OnCreate (Bundle bundle)
