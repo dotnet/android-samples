@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Games</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A simple game demonstrating usage of the JET audio engine.</Brief>
 </SampleMetadata>

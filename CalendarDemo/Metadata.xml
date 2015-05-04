@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This example shows how to use the calendar API to list calendars and events.</Brief>
 </SampleMetadata>

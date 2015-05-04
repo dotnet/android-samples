@@ -61,7 +61,7 @@ namespace ContactManager
 			ICursor cursor = GetContacts ();
 
 			string[] fields = new string[] { 
-				ContactsContract.ContactsColumnsConsts.DisplayName
+				ContactsContract.ContactsColumns.DisplayName
 			};
 
 			SimpleCursorAdapter adapter = new SimpleCursorAdapter (this, Resource.Layout.ContactEntry, cursor,
@@ -77,13 +77,13 @@ namespace ContactManager
 			Android.Net.Uri uri = ContactsContract.Contacts.ContentUri;
 
 			String[] projection = new String[] {
-				BaseColumnsConsts.Id,
-				ContactsContract.ContactsColumnsConsts.DisplayName
+				BaseColumns.Id,
+				ContactsContract.ContactsColumns.DisplayName
 		        };
 
-			String selection = string.Format ("{0} = '{1}'", ContactsContract.ContactsColumnsConsts.InVisibleGroup, show_invisible ? "0" : "1");
+			String selection = string.Format ("{0} = '{1}'", ContactsContract.ContactsColumns.InVisibleGroup, show_invisible ? "0" : "1");
 			String[] selectionArgs = null;
-			String sortOrder = string.Format ("{0} COLLATE LOCALIZED ASC", ContactsContract.ContactsColumnsConsts.DisplayName);
+			String sortOrder = string.Format ("{0} COLLATE LOCALIZED ASC", ContactsContract.ContactsColumns.DisplayName);
 
 			return ManagedQuery (uri, projection, selection, selectionArgs, sortOrder);
 		}

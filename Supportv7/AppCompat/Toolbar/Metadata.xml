@@ -7,4 +7,5 @@
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates replacing the ActionBar with the new Support v7 Toolbar</Brief>
 </SampleMetadata>

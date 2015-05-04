@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Binding + Interop</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates interaction with the Facebook API.</Brief>
 </SampleMetadata>

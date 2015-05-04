@@ -7,4 +7,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates the use of geofencing with wearable devices.</Brief>
 </SampleMetadata>

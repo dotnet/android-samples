@@ -15,9 +15,11 @@
  */
 using Android.App;
 using Android.OS;
+using Android.Content.PM;
 
 namespace com.example.monodroid.hcgallery
 {
+	[Activity (Label = "@string/camera_sample", ScreenOrientation = ScreenOrientation.Landscape)]
 	public class CameraSample : Activity 
 	{
 		

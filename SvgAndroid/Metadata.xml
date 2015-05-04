@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Binding + Interop</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A binding example for svg-android Java library.</Brief>
 </SampleMetadata>

@@ -25,7 +25,7 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "@string/activity_recreate")]
+	[Activity (Label = "@string/activity_recreate", Name = "monodroid.apidemo.ActivityRecreate")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class ActivityRecreate : Activity
 	{

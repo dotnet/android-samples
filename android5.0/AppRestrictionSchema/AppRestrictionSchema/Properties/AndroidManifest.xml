@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="AppRestrictionSchema.AppRestrictionSchema">
+	<uses-sdk android:minSdkVersion="21" />
+	<application android:label="AppRestrictionSchema">
+		<meta-data android:name="android.content.APP_RESTRICTIONS" android:resource="@xml/app_restrictions" />
+	</application>
+</manifest>

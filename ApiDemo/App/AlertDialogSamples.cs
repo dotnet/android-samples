@@ -26,7 +26,7 @@ using Android.Provider;
 namespace MonoDroid.ApiDemo
 {
 	// Example of how to use an AlertDialog
-	[Activity (Label = "@string/activity_alert_dialog")]
+	[Activity (Label = "@string/activity_alert_dialog", Name = "monodroid.apidemo.AlertDialogSamples")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
 	public class AlertDialogSamples : Activity
 	{

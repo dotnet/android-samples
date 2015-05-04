@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Data, Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>SanityTests is a hodgepodge of things to test various API interactions.</Brief>
 </SampleMetadata>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>10A09A5D-815A-4E50-903C-8B3CCC8D9711</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Contacts, Profile</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>This sample app accompanies the recipe, [Update the User's Profile]</Brief>
+</SampleMetadata>

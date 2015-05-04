@@ -24,59 +24,9 @@
 		<!-- This is how we can request a library but still allow the app
              to be installed if it doesn't exist. -->
 		<uses-library android:name="com.example.will.never.exist" android:required="false" />
-		<activity android:label="Api Demo (XA)" android:name="monodroid.apidemo.ApiDemo">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+		<!---                                        -->
 		<!--- Enable activities based on @BOOL value -->
-		<!---								-->
-		<!--  	Accessibility examples
-		<activity android:name="monodroid.apidemo.AccessibilityNodeProviderActivity"
-			android:label="@string/accessibility_node_provider"
-			android:enabled="@bool/atLeastIceCreamSandwich">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="mono.apidemo.sample" />
-			</intent-filter>
-		</activity>
-		<service android:name="monodroid.apidemo.ClockBackService"
-                 android:label="@string/accessibility_service_label"
-                 android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-        </service>
-		<activity android:name="monodroid.apidemo.CustomViewAccessibilityActivity"
-                  android:label="@string/accessibility_custom_view"
-                  android:enabled="@bool/atLeastIceCreamSandwich">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="mono.apidemo.sample" />
-            </intent-filter>
-        </activity>
-		  <activity android:name="monodroid.apidemo.TaskListActivity"
-                  android:label="@string/accessibility_query_window"
-                  android:enabled="@bool/atLeastIceCreamSandwich">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="mono.apidemo.sample" />
-            </intent-filter>
-        </activity>
-		<service android:name="monodroid.apidemo.TaskBackService"
-                 android:label="@string/accessibility_query_window_label"
-                 android:enabled="@bool/atLeastIceCreamSandwich"
-                 android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/taskbackconfig" />
-        </service>
-        -->
-        <!---					  -->
+		<!---                                        -->
 		<!--  Animation examples  -->
 		<activity android:label="Animation/Simple Transitions" android:name="monodroid.apidemo.Transitions" android:enabled="@bool/atLeastKitKat">
 			<intent-filter>
@@ -122,30 +72,25 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:name="monodroid.apidemo.PrintHtmlFromScreen" android:label="@string/print_html_from_screen" android:enabled="@bool/atLeastKitKat">
+		<activity android:label="@string/print_html_from_screen" android:name="monodroid.apidemo.PrintHtmlFromScreen" android:enabled="@bool/atLeastKitKat">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:name="monodroid.apidemo.PrintHtmlOffScreen" android:label="@string/print_html_off_screen" android:enabled="@bool/atLeastKitKat">
+		<activity android:label="@string/print_html_off_screen" android:name="monodroid.apidemo.PrintHtmlOffScreen" android:enabled="@bool/atLeastKitKat">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:name="monodroid.apidemo.PrintCustomContent" android:label="@string/print_custom_content" android:enabled="@bool/atLeastKitKat">
+		<activity android:label="@string/print_custom_content" android:name="monodroid.apidemo.PrintCustomContent" android:enabled="@bool/atLeastKitKat">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
 		<!-- Application Updating Samples -->
-        <receiver android:name="monodroid.apidemo.AppUpdateReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
-        </receiver>
         <receiver android:name="monodroid.apidemo.AppUpdateSspReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
@@ -154,7 +99,7 @@
         </receiver>
 		<!---					  -->
 		<!--  Hardware examples   -->
-		<activity android:name="monodroid.apidemo.ConsumerIr" android:label="Hardware/Consumer IR" android:enabled="@bool/atLeastKitKat">
+		<activity android:label="Hardware/Consumer IR" android:name="monodroid.apidemo.ConsumerIr" android:enabled="@bool/atLeastKitKat">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />
@@ -180,8 +125,7 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:name="monodroid.apidemo.GameActivity"
-                android:label="Views/System UI Visibility/Game"
+		<activity android:label="Views/System UI Visibility/Game" android:name="monodroid.apidemo.GameActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar"
                 android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize"
                 android:enabled="@bool/atLeastKitKat">

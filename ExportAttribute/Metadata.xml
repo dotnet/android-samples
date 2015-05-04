@@ -5,4 +5,5 @@
 	<Tags>Data</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
+	<Brief>This is a functional test for "ExportAttribute" which is new in Mono for Android 4.2.</Brief>
 </SampleMetadata>

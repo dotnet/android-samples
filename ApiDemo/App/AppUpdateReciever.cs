@@ -28,6 +28,7 @@ using Android.Widget;
 namespace MonoDroid.ApiDemo
 {
 	[BroadcastReceiver]
+	[IntentFilter (new[] {"android.intent.action.MY_PACKAGE_REPLACED"})]
 	public class AppUpdateReciever : BroadcastReceiver
 	{
 		public override void OnReceive (Context context, Intent intent)

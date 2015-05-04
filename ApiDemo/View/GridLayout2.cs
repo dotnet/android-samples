@@ -30,7 +30,7 @@ namespace MonoDroid.ApiDemo
 	/**
  	* A form, showing use of the GridLayout API from XML.
  	*/
-	[Activity (Label = "Views/Layouts/GridLayout/2. Form (XML)")]
+	[Activity (Label = "Views/Layouts/GridLayout/2. Form (XML)", Name = "monodroid.apidemo.GridLayout2")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]	public class GridLayout2 : Activity
 	{
 		protected override void OnCreate (Bundle bundle)

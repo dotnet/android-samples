@@ -7,4 +7,5 @@
 	<Gallery>true</Gallery>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Demonstrates how to implement the swipe to refresh pattern.</Brief>
 </SampleMetadata>

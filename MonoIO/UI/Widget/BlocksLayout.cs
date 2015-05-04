@@ -20,6 +20,7 @@ namespace MonoIO
 	 * instances of {@link BlockView}. Also positions current "now" divider using
 	 * {@link R.id#blocks_now} view when applicable.
 	 */
+	[Register ("monoio.BlocksLayout")]
 	public class BlocksLayout : ViewGroup
 	{
 		private int mColumns = 3;

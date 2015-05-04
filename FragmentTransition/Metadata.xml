@@ -6,4 +6,5 @@
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <Brief>This sample demonstrates how to start a transition right after a fragment transaction.</Brief>
 </SampleMetadata>

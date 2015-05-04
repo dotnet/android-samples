@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+  <ID>8f526027-5e2e-4f2a-9aac-cb8fb78f0a92</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Notifications, AndroidL</Tags>
+  <SupportedPlatforms>Android</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates how new features for notifications added in Android L are used.</Brief>
+</SampleMetadata>

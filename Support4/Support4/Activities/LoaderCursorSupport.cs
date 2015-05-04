@@ -64,7 +64,7 @@ namespace Support4
 	            SetEmptyText("No phone numbers");
 	
 	            // We have a menu item to show in action bar.
-	            SetHasOptionsMenu(true);
+				HasOptionsMenu = true;
 	
 	            // Create an empty adapter we will use to display the loaded data.
 	            _adapter = new SimpleCursorAdapter(Activity,

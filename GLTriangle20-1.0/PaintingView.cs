@@ -252,7 +252,7 @@ namespace Mono.Samples.GLTriangle20 {
 
 	        // this projection matrix is applied to object coordinates
 	        // in the onDrawFrame() method
-	        mProjectionMatrix = OpenTK.Matrix4.Frustum(-ratio, ratio, -1, 1, 3, 7);
+			mProjectionMatrix = OpenTK.Matrix4.CreatePerspectiveOffCenter(-ratio, ratio, -1, 1, 3, 7);
 
 			RenderTriangle ();
 		}

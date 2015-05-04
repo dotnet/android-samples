@@ -5,4 +5,5 @@
 	<Tags>User Interface, Android Wear</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Demonstrates how to automatically select a layout for round or rectangular screens.</Brief>
 </SampleMetadata>

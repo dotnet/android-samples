@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>02d30b48-c86b-4c49-9fc9-e5399927cfb1</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Media, AndroidL</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>Dmonstrates the basic use of the new Camera2 APIs.</Brief>
+</SampleMetadata>

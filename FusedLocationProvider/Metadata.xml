@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features, Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample provides an example of gathering location data using the FusedLocationProvider.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Binding + Interop, Graphics</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a port of Android NDK sample (sanangeles).</Brief>
 </SampleMetadata>

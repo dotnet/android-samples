@@ -15,9 +15,9 @@
 -->
 
 <resources>
-    <string name="app_name">Wiktionary simple example</string>
+    <string name="app_name">Simple Widget Example</string>
 
-    <string name="widget_name">Wiktionary Sample</string>
+    <string name="widget_name">Simple Widget Sample</string>
 
-    <string name="widget_loading">Loading word\nof day\u2026</string>
+    <string name="widget_loading">Loading latest\nblog post\u2026</string>
 </resources>

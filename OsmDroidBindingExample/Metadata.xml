@@ -8,4 +8,5 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Brief>The sample code for the Java Binding walkthrough.</Brief>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>This is an example of how to create bindings for a .jar file using a Java Binding Project in Xamarin.Android.</Brief>
 </SampleMetadata>

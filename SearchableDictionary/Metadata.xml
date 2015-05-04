@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Data</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates the use of Android's search framework.</Brief>
 </SampleMetadata>

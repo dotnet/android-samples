@@ -5,4 +5,5 @@
 	<Tags>Device Features</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates new Android Beam (new NFC feature) in Ice Cream Sandwich.</Brief>
 </SampleMetadata>

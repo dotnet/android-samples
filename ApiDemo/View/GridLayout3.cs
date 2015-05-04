@@ -26,7 +26,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.Res;
 
-#if __FIX_14210__
 namespace MonoDroid.ApiDemo
 {
 	/**
@@ -36,7 +35,7 @@ namespace MonoDroid.ApiDemo
  	* This can either be done by separating rows or separating columns - but we don't need
  	* to do both and may only have enough space to do one or the other.
  	*/
-	[Activity (Label = "Views/Layouts/GridLayout/3. Form (Java)")]
+	[Activity (Label = "Views/Layouts/GridLayout/3. Form (Java)", Name = "monodroid.apidemo.GridLayout3")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]			
 	public class GridLayout3 : Activity
 	{
@@ -58,18 +57,17 @@ namespace MonoDroid.ApiDemo
 				p.RowOrderPreserved = false;
 			}
 
-			//FIXME https://bugzilla.xamarin.com/show_bug.cgi?id=14210
 			GridLayout.Spec titleRow              = GridLayout.InvokeSpec (0);
 			GridLayout.Spec introRow              = GridLayout.InvokeSpec (1);
-			GridLayout.Spec emailRow              = GridLayout.InvokeSpec (2, GridLayout.Baseline);
-			GridLayout.Spec passwordRow           = GridLayout.InvokeSpec (3, GridLayout.Baseline);
+			GridLayout.Spec emailRow              = GridLayout.InvokeSpec (2, GridLayout.BaselineAlighment);
+			GridLayout.Spec passwordRow           = GridLayout.InvokeSpec (3, GridLayout.BaselineAlighment);
 			GridLayout.Spec button1Row            = GridLayout.InvokeSpec (5);
 			GridLayout.Spec button2Row            = GridLayout.InvokeSpec (6);
 
 			GridLayout.Spec centerInAllColumns    = GridLayout.InvokeSpec (0, 4, GridLayout.Center);
-			GridLayout.Spec leftAlignInAllColumns = GridLayout.InvokeSpec (0, 4, GridLayout.Left);
-			GridLayout.Spec labelColumn           = GridLayout.InvokeSpec (0, GridLayout.Right);
-			GridLayout.Spec fieldColumn           = GridLayout.InvokeSpec (1, GridLayout.Left);
+			GridLayout.Spec leftAlignInAllColumns = GridLayout.InvokeSpec (0, 4, GridLayout.LeftAlighment);
+			GridLayout.Spec labelColumn           = GridLayout.InvokeSpec (0, GridLayout.RightAlighment);
+			GridLayout.Spec fieldColumn           = GridLayout.InvokeSpec (1, GridLayout.LeftAlighment);
 			GridLayout.Spec defineLastColumn      = GridLayout.InvokeSpec (3);
 			GridLayout.Spec fillLastColumn        = GridLayout.InvokeSpec (3, GridLayout.Fill);
 
@@ -122,4 +120,3 @@ namespace MonoDroid.ApiDemo
 		}
 	}
 }
-#endif

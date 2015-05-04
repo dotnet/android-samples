@@ -71,7 +71,7 @@ namespace MonoIO
 	
 			mSessionId = ScheduleContract.Sessions.GetSessionId (mSessionUri);
 			
-			SetHasOptionsMenu (true);
+			HasOptionsMenu = true;
 		}
 		
 		public override void OnResume ()

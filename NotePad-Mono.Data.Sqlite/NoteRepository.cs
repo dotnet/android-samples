@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Mono.Data.Sqlite;
-using System.Threading.Tasks;
 
 namespace Mono.Samples.Notepad
 {
@@ -85,25 +84,6 @@ namespace Mono.Samples.Notepad
 			}
 		}
 
-		public static async Task<Note[]> GetAllNotesAsync()
-		{
-			var sql = "SELECT * FROM ITEMS;";
-			List<Note> notes = new List<Note> ();
-			using (var conn = GetConnection ()) {
-				await conn.OpenAsync ();
-
-				using (var cmd = conn.CreateCommand ()) {
-					cmd.CommandText = sql;
-
-					using (var reader = await cmd.ExecuteReaderAsync ()) {
-						while (await reader.ReadAsync ())
-							notes.Add (new Note (reader.GetInt32 (0), reader.GetString (1), reader.GetDateTime (2))); 
-					}
-				}
-			}
-			return notes.ToArray ();
-		}
-
 		public static Note GetNote (long id)
 		{
 			var sql = "SELECT * FROM ITEMS WHERE Id = id;";
@@ -123,26 +103,6 @@ namespace Mono.Samples.Notepad
 				}
 			}
 		}
-
-		public static async Task<Note> GetNoteAsync (long id)
-		{
-			var sql = string.Format ("SELECT * FROM ITEMS WHERE Id = {0};", id);
-			using (var conn = GetConnection ()) {
-				await conn.OpenAsync ();
-
-				using (var cmd = conn.CreateCommand ()) {
-					cmd.CommandText = sql;
-
-					using (var reader =await  cmd.ExecuteReaderAsync ()) {
-						if (await reader.ReadAsync ())
-							return new Note (reader.GetInt32 (0), reader.GetString (1), reader.GetDateTime (2)); 
-						else
-							return null;
-					}
-				}
-			}
-		}
-
 
 		public static void DeleteNote (Note note)
 		{
@@ -181,33 +141,6 @@ namespace Mono.Samples.Notepad
 						cmd.Parameters.AddWithValue ("@Modified", DateTime.Now);
 					
 						cmd.ExecuteNonQuery ();
-					}
-				}
-			}
-		}
-
-		public static async Task SaveNoteAsync (Note note)
-		{
-			using (var conn = GetConnection ()) {
-				await conn.OpenAsync ();
-
-				using (var cmd = conn.CreateCommand ()) {
-
-					if (note.Id < 0) {
-						// Do an insert
-						cmd.CommandText = "INSERT INTO ITEMS (Body, Modified) VALUES (@Body, @Modified); SELECT last_insert_rowid();";
-						cmd.Parameters.AddWithValue ("@Body", note.Body);
-						cmd.Parameters.AddWithValue ("@Modified", DateTime.Now);
-
-						note.Id = (long)await cmd.ExecuteScalarAsync ();//cmd.ExecuteScalar ();
-					} else {
-						// Do an update
-						cmd.CommandText = "UPDATE ITEMS SET Body = @Body, Modified = @Modified WHERE Id = @Id";
-						cmd.Parameters.AddWithValue ("@Id", note.Id);
-						cmd.Parameters.AddWithValue ("@Body", note.Body);
-						cmd.Parameters.AddWithValue ("@Modified", DateTime.Now);
-
-						await cmd.ExecuteNonQueryAsync ();
 					}
 				}
 			}

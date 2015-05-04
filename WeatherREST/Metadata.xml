@@ -7,4 +7,5 @@
     <SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Demonstrates how to call a RESTful service via HTTP and handle/parse the JSON results asynchronously.</Brief>
 </SampleMetadata>

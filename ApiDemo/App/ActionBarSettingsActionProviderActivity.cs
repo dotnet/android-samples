@@ -35,7 +35,8 @@ namespace MonoDroid.ApiDemo
  	* ActionProvider for launching the system settings and adds a menu item with that
  	* provider.
  	*/
-	[Activity (Label = "@string/action_bar_settings_action_provider")]
+	[Activity (Label = "@string/action_bar_settings_action_provider", 
+		Name = "monodroid.apidemo.ActionBarSettingsActionProviderActivity")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]			
 	public class ActionBarSettingsActionProviderActivity : Activity
 	{
@@ -57,6 +58,7 @@ namespace MonoDroid.ApiDemo
 		}
 	}
 
+	[Register ("monodroid.apidemo.SettingsActionProvider")]
 	public class SettingsActionProvider : ActionProvider
 	{
 		/** An intent for launching the system settings. */

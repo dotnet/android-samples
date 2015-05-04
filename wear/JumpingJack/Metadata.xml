@@ -7,5 +7,6 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Demonstrates the use of the gravity sensor in the Android Wear device.</Brief>
 </SampleMetadata>
 

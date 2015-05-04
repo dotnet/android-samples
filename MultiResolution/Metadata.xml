@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates how to display scalable/stretchable graphics using proper size units.</Brief>
 </SampleMetadata>

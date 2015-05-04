@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Notifications, Android Wear</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates how to create a quiz between the watch and the mobile device.</Brief>
 </SampleMetadata>

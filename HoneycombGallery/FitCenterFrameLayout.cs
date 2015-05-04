@@ -17,12 +17,14 @@
 using Android.Content;
 using Android.Util;
 using Android.Views;
+using Android.Runtime;
 
 namespace com.example.monodroid.hcgallery
 {
 	/**
 	* A simple layout that fits and centers each child view, maintaining aspect ratio.
 	*/
+	[Register ("com.example.monodroid.hcgallery.FitCenterFrameLayout")]
 	public class FitCenterFrameLayout : ViewGroup 
 	{
 		public FitCenterFrameLayout (Context context) 

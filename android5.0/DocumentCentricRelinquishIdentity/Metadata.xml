@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+  <ID>d1779390-c9dc-4459-9b11-179dfb62a1bb</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Platform Features, AndroidL</Tags>
+  <SupportedPlatforms>Android</SupportedPlatforms>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>Demonstrates how to change the label of a document activity in recents using Document-Centric API.</Brief>
+</SampleMetadata>

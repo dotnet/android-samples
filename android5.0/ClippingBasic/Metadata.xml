@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>e7305d9d-df3f-4804-a50b-27e1f12404dc</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Graphics, AndroidL</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates simple clipping in Android L.</Brief>
+</SampleMetadata>

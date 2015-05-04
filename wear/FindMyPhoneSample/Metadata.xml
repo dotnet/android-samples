@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, Android Wear</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates a way to create an app that allows you to use your wear device to find your phone.</Brief>
 </SampleMetadata>

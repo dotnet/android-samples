@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<SampleMetadata>
+	<ID>223262b7-6d28-4d4a-9efe-1cab874745c5</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Media, AndroidL</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates how record video on Android L using Android.Hardware.Camera2.</Brief>
+</SampleMetadata>
+

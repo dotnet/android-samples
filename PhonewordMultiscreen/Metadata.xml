@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>941AE009-8229-441F-A7A8-D98340155039</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>This sample app accompanies the article, [Hello, Android Multiscreen (Quickstart)].</Brief>
+</SampleMetadata>

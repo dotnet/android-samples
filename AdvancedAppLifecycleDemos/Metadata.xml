@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Platform Features, Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Four sample projects that cover advanced activity and application lifecycle scenarios in Android.</Brief>
 </SampleMetadata>

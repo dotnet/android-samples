@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>User Interface, Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates using the Bluetooth APIs to create a sample chat client.</Brief>
 </SampleMetadata>

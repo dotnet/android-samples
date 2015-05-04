@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawableTinting", "DrawableTinting\DrawableTinting.csproj", "{C16E2404-9549-4433-AAD0-FFEB30DD9F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "..\..\CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16E2404-9549-4433-AAD0-FFEB30DD9F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16E2404-9549-4433-AAD0-FFEB30DD9F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16E2404-9549-4433-AAD0-FFEB30DD9F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16E2404-9549-4433-AAD0-FFEB30DD9F34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DrawableTinting\DrawableTinting.csproj
+	EndGlobalSection
+EndGlobal

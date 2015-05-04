@@ -4,5 +4,6 @@
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginning</Level>
 	<Tags>Graphics</Tags>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
+	<Brief>This sample tests all possible graphics configuration options and outputs valid ones.</Brief>
 </SampleMetadata>

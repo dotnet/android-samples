@@ -26,7 +26,7 @@ namespace Mono.Samples.Notepad
 
 		public Note ()
 		{
-			Id = -1;
+			Id = -1L;
 			Body = string.Empty;
 		}
 

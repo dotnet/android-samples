@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>4b2389db-d02d-46fd-ad50-80af256fcb86</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features, AndroidL</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>Demonstrates using a profile owner to set app restrictions in Android.</Brief>
+</SampleMetadata>

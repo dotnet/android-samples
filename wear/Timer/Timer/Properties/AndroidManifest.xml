@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Timer.Timer">
+	<uses-sdk android:minSdkVersion="20"/>
+	<application android:label="Timer" android:icon="@mipmap/ic_launcher" android:theme="@android:style/Theme.DeviceDefault.Light">
+		<!-- We don't need to manually add in the GMS version id. It pulls the info from the compatibility library -->
+	</application>
+</manifest>

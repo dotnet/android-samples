@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A simple hello world application that displays a message in a TextView when a Button is pressed.</Brief>
 </SampleMetadata>

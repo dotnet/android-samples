@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>b2f5a011-0157-456a-9d1f-92e967e79366</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features, AndroidL</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the new JobScheduler API.</Brief>
+</SampleMetadata>

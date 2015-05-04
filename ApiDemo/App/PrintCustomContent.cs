@@ -55,7 +55,7 @@ namespace MonoDroid.ApiDemo
  	* <li>Both Layout and write respond to cancellation.</li>
  	* <li>Layout and render of views is demonstrated.</li>
  	*/
-	[Activity (Label = "@string/print_custom_content")]
+	[Activity (Label = "@string/print_custom_content", Name = "monodroid.apidemo.PrintCustomContent")]
 	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]		
 	public class PrintCustomContent : ListActivity
 	{

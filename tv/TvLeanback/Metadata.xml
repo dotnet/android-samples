@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>908007A2-6DBC-4C47-AD95-6B19DA926E8B</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>User Interface, Android TV</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample shows a basic Android-TV application by showcasing various video provided by Google.</Brief>
+</SampleMetadata>
+

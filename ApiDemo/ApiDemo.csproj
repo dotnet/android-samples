@@ -15,8 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidResgenFile>Resources\Resources.designer.cs</AndroidResgenFile>
     <AndroidApplication>true</AndroidApplication>
-    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
-    <MandroidI18n />
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

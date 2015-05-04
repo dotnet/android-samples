@@ -20,7 +20,4 @@ Global
 		{D129E517-B53D-4CD1-8510-4B7CE9C60625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D129E517-B53D-4CD1-8510-4B7CE9C60625}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Wearable\Wearable.csproj
-	EndGlobalSection
 EndGlobal

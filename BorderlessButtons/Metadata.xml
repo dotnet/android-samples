@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the **borderless button** styling from the Holo visual language.</Brief>
 </SampleMetadata>

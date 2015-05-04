@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+  <ID>6b49f8c1-1b28-4785-bf3e-d4b3e3ec5760</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>User Interface, Network, AndroidL</Tags>
+  <SupportedPlatforms>Android</SupportedPlatforms>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>Demonstrates how to use Activity scene transitions when transitioning from one activity to another.</Brief>
+</SampleMetadata>

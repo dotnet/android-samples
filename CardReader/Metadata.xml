@@ -5,5 +5,6 @@
   <Level>Intermediate</Level>
   <Tags>Data, Nfc</Tags>
   <SupportedPlatforms>Android</SupportedPlatforms>
-    <LicenseRequirement>Starter</LicenseRequirement>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Brief>Demonstrates how to implement a low-level NFC card reader, for reading cards that do not contain NDEF or Android Beam data.</Brief>
 </SampleMetadata>

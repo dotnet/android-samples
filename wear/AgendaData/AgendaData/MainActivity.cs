@@ -17,7 +17,7 @@ using Java.Interop;
 
 namespace AgendaData
 {
-	[Activity (Label = "AgendaData", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "AgendaData", MainLauncher = true)]
 	public class MainActivity : Activity, INodeApiNodeListener, IGoogleApiClientOnConnectionFailedListener, IGoogleApiClientConnectionCallbacks
 	{
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>ed307c68-40e6-408b-afaf-4cf3225530a4</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Graphics, AndroidL</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>Demonstrates applying tinting and color filters to Drawables, programmatically and in XML.</Brief>
+</SampleMetadata>
