@@ -20,16 +20,32 @@ namespace Cheesesquare.UITests
         }
 
         [Test]
-        public void ClickingButtonTwiceShouldChangeItsLabel ()
+        public void ClickingHamburgerShouldRevealDrawer ()
+        {            
+            app.Screenshot ("Launch");
+            app.Tap(t => t.Class("ImageButton"));
+            app.WaitForElement(t => t.Text("Discussion"));
+            app.Screenshot ("Tap Hamburger");
+        }
+
+        [Test]
+        public void ClickingFloatingActionButtonShouldDisplaySnackbar ()
         {
-            Func<AppQuery, AppQuery> MyButton = c => c.Button ("myButton");
+            app.Screenshot ("Launch");
+            app.Tap (q => q.Id ("fab"));
+            app.Screenshot ("Tap Button");
+            app.WaitForElement (q => q.Id ("snackbar_text"));
+            app.Screenshot ("Snackbar");
+        }
 
-            app.Tap (MyButton);
-            app.Tap (MyButton);
-            AppResult[] results = app.Query (MyButton);
-            app.Screenshot ("Button clicked twice.");
-
-            Assert.AreEqual ("2 clicks!", results [0].Text);
+        [Test]
+        public void ClickingItemShouldRevealDetails ()
+        {
+            app.Screenshot ("Launch");
+            app.Tap (q => q.Id ("text1"));
+            app.Screenshot ("Tap Item");
+            app.WaitForElement (q => q.Text ("Info"));
+            app.Screenshot ("Details Page");
         }
     }
 }
