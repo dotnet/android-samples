@@ -41,7 +41,8 @@ namespace Cheesesquare
             var list = new List<string> (amount);
             var random = new Random();
             while (list.Count < amount)
-                list.Add (array[random.Next (array.Length)]);            
+                list.Add (array[random.Next (array.Length)]);
+            list.Add ("Old Amsterdam");
             return list;
         }
 
