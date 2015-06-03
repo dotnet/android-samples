@@ -43,16 +43,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.CardView">
-      <HintPath>packages\Xamarin.Android.Support.v7.CardView.22.2.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.CardView.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Design">
-      <HintPath>packages\Xamarin.Android.Support.Design.22.2.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="UrlImageViewHelper">
-      <HintPath>Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.Design.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
@@ -141,11 +138,5 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
     <Folder Include="Resources\layout\" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="urlimageviewhelper">
-      <Version>1.0.4</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
 </Project>

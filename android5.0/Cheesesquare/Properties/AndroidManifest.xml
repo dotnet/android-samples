@@ -3,4 +3,5 @@
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21" />
 	<application android:label="Cheesesquare" android:theme="@style/Theme.DesignDemo" android:icon="@drawable/icon">
 	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>
