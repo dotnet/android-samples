@@ -22,9 +22,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+
 using CommonSampleLibrary;
 
-//TODO get logging working, look at the FragmentTransaction KK sample. Had same issue
 namespace ElevationBasic
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/ic_launcher")]
@@ -39,20 +39,25 @@ namespace ElevationBasic
 		// Whether the Log Fragment is currently shown
 		private bool mLogShown;
 
-		protected override void OnCreate(Bundle savedInstanceState) {
+		protected override void OnCreate (Bundle savedInstanceState)
+		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_main);
 
-			var transaction = SupportFragmentManager.BeginTransaction();
-			var fragment = new ElevationBasicFragment();
-			transaction.Replace(Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit();
+			if (savedInstanceState == null) {
+				var transaction = FragmentManager.BeginTransaction ();
+				var fragment = new ElevationBasicFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu) {
-			this.MenuInflater.Inflate(Resource.Menu.main, menu);
+		public override bool OnCreateOptionsMenu (IMenu menu)
+		{
+			MenuInflater.Inflate (Resource.Menu.main, menu);
 			return true;
 		}
+
 		public override bool OnPrepareOptionsMenu (IMenu menu)
 		{
 			var logToggle = menu.FindItem (Resource.Id.menu_toggle_log);
@@ -60,6 +65,7 @@ namespace ElevationBasic
 			logToggle.SetTitle (mLogShown ? Resource.String.sample_hide_log : Resource.String.sample_show_log);
 			return base.OnPrepareOptionsMenu (menu);
 		}
+
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
@@ -70,7 +76,7 @@ namespace ElevationBasic
 					output.DisplayedChild = 1;
 				else
 					output.DisplayedChild = 0;
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -89,7 +95,7 @@ namespace ElevationBasic
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

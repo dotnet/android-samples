@@ -25,21 +25,17 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
 
 using CommonSampleLibrary;
-using Fragment = Android.Support.V4.App.Fragment;
 
 namespace ElevationBasic
 {
 	public class ElevationBasicFragment : Fragment
 	{
-		private string Tag = "ElevationBasicFragment";
-
 		public override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
