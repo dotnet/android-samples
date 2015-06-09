@@ -1,7 +1,6 @@
 ﻿using System;
 
 using Android.App;
-using Android.Support.V4;
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
@@ -16,10 +15,14 @@ namespace AppRestrictionSchema
 	[Activity (Label = "AppRestrictionSchema", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public string TAG = "MainActivity";
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Whether the Log Fragment is currently shown
-		private bool logShown;
+		bool logShown;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -27,7 +30,7 @@ namespace AppRestrictionSchema
 			SetContentView (Resource.Layout.activity_main);
 
 			if (bundle == null) {
-				var transaction = SupportFragmentManager.BeginTransaction ();
+				var transaction = FragmentManager.BeginTransaction ();
 				var fragment = new AppRestrictionSchemaFragment ();
 				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 				transaction.Commit ();
@@ -59,7 +62,7 @@ namespace AppRestrictionSchema
 					output.DisplayedChild = 1;
 				else
 					output.DisplayedChild = 0;
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -78,7 +81,7 @@ namespace AppRestrictionSchema
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 

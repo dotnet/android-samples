@@ -6,15 +6,12 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.Support.V4.App;
-using Android.Support.Annotation;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 
 using CommonSampleLibrary;
 
-using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AppRestrictionSchema
 {
