@@ -13,11 +13,14 @@ namespace RevealEffectBasic
 	[Activity (Label = "RevealEffectBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public const string TAG = "MainActivity";
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Whether the Log Fragment is currently shown
 		private bool logShown;
-
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -26,7 +29,7 @@ namespace RevealEffectBasic
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.activity_main);
 
-			var transaction = SupportFragmentManager.BeginTransaction ();
+			var transaction = FragmentManager.BeginTransaction ();
 			var fragment = new RevealEffectBasicFragment();
 			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 			transaction.Commit ();
@@ -57,7 +60,7 @@ namespace RevealEffectBasic
 				else
 					output.DisplayedChild = 0;
 
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -75,7 +78,7 @@ namespace RevealEffectBasic
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
