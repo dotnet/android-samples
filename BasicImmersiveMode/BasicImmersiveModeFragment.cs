@@ -24,19 +24,18 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
 using CommonSampleLibrary;
 
 namespace BasicImmersiveMode
 {
-	public class BasicImmersiveModeFragment : Android.Support.V4.App.Fragment
+	public class BasicImmersiveModeFragment : Fragment
 	{
 		public static readonly string TAG = "BasicImmersiveModeFragment";
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override void OnActivityCreated (Bundle savedInstanceState)
