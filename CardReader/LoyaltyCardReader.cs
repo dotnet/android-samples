@@ -164,7 +164,7 @@ namespace CardReader
 					val = (ushort)Convert.ToInt32 (s[i].ToString() + "0", 16);
 					val2 = (ushort)Convert.ToInt32 ("0" + s [i + 1].ToString(), 16);
 				}
-				catch (Exception ex) {
+				catch (Exception) {
 					continue;
 				}
 

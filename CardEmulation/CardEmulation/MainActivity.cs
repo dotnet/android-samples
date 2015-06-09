@@ -17,15 +17,14 @@ namespace CardEmulation
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.activity_main);
-			Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
-			CardEmulationFragment fragment = new CardEmulationFragment();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
-			//Intent intent = new Intent (this, typeof(CardService));
-			//StartService (intent);
+
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				CardEmulationFragment fragment = new CardEmulationFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -54,25 +53,25 @@ namespace CardEmulation
 				} else {
 					output.DisplayedChild = 0;
 				}
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
 		}
 
-		public override void InitializeLogging()
+		public override void InitializeLogging ()
 		{
 			// Wraps Android's native log framework
-			LogWrapper logWrapper = new LogWrapper ();
+			var logWrapper = new LogWrapper ();
 
 			Log.LogNode = logWrapper;
 
 			// Filter strips out everything except the message text
-			MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter ();
+			var msgFilter = new MessageOnlyLogFilter ();
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			LogFragment logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

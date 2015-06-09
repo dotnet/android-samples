@@ -29,7 +29,6 @@ namespace CardEmulation
 		private static readonly byte[] UNKNOWN_CMD_SW = HexStringToByteArray("0000"); 
 		private static readonly byte[] SELECT_APDU = BuildSelectApdu(SAMPLE_LOYALTY_CARD_AID);
 
-		private static readonly char[] HexArray = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
 		public override void OnDeactivated (DeactivationReason reason)
 		{
@@ -72,13 +71,6 @@ namespace CardEmulation
 				return UNKNOWN_CMD_SW;
 			}
 		}
-		public CardService ()
-		{
-			var s = ByteArrayToHexString (SELECT_APDU);
-			int i = 0;
-			int o = i + 1;
-
-		}
 
 		public static string ByteArrayToHexString(byte[] bytes)
 		{
@@ -105,7 +97,7 @@ namespace CardEmulation
 					val = (ushort)Convert.ToInt32 (s[i].ToString() + "0", 16);
 					val2 = (ushort)Convert.ToInt32 ("0" + s [i + 1].ToString(), 16);
 				}
-				catch (Exception ex) {
+				catch (Exception) {
 					continue;
 				}
 

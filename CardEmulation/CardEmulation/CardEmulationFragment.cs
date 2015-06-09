@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.Support.V4.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -16,7 +15,7 @@ using Android.App;
 
 namespace CardEmulation
 {
-	public class CardEmulationFragment : Android.Support.V4.App.Fragment
+	public class CardEmulationFragment : Fragment
 	{
 		public const string TAG = "CardEmulationFragment";
 		public override void OnCreate (Bundle savedInstanceState)

@@ -45,13 +45,15 @@ namespace CardReader {
 		private bool mLogShown;
 
 		protected override void OnCreate(Bundle savedInstanceState) {
-			base.OnCreate(savedInstanceState);
-			this.SetContentView (Resource.Layout.activity_main);
+			base.OnCreate (savedInstanceState);
+			SetContentView (Resource.Layout.activity_main);
 
-			FragmentTransaction transaction = FragmentManager.BeginTransaction ();
-			CardReaderFragment fragment = new CardReaderFragment();
-			transaction.Replace(Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit();
+			if (savedInstanceState == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new CardReaderFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -79,7 +81,7 @@ namespace CardReader {
 				} else {
 					output.DisplayedChild = 0;
 				}
-				SupportInvalidateOptionsMenu();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -98,7 +100,7 @@ namespace CardReader {
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			LogFragment logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			LogFragment logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");
