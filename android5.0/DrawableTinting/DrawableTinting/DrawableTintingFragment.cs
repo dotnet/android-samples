@@ -8,12 +8,12 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Graphics;
-using Android.Support.V4.App;
+
 using CommonSampleLibrary;
 
 namespace DrawableTinting
 {
-	public class DrawableTintingFragment : Android.Support.V4.App.Fragment
+	public class DrawableTintingFragment : Fragment
 	{
 		public const string TAG = "DrawableTintingFragment";
 
@@ -85,7 +85,7 @@ namespace DrawableTinting
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

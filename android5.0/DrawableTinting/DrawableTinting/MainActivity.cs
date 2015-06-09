@@ -4,15 +4,19 @@ using Android.App;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V4.App;
+
 using CommonSampleLibrary;
 
 namespace DrawableTinting
 {
-	[Activity (Label = "DrawableTinting", MainLauncher = true, Icon = "@drawable/ic_launcher",Theme="@style/AppTheme")]
+	[Activity (Label = "DrawableTinting", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme="@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public const string TAG = "MainActivity";
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Whether the Log Fragment is currently shown
 		bool logShown;
@@ -22,10 +26,12 @@ namespace DrawableTinting
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
 
-			var transaction = SupportFragmentManager.BeginTransaction ();
-			var fragment = new DrawableTintingFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new DrawableTintingFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -52,7 +58,7 @@ namespace DrawableTinting
 					output.DisplayedChild = 1;
 				else
 					output.DisplayedChild = 0;
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -71,7 +77,7 @@ namespace DrawableTinting
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
