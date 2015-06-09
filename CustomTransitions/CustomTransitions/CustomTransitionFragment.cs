@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
 using Android.Transitions;
 using CommonSampleLibrary;
 
@@ -27,10 +27,6 @@ namespace CustomTransitions
 
 		//This is the custom Transition used in the sample.
 		private Transition transition;
-
-		public CustomTransitionFragment()
-		{
-		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{

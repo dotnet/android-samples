@@ -9,13 +9,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
 
 using CommonSampleLibrary;
 
 namespace CustomTransitions
 {
-	[Activity (Label = "CustomTransition", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.Light")]
+	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
 		private bool log_shown;
@@ -23,15 +22,14 @@ namespace CustomTransitions
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			var transaction = this.SupportFragmentManager.BeginTransaction ();
-			CustomTransitionFragment fragment = new CustomTransitionFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
-
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new CustomTransitionFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -61,7 +59,7 @@ namespace CustomTransitions
 					} else {
 						output.DisplayedChild = 0;
 					}
-					SupportInvalidateOptionsMenu ();
+					InvalidateOptionsMenu ();
 					return true;
 				}
 			}
@@ -80,7 +78,7 @@ namespace CustomTransitions
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");
