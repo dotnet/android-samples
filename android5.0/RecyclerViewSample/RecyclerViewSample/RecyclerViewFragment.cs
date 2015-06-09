@@ -7,12 +7,11 @@ using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Views;
-using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 
 namespace RecyclerViewSample
 {
-	public class RecyclerViewFragment : Android.Support.V4.App.Fragment
+	public class RecyclerViewFragment : Fragment
 	{
 		private const string TAG = "RecycleViewFragment";
 		public RecyclerView recyclerView;
