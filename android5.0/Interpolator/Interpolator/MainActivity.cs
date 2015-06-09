@@ -14,22 +14,26 @@ namespace Interpolator
 	[Activity (Label = "Interpolator", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public const string TAG = "MainActivity";
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Whether the Log Fragment is currently shown
 		private bool logShown;
 
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.activity_main);
 
-			var transaction = SupportFragmentManager.BeginTransaction ();
-			var fragment = new InterpolatorFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new InterpolatorFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -57,7 +61,7 @@ namespace Interpolator
 				else
 					output.DisplayedChild = 0;
 
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -75,7 +79,7 @@ namespace Interpolator
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
