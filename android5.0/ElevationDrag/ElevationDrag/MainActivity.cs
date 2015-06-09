@@ -25,10 +25,12 @@ namespace ElevationDrag
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
 
-			var transaction = this.SupportFragmentManager.BeginTransaction ();
-			var fragment = new ElevationDragFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				var transaction = FragmentManager.BeginTransaction ();
+				var fragment = new ElevationDragFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -57,7 +59,7 @@ namespace ElevationDrag
 				} else {
 					output.DisplayedChild = (0);
 				}
-				SupportInvalidateOptionsMenu();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected(item);
@@ -76,7 +78,7 @@ namespace ElevationDrag
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

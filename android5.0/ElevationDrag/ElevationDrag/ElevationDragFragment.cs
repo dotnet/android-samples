@@ -16,7 +16,7 @@ using CommonSampleLibrary;
 
 namespace ElevationDrag
 {
-	public class ElevationDragFragment : Android.Support.V4.App.Fragment, AdapterView.IOnItemSelectedListener
+	public class ElevationDragFragment : Fragment, AdapterView.IOnItemSelectedListener
 	{
 		public const string TAG = "ElevationFragment";
 
