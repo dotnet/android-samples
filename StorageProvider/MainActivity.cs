@@ -45,8 +45,8 @@ namespace StorageProvider
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.Main);
 
-			if (SupportFragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
-				Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
+			if (FragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				var fragment = new MyCloudFragment ();
 				transaction.Add (fragment, FRAGTAG);
 				transaction.Commit ();
@@ -72,7 +72,7 @@ namespace StorageProvider
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

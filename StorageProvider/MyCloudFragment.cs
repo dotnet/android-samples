@@ -33,7 +33,7 @@ namespace StorageProvider
  	* Toggles the user's login status via a login menu option, and enables/disables the cloud storage
  	* content provider.
  	*/
-	public class MyCloudFragment : Android.Support.V4.App.Fragment
+	public class MyCloudFragment : Fragment
 	{
 		static readonly string TAG = "MyCloudFragment";
 		static readonly string AUTHORITY = "storageprovider.documents";
@@ -44,7 +44,7 @@ namespace StorageProvider
 			base.OnCreate (savedInstanceState);
 			mLoggedIn = ReadLoginValue ();
 
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override void OnPrepareOptionsMenu (IMenu menu)

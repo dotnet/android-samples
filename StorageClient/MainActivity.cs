@@ -13,7 +13,7 @@ namespace StorageClient
  	* A simple launcher activity containing a summary sample description
  	* and a few action bar buttons.
  	*/
-	[Activity (Label = "StorageClient", MainLauncher = true,
+	[Activity (Label = "StorageClient", MainLauncher = true, Theme = "@style/AppTheme",
 		UiOptions = Android.Content.PM.UiOptions.SplitActionBarWhenNarrow)]
 	public class MainActivity : SampleActivityBase
 	{
@@ -28,8 +28,8 @@ namespace StorageClient
 			base.OnCreate (bundle);
  			SetContentView (Resource.Layout.Main);
 
-			if (SupportFragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
-				Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
+			if (FragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				var fragment = new StorageClientFragment ();
 				transaction.Add (fragment, FRAGTAG);
 				transaction.Commit ();
@@ -55,7 +55,7 @@ namespace StorageClient
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

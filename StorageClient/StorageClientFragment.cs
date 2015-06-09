@@ -33,7 +33,7 @@ using System.Threading.Tasks;
 
 namespace StorageClient
 {
-	public class StorageClientFragment : Android.Support.V4.App.Fragment
+	public class StorageClientFragment : Fragment
 	{
 		// A request code's purpose is to match the result of a "startActivityForResult" with
 		// the type of the original request.  Choose any value.
@@ -43,7 +43,7 @@ namespace StorageClient
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			HasOptionsMenu = true;
+			SetHasOptionsMenu (true);
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
@@ -76,14 +76,14 @@ namespace StorageClient
 			StartActivityForResult (intent, READ_REQUEST_CODE);
 		}
 
-		public override void OnActivityResult (int requestCode, int resultCode, Intent data)
+		public override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			Log.Info (TAG, "Received an \"Activity Result\"");
 			// The ACTION_OPEN_DOCUMENT intent was sent with the request code READ_REQUEST_CODE.
 			// If the request code seen here doesn't match, it's the response to some other intent,
 			// and the below code shouldn't run at all.
 
-			if (requestCode == READ_REQUEST_CODE && resultCode == (int)Result.Ok) {
+			if (requestCode == READ_REQUEST_CODE && resultCode == Result.Ok) {
 				// The document selected by the user won't be returned in the intent.
 				// Instead, a URI to that document will be contained in the return intent
 				// provided to this method as a parameter.  Pull that uri using "resultData.getData()"
@@ -103,16 +103,15 @@ namespace StorageClient
 			if (uri != null) {
 				// Since the URI is to an image, create and show a DialogFragment to display the
 				// image to the user.
-				Android.Support.V4.App.FragmentManager fm = Activity.SupportFragmentManager;
 				var imageDialog = new ImageDialogFragment (uri);
-				imageDialog.Show ((Android.Support.V4.App.FragmentManager)fm, "image_dialog");
+				imageDialog.Show (Activity.FragmentManager, "image_dialog");
 			}
 		}
 
 		/**
     	 * DialogFragment which displays an image, given a URI.
      	*/
-		class ImageDialogFragment : Android.Support.V4.App.DialogFragment
+		class ImageDialogFragment : DialogFragment
 		{
 			Dialog mDialog;
 			Android.Net.Uri mUri;
