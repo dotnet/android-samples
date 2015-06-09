@@ -6,7 +6,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V4.App;
 
 using CommonSampleLibrary;
 
@@ -28,14 +27,14 @@ namespace FloatingActionButtonBasic
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.activity_main);
 
-			Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
-			var fragment = new FloatingActionButtonBasicFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new FloatingActionButtonBasicFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -63,7 +62,7 @@ namespace FloatingActionButtonBasic
 					output.DisplayedChild = 1;
 				else
 					output.DisplayedChild = 0;
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -82,7 +81,7 @@ namespace FloatingActionButtonBasic
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 

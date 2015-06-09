@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Net;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Views;
 
 using CommonSampleLibrary;
@@ -9,7 +8,7 @@ using CommonSampleLibrary;
 namespace FloatingActionButtonBasic
 {
 	// This fragment inflates a layout with two Floating Action Buttons and acts as a listener to changes on them.
-	public class FloatingActionButtonBasicFragment : Android.Support.V4.App.Fragment,FloatingActionButton.IOnCheckedChangeListener
+	public class FloatingActionButtonBasicFragment : Fragment, FloatingActionButton.IOnCheckedChangeListener
 	{
 		private const string TAG = "FloatingActionButtonBasicFragment";
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
