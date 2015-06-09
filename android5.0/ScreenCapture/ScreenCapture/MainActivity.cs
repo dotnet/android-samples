@@ -21,7 +21,12 @@ namespace ScreenCapture
 	[Activity (Label = "ScreenCapture", MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	public class MainActivity : SampleActivityBase
 	{
-		public const string TAG = "MainActivity";
+
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Wheter the Log Fragment is shown currently
 		private bool logShown;
@@ -34,7 +39,7 @@ namespace ScreenCapture
 			SetContentView (Resource.Layout.activity_main);
 
 			if (bundle == null) {
-				var transaction = SupportFragmentManager.BeginTransaction ();
+				var transaction = FragmentManager.BeginTransaction ();
 				var fragment = new ScreenCaptureFragment ();
 				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 				transaction.Commit ();
@@ -66,7 +71,7 @@ namespace ScreenCapture
 					output.DisplayedChild = 1;
 				else
 					output.DisplayedChild = 0;
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -85,7 +90,7 @@ namespace ScreenCapture
 			logWrapper.NextNode = msgFilter;
 
 			// On screem logging via a fragment with a TextView
-			var logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 

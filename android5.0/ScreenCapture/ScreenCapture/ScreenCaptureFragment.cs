@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +12,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
-using Fragment = Android.Support.V4.App.Fragment;
+
 using Log = CommonSampleLibrary.Log;
-using CommonSampleLibrary;
+
 namespace ScreenCapture
 {
 	// Provides UI for the screen capture
@@ -87,10 +86,10 @@ namespace ScreenCapture
 			}
 		}
 
-		public override void OnActivityResult (int requestCode, int resultCode, Intent data)
+		public override void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			if (requestCode == REQUEST_MEDIA_PROJECTION) {
-				if (resultCode != (int)Result.Ok) {
+				if (resultCode != Result.Ok) {
 					Log.Info (TAG, "User cancelled");
 					Toast.MakeText (Activity, Resource.String.user_cancelled, ToastLength.Short).Show ();
 					return;
@@ -99,13 +98,13 @@ namespace ScreenCapture
 					return;
 
 				Log.Info (TAG, "Starting screem capture");
-				this.resultCode = resultCode;
+				this.resultCode = (int)resultCode;
 				this.resultData = data;
 				SetUpMediaProjection ();
 				SetUpVirtualDisplay ();
 			}
 		}
-
+				
 		public override void OnPause ()
 		{
 			base.OnPause ();
