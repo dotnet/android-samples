@@ -1,14 +1,15 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using Android.App;
 using Android.Widget;
 using Android.Content;
-using Android.Support.V4.App;
 using Android.OS;
 using Android.Views;
 using Android.Graphics;
+
 using CommonSampleLibrary;
 
 
@@ -16,121 +17,94 @@ namespace ClippingBasic
 {
 	public class ClippingBasicFragment : Fragment
 	{
-		const string TAG = "ClippingBasicFragment";
+		static readonly string TAG = "ClippingBasicFragment";
 
-		// Store the click count so that we can show a different text on every click
-		private int click_count=0;
+		/* Store the click count so that we can show a different text on every click. */
+		int clickCount = 0;
 
-		// The Outline used to clip the image
-		private Outline clip;
+		/* The {@Link Outline} used to clip the image with. */
+		ViewOutlineProvider outlineProvider;
 
-		private string[] sample_texts;
+		/* An array of texts. */
+		String[] sampleTexts;
 
-		// A reference to a TextView that shows different strings when clicked
-		private TextView text_view;
-		View clippedView;
+		/* A reference to a {@Link TextView} that shows different text strings when clicked. */
+		TextView textView;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
-			// Create your fragment here
-			HasOptionsMenu = true;
-			clip = new Outline ();
-			sample_texts = Resources.GetStringArray (Resource.Array.sample_texts);
+			SetHasOptionsMenu (true);
+			outlineProvider = new ClipOutlineProvider ();
+			sampleTexts = Resources.GetStringArray (Resource.Array.sample_texts);
 		}
+
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			return inflater.Inflate (Resource.Layout.clipping_basic_fragment, container, false);
 		}
+
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
 		{
 			base.OnViewCreated (view, savedInstanceState);
 
-			// Sets initial text for the TextView
-			text_view = (TextView)view.FindViewById (Resource.Id.text_view);
-			clippedView = view.FindViewById (Resource.Id.frame);
+			/* Set the initial text for the TextView. */
+			textView = view.FindViewById<TextView> (Resource.Id.text_view);
 			ChangeText ();
-			view.FindViewById (Resource.Id.button).SetOnClickListener (new ClippingListener (this));
-			view.FindViewById (Resource.Id.text_view).SetOnClickListener (new TextListener (this));
 
-			// Create a new ViewOutlineProvider
-			var v = new ClipProvider(this);
+			View clippedView = view.FindViewById (Resource.Id.frame);
 
-			// Set the dimensions of the outline
-			v.GetOutline (clippedView, clip);
+			/* Sets the OutlineProvider for the View. */
+			clippedView.OutlineProvider = outlineProvider;
 
-			// Set the ViewOutlineProvider to the view to be clipped
-			clippedView.OutlineProvider = v;
-
-		}
-
-		private class ClippingListener : Java.Lang.Object,View.IOnClickListener
-		{
-			ClippingBasicFragment frag;
-			public ClippingListener(ClippingBasicFragment f)
-			{
-				frag = f;
-			}
-			public void OnClick(View bt)
-			{
-				// When the button is clicked, the text is clipped or un-clipped
-
-				// If the view is clipped then ClipToOutline is true
-				if (frag.clippedView.ClipToOutline) {
-					frag.clippedView.ClipToOutline = false;
-
-					Log.Debug (TAG, string.Format ("Clipping was removed."));
-					(bt as Button).SetText (Resource.String.clip_button);
+			/* When the button is clicked, the text is clipped or un-clipped. */
+			var clipButton = view.FindViewById <Button> (Resource.Id.button);
+			clipButton.Click += delegate {
+				if (clippedView.ClipToOutline) {
+					/* The Outline is set for the View, but disable clipping. */
+					clippedView.ClipToOutline = false;
+					Log.Debug (TAG, "Clipping to outline is disabled");
+					clipButton.Text = GetString (Resource.String.clip_button);
 				} else {
-					// Enables clipping on the View
-					frag.clippedView.ClipToOutline = true;
-
-					Log.Debug (TAG, string.Format ("View was clipped"));
-					(bt as Button).SetText (Resource.String.unclip_button);
+					/* Enables clipping on the View. */
+					clippedView.ClipToOutline = true;
+					Log.Debug (TAG, "Clipping to outline is enabled");
+					clipButton.Text = GetString (Resource.String.unclip_button);
 				}
-			}
+			};
+
+			/* When the text is clicked, a new string is shown. */
+			textView.Click += delegate {
+				clickCount++;
+
+				// Update the text in the TextView
+				ChangeText ();
+
+				// Invalidate the outline just in case the TextView changed size
+				clippedView.InvalidateOutline ();
+			};
 		}
-
-		public class ClipProvider : ViewOutlineProvider
+			
+		void ChangeText () 
 		{
-			ClippingBasicFragment frag;
-			public ClipProvider(ClippingBasicFragment f)
-			{
-				frag = f;
-			}
+			// Compute the position of the string in the array using the number of strings
+			//  and the number of clicks.
+			string newText = sampleTexts[clickCount % sampleTexts.Length];
 
-			public override void GetOutline (View view, Android.Graphics.Outline outline)
-			{
-				int margin = Math.Min (view.Width, view.Height) / 10;
-				outline.SetRoundRect (margin, margin, view.Width - margin,
-					view.Height - margin, margin / 2);
-			}
+			/* Once the text is selected, change the TextView */
+			textView.Text = newText;
+			Log.Debug (TAG, "Text was changed.");
 		}
+	}
 
-
-		private class TextListener : Java.Lang.Object,View.IOnClickListener
+	public class ClipOutlineProvider : ViewOutlineProvider
+	{
+		public override void GetOutline (View view, Outline outline)
 		{
-			ClippingBasicFragment frag;
-			public TextListener(ClippingBasicFragment f)
-			{
-				frag = f;
-			}
+			int margin = Math.Min (view.Width, view.Height) / 10;
 
-			public void OnClick(View bt)
-			{
-				frag.click_count++;
-				frag.ChangeText ();
-			}
-		}
-
-		// When the text is clicked, a new string is shown.
-		private void ChangeText() 
-		{
-			string newText = sample_texts[click_count % sample_texts.Length];
-
-			text_view.SetText (newText.ToCharArray(), 0, newText.Length);
-			Log.Debug(TAG,string.Format("Text was changed."));
+			outline.SetRoundRect (margin, margin, view.Width - margin,
+				view.Height - margin, margin / 2);
 		}
 	}
 }

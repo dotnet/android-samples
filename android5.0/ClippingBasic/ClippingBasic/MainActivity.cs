@@ -5,15 +5,19 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V4.App;
+
 using CommonSampleLibrary;
 
 namespace ClippingBasic
 {
-	[Activity (Label = "ClippingBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@android:style/Theme.Material.Light")]
+	[Activity (Label = "ClippingBasic", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		const string TAG = "MainActivity";
+		public override string TAG {
+			get {
+				return "MainActivity";
+			}
+		}
 
 		// Whether the log fragment is shown or not
 		private bool log_shown;
@@ -21,13 +25,14 @@ namespace ClippingBasic
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
 			SetContentView (Resource.Layout.activity_main);
 
-			Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
-			ClippingBasicFragment fragment = new ClippingBasicFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new ClippingBasicFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -49,13 +54,13 @@ namespace ClippingBasic
 			switch (item.ItemId) {
 			case Resource.Id.menu_toggle_log:
 				log_shown = !log_shown;
-				ViewAnimator output = (ViewAnimator)FindViewById (Resource.Id.sample_output);
+				var output = (ViewAnimator)FindViewById (Resource.Id.sample_output);
 				if (log_shown) {
 					output.DisplayedChild = 1;
 				} else {
 					output.DisplayedChild = 0;
 				}
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -65,17 +70,17 @@ namespace ClippingBasic
 		public override void InitializeLogging ()
 		{
 			// Wraps Android's native log framework
-			LogWrapper logWrapper = new LogWrapper ();
+			var logWrapper = new LogWrapper ();
 
 			// Using Log, front-end to the logging chain, emulates android.util.log method signatures
 			Log.LogNode = logWrapper;
 
 			// Filter strips out everything except the message text.
-			MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter ();
+			var msgFilter = new MessageOnlyLogFilter ();
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView
-			LogFragment logFragment = (LogFragment)SupportFragmentManager
+			var logFragment = (LogFragment)FragmentManager
 				.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 			Log.Info (TAG, "Ready");
