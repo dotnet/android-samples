@@ -22,7 +22,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V4.App;
 using CommonSampleLibrary;
 
 
@@ -32,7 +31,7 @@ namespace AdvancedImmersiveMode
  	* A simple launcher activity containing a summary sample description
  	* and a few action bar buttons.
  	*/
-	[Activity (Label = "@string/app_name", MainLauncher = true, 
+	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme",
 		UiOptions = UiOptions.SplitActionBarWhenNarrow)]
 	public class MainActivity : SampleActivityBase
 	{
@@ -47,8 +46,8 @@ namespace AdvancedImmersiveMode
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.Main);
 
-			if (SupportFragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
-				Android.Support.V4.App.FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
+			if (FragmentManager.FindFragmentByTag (FRAGTAG) == null ) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				var fragment = new AdvancedImmersiveModeFragment ();
 				transaction.Add (fragment,FRAGTAG);
 				transaction.Commit ();
@@ -74,7 +73,7 @@ namespace AdvancedImmersiveMode
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");
