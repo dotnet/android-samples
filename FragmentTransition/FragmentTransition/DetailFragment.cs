@@ -12,13 +12,13 @@ using Android.Views;
 using Android.Widget;
 using Android.Views.Animations;
 using Android.Transitions;
-using Android.Support.V4.App;
+using Android.Animation;
 
 using CommonSampleLibrary;
 
 namespace FragmentTransition
 {
-	public class DetailFragment : Android.Support.V4.App.Fragment, Animation.IAnimationListener
+	public class DetailFragment : Fragment
 	{
 		public const string TAG = "DetailFragment";
 		public const string ARG_RESOURCE_ID = "resource_id";
@@ -62,15 +62,19 @@ namespace FragmentTransition
 		{
 			var root = (FrameLayout)view;
 			var context = view.Context;
-			System.Diagnostics.Debug.Assert (context != null);
+			if (context == null)
+				return;
+			
 			// This is how the fragment looks at first. Since the transition is one-way, we don't need to make
 			// this a Scene.
 			var item = LayoutInflater.From (context).Inflate (Resource.Layout.item_meat_grid, root, false);
-			System.Diagnostics.Debug.Assert (item != null);
+			if (item == null)
+				return;
+			
 			Bind (item);
 			// We adjust the position of the initial image with LayoutParams using the values supplied
 			// as the fragment arguments.
-			Bundle args = this.Arguments;
+			Bundle args = Arguments;
 			FrameLayout.LayoutParams param = null;
 			if (args != null) {
 				param = new FrameLayout.LayoutParams (
@@ -80,10 +84,12 @@ namespace FragmentTransition
 			}
 			root.AddView (item, param);
 		}
+
 		public override void OnResume()
 		{
 			base.OnResume();
 		}
+
 		/**
 		 * Bind the views inside of parent with the fragment arguments.
 	     *
@@ -92,48 +98,35 @@ namespace FragmentTransition
 		private void Bind (View parent)
 		{
 			Bundle args = Arguments;
-			if (args == null) {
+			if (args == null)
 				return;
-			}
+			
 			var image = parent.FindViewById<ImageView> (Resource.Id.image);
 			image.SetImageResource (args.GetInt (ARG_RESOURCE_ID));
+
 			var title = parent.FindViewById<TextView> (Resource.Id.title);
 			title.Text = args.GetString (ARG_TITLE);
 		}
 
-		public override Animation OnCreateAnimation (int transit, bool enter, int nextAnim)
+		public override Animator OnCreateAnimator (FragmentTransit transit, bool enter, int nextAnim)
 		{
-			Animation animation = AnimationUtils.LoadAnimation (this.Activity,
-				                      enter ? Android.Resource.Animation.FadeIn : Android.Resource.Animation.FadeOut);
+			Animator animator = AnimatorInflater.LoadAnimator (Activity,
+				enter ? Android.Resource.Animator.FadeIn : Android.Resource.Animator.FadeOut);
+			
 			// We bind a listener for the fragment transaction. We only bind it when
 			// this fragment is entering.
-			if (animation != null && enter) {
-				animation.SetAnimationListener (this);
-			}
-			return animation;
-		}
+			if (animator != null && enter)
+				animator.AnimationEnd += (object sender, EventArgs e) => {
+					// This method is called at the end of the animation for the fragment transaction,
+					// which is perfect time to start our Transition.
+					Log.Info (TAG, "Fragment animation ended. Starting a Transition.");
+					Scene scene = Scene.GetSceneForLayout ((ViewGroup)View, Resource.Layout.fragment_detail_content, Activity);
+					TransitionManager.Go (scene);
+					// Note that we need to bind views with data after we call TransitionManager.go().
+					Bind (scene.SceneRoot);
+				};
 
-		public void OnAnimationStart (Animation animation)
-		{
-			// This method is called at the end of the animation for the fragment transaction.
-			// There is nothing we need to do in this sample.
-		}
-
-		public void OnAnimationEnd (Animation animation)
-		{
-			// This method is called at the end of the animation for the fragment transaction,
-			// which is perfect time to start our Transition.
-			Log.Info (TAG, "Fragment animation ended. Starting a Transition.");
-			Scene scene = Scene.GetSceneForLayout ((ViewGroup)this.View,
-				              Resource.Layout.fragment_detail_content, this.Activity);
-			TransitionManager.Go (scene);
-			// Note that we need to bind views with data after we call TransitionManager.go().
-			Bind (scene.SceneRoot);
-		}
-
-		public void OnAnimationRepeat (Animation animation)
-		{
-			// This method is never called in this sample because the animation doesn't repeat.
+			return animator;		
 		}
 	}
 }

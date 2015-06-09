@@ -11,7 +11,7 @@ using CommonSampleLibrary;
 
 namespace FragmentTransition
 {
-	[Activity (Label = "FragmentTransition", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity (Label = "FragmentTransition", MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
 		public override string TAG {
@@ -25,10 +25,12 @@ namespace FragmentTransition
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
 
-			var transaction = SupportFragmentManager.BeginTransaction ();
-			var fragment = new FragmentTransitionFragment ();
-			transaction.Replace (Resource.Id.sample_content_fragment, fragment);
-			transaction.Commit ();
+			if (bundle == null) {
+				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				var fragment = new FragmentTransitionFragment ();
+				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Commit ();
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -56,7 +58,7 @@ namespace FragmentTransition
 				} else {
 					output.DisplayedChild = 0;
 				}
-				SupportInvalidateOptionsMenu ();
+				InvalidateOptionsMenu ();
 				return true;
 			}
 			return base.OnOptionsItemSelected (item);
@@ -75,7 +77,7 @@ namespace FragmentTransition
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			var logFragment = (LogFragment)SupportFragmentManager.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

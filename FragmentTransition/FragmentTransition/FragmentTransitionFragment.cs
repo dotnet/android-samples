@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.Support.V4.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Animation;
@@ -16,7 +16,7 @@ using CommonSampleLibrary;
 
 namespace FragmentTransition
 {
-	public class FragmentTransitionFragment : Android.Support.V4.App.Fragment, GridView.IOnItemClickListener
+	public class FragmentTransitionFragment : Fragment, AdapterView.IOnItemClickListener
 	{
 		private const string TAG = "FragmentTransitionFragment";
 
@@ -25,10 +25,6 @@ namespace FragmentTransition
 		public static FragmentTransitionFragment NewInstance ()
 		{
 			return new FragmentTransitionFragment ();
-		}
-
-		public FragmentTransitionFragment ()
-		{
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,12 +41,13 @@ namespace FragmentTransition
 			grid.Adapter = mAdapter;
 			grid.OnItemClickListener = this;
 		}
-		public void OnItemClick(AdapterView parent, View view, int position, long id)
+
+		public void OnItemClick (AdapterView parent, View view, int position, long id)
 		{
 			Meat meat = mAdapter [position];
 			Log.Info (TAG, meat.title + " clicked. Replacing fragment.");
 			// We start the fragment transaction here. It is just an ordinary fragment transaction.
-			Activity.SupportFragmentManager
+			FragmentManager
 				.BeginTransaction ()
 				.Replace (Resource.Id.sample_content_fragment,
 					DetailFragment.NewInstance (meat.resourceId, meat.title,
@@ -63,7 +60,7 @@ namespace FragmentTransition
 				.Commit ();
 		}
 
-		public override Animation OnCreateAnimation (int transit, bool enter, int nextAnim)
+		public Animation OnCreateAnimation (int transit, bool enter, int nextAnim)
 		{
 			return AnimationUtils.LoadAnimation (Activity,
 				enter ? Android.Resource.Animation.FadeIn : Android.Resource.Animation.FadeOut);

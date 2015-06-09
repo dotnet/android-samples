@@ -12,4 +12,4 @@
     android:scrollbars="none"
     android:stretchMode="columnWidth"
     android:verticalSpacing="1dp"
-    tools:context="FragmentTransition.FragmentTransition.FragmentTransitionFragment" />
+    tools:context="com.xamarin.FragmentTransitionFragment" />
