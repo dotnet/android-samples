@@ -24,7 +24,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
 
 namespace CommonSampleLibrary
 {
@@ -32,7 +31,7 @@ namespace CommonSampleLibrary
  	* Base launcher activity, to handle most of the common plumbing for samples.
  	*/
 	[Activity (Label = "SampleActivityBase")]			
-	public class SampleActivityBase : FragmentActivity
+	public class SampleActivityBase : Activity
 	{
 		public virtual string TAG {
 			get { return "SampleActivityBase"; }

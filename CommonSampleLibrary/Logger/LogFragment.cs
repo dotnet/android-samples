@@ -26,7 +26,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Text;
-using Android.Support.V4.App;
 
 namespace CommonSampleLibrary
 {
