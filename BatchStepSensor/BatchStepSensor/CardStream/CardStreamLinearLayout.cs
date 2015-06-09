@@ -117,8 +117,6 @@ namespace BatchStepSensor.CardStream
 
 		private OnHierarchyChangeListener mOnHieratchyChangeListener;
 
-		private int mLastDownX;
-
 		public CardStreamLinearLayout (Context context) :
 			base (context)
 		{
@@ -368,7 +366,6 @@ namespace BatchStepSensor.CardStream
 
 			if (attrs != null) {
 
-				var v = Resource.Styleable.CardStream;
 				TypedArray a = Context.ObtainStyledAttributes (attrs, Resource.Styleable.CardStream, defStyle, 0);
 
 				if (a != null) {

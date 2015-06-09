@@ -18,7 +18,7 @@ namespace BatchStepSensor.CardStream
 	/// A Fragment that handles a stream of cards.
 	/// Cards can be shown or hidden. When a card is shown it can also be marked as not-dismissible.
 	/// </summary>
-	public class CardStreamFragment : Android.Support.V4.App.Fragment
+	public class CardStreamFragment : Fragment
 	{
 		private const int INITIAL_SIZE = 15;
 		private CardStreamLinearLayout mLayout = null;

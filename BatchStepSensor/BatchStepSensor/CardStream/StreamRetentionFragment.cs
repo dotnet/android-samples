@@ -3,7 +3,7 @@ using Android.App;
 
 namespace BatchStepSensor.CardStream
 {
-	public class StreamRetentionFragment : Android.Support.V4.App.Fragment
+	public class StreamRetentionFragment : Fragment
 	{
 		CardStreamState mState;
 		public override void OnActivityCreated (Android.OS.Bundle savedInstanceState)

@@ -27,7 +27,7 @@ namespace BatchStepSensor
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
 
-			var fm = SupportFragmentManager;
+			var fm = FragmentManager;
 			var fragment = (BatchStepSensorFragment)fm.FindFragmentByTag (FRAGTAG);
 
 			if (fragment == null) {
@@ -38,9 +38,9 @@ namespace BatchStepSensor
 			}
 
 			// Use fragment as click listener for cards, but must implement correct interface
-			if (!(fragment is OnCardClickListener)) {
+			if (!(fragment is OnCardClickListener))
 				throw new InvalidCastException ("BatchStepSensorFragment must implement OnCardClickListener interface.");
-			}
+			
 			var clickListener = (OnCardClickListener)fm.FindFragmentByTag (FRAGTAG);
 			mRetentionFragment = (StreamRetentionFragment)fm.FindFragmentByTag (RETENTION_TAG);
 			if (mRetentionFragment == null) {
@@ -62,7 +62,7 @@ namespace BatchStepSensor
 			get
 			{
 				if (mCardStreamFragment == null) {
-					mCardStreamFragment = (CardStreamFragment)SupportFragmentManager.FindFragmentById (Resource.Id.fragment_cardstream);
+					mCardStreamFragment = (CardStreamFragment)FragmentManager.FindFragmentById (Resource.Id.fragment_cardstream);
 				}
 				return mCardStreamFragment;
 			}

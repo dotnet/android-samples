@@ -17,7 +17,7 @@ using Android.Hardware;
 
 namespace BatchStepSensor
 {
-	public class BatchStepSensorFragment : Android.Support.V4.App.Fragment, OnCardClickListener
+	public class BatchStepSensorFragment : Fragment, OnCardClickListener
 	{
 
 		public const string TAG = "StepSensorSample";

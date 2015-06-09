@@ -238,6 +238,11 @@ namespace BatchStepSensor.CardStream
 		public Card SetActionVisibility(int actionId, Boolean isVisible)
 		{
 			ViewStates visibilityFlag = isVisible ? ViewStates.Visible : ViewStates.Gone;
+			foreach (CardAction action in mCardActions) {
+				if (action.Id == actionId && action.ActionView != null) {
+					action.ActionView.Visibility = visibilityFlag;
+				}
+			}
 			return this;
 		}
 
