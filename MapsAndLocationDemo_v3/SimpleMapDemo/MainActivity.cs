@@ -80,18 +80,18 @@
 
         private bool TestIfGooglePlayServicesIsInstalled()
         {
-            int queryResult = GooglePlayServicesUtil.IsGooglePlayServicesAvailable(this);
+			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
             if (queryResult == ConnectionResult.Success)
             {
                 Log.Info(Tag, "Google Play Services is installed on this device.");
                 return true;
             }
 
-            if (GooglePlayServicesUtil.IsUserRecoverableError(queryResult))
+			if (GoogleApiAvailability.Instance.IsUserResolvableError (queryResult))
             {
-                string errorString = GooglePlayServicesUtil.GetErrorString(queryResult);
+				string errorString = GoogleApiAvailability.Instance.GetErrorString(queryResult);
                 Log.Error(Tag, "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
-                Dialog errorDialog = GooglePlayServicesUtil.GetErrorDialog(queryResult, this, InstallGooglePlayServicesId);
+				Dialog errorDialog = GoogleApiAvailability.Instance.GetErrorDialog (this, queryResult, InstallGooglePlayServicesId);
                 ErrorDialogFragment dialogFrag = new ErrorDialogFragment(errorDialog);
 
                 dialogFrag.Show(FragmentManager, "GooglePlayServicesDialog");

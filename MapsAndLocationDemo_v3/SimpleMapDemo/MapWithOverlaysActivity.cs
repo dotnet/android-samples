@@ -118,7 +118,7 @@ namespace SimpleMapDemo
         {
             markerClickEventArgs.Handled = true;
 
-            Marker marker = markerClickEventArgs.P0;
+			Marker marker = markerClickEventArgs.Marker;
             if (marker.Id.Equals(_gotoMauiMarkerId))
             {
                 PositionPolarBearGroundOverlay(InMaui);
