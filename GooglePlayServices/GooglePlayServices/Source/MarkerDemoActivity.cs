@@ -103,8 +103,7 @@ namespace GooglePlayServicesTest
 					// Spannable string allows us to edit the formatting of the text.
 					SpannableString titleText = new SpannableString (title);
 					SpanTypes st = (SpanTypes) 0;
-					// FIXME: this somehow rejects to compile
-					//titleText.SetSpan (new ForegroundColorSpan(Color.Red), 0, titleText.Length, st);
+					titleText.SetSpan (new ForegroundColorSpan (Color.Red), 0, titleText.Length (), st);
 					titleUi.TextFormatted = (titleText);
 				} else {
 					titleUi.Text = ("");

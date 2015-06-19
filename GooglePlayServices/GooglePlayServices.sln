@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlayServicesTest", "GooglePlayServicesTest\GooglePlayServicesTest.csproj", "{F15E1FA5-4390-416B-96B8-66CC6179DD10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlayServices", "GooglePlayServices\GooglePlayServices.csproj", "{F15E1FA5-4390-416B-96B8-66CC6179DD10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +13,5 @@ Global
 		{F15E1FA5-4390-416B-96B8-66CC6179DD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15E1FA5-4390-416B-96B8-66CC6179DD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15E1FA5-4390-416B-96B8-66CC6179DD10}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = GooglePlayServicesTest\GooglePlayServicesTest.csproj
 	EndGlobalSection
 EndGlobal

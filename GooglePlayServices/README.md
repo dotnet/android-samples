@@ -1,8 +1,7 @@
-This solution uses the Google Play Services (Froyo) component to demonstrate a few uses of
+This solution uses the Xamarin Google Play Services NuGet to demonstrate a few uses of
 the maps API included within Google Play Services.
 
-Note that this solution WILL NOT BUILD until the component is reloaded by opening this solution
-within Xamarin Studio or Visual Studio. You will also need to add your own Google Maps API key
+You will need to add your own Google Maps API key
 in the Android Manifest.xml file for this sample to run correctly.
 
 For information on obtaining a Google Maps API key, see 
