@@ -1,9 +1,9 @@
 ﻿using System;
 using Android.Gms.Common;
 using Android.Gms.Common.Apis;
+using Android.Gms.Games;
 using Android.Gms.Games.Achievement;
 using Android.Gms.Games.LeaderBoard;
-using Android.Gms.Games;
 using Android.App;
 using Android.Content;
 using Android.Views;
@@ -113,7 +113,7 @@ namespace GooglePlay.Services.Helpers
 			var id = settings.GetString ("playerid", String.Empty);
 
 			var builder = new GoogleApiClientBuilder (activity, this, this);
-			builder.AddApi (Android.Gms.Games.GamesClass.Api);
+			builder.AddApi (Android.Gms.Games.GamesClass.API);
 			builder.AddScope (Android.Gms.Games.GamesClass.ScopeGames);
 			builder.SetGravityForPopups ((int)GravityForPopups);
 			if (ViewForPopups != null)
@@ -192,7 +192,7 @@ namespace GooglePlay.Services.Helpers
 			if (client.IsConnecting)
 				return;
 				
-			var result = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (activity);
+			var result = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (activity);
 			if (result != ConnectionResult.Success) {
 				return;
 			}
