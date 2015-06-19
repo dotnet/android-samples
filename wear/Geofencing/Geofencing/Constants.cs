@@ -47,7 +47,7 @@ namespace Geofencing
 		public const String KEY_PREFIX = "com.example.wearable.geofencing.KEY";
 
 		// Invalid values, used to test geofence storage when retrieving geofences.
-		public const long INVALID_LONG_VALUE = -999l;
+		public const long INVALID_LONG_VALUE = -999L;
 		public const float INVALID_FLOAT_VALUE = -999.0f;
 		public const int INVALID_INT_VALUE = -999;
 	}

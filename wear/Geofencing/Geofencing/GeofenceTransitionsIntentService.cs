@@ -9,19 +9,20 @@ using Java.Util.Concurrent;
 namespace Geofencing
 {
 	[Service(Exported = false)]
-	public class GeofenceTransitionsIntentService : IntentService, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class GeofenceTransitionsIntentService : IntentService, 
+	IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
 	{
 		private IGoogleApiClient mGoogleApiClient;
 		public GeofenceTransitionsIntentService ()
 			:base(typeof(GeofenceTransitionsIntentService).Name)
 		{
-
 		}
+
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
 			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();
@@ -35,12 +36,13 @@ namespace Geofencing
 		protected override void OnHandleIntent (Android.Content.Intent intent)
 		{
 			// First check for errors
-			if (LocationClient.HasError (intent)) {
-				int errorCode = LocationClient.GetErrorCode (intent);
+			var geofencingEvent = GeofencingEvent.FromIntent (intent);
+			if (geofencingEvent.HasError) {
+				int errorCode = geofencingEvent.ErrorCode;
 				Log.Error (Constants.TAG, "Location Services error: " + errorCode);
 			} else {
 				// Get the type of Geofence transition (i.e. enter or exit in this sample).
-				int transitionType = LocationClient.GetGeofenceTransition (intent);
+				int transitionType = geofencingEvent.GeofenceTransition;
 				// Create a DataItem when a user enters one of the geofences. The wearable app will receie this and create a
 				// notification to prompt him/her to check in
 				if (transitionType == Geofence.GeofenceTransitionEnter) {
@@ -48,7 +50,7 @@ namespace Geofencing
 					mGoogleApiClient.BlockingConnect (Constants.CONNECTION_TIME_OUT_MS, TimeUnit.Milliseconds);
 					// Get the geofence ID triggered. Note that only one geofence can be triggered at a time in this example, but in some cases
 					// you might want to consider the full list of geofences triggered
-					String triggeredGeofenceId = LocationClient.GetTriggeringGeofences (intent) [0].RequestId;
+					string triggeredGeofenceId = geofencingEvent.TriggeringGeofences[0].RequestId;
 					// Create a DataItem with this geofence's id. The wearable can use this to create a notification
 					PutDataMapRequest putDataMapRequest = PutDataMapRequest.Create (Constants.GEOFENCE_DATA_ITEM_PATH);
 					putDataMapRequest.DataMap.PutString (Constants.KEY_GEOFENCE_ID, triggeredGeofenceId);

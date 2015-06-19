@@ -14,14 +14,12 @@ using Android.Gms.Common;
 
 namespace Geofencing
 {
-	[Activity ( 
-
+	[Activity (
 		Icon = "@drawable/ic_launcher", 
 		ExcludeFromRecents = true, 
 		Theme = "@android:style/Theme.Translucent.NoTitleBar",
-		Label = "@string/app_name"),
-		IntentFilter(new string[]{ "android.intent.action.MAIN" }, Categories = new string[] { "android.intent.category.LAUNCHER" })]
-	public class MainActivity : Activity, Android.Gms.Common.IGooglePlayServicesClientConnectionCallbacks, Android.Gms.Common.IGooglePlayServicesClientOnConnectionFailedListener, LocationClient.IOnAddGeofencesResultListener
+		Label = "@string/app_name", MainLauncher = true)]
+	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
 	{
 		// Internal List of Geofence objects. In a real app, these migth be provided by an API based on locations within the user's proximity
 		List<IGeofence> mGeofenceList;
@@ -33,7 +31,7 @@ namespace Geofencing
 		// Persistent storage for geofences
 		SimpleGeofenceStore mGeofenceStorage;
 
-		LocationClient mLoactionClient;
+		IGoogleApiClient apiClient;
 		// Stores the PendingIntent used to request geofence monitoring
 		PendingIntent mGeofenceRequestIntent;
 
@@ -46,7 +44,7 @@ namespace Geofencing
 		bool IsGooglePlayServicesAvailable
 		{
 			get {
-				int resultCode = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (this);
+				int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
 				if (resultCode == ConnectionResult.Success) {
 					if (Log.IsLoggable (Constants.TAG, LogPriority.Debug)) {
 						Log.Debug (Constants.TAG, "Google Play services is available");
@@ -72,7 +70,7 @@ namespace Geofencing
 			base.OnCreate (bundle);
 			// Rather than displaying this activity, simply display a toast indicating that the geofence
 			// service is being created. This should happen in less than a second.
-			Toast.MakeText (this, GetString (Resource.String.start_geofence_service), ToastLength.Short).Show ();
+			Toast.MakeText (this, GetString (Resource.String.start_geofence_service), ToastLength.Long).Show ();
 
 			// Instantiate a new geofence storage area.
 			mGeofenceStorage = new SimpleGeofenceStore (this);
@@ -87,7 +85,8 @@ namespace Geofencing
 			Finish ();
 		}
 
-		public void CreateGeofences() {
+		public void CreateGeofences ()
+		{
 			// Create internal "flattened" objects containing the geofence data
 			mAndroidBuildingGeofence = new SimpleGeofence (
 				Constants.ANDROID_BUILDING_ID, // geofenceId
@@ -113,7 +112,8 @@ namespace Geofencing
 			mGeofenceList.Add (mYerbaBuenaGeofence.ToGeofence ());
 		}
 
-		public void AddGeofences() {
+		public void AddGeofences()
+		{
 			// Start a request to add geofences
 			mRequestType = RequestType.Add;
 			// Test for Google Play services after setting the request type
@@ -123,17 +123,19 @@ namespace Geofencing
 			}
 			// Create a new location client object. Since this activity implements ConnectionCallbacks and OnConnectionFailedListener,
 			// it can be used as the listener for both parameters
-			mLoactionClient = new LocationClient (this, this, this);
+			apiClient = new GoogleApiClientBuilder (this, this, this)
+				.AddApi (LocationServices.API)
+				.Build ();
 			// If a request is not already underway
 			if (!mInProgress) {
 				// Indicate that a request is underway
 				mInProgress = true;
 				// Request a connection from the client to Location Services
-				mLoactionClient.Connect ();
+				apiClient.Connect ();
 			} else {
 				// A request is already underway, so disconnect the client and retry the request
-				mLoactionClient.Disconnect ();
-				mLoactionClient.Connect ();
+				apiClient.Disconnect ();
+				apiClient.Connect ();
 			}
 		}
 
@@ -160,8 +162,12 @@ namespace Geofencing
 				// Get the PendingIntent for the geofence monitoring request
 				mGeofenceRequestIntent = GeofenceTransitionPendingIntent;
 				// Send a request to add the current geofences
-				mLoactionClient.AddGeofences (mGeofenceList, mGeofenceRequestIntent, this);
+				LocationServices.GeofencingApi.AddGeofences (apiClient, mGeofenceList, mGeofenceRequestIntent);
 			}
+		}
+
+		public void OnConnectionSuspended (int i)
+		{
 		}
 
 		public void OnDisconnected ()
@@ -169,7 +175,7 @@ namespace Geofencing
 			// Turn off the request flag
 			mInProgress = false;
 			// Destroy the current location client
-			mLoactionClient = null;
+			apiClient = null;
 		}
 
 		public void OnAddGeofencesResult (int statusCode, string[] geofenceRequestIds)
@@ -184,7 +190,7 @@ namespace Geofencing
 			}
 			// turn off the in progress flag and disconnect the client
 			mInProgress = false;
-			mLoactionClient.Disconnect ();
+			apiClient.Disconnect ();
 		}
 	}
 }
