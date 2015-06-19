@@ -3,17 +3,18 @@ using Android.App;
 using Android.OS;
 using Android.Gms.Location;
 using Android.Gms.Common;
+using Android.Gms.Common.Apis;
 using Android.Util;
 using Android.Widget;
 using Android.Locations;
 
-
 namespace FusedLocationProvider
 {
 	[Activity (Label = "FusedLocationProvider", MainLauncher = true)]
-	public class MainActivity : Activity, IGooglePlayServicesClientConnectionCallbacks, IGooglePlayServicesClientOnConnectionFailedListener, Android.Gms.Location.ILocationListener 
+	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks,
+	IGoogleApiClientOnConnectionFailedListener, Android.Gms.Location.ILocationListener 
 	{
-		LocationClient locClient;
+		IGoogleApiClient apiClient;
 		LocationRequest locRequest;
 		Button button;
 		TextView latitude;
@@ -52,7 +53,8 @@ namespace FusedLocationProvider
 
 			if (_isGooglePlayServicesInstalled) {
 				// pass in the Context, ConnectionListener and ConnectionFailedListener
-				locClient = new LocationClient (this, this, this);
+				apiClient = new GoogleApiClientBuilder (this, this, this)
+					.AddApi (LocationServices.API).Build ();
 
 				// generate a location request that we will pass into a call for location updates
 				locRequest = new LocationRequest ();
@@ -67,16 +69,16 @@ namespace FusedLocationProvider
 
 		bool IsGooglePlayServicesInstalled()
 		{
-			int queryResult = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (this);
+			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
 			if (queryResult == ConnectionResult.Success)
 			{
 				Log.Info ("MainActivity", "Google Play Services is installed on this device.");
 				return true;
 			}
 
-			if (GooglePlayServicesUtil.IsUserRecoverableError (queryResult))
+			if (GoogleApiAvailability.Instance.IsUserResolvableError (queryResult))
 			{
-				string errorString = GooglePlayServicesUtil.GetErrorString (queryResult);
+				string errorString = GoogleApiAvailability.Instance.GetErrorString (queryResult);
 				Log.Error ("ManActivity", "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
 
 				// Show error dialog to let user debug google play services
@@ -87,34 +89,34 @@ namespace FusedLocationProvider
 		protected override void OnResume()
 		{
 			base.OnResume ();
-			Log.Debug("OnResume", "OnResume called, connecting to client...");
+			Log.Debug ("OnResume", "OnResume called, connecting to client...");
 
-			locClient.Connect();
+			apiClient.Connect();
 
 			// Clicking the first button will make a one-time call to get the user's last location
 			button.Click += delegate {
-				if(locClient.IsConnected)
+				if (apiClient.IsConnected)
 				{
 					button.Text = "Getting Last Location";
 
-					if(locClient.LastLocation != null)
+					Location location = LocationServices.FusedLocationApi.GetLastLocation (apiClient);
+					if (location != null)
 					{
-						Location location = locClient.LastLocation;
 						latitude.Text = "Latitude: " + location.Latitude.ToString();
 						longitude.Text = "Longitude: " + location.Longitude.ToString();
 						provider.Text = "Provider: " + location.Provider.ToString();
-						Log.Debug("LocationClient", "Last location printed");
+						Log.Debug ("LocationClient", "Last location printed");
 					}
 				}
 				else
 				{
-					Log.Info("LocationClient", "Please wait for client to connect");
+					Log.Info ("LocationClient", "Please wait for client to connect");
 				}
 			};
 
 			// Clicking the second button will send a request for continuous updates
 			button2.Click += delegate {
-				if(locClient.IsConnected)
+				if (apiClient.IsConnected)
 				{
 					button2.Text = "Requesting Location Updates";
 
@@ -131,8 +133,7 @@ namespace FusedLocationProvider
 						locRequest.Priority.ToString(), locRequest.Interval.ToString());
 
 					// pass in a location request and LocationListener
-					locClient.RequestLocationUpdates (locRequest, this);
-
+					LocationServices.FusedLocationApi.RequestLocationUpdates (apiClient, locRequest, this);
 					// In OnLocationChanged (below), we will make calls to update the UI
 					// with the new location data
 				}
@@ -148,11 +149,11 @@ namespace FusedLocationProvider
 			base.OnPause ();
 			Log.Debug ("OnPause", "OnPause called, stopping location updates");
 
-			if (locClient.IsConnected) {
+			if (apiClient.IsConnected) {
 				// stop location updates, passing in the LocationListener
-				locClient.RemoveLocationUpdates (this);
+				LocationServices.FusedLocationApi.RemoveLocationUpdates (apiClient, this);
 
-				locClient.Disconnect ();
+				apiClient.Disconnect ();
 			}
 		}
 
@@ -195,6 +196,11 @@ namespace FusedLocationProvider
 			latitude2.Text = "Latitude: " + location.Latitude.ToString();
 			longitude2.Text = "Longitude: " + location.Longitude.ToString();
 			provider2.Text = "Provider: " + location.Provider.ToString();
+		}
+
+		public void OnConnectionSuspended (int i)
+		{
+			
 		}
 	}
 }
