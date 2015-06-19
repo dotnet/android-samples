@@ -48,7 +48,7 @@ namespace Wearable
 			eventBuffer.Close ();
 
 			var google_api_client = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+				.AddApi (WearableClass.API)
 				.Build ();
 
 			var connectionResult = google_api_client.BlockingConnect (Constants.CONNECT_TIMEOUT_MS,

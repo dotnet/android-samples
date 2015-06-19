@@ -32,7 +32,7 @@ namespace Wearable
 		{
 			base.OnCreate ();
 			google_api_client = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

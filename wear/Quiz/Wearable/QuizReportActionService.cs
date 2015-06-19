@@ -25,7 +25,7 @@ namespace Wearable
 		{
 			if (intent.Action.Equals (ACTION_RESET_QUIZ)) {
 				IGoogleApiClient google_api_client = new GoogleApiClientBuilder (this)
-					.AddApi (WearableClass.Api)
+					.AddApi (WearableClass.API)
 					.Build ();
 
 				ConnectionResult result = google_api_client.BlockingConnect (Constants.CONNECT_TIMEOUT_MS,
