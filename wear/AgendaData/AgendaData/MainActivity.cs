@@ -38,7 +38,7 @@ namespace AgendaData
 			SetContentView (Resource.Layout.main);
 			mLogTextView = (TextView)FindViewById (Resource.Id.log);
 			mSCroller = (ScrollView)FindViewById (Resource.Id.scroller);
-			mGoogleApiClient = new GoogleApiClientBuilder (this).AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClientBuilder (this).AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

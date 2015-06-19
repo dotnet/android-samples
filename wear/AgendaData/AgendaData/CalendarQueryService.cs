@@ -51,7 +51,7 @@ namespace AgendaData
 		{
 			base.OnCreate ();
 			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build();
@@ -192,7 +192,7 @@ namespace AgendaData
 			return GetDefaultProfile (context.Resources);
 		}
 
-		private static byte[] ToByteArray(Bitmap bitmap)
+		private static byte[] ToByteArray (Bitmap bitmap)
 		{
 			using (MemoryStream stream = new MemoryStream ()) {
 			bitmap.Compress (Bitmap.CompressFormat.Png, 100, stream);
@@ -200,7 +200,6 @@ namespace AgendaData
 				stream.Read (byteArray, 0, byteArray.Length);
 				return byteArray;
 			}
-			return null;
 		}
 
 		private static void CloseQuietly (IDisposable closeable)
