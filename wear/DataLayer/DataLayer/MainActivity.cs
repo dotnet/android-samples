@@ -78,7 +78,7 @@ namespace DataLayer
 			generatorExecutor = new ScheduledThreadPoolExecutor (1);
 
 			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();
