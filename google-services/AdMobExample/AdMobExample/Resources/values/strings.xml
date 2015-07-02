@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AdMob Quickstart</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="interstitial_button_text">Show Interstitial Ad</string>
+    <string name="second_activity_title">SecondActivity</string>
+    <string name="second_activity_content">This is the second activity.</string>
+    <string name="test_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="test_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+</resources>
