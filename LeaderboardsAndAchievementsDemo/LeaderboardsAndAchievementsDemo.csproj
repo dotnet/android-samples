@@ -44,17 +44,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.GooglePlayServices.Base">
-      <HintPath>packages\Xamarin.GooglePlayServices.Base.25.0.0.0-beta3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Drive">
-      <HintPath>packages\Xamarin.GooglePlayServices.Drive.25.0.0.0-beta3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Drive.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Games">
-      <HintPath>packages\Xamarin.GooglePlayServices.Games.25.0.0.0-beta3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Games.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Base">
+      <HintPath>packages\Xamarin.GooglePlayServices.Base.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Drive">
+      <HintPath>packages\Xamarin.GooglePlayServices.Drive.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Drive.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Games">
+      <HintPath>packages\Xamarin.GooglePlayServices.Games.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Games.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

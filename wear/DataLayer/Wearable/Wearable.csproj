@@ -54,10 +54,10 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Base">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.25.0.0.0-beta3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Wearable">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Wearable.25.0.0.0-beta3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Wearable.dll</HintPath>
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Wearable.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Wearable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
