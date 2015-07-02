@@ -32,7 +32,7 @@ namespace SimpleWidget
 			RemoteViews updateViews = buildUpdate (this);
 
 			// Push update for this widget to the home screen
-			ComponentName thisWidget = new ComponentName (this, "simplewidget.WordWidget");
+			ComponentName thisWidget = new ComponentName (this, Java.Lang.Class.FromType (typeof (WordWidget)).Name);
 			AppWidgetManager manager = AppWidgetManager.GetInstance (this);
 			manager.UpdateAppWidget (thisWidget, updateViews);
 		}
