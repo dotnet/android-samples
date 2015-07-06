@@ -5,6 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 	<Brief>This sample shows the two sizes of Floating Action Buttons and how to interact with them.</Brief>
 </SampleMetadata>
