@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+        <GoogleIO2014Master.UI.CardFrameLayout
+            style="@style/Card">
+            <ImageView
+                style="@style/CardPhoto"
+                android:id="@+id/photo"
+                android:transitionName="photo1"
+                android:src="@drawable/photo1" />
+            <TextView
+                style="@style/CardTitle"
+                android:id="@+id/show_photo_1"
+                android:text="Pacifica Pier" />
+        </GoogleIO2014Master.UI.CardFrameLayout>
+        <GoogleIO2014Master.UI.CardFrameLayout
+            style="@style/Card">
+            <ImageView
+                style="@style/CardPhoto"
+                android:id="@id/photo"
+                android:transitionName="photo2"
+                android:src="@drawable/photo2" />
+            <TextView
+                style="@style/CardTitle"
+                android:id="@+id/show_photo_2"
+                android:text="Pink Flamingo" />
+        </GoogleIO2014Master.UI.CardFrameLayout>
+        <GoogleIO2014Master.UI.CardFrameLayout
+            style="@style/Card">
+            <ImageView
+                style="@style/CardPhoto"
+                android:id="@id/photo"
+                android:transitionName="photo3"
+                android:src="@drawable/photo3" />
+            <TextView
+                style="@style/CardTitle"
+                android:id="@+id/show_photo_3"
+                android:text="Antelope Canyon" />
+        </GoogleIO2014Master.UI.CardFrameLayout>
+        <GoogleIO2014Master.UI.CardFrameLayout
+            style="@style/Card">
+            <ImageView
+                style="@style/CardPhoto"
+                android:id="@id/photo"
+                android:transitionName="photo4"
+                android:src="@drawable/photo4" />
+            <TextView
+                style="@style/CardTitle"
+                android:id="@+id/show_photo_4"
+                android:text="Lone Pine" />
+        </GoogleIO2014Master.UI.CardFrameLayout>
+    </LinearLayout>
+</ScrollView>

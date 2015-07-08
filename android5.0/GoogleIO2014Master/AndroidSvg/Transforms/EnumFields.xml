@@ -1,0 +1,18 @@
+﻿<enum-field-mappings>
+	<!--
+  This example converts the constants Fragment_id, Fragment_name,
+  and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
+  to an enum called Android.Support.V4.App.FragmentTagType with values
+  Id, Name, and Tag.
+  
+  <mapping clr-enum-type="Android.Support.V4.App.FragmentTagType" jni-class="android/support/v4/app/FragmentActivity$FragmentTag">
+    <field clr-name="Id" jni-name="Fragment_id" value="1" />
+    <field clr-name="Name" jni-name="Fragment_name" value="0" />
+    <field clr-name="Tag" jni-name="Fragment_tag" value="2" />
+  </type>
+
+  Notes:
+  - An optional "bitfield" attribute marks the enum type with [Flags].
+  - For Java interfaces, use "jni-interface" attribute instead of "jni-class" attribute.
+  -->
+</enum-field-mappings>

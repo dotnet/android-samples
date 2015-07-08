@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnimatedPathView">
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="strokeColor" format="color|reference" />
+        <attr name="fillColor" format="color|reference" />
+        <attr name="phase" format="float" />
+        <attr name="duration" format="integer" />
+        <attr name="fillDuration" format="integer" />
+        <attr name="fillOffset" format="integer" />
+        <attr name="fadeFactor" format="float" />
+        <attr name="svgPath" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,31 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='CSSParser.Selector']" name="managedName">SelectorClass</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Colour']" name="managedName">ColourClass</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SolidColor']" name="managedName">SolidColourClass</attr>
+
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVGParser.TextScanner']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgElementBase']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgObject']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Length']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Unit']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Style']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/interface[@name='SVG.SvgContainer']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.CSSClipRect']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Colour']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgPaint']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.Box']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.PathDefinition']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/interface[@name='SVG.PathInterface']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.TextContainer']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgConditionalContainer']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgElement']" name="visibility">public</attr>
+
+</metadata>
