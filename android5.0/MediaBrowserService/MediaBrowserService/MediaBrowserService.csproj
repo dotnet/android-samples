@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{A244C980-953F-458E-B329-FF436D2CBF0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MediaBrowserService</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>MediaBrowserService</AssemblyName>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\MusicProvider.cs" />
+    <Compile Include="Models\MutableMediaMetadata.cs" />
+    <Compile Include="Utils\BitmapHelper.cs" />
+    <Compile Include="Utils\CarHelper.cs" />
+    <Compile Include="Utils\LogHelper.cs" />
+    <Compile Include="Utils\MediaIDHelper.cs" />
+    <Compile Include="Utils\QueueHelper.cs" />
+    <Compile Include="Utils\ResourceHelper.cs" />
+    <Compile Include="AlbumArtCache.cs" />
+    <Compile Include="BrowseFragment.cs" />
+    <Compile Include="MediaNotificationManager.cs" />
+    <Compile Include="MusicPlayerActivity.cs" />
+    <Compile Include="MusicService.cs" />
+    <Compile Include="PackageValidator.cs" />
+    <Compile Include="Playback.cs" />
+    <Compile Include="QueueAdapter.cs" />
+    <Compile Include="QueueFragment.cs" />
+    <Compile Include="Utils\LruCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\values\" />
+    <Folder Include="Resources\xml\" />
+    <Folder Include="Models\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\strings_notifications.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\layout\activity_player.xml" />
+    <AndroidResource Include="Resources\layout\fragment_list.xml" />
+    <AndroidResource Include="Resources\layout\media_list_item.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_by_genre.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_default_art.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_equalizer_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_pause_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_play_arrow_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_shuffle_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_skip_next_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_skip_previous_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_star_off.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_star_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_pause_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_play_arrow_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_shuffle_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_skip_next_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_skip_previous_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_equalizer_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_arrow_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_shuffle_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_skip_next_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_skip_previous_white_24dp.png" />
+    <AndroidResource Include="Resources\xml\allowed_media_browser_callers.xml" />
+    <AndroidResource Include="Resources\xml\automotive_app_desc.xml" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon.png" />
+  </ItemGroup>
+</Project>

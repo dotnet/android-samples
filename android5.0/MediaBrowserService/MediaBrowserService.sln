@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowserService", "MediaBrowserService\MediaBrowserService.csproj", "{A244C980-953F-458E-B329-FF436D2CBF0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A244C980-953F-458E-B329-FF436D2CBF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A244C980-953F-458E-B329-FF436D2CBF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A244C980-953F-458E-B329-FF436D2CBF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A244C980-953F-458E-B329-FF436D2CBF0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
