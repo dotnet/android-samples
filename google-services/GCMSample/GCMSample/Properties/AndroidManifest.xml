@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.gcmquickstart">
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="22" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/icon" android:theme="@style/AppTheme">
+		<receiver android:name="com.google.android.gms.gcm.GcmReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<category android:name="gcm.play.android.samples.com.gcmquickstart" />
+			</intent-filter>
+		</receiver>
+	</application>
+</manifest>
