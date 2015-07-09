@@ -6,5 +6,6 @@
 	<Tags>Platform Features, AndroidL</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<HideZip>true</HideZip><!--references code outside folder root, cannot be ZIPped-->
 	<Brief>Demonstrates using a profile owner to set app restrictions in Android.</Brief>
 </SampleMetadata>

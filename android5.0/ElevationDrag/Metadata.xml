@@ -6,5 +6,6 @@
 	<Tags>Platform Features, AndroidL, User Interface</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<HideZip>true</HideZip><!--references code outside folder root, cannot be ZIPped-->
 	<Brief>This sample demonstrates a drag and drop action on different shapes.</Brief>
 </SampleMetadata>
