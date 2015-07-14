@@ -1,4 +1,4 @@
-AutoBackup Sample
+Analytics Sample
 =================
 
 This sample demonstrates how to report screen views to Google Analytics.
