@@ -76,7 +76,7 @@ namespace FingerprintDialog
 			
 			mCancellationSignal = new CancellationSignal ();
 			mSelfCancelled = false;
-			mFingerprintManager.Authenticate (cryptoObject, mCancellationSignal, this, 0 /* flags */);
+			mFingerprintManager.Authenticate (cryptoObject, mCancellationSignal, 0 /* flags */, this, null);
 			mIcon.SetImageResource (Resource.Drawable.ic_fp_40px);
 		}
 

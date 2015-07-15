@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Hardware.Fingerprint;
 using Android.Views.InputMethods;
+using Android;
 
 namespace FingerprintDialog
 {
@@ -28,6 +29,9 @@ namespace FingerprintDialog
 		View mFingerprintContent;
 		View mBackupContent;
 		EditText mPassword;
+		CheckBox mUseFingerprintFutureCheckBox;
+		TextView mPasswordDescriptionTextView;
+		TextView mNewFingerprintEnrolledTextView;
 
 		Stage mStage = Stage.Fingerprint;
 
@@ -36,7 +40,8 @@ namespace FingerprintDialog
 
 		FingerprintUiHelper.FingerprintUiHelperBuilder mFingerprintUiHelperBuilder;
 		InputMethodManager mInputMethodManager;
-	
+		ISharedPreferences mSharedPreferences;
+
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -65,8 +70,11 @@ namespace FingerprintDialog
 
 			mFingerprintContent = v.FindViewById (Resource.Id.fingerprint_container);
 			mBackupContent = v.FindViewById (Resource.Id.backup_container);
-			mPassword = (EditText)v.FindViewById (Resource.Id.password);
+			mPassword = v.FindViewById<EditText> (Resource.Id.password);
 			mPassword.SetOnEditorActionListener (this);
+			mPasswordDescriptionTextView = v.FindViewById<TextView> (Resource.Id.password_description);
+			mUseFingerprintFutureCheckBox = v.FindViewById<CheckBox> (Resource.Id.use_fingerprint_in_future_check);
+			mNewFingerprintEnrolledTextView = v.FindViewById<TextView> (Resource.Id.new_fingerprint_enrolled_description);
 			mFingerprintUiHelper = mFingerprintUiHelperBuilder.Build (
 				(ImageView)v.FindViewById (Resource.Id.fingerprint_icon),
 				(TextView)v.FindViewById (Resource.Id.fingerprint_status), this);
@@ -86,6 +94,11 @@ namespace FingerprintDialog
 
 			if (mStage == Stage.Fingerprint)
 				mFingerprintUiHelper.StartListening (mCryptoObject);
+		}
+
+		public void SetStage (Stage stage)
+		{
+			mStage = stage;
 		}
 
 		public override void OnPause ()
@@ -128,11 +141,30 @@ namespace FingerprintDialog
 		/// </summary>
 		void VerifyPassword ()
 		{
-			if (CheckPassword (mPassword.Text.ToString ())) {
+			if (CheckPassword (mPassword.Text)) {
 				((MainActivity)Activity).OnPurchased (false /* without Fingerprint */);
 				Dismiss ();
 			} else {
 				// assume the password is always correct.
+				if (!CheckPassword (mPassword.Text)) {
+					return;
+				}
+				var activity = ((MainActivity)Activity);
+				if (mStage == Stage.NewFingerprintEnrolled) {
+					var editor = mSharedPreferences.Edit ();
+					editor.PutBoolean (GetString (Resource.String.use_fingerprint_to_authenticate_key),
+						mUseFingerprintFutureCheckBox.Checked);
+					editor.Apply ();
+
+					if (mUseFingerprintFutureCheckBox.Checked) {
+						// Re-create the key so that fingerprints including new ones are validated.
+						activity.CreateKey ();
+						mStage = Stage.Fingerprint;
+					}
+				}
+				mPassword.Text = "";
+				((MainActivity)Activity).OnPurchased (false /* without Fingerprint */);
+				Dismiss ();
 			}
 		}
 
@@ -157,16 +189,23 @@ namespace FingerprintDialog
 		{
 			switch (mStage) {
 			case Stage.Fingerprint:
-				mCancelButton.Text = mCancelButton.Resources.GetString(Resource.String.cancel);
-				mSecondDialogButton.Text = mSecondDialogButton.Resources.GetString(Resource.String.use_password);
+				mCancelButton.Text = mCancelButton.Resources.GetString (Resource.String.cancel);
+				mSecondDialogButton.Text = mSecondDialogButton.Resources.GetString (Resource.String.use_password);
 				mFingerprintContent.Visibility = ViewStates.Visible;
 				mBackupContent.Visibility = ViewStates.Gone;
 				break;
+			case Stage.NewFingerprintEnrolled:
+				// Intentional fall through
 			case Stage.Password:
-				mCancelButton.Text = mCancelButton.Resources.GetString(Resource.String.cancel);
-				mSecondDialogButton.Text = mSecondDialogButton.Resources.GetString(Resource.String.ok);
+				mCancelButton.Text = mCancelButton.Resources.GetString (Resource.String.cancel);
+				mSecondDialogButton.Text = mSecondDialogButton.Resources.GetString (Resource.String.ok);
 				mFingerprintContent.Visibility = ViewStates.Gone;
 				mBackupContent.Visibility = ViewStates.Visible;
+				if (mStage == Stage.NewFingerprintEnrolled) {
+					mPasswordDescriptionTextView.Visibility = ViewStates.Gone;
+					mNewFingerprintEnrolledTextView.Visibility = ViewStates.Visible;
+					mUseFingerprintFutureCheckBox.Visibility = ViewStates.Visible;
+				}
 				break;
 			}
 		}
@@ -196,9 +235,10 @@ namespace FingerprintDialog
 		/// <summary>
 		/// Enumeration to indicate which authentication method the user is trying to authenticate with.
 		/// </summary>
-		enum Stage
+		public enum Stage
 		{
 			Fingerprint,
+			NewFingerprintEnrolled,
 			Password
 		}
 	}
