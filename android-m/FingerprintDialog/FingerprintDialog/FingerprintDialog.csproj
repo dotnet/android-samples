@@ -51,12 +51,16 @@
     <Compile Include="FingerprintModule.cs" />
     <Compile Include="FingerprintUiHelper.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="SettingsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <Folder Include="Fragments\" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\card.xml" />
     <AndroidResource Include="Resources\drawable\ic_fingerprint_error.xml" />
     <AndroidResource Include="Resources\drawable\ic_fingerprint_success.xml" />
@@ -71,8 +75,15 @@
     <AndroidResource Include="Resources\layout\fingerprint_dialog_backup.xml" />
     <AndroidResource Include="Resources\layout\fingerprint_dialog_container.xml" />
     <AndroidResource Include="Resources\layout\fingerprint_dialog_content.xml" />
+    <AndroidResource Include="Resources\menu\menu_main.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\values\base-strings.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\template-dimens.xml" />
     <AndroidResource Include="Resources\values\template-styles.xml" />
     <AndroidResource Include="Resources\values-sw600dp\template-dimens.xml" />
@@ -80,19 +91,12 @@
     <AndroidResource Include="Resources\values-v11\template-styles.xml" />
     <AndroidResource Include="Resources\values-v21\base-colors.xml" />
     <AndroidResource Include="Resources\values-v21\base-template-styles.xml" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
-    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Fragments\" />
-    <Folder Include="Resources\mipmap-xxxhdpi\" />
-    <Folder Include="Resources\mipmap-xxhdpi\" />
-    <Folder Include="Resources\mipmap-xhdpi\" />
-    <Folder Include="Resources\mipmap-mdpi\" />
-    <Folder Include="Resources\mipmap-hdpi\" />
+    <AndroidResource Include="Resources\xml\preferences.xml" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon.png" />
   </ItemGroup>
 </Project>
