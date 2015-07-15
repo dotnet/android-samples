@@ -17,6 +17,7 @@ using Android.Gms.Fitness.Result;
 using Android.Gms.Common;
 using System.Threading.Tasks;
 using Android.Graphics;
+using Android.Support.V7.App;
 
 namespace BasicHistorySessions
 {
