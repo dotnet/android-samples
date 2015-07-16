@@ -6,8 +6,6 @@ using Java.Lang;
 using Android.Views.InputMethods;
 using Android.App;
 using Android.Hardware.Fingerprint;
-using Android.Security.Keystore;
-using Android.Preferences;
 
 namespace FingerprintDialog
 {
@@ -42,7 +40,7 @@ namespace FingerprintDialog
 		public KeyGenerator ProvidesKeyGenerator ()
 		{
 			try {
-				return KeyGenerator.GetInstance (KeyProperties.KeyAlgorithmAes, "AndroidKeyStore");
+				return KeyGenerator.GetInstance ("AES", "AndroidKeyStore");
 			} catch (NoSuchAlgorithmException e) {
 				throw new RuntimeException ("Failed to get an instance of KeyGenerator", e);
 			} catch (NoSuchProviderException e) {
@@ -53,9 +51,7 @@ namespace FingerprintDialog
 		public Cipher ProvidesCipher (KeyStore keyStore)
 		{
 			try {
-				return Cipher.GetInstance (KeyProperties.KeyAlgorithmAes + "/"
-					+ KeyProperties.BlockModeCbc + "/"
-					+ KeyProperties.EncryptionPaddingPkcs7);
+				return Cipher.GetInstance ("AES/CBC/PKCS7Padding");
 			} catch (NoSuchAlgorithmException e) {
 				throw new RuntimeException ("Failed to get an instance of Cipher", e);
 			} catch (NoSuchPaddingException e) {
@@ -66,11 +62,6 @@ namespace FingerprintDialog
 		public InputMethodManager ProvidesInputMethodManager (Context context)
 		{
 			return (InputMethodManager)context.GetSystemService (Context.InputMethodService);
-		}
-
-		public ISharedPreferences ProvidesSharedPreferences (Context context)
-		{
-			return PreferenceManager.GetDefaultSharedPreferences (context);
 		}
 	}
 }

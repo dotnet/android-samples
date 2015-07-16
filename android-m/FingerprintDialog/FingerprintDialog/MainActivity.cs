@@ -32,7 +32,6 @@ namespace FingerprintDialog
 
 		// Alias for our key in the Android Key Store
 		static readonly string KEY_NAME = "my_key";
-		static readonly int FINGERPRINT_PERMISSION_REQUEST_CODE = 0;
 
 		FingerprintModule fingerprintModule;
 		KeyguardManager mKeyguardManager;
@@ -40,72 +39,58 @@ namespace FingerprintDialog
 		KeyStore mKeyStore;
 		KeyGenerator mKeyGenerator;
 		Cipher mCipher;
-		ISharedPreferences mSharedPreferences;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			fingerprintModule = new FingerprintModule (this);
+			fingerprintModule = new FingerprintModule(this);
 			mKeyguardManager = fingerprintModule.ProvidesKeyguardManager (this);
 			mKeyStore = fingerprintModule.ProvidesKeystore ();
 			mKeyGenerator = fingerprintModule.ProvidesKeyGenerator ();
 			mCipher = fingerprintModule.ProvidesCipher (mKeyStore);
 
-			RequestPermissions (new [] { Manifest.Permission.UseFingerprint }, FINGERPRINT_PERMISSION_REQUEST_CODE);
-
+			RequestPermissions (new [] { Manifest.Permission.UseFingerprint }, 0);
 		}
 
 
 		public override void OnRequestPermissionsResult (int requestCode, string[] permissions, int[] state)
 		{
-			if (requestCode == FINGERPRINT_PERMISSION_REQUEST_CODE && state [0] == (int)Android.Content.PM.Permission.Granted) {
+			if (requestCode == 0 && state [0] == (int)Android.Content.PM.Permission.Granted) {
 				SetContentView (Resource.Layout.activity_main);
-				var purchaseButton = FindViewById<Button> (Resource.Id.purchase_button);
+				var purchaseButton = (Button)FindViewById (Resource.Id.purchase_button);
 				if (!mKeyguardManager.IsKeyguardSecure) {
 					// Show a message that the user hasn't set up a fingerprint or lock screen.
 					Toast.MakeText (this, "Secure lock screen hasn't set up.\n"
-					+ "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
+						+ "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
 						ToastLength.Long).Show ();
-					purchaseButton.Enabled = false;
-				}
-				if (!CreateKey ()) {
 					purchaseButton.Enabled = false;
 					return;
 				}
-				purchaseButton.Enabled = true;
-				purchaseButton.Click += (sender, e) => {
+				CreateKey ();
+				purchaseButton.Click += (object sender, EventArgs e) => {
 					// Show the fingerprint dialog. The user has the option to use the fingerprint with
 					// crypto, or you can fall back to using a server-side verified password.
-					FindViewById (Resource.Id.confirmation_message).Visibility = ViewStates.Gone;
-					FindViewById (Resource.Id.encrypted_message).Visibility = ViewStates.Gone;
-
-					if (InitCipher ()) {
-						mFragment.SetCryptoObject (new FingerprintManager.CryptoObject (mCipher));
-						var useFingerprintPreference = mSharedPreferences.GetBoolean (GetString (Resource.String.use_fingerprint_to_authenticate_key), true);
-						if (useFingerprintPreference) {
-							mFragment.SetStage (FingerprintAuthenticationDialogFragment.Stage.Fingerprint);
-						} else {
-							mFragment.SetStage (FingerprintAuthenticationDialogFragment.Stage.Password);
-						}
-						mFragment.Show (FragmentManager, DIALOG_FRAGMENT_TAG);
-					} else {
-						mFragment.SetCryptoObject (new FingerprintManager.CryptoObject (mCipher));
-						mFragment.SetStage (FingerprintAuthenticationDialogFragment.Stage.NewFingerprintEnrolled);
-						mFragment.Show (FragmentManager, DIALOG_FRAGMENT_TAG);
-					}
+					mFragment.SetCryptoObject (new FingerprintManager.CryptoObject (mCipher));
+					mFragment.Show (FragmentManager, DIALOG_FRAGMENT_TAG);
 				};
+
+				// Set up the crypto object for later. The object will be authenticated by use
+				// of the fingerprint.
+				InitCipher ();
 			}
 		}
 
-		bool InitCipher ()
+		void InitCipher ()
 		{
 			try {
 				mKeyStore.Load (null);
 				var key = mKeyStore.GetKey (KEY_NAME, null);
 				mCipher.Init (CipherMode.EncryptMode, key);
-				return true;
 			} catch (KeyPermanentlyInvalidatedException e) {
-				return false;
+				// This happens if the lock screen has been disabled or reset after the key was
+				// generated, or if a fingerprint got enrolled after the key was generated.
+				Toast.MakeText (this, "Keys are invalidated after created. Retry the purchase\n"
+				+ e.Message, ToastLength.Long).Show ();
 			} catch (KeyStoreException e) {
 				throw new RuntimeException ("Failed to init Cipher", e);
 			} catch (CertificateException e) {
@@ -123,9 +108,13 @@ namespace FingerprintDialog
 
 		public void OnPurchased (bool withFingerprint)
 		{
+			FindViewById (Resource.Id.purchase_button).Visibility = ViewStates.Gone;
 			if (withFingerprint) {
+				// If the user has authenticated with fingerprint, verify that using cryptography and
+				// then show the confirmation message.
 				TryEncrypt ();
 			} else {
+				// Authentication happened with backup password. Just show the confirmation message.
 				ShowConfirmation (null);
 			}
 		}
@@ -138,7 +127,7 @@ namespace FingerprintDialog
 		{
 			FindViewById (Resource.Id.confirmation_message).Visibility = ViewStates.Visible;
 			if (encrypted != null) {
-				TextView v = FindViewById<TextView> (Resource.Id.encrypted_message);
+				TextView v = (TextView)FindViewById (Resource.Id.encrypted_message);
 				v.Visibility = ViewStates.Visible;
 				v.Text = Base64.EncodeToString (encrypted, 0 /* flags */);
 			}
@@ -151,7 +140,7 @@ namespace FingerprintDialog
 		void TryEncrypt ()
 		{
 			try {
-				byte[] encrypted = mCipher.DoFinal (System.Text.Encoding.Default.GetBytes (SECRET_MESSAGE));
+				byte[] encrypted = mCipher.DoFinal (System.Text.Encoding.Default.GetBytes(SECRET_MESSAGE));
 				ShowConfirmation (encrypted);
 			} catch (BadPaddingException e) {
 				Toast.MakeText (this, "Failed to encrypt the data with the generated key. "
@@ -169,7 +158,7 @@ namespace FingerprintDialog
 		/// Creates a symmetric key in the Android Key Store which can only be used after the user 
 		/// has authenticated with fingerprint.
 		/// </summary>
-		public bool CreateKey ()
+		void CreateKey ()
 		{
 			// The enrolling flow for fingerprint. This is where you ask the user to set up fingerprint
 			// for your flow. Use of keys is necessary if you need to know if the set of
@@ -188,10 +177,6 @@ namespace FingerprintDialog
 					.SetEncryptionPaddings (KeyProperties.EncryptionPaddingPkcs7)
 					.Build ());
 				mKeyGenerator.GenerateKey ();
-				return true;
-			} catch (IllegalStateException e) {
-				Toast.MakeText (this, "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint", ToastLength.Long).Show ();
-				return false;
 			} catch (NoSuchAlgorithmException e) {
 				throw new RuntimeException (e);
 			} catch (InvalidAlgorithmParameterException e) {
@@ -201,24 +186,6 @@ namespace FingerprintDialog
 			} catch (IOException e) {
 				throw new RuntimeException (e);
 			}
-		}
-
-		public override bool OnCreateOptionsMenu (IMenu menu)
-		{
-			MenuInflater.Inflate (Resource.Menu.menu_main, menu);
-			return true;
-		}
-
-		public override bool OnOptionsItemSelected (IMenuItem item)
-		{
-			var id = item.ItemId;
-
-			if (id == Resource.Id.action_settings) {
-				var intent = new Intent(this, typeof(SettingsActivity));
-				StartActivity(intent);
-				return true;
-			}
-			return base.OnOptionsItemSelected(item);
 		}
 	}
 }
