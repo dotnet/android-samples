@@ -47,8 +47,13 @@ namespace RuntimePermissions
 		{
 			// Open an instance of the first camera and retrieve its info.
 			camera = GetCameraInstance (CAMERA_ID);
-			var cameraInfo = new Camera.CameraInfo ();
-			Camera.GetCameraInfo (CAMERA_ID, cameraInfo);
+			Camera.CameraInfo cameraInfo = null;
+
+			if (camera != null) {
+				// Get camera info only if the camera is available
+				cameraInfo = new Camera.CameraInfo ();
+				Camera.GetCameraInfo (CAMERA_ID, cameraInfo);
+			}
 
 			if (camera == null || cameraInfo == null) {
 				Toast.MakeText (Activity, "Camera is not available.", ToastLength.Short).Show ();

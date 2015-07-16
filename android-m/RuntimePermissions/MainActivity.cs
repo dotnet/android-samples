@@ -16,6 +16,44 @@ using Java.Interop;
 
 namespace RuntimePermissions
 {
+	/**
+ 	* Launcher Activity that demonstrates the use of runtime permissions for Android M.
+ 	* It contains a summary sample description, sample log and a Fragment that calls callbacks on this
+ 	* Activity to illustrate parts of the runtime permissions API.
+ 	* <p>
+ 	* This Activity requests permissions to access the camera ({@link android.Manifest.permission#CAMERA})
+ 	* when the 'Show Camera' button is clicked to display the camera preview.
+ 	* Contacts permissions (({@link android.Manifest.permission#READ_CONTACTS} and ({@link
+ 	* android.Manifest.permission#WRITE_CONTACTS})) are requested when the 'Show and Add Contacts'
+ 	* button is
+ 	* clicked to display the first contact in the contacts database and to add a dummy contact
+ 	* directly
+ 	* to it. First, permissions are checked if they have already been granted through {@link
+ 	* android.app.Activity#checkSelfPermission(String)} (wrapped in {@link
+ 	* PermissionUtil#hasSelfPermission(Activity, String)} and {@link PermissionUtil#hasSelfPermission(Activity,
+ 	* String[])} for compatibility). If permissions have not been granted, they are requested through
+ 	* {@link Activity#requestPermissions(String[], int)} and the return value checked in {@link
+ 	* Activity#onRequestPermissionsResult(int, String[], int[])}.
+ 	* <p>
+ 	* Before requesting permissions, {@link Activity#shouldShowRequestPermissionRationale(String)}
+ 	* should be called to provide the user with additional context for the use of permissions if they
+ 	* have been denied previously.
+ 	* <p>
+ 	* If this sample is executed on a device running a platform version below M, all permissions
+ 	* declared
+ 	* in the Android manifest file are always granted at install time and cannot be requested at run
+ 	* time.
+ 	* <p>
+ 	* This sample targets the M platform and must therefore request permissions at runtime. Change the
+ 	* targetSdk in the file 'Application/build.gradle' to 22 to run the application in compatibility
+ 	* mode.
+ 	* Now, if a permission has been disable by the system through the application settings, disabled
+ 	* APIs provide compatibility data.
+ 	* For example the camera cannot be opened or an empty list of contacts is returned. No special
+ 	* action is required in this case.
+ 	* <p>
+ 	* (This class is based on the MainActivity used in the SimpleFragment sample template.)
+ 	*/
 	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
@@ -57,12 +95,21 @@ namespace RuntimePermissions
 
 			// Check if the Camera permission is already available.
 			if (PermissionUtil.HasSelfPermission (this, Manifest.Permission.Camera)) {
-				Log.Info (TAG, "CAMERA permission has already been granted. Displaying camera preview.");
 				// Camera permissions is already available, show the camera preview.
+				Log.Info (TAG, "CAMERA permission has already been granted. Displaying camera preview.");
 				ShowCameraPreview ();
 			} else {
+				// Camera permission has not been granted.
 				Log.Info (TAG, "CAMERA permission has NOT been granted. Requesting permission.");
-				// Camera permission has not been granted. Request it.
+
+				// Provide an additional rationale to the user if the permission was not granted
+				// and the user would benefit from additional context for the use of the permission.
+				if (ShouldShowRequestPermissionRationale (Manifest.Permission.Camera)) {
+					Log.Info (TAG, "Displaying camera permission rationale to provide additional context.");
+					Toast.MakeText (this, Resource.String.permission_camera_rationale, ToastLength.Short).Show ();
+				}
+
+				// Request Camera permission.
 				RequestPermissions (new string[] { Manifest.Permission.Camera }, REQUEST_CAMERA);
 			}
 		}
@@ -78,12 +125,22 @@ namespace RuntimePermissions
 
 			// Verify that all required contact permissions have been granted.
 			if (PermissionUtil.HasSelfPermission (this, PERMISSIONS_CONTACT)) {
-				Log.Info (TAG, "Contact permissions have already been granted. Displaying contact details.");
 				// Contact permissions have been granted. Show the contacts fragment.
+				Log.Info (TAG, "Contact permissions have already been granted. Displaying contact details.");
 				ShowContactDetails ();
 			} else {
+				// Contacts permissions have not been granted.
 				Log.Info (TAG, "Contact permissions has NOT been granted. Requesting permission.");
-				// contact permissions has not been granted (read and write contacts). Request them.
+
+				// Provide an additional rationale to the user if the permission was not granted
+				// and the user would benefit from additional context for the use of the permission.
+				if (ShouldShowRequestPermissionRationale (Manifest.Permission.ReadContacts)
+					|| ShouldShowRequestPermissionRationale (Manifest.Permission.WriteContacts)) {
+					Log.Info (TAG, "Displaying contacts permission rationale to provide additional context.");
+					Toast.MakeText (this, Resource.String.permission_contacts_rationale, ToastLength.Short).Show ();
+				}
+
+				// Request Contact permission.
 				RequestPermissions (PERMISSIONS_CONTACT, REQUEST_CONTACTS);
 			}
 		}
