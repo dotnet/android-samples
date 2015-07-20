@@ -61,17 +61,21 @@ namespace FingerprintDialog
 			if (requestCode == FINGERPRINT_PERMISSION_REQUEST_CODE && state [0] == (int)Android.Content.PM.Permission.Granted) {
 				SetContentView (Resource.Layout.activity_main);
 				var purchaseButton = FindViewById<Button> (Resource.Id.purchase_button);
+
 				if (!mKeyguardManager.IsKeyguardSecure) {
 					// Show a message that the user hasn't set up a fingerprint or lock screen.
 					Toast.MakeText (this, "Secure lock screen hasn't set up.\n"
 					+ "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
 						ToastLength.Long).Show ();
 					purchaseButton.Enabled = false;
+					return;
 				}
+
 				if (!CreateKey ()) {
 					purchaseButton.Enabled = false;
 					return;
 				}
+
 				purchaseButton.Enabled = true;
 				purchaseButton.Click += (sender, e) => {
 					// Show the fingerprint dialog. The user has the option to use the fingerprint with
