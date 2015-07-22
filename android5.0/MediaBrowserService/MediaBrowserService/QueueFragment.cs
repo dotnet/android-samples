@@ -136,29 +136,6 @@ namespace MediaBrowserService
 					queueAdapter.NotifyDataSetChanged ();
 				}
 			};
-			buttonListener.OnClickImpl = v => {
-				var state = playbackState == null ?
-					PlaybackStateCode.None : playbackState.State;
-				switch (v.Id) {
-				case Resource.Id.play_pause:
-					LogHelper.Debug (Tag, "Play button pressed, in state " + state);
-					if (state == PlaybackStateCode.Paused ||
-					    state == PlaybackStateCode.Stopped ||
-					    state == PlaybackStateCode.None) {
-						PlayMedia ();
-					} else if (state == PlaybackStateCode.Playing) {
-						PauseMedia ();
-					}
-					break;
-				case Resource.Id.skip_previous:
-					LogHelper.Debug (Tag, "Start button pressed, in state " + state);
-					SkipToPrevious ();
-					break;
-				case Resource.Id.skip_next:
-					SkipToNext ();
-					break;
-				}
-			};
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
@@ -167,28 +144,25 @@ namespace MediaBrowserService
 
 			skipPrevious = rootView.FindViewById<ImageButton> (Resource.Id.skip_previous);
 			skipPrevious.Enabled = false;
-			skipPrevious.SetOnClickListener (buttonListener);
+			skipPrevious.Click += OnClick;
 
 			skipNext = rootView.FindViewById<ImageButton> (Resource.Id.skip_next);
 			skipNext.Enabled = false;
-			skipNext.SetOnClickListener (buttonListener);
+			skipNext.Click += OnClick;
 
 			playPause = rootView.FindViewById<ImageButton> (Resource.Id.play_pause);
 			playPause.Enabled = true;
-			playPause.SetOnClickListener (buttonListener);
+			playPause.Click += OnClick;
 
 			queueAdapter = new QueueAdapter (Activity);
-
-			var listViewClickListener = new ListViewClickListener ();
-			listViewClickListener.OnItemClickImpl = (parent, view, position, id) => {
-				var item = queueAdapter.GetItem (position);
-				transportControls.SkipToQueueItem (item.QueueId);
-			};
 
 			var listView = rootView.FindViewById<ListView> (Resource.Id.list_view);
 			listView.Adapter = queueAdapter;
 			listView.Focusable = true;
-			listView.OnItemClickListener = listViewClickListener;
+			listView.ItemClick += (sender, e) => {
+				var item = queueAdapter.GetItem(e.Position);
+				transportControls.SkipToQueueItem(item.QueueId);
+			};
 
 			mediaBrowser = new MediaBrowser (Activity,
 				new ComponentName (Activity, Java.Lang.Class.FromType (typeof(MusicService))),
@@ -270,25 +244,29 @@ namespace MediaBrowserService
 			"\n Metadata " + mediaController.Metadata);
 		}
 
-		class OnClickListener : Java.Lang.Object, View.IOnClickListener
+		public void OnClick (object sender, EventArgs e)
 		{
-			public Action<View> OnClickImpl { get; set; }
-
-			public void OnClick (View v)
-			{
-				OnClickImpl (v);
-			}
-		}
-
-		OnClickListener buttonListener = new OnClickListener ();
-
-		class ListViewClickListener : Java.Lang.Object, AdapterView.IOnItemClickListener
-		{
-			public Action<AdapterView, View, int, long> OnItemClickImpl { get; set; }
-
-			public void OnItemClick (AdapterView parent, View view, int position, long id)
-			{
-				OnItemClickImpl (parent, view, position, id);
+			var v = (View)sender;
+			var state = playbackState == null ?
+				PlaybackStateCode.None : playbackState.State;
+			switch (v.Id) {
+			case Resource.Id.play_pause:
+				LogHelper.Debug (Tag, "Play button pressed, in state " + state);
+				if (state == PlaybackStateCode.Paused ||
+					state == PlaybackStateCode.Stopped ||
+					state == PlaybackStateCode.None) {
+					PlayMedia ();
+				} else if (state == PlaybackStateCode.Playing) {
+					PauseMedia ();
+				}
+				break;
+			case Resource.Id.skip_previous:
+				LogHelper.Debug (Tag, "Start button pressed, in state " + state);
+				SkipToPrevious ();
+				break;
+			case Resource.Id.skip_next:
+				SkipToNext ();
+				break;
 			}
 		}
 

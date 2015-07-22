@@ -13,10 +13,17 @@ using Android.Views;
 using Android.Widget;
 using Java.IO;
 using Newtonsoft.Json;
+using Android.Content.PM;
 
 namespace ActivityRecognition
 {
-	[Activity (Label = "ActivityRecognition", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (
+		Label = "ActivityRecognition", 
+		MainLauncher = true, 
+		Icon = "@drawable/icon", 
+		ScreenOrientation=ScreenOrientation.SensorPortrait, 
+		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
+	)]
 	public class MainActivity : ActionBarActivity,
 		IGoogleApiClientConnectionCallbacks, 
 		IGoogleApiClientOnConnectionFailedListener, 

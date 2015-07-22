@@ -9,11 +9,12 @@ namespace MediaBrowserService
 {
 	public class QueueAdapter : ArrayAdapter<MediaSession.QueueItem>
 	{
-		public long ActiveQueueItemId { get; set; } = MediaSession.QueueItem.UnknownId;
+		public long ActiveQueueItemId { get; set; }
 
 		public QueueAdapter(Activity context) : 
 		base(context, Resource.Layout.media_list_item, new List<MediaSession.QueueItem>())
 		{
+			ActiveQueueItemId = MediaSession.QueueItem.UnknownId;
 		}
 
 		class ViewHolder : Java.Lang.Object {

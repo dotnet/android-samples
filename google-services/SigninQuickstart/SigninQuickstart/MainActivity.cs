@@ -62,7 +62,10 @@ namespace SigninQuickstart
 		void UpdateUI (bool isSignedIn)
 		{
 			if (isSignedIn) {
-				var name = PlusClass.PeopleApi.GetCurrentPerson (mGoogleApiClient)?.DisplayName;
+				var person = PlusClass.PeopleApi.GetCurrentPerson (mGoogleApiClient);
+				var name = string.Empty;
+				if (person != null)
+					name = person.DisplayName;
 				mStatus.Text = string.Format(GetString (Resource.String.signed_in_fmt), name);
 
 				FindViewById (Resource.Id.sign_in_button).Visibility = ViewStates.Gone;
