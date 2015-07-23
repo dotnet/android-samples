@@ -6,12 +6,9 @@ namespace MediaBrowserService
 {
 	public class MutableMediaMetadata
 	{
-		public MediaMetadata Metadata {
-			get;
-			set;
-		}
+		public MediaMetadata Metadata { get; set; }
 
-		public string TrackId { get; }
+		public string TrackId { get; private set; }
 
 		public MutableMediaMetadata(string trackId, MediaMetadata metadata) 
 		{
