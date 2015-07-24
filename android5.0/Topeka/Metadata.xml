@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>00b8d6b2-1673-4f4a-a749-177dde8693e4</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Advanced</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>AndroidL, RecyclerView, CardView, Data</Tags>
+	<Gallery>true</Gallery>
+	<Brief>A fun to play quiz that showcases material design on Android</Brief>
+</SampleMetadata>
