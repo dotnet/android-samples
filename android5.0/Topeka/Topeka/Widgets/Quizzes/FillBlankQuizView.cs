@@ -1,10 +1,12 @@
 ﻿using System;
-using Topeka.Models.Quizzes;
-using Android.Widget;
+
 using Android.Content;
-using Topeka.Helpers;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
+
+using Topeka.Helpers;
+using Topeka.Models.Quizzes;
 
 namespace Topeka.Widgets.Quizzes
 {
@@ -14,18 +16,23 @@ namespace Topeka.Widgets.Quizzes
 
 		EditText answerView;
 
-		public FillBlankQuizView(Context context, Category category, FillBlankQuiz quiz) : base(context, category, quiz) {}
+		protected override bool IsAnswerCorrect =>
+			Quiz.IsAnswerCorrect(answerView.Text);
+
+		public FillBlankQuizView(Context context, Category category, FillBlankQuiz quiz) : base(context, category, quiz)
+		{
+		}
 
 		protected override View CreateQuizContentView ()
 		{
 			var start = Quiz.Start;
 			var end = Quiz.End;
-			if (null != start || null != end) {
-				return GetStartEndView(start, end);
-			}
-			if (null == answerView) {
-				answerView = CreateEditText();
-			}
+			if (null != start || null != end)
+				return GetStartEndView (start, end);
+
+			if (null == answerView)
+				answerView = CreateEditText ();
+
 			return answerView;
 		}
 
@@ -36,9 +43,9 @@ namespace Topeka.Widgets.Quizzes
 				return bundle;
 			}
 			set {
-				if (value == null) {
+				if (value == null)
 					return;
-				}
+				
 				answerView.Text = value.GetString(KeyAnswer);
 			}
 		}
@@ -57,18 +64,12 @@ namespace Topeka.Widgets.Quizzes
 			return container;
 		}
 
-		static void SetExistingContentOrHide(TextView view, string content) {
-			if (null == content) {
+		static void SetExistingContentOrHide(TextView view, string content)
+		{
+			if (null == content)
 				view.Visibility = ViewStates.Gone;
-			} else {
+			else
 				view.Text = content;
-			}
-		}
-
-		protected override bool IsAnswerCorrect {
-			get {
-				return Quiz.IsAnswerCorrect(answerView.Text);
-			}
 		}
 	}
 }

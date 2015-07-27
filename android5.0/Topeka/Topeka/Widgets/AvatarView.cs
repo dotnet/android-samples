@@ -1,20 +1,17 @@
 ﻿using System;
-using Android.Widget;
-using Android.Util;
+
 using Android.Content;
-using Topeka.Widgets.OutlineProviders;
 using Android.Graphics;
+using Android.Util;
+using Android.Widget;
+
+using Topeka.Widgets.OutlineProviders;
 
 namespace Topeka
 {
 	public class AvatarView : ImageView, ICheckable
 	{
 		bool isChecked;
-
-		public void Toggle ()
-		{
-			isChecked = !isChecked;
-		}
 
 		public bool Checked {
 			get {
@@ -39,6 +36,11 @@ namespace Topeka
 			ClipToOutline = true;
 		}
 
+		public void Toggle ()
+		{
+			isChecked = !isChecked;
+		}
+
 		protected override void OnDraw (Canvas canvas)
 		{
 			base.OnDraw (canvas);
@@ -52,13 +54,9 @@ namespace Topeka
 		protected override void OnSizeChanged (int w, int h, int oldw, int oldh)
 		{
 			base.OnSizeChanged (w, h, oldw, oldh);
-			if (w > 0 && h > 0) {
+			if (w > 0 && h > 0)
 				OutlineProvider = new RoundOutlineProvider (Math.Min (w, h));
-			}
 		}
-
-
-		
 	}
 }
 

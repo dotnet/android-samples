@@ -1,160 +1,131 @@
 ﻿using System;
-using System.Linq;
-using Android.OS;
 using System.Collections.Generic;
+using System.Linq;
+
+using Android.OS;
 using Android.Util;
-using Topeka.Models.Quizzes;
-using Topeka.Helpers;
-using Java.Lang;
+
 using Java.Interop;
+
+using Topeka.Helpers;
+using Topeka.Models.Quizzes;
 
 namespace Topeka.Helpers
 {
 	public class Category : Java.Lang.Object, IParcelable
 	{
-		public const string TAG = "Category";
-        
-        [ExportField("CREATOR")]
-        public static Creator<Category> InitializeCreator()
-        {
-            var creator = new Creator<Category>();
-            creator.Created += (sender, e) => { e.Result = new Category(e.Source); };
-            return creator;
-        }
-
-        const int GoodScore = 8;
+		const int GoodScore = 8;
 		const int NoScore = 0;
-		readonly string name;
-		readonly string id;
-		readonly Theme theme;
-		readonly int[] scores;
-		List<Quiz> quizzes;
-		bool solved;
-        
-		public string Name {
-			get {
-				return name;
-			}
-		}
+		public const string TAG = "Category";
 
-		public string Id {
-			get {
-				return id;
-			}
-		}
+		public string Name { get; private set; }
 
-		public Theme Theme {
-			get {
-				return theme;
-			}
-		}
+		public string Id { get; private set; }
 
-		public List<Quiz> Quizzes {
-			get {
-				return quizzes;
-			}
-		}
+		public Theme Theme { get; private set; }
+
+		public List<Quiz> Quizzes { get; private set; }
+
+		public int[] Scores { get; private set; }
+
+		public bool Solved { get; set; }
 
 		public int Score {
 			get {
 				var categoryScore = 0;
-				foreach (var quizScore in scores) {
+				foreach (var quizScore in Scores)
 					categoryScore += quizScore;
-				}
+
 				return categoryScore;
 			}
 		}
 
-		public int[] Scores {
-			get {
-				return scores;
-			}
+		[ExportField ("CREATOR")]
+		public static Creator<Category> InitializeCreator ()
+		{
+			var creator = new Creator<Category> ();
+			creator.Created += (sender, e) => e.Result = new Category (e.Source);
+			return creator;
 		}
 
-		public bool Solved {
-			get {
-				return solved;
-			} set {
-				solved = value;
-			}
+		public Category (string name, string id, Theme theme, List<Quiz> quizzes, bool solved)
+		{
+			Name = name;
+			Id = id;
+			Theme = theme;
+			Quizzes = quizzes;
+			Scores = new int[quizzes.Count];
+			Solved = solved;
 		}
 
-        public Category(string name, string id, Theme theme, List<Quiz> quizzes, bool solved) {
-			this.name = name;
-			this.id = id;
-			this.theme = theme;
-			this.quizzes = quizzes;
-			scores = new int[quizzes.Count];
-			this.solved = solved;
-		}
+		public Category (string name, string id, Theme theme, List<Quiz> quizzes, int[] scores, bool solved)
+		{
+			Name = name;
+			Id = id;
+			Theme = theme;
 
-		public Category(string name, string id, Theme theme, List<Quiz> quizzes, int[] scores, bool solved) {
-			this.name = name;
-			this.id = id;
-			this.theme = theme;
 			if (quizzes.Count == scores.Length) {
-				this.quizzes = quizzes;
-				this.scores = scores;
+				Quizzes = quizzes;
+				Scores = scores;
 			} else {
-				throw new InvalidOperationException("Quizzes and scores must have the same length");
+				throw new InvalidOperationException ("Quizzes and scores must have the same length");
 			}
-			this.solved = solved;
+
+			Solved = solved;
 		}
 
-		protected Category(Parcel inObj) {
-			name = inObj.ReadString();
-			id = inObj.ReadString();
-			theme = (Theme)(System.Enum.GetValues(typeof(Theme)).GetValue(inObj.ReadInt()));
-			quizzes = new List<Quiz>();
-			inObj.ReadTypedList(quizzes, Quiz.InitializeCreator());
-			scores = inObj.CreateIntArray();
-			solved = ParcelableHelper.ReadBoolean(inObj);
+		protected Category (Parcel inObj)
+		{
+			Name = inObj.ReadString ();
+			Id = inObj.ReadString ();
+			//TODO
+//			Theme = (Theme)System.Enum.GetValues ()inObj.ReadInt ();
+			Quizzes = new List<Quiz> ();
+			inObj.ReadTypedList (Quizzes, Quiz.InitializeCreator ());
+			Scores = inObj.CreateIntArray ();
+			Solved = ParcelableHelper.ReadBoolean (inObj);
 		}
 
-
-		public int GetScore(Quiz which) {
+		public int GetScore (Quiz which)
+		{
 			try {
-				return scores[quizzes.IndexOf(which)];
+				return Scores [Quizzes.IndexOf (which)];
 			} catch (IndexOutOfRangeException) {
 				return 0;
 			}
 		}
 
-		public void SetScore(Quiz which, bool correctlySolved) {
-			var index = quizzes.IndexOf(which);
-			Log.Debug(TAG, "Setting score for " + which + " with index " + index);
-			if (index == -1) {
+		public void SetScore (Quiz which, bool correctlySolved)
+		{
+			var index = Quizzes.IndexOf (which);
+			Log.Debug (TAG, string.Format ("Setting score for {0} with index {1}", which, index));
+			if (index == -1)
 				return;
-			}
-			scores[index] = correctlySolved ? GoodScore : NoScore;
+			
+			Scores [index] = correctlySolved ? GoodScore : NoScore;
 		}
 
-		public bool IsSolvedCorrectly(Quiz quiz) {
-			return GetScore(quiz) == GoodScore;
+		public bool IsSolvedCorrectly (Quiz quiz)
+		{
+			return GetScore (quiz) == GoodScore;
 		}
-			
-		public int GetFirstUnsolvedQuizPosition() {
-			if (quizzes == null) {
+
+		public int GetFirstUnsolvedQuizPosition ()
+		{
+			if (Quizzes == null)
 				return -1;
-			}
-			for (int i = 0; i < quizzes.Count; i++) {
-				if (!quizzes[i].Solved) {
+			
+			for (int i = 0; i < Quizzes.Count; i++)
+				if (!Quizzes [i].Solved)
 					return i;
-				}
-			}
-			return quizzes.Count;
+			
+			return Quizzes.Count;
 		}
 
 		public override string ToString ()
 		{
-				return "Category{" +
-					"name='" + name + '\'' +
-					", id='" + id + '\'' +
-					", theme=" + theme +
-					", quizzes=" + quizzes +
-					", scores=" + string.Concat(scores) +
-					", solved=" + solved +
-					'}';
+			return string.Format ("Category{name=\'{0}\', id=\'{1}\', theme={2}, quizzes={3}, scores={4}, solved={5}",
+						Name, Id, Theme, Quizzes, string.Concat (Scores), Solved);
 		}
 
 		public int DescribeContents ()
@@ -164,40 +135,35 @@ namespace Topeka.Helpers
 
 		public void WriteToParcel (Parcel dest, ParcelableWriteFlags flags)
 		{
-			dest.WriteString(name);
-			dest.WriteString(id);
-			dest.WriteInt(Theme.Ordinal());
-			dest.WriteTypedList(Quizzes);
-			dest.WriteIntArray(scores);
-			ParcelableHelper.WriteBoolean(dest, solved);
+			dest.WriteString (Name);
+			dest.WriteString (Id);
+			dest.WriteInt (Theme.Ordinal ());
+			dest.WriteTypedList (Quizzes);
+			dest.WriteIntArray (Scores);
+			ParcelableHelper.WriteBoolean (dest, Solved);
 		}
 
 		public override bool Equals (object obj)
 		{
-			if (this == obj) {
+			if (this == obj)
 				return true;
-			}
-			if (obj == null || GetType () != obj.GetType()) {
-				return false;
-			}
 
-			var category = (Category) obj;
+			if (obj == null || GetType () != obj.GetType ())
+				return false;
 
-			if (Id != category.id)
+			var category = (Category)obj;
+
+			if (Id != category.Id || Name != category.Name || !Quizzes.SequenceEqual (category.Quizzes))
 				return false;
-			if (Name != category.name)
-				return false;
-			if (!quizzes.SequenceEqual (category.quizzes))
-				return false;
-			return theme == category.theme;
+			return Theme == category.Theme;
 		}
 
 		public override int GetHashCode ()
 		{
-			int result = name.GetHashCode();
-			result = 31 * result + id.GetHashCode();
-			result = 31 * result + theme.GetHashCode();
-			result = 31 * result + quizzes.GetHashCode();
+			int result = Name.GetHashCode ();
+			result = 31 * result + Id.GetHashCode ();
+			result = 31 * result + Theme.GetHashCode ();
+			result = 31 * result + Quizzes.GetHashCode ();
 			return result;
 		}
 	}

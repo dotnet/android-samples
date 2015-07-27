@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Android.Content;
 using Android.Util;
-using Android.Content;
 
 namespace Topeka.Widgets.Fab
 {

@@ -1,12 +1,14 @@
 ﻿using System;
-using Android.App;
-using Android.Views;
-using Android.OS;
+
 using Android;
-using Topeka.Adapters;
+using Android.App;
+using Android.OS;
+using Android.Views;
 using Android.Widget;
-using Topeka.Persistence;
+
+using Topeka.Adapters;
 using Topeka.Helpers;
+using Topeka.Persistence;
 using Topeka.Widgets.Quizzes;
 
 namespace Topeka.Fragments
@@ -14,6 +16,7 @@ namespace Topeka.Fragments
 	public class QuizFragment : Fragment
 	{
 		const string KeyUserInput = "USER_INPUT";
+
 		TextView progressText;
 		int quizSize;
 		ProgressBar progressBar;
@@ -22,27 +25,22 @@ namespace Topeka.Fragments
 		ScoreAdapter scoreAdapter;
 		QuizAdapter quizAdapter;
 
-		ScoreAdapter ScoreAdapter {
-			get {
-				if (null == scoreAdapter) {
-					scoreAdapter = new ScoreAdapter (category);
-				}
-				return scoreAdapter;
-			}
-		}
-
 		public event EventHandler<EventArgs> CategorySolved;
+
+		ScoreAdapter ScoreAdapter =>
+			scoreAdapter = scoreAdapter ?? new ScoreAdapter (category);
+
+		QuizAdapter QuizAdapter =>
+			quizAdapter = quizAdapter ?? new QuizAdapter (Activity, category);
 
 		public static QuizFragment Create (string categoryId)
 		{
-			if (string.IsNullOrEmpty (categoryId)) {
+			if (string.IsNullOrEmpty (categoryId))
 				throw new InvalidOperationException ("The category can not be null");
-			}
+
 			var args = new Bundle ();
 			args.PutString (Category.TAG, categoryId);
-			var fragment = new QuizFragment ();
-			fragment.Arguments = args;
-			return fragment;
+			return new QuizFragment { Arguments = args };
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)
@@ -74,7 +72,7 @@ namespace Topeka.Fragments
 
 		void InitProgressToolbar (View view)
 		{
-			var firstUnsolvedQuizPosition = category.GetFirstUnsolvedQuizPosition();
+			var firstUnsolvedQuizPosition = category.GetFirstUnsolvedQuizPosition ();
 			var quizzes = category.Quizzes;
 			quizSize = quizzes.Count;
 			progressText = view.FindViewById<TextView> (Resource.Id.progress_text);
@@ -86,11 +84,61 @@ namespace Topeka.Fragments
 
 		void SetProgress (int currentQuizPosition)
 		{
-			if (!IsAdded) {
+			if (!IsAdded)
 				return;
-			}
-			progressText.Text = string.Format (GetString(Resource.String.quiz_of_quizzes), currentQuizPosition, quizSize);
+
+			progressText.Text = string.Format (GetString (Resource.String.quiz_of_quizzes), currentQuizPosition, quizSize);
 			progressBar.Progress = currentQuizPosition;
+		}
+
+		public override void OnSaveInstanceState (Bundle outState)
+		{
+			var focusedChild = quizView.FocusedChild;
+			var viewGroup = focusedChild as ViewGroup;
+			if (viewGroup != null) {
+				var currentView = viewGroup.GetChildAt (0);
+				var qView = currentView as AbsQuizView;
+				if (qView != null)
+					outState.PutBundle (KeyUserInput, qView.UserInput);
+			}
+			base.OnSaveInstanceState (outState);
+		}
+
+		public override void OnViewStateRestored (Bundle savedInstanceState)
+		{
+			RestoreQuizState (savedInstanceState);
+			base.OnViewStateRestored (savedInstanceState);
+		}
+
+		public bool ShowNextPage ()
+		{
+			if (quizView == null)
+				return false;
+
+			var nextItem = quizView.DisplayedChild + 1;
+			SetProgress (nextItem);
+			var count = quizView.Adapter.Count;
+			if (nextItem < count) {
+				quizView.ShowNext ();
+				TopekaDatabaseHelper.UpdateCategory (Activity, category);
+				return true;
+			}
+			MarkCategorySolved ();
+			return false;
+		}
+
+		public void ShowSummary ()
+		{
+			var scorecardView = View.FindViewById<ListView> (Resource.Id.scorecard);
+			scoreAdapter = ScoreAdapter;
+			scorecardView.Adapter = scoreAdapter;
+			scorecardView.Visibility = ViewStates.Visible;
+			quizView.Visibility = ViewStates.Gone;
+		}
+
+		protected virtual void OnCategorySolved (EventArgs e)
+		{
+			CategorySolved?.Invoke (this, e);
 		}
 
 		void SetAvatarDrawable (AvatarView avatarView)
@@ -104,86 +152,11 @@ namespace Topeka.Fragments
 			var isSolved = category.Solved;
 			if (isSolved) {
 				ShowSummary ();
-                OnCategorySolved(new EventArgs());
+				OnCategorySolved (new EventArgs ());
 			} else {
 				quizView.Adapter = QuizAdapter;
 				quizView.SetSelection (category.GetFirstUnsolvedQuizPosition ());
 			}
-		}
-
-        protected virtual void OnCategorySolved(EventArgs e)
-        {
-            var handler = CategorySolved;
-            if (handler != null)
-                handler(this, e);
-        }
-
-
-		public override void OnSaveInstanceState (Bundle outState)
-		{
-			var focusedChild = quizView.FocusedChild;
-            var viewGroup = focusedChild as ViewGroup;
-			if (viewGroup != null) {
-				var currentView = viewGroup.GetChildAt (0);
-				var qView = currentView as AbsQuizView;
-				if (qView != null) {
-					outState.PutBundle (KeyUserInput, qView.UserInput);
-				}
-			}
-			base.OnSaveInstanceState (outState);
-		}
-
-		public override void OnViewStateRestored (Bundle savedInstanceState)
-		{
-			RestoreQuizState (savedInstanceState);
-			base.OnViewStateRestored (savedInstanceState);
-		}
-
-        void RestoreQuizState(Bundle savedInstanceState)
-        {
-            if (null == savedInstanceState) {
-                return;
-            }
-            EventHandler<View.LayoutChangeEventArgs> handler = null;
-            handler += (sender, e) => {
-                quizView.LayoutChange -= handler;
-                var currentChild = quizView.GetChildAt(0);
-                var viewGroup = currentChild as ViewGroup;
-                if (viewGroup != null) {
-                    var potentialQuizView = viewGroup.GetChildAt(0);
-                    var absQuizView = potentialQuizView as AbsQuizView;
-                    if (absQuizView != null) {
-                        absQuizView.UserInput = savedInstanceState.GetBundle(KeyUserInput);
-                    }
-                }
-            };
-            quizView.LayoutChange += handler;
-		}
-
-		QuizAdapter QuizAdapter {
-			get {
-				if (quizAdapter == null) {
-					quizAdapter = new QuizAdapter (Activity, category);
-				}
-				return quizAdapter;
-			}
-		}
-
-		public bool ShowNextPage ()
-		{
-			if (quizView == null) {
-				return false;
-			}
-			var nextItem = quizView.DisplayedChild + 1;
-			SetProgress (nextItem);
-			var count = quizView.Adapter.Count;
-			if (nextItem < count) {
-				quizView.ShowNext ();
-				TopekaDatabaseHelper.UpdateCategory (Activity, category);
-				return true;
-			}
-			MarkCategorySolved ();
-			return false;
 		}
 
 		void MarkCategorySolved ()
@@ -192,15 +165,26 @@ namespace Topeka.Fragments
 			TopekaDatabaseHelper.UpdateCategory (Activity, category);
 		}
 
-		public void ShowSummary ()
+		void RestoreQuizState (Bundle savedInstanceState)
 		{
-			var scorecardView = View.FindViewById<ListView> (Resource.Id.scorecard);
-			scoreAdapter = ScoreAdapter;
-			scorecardView.Adapter = scoreAdapter;
-			scorecardView.Visibility = ViewStates.Visible;
-			quizView.Visibility = ViewStates.Gone;
-		}
+			if (null == savedInstanceState)
+				return;
 
+			EventHandler<View.LayoutChangeEventArgs> handler = null;
+			handler += (sender, e) => {
+				quizView.LayoutChange -= handler;
+				var currentChild = quizView.GetChildAt (0);
+				var viewGroup = currentChild as ViewGroup;
+				if (viewGroup == null)
+					return;
+
+				var potentialQuizView = viewGroup.GetChildAt (0);
+				var absQuizView = potentialQuizView as AbsQuizView;
+				if (absQuizView != null)
+					absQuizView.UserInput = savedInstanceState.GetBundle (KeyUserInput);
+			};
+			quizView.LayoutChange += handler;
+		}
 	}
 }
 

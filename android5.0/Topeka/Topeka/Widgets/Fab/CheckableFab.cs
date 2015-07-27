@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Android.Widget;
 using Android.Content;
 using Android.Util;
@@ -7,7 +8,7 @@ namespace Topeka.Widgets.Fab
 {
 	public class CheckableFab : FloatingActionButton, ICheckable
 	{
-		static readonly int[] CHECKED = new[]{Android.Resource.Attribute.StateChecked};
+		static readonly int[] checkedStates = { Android.Resource.Attribute.StateChecked };
 
 		bool isChecked;
 
@@ -19,20 +20,26 @@ namespace Topeka.Widgets.Fab
 		public bool Checked {
 			get {
 				return isChecked;
-			} set {
-				if (isChecked == value) {
+			}
+			set {
+				if (isChecked == value)
 					return;
-				}
+
 				isChecked = value;
-				RefreshDrawableState();
+				RefreshDrawableState ();
 			}
 		}
 
-		public CheckableFab(Context context) : this(context, null) {}
+		public CheckableFab (Context context) : this (context, null)
+		{
+		}
 
-		public CheckableFab(Context context, IAttributeSet attrs) : this(context, attrs, 0) {}
+		public CheckableFab (Context context, IAttributeSet attrs) : this (context, attrs, 0)
+		{
+		}
 
-		public CheckableFab(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle) {
+		public CheckableFab (Context context, IAttributeSet attrs, int defStyle) : base (context, attrs, defStyle)
+		{
 			SetImageResource (Resource.Drawable.answer_quiz_fab);
 		}
 
@@ -40,7 +47,7 @@ namespace Topeka.Widgets.Fab
 		{
 			var drawableState = base.OnCreateDrawableState (++extraSpace);
 			if (Checked)
-				MergeDrawableStates (drawableState, CHECKED);
+				MergeDrawableStates (drawableState, checkedStates);
 			return drawableState;
 		}
 	}

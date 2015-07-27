@@ -1,21 +1,23 @@
-﻿using System;
-using Android.Provider;
-using SQLite;
+﻿using SQLite;
 
 namespace Topeka.Persistence
 {
-    [Table("category")]
+	[Table ("category")]
 	public class CategoryTable
 	{
-        [PrimaryKey]
-        public string _id { get; set; }
-        [NotNull]
-        public string name { get; set; }
-        [NotNull]
-        public string theme { get; set; }
-        [NotNull]
-        public string solved { get; set; }
-        public string scores { get; set; }
+		[PrimaryKey]
+		public string Id { get; set; }
+
+		[NotNull]
+		public string Name { get; set; }
+
+		[NotNull]
+		public string Theme { get; set; }
+
+		[NotNull]
+		public string Solved { get; set; }
+
+		public string Scores { get; set; }
 	}
 }
 

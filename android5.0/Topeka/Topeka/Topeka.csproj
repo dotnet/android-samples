@@ -136,6 +136,7 @@
     <Compile Include="Models\Quizzes\SelectItemQuiz.cs" />
     <Compile Include="Models\Quizzes\ToggleTranslateQuiz.cs" />
     <Compile Include="Models\Quizzes\TrueFalseQuiz.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

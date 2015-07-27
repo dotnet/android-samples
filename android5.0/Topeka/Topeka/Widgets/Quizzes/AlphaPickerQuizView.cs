@@ -1,12 +1,13 @@
-﻿using System;
-using Topeka.Models.Quizzes;
-using Android.Widget;
-using System.Collections.Generic;
-using Android.Content;
-using Topeka.Helpers;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Android.Views;
+
+using Android.Content;
 using Android.OS;
+using Android.Views;
+using Android.Widget;
+
+using Topeka.Helpers;
+using Topeka.Models.Quizzes;
 
 namespace Topeka.Widgets.Quizzes
 {
@@ -18,7 +19,30 @@ namespace Topeka.Widgets.Quizzes
 		SeekBar seekBar;
 		List<string> alphabet;
 
-		public AlphaPickerQuizView(Context context, Category category, AlphaPickerQuiz quiz) : base(context, category, quiz) {}
+		protected override bool IsAnswerCorrect =>
+			Quiz.IsAnswerCorrect (currentSelection.Text);
+
+		List<string> Alphabet =>
+			alphabet = alphabet ?? Resources.GetStringArray (Resource.Array.alphabet).ToList ();
+
+		public override Bundle UserInput {
+			get {
+				var bundle = new Bundle();
+				bundle.PutString (KeySelection, currentSelection.Text);
+				return bundle;
+			}
+			set {
+				if (value == null)
+					return;
+
+				var userInput = value.GetString (KeySelection, Alphabet[0]);
+				seekBar.Progress = Alphabet.IndexOf (userInput);
+			}
+		}
+
+		public AlphaPickerQuizView(Context context, Category category, AlphaPickerQuiz quiz) : base(context, category, quiz)
+		{
+		}
 
 		protected override View CreateQuizContentView ()
 		{
@@ -32,35 +56,6 @@ namespace Topeka.Widgets.Quizzes
 				AllowAnswer();
 			};
 			return layout;
-		}
-
-		protected override bool IsAnswerCorrect {
-			get {
-				return Quiz.IsAnswerCorrect (currentSelection.Text);
-			}
-		}
-
-		public override Bundle UserInput {
-			get {
-				var bundle = new Bundle();
-				bundle.PutString(KeySelection, currentSelection.Text);
-				return bundle;
-			}
-			set {
-				if (value == null) {
-					return;
-				}
-				var userInput = value.GetString(KeySelection, Alphabet[0]);
-				seekBar.Progress = Alphabet.IndexOf(userInput);
-			}
-		}
-
-		List<string> Alphabet {
-			get {
-				if (alphabet == null)
-					alphabet = Resources.GetStringArray (Resource.Array.alphabet).ToList ();
-                return alphabet;
-			}
 		}
 	}
 }

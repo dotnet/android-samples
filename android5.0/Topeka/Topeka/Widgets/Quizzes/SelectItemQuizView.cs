@@ -1,10 +1,13 @@
 ﻿using System;
-using Topeka.Models.Quizzes;
-using Android.Widget;
-using Topeka.Helpers;
+
 using Android.Content;
 using Android.OS;
+using Android.Views;
+using Android.Widget;
+
 using Topeka.Adapters;
+using Topeka.Helpers;
+using Topeka.Models.Quizzes;
 
 namespace Topeka.Widgets.Quizzes
 {
@@ -15,41 +18,11 @@ namespace Topeka.Widgets.Quizzes
 		bool[] answers;
 		ListView listView;
 
-		bool[] Answers {
-			get {
-				if (null == answers) {
-					answers = new bool[Quiz.Options.Length];
-				}
-				return answers;
-			}
-		}
+		bool[] Answers =>
+			answers = answers ?? new bool[Quiz.Options.Length];
 
-		public SelectItemQuizView (Context context, Category category, SelectItemQuiz quiz) : base (context, category, quiz)
-		{
-			answers = Answers;
-		}
-
-		protected override Android.Views.View CreateQuizContentView ()
-		{
-			listView = new ListView (Context);
-			listView.Divider = null;
-			listView.SetSelector (Resource.Drawable.selector_button);
-			listView.Adapter = new OptionsQuizAdapter (Quiz.Options, Resource.Layout.item_answer_start, Context, true);
-			listView.ChoiceMode = ChoiceMode.Single;
-			listView.ItemClick += (sender, e) => {
-				AllowAnswer ();
-				ToggleAnswerFor (e.Position);
-			};
-			return listView;
-		}
-
-		protected override bool IsAnswerCorrect {
-			get {
-				var checkedItemPositions = listView.CheckedItemPositions;
-				var answer = Quiz.Answer;
-				return AnswerHelper.IsAnswerCorrect (checkedItemPositions, answer);
-			}
-		}
+		protected override bool IsAnswerCorrect =>
+			AnswerHelper.IsAnswerCorrect (listView.CheckedItemPositions, Quiz.Answer);
 
 		public override Bundle UserInput {
 			get {
@@ -58,18 +31,38 @@ namespace Topeka.Widgets.Quizzes
 				return bundle;
 			}
 			set {
-				if (value == null) {
+				if (value == null)
 					return;
-				}
+
 				answers = value.GetBooleanArray (KeyAnswers);
-				if (answers == null) {
+				if (answers == null)
 					return;
-				}
+
 				var adapter = listView.Adapter;
-				for (int i = 0; i < answers.Length; i++) {
+
+				for (int i = 0; i < answers.Length; i++)
 					listView.PerformItemClick (listView.GetChildAt (i), i, adapter.GetItemId (i));
-				}
 			}
+		}
+
+		public SelectItemQuizView (Context context, Category category, SelectItemQuiz quiz) : base (context, category, quiz)
+		{
+			answers = Answers;
+		}
+
+		protected override View CreateQuizContentView ()
+		{
+			listView = new ListView (Context) {
+				Divider = null,
+				Adapter = new OptionsQuizAdapter (Quiz.Options, Resource.Layout.item_answer_start, Context, true),
+				ChoiceMode = ChoiceMode.Single
+			};
+			listView.SetSelector (Resource.Drawable.selector_button);
+			listView.ItemClick += (sender, e) => {
+				AllowAnswer ();
+				ToggleAnswerFor (e.Position);
+			};
+			return listView;
 		}
 
 		void ToggleAnswerFor (int answerId)

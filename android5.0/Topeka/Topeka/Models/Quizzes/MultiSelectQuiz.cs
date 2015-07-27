@@ -1,5 +1,5 @@
-﻿using System;
-using Android.OS;
+﻿using Android.OS;
+
 using Topeka.Helpers;
 
 namespace Topeka.Models.Quizzes
