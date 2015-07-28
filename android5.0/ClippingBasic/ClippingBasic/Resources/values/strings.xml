@@ -21,6 +21,6 @@
         <item>De finibus bonorum et malorum.</item>
     </string-array>
 
-    <string name="clip_button">Clip</string>
-    <string name="unclip_button">Remove Clipping</string>
+    <string name="clip_button">Enable outline clipping</string>
+    <string name="unclip_button">Disable outline clipping</string>
 </resources>

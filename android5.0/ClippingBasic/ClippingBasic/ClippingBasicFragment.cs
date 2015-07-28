@@ -23,7 +23,7 @@ namespace ClippingBasic
 		int clickCount = 0;
 
 		/* The {@Link Outline} used to clip the image with. */
-		ViewOutlineProvider outlineProvider;
+		ClipOutlineProvider outlineProvider;
 
 		/* An array of texts. */
 		String[] sampleTexts;

@@ -69,13 +69,13 @@
     <AndroidResource Include="Resources\values-v11\template-styles.xml" />
     <AndroidResource Include="Resources\values-v21\template-styles.xml" />
     <AndroidResource Include="Resources\drawable\gradient_drawable.xml" />
-    <AndroidResource Include="Resources\layout\activity_main.xml" />
     <AndroidResource Include="Resources\layout\clipping_basic_fragment.xml" />
     <AndroidResource Include="Resources\values\base-strings.xml" />
     <AndroidResource Include="Resources\values\fragmentview_strings.xml" />
-    <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\template-dimens.xml" />
     <AndroidResource Include="Resources\values\template-styles.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
