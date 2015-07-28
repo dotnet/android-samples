@@ -180,13 +180,17 @@ namespace BluetoothLeGatt
 
 			// Previously connected device.  Try to reconnect.
 			if (mBluetoothDeviceAddress != null && address == mBluetoothDeviceAddress && mBluetoothGatt != null) {
-				Log.Debug (TAG, "Trying to use an existing mBluetoothGatt for connection.");
-				if (mBluetoothGatt.Connect ()) {
-					mConnectionState = State.Connecting;
-					return true;
-				} else {
-					return false;
-				}
+				
+				//It is faster to create a new connection
+				Close ();
+			
+//				Log.Debug (TAG, "Trying to use an existing mBluetoothGatt for connection.");
+//				if (mBluetoothGatt.Connect ()) {
+//					mConnectionState = State.Connecting;
+//					return true;
+//				} else {
+//					return false;
+//				}
 			}
 
 			BluetoothDevice device = mBluetoothAdapter.GetRemoteDevice (address);
@@ -212,11 +216,24 @@ namespace BluetoothLeGatt
      	*/
 		public void Disconnect ()
 		{
-			if (mBluetoothAdapter == null || mBluetoothGatt == null) {
+			if (mBluetoothAdapter == null ) {
 				Log.Warn (TAG, "BluetoothAdapter not initialized");
 				return;
 			}
-			mBluetoothGatt.Disconnect ();
+			if (mBluetoothGatt == null) {
+				String intentAction = BluetoothLeService.ACTION_GATT_DISCONNECTED;
+				BluetoothLeService.mConnectionState = State.Disconnected;
+				Log.Info (BluetoothLeService.TAG, "Disconnected from GATT server.");
+				BroadcastUpdate (intentAction);
+				return;
+			}
+			if (mBluetoothManager.GetConnectedDevices (ProfileType.Gatt).Where (d => d.Address == mBluetoothGatt.Device.Address).FirstOrDefault () != null) 
+				mBluetoothGatt.Disconnect ();
+			else {
+				//Already disconnected
+				Close();
+			}
+		
 		}
 
 		/**
@@ -228,7 +245,9 @@ namespace BluetoothLeGatt
 			if (mBluetoothGatt == null) {
 				return;
 			}
+
 			mBluetoothGatt.Close ();
+			mBluetoothGatt.Dispose ();
 			mBluetoothGatt = null;
 		}
 
@@ -309,10 +328,11 @@ namespace BluetoothLeGatt
 					BluetoothLeService.mBluetoothGatt.DiscoverServices ());
 
 			} else if (newState == ProfileState.Disconnected) {
-				intentAction = BluetoothLeService.ACTION_GATT_DISCONNECTED;
-				BluetoothLeService.mConnectionState = State.Disconnected;
-				Log.Info (BluetoothLeService.TAG, "Disconnected from GATT server.");
-				service.BroadcastUpdate (intentAction);
+					intentAction = BluetoothLeService.ACTION_GATT_DISCONNECTED;
+					BluetoothLeService.mConnectionState = State.Disconnected;
+					Log.Info (BluetoothLeService.TAG, "Disconnected from GATT server.");
+					service.BroadcastUpdate (intentAction);
+					service.Close ();
 			}
 		}
 

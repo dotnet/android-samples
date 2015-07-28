@@ -49,8 +49,8 @@ namespace BluetoothLeGatt
 		public static String mDeviceAddress;
 		ExpandableListView mGattServicesList;
 		public static BluetoothLeService mBluetoothLeService;
-		List <List <BluetoothGattCharacteristic>> mGattCharacteristics =
-			new List <List <BluetoothGattCharacteristic>> ();
+		List <IList <BluetoothGattCharacteristic>> mGattCharacteristics =
+			new List <IList <BluetoothGattCharacteristic>> ();
 		public static bool mConnected = false;
 		BluetoothGattCharacteristic mNotifyCharacteristic;
 
@@ -194,54 +194,50 @@ namespace BluetoothLeGatt
 			String uuid = null;
 			String unknownServiceString = Resources.GetString (Resource.String.unknown_service);
 			String unknownCharaString = Resources.GetString (Resource.String.unknown_characteristic);
-			List <Dictionary <String, Object>> gattServiceData = new List <Dictionary <String, Object>> ();
-			List <List <Dictionary <String, String>>> gattCharacteristicData
-				= new List <List <Dictionary <String, String>>> ();
-			mGattCharacteristics = new List <List <BluetoothGattCharacteristic>> ();
+			IList <IDictionary <string, object>> gattServiceData = new JavaList <IDictionary <string, object>> ();
+			IList <IList <IDictionary <string, object>>> gattCharacteristicData
+			= new JavaList <IList <IDictionary <string, object>>> ();
+			mGattCharacteristics = new List <IList <BluetoothGattCharacteristic>> ();
 
 			// Loops through available GATT Services.
 			foreach (BluetoothGattService gattService in gattServices) {
-				Dictionary <String, Object> currentServiceData = new Dictionary <String, Object>();
+				IDictionary <string, object> currentServiceData = new JavaDictionary <string, object>();
 				uuid = gattService.Uuid.ToString ();
-				currentServiceData.Add (
-					LIST_NAME, SampleGattAttributes.Lookup (uuid, unknownServiceString));
+				currentServiceData.Add (LIST_NAME, SampleGattAttributes.Lookup (uuid, unknownServiceString));
 				currentServiceData.Add (LIST_UUID, uuid);
 				gattServiceData.Add (currentServiceData);
 
-				List <Dictionary <String, String>> gattCharacteristicGroupData =
-					new List <Dictionary <String, String>>();
-				IList <BluetoothGattCharacteristic> gattCharacteristics =
-					gattService.Characteristics;
-				List <BluetoothGattCharacteristic> charas =
-					new List<BluetoothGattCharacteristic> ();
+				IList <IDictionary <string, object>> gattCharacteristicGroupData =new JavaList <IDictionary <string, object>>();
+				IList <BluetoothGattCharacteristic> gattCharacteristics =gattService.Characteristics;
+				IList <BluetoothGattCharacteristic> charas =new List<BluetoothGattCharacteristic> ();
 
 				// Loops through available Characteristics.
 				foreach (BluetoothGattCharacteristic gattCharacteristic in gattCharacteristics) {
 					charas.Add (gattCharacteristic);
-					Dictionary <String, String> currentCharaData = new Dictionary <String, String>();
+					IDictionary <string, object> currentCharaData = new JavaDictionary <string, object>();
 					uuid = gattCharacteristic.Uuid.ToString();
-					currentCharaData.Add (
-						LIST_NAME, SampleGattAttributes.Lookup(uuid, unknownCharaString));
+					currentCharaData.Add (LIST_NAME, SampleGattAttributes.Lookup(uuid, unknownCharaString));
 					currentCharaData.Add (LIST_UUID, uuid);
 					gattCharacteristicGroupData.Add (currentCharaData);
 				}
 				mGattCharacteristics.Add (charas);
 				gattCharacteristicData.Add (gattCharacteristicGroupData);
 			}
-
-			SimpleExpandableListAdapter gattServiceAdapter = new SimpleExpandableListAdapter (
+			var groupData=(IList<IDictionary<string,object>>) gattServiceData;
+			var childData =(IList <IList <IDictionary <string, object>>>) gattCharacteristicData;
+			IExpandableListAdapter gattServiceAdapter = new SimpleExpandableListAdapter (
 				this,
-				(IList<IDictionary<String, Object>>) gattServiceData,
+				groupData,
 				Android.Resource.Layout.SimpleExpandableListItem2,
 				new String[] {LIST_NAME, LIST_UUID},
 				new int[] { Android.Resource.Id.Text1, Android.Resource.Id.Text2 },
-				(IList<IList<IDictionary<String, Object>>>) gattCharacteristicData,
+				childData,
 				Android.Resource.Layout.SimpleExpandableListItem2,
 				new String[] {LIST_NAME, LIST_UUID},
 				new int[] { Android.Resource.Id.Text1, Android.Resource.Id.Text2 }
 			);
 
-			mGattServicesList.Adapter = (IListAdapter) gattServiceAdapter;
+			mGattServicesList.SetAdapter (gattServiceAdapter);
 		}
 
 		private static IntentFilter MakeGattUpdateIntentFilter () 

@@ -24,6 +24,7 @@ using Android.OS;
 using Android.Bluetooth;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace BluetoothLeGatt
 {
@@ -199,8 +200,10 @@ namespace BluetoothLeGatt
 
 		public void AddDevice (BluetoothDevice device) 
 		{
-			if (!mLeDevices.Contains (device)) {
-				mLeDevices.Add (device);
+			lock (this) {
+				if (mLeDevices.Where (d => d.Address == device.Address).FirstOrDefault () == null) {
+					mLeDevices.Add (device);
+				}
 			}
 		}
 
