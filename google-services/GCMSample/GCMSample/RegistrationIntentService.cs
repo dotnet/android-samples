@@ -30,20 +30,14 @@ namespace GCMSample
 					var token = instanceID.GetToken(GetString(Resource.String.gcm_defaultSenderId),
 						GoogleCloudMessaging.InstanceIdScope, null);
 					Log.Info(TAG, "GCM Registration Token: " + token);
-
 					SendRegistrationToServer(token);
-
 					SubscribeTopics(token);
-
 					sharedPreferences.Edit().PutBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).Apply();
 				}
 			} catch (Exception e) {
 				Log.Debug(TAG, "Failed to complete token refresh", e);
-				// If an exception happens while fetching the new token or updating our registration data
-				// on a third-party server, this ensures that we'll attempt the update at a later time.
 				sharedPreferences.Edit().PutBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).Apply();
 			}
-			// Notify UI that registration has completed, so the progress indicator can be hidden.
 			var registrationComplete = new Intent(QuickstartPreferences.REGISTRATION_COMPLETE);
 			LocalBroadcastManager.GetInstance(this).SendBroadcast(registrationComplete);
 		}

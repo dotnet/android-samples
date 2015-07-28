@@ -1,30 +1,32 @@
 ﻿using System;
-using Android.Gms.Gcm;
-using Android.Util;
-using Android.Content;
+using Android;
 using Android.App;
+using Android.Content;
+using Android.Gms.Gcm;
 using Android.Media;
 using Android.Support.V4.App;
-using Android;
+using Android.Util;
+using Android.OS;
 
 namespace GCMSample
 {
-	[Service(Exported = false), IntentFilter(new [] {"com.google.android.c2dm.intent.RECEIVE"})]
+	[Service (Exported = false), IntentFilter (new [] { "com.google.android.c2dm.intent.RECEIVE" })]
 	public class MyGcmListenerService : GcmListenerService
 	{
 		const string TAG = "MyGcmListenerService";
 
-		public override void OnMessageReceived (string from, Android.OS.Bundle data)
+		public override void OnMessageReceived (string from, Bundle data)
 		{
-			var message = data.GetString("message");
-			Log.Debug(TAG, "From: " + from);
-			Log.Debug(TAG, "Message: " + message);
+			var message = data.GetString ("message");
+			Log.Debug (TAG, "From: " + from);
+			Log.Debug (TAG, "Message: " + message);
 
-			SendNotification(message);
+			SendNotification (message);
 		}
 
-		void SendNotification(string message) {
-			var intent = new Intent(this, typeof(MainActivity));
+		void SendNotification (string message)
+		{
+			var intent = new Intent (this, typeof(MainActivity));
 			intent.AddFlags (ActivityFlags.ClearTop);
 			var pendingIntent = PendingIntent.GetActivity (this, 0, intent, PendingIntentFlags.OneShot);
 

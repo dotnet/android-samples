@@ -8,11 +8,12 @@ using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V7.App;
 
 namespace GCMSample
 {
-	[Activity (MainLauncher = true)]
-	public class MainActivity : Activity
+	[Activity (Label="@string/app_name", MainLauncher = true)]
+	public class MainActivity : AppCompatActivity
 	{
 		const int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 		const string TAG = "MainActivity";
@@ -28,21 +29,15 @@ namespace GCMSample
 
 			mRegistrationProgressBar = FindViewById<ProgressBar> (Resource.Id.registrationProgressBar);
 			mRegistrationBroadcastReceiver = new BroadcastReceiver ();
-			mRegistrationBroadcastReceiver.OnReceiveImpl = (context, intent) => {
+			mRegistrationBroadcastReceiver.Receive += (sender, e) => {
 				mRegistrationProgressBar.Visibility = ViewStates.Gone;
-				var sharedPreferences =
-					PreferenceManager.GetDefaultSharedPreferences (context);
+				var sharedPreferences =	PreferenceManager.GetDefaultSharedPreferences ((Context)sender);
 				var sentToken = sharedPreferences.GetBoolean (QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
-				if (sentToken) {
-					mInformationTextView.Text = GetString (Resource.String.gcm_send_message);
-				} else {
-					mInformationTextView.Text = GetString (Resource.String.token_error_message);
-				}
+				mInformationTextView.Text = sentToken ? GetString (Resource.String.gcm_send_message) : GetString (Resource.String.token_error_message);
 			};
 			mInformationTextView = FindViewById<TextView> (Resource.Id.informationTextView);
 
 			if (CheckPlayServices ()) {
-				// Start IntentService to register this application with GCM.
 				var intent = new Intent (this, typeof(RegistrationIntentService));
 				StartService (intent);
 			}
@@ -79,10 +74,22 @@ namespace GCMSample
 
 		class BroadcastReceiver : Android.Content.BroadcastReceiver
 		{
-			public Action <Context, Intent> OnReceiveImpl {get;set;}
+			public EventHandler<BroadcastEventArgs> Receive { get; set; }
+
 			public override void OnReceive (Context context, Intent intent)
 			{
-				OnReceiveImpl (context, intent);
+				if (Receive != null)
+					Receive (context, new BroadcastEventArgs (intent));
+			}
+		}
+
+		class BroadcastEventArgs : EventArgs
+		{
+			public Intent Intent { get; private set; }
+
+			public BroadcastEventArgs (Intent intent)
+			{
+				Intent = intent;
 			}
 		}
 	}

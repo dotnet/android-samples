@@ -6,5 +6,5 @@
     <string name="token_error_message">An error occurred while either fetching the InstanceID token,
         sending the fetched token to the server or subscribing to the PubSub topic. Please try
         running the sample again.</string>
-	<string name="gcm_defaultSenderId">26996293340</string>
+	<string name="gcm_defaultSenderId">YOUR SENDER ID HERE</string>
 </resources>

@@ -3,12 +3,14 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace GcmSender
 {
-	class MainClass
+	class GcmSender
 	{
-		public const string API_KEY = "AIzaSyDTcXS-iuXuvznXpXa3tqrW6b67PA_We8Y";
+		public const string API_KEY = "<YOUR API KEY HERE>";
 
 		public static void Main (string[] args)
 		{
@@ -29,8 +31,10 @@ namespace GcmSender
 				Environment.Exit (1);
 			}
 			try {
+				Console.WriteLine ("DEBUG***  {0}", args [0].Trim ());
 				var jGcmData = new JObject ();
 				var jData = new JObject ();
+
 				jData.Add ("message", args [0].Trim ());
 
 				if (args.Length > 1 && args [1] != null) {
@@ -41,17 +45,11 @@ namespace GcmSender
 
 				jGcmData.Add ("data", jData);
 
-				var url = new Uri ("https://android.googleapis.com/gcm/send");
+				var url = new Uri ("https://gcm-http.googleapis.com/gcm/send");
 				using (var client = new HttpClient ()) {
-					var request = new HttpRequestMessage () {
-						RequestUri = url,
-						Method = HttpMethod.Post
-					};
-					request.Headers.Accept.Add (new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue ("application/json"));
-					request.Content = new StringContent (jGcmData.ToString ());
-					request.Headers.TryAddWithoutValidation("Authorization", "key=" + API_KEY);
-					Task.WaitAll(client.SendAsync (request).ContinueWith (responseTask => {
-						var response = responseTask.Result;
+					client.DefaultRequestHeaders.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
+					client.DefaultRequestHeaders.TryAddWithoutValidation ("Authorization", "key=" + API_KEY);
+					Task.WaitAll (client.PostAsync (url, new StringContent (jGcmData.ToString (), Encoding.Default, "application/json")).ContinueWith (response => {
 						Console.WriteLine (response);
 						Console.WriteLine ("Check your device/emulator for notification or logcat for " +
 						"confirmation of the receipt of the GCM message.");

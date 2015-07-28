@@ -4,7 +4,7 @@ using Android.App;
 
 namespace GCMSample
 {
-	[Service (Exported = false), IntentFilter(new [] {"com.google.android.gms.iid.InstanceID"}) ]
+	[Service (Exported = false), IntentFilter (new [] { "com.google.android.gms.iid.InstanceID" })]
 	public class MyInstanceIDListenerService: InstanceIDListenerService
 	{
 		private const string TAG = "MyInstanceIDLS";
