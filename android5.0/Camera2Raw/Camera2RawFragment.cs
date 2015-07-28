@@ -558,19 +558,21 @@ namespace Camera2Raw
 		{
 			base.OnResume ();
 			StartBackgroundThread ();
-			OpenCamera ();
 
-			// When the screen is turned off and turned back on, the SurfaceTexture is already
-			// available, and "onSurfaceTextureAvailable" will not be called. In that case, we should
-			// configure the preview bounds here (otherwise, we wait until the surface is ready in
-			// the SurfaceTextureListener).
-			if (mTextureView.IsAvailable) {
-				ConfigureTransform (mTextureView.Width, mTextureView.Height, Activity);
-			} else {
-				mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
-			}
-			if (mOrientationListener != null && mOrientationListener.CanDetectOrientation ()) {
-				mOrientationListener.Enable ();
+			if (CanOpenCamera ()) {
+
+				// When the screen is turned off and turned back on, the SurfaceTexture is already
+				// available, and "onSurfaceTextureAvailable" will not be called. In that case, we should
+				// configure the preview bounds here (otherwise, we wait until the surface is ready in
+				// the SurfaceTextureListener).
+				if (mTextureView.IsAvailable) {
+					ConfigureTransform (mTextureView.Width, mTextureView.Height, Activity);
+				} else {
+					mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
+				}
+				if (mOrientationListener != null && mOrientationListener.CanDetectOrientation ()) {
+					mOrientationListener.Enable ();
+				}
 			}
 		}
 
@@ -681,10 +683,10 @@ namespace Camera2Raw
 		/// <summary>
 		/// Opens the camera specified by {@link #mCameraId}.
 		/// </summary>
-		void OpenCamera ()
+		bool CanOpenCamera ()
 		{
 			if (!SetUpCameraOutputs ())
-				return;
+				return false;
 			
 			var activity = Activity;
 			CameraManager manager = (CameraManager)activity.GetSystemService (Context.CameraService);
@@ -708,6 +710,7 @@ namespace Camera2Raw
 			} catch (InterruptedException e) {
 				throw new RuntimeException ("Interrupted while trying to lock camera opening.", e);
 			}
+			return true;
 		}
 
 		/// <summary>
