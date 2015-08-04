@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>635f1097-d469-428d-b17b-054d9cc398fe</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data</Tags>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Demonstrates the use of the App usage statistics API.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
