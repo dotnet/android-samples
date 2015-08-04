@@ -25,6 +25,11 @@ Build Requirements
 ------------------
 Using this sample requires the Android SDK platform for Android 5.0 (API level 21).
 
+Screenshots
+-------------
+
+<img src="Screenshots/1-view-daily.png" height="400" alt="Screenshot"/> <img src="Screenshots/2-view-weekly.png" height="400" alt="Screenshot"/>
+
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
