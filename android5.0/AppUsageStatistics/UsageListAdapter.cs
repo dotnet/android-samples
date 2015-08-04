@@ -14,12 +14,11 @@
 * limitations under the License.
 */
 
-using System;
-using Android.Support.V7.Widget;
 using System.Collections.Generic;
-using Java.Text;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Java.Text;
 using Java.Util;
 
 namespace AppUsageStatistics

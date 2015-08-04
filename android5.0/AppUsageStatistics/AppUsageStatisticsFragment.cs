@@ -15,20 +15,19 @@
 */
 
 using System;
-using Android.App;
-using Android.App.Usage;
-using Android.Support.V7.Widget;
-using Android.Widget;
-using Android.OS;
-using Android.Views;
 using System.Collections.Generic;
 using System.Linq;
-using Android.Util;
+using Android.App;
+using Android.App.Usage;
 using Android.Content;
-using Android.Provider;
-using Android.Graphics.Drawables;
 using Android.Content.PM;
-using System.Collections;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Provider;
+using Android.Support.V7.Widget;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
 using Java.Util;
 
 namespace AppUsageStatistics
