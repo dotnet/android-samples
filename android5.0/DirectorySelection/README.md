@@ -22,6 +22,11 @@ Build Requirements
 ------------------
 Using this sample requires the Android SDK platform for Android 5.0 (API level 21).
 
+Screenshots
+-------------
+
+<img src="Screenshots/1-landing-page.png" height="400" alt="Screenshot"/> <img src="Screenshots/2-directory-selection.png" height="400" alt="Screenshot"/> <img src="Screenshots/3-open-directory.png" height="400" alt="Screenshot"/> <img src="Screenshots/4-create-directory.png" height="400" alt="Screenshot"/>  <img src="Screenshots/5-created-directory.png" height="400" alt="Screenshot"/>
+
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
