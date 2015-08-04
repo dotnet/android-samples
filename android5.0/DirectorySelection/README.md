@@ -12,8 +12,11 @@ giving apps read/write access to all contained documents without requiring user 
 Instructions
 ------------
 
-* Tap on the Camera or Contacts buttons to display a permissions request dialog.
-* Grant permission to view Camera or Contacts fragments.
+* Tap on the "Open Directory" button
+* Select any directory
+* Observe the app displaying the contents of the folder
+* Tap on the "Create Directory" button, create a directory with any name
+* Observe the newly created directory being listed in addition to the already existing contents
 
 Build Requirements
 ------------------
@@ -22,5 +25,5 @@ Using this sample requires the Android SDK platform for Android 5.0 (API level 2
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
-Ported from [Android RuntimePermissions Sample](https://github.com/googlesamples/android-RuntimePermissions)
+Ported from [Android DirectorySelection Sample](https://github.com/googlesamples/android-DirectorySelection)
 Ported to Xamarin.Android by Dylan Kelly
