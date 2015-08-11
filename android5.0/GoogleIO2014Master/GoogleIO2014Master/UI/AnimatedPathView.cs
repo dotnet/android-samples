@@ -7,56 +7,55 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
+using Java.Interop;
 
 namespace GoogleIO2014Master.UI
 {
 	public class AnimatedPathView : View
 	{
-		private const string LOG_TAG = "AnimatedPathView";
-		private readonly Paint mStrokePaint = new Paint(PaintFlags.AntiAlias);
-		private readonly Paint mFillPaint = new Paint(PaintFlags.AntiAlias);
+		const string LOG_TAG = "AnimatedPathView";
+		readonly Paint mStrokePaint = new Paint (PaintFlags.AntiAlias);
+		readonly Paint mFillPaint = new Paint (PaintFlags.AntiAlias);
 
-		private readonly SvgHelper svg;
-		private int svgResource;
+		readonly SvgHelper svg;
+		int svgResource;
 
-		private readonly object svgLock = new object ();
-		private List<SvgHelper.SvgPath> paths = new List<SvgHelper.SvgPath>();
-		private Thread loader;
-		private readonly Path renderPath = new Path();
+		readonly object svgLock = new object ();
+		List<SvgHelper.SvgPath> paths = new List<SvgHelper.SvgPath>();
+		Thread loader;
 
-		private float phase;
-		private float fillAlpha;
-		private float fadeFactor;
-		private int duration;
-		private int fillDuration;
-		private int fillOffset;
+		float phase;
+		float fillAlpha;
+		float fadeFactor;
+		int duration;
+		int fillDuration;
+		int fillOffset;
 
 		//private final 
 		public AnimatedPathView (Context context, IAttributeSet attrs)
-			:this(context, attrs, 0)
+			: this (context, attrs, 0)
 		{
 
 		}
-		public AnimatedPathView(Context context, IAttributeSet attrs, int defStyle)
-			:base(context, attrs, defStyle)
+		public AnimatedPathView (Context context, IAttributeSet attrs, int defStyle)
+			: base (context, attrs, defStyle)
 		{
-
 			mStrokePaint.SetStyle (Paint.Style.Stroke);
 			mFillPaint.SetStyle (Paint.Style.Fill);
 
 			TypedArray a = context.ObtainStyledAttributes (attrs, Resource.Styleable.AnimatedPathView, defStyle, 0);
 			try {
 				if(a != null) {
-					mStrokePaint.StrokeWidth = a.GetDimensionPixelSize(Resource.Styleable.AnimatedPathView_strokeWidth,1);
-					mStrokePaint.Color = a.GetColor(Resource.Styleable.AnimatedPathView_strokeColor, unchecked((int)0xff000000));
+					mStrokePaint.StrokeWidth = a.GetDimensionPixelSize (Resource.Styleable.AnimatedPathView_strokeWidth,1);
+					mStrokePaint.Color = a.GetColor (Resource.Styleable.AnimatedPathView_strokeColor, unchecked((int)0xff000000));
 					svg = new SvgHelper (mStrokePaint);
-					mFillPaint.Color = a.GetColor(Resource.Styleable.AnimatedPathView_fillColor, unchecked((int)0xff000000));
-					phase = a.GetFloat(Resource.Styleable.AnimatedPathView_phase,0.0f);
-					duration = a.GetInt(Resource.Styleable.AnimatedPathView_duration,4000);
-					fillDuration = a.GetInt(Resource.Styleable.AnimatedPathView_fillDuration,4000);
-					fillOffset = a.GetInt(Resource.Styleable.AnimatedPathView_fillOffset,2000);
-					fadeFactor = a.GetFloat(Resource.Styleable.AnimatedPathView_fadeFactor,10.0f);
-					svgResource = a.GetResourceId(Resource.Styleable.AnimatedPathView_svgPath,0);
+					mFillPaint.Color = a.GetColor (Resource.Styleable.AnimatedPathView_fillColor, unchecked((int)0xff000000));
+					phase = a.GetFloat (Resource.Styleable.AnimatedPathView_phase, 0.0f);
+					duration = a.GetInt (Resource.Styleable.AnimatedPathView_duration, 4000);
+					fillDuration = a.GetInt (Resource.Styleable.AnimatedPathView_fillDuration, 4000);
+					fillOffset = a.GetInt (Resource.Styleable.AnimatedPathView_fillOffset, 2000);
+					fadeFactor = a.GetFloat (Resource.Styleable.AnimatedPathView_fadeFactor, 10.0f);
+					svgResource = a.GetResourceId (Resource.Styleable.AnimatedPathView_svgPath, 0);
 				}
 			} finally {
 				if (a != null)
@@ -67,58 +66,72 @@ namespace GoogleIO2014Master.UI
 
 		public int FillColor
 		{
-			get{ return mFillPaint.Color; }
-			set{ mFillPaint.Color = new Color(value); }
+			get { return mFillPaint.Color; }
+			set { mFillPaint.Color = new Color (value); }
 		}
 
 		public int StrokeColor
 		{
-			get{ return mStrokePaint.Color; }
-			set{ mStrokePaint.Color = new Color(value); }
+			get { return mStrokePaint.Color; }
+			set { mStrokePaint.Color = new Color (value); }
 		}
 
 		public float Phase
 		{
-			get{ return phase; }
-			set{
-				phase = value;
-				lock (svgLock) {
-					UpdatePathsPhaseLocked ();
-				}
-				Invalidate ();
+			get { 
+				return phase;
+			} set {
+				setPhase (value);
 			}
+		}
+
+		[Export]
+		public void setPhase (float value)
+		{
+			phase = value;
+			lock (svgLock) {
+				UpdatePathsPhaseLocked ();
+			}
+			Invalidate ();
 		}
 
 		public float FillAlpha
 		{
-			get{ return fillAlpha; }
-			set{
-				fillAlpha = value;
-				Invalidate ();
+			get { 
+				return fillAlpha;
+			} set {
+				setFillAlpha (value);	
 			}
+		}
+
+		[Export]
+		public void setFillAlpha (float value)
+		{
+			fillAlpha = value;
+			Invalidate ();
 		}
 
 		public int SvgResource
 		{
-			get{ return svgResource; }
-			set{ svgResource = value; }
+			get { return svgResource; }
+			set { svgResource = value; }
 		}
 
-		public void Reveal()
+		public void Reveal ()
 		{
 			var svgAnimator = ObjectAnimator.OfFloat (this, "phase", 0.0f, 1.0f);
-			svgAnimator.SetDuration(duration);
+			svgAnimator.SetDuration (duration);
 			svgAnimator.Start ();
 
 			FillAlpha = 0.0f;
 
 			var fillAnimator = ObjectAnimator.OfFloat (this, "fillAlpha", 0.0f, 1.0f);
-			fillAnimator.SetDuration(fillDuration);
+			fillAnimator.SetDuration (fillDuration);
 			fillAnimator.StartDelay = fillOffset;
 			fillAnimator.Start ();
 		}
 
-		public void UpdatePathsPhaseLocked()
+		public void UpdatePathsPhaseLocked ()
 		{
 			foreach (SvgHelper.SvgPath path in paths) {
 				path.renderPath.Reset ();
@@ -133,22 +146,22 @@ namespace GoogleIO2014Master.UI
 			if (loader != null) {
 				try {
 					loader.Join();
-				} catch(Java.Lang.InterruptedException e) {
-					Log.Error(LOG_TAG,"Unexpected error", e);
+				} catch (Java.Lang.InterruptedException e) {
+					Log.Error (LOG_TAG, "Unexpected error", e);
 				}
 			}
 
-			loader = new Thread(new ThreadStart(delegate {
-				svg.Load(Context,svgResource);
+			loader = new Thread (new ThreadStart (delegate {
+				svg.Load (Context,svgResource);
 				lock (svgLock) {
-					paths = svg.GetPathsForViewport(
+					paths = svg.GetPathsForViewport (
 						w - PaddingLeft - PaddingRight,
 						h - PaddingTop - PaddingBottom);
-					UpdatePathsPhaseLocked();
+					UpdatePathsPhaseLocked ();
 				}
 			}));
 			loader.Name = "SVG Loader";
-			loader.Start();
+			loader.Start ();
 		}
 
 		protected override void OnDraw (Canvas canvas)

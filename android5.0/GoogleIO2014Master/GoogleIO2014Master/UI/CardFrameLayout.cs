@@ -42,13 +42,15 @@ namespace GoogleIO2014Master.UI
 			ClipToOutline = true;
 		}
 
-		private class CardProvider : ViewOutlineProvider
+		class CardProvider : ViewOutlineProvider
 		{
 			CardFrameLayout c;
-			public CardProvider(CardFrameLayout c)
+
+			public CardProvider (CardFrameLayout c)
 			{
-				this.c=c;
+				this.c = c;
 			}
+
 			public override void GetOutline (View view, Outline outline)
 			{
 				outline.SetRoundRect (0, 0, c.vw, c.vh, c.radius);

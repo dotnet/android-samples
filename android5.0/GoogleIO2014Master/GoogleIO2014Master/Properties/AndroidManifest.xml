@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="GoogleIO2014Master.GoogleIO2014Master">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
-	<application android:label="GoogleIO2014Master" android:icon="@drawable/ic_launcher">
+	<application android:label="GoogleIO2014Master" android:icon="@drawable/icon">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBgoq_MQistsGMVNLfUoGG42B6itvIq1Ss" />
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="YOUR_KEY_HERE" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
