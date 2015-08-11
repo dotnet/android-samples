@@ -8,16 +8,18 @@ This sample demonstrates the new Material Design APIs introduced in Android Loll
 * Circular reveal
 * Activity transitions
 
-Instructions
-------------
-
+Notes
+-----
 In order to properly display maps, edit the following meta-data in AndroidManifest.xml to include your own Mapsv2 Api Key:
 * <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="YOUR_KEY_HERE" /
 
-* Launch the application
-* Tap any button to send conversations
-* Read the message and observe the application registering the event
-* Clear the log and tap any button to send additional conversations
+Instructions
+------------
+
+* Navigate back and forth between main and detail views to display animations.
+* Tap any list element to display a detailed view.
+* Tap the location button to display a map (after entering an Api Key).
+* Tap the star button to see a 'favorited' animation.
 
 Build Requirements
 ------------------
