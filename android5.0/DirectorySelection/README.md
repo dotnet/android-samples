@@ -30,5 +30,7 @@ Screenshots
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
+
 Ported from [Android DirectorySelection Sample](https://github.com/googlesamples/android-DirectorySelection)
+
 Ported to Xamarin.Android by Dylan Kelly

@@ -39,5 +39,7 @@ Screenshots
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
+
 Ported from [Android MessagingService Sample](https://github.com/googlesamples/android-messagingService)
+
 Ported to Xamarin.Android by Dylan Kelly

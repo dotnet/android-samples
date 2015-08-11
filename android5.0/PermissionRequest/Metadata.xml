@@ -5,6 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>Demonstrates use of the PermissionRequest API to securely provide access to restricted system features</Brief>
+	<Brief>Demonstrates use of the PermissionRequest API to securely provide access to restricted system features.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -5,6 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>Demonstrates use of the Directory Selection API to let users select an entire directory subtree</Brief>
+	<Brief>Demonstrates use of the Directory Selection API to let users select an entire directory subtree.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

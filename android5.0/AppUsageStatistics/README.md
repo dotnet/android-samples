@@ -33,5 +33,7 @@ Screenshots
 Authors
 -------
 Copyright (c) 2014 The Android Open Source Project, Inc.
+
 Ported from [Android AppUsageStatistics Sample](https://github.com/googlesamples/android-AppUsageStatistics)
+
 Ported to Xamarin.Android by Dylan Kelly
