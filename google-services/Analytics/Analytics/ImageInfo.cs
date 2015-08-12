@@ -6,8 +6,6 @@ namespace Analytics
 	{
 		public int Image { get; set;}
 		public int Title { get; set;}
-
-		public ImageInfo(){}
 	}
 }
 

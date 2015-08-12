@@ -6,7 +6,7 @@ using Android.Runtime;
 
 namespace Analytics
 {
-	[Application (Label="@string/app_name", Icon="@drawable/icon", Theme="@style/AppTheme", AllowBackup=true)]
+	[Application (Label = "@string/app_name", Icon = "@drawable/icon", Theme = "@style/AppTheme", AllowBackup = true)]
 	public class AnalyticsApplication : Application
 	{
 		Tracker mTracker;
@@ -21,7 +21,9 @@ namespace Analytics
 			}
 		}
 
-		public AnalyticsApplication(IntPtr handle, JniHandleOwnership ownerShip) : base(handle, ownerShip){
+		public AnalyticsApplication (IntPtr handle, JniHandleOwnership ownerShip) 
+			: base (handle, ownerShip)
+		{
 		}
 	}
 }
