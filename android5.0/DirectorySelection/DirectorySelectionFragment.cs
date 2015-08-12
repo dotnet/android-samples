@@ -87,7 +87,7 @@ namespace DirectorySelection
 						editView.Text);
 					UpdateDirectoryEntries (mCurrentDirectoryUri);
 				})
-					.SetNegativeButton (Resource.String.ok, delegate {
+					.SetNegativeButton (Resource.String.cancel, delegate {
 				});
 				builder.Show ();
 			};
