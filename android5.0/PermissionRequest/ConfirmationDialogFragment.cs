@@ -53,7 +53,7 @@ namespace PermissionRequest
 			builder.SetPositiveButton (Resource.String.allow, delegate {
 				((Listener)ParentFragment).OnConfirmation (true);
 			});
-			var dialog = builder.Create ();
+			AlertDialog dialog = builder.Create ();
 
 			return dialog;
 		}

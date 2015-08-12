@@ -47,7 +47,7 @@ namespace PermissionRequest
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
-			this.MenuInflater.Inflate (Resource.Menu.main, menu);
+			MenuInflater.Inflate (Resource.Menu.main, menu);
 			return true;
 		}
 
@@ -80,17 +80,16 @@ namespace PermissionRequest
 		public override void InitializeLogging ()
 		{
 			// Wraps Android's native log framework.
-			LogWrapper logWrapper = new LogWrapper ();
+			var logWrapper = new LogWrapper ();
 			// Using Log, front-end to the logging chain, emulates android.util.log method signatures.
 			Log.LogNode = logWrapper;
 
 			// Filter strips out everything except the message text.
-			MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter ();
+			var msgFilter = new MessageOnlyLogFilter ();
 			logWrapper.NextNode = msgFilter;
 
 			// On screen logging via a fragment with a TextView.
-			LogFragment logFragment = (LogFragment)FragmentManager
-				.FindFragmentById (Resource.Id.log_fragment);
+			var logFragment = (LogFragment)FragmentManager.FindFragmentById (Resource.Id.log_fragment);
 			msgFilter.NextNode = logFragment.LogView;
 
 			Log.Info (TAG, "Ready");

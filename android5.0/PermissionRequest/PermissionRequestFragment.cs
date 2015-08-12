@@ -64,8 +64,7 @@ namespace PermissionRequest
 			mWebChromeClient = new MyWebChromeClient (this);
 		}
 
-		public override View OnCreateView (LayoutInflater inflater, ViewGroup container,
-		                                   Bundle savedInstanceState)
+		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			return inflater.Inflate (Resource.Layout.fragment_permission_request, container, false);
 		}
