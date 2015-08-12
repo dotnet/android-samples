@@ -45,7 +45,7 @@ namespace Xamarin.Samples.UrbanAirship.RichPush
 			if (delayInMs > 0) {
 				PendingIntent pendingIntent = PendingIntent.GetBroadcast(context, 0, refreshIntent, 0);
 				AlarmManager am = (AlarmManager) context.GetSystemService(Context.AlarmService);
-				am.Set (AlarmType.RtcWakeup, (long) new TimeSpan (DateTime.Now.Ticks).TotalMilliseconds + delayInMs, pendingIntent);
+				am.Set (AlarmType.RtcWakeup, Java.Lang.JavaSystem.CurrentTimeMillis() + delayInMs, pendingIntent);
 			} else {
 				context.SendBroadcast(refreshIntent);
 			}
