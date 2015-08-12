@@ -13,7 +13,7 @@ using Java.Interop;
 
 namespace GoogleIO2014Master
 {
-	[Activity (Label = "GoogleIO2014Master", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+	[Activity (Label = "@string/app_name", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 	public class MainActivity : Activity
 	{
 		public static SparseArray<Bitmap> SPhotoCache = new SparseArray<Bitmap>(4);

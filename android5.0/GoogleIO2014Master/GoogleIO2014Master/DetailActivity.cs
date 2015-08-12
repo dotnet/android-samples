@@ -24,19 +24,24 @@ using GoogleIO2014Master.UI;
 
 namespace GoogleIO2014Master
 {
-	[Activity (ParentActivity = typeof (MainActivity), Theme = "@style/DetailTheme", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+	[Activity (ParentActivity = typeof(MainActivity), Theme = "@style/DetailTheme", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 	public class DetailActivity : Activity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.activity_detail);
+
 			Bitmap photo = SetupPhoto (Intent.GetIntExtra ("photo", Resource.Drawable.photo1));
+
 			Colorize (photo);
+
 			SetupMap ();
 			SetupText ();
+
 			SetOutlines (Resource.Id.star, Resource.Id.info);
 			ApplySystemWindowsBottomInsert (Resource.Id.container);
+
 			Window.EnterTransition.AddListener (new DetailsTransitionAdapter (this));
 		}
 
@@ -124,19 +129,19 @@ namespace GoogleIO2014Master
 
 		void ApplyPalette (Palette palette)
 		{
-			Window.SetBackgroundDrawable (new ColorDrawable (new Color(palette.DarkMutedSwatch.Rgb)));
+			Window.SetBackgroundDrawable (new ColorDrawable (new Color (palette.DarkMutedSwatch.Rgb)));
 
 			var titleView = FindViewById<TextView> (Resource.Id.title);
-			titleView.SetTextColor (new Color(palette.VibrantSwatch.Rgb));
+			titleView.SetTextColor (new Color (palette.VibrantSwatch.Rgb));
 
 			var descriptionView = FindViewById<TextView> (Resource.Id.description);
-			descriptionView.SetTextColor (new Color(palette.LightVibrantSwatch.Rgb));
+			descriptionView.SetTextColor (new Color (palette.LightVibrantSwatch.Rgb));
 
-			ColorRipple (Resource.Id.star, palette.MutedSwatch.Rgb, palette.VibrantSwatch.Rgb);
 			ColorRipple (Resource.Id.info, palette.DarkMutedSwatch.Rgb, palette.DarkVibrantSwatch.Rgb);
+			ColorRipple (Resource.Id.star, palette.MutedSwatch.Rgb, palette.VibrantSwatch.Rgb);
 
 			var infoView = FindViewById (Resource.Id.information_container);
-			infoView.SetBackgroundColor (new Color(palette.LightMutedSwatch.Rgb));
+			infoView.SetBackgroundColor (new Color (palette.LightMutedSwatch.Rgb));
 
 			var star = FindViewById<AnimatedPathView> (Resource.Id.star_container);
 			star.FillColor = palette.VibrantSwatch.Rgb;
@@ -146,18 +151,18 @@ namespace GoogleIO2014Master
 
 		public void ColorRipple (int id, int bgColor, int tintColor)
 		{
-			View buttonView = FindViewById (id);
+			var buttonView = FindViewById (id);
 
-			var ripple = (RippleDrawable)buttonView.Background;
-			var rippleBackground = (GradientDrawable)ripple.GetDrawable (0);
+			var ripple = (RippleDrawable)(buttonView.Background);
+			var rippleBackground = (GradientDrawable)(ripple.GetDrawable (0));
+			rippleBackground.SetColor(bgColor);
 
-			rippleBackground.SetColor (bgColor);
 			ripple.SetColor (ColorStateList.ValueOf (new Color (tintColor)));
 		}
-			
+
 		public Bitmap SetupPhoto (int resource)
 		{
-			Bitmap bitmap = MainActivity.SPhotoCache.Get (resource);
+			var bitmap = MainActivity.SPhotoCache.Get (resource);
 			FindViewById<ImageView> (Resource.Id.photo).SetImageBitmap (bitmap);
 			return bitmap;
 		}
@@ -225,7 +230,7 @@ namespace GoogleIO2014Master
 		{
 			public DetailActivity da;
 
-			public DetailsTransitionAdapter(DetailActivity details)
+			public DetailsTransitionAdapter (DetailActivity details)
 			{
 				da = details;
 			}
@@ -234,7 +239,7 @@ namespace GoogleIO2014Master
 			{
 				var hero = da.FindViewById<ImageView> (Resource.Id.photo);
 				ObjectAnimator color = ObjectAnimator.OfArgb (hero.Drawable, "tint",
-					da.Resources.GetColor (Resource.Color.photo_tint), 0);
+					                       da.Resources.GetColor (Resource.Color.photo_tint), 0);
 				color.Start ();
 
 				da.FindViewById (Resource.Id.info).Animate ().Alpha (1.0f);
