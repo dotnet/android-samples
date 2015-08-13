@@ -11,7 +11,7 @@ using Android.Runtime;
 namespace MediaBrowserService
 {
 	[Service (Exported = true)]
-	[IntentFilter(new[]{"android.media.browse.MediaBrowserService"})]
+	[IntentFilter (new[] { "android.media.browse.MediaBrowserService" })]
 	public class MusicService : Android.Service.Media.MediaBrowserService, Playback.ICallback
 	{
 		public const string ActionCmd = "com.example.android.mediabrowserservice.ACTION_CMD";
@@ -49,6 +49,7 @@ namespace MediaBrowserService
 			session = new MediaSession (this, "MusicService");
 			SessionToken = session.SessionToken;
 			var mediaCallback = new MediaSessionCallback ();
+
 			mediaCallback.OnPlayImpl = () => {
 				LogHelper.Debug (Tag, "play");
 
@@ -63,6 +64,7 @@ namespace MediaBrowserService
 					HandlePlayRequest ();
 				}
 			};
+
 			mediaCallback.OnSkipToQueueItemImpl = (id) => {
 				LogHelper.Debug (Tag, "OnSkipToQueueItem:" + id);
 
@@ -71,10 +73,12 @@ namespace MediaBrowserService
 					HandlePlayRequest ();
 				}
 			};
+
 			mediaCallback.OnSeekToImpl = (pos) => {
 				LogHelper.Debug (Tag, "onSeekTo:", pos);
 				playback.SeekTo ((int)pos);
 			};
+
 			mediaCallback.OnPlayFromMediaIdImpl = (mediaId, extras) => {
 				LogHelper.Debug (Tag, "playFromMediaId mediaId:", mediaId, "  extras=", extras);
 
@@ -95,14 +99,17 @@ namespace MediaBrowserService
 					}
 				}
 			};
+
 			mediaCallback.OnPauseImpl = () => {
 				LogHelper.Debug (Tag, "pause. current state=" + playback.State);
 				HandlePauseRequest ();
 			};
+
 			mediaCallback.OnStopImpl = () => {
 				LogHelper.Debug (Tag, "stop. current state=" + playback.State);
 				HandleStopRequest (null);
 			};
+
 			mediaCallback.OnSkipToNextImpl = () => {
 				LogHelper.Debug (Tag, "skipToNext");
 				currentIndexOnQueue++;
@@ -118,6 +125,7 @@ namespace MediaBrowserService
 					HandleStopRequest ("Cannot skip");
 				}
 			};
+
 			mediaCallback.OnSkipToPreviousImpl = () => {
 				LogHelper.Debug (Tag, "skipToPrevious");
 				currentIndexOnQueue--;
@@ -133,6 +141,7 @@ namespace MediaBrowserService
 					HandleStopRequest ("Cannot skip");
 				}
 			};
+
 			mediaCallback.OnCustomActionImpl = (action, extras) => {
 				if (CustomActionThumbsUp == action) {
 					LogHelper.Info (Tag, "onCustomAction: favorite for current track");
@@ -146,6 +155,7 @@ namespace MediaBrowserService
 					LogHelper.Error (Tag, "Unsupported action: ", action);
 				}
 			};
+
 			mediaCallback.OnPlayFromSearchImpl = (query, extras) => {
 				LogHelper.Debug (Tag, "playFromSearch  query=", query);
 
@@ -166,6 +176,7 @@ namespace MediaBrowserService
 					HandleStopRequest (GetString (Resource.String.no_search_results));
 				}
 			};
+
 			session.SetCallback (mediaCallback);
 			session.SetFlags (MediaSessionFlags.HandlesMediaButtons |
 			MediaSessionFlags.HandlesTransportControls);
@@ -175,7 +186,7 @@ namespace MediaBrowserService
 			playback.Callback = this;
 			playback.Start ();
 
-			var context = ApplicationContext;
+			Context context = ApplicationContext;
 			var intent = new Intent (context, typeof(MusicPlayerActivity));
 			var pi = PendingIntent.GetActivity (context, 99 /*request code*/,
 				         intent, PendingIntentFlags.UpdateCurrent);
@@ -431,11 +442,11 @@ namespace MediaBrowserService
 				UpdatePlaybackState (Resources.GetString (Resource.String.error_no_metadata));
 				return;
 			}
-			var queueItem = playingQueue [currentIndexOnQueue];
-			var musicId = MediaIDHelper.ExtractMusicIDFromMediaID (
+			MediaSession.QueueItem queueItem = playingQueue [currentIndexOnQueue];
+			string musicId = MediaIDHelper.ExtractMusicIDFromMediaID (
 				              queueItem.Description.MediaId);
-			var track = musicProvider.GetMusic (musicId);
-			var trackId = track.GetString (MediaMetadata.MetadataKeyMediaId);
+			MediaMetadata track = musicProvider.GetMusic (musicId);
+			string trackId = track.GetString (MediaMetadata.MetadataKeyMediaId);
 			if (musicId != trackId) {
 				var e = new InvalidOperationException ("track ID should match musicId.");
 				LogHelper.Error (Tag, "track ID should match musicId.",
@@ -456,11 +467,11 @@ namespace MediaBrowserService
 			// locked screen and in other places.
 			if (track.Description.IconBitmap == null &&
 			    track.Description.IconUri != null) {
-				var albumUri = track.Description.IconUri.ToString ();
+				string albumUri = track.Description.IconUri.ToString ();
 				AlbumArtCache.Instance.Fetch (albumUri, new AlbumArtCache.FetchListener {
 					OnFetched = (artUrl, bitmap, icon) => {
-						var qItem = playingQueue [currentIndexOnQueue];
-						var trackItem = musicProvider.GetMusic (trackId);
+						MediaSession.QueueItem qItem = playingQueue [currentIndexOnQueue];
+						MediaMetadata trackItem = musicProvider.GetMusic (trackId);
 						trackItem = new MediaMetadata.Builder (trackItem)
 							.PutBitmap (MediaMetadata.MetadataKeyAlbumArt, bitmap)
 							.PutBitmap (MediaMetadata.MetadataKeyDisplayIcon, icon)
@@ -469,7 +480,7 @@ namespace MediaBrowserService
 						musicProvider.UpdateMusic (trackId, trackItem);
 
 						// If we are still playing the same music
-						var currentPlayingId = MediaIDHelper.ExtractMusicIDFromMediaID (
+						string currentPlayingId = MediaIDHelper.ExtractMusicIDFromMediaID (
 							                       qItem.Description.MediaId);
 						if (trackId == currentPlayingId) {
 							session.SetMetadata (trackItem);
@@ -491,7 +502,7 @@ namespace MediaBrowserService
 				.SetActions (GetAvailableActions ());
 
 			SetCustomAction (stateBuilder);
-			var state = playback.State;
+			PlaybackStateCode state = playback.State;
 
 			// If there is an error message, send it to the playback state:
 			if (error != null) {

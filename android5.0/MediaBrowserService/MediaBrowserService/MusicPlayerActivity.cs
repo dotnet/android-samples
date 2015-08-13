@@ -2,7 +2,7 @@
 
 namespace MediaBrowserService
 {
-	[Activity(Label="MediaBrowserService Sample", MainLauncher = true)]
+	[Activity (Label = "MediaBrowserService Sample", MainLauncher = true)]
 	public class MusicPlayerActivity : Activity, BrowseFragment.IFragmentDataHelper
 	{
 		protected override void OnCreate (Android.OS.Bundle savedInstanceState)

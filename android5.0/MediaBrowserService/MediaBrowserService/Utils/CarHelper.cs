@@ -17,26 +17,30 @@ namespace MediaBrowserService
 			"com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE";
 
 
-		public static bool IsValidCarPackage(string packageName) {
+		public static bool IsValidCarPackage (string packageName)
+		{
 			return AutoAppPackageName == packageName;
 		}
 
-		public static void SetSlotReservationFlags(Bundle extras, bool reservePlayingQueueSlot,
-			bool reserveSkipToNextSlot, bool reserveSkipToPrevSlot) {
+		public static void SetSlotReservationFlags (Bundle extras, bool reservePlayingQueueSlot,
+			bool reserveSkipToNextSlot, bool reserveSkipToPrevSlot)
+		{
 			if (reservePlayingQueueSlot) {
-				extras.PutBoolean(SlotReservationQueue, true);
+				extras.PutBoolean (SlotReservationQueue, true);
 			} else {
-				extras.Remove(SlotReservationQueue);
+				extras.Remove (SlotReservationQueue);
 			}
+
 			if (reserveSkipToPrevSlot) {
 				extras.PutBoolean(SlotReservationSkipToPrev, true);
 			} else {
-				extras.Remove(SlotReservationSkipToPrev);
+				extras.Remove (SlotReservationSkipToPrev);
 			}
+
 			if (reserveSkipToNextSlot) {
 				extras.PutBoolean(SlotReservationSkipToNext, true);
 			} else {
-				extras.Remove(SlotReservationSkipToNext);
+				extras.Remove (SlotReservationSkipToNext);
 			}
 		}
 	}

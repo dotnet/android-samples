@@ -1,12 +1,12 @@
 ﻿using System;
-using Android.Util;
 using System.Text;
+
+using Android.Util;
 
 namespace MediaBrowserService
 {
 	public static class LogHelper
 	{
-
 		const string LogPrefix = "sample_";
 		static readonly int LogPrefixLength = LogPrefix.Length;
 		const int MaxLogTagLength = 23;
@@ -65,7 +65,7 @@ namespace MediaBrowserService
 
 		public static void Log (string tag, LogPriority level, Exception t, params object[] messages)
 		{
-			//if (Android.Util.Log.IsLoggable (tag, level)) {
+			if (Android.Util.Log.IsLoggable (tag, level)) {
 				string message;
 				if (t == null && messages != null && messages.Length == 1) {
 					message = messages [0].ToString ();
@@ -81,9 +81,8 @@ namespace MediaBrowserService
 					}
 					message = sb.ToString ();
 				}
-				Console.WriteLine ("[{0}] {1} - {2}", level.ToString (), tag, message);
-				//Android.Util.Log.WriteLine((LogPriority)level, tag, message);
-			//}
+				Android.Util.Log.WriteLine ((LogPriority)level, tag, message);
+			}
 		}
 	}
 }

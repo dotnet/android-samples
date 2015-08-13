@@ -1,26 +1,30 @@
 ﻿using System;
 using Android.Content;
 using Android.Content.PM;
+using Android.Content.Res;
 
 namespace MediaBrowserService
 {
 	public static class ResourceHelper
 	{
-		public static int GetThemeColor(Context context, int attribute, int defaultColor) {
-			var themeColor = 0;
-			var packageName = context.PackageName;
+		public static int GetThemeColor (Context context, int attribute, int defaultColor)
+		{
+			int themeColor = 0;
+			string packageName = context.PackageName;
+
 			try {
-				var packageContext = context.CreatePackageContext(packageName, 0);
-				var applicationInfo =
-					context.PackageManager.GetApplicationInfo(packageName, 0);
-				packageContext.SetTheme(applicationInfo.Theme);
-				var theme = packageContext.Theme;
-				var ta = theme.ObtainStyledAttributes(new [] {attribute});
-				themeColor = ta.GetColor(0, defaultColor);
-				ta.Recycle();
+				Context packageContext = context.CreatePackageContext (packageName, 0);
+				ApplicationInfo applicationInfo = context.PackageManager.GetApplicationInfo (packageName, 0);
+				packageContext.SetTheme (applicationInfo.Theme);
+
+				Resources.Theme theme = packageContext.Theme;
+				TypedArray ta = theme.ObtainStyledAttributes (new [] { attribute });
+				themeColor = ta.GetColor (0, defaultColor);
+				ta.Recycle ();
 			} catch (PackageManager.NameNotFoundException e) {
-				e.PrintStackTrace();
+				e.PrintStackTrace ();
 			}
+
 			return themeColor;
 		}
 	}

@@ -5,8 +5,6 @@ namespace MediaBrowserService
 {
 	public static class MediaIDHelper
 	{
-		//static readonly string Tag = LogHelper.MakeLogTag (typeof(MediaIDHelper));
-
 		public const string MediaIdRoot = "__ROOT__";
 		public const string MediaIdMusicsByGenre = "__BY_GENRE__";
 		public const string MediaIdMusicsBySearch = "__BY_SEARCH__";
@@ -36,13 +34,13 @@ namespace MediaBrowserService
 
 		public static string ExtractMusicIDFromMediaID (string mediaId)
 		{
-			var pos = mediaId.IndexOf (LeafSeparator);
+			int pos = mediaId.IndexOf (LeafSeparator);
 			return pos >= 0 ? mediaId.Substring (pos + 1) : null;
 		}
 
 		public static string[] GetHierarchy (string mediaId)
 		{
-			var pos = mediaId.IndexOf (LeafSeparator);
+			int pos = mediaId.IndexOf (LeafSeparator);
 			if (pos >= 0)
 				mediaId = mediaId.Substring (0, pos);
 			return mediaId.Split (CategorySeparator);
@@ -50,7 +48,7 @@ namespace MediaBrowserService
 
 		public static string ExtractBrowseCategoryValueFromMediaID (string mediaId)
 		{
-			var hierarchy = GetHierarchy (mediaId);
+			string[] hierarchy = GetHierarchy (mediaId);
 			if (hierarchy != null && hierarchy.Length == 2)
 				return hierarchy [1];
 			return null;
@@ -64,10 +62,13 @@ namespace MediaBrowserService
 		public static string GetParentMediaID (string mediaId)
 		{
 			var hierarchy = GetHierarchy (mediaId);
+
 			if (!IsBrowseable (mediaId))
 				return CreateMediaID (null, hierarchy);
+			
 			if (hierarchy == null || hierarchy.Length <= 1)
 				return MediaIdRoot;
+			
 			var parentHierarchy = new string[hierarchy.Length - 1];
 			Array.Copy (hierarchy, parentHierarchy, hierarchy.Length - 1);
 			return CreateMediaID (null, parentHierarchy);

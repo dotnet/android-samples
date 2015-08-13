@@ -110,6 +110,7 @@ namespace MediaBrowserService
 				}
 				OnPlaybackStateChanged (playbackState);
 			};
+
 			connectionCallback.OnConnectionFailedImpl = () => LogHelper.Debug (Tag, "onConnectionFailed");
 			connectionCallback.OnConnectionSuspendedImpl = () => {
 				LogHelper.Debug (Tag, "onConnectionSuspended");
@@ -118,6 +119,7 @@ namespace MediaBrowserService
 				mediaController = null;
 				Activity.MediaController = null;
 			};
+
 			sessionCallback.OnSessionDestroyedImpl = () => LogHelper.Debug (Tag, "Session destroyed. Need to fetch a new Media Session");
 			sessionCallback.OnPlaybackStateChangedImpl = state => {
 				if (state == null) {
@@ -127,6 +129,7 @@ namespace MediaBrowserService
 				playbackState = state;
 				OnPlaybackStateChanged (state);
 			};
+
 			sessionCallback.OnQueueChangedImpl = queue => {
 				LogHelper.Debug (Tag, "onQueueChanged ", queue);
 				if (queue != null) {
@@ -140,7 +143,7 @@ namespace MediaBrowserService
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
-			var rootView = inflater.Inflate (Resource.Layout.fragment_list, container, false);
+			View rootView = inflater.Inflate (Resource.Layout.fragment_list, container, false);
 
 			skipPrevious = rootView.FindViewById<ImageButton> (Resource.Id.skip_previous);
 			skipPrevious.Enabled = false;
@@ -159,6 +162,7 @@ namespace MediaBrowserService
 			var listView = rootView.FindViewById<ListView> (Resource.Id.list_view);
 			listView.Adapter = queueAdapter;
 			listView.Focusable = true;
+
 			listView.ItemClick += (sender, e) => {
 				var item = queueAdapter.GetItem(e.Position);
 				transportControls.SkipToQueueItem(item.QueueId);
@@ -197,6 +201,7 @@ namespace MediaBrowserService
 			queueAdapter.NotifyDataSetChanged ();
 			var enablePlay = false;
 			var statusBuilder = new StringBuilder ();
+
 			switch (state.State) {
 			case PlaybackStateCode.Playing:
 				statusBuilder.Append ("playing");
@@ -227,6 +232,7 @@ namespace MediaBrowserService
 				statusBuilder.Append (playbackState);
 				break;
 			}
+
 			statusBuilder.Append (" -- At position: ").Append (state.Position);
 			LogHelper.Debug (Tag, statusBuilder.ToString ());
 
@@ -247,8 +253,9 @@ namespace MediaBrowserService
 		public void OnClick (object sender, EventArgs e)
 		{
 			var v = (View)sender;
-			var state = playbackState == null ?
+			PlaybackStateCode state = playbackState == null ?
 				PlaybackStateCode.None : playbackState.State;
+			
 			switch (v.Id) {
 			case Resource.Id.play_pause:
 				LogHelper.Debug (Tag, "Play button pressed, in state " + state);

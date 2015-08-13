@@ -80,17 +80,18 @@ namespace MediaBrowserService
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			var rootView = inflater.Inflate (Resource.Layout.fragment_list, container, false);
+			View rootView = inflater.Inflate (Resource.Layout.fragment_list, container, false);
 
 			browserAdapter = new BrowseAdapter (Activity);
 
-			var controls = rootView.FindViewById (Resource.Id.controls);
+			View controls = rootView.FindViewById (Resource.Id.controls);
 			controls.Visibility = ViewStates.Gone;
 
 			var listView = rootView.FindViewById<ListView> (Resource.Id.list_view);
 			listView.Adapter = browserAdapter;
+
 			listView.ItemClick += (sender, e) => {
-				var item = browserAdapter.GetItem (e.Position);
+				MediaBrowser.MediaItem item = browserAdapter.GetItem (e.Position);
 				try {
 					var listener = (IFragmentDataHelper)Activity;
 					listener.OnMediaItemSelected (item);
@@ -98,11 +99,13 @@ namespace MediaBrowserService
 					Log.Error (Tag, "Exception trying to cast to FragmentDataHelper", ex);
 				}
 			};
-			var args = Arguments;
+
+			Bundle args = Arguments;
 			mediaId = args.GetString (ArgMediaId, null);
 			mediaBrowser = new MediaBrowser (Activity,
-				new ComponentName (Activity, Java.Lang.Class.FromType(typeof(MusicService))),
+				new ComponentName (Activity, Java.Lang.Class.FromType (typeof(MusicService))),
 				connectionCallback, null);
+			
 			subscriptionCallback.OnChildrenLoadedImpl = (parentId, children) => {
 				browserAdapter.Clear ();
 				browserAdapter.NotifyDataSetInvalidated ();
@@ -111,6 +114,7 @@ namespace MediaBrowserService
 				}
 				browserAdapter.NotifyDataSetChanged ();
 			};
+
 			subscriptionCallback.OnErrorImpl = (id) => Toast.MakeText (Activity, "Error Loading Media", ToastLength.Long).Show ();
 			connectionCallback.OnConnectedImpl = () => {
 				LogHelper.Debug (Tag, "onConnected: session token " + mediaBrowser.SessionToken);
@@ -171,7 +175,7 @@ namespace MediaBrowserService
 				} else {
 					holder = (ViewHolder)convertView.Tag;
 				}
-				var item = GetItem (position);
+				MediaBrowser.MediaItem item = GetItem (position);
 				holder.mTitleView.Text = item.Description.Title;
 				holder.mDescriptionView.Text = item.Description.Description;
 				if (item.IsPlayable) {
