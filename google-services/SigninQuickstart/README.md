@@ -14,8 +14,14 @@ Troubleshooting
 ---------------
 Note: Make sure you've authorized the app in the [Google Developers Console](https://console.developers.google.com/project) before use.
 
+Build Requirements
+------------------
+Using this sample requires the Android SDK platform for Android 5.0 (API level 21).
+
 Authors
 -------
 Copyright (c) 2015 Google, Inc.
-Ported from [Google Sign-In Sample](https://github.com/googlesamples/google-services/tree/master/android/signin)
+
+Ported from [Google Sign-In Sample](https://developers.google.com/mobile/add)
+
 Ported to Xamarin.Android by Aaron Sky
