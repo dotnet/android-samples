@@ -15,7 +15,8 @@ using Android.Widget;
 namespace AppInvite
 {
 	[Activity (Label = "@string/app_name", Theme = "@style/ThemeOverlay.MyDialogActivity")]			
-	public class DeepLinkActivity : AppCompatActivity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener, View.IOnClickListener
+	public class DeepLinkActivity : AppCompatActivity, IGoogleApiClientConnectionCallbacks,
+		IGoogleApiClientOnConnectionFailedListener, View.IOnClickListener
 	{
 		static readonly string Tag = typeof(DeepLinkActivity).Name;
 

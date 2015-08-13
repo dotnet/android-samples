@@ -16,7 +16,7 @@ using System;
 namespace AppInvite
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true)]
-	[IntentFilter (new []{ Intent.ActionView },
+	[IntentFilter (new [] { Intent.ActionView },
 		Categories = new [] {
 			Intent.CategoryDefault,
 			Intent.CategoryBrowsable
@@ -44,7 +44,6 @@ namespace AppInvite
 					LaunchDeepLinkActivity (intent);
 				}
 			}
-
 		}
 
 		protected override void OnStart ()
