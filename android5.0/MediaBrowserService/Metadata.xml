@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>155ea508-9c99-483c-9b6b-04e39db5803a</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>User Interface</Tags>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Demonstrates how to create a simple media player app using the new MediaBrowserService API</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
