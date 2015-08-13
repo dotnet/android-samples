@@ -95,7 +95,7 @@ namespace ConnectionsQuickstart
 		bool IsConnectedToNetwork {
 			get {
 				var connManager = (ConnectivityManager)GetSystemService (ConnectivityService);
-				var info = connManager.GetNetworkInfo (ConnectivityType.Wifi);
+				NetworkInfo info = connManager.GetNetworkInfo (ConnectivityType.Wifi);
 
 				return (info != null && info.IsConnectedOrConnecting);
 			}
@@ -124,7 +124,7 @@ namespace ConnectionsQuickstart
 				} else {
 					DebugLog ("startAdvertising:onResult: FAILURE ");
 
-					var statusCode = result.Status.StatusCode;
+					int statusCode = result.Status.StatusCode;
 					if (statusCode == ConnectionsStatusCodes.StatusAlreadyAdvertising) {
 						DebugLog ("STATUS_ALREADY_ADVERTISING");
 					} else {
@@ -142,7 +142,7 @@ namespace ConnectionsQuickstart
 				return;
 			}
 
-			var serviceId = GetString (Resource.String.service_id);
+			string serviceId = GetString (Resource.String.service_id);
 			NearbyClass.Connections.StartDiscovery (mGoogleApiClient, serviceId, TIMEOUT_DISCOVER, this)
 				.SetResultCallback ((Statuses status) => {
 				if (status.IsSuccess) {
@@ -164,7 +164,7 @@ namespace ConnectionsQuickstart
 
 		void SendMessage ()
 		{
-			var msg = mMessageText.Text;
+			string msg = mMessageText.Text;
 			NearbyClass.Connections.SendReliableMessage (mGoogleApiClient, mOtherEndpointId, System.Text.Encoding.Default.GetBytes (msg));
 
 			mMessageText.Text = null;
@@ -177,6 +177,7 @@ namespace ConnectionsQuickstart
 			string myName = null;
 			byte[] myPayload = null;
 			var connectionResponseCallback = new ConnectionResponseCallback ();
+
 			connectionResponseCallback.OnConnectionResponseImpl = (remoteEndpointId, status, payload) => {
 				Log.Debug (TAG, "onConnectionResponse:" + remoteEndpointId + ":" + status);
 				if (status.IsSuccess) {
@@ -190,6 +191,7 @@ namespace ConnectionsQuickstart
 					DebugLog ("onConnectionResponse: " + endpointName + " FAILURE");
 				}
 			};
+
 			NearbyClass.Connections.SendConnectionRequest (mGoogleApiClient, myName, endpointId, myPayload, connectionResponseCallback, this);
 		}
 
@@ -215,20 +217,18 @@ namespace ConnectionsQuickstart
 				.SetMessage ("Do you want to connect to " + remoteEndpointName + "?")
 				.SetCancelable (false)
 				.SetPositiveButton ("Connect", (sender, e) => {
-				byte[] pLoad = null;
-				NearbyClass.Connections.AcceptConnectionRequest (mGoogleApiClient, remoteEndpointId,
-					pLoad, this).SetResultCallback ((Statuses status) => {
-					if (status.IsSuccess) {
-						DebugLog ("acceptConnectionRequest: SUCCESS");
-
-						mOtherEndpointId = remoteEndpointId;
-						UpdateViewVisibility (NearbyConnectionState.Connected);
-					} else {
-						DebugLog ("acceptConnectionRequest: FAILURE");
-					}
-						
-				});
-			})
+					byte[] pLoad = null;
+					NearbyClass.Connections.AcceptConnectionRequest (mGoogleApiClient, 
+						remoteEndpointId, pLoad, this).SetResultCallback ((Statuses status) => {
+							if (status.IsSuccess) {
+								DebugLog ("acceptConnectionRequest: SUCCESS");
+								mOtherEndpointId = remoteEndpointId;
+								UpdateViewVisibility (NearbyConnectionState.Connected);
+							} else {
+								DebugLog ("acceptConnectionRequest: FAILURE");
+							}
+						});
+				})
 				.SetNegativeButton ("No", (sender, e) => NearbyClass.Connections.RejectConnectionRequest (mGoogleApiClient, remoteEndpointId))
 				.Create ();
 
