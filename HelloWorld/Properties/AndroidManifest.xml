@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="mono.samples.helloworld">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.helloworld">
 	<application android:icon="@drawable/icon" />
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" />
 </manifest>
