@@ -16,7 +16,8 @@ namespace LocationAddress
 
 		protected ResultReceiver mReceiver;
 
-		public FetchAddressIntentService () : base (TAG)
+		public FetchAddressIntentService () 
+			: base (TAG)
 		{
 		}
 
@@ -31,7 +32,7 @@ namespace LocationAddress
 				return;
 			}
 
-			var location = intent.GetParcelableExtra (Constants.LocationDataExtra) as Location;
+			var location = (Location)intent.GetParcelableExtra (Constants.LocationDataExtra);
 
 			if (location == null) {
 				errorMessage = GetString (Resource.String.no_location_data_provided);
@@ -51,7 +52,8 @@ namespace LocationAddress
 				Log.Error (TAG, errorMessage, ioException);
 			} catch (IllegalArgumentException illegalArgumentException) {
 				errorMessage = GetString (Resource.String.invalid_lat_long_used);
-				Log.Error (TAG, string.Format ("{0}. Latitude = {1}, Longitude = {2}", errorMessage, location.Latitude, location.Longitude), illegalArgumentException);
+				Log.Error (TAG, string.Format ("{0}. Latitude = {1}, Longitude = {2}", errorMessage, 
+					location.Latitude, location.Longitude), illegalArgumentException);
 			}
 
 			if (addresses == null || addresses.Count == 0) {
@@ -61,15 +63,14 @@ namespace LocationAddress
 				}
 				DeliverResultToReceiver (Result.FirstUser, errorMessage);
 			} else {
-				var address = addresses.FirstOrDefault ();
+				Address address = addresses.FirstOrDefault ();
 				var addressFragments = new List<string> ();
 
 				for (int i = 0; i < address.MaxAddressLineIndex; i++) {
 					addressFragments.Add (address.GetAddressLine (i));
 				}
 				Log.Info (TAG, GetString (Resource.String.address_found));
-				DeliverResultToReceiver (Result.Canceled,
-					string.Join ("\n", addressFragments));
+				DeliverResultToReceiver (Result.Canceled, string.Join ("\n", addressFragments));
 			}
 		}
 

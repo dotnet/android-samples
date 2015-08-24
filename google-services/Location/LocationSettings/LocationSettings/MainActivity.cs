@@ -15,37 +15,27 @@ using Android.Util;
 namespace LocationSettings
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,	IGoogleApiClientOnConnectionFailedListener,	Android.Gms.Location.ILocationListener, IResultCallback
+	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
+		IGoogleApiClientOnConnectionFailedListener,	Android.Gms.Location.ILocationListener, IResultCallback
 	{
-
 		protected const string TAG = "location-settings";
-
 		protected const int REQUEST_CHECK_SETTINGS = 0x1;
-
 		public const long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-
 		public const long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
-
 		protected const string KEY_REQUESTING_LOCATION_UPDATES = "requesting-location-updates";
 		protected const string KEY_LOCATION = "location";
 		protected const string KEY_LAST_UPDATED_TIME_STRING = "last-updated-time-string";
 
 		protected IGoogleApiClient mGoogleApiClient;
-
 		protected LocationRequest mLocationRequest;
-
 		protected LocationSettingsRequest mLocationSettingsRequest;
-
 		protected Location mCurrentLocation;
-
 		protected Button mStartUpdatesButton;
 		protected Button mStopUpdatesButton;
 		protected TextView mLastUpdateTimeTextView;
 		protected TextView mLatitudeTextView;
 		protected TextView mLongitudeTextView;
-
 		protected Boolean mRequestingLocationUpdates;
-
 		protected String mLastUpdateTime;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -86,6 +76,7 @@ namespace LocationSettings
 				if (savedInstanceState.KeySet ().Contains (KEY_LAST_UPDATED_TIME_STRING)) {
 					mLastUpdateTime = savedInstanceState.GetString (KEY_LAST_UPDATED_TIME_STRING);
 				}
+
 				UpdateUI ();
 			}
 		}
@@ -103,11 +94,8 @@ namespace LocationSettings
 		protected void CreateLocationRequest ()
 		{
 			mLocationRequest = new LocationRequest ();
-
 			mLocationRequest.SetInterval (UPDATE_INTERVAL_IN_MILLISECONDS);
-
 			mLocationRequest.SetFastestInterval (FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
-
 			mLocationRequest.SetPriority (LocationRequest.PriorityHighAccuracy);
 		}
 
@@ -120,7 +108,8 @@ namespace LocationSettings
 
 		protected void CheckLocationSettings ()
 		{
-			var result = LocationServices.SettingsApi.CheckLocationSettings (mGoogleApiClient, mLocationSettingsRequest);
+			IPendingResult result = LocationServices.SettingsApi.CheckLocationSettings (
+				mGoogleApiClient, mLocationSettingsRequest);
 			result.SetResultCallback (this);
 		}
 

@@ -12,7 +12,6 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Java.IO;
-using Newtonsoft.Json;
 using Android.Content.PM;
 
 namespace ActivityRecognition
@@ -21,7 +20,7 @@ namespace ActivityRecognition
 		Label = "ActivityRecognition", 
 		MainLauncher = true, 
 		Icon = "@drawable/icon", 
-		ScreenOrientation=ScreenOrientation.SensorPortrait, 
+		ScreenOrientation = ScreenOrientation.SensorPortrait, 
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
 	)]
 	public class MainActivity : ActionBarActivity,
@@ -30,19 +29,13 @@ namespace ActivityRecognition
 		IResultCallback
 	{
 		protected const string TAG = "activity-recognition";
-
 		protected ActivityDetectionBroadcastReceiver mBroadcastReceiver;
-
 		protected IGoogleApiClient mGoogleApiClient;
-
 		PendingIntent mActivityDetectionPendingIntent;
-
 		Button mRequestActivityUpdatesButton;
 		Button mRemoveActivityUpdatesButton;
 		ListView mDetectedActivitiesListView;
-
 		DetectedActivitiesAdapter mAdapter;
-
 		List<DetectedActivity> mDetectedActivities;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -59,15 +52,15 @@ namespace ActivityRecognition
 
 			mBroadcastReceiver = new ActivityDetectionBroadcastReceiver ();
 			mBroadcastReceiver.OnReceiveImpl = (context, intent) => {
-				var updatedActivities = intent.GetParcelableArrayExtra (Constants.ActivityExtra).Cast<DetectedActivity>().ToList();
+				var updatedActivities = intent.GetParcelableArrayExtra (Constants.ActivityExtra).Cast<DetectedActivity>().ToList ();
 				UpdateDetectedActivitiesList (updatedActivities);
 			};
 
 			SetButtonsEnabledState ();
 
-			if (savedInstanceState != null && savedInstanceState.ContainsKey (
-				    Constants.DetectedActivities)) {
-				mDetectedActivities = JsonConvert.DeserializeObject<List<DetectedActivity>>(savedInstanceState.GetString (Constants.DetectedActivities));
+			if (savedInstanceState != null && savedInstanceState.ContainsKey (Constants.DetectedActivities)) {
+				mDetectedActivities = ((SerializableDetectedActivities)savedInstanceState.GetSerializable (
+					Constants.DetectedActivities)).DetectedActivities;
 			} else {
 				mDetectedActivities = new List<DetectedActivity> ();
 
@@ -216,7 +209,7 @@ namespace ActivityRecognition
 
 		protected override void OnSaveInstanceState (Bundle outState)
 		{
-			outState.PutString (Constants.DetectedActivities, JsonConvert.SerializeObject(mDetectedActivities));
+			outState.PutSerializable (Constants.DetectedActivities, new SerializableDetectedActivities (mDetectedActivities));
 			base.OnSaveInstanceState (outState);
 		}
 

@@ -16,126 +16,120 @@ using Java.Lang;
 
 namespace Geofencing
 {
-	[Activity (MainLauncher=true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener, IResultCallback {
-
+	[Activity (MainLauncher = true)]
+	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks, 
+		IGoogleApiClientOnConnectionFailedListener, IResultCallback
+	{
 		protected const string TAG = "creating-and-monitoring-geofences";
-
 		protected IGoogleApiClient mGoogleApiClient;
-
 		protected IList<IGeofence> mGeofenceList;
-
 		bool mGeofencesAdded;
-
 		PendingIntent mGeofencePendingIntent;
-
 		ISharedPreferences mSharedPreferences;
-
 		Button mAddGeofencesButton;
 		Button mRemoveGeofencesButton;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			SetContentView(Resource.Layout.main_activity);
+			SetContentView (Resource.Layout.main_activity);
 
-			mAddGeofencesButton = FindViewById<Button>(Resource.Id.add_geofences_button);
-			mRemoveGeofencesButton = FindViewById<Button>(Resource.Id.remove_geofences_button);
+			mAddGeofencesButton = FindViewById<Button> (Resource.Id.add_geofences_button);
+			mRemoveGeofencesButton = FindViewById<Button> (Resource.Id.remove_geofences_button);
 
 			mAddGeofencesButton.Click += AddGeofencesButtonHandler;
 			mRemoveGeofencesButton.Click += RemoveGeofencesButtonHandler;
 
-			mGeofenceList = new List<IGeofence>();
-
+			mGeofenceList = new List<IGeofence> ();
 			mGeofencePendingIntent = null;
 
-			mSharedPreferences = GetSharedPreferences(Constants.SHARED_PREFERENCES_NAME,
+			mSharedPreferences = GetSharedPreferences (Constants.SHARED_PREFERENCES_NAME,
 				FileCreationMode.Private);
 
-			mGeofencesAdded = mSharedPreferences.GetBoolean(Constants.GEOFENCES_ADDED_KEY, false);
-			SetButtonsEnabledState();
+			mGeofencesAdded = mSharedPreferences.GetBoolean (Constants.GEOFENCES_ADDED_KEY, false);
 
-			PopulateGeofenceList();
-
-			BuildGoogleApiClient();
+			SetButtonsEnabledState ();
+			PopulateGeofenceList ();
+			BuildGoogleApiClient ();
 		}
 
-		protected void BuildGoogleApiClient() {
-			mGoogleApiClient = new GoogleApiClientBuilder(this)
-				.AddConnectionCallbacks(this)
-				.AddOnConnectionFailedListener(this)
-				.AddApi(LocationServices.API)
-				.Build();
+		protected void BuildGoogleApiClient ()
+		{
+			mGoogleApiClient = new GoogleApiClientBuilder (this)
+				.AddConnectionCallbacks (this)
+				.AddOnConnectionFailedListener (this)
+				.AddApi (LocationServices.API)
+				.Build ();
 		}
 
 		protected override void OnStart ()
 		{
 			base.OnStart ();
-			mGoogleApiClient.Connect();
+			mGoogleApiClient.Connect ();
 		}
 
 		protected override void OnStop ()
 		{
 			base.OnStop ();
-			mGoogleApiClient.Disconnect();
+			mGoogleApiClient.Disconnect ();
 		}
 
 		public void OnConnected (Bundle connectionHint)
 		{
-			Log.Info(TAG, "Connected to GoogleApiClient");
+			Log.Info (TAG, "Connected to GoogleApiClient");
 		}
 
 		public void OnConnectionSuspended (int cause)
 		{
-			Log.Info(TAG, "Connection suspended");
+			Log.Info (TAG, "Connection suspended");
 		}
 
 		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
 		{
-			Log.Info(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
+			Log.Info (TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
 		}
 
-		GeofencingRequest GetGeofencingRequest() {
-			var builder = new GeofencingRequest.Builder();
+		GeofencingRequest GetGeofencingRequest ()
+		{
+			var builder = new GeofencingRequest.Builder ();
+			builder.SetInitialTrigger (GeofencingRequest.InitialTriggerEnter);
+			builder.AddGeofences (mGeofenceList);
 
-			builder.SetInitialTrigger(GeofencingRequest.InitialTriggerEnter);
-
-			builder.AddGeofences(mGeofenceList);
-
-			return builder.Build();
+			return builder.Build ();
 		}
 
-		public void AddGeofencesButtonHandler(object sender, EventArgs e) {
+		public void AddGeofencesButtonHandler (object sender, EventArgs e)
+		{
 			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText(this, GetString(Resource.String.not_connected), ToastLength.Short).Show();
+				Toast.MakeText (this, GetString (Resource.String.not_connected), ToastLength.Short).Show ();
 				return;
 			}
 
 			try {
-				LocationServices.GeofencingApi.AddGeofences(mGoogleApiClient, GetGeofencingRequest(), GetGeofencePendingIntent())
-					.SetResultCallback(this);
+				LocationServices.GeofencingApi.AddGeofences (mGoogleApiClient, GetGeofencingRequest (),
+					GetGeofencePendingIntent ()).SetResultCallback (this);
 			} catch (SecurityException securityException) {
 				LogSecurityException(securityException);
 			}
 		}
 
-		public void RemoveGeofencesButtonHandler(object sender, EventArgs e) {
+		public void RemoveGeofencesButtonHandler (object sender, EventArgs e)
+		{
 			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText(this, GetString(Resource.String.not_connected), ToastLength.Short).Show();
+				Toast.MakeText (this, GetString(Resource.String.not_connected), ToastLength.Short).Show ();
 				return;
 			}
 			try {
-				LocationServices.GeofencingApi.RemoveGeofences(
-					mGoogleApiClient,
-					GetGeofencePendingIntent()
-				).SetResultCallback(this);
+				LocationServices.GeofencingApi.RemoveGeofences (mGoogleApiClient,
+					GetGeofencePendingIntent ()).SetResultCallback(this);
 			} catch (SecurityException securityException) {
-				LogSecurityException(securityException);
+				LogSecurityException (securityException);
 			}
 		}
 
-		void LogSecurityException(SecurityException securityException) {
-			Log.Error(TAG, "Invalid location permission. " +
+		void LogSecurityException (SecurityException securityException)
+		{
+			Log.Error (TAG, "Invalid location permission. " +
 				"You need to use ACCESS_FINE_LOCATION with geofences", securityException);
 		}
 
@@ -144,51 +138,53 @@ namespace Geofencing
 			var status = (Statuses)x0;
 			if (status.IsSuccess) {
 				mGeofencesAdded = !mGeofencesAdded;
-				var editor = mSharedPreferences.Edit();
-				editor.PutBoolean(Constants.GEOFENCES_ADDED_KEY, mGeofencesAdded);
-				editor.Commit();
+				var editor = mSharedPreferences.Edit ();
+				editor.PutBoolean (Constants.GEOFENCES_ADDED_KEY, mGeofencesAdded);
+				editor.Commit ();
 
-				SetButtonsEnabledState();
+				SetButtonsEnabledState ();
 
-				Toast.MakeText(
+				Toast.MakeText (
 					this,
-					GetString(mGeofencesAdded ? Resource.String.geofences_added :
+					GetString (mGeofencesAdded ? Resource.String.geofences_added :
 						Resource.String.geofences_removed),
 					ToastLength.Short
-				).Show();
+				).Show ();
 			} else {
-				var errorMessage = GeofenceErrorMessages.GetErrorString(this,
+				var errorMessage = GeofenceErrorMessages.GetErrorString (this,
 					status.StatusCode);
-				Log.Error(TAG, errorMessage);
+				Log.Error (TAG, errorMessage);
 			}
 		}
 
-		PendingIntent GetGeofencePendingIntent() {
+		PendingIntent GetGeofencePendingIntent ()
+		{
 			if (mGeofencePendingIntent != null) {
 				return mGeofencePendingIntent;
 			}
-			var intent = new Intent(this, typeof(GeofenceTransitionsIntentService));
-			return PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+			var intent = new Intent (this, typeof(GeofenceTransitionsIntentService));
+			return PendingIntent.GetService (this, 0, intent, PendingIntentFlags.UpdateCurrent);
 		}
 
-		public void PopulateGeofenceList() {
+		public void PopulateGeofenceList ()
+		{
 			foreach (var entry in Constants.BAY_AREA_LANDMARKS) {
-
-				mGeofenceList.Add(new GeofenceBuilder()
-					.SetRequestId(entry.Key)
-					.SetCircularRegion(
+				mGeofenceList.Add (new GeofenceBuilder ()
+					.SetRequestId (entry.Key)
+					.SetCircularRegion (
 						entry.Value.Latitude,
 						entry.Value.Longitude,
 						Constants.GEOFENCE_RADIUS_IN_METERS
 					)
-					.SetExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
-					.SetTransitionTypes(Geofence.GeofenceTransitionEnter |
+					.SetExpirationDuration (Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
+					.SetTransitionTypes (Geofence.GeofenceTransitionEnter |
 						Geofence.GeofenceTransitionExit)
-					.Build());
+					.Build ());
 			}
 		}
 
-		void SetButtonsEnabledState() {
+		void SetButtonsEnabledState ()
+		{
 			if (mGeofencesAdded) {
 				mAddGeofencesButton.Enabled = false;
 				mRemoveGeofencesButton.Enabled = true;

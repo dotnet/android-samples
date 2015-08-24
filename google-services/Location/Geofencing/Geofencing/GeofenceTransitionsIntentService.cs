@@ -27,14 +27,14 @@ namespace Geofencing
 				return;
 			}
 
-			var geofenceTransition = geofencingEvent.GeofenceTransition;
+			int geofenceTransition = geofencingEvent.GeofenceTransition;
 
 			if (geofenceTransition == Geofence.GeofenceTransitionEnter ||
 			    geofenceTransition == Geofence.GeofenceTransitionExit) {
 
-				var triggeringGeofences = geofencingEvent.TriggeringGeofences;
+				IList<IGeofence> triggeringGeofences = geofencingEvent.TriggeringGeofences;
 
-				var geofenceTransitionDetails = GetGeofenceTransitionDetails (this, geofenceTransition, triggeringGeofences);
+				string geofenceTransitionDetails = GetGeofenceTransitionDetails (this, geofenceTransition, triggeringGeofences);
 
 				SendNotification (geofenceTransitionDetails);
 				Log.Info (TAG, geofenceTransitionDetails);
@@ -46,10 +46,10 @@ namespace Geofencing
 
 		string GetGeofenceTransitionDetails (Context context, int geofenceTransition, IList<IGeofence> triggeringGeofences)
 		{
-			var geofenceTransitionString = GetTransitionString (geofenceTransition);
+			string geofenceTransitionString = GetTransitionString (geofenceTransition);
 
 			var triggeringGeofencesIdsList = new List<string> ();
-			foreach (var geofence in triggeringGeofences) {
+			foreach (IGeofence geofence in triggeringGeofences) {
 				triggeringGeofencesIdsList.Add (geofence.RequestId);
 			}
 			var triggeringGeofencesIdsString = string.Join (", ", triggeringGeofencesIdsList);
@@ -62,15 +62,12 @@ namespace Geofencing
 			var notificationIntent = new Intent (ApplicationContext, typeof(MainActivity));
 
 			var stackBuilder = Android.Support.V4.App.TaskStackBuilder.Create (this);
-
 			stackBuilder.AddParentStack (Java.Lang.Class.FromType (typeof(MainActivity)));
-
 			stackBuilder.AddNextIntent (notificationIntent);
 
 			var notificationPendingIntent =	stackBuilder.GetPendingIntent (0, (int)PendingIntentFlags.UpdateCurrent);
 
 			var builder = new NotificationCompat.Builder (this);
-
 			builder.SetSmallIcon (Resource.Drawable.icon)
 				.SetLargeIcon (BitmapFactory.DecodeResource (Resources, Resource.Drawable.icon))
 				.SetColor (Color.Red)
@@ -81,7 +78,6 @@ namespace Geofencing
 			builder.SetAutoCancel (true);
 
 			var mNotificationManager = (NotificationManager)GetSystemService (Context.NotificationService);
-
 			mNotificationManager.Notify (0, builder.Build ());
 		}
 

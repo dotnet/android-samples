@@ -15,18 +15,19 @@ using Android.Locations;
 namespace BasicLocationSample
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
+		IGoogleApiClientOnConnectionFailedListener
 	{
 		protected const string TAG = "basic-location-sample";
 
 		/**
-     * Provides the entry point to Google Play services.
-     */
+     	* Provides the entry point to Google Play services.
+     	*/
 		protected IGoogleApiClient mGoogleApiClient;
 
 		/**
-     * Represents a geographical location.
-     */
+    	 * Represents a geographical location.
+    	 */
 		protected Location mLastLocation;
 
 		protected TextView mLatitudeText;
@@ -35,51 +36,52 @@ namespace BasicLocationSample
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-			SetContentView(Resource.Layout.main_activity);
+			SetContentView (Resource.Layout.main_activity);
 
-			mLatitudeText = FindViewById<TextView>(Resource.Id.latitude_text);
-			mLongitudeText = FindViewById<TextView>(Resource.Id.longitude_text);
+			mLatitudeText = FindViewById<TextView> (Resource.Id.latitude_text);
+			mLongitudeText = FindViewById<TextView> (Resource.Id.longitude_text);
 
-			BuildGoogleApiClient();
+			BuildGoogleApiClient ();
 		}
 
-		protected void BuildGoogleApiClient() {
-			mGoogleApiClient = new GoogleApiClientBuilder(this)
-				.AddConnectionCallbacks(this)
-				.AddOnConnectionFailedListener(this)
-				.AddApi(LocationServices.API)
-				.Build();
+		protected void BuildGoogleApiClient ()
+		{
+			mGoogleApiClient = new GoogleApiClientBuilder (this)
+				.AddConnectionCallbacks (this)
+				.AddOnConnectionFailedListener (this)
+				.AddApi (LocationServices.API)
+				.Build ();
 		}
 
 		protected override void OnStart ()
 		{
 			base.OnStart ();
-			mGoogleApiClient.Connect();
+			mGoogleApiClient.Connect ();
 		}
 
 		protected override void OnStop ()
 		{
 			base.OnStop ();
 			if (mGoogleApiClient.IsConnected) {
-				mGoogleApiClient.Disconnect();
+				mGoogleApiClient.Disconnect ();
 			}
 		}
 
 		public void OnConnected (Bundle connectionHint)
 		{
-			mLastLocation = LocationServices.FusedLocationApi.GetLastLocation(mGoogleApiClient);
+			mLastLocation = LocationServices.FusedLocationApi.GetLastLocation (mGoogleApiClient);
 			if (mLastLocation != null) {
-				mLatitudeText.Text = mLastLocation.Latitude.ToString();
-				mLongitudeText.Text = mLastLocation.Longitude.ToString();
+				mLatitudeText.Text = mLastLocation.Latitude.ToString ();
+				mLongitudeText.Text = mLastLocation.Longitude.ToString ();
 			} else {
-				Toast.MakeText(this, Resource.String.no_location_detected, ToastLength.Long).Show();
+				Toast.MakeText (this, Resource.String.no_location_detected, ToastLength.Long).Show ();
 			}
 		}
 
 		public void OnConnectionSuspended (int cause)
 		{
-			Log.Info(TAG, "Connection suspended");
-			mGoogleApiClient.Connect();
+			Log.Info (TAG, "Connection suspended");
+			mGoogleApiClient.Connect ();
 		}
 
 		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)

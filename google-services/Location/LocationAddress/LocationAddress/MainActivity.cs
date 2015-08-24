@@ -15,28 +15,19 @@ using Android.Util;
 namespace LocationAddress
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
+		IGoogleApiClientOnConnectionFailedListener
 	{
-
 		protected const string TAG = "main-activity";
-
 		protected const string ADDRESS_REQUESTED_KEY = "address-request-pending";
 		protected const string LOCATION_ADDRESS_KEY = "location-address";
-
 		protected IGoogleApiClient mGoogleApiClient;
-
 		protected Location mLastLocation;
-
 		protected bool mAddressRequested;
-
 		protected string mAddressOutput;
-
 		private AddressResultReceiver mResultReceiver;
-
 		protected TextView mLocationAddressTextView;
-
 		ProgressBar mProgressBar;
-
 		Button mFetchAddressButton;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -141,9 +132,7 @@ namespace LocationAddress
 		protected void StartIntentService ()
 		{
 			var intent = new Intent (this, typeof(FetchAddressIntentService));
-
 			intent.PutExtra (Constants.Receiver, mResultReceiver);
-
 			intent.PutExtra (Constants.LocationDataExtra, mLastLocation);
 
 			StartService (intent);
@@ -181,7 +170,8 @@ namespace LocationAddress
 		class AddressResultReceiver : ResultReceiver
 		{
 			public Action<int, Bundle> OnReceiveResultImpl { get; set; }
-			public AddressResultReceiver (Handler handler) : base (handler)
+			public AddressResultReceiver (Handler handler) 
+				: base (handler)
 			{
 			}
 
@@ -191,7 +181,5 @@ namespace LocationAddress
 			}
 		}
 	}
-
 }
-
 

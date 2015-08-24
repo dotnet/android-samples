@@ -5,14 +5,11 @@ namespace Geofencing
 {
 	public static class Constants
 	{
-		public const string PACKAGE_NAME = "com.google.android.gms.location.Geofence";
-
+		public const string PACKAGE_NAME = "com.xamarin.geofencing";
 		public const string SHARED_PREFERENCES_NAME = PACKAGE_NAME + ".SHARED_PREFERENCES_NAME";
-
 		public const string GEOFENCES_ADDED_KEY = PACKAGE_NAME + ".GEOFENCES_ADDED_KEY";
 
 		public const long GEOFENCE_EXPIRATION_IN_HOURS = 12;
-
 		public const long GEOFENCE_EXPIRATION_IN_MILLISECONDS =	GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000;
 		public const float GEOFENCE_RADIUS_IN_METERS = 1609;
 

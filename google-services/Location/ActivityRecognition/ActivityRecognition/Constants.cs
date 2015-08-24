@@ -7,19 +7,12 @@ namespace ActivityRecognition
 {
 	public static class Constants
 	{
-		public const string PackageName = "com.google.android.gms.location.activityrecognition";
-
+		public const string PackageName = "com.xamarin.activityrecognition";
 		public const string BroadcastAction = PackageName + ".BROADCAST_ACTION";
-
 		public const string ActivityExtra = PackageName + ".ACTIVITY_EXTRA";
-
 		public const string SharedPreferencesName = PackageName + ".SHARED_PREFERENCES";
-
-		public const string ActivityUpdatesRequestedKey = PackageName +
-		                                                     ".ACTIVITY_UPDATES_REQUESTED";
-
+		public const string ActivityUpdatesRequestedKey = PackageName + ".ACTIVITY_UPDATES_REQUESTED";
 		public const string DetectedActivities = PackageName + ".DETECTED_ACTIVITIES";
-
 		public const long DetectionIntervalInMilliseconds = 0;
 
 		internal static readonly int[] MonitoredActivities = {
