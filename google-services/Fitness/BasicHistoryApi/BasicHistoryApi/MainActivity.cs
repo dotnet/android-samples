@@ -23,11 +23,9 @@ namespace BasicHistoryApi
 	{
 		public const string TAG = "BasicHistoryApi";
 		const int REQUEST_OAUTH = 1;
-		const string DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
-
 		const string AUTH_PENDING = "auth_state_pending";
+		const string DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
 		bool authInProgress;
-
 		IGoogleApiClient mClient;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -60,7 +58,7 @@ namespace BasicHistoryApi
 
 				Log.Info (TAG, "Data insert was successful!");
 
-				var readRequest = QueryFitnessData ();
+				DataReadRequest readRequest = QueryFitnessData ();
 
 				var dataReadResult = (DataReadResult)FitnessClass.HistoryApi.ReadData (mClient, readRequest).Await (1, TimeUnit.Minutes);
 
@@ -72,27 +70,25 @@ namespace BasicHistoryApi
 				.AddScope (new Scope (Scopes.FitnessActivityReadWrite))
 				.AddConnectionCallbacks (clientConnectionCallback)
 				.AddOnConnectionFailedListener (result => {
-				Log.Info (TAG, "Connection failed. Cause: " + result);
-				if (!result.HasResolution) {
-					// Show the localized error dialog
-					GooglePlayServicesUtil.GetErrorDialog (result.ErrorCode, this, 0).Show ();
-					return;
-				}
-				// The failure has a resolution. Resolve it.
-				// Called typically when the app is not yet authorized, and an
-				// authorization dialog is displayed to the user.
-				if (!authInProgress) {
-					try {
-						Log.Info (TAG, "Attempting to resolve failed connection");
-						authInProgress = true;
-						result.StartResolutionForResult (this,
-							REQUEST_OAUTH);
-					} catch (IntentSender.SendIntentException e) {
-						Log.Error (TAG,
-							"Exception while starting resolution activity", e);
+					Log.Info (TAG, "Connection failed. Cause: " + result);
+					if (!result.HasResolution) {
+						// Show the localized error dialog
+						GooglePlayServicesUtil.GetErrorDialog (result.ErrorCode, this, 0).Show ();
+						return;
 					}
-				}
-			}).Build ();
+					// The failure has a resolution. Resolve it.
+					// Called typically when the app is not yet authorized, and an
+					// authorization dialog is displayed to the user.
+					if (!authInProgress) {
+						try {
+							Log.Info (TAG, "Attempting to resolve failed connection");
+							authInProgress = true;
+							result.StartResolutionForResult (this, REQUEST_OAUTH);
+						} catch (IntentSender.SendIntentException e) {
+							Log.Error (TAG, "Exception while starting resolution activity", e);
+						}
+					}
+				}).Build ();
 		}
 
 		class ClientConnectionCallback : Java.Lang.Object, IGoogleApiClientConnectionCallbacks
@@ -150,15 +146,22 @@ namespace BasicHistoryApi
 			outState.PutBoolean (AUTH_PENDING, authInProgress);
 		}
 
+		long GetMsSinceEpochAsLong (DateTime dateTime)
+		{
+			return (long)dateTime.ToUniversalTime ()
+				.Subtract (new DateTime (1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc))
+				.TotalMilliseconds;
+		}
 
 		DataSet InsertFitnessData ()
 		{
 			Log.Info (TAG, "Creating a new data insert request");
 
-			var epoch = new DateTime (1970, 1, 1);
-			var now = DateTime.UtcNow;
-			var endTime = (now - epoch).TotalMilliseconds;
-			var startTime = (now.Subtract (TimeSpan.FromHours (1)) - epoch).TotalMilliseconds;
+			// Set a start and end time for our data, using a start time of 1 hour before this moment.
+			DateTime endTime = DateTime.Now;
+			DateTime startTime = endTime.Subtract (TimeSpan.FromHours (1));
+			long endTimeElapsed = GetMsSinceEpochAsLong (endTime);
+			long startTimeElapsed = GetMsSinceEpochAsLong (startTime);
 
 			// Create a data source
 			var dataSource = new DataSource.Builder ()
@@ -171,8 +174,8 @@ namespace BasicHistoryApi
 			// Create a data set
 			const int stepCountDelta = 1000;
 			var dataSet = DataSet.Create (dataSource);
-			var dataPoint = dataSet.CreateDataPoint ()
-				.SetTimeInterval ((long)startTime, (long)endTime, TimeUnit.Milliseconds);
+			DataPoint dataPoint = dataSet.CreateDataPoint ()
+				.SetTimeInterval (startTimeElapsed, endTimeElapsed, TimeUnit.Milliseconds);
 			dataPoint.GetValue (Field.FieldSteps).SetInt (stepCountDelta);
 			dataSet.Add (dataPoint);
 
@@ -181,10 +184,11 @@ namespace BasicHistoryApi
 
 		DataReadRequest QueryFitnessData ()
 		{
-			var epoch = new DateTime (1970, 1, 1);
-			var now = DateTime.UtcNow;
-			var endTime = (now - epoch).TotalMilliseconds;
-			var startTime = (now.Subtract (TimeSpan.FromDays (7)) - epoch).TotalMilliseconds;
+			// Setting a start and end date using a range of 1 week before this moment.
+			DateTime endTime = DateTime.Now;
+			DateTime startTime = endTime.Subtract (TimeSpan.FromDays (7));
+			long endTimeElapsed = GetMsSinceEpochAsLong (endTime);
+			long startTimeElapsed = GetMsSinceEpochAsLong (startTime);
 
 			Log.Info (TAG, "Range Start: " + startTime.ToString (DATE_FORMAT));
 			Log.Info (TAG, "Range End: " + endTime.ToString (DATE_FORMAT));
@@ -192,7 +196,7 @@ namespace BasicHistoryApi
 			var readRequest = new DataReadRequest.Builder ()
 				.Aggregate (DataType.TypeStepCountDelta, DataType.AggregateStepCountDelta)
 				.BucketByTime (1, TimeUnit.Days)
-				.SetTimeRange ((long)startTime, (long)endTime, TimeUnit.Milliseconds)
+				.SetTimeRange (startTimeElapsed, endTimeElapsed, TimeUnit.Milliseconds)
 				.Build ();
 
 			return readRequest;
@@ -203,16 +207,18 @@ namespace BasicHistoryApi
 			if (dataReadResult.Buckets.Count > 0) {
 				Log.Info (TAG, "Number of returned buckets of DataSets is: "
 				+ dataReadResult.Buckets.Count);
-				foreach (var bucket in dataReadResult.Buckets) {
-					var dataSets = bucket.DataSets;
-					foreach (var dataSet in dataSets) {
+				
+				foreach (Bucket bucket in dataReadResult.Buckets) {
+					IList<DataSet> dataSets = bucket.DataSets;
+					foreach (DataSet dataSet in dataSets) {
 						DumpDataSet (dataSet);
 					}
 				}
 			} else if (dataReadResult.DataSets.Count > 0) {
 				Log.Info (TAG, "Number of returned DataSets is: "
 				+ dataReadResult.DataSets.Count);
-				foreach (var dataSet in dataReadResult.DataSets) {
+				
+				foreach (DataSet dataSet in dataReadResult.DataSets) {
 					DumpDataSet (dataSet);
 				}
 			}
@@ -220,14 +226,15 @@ namespace BasicHistoryApi
 
 		void DumpDataSet (DataSet dataSet)
 		{
-			//var epoch = new DateTime (1970, 1 ,1);
 			Log.Info (TAG, "Data returned for Data type: " + dataSet.DataType.Name);
-			foreach (var dp in dataSet.DataPoints) {
+			foreach (DataPoint dp in dataSet.DataPoints) {
 				Log.Info (TAG, "Data point:");
 				Log.Info (TAG, "\tType: " + dp.DataType.Name);
-				Log.Info (TAG, "\tStart: " + dp.GetStartTime (TimeUnit.Milliseconds));
-				Log.Info (TAG, "\tEnd: " + dp.GetEndTime (TimeUnit.Milliseconds));
-				foreach (var field in dp.DataType.Fields) {
+				Log.Info (TAG, "\tStart: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					dp.GetStartTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
+				Log.Info (TAG, "\tEnd: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					dp.GetEndTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
+				foreach (Field field in dp.DataType.Fields) {
 					Log.Info (TAG, "\tField: " + field.Name +
 					" Value: " + dp.GetValue (field));
 				}
@@ -238,14 +245,15 @@ namespace BasicHistoryApi
 		{
 			Log.Info (TAG, "Deleting today's step count data");
 
-			var epoch = new DateTime (1970, 1, 1);
-			var now = DateTime.UtcNow;
-			var endTime = (now - epoch).TotalMilliseconds;
-			var startTime = (now.Subtract (TimeSpan.FromDays (1)) - epoch).TotalMilliseconds;
+			// Set a start and end time for our data, using a start time of 1 day before this moment.
+			DateTime endTime = DateTime.Now;
+			DateTime startTime = endTime.Subtract (TimeSpan.FromDays (1));
+			long endTimeElapsed = GetMsSinceEpochAsLong (endTime);
+			long startTimeElapsed = GetMsSinceEpochAsLong (startTime);
 
 			//  Create a delete request object, providing a data type and a time interval
 			var request = new DataDeleteRequest.Builder ()
-				.SetTimeInterval ((long)startTime, (long)endTime, TimeUnit.Milliseconds)
+				.SetTimeInterval (startTimeElapsed, endTimeElapsed, TimeUnit.Milliseconds)
 				.AddDataType (DataType.TypeStepCountDelta)
 				.Build ();
 

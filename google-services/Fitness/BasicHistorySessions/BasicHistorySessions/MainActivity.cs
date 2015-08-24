@@ -18,6 +18,7 @@ using Android.Gms.Common;
 using System.Threading.Tasks;
 using Android.Graphics;
 using Android.Support.V7.App;
+using System.Collections.Generic;
 
 namespace BasicHistorySessions
 {
@@ -50,7 +51,8 @@ namespace BasicHistorySessions
 			BuildFitnessClient();
 		}
 
-		void BuildFitnessClient() {
+		void BuildFitnessClient ()
+		{
 			var clientConnectionCallback = new ClientConnectionCallback ();
 			clientConnectionCallback.OnConnectedImpl = () => {
 				SessionInsertRequest insertRequest = InsertFitnessSession();
@@ -71,11 +73,11 @@ namespace BasicHistorySessions
 				}
 
 				// At this point, the session has been inserted and can be read.
-				Log.Info(TAG, "Session insert was successful!");
+				Log.Info (TAG, "Session insert was successful!");
 				// [END insert_session]
 
 				// Begin by creating the query.
-				var readRequest = ReadFitnessSession();
+				var readRequest = ReadFitnessSession ();
 
 				// [START read_session]
 				// Invoke the Sessions API to fetch the session with the query and wait for the result
@@ -84,19 +86,20 @@ namespace BasicHistorySessions
 					(SessionReadResult)FitnessClass.SessionsApi.ReadSession (mClient, readRequest).Await (1, TimeUnit.Minutes);
 
 				// Get a list of the sessions that match the criteria to check the result.
-				Log.Info(TAG, "Session read was successful. Number of returned sessions is: "
+				Log.Info (TAG, "Session read was successful. Number of returned sessions is: "
 					+ sessionReadResult.Sessions.Count);
-				foreach (var session in sessionReadResult.Sessions) {
+				foreach (Session session in sessionReadResult.Sessions) {
 					// Process the session
-					DumpSession(session);
+					DumpSession (session);
 
 					// Process the data sets for this session
-					var dataSets = sessionReadResult.GetDataSet(session);
-					foreach (var dataSet in dataSets) {
+					IList<DataSet> dataSets = sessionReadResult.GetDataSet(session);
+					foreach (DataSet dataSet in dataSets) {
 						DumpDataSet(dataSet);
 					}
 				}
 			};
+
 			// Create the Google API Client
 			mClient = new GoogleApiClientBuilder (this)
 				.AddApi (FitnessClass.HISTORY_API)
@@ -181,8 +184,8 @@ namespace BasicHistorySessions
 			outState.PutBoolean (AUTH_PENDING, authInProgress);
 		}
 
-
-		SessionInsertRequest InsertFitnessSession() {
+		SessionInsertRequest InsertFitnessSession()
+		{
 			Log.Info(TAG, "Creating a new session for an afternoon run");
 
 			var epoch = new DateTime (1970, 1, 1);
@@ -193,77 +196,78 @@ namespace BasicHistorySessions
 			long startTime = (long)(now.Subtract (TimeSpan.FromMinutes (30)) - epoch).TotalMilliseconds;
 
 			var speedDataSource = new DataSource.Builder()
-				.SetAppPackageName(PackageName)
-				.SetDataType(DataType.TypeSpeed)
-				.SetName(SAMPLE_SESSION_NAME + "- speed")
-				.SetType(DataSource.TypeRaw)
-				.Build();
+				.SetAppPackageName (PackageName)
+				.SetDataType (DataType.TypeSpeed)
+				.SetName (SAMPLE_SESSION_NAME + "- speed")
+				.SetType (DataSource.TypeRaw)
+				.Build ();
 
 			const float runSpeedMps = 10;
 			const float walkSpeedMps = 3;
 			// Create a data set of the run speeds to include in the session.
-			var speedDataSet = DataSet.Create(speedDataSource);
+			DataSet speedDataSet = DataSet.Create (speedDataSource);
 
-			var firstRunSpeed = speedDataSet.CreateDataPoint()
-				.SetTimeInterval(startTime, startWalkTime, TimeUnit.Milliseconds);
-			firstRunSpeed.GetValue(Field.FieldSpeed).SetFloat(runSpeedMps);
-			speedDataSet.Add(firstRunSpeed);
+			DataPoint firstRunSpeed = speedDataSet.CreateDataPoint ()
+				.SetTimeInterval (startTime, startWalkTime, TimeUnit.Milliseconds);
+			firstRunSpeed.GetValue (Field.FieldSpeed).SetFloat (runSpeedMps);
+			speedDataSet.Add (firstRunSpeed);
 
-			var walkSpeed = speedDataSet.CreateDataPoint()
-				.SetTimeInterval(startWalkTime, endWalkTime, TimeUnit.Milliseconds);
-			walkSpeed.GetValue(Field.FieldSpeed).SetFloat(walkSpeedMps);
-			speedDataSet.Add(walkSpeed);
+			DataPoint walkSpeed = speedDataSet.CreateDataPoint ()
+				.SetTimeInterval (startWalkTime, endWalkTime, TimeUnit.Milliseconds);
+			walkSpeed.GetValue (Field.FieldSpeed).SetFloat (walkSpeedMps);
+			speedDataSet.Add (walkSpeed);
 
-			var secondRunSpeed = speedDataSet.CreateDataPoint()
-				.SetTimeInterval(endWalkTime, endTime, TimeUnit.Milliseconds);
-			secondRunSpeed.GetValue(Field.FieldSpeed).SetFloat(runSpeedMps);
-			speedDataSet.Add(secondRunSpeed);
+			DataPoint secondRunSpeed = speedDataSet.CreateDataPoint ()
+				.SetTimeInterval (endWalkTime, endTime, TimeUnit.Milliseconds);
+			secondRunSpeed.GetValue (Field.FieldSpeed).SetFloat(runSpeedMps);
+			speedDataSet.Add (secondRunSpeed);
 
 			// [START build_insert_session_request_with_activity_segments]
 			// Create a second DataSet of ActivitySegments to indicate the runner took a 10-minute walk
 			// in the middle of the run.
 			var activitySegmentDataSource = new DataSource.Builder()
-				.SetAppPackageName(PackageName)
-				.SetDataType(DataType.TypeActivitySegment)
-				.SetName(SAMPLE_SESSION_NAME + "-activity segments")
-				.SetType(DataSource.TypeRaw)
-				.Build();
-			var activitySegments = DataSet.Create(activitySegmentDataSource);
+				.SetAppPackageName (PackageName)
+				.SetDataType (DataType.TypeActivitySegment)
+				.SetName (SAMPLE_SESSION_NAME + "-activity segments")
+				.SetType (DataSource.TypeRaw)
+				.Build ();
+			DataSet activitySegments = DataSet.Create (activitySegmentDataSource);
 
-			var firstRunningDp = activitySegments.CreateDataPoint()
-				.SetTimeInterval(startTime, startWalkTime, TimeUnit.Milliseconds);
-			firstRunningDp.GetValue(Field.FieldActivity).SetActivity(FitnessActivities.Running);
-			activitySegments.Add(firstRunningDp);
+			DataPoint firstRunningDp = activitySegments.CreateDataPoint ()
+				.SetTimeInterval (startTime, startWalkTime, TimeUnit.Milliseconds);
+			firstRunningDp.GetValue (Field.FieldActivity).SetActivity (FitnessActivities.Running);
+			activitySegments.Add (firstRunningDp);
 
-			var walkingDp = activitySegments.CreateDataPoint()
-				.SetTimeInterval(startWalkTime, endWalkTime, TimeUnit.Milliseconds);
-			walkingDp.GetValue(Field.FieldActivity).SetActivity(FitnessActivities.Walking);
-			activitySegments.Add(walkingDp);
+			DataPoint walkingDp = activitySegments.CreateDataPoint ()
+				.SetTimeInterval (startWalkTime, endWalkTime, TimeUnit.Milliseconds);
+			walkingDp.GetValue (Field.FieldActivity).SetActivity (FitnessActivities.Walking);
+			activitySegments.Add (walkingDp);
 
-			var secondRunningDp = activitySegments.CreateDataPoint()
-				.SetTimeInterval(endWalkTime, endTime, TimeUnit.Milliseconds);
-			secondRunningDp.GetValue(Field.FieldActivity).SetActivity(FitnessActivities.Running);
-			activitySegments.Add(secondRunningDp);
+			DataPoint secondRunningDp = activitySegments.CreateDataPoint ()
+				.SetTimeInterval (endWalkTime, endTime, TimeUnit.Milliseconds);
+			secondRunningDp.GetValue (Field.FieldActivity).SetActivity (FitnessActivities.Running);
+			activitySegments.Add (secondRunningDp);
 
-			var session = new Session.Builder()
-				.SetName(SAMPLE_SESSION_NAME)
-				.SetDescription("Long run around Shoreline Park")
-				.SetIdentifier("UniqueIdentifierHere")
-				.SetActivity(FitnessActivities.Running)
-				.SetStartTime(startTime, TimeUnit.Milliseconds)
-				.SetEndTime(endTime, TimeUnit.Milliseconds)
-				.Build();
+			var session = new Session.Builder ()
+				.SetName (SAMPLE_SESSION_NAME)
+				.SetDescription ("Long run around Shoreline Park")
+				.SetIdentifier ("UniqueIdentifierHere")
+				.SetActivity (FitnessActivities.Running)
+				.SetStartTime (startTime, TimeUnit.Milliseconds)
+				.SetEndTime (endTime, TimeUnit.Milliseconds)
+				.Build ();
 
 			var insertRequest = new SessionInsertRequest.Builder()
-				.SetSession(session)
-				.AddDataSet(speedDataSet)
-				.AddDataSet(activitySegments)
-				.Build();
+				.SetSession (session)
+				.AddDataSet (speedDataSet)
+				.AddDataSet (activitySegments)
+				.Build ();
 
 			return insertRequest;
 		}
 
-		SessionReadRequest ReadFitnessSession() {
+		SessionReadRequest ReadFitnessSession ()
+		{
 			Log.Info(TAG, "Reading History API results for session: " + SAMPLE_SESSION_NAME);
 
 			var epoch = new DateTime (1970, 1, 1);
@@ -272,39 +276,45 @@ namespace BasicHistorySessions
 			long startTime = (long)(now.Subtract (TimeSpan.FromDays (7)) - epoch).TotalMilliseconds;
 
 			// Build a session read request
-			SessionReadRequest readRequest = new SessionReadRequest.Builder()
-				.SetTimeInterval(startTime, endTime, TimeUnit.Milliseconds)
-				.Read(DataType.TypeSpeed)
-				.SetSessionName(SAMPLE_SESSION_NAME)
-				.Build();
+			SessionReadRequest readRequest = new SessionReadRequest.Builder( )
+				.SetTimeInterval (startTime, endTime, TimeUnit.Milliseconds)
+				.Read (DataType.TypeSpeed)
+				.SetSessionName (SAMPLE_SESSION_NAME)
+				.Build ();
 			// [END build_read_session_request]
 
 			return readRequest;
 		}
 
-		void DumpDataSet(DataSet dataSet) {
-			Log.Info(TAG, "Data returned for Data type: " + dataSet.DataType.Name);
-			foreach (var dp in dataSet.DataPoints) {
-				Log.Info(TAG, "Data point:");
-				Log.Info(TAG, "\tType: " + dp.DataType.Name);
-				Log.Info(TAG, "\tStart: " + dp.GetStartTime(TimeUnit.Milliseconds).ToString(DATE_FORMAT));
-				Log.Info(TAG, "\tEnd: " + dp.GetEndTime(TimeUnit.Milliseconds).ToString(DATE_FORMAT));
-				foreach (var field in dp.DataType.Fields) {
-					Log.Info(TAG, "\tField: " + field.Name +
-						" Value: " + dp.GetValue(field));
+		void DumpDataSet (DataSet dataSet)
+		{
+			Log.Info (TAG, "Data returned for Data type: " + dataSet.DataType.Name);
+			foreach (DataPoint dp in dataSet.DataPoints) {
+				Log.Info (TAG, "Data point:");
+				Log.Info (TAG, "\tType: " + dp.DataType.Name);
+				Log.Info (TAG, "\tStart: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					dp.GetStartTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
+				Log.Info (TAG, "\tEnd: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					dp.GetEndTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
+				foreach (Field field in dp.DataType.Fields) {
+					Log.Info (TAG, "\tField: " + field.Name + " Value: " + dp.GetValue (field));
 				}
 			}
 		}
 
-		void DumpSession(Session session) {
-			Log.Info(TAG, "Data returned for Session: " + session.Name
+		void DumpSession (Session session)
+		{
+			Log.Info (TAG, "Data returned for Session: " + session.Name
 				+ "\n\tDescription: " + session.Description
-				+ "\n\tStart: " + session.GetStartTime(TimeUnit.Milliseconds).ToString(DATE_FORMAT)
-				+ "\n\tEnd: " + session.GetEndTime(TimeUnit.Milliseconds).ToString(DATE_FORMAT));
+				+ "\n\tStart: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					session.GetStartTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT)
+				+ "\n\tEnd: " + new DateTime (1970, 1, 1).AddMilliseconds (
+					session.GetEndTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
 		}
 
-		void DeleteSession() {
-			Log.Info(TAG, "Deleting today's session data for speed");
+		void DeleteSession ()
+		{
+			Log.Info (TAG, "Deleting today's session data for speed");
 
 			var epoch = new DateTime (1970, 1, 1);
 			var now = DateTime.UtcNow;
@@ -319,15 +329,15 @@ namespace BasicHistorySessions
 
 			// Invoke the History API with the Google API client object and the delete request and
 			// specify a callback that will check the result.
-			FitnessClass.HistoryApi.DeleteData(mClient, request)
-				.SetResultCallback((Statuses status) => {
-						if (status.IsSuccess) {
-							Log.Info(TAG, "Successfully deleted today's sessions");
-						} else {
-							// The deletion will fail if the requesting app tries to delete data
-							// that it did not insert.
-							Log.Info(TAG, "Failed to delete today's sessions");
-						}
+			FitnessClass.HistoryApi.DeleteData (mClient, request)
+				.SetResultCallback ((Statuses status) => {
+					if (status.IsSuccess) {
+						Log.Info(TAG, "Successfully deleted today's sessions");
+					} else {
+						// The deletion will fail if the requesting app tries to delete data
+						// that it did not insert.
+						Log.Info(TAG, "Failed to delete today's sessions");
+					}
 				});
 		}
 
@@ -336,8 +346,7 @@ namespace BasicHistorySessions
 			MenuInflater.Inflate (Resource.Menu.main, menu);
 			return true;
 		}
-
-
+			
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			int id = item.ItemId;
