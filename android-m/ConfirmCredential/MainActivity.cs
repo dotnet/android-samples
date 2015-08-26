@@ -61,7 +61,7 @@ namespace ConfirmCredential
      	* Tries to encrypt some data with the generated key in CreateKey which
      	* only works if the user has just authenticated via device credentials.
      	*/
-		void TryEncrypt ()
+		bool TryEncrypt ()
 		{
 			try {
 				var keyStore = KeyStore.GetInstance ("AndroidKeyStore");
@@ -78,14 +78,17 @@ namespace ConfirmCredential
 
 				// If the user has recently authenticated, you will reach here.
 				ShowAlreadyAuthenticated ();
+				return true;
 			} catch (UserNotAuthenticatedException) {
 				// User is not authenticated, let's authenticate with device credentials.
 				ShowAuthenticationScreen ();
+				return false;
 			} catch (KeyPermanentlyInvalidatedException e) {
 				// This happens if the lock screen has been disabled or reset after the key was
 				// generated after the key was generated.
 				Toast.MakeText (this, "Keys are invalidated after created. Retry the purchase\n"
 					+ e.Message, ToastLength.Short).Show ();
+				return false;
 			} catch (Exception e) {
 				throw new SystemException ("Exception", e);
 			}
@@ -135,7 +138,9 @@ namespace ConfirmCredential
 			if (requestCode == REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS) {
 				// Challenge completed, proceed with using cipher
 				if (resultCode == Result.Ok) {
-					ShowPurchaseConfirmation ();
+					if (TryEncrypt ()) {
+						ShowPurchaseConfirmation ();
+					}
 				} else {
 					// The user canceled or didn’t complete the lock screen
 					// operation. Go to error/cancellation flow.
