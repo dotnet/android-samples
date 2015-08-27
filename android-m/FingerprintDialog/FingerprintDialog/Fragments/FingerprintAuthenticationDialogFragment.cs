@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Android.Hardware.Fingerprint;
+using Android.Hardware.Fingerprints;
 using Android.Views.InputMethods;
 using Android;
 
@@ -37,6 +37,7 @@ namespace FingerprintDialog
 
 		FingerprintManager.CryptoObject mCryptoObject;
 		FingerprintUiHelper mFingerprintUiHelper;
+		MainActivity mActivity;
 
 		FingerprintUiHelper.FingerprintUiHelperBuilder mFingerprintUiHelperBuilder;
 		InputMethodManager mInputMethodManager;
@@ -108,6 +109,12 @@ namespace FingerprintDialog
 			mFingerprintUiHelper.StopListening ();
 		}
 
+		public override void OnAttach (Activity activity)
+		{
+			base.OnAttach (activity);
+			mActivity = (MainActivity) activity;
+		}
+
 		/// <summary>
 		/// Sets the crypto object to be passed in when authenticating with fingerprint.
 		/// </summary>
@@ -149,7 +156,7 @@ namespace FingerprintDialog
 				if (!CheckPassword (mPassword.Text)) {
 					return;
 				}
-				var activity = ((MainActivity)Activity);
+
 				if (mStage == Stage.NewFingerprintEnrolled) {
 					var editor = mSharedPreferences.Edit ();
 					editor.PutBoolean (GetString (Resource.String.use_fingerprint_to_authenticate_key),
@@ -158,12 +165,12 @@ namespace FingerprintDialog
 
 					if (mUseFingerprintFutureCheckBox.Checked) {
 						// Re-create the key so that fingerprints including new ones are validated.
-						activity.CreateKey ();
+						mActivity.CreateKey ();
 						mStage = Stage.Fingerprint;
 					}
 				}
 				mPassword.Text = "";
-				((MainActivity)Activity).OnPurchased (false /* without Fingerprint */);
+				mActivity.OnPurchased (false /* without Fingerprint */);
 				Dismiss ();
 			}
 		}
@@ -223,7 +230,7 @@ namespace FingerprintDialog
 		{
 			// Callback from FingerprintUiHelper. Let the activity know that authentication was
 			// successful.
-			((MainActivity)Activity).OnPurchased (true /* withFingerprint */);
+			mActivity.OnPurchased (true /* withFingerprint */);
 			Dismiss ();
 		}
 

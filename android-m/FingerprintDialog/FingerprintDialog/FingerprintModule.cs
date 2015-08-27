@@ -5,7 +5,7 @@ using Java.Security;
 using Java.Lang;
 using Android.Views.InputMethods;
 using Android.App;
-using Android.Hardware.Fingerprint;
+using Android.Hardware.Fingerprints;
 using Android.Security.Keystore;
 using Android.Preferences;
 

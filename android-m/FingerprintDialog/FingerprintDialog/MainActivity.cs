@@ -4,7 +4,7 @@ using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Hardware.Fingerprint;
+using Android.Hardware.Fingerprints;
 using Android.OS;
 using Android.Runtime;
 using Android.Security.Keystore;
@@ -36,6 +36,7 @@ namespace FingerprintDialog
 
 		FingerprintModule fingerprintModule;
 		KeyguardManager mKeyguardManager;
+		FingerprintManager mFingerprintManager;
 		FingerprintAuthenticationDialogFragment mFragment;
 		KeyStore mKeyStore;
 		KeyGenerator mKeyGenerator;
@@ -63,19 +64,22 @@ namespace FingerprintDialog
 				var purchaseButton = FindViewById<Button> (Resource.Id.purchase_button);
 
 				if (!mKeyguardManager.IsKeyguardSecure) {
+					purchaseButton.Enabled = false;
 					// Show a message that the user hasn't set up a fingerprint or lock screen.
 					Toast.MakeText (this, "Secure lock screen hasn't set up.\n"
-					+ "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
-						ToastLength.Long).Show ();
-					purchaseButton.Enabled = false;
+					+ "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint", ToastLength.Long).Show ();
 					return;
 				}
 
-				if (!CreateKey ()) {
+				if (!mFingerprintManager.HasEnrolledFingerprints) {
 					purchaseButton.Enabled = false;
+					// This happens when no fingerprints are registered.
+					Toast.MakeText (this, "Go to 'Settings -> Security -> Fingerprint' " +
+						"and register at least one fingerprint", ToastLength.Long).Show ();
 					return;
 				}
 
+				CreateKey ();
 				purchaseButton.Enabled = true;
 				purchaseButton.Click += (sender, e) => {
 					// Show the fingerprint dialog. The user has the option to use the fingerprint with
@@ -173,7 +177,7 @@ namespace FingerprintDialog
 		/// Creates a symmetric key in the Android Key Store which can only be used after the user 
 		/// has authenticated with fingerprint.
 		/// </summary>
-		public bool CreateKey ()
+		public void CreateKey ()
 		{
 			// The enrolling flow for fingerprint. This is where you ask the user to set up fingerprint
 			// for your flow. Use of keys is necessary if you need to know if the set of
@@ -192,10 +196,6 @@ namespace FingerprintDialog
 					.SetEncryptionPaddings (KeyProperties.EncryptionPaddingPkcs7)
 					.Build ());
 				mKeyGenerator.GenerateKey ();
-				return true;
-			} catch (IllegalStateException e) {
-				Toast.MakeText (this, "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint", ToastLength.Long).Show ();
-				return false;
 			} catch (NoSuchAlgorithmException e) {
 				throw new RuntimeException (e);
 			} catch (InvalidAlgorithmParameterException e) {
