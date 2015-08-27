@@ -9,6 +9,8 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Android.Util;
+using Android.Support.V4.App;
+using Android.Support.Design.Widget;
 
 using CommonSampleLibrary;
 using Log = CommonSampleLibrary.Log;
@@ -27,15 +29,18 @@ namespace RuntimePermissions
  	* android.Manifest.permission#WRITE_CONTACTS})) are requested when the 'Show and Add Contacts'
  	* button is
  	* clicked to display the first contact in the contacts database and to add a dummy contact
- 	* directly
- 	* to it. First, permissions are checked if they have already been granted through {@link
- 	* android.app.Activity#checkSelfPermission(String)} (wrapped in {@link
- 	* PermissionUtil#hasSelfPermission(Activity, String)} and {@link PermissionUtil#hasSelfPermission(Activity,
- 	* String[])} for compatibility). If permissions have not been granted, they are requested through
- 	* {@link Activity#requestPermissions(String[], int)} and the return value checked in {@link
- 	* Activity#onRequestPermissionsResult(int, String[], int[])}.
+ 	* directly to it. Permissions are verified and requested through compat helpers in the support v4
+ 	* library, in this Activity using {@link ActivityCompat}.
+ 	* First, permissions are checked if they have already been granted through {@link
+ 	* ActivityCompat#checkSelfPermission(Context, String)}.
+ 	* If permissions have not been granted, they are requested through
+ 	* {@link ActivityCompat#requestPermissions(Activity, String[], int)} and the return value checked
+ 	* in
+ 	* a callback to the {@link android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback}
+ 	* interface.
  	* <p>
- 	* Before requesting permissions, {@link Activity#shouldShowRequestPermissionRationale(String)}
+ 	* Before requesting permissions, {@link ActivityCompat#shouldShowRequestPermissionRationale(Activity,
+ 	* String)}
  	* should be called to provide the user with additional context for the use of permissions if they
  	* have been denied previously.
  	* <p>
@@ -55,7 +60,7 @@ namespace RuntimePermissions
  	* (This class is based on the MainActivity used in the SimpleFragment sample template.)
  	*/
 	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
-	public class MainActivity : SampleActivityBase
+	public class MainActivity : SampleActivityBase, ActivityCompat.IOnRequestPermissionsResultCallback 
 	{
 		public override string TAG {
 			get {
@@ -85,6 +90,11 @@ namespace RuntimePermissions
 		bool logShown;
 
 		/**
+     	* Root of the layout of this Activity.
+     	*/
+		View layout;
+
+		/**
      	* Called when the 'show camera' button is clicked.
      	* Callback is defined in resource layout definition.
      	*/
@@ -94,23 +104,39 @@ namespace RuntimePermissions
 			Log.Info (TAG, "Show camera button pressed. Checking permission.");
 
 			// Check if the Camera permission is already available.
-			if (PermissionUtil.HasSelfPermission (this, Manifest.Permission.Camera)) {
+			if (ActivityCompat.CheckSelfPermission (this, Manifest.Permission.Camera) != (int)Permission.Granted) {
+				
+				// Camera permission has not been granted
+				RequestCameraPermission ();
+			} else {
 				// Camera permissions is already available, show the camera preview.
 				Log.Info (TAG, "CAMERA permission has already been granted. Displaying camera preview.");
 				ShowCameraPreview ();
-			} else {
-				// Camera permission has not been granted.
-				Log.Info (TAG, "CAMERA permission has NOT been granted. Requesting permission.");
+			}
+		}
+				
+		/**
+     	* Requests the Camera permission.
+		* If the permission has been denied previously, a SnackBar will prompt the user to grant the
+		* permission, otherwise it is requested directly.
+		*/
+		void RequestCameraPermission ()
+		{
+			Log.Info (TAG, "CAMERA permission has NOT been granted. Requesting permission.");
 
+			if (ActivityCompat.ShouldShowRequestPermissionRationale (this, Manifest.Permission.Camera)) {
 				// Provide an additional rationale to the user if the permission was not granted
 				// and the user would benefit from additional context for the use of the permission.
-				if (ShouldShowRequestPermissionRationale (Manifest.Permission.Camera)) {
-					Log.Info (TAG, "Displaying camera permission rationale to provide additional context.");
-					Toast.MakeText (this, Resource.String.permission_camera_rationale, ToastLength.Short).Show ();
-				}
+				// For example if the user has previously denied the permission.
+				Log.Info (TAG, "Displaying camera permission rationale to provide additional context.");
 
-				// Request Camera permission.
-				RequestPermissions (new string[] { Manifest.Permission.Camera }, REQUEST_CAMERA);
+				Snackbar.Make (layout, Resource.String.permission_camera_rationale,
+					Snackbar.LengthIndefinite).SetAction (Resource.String.ok, new Action<View> (delegate(View obj) {
+						ActivityCompat.RequestPermissions (this, new String[] { Manifest.Permission.Camera }, REQUEST_CAMERA);
+					})).Show ();
+			} else {
+				// Camera permission has not been granted yet. Request it directly.
+				ActivityCompat.RequestPermissions (this, new String[] { Manifest.Permission.Camera }, REQUEST_CAMERA);
 			}
 		}
 
@@ -124,24 +150,41 @@ namespace RuntimePermissions
 			Log.Info (TAG, "Show contacts button pressed. Checking permissions.");
 
 			// Verify that all required contact permissions have been granted.
-			if (PermissionUtil.HasSelfPermission (this, PERMISSIONS_CONTACT)) {
+			if (ActivityCompat.CheckSelfPermission (this, Manifest.Permission.ReadContacts) != (int)Permission.Granted
+				|| ActivityCompat.CheckSelfPermission (this, Manifest.Permission.WriteContacts) != (int)Permission.Granted) {
+				// Contacts permissions have not been granted.
+				Log.Info (TAG, "Contact permissions has NOT been granted. Requesting permissions.");
+				RequestContactsPermissions ();
+			} else {
 				// Contact permissions have been granted. Show the contacts fragment.
 				Log.Info (TAG, "Contact permissions have already been granted. Displaying contact details.");
 				ShowContactDetails ();
-			} else {
-				// Contacts permissions have not been granted.
-				Log.Info (TAG, "Contact permissions has NOT been granted. Requesting permission.");
+			}
+		}
+
+		/**
+     	* Requests the Contacts permissions.
+     	* If the permission has been denied previously, a SnackBar will prompt the user to grant the
+     	* permission, otherwise it is requested directly.
+     	*/
+		void RequestContactsPermissions ()
+		{
+			if (ActivityCompat.ShouldShowRequestPermissionRationale (this, Manifest.Permission.ReadContacts)
+				|| ActivityCompat.ShouldShowRequestPermissionRationale (this, Manifest.Permission.WriteContacts)) {
 
 				// Provide an additional rationale to the user if the permission was not granted
 				// and the user would benefit from additional context for the use of the permission.
-				if (ShouldShowRequestPermissionRationale (Manifest.Permission.ReadContacts)
-					|| ShouldShowRequestPermissionRationale (Manifest.Permission.WriteContacts)) {
-					Log.Info (TAG, "Displaying contacts permission rationale to provide additional context.");
-					Toast.MakeText (this, Resource.String.permission_contacts_rationale, ToastLength.Short).Show ();
-				}
+				// For example, if the request has been denied previously.
+				Log.Info (TAG, "Displaying contacts permission rationale to provide additional context.");
 
-				// Request Contact permission.
-				RequestPermissions (PERMISSIONS_CONTACT, REQUEST_CONTACTS);
+				// Display a SnackBar with an explanation and a button to trigger the request.
+				Snackbar.Make (layout, Resource.String.permission_contacts_rationale,
+					Snackbar.LengthIndefinite).SetAction (Resource.String.ok, new Action<View> (delegate(View obj) {
+						ActivityCompat.RequestPermissions (this, PERMISSIONS_CONTACT, REQUEST_CONTACTS);
+					})).Show ();
+			} else {
+				// Contact permissions have not been granted yet. Request them directly.
+				ActivityCompat.RequestPermissions (this, PERMISSIONS_CONTACT, REQUEST_CONTACTS);
 			}
 		}
 
@@ -179,13 +222,13 @@ namespace RuntimePermissions
 				Log.Info (TAG, "Received response for Camera permission request.");
 
 				// Check if the only required permission has been granted
-				if (grantResults[0] == (int)Permission.Granted) {
+				if (grantResults.Length == 1 && grantResults[0] == (int)Permission.Granted) {
 					// Camera permission has been granted, preview can be displayed
 					Log.Info (TAG, "CAMERA permission has now been granted. Showing preview.");
-					Toast.MakeText (this, Resource.String.permision_available_camera, ToastLength.Short).Show ();
+					Snackbar.Make (layout, Resource.String.permision_available_camera, Snackbar.LengthShort).Show ();
 				} else {
 					Log.Info (TAG, "CAMERA permission was NOT granted.");
-					Toast.MakeText (this, Resource.String.permissions_not_granted, ToastLength.Short).Show ();
+					Snackbar.Make (layout, Resource.String.permissions_not_granted, Snackbar.LengthShort).Show ();
 				}
 			} else if (requestCode == REQUEST_CONTACTS) {
 				Log.Info (TAG, "Received response for contact permissions request.");
@@ -194,10 +237,10 @@ namespace RuntimePermissions
 				// checked.
 				if (PermissionUtil.VerifyPermissions (grantResults)) {
 					// All required permissions have been granted, display contacts fragment.
-					Toast.MakeText (this, Resource.String.permision_available_contacts, ToastLength.Short).Show ();
+					Snackbar.Make (layout, Resource.String.permision_available_contacts, Snackbar.LengthShort).Show ();
 				} else {
 					Log.Info (TAG, "Contacts permissions were NOT granted.");
-					Toast.MakeText (this, Resource.String.permissions_not_granted, ToastLength.Short).Show ();
+					Snackbar.Make (layout, Resource.String.permissions_not_granted, Snackbar.LengthShort).Show ();
 				}
 
 			} else {
@@ -267,9 +310,10 @@ namespace RuntimePermissions
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
+			layout = FindViewById (Resource.Id.sample_main_layout);
 
 			if (bundle == null) {
-				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+				Android.App.FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				var fragment = new RuntimePermissionsFragment ();
 				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
 				transaction.Commit ();
