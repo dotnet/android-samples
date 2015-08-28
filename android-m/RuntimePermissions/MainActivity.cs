@@ -59,7 +59,7 @@ namespace RuntimePermissions
  	* <p>
  	* (This class is based on the MainActivity used in the SimpleFragment sample template.)
  	*/
-	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
+	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/Theme.AppCompat.Light")]
 	public class MainActivity : SampleActivityBase, ActivityCompat.IOnRequestPermissionsResultCallback 
 	{
 		public override string TAG {
