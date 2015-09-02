@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.ElevationBasic">
-	<application android:allowBackup="true"
-		android:label="@string/app_name"
-		android:icon="@drawable/ic_launcher"
-		android:theme="@android:style/Theme.Material.Light">
+	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@android:style/Theme.Material.Light">
 	</application>
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="22" />
 </manifest>
