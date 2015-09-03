@@ -5,6 +5,7 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
-    <LicenseRequirement>Starter</LicenseRequirement>
-    <Brief>This sample demonstrates how to start a transition right after a fragment transaction.</Brief>
+	<HideZip>true</HideZip><!--references code outside folder root, cannot be ZIPped-->
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>This sample demonstrates how to start a transition right after a fragment transaction.</Brief>
 </SampleMetadata>
