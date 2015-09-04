@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>4FFFC876-A12B-482B-A5D9-59888B43A07B</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates the Android Activity Lifecycle.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
