@@ -1,4 +1,4 @@
-namespace ActivityLifecyle
+namespace ActivityLifecycle
 {
     using Android.App;
     using Android.OS;

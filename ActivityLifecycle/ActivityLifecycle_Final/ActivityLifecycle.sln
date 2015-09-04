@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityLifecyle", "ActivityLifecyle.csproj", "{B4994EC0-5A8F-4D29-BF89-BE5C9E657438}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityLifecycle", "ActivityLifecycle.csproj", "{B4994EC0-5A8F-4D29-BF89-BE5C9E657438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ActivityLifecyle.csproj
+		StartupItem = ActivityLifecycle.csproj
 	EndGlobalSection
 EndGlobal

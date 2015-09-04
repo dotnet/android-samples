@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="mybutton_text">Start Activity B</string>
+	<string name="counterbutton_text">I\'ve been touched %1$d times.</string>
+	<string name="app_name">ActivityLifecycle</string>
+</resources>
