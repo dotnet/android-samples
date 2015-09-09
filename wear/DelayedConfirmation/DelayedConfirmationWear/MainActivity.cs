@@ -2,17 +2,20 @@
 
 using Android.App;
 using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Util;
+using Android.Widget;
+
+using Android.Support.V4.App;
+
 using Android.Gms;
 using Android.Gms.Common;
 using Android.Gms.Common.Apis;
 using Android.Gms.Wearable;
-using Android.Support.Wearable.View;
-using Android.OS;
-using Android.Runtime;
-using Android.Support.V4.App;
-using Android.Views;
-using Android.Util;
-using Android.Widget;
+
+using Android.Support.Wearable.Views;
 
 namespace DelayedConfirmation
 {

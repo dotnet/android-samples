@@ -18,7 +18,7 @@ using Java.Lang;
 
 namespace JumpingJack
 {
-	public class MyRunnable : Java.Lang.Object,IRunnable
+	public class MyRunnable : Java.Lang.Object, IRunnable
 	{
 		CounterFragment cf;
 		public MyRunnable(CounterFragment counterFragment)
@@ -32,6 +32,7 @@ namespace JumpingJack
 			cf.up = !cf.up;
 		}
 	}
+
 	public class MyTimertask : TimerTask
 	{
 		CounterFragment cf;
@@ -45,7 +46,7 @@ namespace JumpingJack
 		}
 	}
 
-	public class CounterFragment : Fragment
+	public class CounterFragment : Android.Support.V4.App.Fragment
 	{
 
 		const int ANIMATION_INTERVAL_MS = 500;

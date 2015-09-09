@@ -15,7 +15,7 @@
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>Timer</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.4.87</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,10 +45,19 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.0.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.0.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Base">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.26.0.0.0-rc3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Wearable">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Wearable.26.0.0.0-rc3\lib\MonoAndroid41\Xamarin.GooglePlayServices.Wearable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.0.0.0-rc1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Wearable">
-      <HintPath>..\packages\Xamarin.Android.Wear.1.0.0\lib\MonoAndroid44\Xamarin.Android.Wearable.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Wear.1.3.0.0-rc2\lib\MonoAndroid50\Xamarin.Android.Wearable.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

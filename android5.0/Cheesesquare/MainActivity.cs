@@ -83,7 +83,7 @@ namespace Cheesesquare
         void setupDrawerContent(NavigationView navigationView) 
         {
             navigationView.NavigationItemSelected += (sender, e) => {
-                e.P0.SetChecked (true);
+				e.MenuItem.SetChecked (true);
                 drawerLayout.CloseDrawers ();
             };
         }

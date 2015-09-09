@@ -13,7 +13,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>Cheesesquare</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
@@ -42,20 +42,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v7.CardView">
-      <HintPath>packages\Xamarin.Android.Support.v7.CardView.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Design">
-      <HintPath>packages\Xamarin.Android.Support.Design.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.CardView.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v4.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.22.2.0.0-beta3\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>packages\Xamarin.Android.Support.Design.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

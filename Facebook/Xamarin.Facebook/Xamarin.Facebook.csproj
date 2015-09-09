@@ -15,7 +15,7 @@
     <MonoAndroidTransformPrefix>Transforms</MonoAndroidTransformPrefix>
     <AssemblyName>Xamarin.Facebook</AssemblyName>
     <JavaDocPaths>../facebook-android-sdk-3.0.1/facebook/docs</JavaDocPaths>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -43,7 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0.4\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -56,12 +56,6 @@
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="Jars\AboutJars.txt" />
-    <None Include="..\..\..\..\..\..\..\..\..\..\..\svn\monodroid-samples\Facebook\Package.nuspec">
-      <Link>Package.nuspec</Link>
-    </None>
-    <None Include="..\..\..\..\..\..\..\..\..\..\..\svn\monodroid-samples\Facebook\README.md">
-      <Link>README.md</Link>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

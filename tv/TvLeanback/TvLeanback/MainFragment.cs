@@ -20,7 +20,7 @@ using Java.Util;
 
 namespace TvLeanback
 {
-	public class MainFragment : BrowseFragment, LoaderManager.ILoaderCallbacks, View.IOnClickListener, IOnItemSelectedListener//<Dictionary<string, IList<Movie>>>
+	public class MainFragment : BrowseFragment, LoaderManager.ILoaderCallbacks, View.IOnClickListener, IOnItemViewSelectedListener//<Dictionary<string, IList<Movie>>>
 	{
 		private static readonly String TAG = "MainFragment";
 
@@ -81,8 +81,8 @@ namespace TvLeanback
 		{
 			SetOnSearchClickedListener (this);//new View.IOnClickListener(){
 
-			SetOnItemSelectedListener (this);
-			ItemClicked += (object sender, ItemClickedEventArgs e) => {
+			OnItemViewSelectedListener = this;
+			ItemViewClicked += (object sender, ItemViewClickedEventArgs e) => {
 				var item = e.Item;
 				if (item is Movie) {
 					Movie movie = (Movie)item;
@@ -102,7 +102,8 @@ namespace TvLeanback
 			};
 		}
 
-		public void OnItemSelected (Java.Lang.Object item, Row row)
+		public void OnItemSelected (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
+			RowPresenter.ViewHolder rowViewHolder, Row row)
 		{
 			if (item is Movie) {
 				mBackgroundURI = ((Movie)item).GetBackgroundImageURI ();
@@ -144,12 +145,12 @@ namespace TvLeanback
 				foreach (Movie current in list) {
 					listRowAdapter.Add (current);
 				}
-				var header = new HeaderItem (i, entry.Key, null);
+				var header = new HeaderItem (i, entry.Key);
 				i++;
 				mRowsAdapter.Add (new ListRow (header, listRowAdapter));
 			}
 
-			var gridHeader = new HeaderItem (i, Resources.GetString (Resource.String.preferences), null);
+			var gridHeader = new HeaderItem (i, Resources.GetString (Resource.String.preferences));
 			var gridPresenter = new GridItemPresenter (this);
 			var gridRowAdapter = new ArrayObjectAdapter (gridPresenter);
 

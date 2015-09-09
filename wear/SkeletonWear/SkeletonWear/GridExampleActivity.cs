@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+
 using Android.Support.Wearable.Views;
 
 namespace SkeletonWear
@@ -37,7 +39,7 @@ namespace SkeletonWear
 			/*Java generics do not exist in bytecode, so the Java project's Hashmap<Point, ImageReference> 
 			 * would be Hashmap<Java.Lang.Object, Java.Lang.Object>. Using C#'s Dictionary provides the same functionality with trivial changes to use.
 			*/
-			Dictionary<Point, ImageReference> mBackgrounds = new Dictionary<Point, ImageReference> ();
+			Dictionary<Point, Drawable> mBackgrounds = new Dictionary<Point, Drawable> ();
 			GridExampleActivity owner;
 
 			public MainAdapter (FragmentManager fm, GridExampleActivity owner) : base (fm)
@@ -61,26 +63,26 @@ namespace SkeletonWear
 				return MainFragment.NewInstance (row, col);
 			}
 
-			public override ImageReference GetBackground (int row, int col)
+			public override Android.Graphics.Drawables.Drawable GetBackgroundForPage (int row, int column)
 			{
-				var pt = new Point (row, col);
-				ImageReference imgRef = null;
-				if(mBackgrounds.ContainsKey(pt))
-					imgRef = mBackgrounds [pt];
-				if (imgRef == null) {
+				Point pt = new Point (column, row);
+				Drawable drawable = mBackgrounds [pt];
+				if (drawable == null) {
 					var bm = Bitmap.CreateBitmap (200, 200, Bitmap.Config.Argb8888);
 					var c = new Canvas (bm);
 					var p = new Paint ();
+					// Clear previous image.
 					c.DrawRect (0, 0, 200, 200, p);
 					p.AntiAlias = true;
 					p.SetTypeface (Typeface.Default);
 					p.TextSize = 64;
 					p.Color = Color.LightGray;
-					c.DrawText (col + "-" + row, 20, 100, p);
-					imgRef = ImageReference.ForBitmap (bm);
-					mBackgrounds.Add (pt, imgRef);
+					p.TextAlign = Paint.Align.Center;
+					c.DrawText (column+ "-" + row, 100, 100, p);
+					drawable = new BitmapDrawable (owner.Resources, bm);
+					mBackgrounds.Add (pt, drawable);
 				}
-				return imgRef;
+				return drawable;
 			}
 		}
 

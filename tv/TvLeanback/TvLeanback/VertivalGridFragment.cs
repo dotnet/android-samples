@@ -10,7 +10,7 @@ using Android.Util;
 
 namespace TvLeanback
 {
-	public class VertivalGridFragment : Android.Support.V17.Leanback.App.VerticalGridFragment, IOnItemClickedListener, IOnItemSelectedListener
+	public class VertivalGridFragment : Android.Support.V17.Leanback.App.VerticalGridFragment, IOnItemViewClickedListener, IOnItemViewSelectedListener
 	{
 		private static string TAG = "VerticalGridFragment";
 
@@ -45,12 +45,14 @@ namespace TvLeanback
 			}
 
 			this.Adapter = mAdapter;
-			SetOnItemSelectedListener (this);
-			OnItemClickedListener = this;
+			OnItemViewClickedListener = this;
 
-			SetOnItemSelectedListener (this);
+			SetOnItemViewSelectedListener (this);
 		}
-		public void OnItemClicked(Java.Lang.Object item, Row row){
+
+		public void OnItemClicked (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
+			RowPresenter.ViewHolder rowViewHolder, Row row)
+		{
 			if (item is Movie) {
 				var movie = (Movie)item;
 				var intent = new Intent (this.Activity, typeof(DetailsActivity));
@@ -58,7 +60,10 @@ namespace TvLeanback
 				StartActivity (intent);
 			}
 		}
-		public void OnItemSelected(Java.Lang.Object item, Row row){
+
+		public void OnItemSelected (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
+			RowPresenter.ViewHolder rowViewHolder, Row row)
+		{
 			//Do nothing
 		}
 	}

@@ -151,8 +151,8 @@ namespace HelloFacebookSample
 
 			controlsContainer = (ViewGroup)FindViewById (Resource.Id.main_ui_container);
 
-			FragmentManager fm = SupportFragmentManager;
-			Fragment fragment = fm.FindFragmentById (Resource.Id.fragment_container);
+			Android.Support.V4.App.FragmentManager fm = SupportFragmentManager;
+			Android.Support.V4.App.Fragment fragment = fm.FindFragmentById (Resource.Id.fragment_container);
 			if (fragment != null) {
 				// If we're being re-created and have a fragment, we need to a) hide the main UI controls and
 				// b) hook up its listeners again.
@@ -354,7 +354,7 @@ namespace HelloFacebookSample
 				toast.Show ();
 			});
 
-			FragmentManager fm = SupportFragmentManager;
+			Android.Support.V4.App.FragmentManager fm = SupportFragmentManager;
 			fm.BeginTransaction ()
 				.Replace (Resource.Id.fragment_container, fragment)
 					.AddToBackStack (null)
@@ -386,7 +386,7 @@ namespace HelloFacebookSample
 
 		private void OnFriendPickerDone (FriendPickerFragment fragment)
 		{
-			FragmentManager fm = SupportFragmentManager;
+			Android.Support.V4.App.FragmentManager fm = SupportFragmentManager;
 			fm.PopBackStack ();
 
 			String results = "";
@@ -407,7 +407,7 @@ namespace HelloFacebookSample
 
 		private void OnPlacePickerDone (PlacePickerFragment fragment)
 		{
-			FragmentManager fm = SupportFragmentManager;
+			Android.Support.V4.App.FragmentManager fm = SupportFragmentManager;
 			fm.PopBackStack ();
 
 			String result = "";

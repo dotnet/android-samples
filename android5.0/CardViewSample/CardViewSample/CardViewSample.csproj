@@ -16,6 +16,8 @@
     <AssemblyName>CardViewSample</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.v7.CardView">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.21.0.0.0-beta1\lib\MonoAndroid\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

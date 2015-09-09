@@ -13,7 +13,7 @@ using Android.Util;
 
 namespace TvLeanback
 {
-	public class SearchFragment : Android.Support.V17.Leanback.App.SearchFragment, IOnItemClickedListener,
+	public class SearchFragment : Android.Support.V17.Leanback.App.SearchFragment, IOnItemViewClickedListener,
 		Android.Support.V17.Leanback.App.SearchFragment.ISearchResultProvider
 	{
 		private static  string TAG = "SearchFragment";
@@ -39,10 +39,11 @@ namespace TvLeanback
 			mDelayedLoad = new SearchRunnable (this);
 			mRowsAdapter = new ArrayObjectAdapter (new ListRowPresenter ());
 			SetSearchResultProvider (this);
-			SetOnItemClickedListener (this);
+			SetOnItemViewClickedListener (this);
 		}
 
-		public void OnItemClicked (Java.Lang.Object item, Row row)
+		public void OnItemClicked (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
+			RowPresenter.ViewHolder rowViewHolder, Row row)
 		{
 			if (item is Movie) {
 				var movie = (Movie)item;
@@ -90,7 +91,7 @@ namespace TvLeanback
 					}
 				}
 			}
-			HeaderItem header = new HeaderItem (0, Resources.GetString (Resource.String.search_results), (string)null);
+			HeaderItem header = new HeaderItem (0, Resources.GetString (Resource.String.search_results));
 			mRowsAdapter.Add (new ListRow (header, listRowAdapter));
 		}
 

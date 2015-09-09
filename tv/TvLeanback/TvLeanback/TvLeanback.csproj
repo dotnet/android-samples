@@ -12,7 +12,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>TvLeanback</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
@@ -45,13 +45,13 @@
     <Reference Include="System.Json" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.3.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.21.0.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.0.1.0-rc2\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v17.Leanback">
-      <HintPath>..\packages\Xamarin.Android.Support.v17.Leanback.21.0.3.0\lib\MonoAndroid42\Xamarin.Android.Support.v17.Leanback.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Support.v17.Leanback.23.0.1.0-rc2\lib\MonoAndroid42\Xamarin.Android.Support.v17.Leanback.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

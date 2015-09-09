@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Gms.Wearable;
+
 namespace FindMyPhoneSample
 {
 	[Service]

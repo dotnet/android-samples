@@ -45,9 +45,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Android.Support.v13">
-      <HintPath>packages\Xamarin.Android.Support.v13.20.0.0.4\lib\MonoAndroid32\Xamarin.Android.Support.v13.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationDrawableActivity.cs" />
@@ -81,7 +78,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Drawable\shape_rounded_blue_rect.xml" />
-    <None Include="packages.config" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -147,7 +144,6 @@
     <AndroidResource Include="Resources\drawable-nodpi\thumb2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\spinning_asteroid.xml" />
     <AndroidResource Include="Resources\Drawable\asteroid01.png" />
     <AndroidResource Include="Resources\Drawable\asteroid02.png" />

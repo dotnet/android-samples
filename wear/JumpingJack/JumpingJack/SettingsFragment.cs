@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace JumpingJack
 {
-	public class SettingsFragment : Fragment
+	public class SettingsFragment : Android.Support.V4.App.Fragment
 	{
 		private Button button;
 		private MainActivity main_activity;

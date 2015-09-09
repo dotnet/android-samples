@@ -5,6 +5,7 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
 using Android.Widget;
+using Android.Support.V4.App;
 using Android.Support.V17.Leanback.App;
 using Android.Support.V17.Leanback.Widget;
 using Action = Android.Support.V17.Leanback.Widget.Action;
@@ -16,7 +17,7 @@ using Squareup.Picasso;
 
 namespace TvLeanback
 {
-	public class LeanbackDetailsFragment : Android.Support.V17.Leanback.App.DetailsFragment, IOnItemClickedListener
+	public class LeanbackDetailsFragment : Android.Support.V17.Leanback.App.DetailsFragment, IOnItemViewClickedListener
 	{
 		private static readonly string TAG = "DetailsFragment";
 
@@ -50,16 +51,20 @@ namespace TvLeanback
 			selectedMovie = Utils.Deserialize(this.Activity.Intent.GetStringExtra (GetString(Resource.String.movie))) ; //TODO make this work
 			Log.Debug (TAG, "DetailsActivity movie: " + selectedMovie.ToString ());
 			new DetailRowBuilderTask (this).Execute (selectedMovie);
-			OnItemClickedListener = this;
+			OnItemViewClickedListener = this;
 		}
 
-		public void OnItemClicked (Java.Lang.Object item, Row row)
+		public void OnItemClicked (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
+			RowPresenter.ViewHolder rowViewHolder, Row row)
 		{
 			if (item is Movie) {
 				var movie = (Movie)item;
 				var intent = new Intent (this.Activity, typeof(DetailsActivity));
-				intent.PutExtra (GetString (Resource.String.movie), Utils.Serialize(movie));
-				StartActivity (intent);
+				intent.PutExtra (GetString (Resource.String.movie), Utils.Serialize (movie));
+				Bundle bundle = ActivityOptionsCompat.MakeSceneTransitionAnimation (Activity,
+					((ImageCardView) itemViewHolder.View).MainImageView,
+					DetailsActivity.SHARED_ELEMENT_NAME).ToBundle ();
+				StartActivity (intent, bundle);
 			}
 		}
 
@@ -141,7 +146,7 @@ namespace TvLeanback
 						}
 					}
 				}
-				HeaderItem header = new HeaderItem (0, subcategories [0], null);
+				HeaderItem header = new HeaderItem (0, subcategories [0]);
 				adapter.Add (new ListRow (header, listRowAdapter));
 				owner.Adapter = adapter;
 			}

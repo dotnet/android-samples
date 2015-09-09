@@ -12,6 +12,7 @@ using Android.Util;
 
 using Java.Util;
 using Java.Lang;
+using Android.Support.V4.App;
 
 namespace JumpingJack
 {
@@ -72,8 +73,9 @@ namespace JumpingJack
 			activity.Finish ();
 		}
 	}
+
 	[Activity (Label = "JumpingJack", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-	public class MainActivity : Activity,ISensorEventListener
+	public class MainActivity : FragmentActivity, ISensorEventListener
 	{
 		public const string TAG = "JJMainActivity";
 
@@ -121,7 +123,7 @@ namespace JumpingJack
 			pager = (ViewPager)FindViewById<ViewPager> (Resource.Id.pager);
 			first_indicator = (ImageView)FindViewById (Resource.Id.indicator_0);
 			second_indicator = (ImageView)FindViewById (Resource.Id.indicator_1);
-			PagerAdapter adapter = new PagerAdapter (FragmentManager);
+			PagerAdapter adapter = new PagerAdapter (SupportFragmentManager);
 			counter_page = new CounterFragment ();
 			setting_page = new SettingsFragment (this);
 			adapter.AddFragment (counter_page);

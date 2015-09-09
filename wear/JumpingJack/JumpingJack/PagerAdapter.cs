@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Android.App;
-using Android.Support.V13.App;
 
-using Java.Util;
+using Android.App;
+using Android.Support.V4.App;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace JumpingJack
 {
 	public class PagerAdapter : FragmentPagerAdapter
 	{
 		List<Fragment> fragments = null;
-		public PagerAdapter (FragmentManager fm) : base(fm)
+
+		public PagerAdapter (Android.Support.V4.App.FragmentManager fm) 
+			: base(fm)
 		{
 			fragments = new List<Fragment> ();
 		}
@@ -26,7 +28,7 @@ namespace JumpingJack
 			}
 		}
 
-		public void AddFragment(Fragment fragment)
+		public void AddFragment (Fragment fragment)
 		{
 			fragments.Add (fragment);
 			NotifyDataSetChanged ();

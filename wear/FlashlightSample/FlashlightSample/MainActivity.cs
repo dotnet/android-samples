@@ -7,14 +7,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V13.App;
 using Android.Support.V4.View;
-
+using Android.Support.V4.App;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace FlashlightSample
 {
 	[Activity (Label = "FlashlightSample", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-	public class MainActivity : Activity
+	public class MainActivity : FragmentActivity
 	{
 		private ViewPager view_pager;
 		public PartyLightFragment party_fragment;
@@ -27,7 +27,7 @@ namespace FlashlightSample
 			view_pager = (FindViewById<ViewPager> (Resource.Id.pager));
 
 			//make the first page the white light fragment
-			LightFragmentAdapter adapter = new LightFragmentAdapter (FragmentManager);
+			LightFragmentAdapter adapter = new LightFragmentAdapter (SupportFragmentManager);
 			adapter.AddFragment (new WhiteLightFragment ());
 
 			//make the second page the party light fragment
@@ -45,7 +45,8 @@ namespace FlashlightSample
 		private List<Fragment> fragments;
 
 
-		public LightFragmentAdapter(FragmentManager fm) : base(fm)
+		public LightFragmentAdapter (Android.Support.V4.App.FragmentManager fm) 
+			: base(fm)
 		{
 			fragments = new List<Fragment> ();
 		}
@@ -98,14 +99,16 @@ namespace FlashlightSample
 		}
 	}
 
-	public class MyOnPageListener : Java.Lang.Object,ViewPager.IOnPageChangeListener
+	public class MyOnPageListener : Java.Lang.Object, ViewPager.IOnPageChangeListener
 	{
 		MainActivity a;
-		public MyOnPageListener(MainActivity activity)
+
+		public MyOnPageListener (MainActivity activity)
 		{
 			a = activity;
 		}
-		public void OnPageSelected(int position)
+
+		public void OnPageSelected (int position)
 		{
 			if (position == 1) {
 				a.party_fragment.StartCycling ();
@@ -114,11 +117,11 @@ namespace FlashlightSample
 			}
 		}
 
-		public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+		public void OnPageScrolled (int position, float positionOffset, int positionOffsetPixels)
 		{
 		}
 
-		public void OnPageScrollStateChanged(int state)
+		public void OnPageScrollStateChanged (int state)
 		{
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="WatchViewStub.WatchViewStub">
-	<uses-sdk />
-    <uses-feature android:name="android.hardware.type.watch" />
+	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="21" />
+	<uses-feature android:name="android.hardware.type.watch" />
 	<application android:label="WatchViewStubSample" android:theme="@android:style/Theme.DeviceDefault">
 	</application>
 </manifest>

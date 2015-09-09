@@ -7,10 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Collections.Generic;
-using Android.Gms.Location;
 using Android.Util;
-using Android.Gms.Common.Apis;
+
 using Android.Gms.Common;
+using Android.Gms.Common.Apis;
+using Android.Gms.Location;
 
 namespace Geofencing
 {
