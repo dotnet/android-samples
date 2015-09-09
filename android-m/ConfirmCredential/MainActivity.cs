@@ -110,7 +110,7 @@ namespace ConfirmCredential
 				// Set the alias of the entry in Android KeyStore where the key will appear
 				// and the constrains (purposes) in the constructor of the Builder
 				keyGenerator.Init (new KeyGenParameterSpec.Builder (KEY_NAME,
-					KeyProperties.PurposeEncrypt | KeyProperties.PurposeDecrypt)
+					KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
 					.SetBlockModes (KeyProperties.BlockModeCbc)
 					.SetUserAuthenticationRequired (true)
 					// Require that the user has unlocked in the last 30 seconds

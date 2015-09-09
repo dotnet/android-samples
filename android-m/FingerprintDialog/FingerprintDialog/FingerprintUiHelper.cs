@@ -89,7 +89,7 @@ namespace FingerprintDialog
 			}
 		}
 
-		public override void OnAuthenticationError (int errMsgId, Java.Lang.ICharSequence errString)
+		public override void OnAuthenticationError (FingerprintState errorCode, Java.Lang.ICharSequence errString)
 		{
 			if (!mSelfCancelled) {
 				ShowError (errString.ToString ());
@@ -99,7 +99,7 @@ namespace FingerprintDialog
 			}
 		}
 
-		public override void OnAuthenticationHelp (int helpMsgId, Java.Lang.ICharSequence helpString)
+		public override void OnAuthenticationHelp (FingerprintState helpCode, Java.Lang.ICharSequence helpString)
 		{
 			ShowError (helpString.ToString ());
 		}

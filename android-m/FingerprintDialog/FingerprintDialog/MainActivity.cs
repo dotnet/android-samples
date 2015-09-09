@@ -187,11 +187,10 @@ namespace FingerprintDialog
 				// Set the alias of the entry in Android KeyStore where the key will appear
 				// and the constrains (purposes) in the constructor of the Builder
 				mKeyGenerator.Init (new KeyGenParameterSpec.Builder (KEY_NAME,
-					KeyProperties.PurposeEncrypt |
-					KeyProperties.PurposeDecrypt)
+					KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
 					.SetBlockModes (KeyProperties.BlockModeCbc)
-				// Require the user to authenticate with a fingerprint to authorize every use
-				// of the key
+					// Require the user to authenticate with a fingerprint to authorize every use
+					// of the key
 					.SetUserAuthenticationRequired (true)
 					.SetEncryptionPaddings (KeyProperties.EncryptionPaddingPkcs7)
 					.Build ());
