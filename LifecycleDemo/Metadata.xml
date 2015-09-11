@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>D4FA2E89-05EC-4C43-8069-7E4C89DAA9D9</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates the Android Backgrounding Lifecycle.</Brief>
+	<Level>Starter</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Backgrounding</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
