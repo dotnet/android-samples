@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>C5108D8D-CECB-45D4-8746-39A22B6DA13F</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Provides examples of simple Animations in Android</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Graphics</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>

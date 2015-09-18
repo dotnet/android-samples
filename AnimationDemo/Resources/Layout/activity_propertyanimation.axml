@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+  <FrameLayout
+      android:minWidth="25px"
+      android:minHeight="160px"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/frameLayout1"
+      android:layout_marginTop="32dp"
+      android:layout_marginBottom="16dp">
+    <com.xamarin.evolve2013.animationsdemo.KarmaMeter
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/karmaMeter" />
+  </FrameLayout>
+  <SeekBar
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/karmaSeeker"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:max="100"
+      android:progress="50" />
+  <TextView
+      android:text="Desired value"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/textView1"
+      android:gravity="center"
+      android:textColor="#ff474747" />
+</LinearLayout>
