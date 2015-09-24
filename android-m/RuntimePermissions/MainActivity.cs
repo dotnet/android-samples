@@ -215,14 +215,14 @@ namespace RuntimePermissions
 		/**
      	* Callback received when a permissions request has been completed.
      	*/
-		public override void OnRequestPermissionsResult (int requestCode, string[] permissions, int[] grantResults)
+		public override void OnRequestPermissionsResult (int requestCode, string[] permissions, Permission[] grantResults)
 		{
 			if (requestCode == REQUEST_CAMERA) {
 				// Received permission result for camera permission.
 				Log.Info (TAG, "Received response for Camera permission request.");
 
 				// Check if the only required permission has been granted
-				if (grantResults.Length == 1 && grantResults[0] == (int)Permission.Granted) {
+				if (grantResults.Length == 1 && grantResults[0] == Permission.Granted) {
 					// Camera permission has been granted, preview can be displayed
 					Log.Info (TAG, "CAMERA permission has now been granted. Showing preview.");
 					Snackbar.Make (layout, Resource.String.permision_available_camera, Snackbar.LengthShort).Show ();
