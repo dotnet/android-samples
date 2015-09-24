@@ -17,7 +17,7 @@ namespace RuntimePermissions
 		*
 		* See Activity#onRequestPermissionsResult (int, String[], int[])
 		*/
-		public static bool VerifyPermissions (int[] grantResults)
+		public static bool VerifyPermissions (Permission[] grantResults)
 		{
 			// At least one result must be checked.
 			if (grantResults.Length < 1)
