@@ -11,10 +11,10 @@ using Android.Locations;
 namespace FusedLocationProvider
 {
 	[Activity (Label = "FusedLocationProvider", MainLauncher = true)]
-	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks,
-	IGoogleApiClientOnConnectionFailedListener, Android.Gms.Location.ILocationListener 
+	public class MainActivity : Activity, GoogleApiClient.IConnectionCallbacks,
+	    GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener 
 	{
-		IGoogleApiClient apiClient;
+		GoogleApiClient apiClient;
 		LocationRequest locRequest;
 		Button button;
 		TextView latitude;
@@ -53,7 +53,7 @@ namespace FusedLocationProvider
 
 			if (_isGooglePlayServicesInstalled) {
 				// pass in the Context, ConnectionListener and ConnectionFailedListener
-				apiClient = new GoogleApiClientBuilder (this, this, this)
+				apiClient = new GoogleApiClient.Builder (this, this, this)
 					.AddApi (LocationServices.API).Build ();
 
 				// generate a location request that we will pass into a call for location updates
@@ -115,7 +115,7 @@ namespace FusedLocationProvider
 			};
 
 			// Clicking the second button will send a request for continuous updates
-			button2.Click += delegate {
+			button2.Click += async delegate {
 				if (apiClient.IsConnected)
 				{
 					button2.Text = "Requesting Location Updates";
@@ -133,7 +133,7 @@ namespace FusedLocationProvider
 						locRequest.Priority.ToString(), locRequest.Interval.ToString());
 
 					// pass in a location request and LocationListener
-					LocationServices.FusedLocationApi.RequestLocationUpdates (apiClient, locRequest, this);
+					await LocationServices.FusedLocationApi.RequestLocationUpdates (apiClient, locRequest, this);
 					// In OnLocationChanged (below), we will make calls to update the UI
 					// with the new location data
 				}
@@ -144,14 +144,14 @@ namespace FusedLocationProvider
 			};
 		}
 
-		protected override void OnPause ()
+		protected override async void OnPause ()
 		{
 			base.OnPause ();
 			Log.Debug ("OnPause", "OnPause called, stopping location updates");
 
 			if (apiClient.IsConnected) {
 				// stop location updates, passing in the LocationListener
-				LocationServices.FusedLocationApi.RemoveLocationUpdates (apiClient, this);
+				await LocationServices.FusedLocationApi.RemoveLocationUpdates (apiClient, this);
 
 				apiClient.Disconnect ();
 			}

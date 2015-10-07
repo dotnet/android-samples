@@ -18,6 +18,7 @@ using Java.IO;
 using System.IO;
 using Android.Util;
 using Android.Content.PM;
+using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -27,7 +28,7 @@ namespace DataLayer
 	/// </summary>
 	[Activity (MainLauncher = true, Label="@string/app_name", LaunchMode = LaunchMode.SingleTask, Icon = "@drawable/ic_launcher")]
 	public class MainActivity : Activity, IDataApiDataListener, IMessageApiMessageListener, INodeApiNodeListener, 
-	IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	    GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string Tag = "MainActivity";
 
@@ -42,7 +43,7 @@ namespace DataLayer
 		const string ImageKey = "photo";
 		const string CountKey = "count";
 
-		IGoogleApiClient mGoogleApiClient;
+		GoogleApiClient mGoogleApiClient;
 		bool mResolvingError = false;
 		bool mCameraSupported = false;
 
@@ -77,7 +78,7 @@ namespace DataLayer
 
 			generatorExecutor = new ScheduledThreadPoolExecutor (1);
 
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
@@ -113,26 +114,26 @@ namespace DataLayer
 			dataItemGeneratorFuture.Cancel (true /* mayInterruptIfRunning */);
 		}
 
-		protected override void OnStop ()
+		protected override async void OnStop ()
 		{
 			if (!mResolvingError) {
-				WearableClass.DataApi.RemoveListener (mGoogleApiClient, this);
-				WearableClass.MessageApi.RemoveListener (mGoogleApiClient, this);
-				WearableClass.NodeApi.RemoveListener (mGoogleApiClient, this);
+				await WearableClass.DataApi.RemoveListenerAsync (mGoogleApiClient, this);
+                await WearableClass.MessageApi.RemoveListenerAsync (mGoogleApiClient, this);
+                await WearableClass.NodeApi.RemoveListenerAsync (mGoogleApiClient, this);
 				mGoogleApiClient.Disconnect ();
 			}
 			base.OnStop ();
 		}
 
-		public void OnConnected (Bundle connectionHint)
+		public async void OnConnected (Bundle connectionHint)
 		{
 			LOGD (Tag, "Google API CLient was connected");
 			mResolvingError = false;
 			startActivityBtn.Enabled = true;
 			sendPhotoBtn.Enabled = true;
-			WearableClass.DataApi.AddListener (mGoogleApiClient, this);
-			WearableClass.MessageApi.AddListener (mGoogleApiClient, this);
-			WearableClass.NodeApi.AddListener (mGoogleApiClient, this);
+			await WearableClass.DataApi.AddListenerAsync (mGoogleApiClient, this);
+			await WearableClass.MessageApi.AddListenerAsync (mGoogleApiClient, this);
+			await WearableClass.NodeApi.AddListenerAsync (mGoogleApiClient, this);
 		}
 
 		public void OnConnectionSuspended (int cause)
@@ -142,7 +143,7 @@ namespace DataLayer
 			sendPhotoBtn.Enabled = false;
 		}
 
-		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
+		public async void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
 		{
 			if (mResolvingError) {
 				// Already attempting to resolve an error
@@ -160,22 +161,21 @@ namespace DataLayer
 				mResolvingError = false;
 				startActivityBtn.Enabled = false;
 				sendPhotoBtn.Enabled = false;
-				WearableClass.DataApi.RemoveListener(mGoogleApiClient, this);
-				WearableClass.MessageApi.RemoveListener(mGoogleApiClient, this);
-				WearableClass.NodeApi.RemoveListener(mGoogleApiClient, this);
+				await WearableClass.DataApi.RemoveListenerAsync (mGoogleApiClient, this);
+				await WearableClass.MessageApi.RemoveListenerAsync (mGoogleApiClient, this);
+				await WearableClass.NodeApi.RemoveListenerAsync (mGoogleApiClient, this);
 			}
 		}
 
 		public void OnDataChanged (DataEventBuffer dataEvents)
 		{
 			LOGD (Tag, "OnDataChanged: " + dataEvents);
-			var events = FreezableUtils.FreezeIterable (dataEvents);
-
+			var events = new List<IDataEvent> ();
+            events.AddRange (dataEvents);
 			dataEvents.Close ();
 			RunOnUiThread (() => {
-				foreach (var e in events)
+				foreach (var ev in events)
 				{
-					var ev = ((Java.Lang.Object)e).JavaCast<IDataEvent>();
 					if (ev.Type == DataEvent.TypeChanged) {
 						dataItemListAdapter.Add(
 							new Event("DataItem Changed", ev.DataItem.ToString()));
@@ -256,8 +256,7 @@ namespace DataLayer
 		ICollection<string> Nodes {
 			get {
 				HashSet<string> results = new HashSet<string> ();
-				INodeApiGetConnectedNodesResult nodes =
-					WearableClass.NodeApi.GetConnectedNodes (mGoogleApiClient).Await ().JavaCast<INodeApiGetConnectedNodesResult>();
+				var  nodes = WearableClass.NodeApi.GetConnectedNodesAsync (mGoogleApiClient).Result;
 
 				foreach (var node in nodes.Nodes) {
 					results.Add (node.Id);
@@ -266,18 +265,11 @@ namespace DataLayer
 			}
 		}
 
-		void SendStartActivityMessage(String node) {
-			WearableClass.MessageApi.SendMessage (mGoogleApiClient, node, StartActivityPath, new byte[0]).SetResultCallback (
-				new ResultCallback() {
-					OnResultAction = (Java.Lang.Object result) => {
-						var res = result.JavaCast<IMessageApiSendMessageResult>();
-						if (!res.Status.IsSuccess)
-						{
-							Log.Error(Tag, "Failed to send message with status code: " + res.Status.StatusCode);
-						}
-					}
-				}
-			);
+        async Task SendStartActivityMessage(String node) {
+            var res = await WearableClass.MessageApi.SendMessageAsync (mGoogleApiClient, node, StartActivityPath, new byte[0]);
+    		if (!res.Status.IsSuccess) {
+				Log.Error(Tag, "Failed to send message with status code: " + res.Status.StatusCode);
+			}	
 		}
 
 		class StartWearableActivityTask : AsyncTask
@@ -315,7 +307,7 @@ namespace DataLayer
 		{
 			int count = 0;
 			public MainActivity Activity;
-			public void Run ()
+			public async void Run ()
 			{
 				if (Activity != null) {
 					var putDataMapRequest = PutDataMapRequest.Create (CountPath);
@@ -325,25 +317,10 @@ namespace DataLayer
 					LOGD (Tag, "Generating DataItem: " + request);
 					if (!Activity.mGoogleApiClient.IsConnected)
 						return;
-					WearableClass.DataApi.PutDataItem (Activity.mGoogleApiClient, request)
-						.SetResultCallback (
-							new ResultCallback() {
-								OnResultAction = (Java.Lang.Object result) => {
-									try 
-									{
-										var res = result.JavaCast<IDataApiDataItemResult>();
-										if (!res.Status.IsSuccess)
-										{
-											Log.Error(Tag, "Failed to send message with status code: " + res.Status.StatusCode);
-										}
-									}
-									catch 
-									{
-
-									}
-								}
-							}
-					);
+                    var res = await WearableClass.DataApi.PutDataItemAsync (Activity.mGoogleApiClient, request);
+					if (!res.Status.IsSuccess) {
+						Log.Error(Tag, "Failed to send message with status code: " + res.Status.StatusCode);
+					}
 				}
 			}
 		}
@@ -393,29 +370,23 @@ namespace DataLayer
 		/// Sends an asset that was created from the photo we took by adding it to the Data Item store
 		/// </summary>
 		/// <param name="asset">Asset.</param>
-		private void SendPhoto(Asset asset) {
+		private async Task SendPhoto(Asset asset) {
 			var dataMap = PutDataMapRequest.Create (ImagePath);
 			dataMap.DataMap.PutAsset (ImageKey, asset);
 			dataMap.DataMap.PutLong ("time", DateTime.Now.ToBinary ());
 			var request = dataMap.AsPutDataRequest ();
-			WearableClass.DataApi.PutDataItem (mGoogleApiClient, request)
-				.SetResultCallback (new ResultCallback () {
-					OnResultAction = (Java.Lang.Object result) =>
-					{
-						var res = result.JavaCast<IDataApiDataItemResult>();
-						LOGD(Tag, "Sending image was successful: " + res.Status.IsSuccess);
-					}
-			});
+            var res = await WearableClass.DataApi.PutDataItemAsync (mGoogleApiClient, request);
+			LOGD(Tag, "Sending image was successful: " + res.Status.IsSuccess);
 		}
 
 		[Export("onTakePhotoClick")]
 		public void OnTakePhotoClick(View view) { DispatchTakePictureIntent(); }
 
 		[Export("onSendPhotoClick")]
-		public void OnSendPhotoClick(View view)
+		public async void OnSendPhotoClick(View view)
 		{
 			if (null != imageBitmap && mGoogleApiClient.IsConnected) {
-				SendPhoto (ToAsset (imageBitmap));
+				await SendPhoto (ToAsset (imageBitmap));
 			}
 		}
 

@@ -14,17 +14,18 @@ using Android.Util;
 using System.Collections.Generic;
 using Android.Gms.Common.Data;
 using Java.Interop;
+using System.Threading.Tasks;
 
 namespace AgendaData
 {
 	[Activity (Label = "AgendaData", MainLauncher = true)]
-	public class MainActivity : Activity, INodeApiNodeListener, IGoogleApiClientOnConnectionFailedListener, IGoogleApiClientConnectionCallbacks
+	public class MainActivity : Activity, INodeApiNodeListener, GoogleApiClient.IOnConnectionFailedListener, GoogleApiClient.IConnectionCallbacks
 	{
 
 		// Request code for launching the Intent to resolve Google Play services errors
 		private const int REQUEST_RESOLVE_ERROR = 1000;
 
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 		private bool mResolvingError = false;
 
 		private TextView mLogTextView;
@@ -38,7 +39,7 @@ namespace AgendaData
 			SetContentView (Resource.Layout.main);
 			mLogTextView = (TextView)FindViewById (Resource.Id.log);
 			mSCroller = (ScrollView)FindViewById (Resource.Id.scroller);
-			mGoogleApiClient = new GoogleApiClientBuilder (this).AddApi (WearableClass.API)
+			mGoogleApiClient = new GoogleApiClient.Builder (this).AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();
@@ -58,61 +59,50 @@ namespace AgendaData
 			mGoogleApiClient.Disconnect ();
 			base.OnStop ();
 		}
+
 		[Export("onGetEventsClicked")]
 		public void OnGetEventsClicked(View v)
 		{
-				StartService(new Intent(this, typeof(CalendarQueryService)));
+			StartService(new Intent(this, typeof(CalendarQueryService)));
 		}
 
 		[Export("onDeleteEventsClicked")]
-		public void OnDeleteEventsClicked(View v)
+		public async void OnDeleteEventsClicked(View v)
 		{
 			if (mGoogleApiClient.IsConnected) {
-				WearableClass.DataApi.GetDataItems (mGoogleApiClient)
-						.SetResultCallback (new ResultCallback () {
-						OnResultFunc = (Java.Lang.Object result) =>
-							{
-							var deleteResult = Android.Runtime.Extensions.JavaCast<DataItemBuffer>(result);
-							if (deleteResult.Status.IsSuccess) {
-								DeleteDataItems(deleteResult);
-								}
-								else {
-									if (Log.IsLoggable(Constants.TAG, LogPriority.Debug)) {
-										Log.Debug(Constants.TAG, "OnDeleteEventsClicked(): failed to get Data Items");
-									}
-								}
-							}
-				});
+                var deleteResult = await WearableClass.DataApi.GetDataItemsAsync (mGoogleApiClient);
+
+    			if (deleteResult.Status.IsSuccess) {
+					await DeleteDataItems(deleteResult);
+				} else {
+					if (Log.IsLoggable(Constants.TAG, LogPriority.Debug)) {
+						Log.Debug(Constants.TAG, "OnDeleteEventsClicked(): failed to get Data Items");
+					}
+				}		
 			}
 		}
-		private void DeleteDataItems(DataItemBuffer dataItems)
+		
+        async Task DeleteDataItems(DataItemBuffer dataItems)
 		{
 			if (mGoogleApiClient.IsConnected) {
 				// Store the DataItem URIs in a List and close the bugger. Then we use these URIs to delete the DataItems.
-				var freezableItems = FreezableUtils.FreezeIterable (dataItems);
 				var dataItemList = new List<IDataItem> ();
-				for (int i = 0; i < freezableItems.Count; i++) {
-					Log.Verbose (Constants.TAG, "Loop " + i);
-
-					dataItemList.Add (Android.Runtime.Extensions.JavaCast<IDataItem> ((IJavaObject)freezableItems [i]));
-				}
+                dataItemList.AddRange (dataItems);
 				dataItems.Close ();
+
 				if (dataItemList.Count > 0) {
-					foreach (IDataItem dataItem in dataItemList) {
+					foreach (var dataItem in dataItemList) {
 						Android.Net.Uri dataItemUri = dataItem.Uri;
 						// In a real calendar application, this might delete the corresponding calendar event from the calendar
 						// data provider. In this sample, we simply delete the
 						// DataItem, but leave the phone's calendar data intact
-						WearableClass.DataApi.DeleteDataItems (mGoogleApiClient, dataItemUri)
-						.SetResultCallback (new ResultCallback () {
-								OnResultFunc = (Java.Lang.Object deleteResult) => {
-									if (Android.Runtime.Extensions.JavaCast<IDataApiDeleteDataItemsResult>(deleteResult).Status.IsSuccess) {
-									AppendLog ("Successfully deleted data item: " + dataItemUri);
-								} else {
-									AppendLog ("Failed to delete data item: " + dataItemUri);
-								}
-							}
-						});
+						
+                        var deleteResult = await WearableClass.DataApi.DeleteDataItemsAsync (mGoogleApiClient, dataItemUri);
+						if (deleteResult.Status.IsSuccess) {
+							AppendLog ("Successfully deleted data item: " + dataItemUri);
+						} else {
+							AppendLog ("Failed to delete data item: " + dataItemUri);
+						}
 					}
 				} else {
 					AppendLog ("There are no data items");

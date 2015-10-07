@@ -11,12 +11,12 @@ using Android.Runtime;
 namespace Wearable
 {
 	[Service ()]
-	public class DeleteService : IntentService, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class DeleteService : IntentService, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		// Timeout for making a connection to GoogleApiClient (in milliseconds)
 		private const long TIME_OUT = 100;
 
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 
 
 		public DeleteService ()
@@ -28,8 +28,8 @@ namespace Wearable
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

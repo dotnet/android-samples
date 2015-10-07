@@ -21,7 +21,7 @@ using Android.Content.Res;
 namespace AgendaData
 {
 	[Service()]
-	public class CalendarQueryService : IntentService, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class CalendarQueryService : IntentService, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 
 		private static readonly String[] INSTANCE_PROJECTION = 
@@ -39,7 +39,7 @@ namespace AgendaData
 		private static readonly String[] CONTACT_PROJECTION = new String[] { ContactsContract.Data.InterfaceConsts.Id, ContactsContract.Data.InterfaceConsts.ContactId };
 		private const String CONTACT_SELECTION = ContactsContract.CommonDataKinds.Email.Address + " = ?";
 
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 
 		public CalendarQueryService ()
 			:base(typeof(CalendarQueryService).Name)
@@ -50,14 +50,14 @@ namespace AgendaData
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build();
 		}
 
-		protected override void OnHandleIntent (Intent intent)
+		protected override async void OnHandleIntent (Intent intent)
 		{
 			mGoogleApiClient.BlockingConnect (Constants.CONNECTION_TIME_OUT_MS, TimeUnit.Milliseconds);
 			// Query calendar events in the next 24 hours
@@ -73,8 +73,8 @@ namespace AgendaData
 			foreach (Event ev in events) {
 				PutDataMapRequest putDataMapRequest = ev.ToPutDataMapRequest ();
 				if (mGoogleApiClient.IsConnected) {
-					WearableClass.DataApi.PutDataItem (mGoogleApiClient,
-						putDataMapRequest.AsPutDataRequest ()).Await ();
+					await WearableClass.DataApi.PutDataItemAsync (mGoogleApiClient,
+                        putDataMapRequest.AsPutDataRequest ());
 				} else {
 					Log.Error (Constants.TAG, "Failed to send data item: " + putDataMapRequest
 					+ " - Client disconnected from Google Play Services");

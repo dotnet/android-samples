@@ -10,6 +10,7 @@ using Android.Text;
 using Android.Text.Format;
 using Android.Graphics;
 using Android.Runtime;
+using System.Threading.Tasks;
 
 namespace Wearable
 {
@@ -19,9 +20,9 @@ namespace Wearable
 	{
 		private static readonly Dictionary<Android.Net.Uri, int> sNotificationIdByDataItemUri = new Dictionary<Android.Net.Uri, int>();
 		private static int sNotificationId = 1;
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 
-		public override void OnDataChanged (DataEventBuffer dataEvents)
+		public override async void OnDataChanged (DataEventBuffer dataEvents)
 		{
 			if (Log.IsLoggable (Constants.TAG, LogPriority.Debug))
 				Log.Debug (Constants.TAG, "OnDataChanged: " + dataEvents + " for " + PackageName);
@@ -32,7 +33,7 @@ namespace Wearable
 					if (et.Type == DataEvent.TypeDeleted)
 						DeleteDataItem (et.DataItem);
 					else if (et.Type == DataEvent.TypeChanged)
-						UpdateNotificationForDataItem (et.DataItem);
+						await UpdateNotificationForDataItem (et.DataItem);
 				}
 			}
 			catch (Exception ex) {
@@ -46,8 +47,8 @@ namespace Wearable
 			base.OnCreate ();
 			if (Log.IsLoggable (Constants.TAG, LogPriority.Info))
 				Log.Info (Constants.TAG, "HomeListenerService created");
-			mGoogleApiClient = new GoogleApiClientBuilder (this.ApplicationContext)
-				.AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClient.Builder (this.ApplicationContext)
+				.AddApi (WearableClass.API)
 				.Build ();
 			mGoogleApiClient.Connect ();
 		}
@@ -60,7 +61,7 @@ namespace Wearable
 		/// Puts a local notification to show calendar card
 		/// </summary>
 		/// <param name="dataItem">Data item.</param>
-		private void UpdateNotificationForDataItem(IDataItem dataItem)
+		private async Task UpdateNotificationForDataItem(IDataItem dataItem)
 		{
 			if (Log.IsLoggable (Constants.TAG, LogPriority.Verbose))
 				Log.Verbose (Constants.TAG, "Updating notification for IDataItem");
@@ -109,7 +110,7 @@ namespace Wearable
 			Asset asset = data.GetAsset (Constants.PROFILE_PIC);
 			if (asset != null) {
 				if (mGoogleApiClient.IsConnected) {
-					IDataApiGetFdForAssetResult assetFdResult = WearableClass.DataApi.GetFdForAsset (mGoogleApiClient, asset).Await ().JavaCast<IDataApiGetFdForAssetResult>();
+                    var assetFdResult = await WearableClass.DataApi.GetFdForAssetAsync (mGoogleApiClient, asset);
 					if (assetFdResult.Status.IsSuccess) {
 						Bitmap profilePic = BitmapFactory.DecodeStream (assetFdResult.InputStream);
 						notificationBuilder.Extend (new Notification.WearableExtender ().SetBackground (profilePic));

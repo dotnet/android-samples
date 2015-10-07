@@ -16,6 +16,7 @@ using Android.Graphics.Drawables;
 using System.IO;
 using Android.Util;
 using Android.Content.PM;
+using System.Threading.Tasks;
 
 namespace Wearable
 {
@@ -30,12 +31,12 @@ namespace Wearable
 		IntentFilter( new string[]{ "android.intent.action.MAIN" }, Categories = new string[]{ "android.intent.category.LAUNCHER" }),
 		IntentFilter( new string[]{ "com.example.android.wearable.datalayer.EXAMPLE" }, 
 			Categories = new string[]{ "android.intent.category.DEFAULT" })]
-	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks,IGoogleApiClientOnConnectionFailedListener, IDataApiDataListener,
+	public class MainActivity : Activity, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, IDataApiDataListener,
 	IMessageApiMessageListener, INodeApiNodeListener
 	{
 		public const string Tag = "MainActivity";
 
-		IGoogleApiClient googleApiClient;
+		GoogleApiClient googleApiClient;
 		ListView dataItemList;
 		TextView introText;
 		DataItemAdapter dataItemListAdapter;
@@ -57,8 +58,8 @@ namespace Wearable
 			dataItemListAdapter = new DataItemAdapter (this, Android.Resource.Layout.SimpleListItem1);
 			dataItemList.Adapter = dataItemListAdapter;
 
-			googleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			googleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();
@@ -70,21 +71,21 @@ namespace Wearable
 			googleApiClient.Connect ();
 		}
 
-		protected override void OnPause ()
+		protected override async void OnPause ()
 		{
 			base.OnPause ();
-			WearableClass.DataApi.RemoveListener (googleApiClient, this);
-			WearableClass.MessageApi.RemoveListener (googleApiClient, this);
-			WearableClass.NodeApi.RemoveListener (googleApiClient, this);
+			await WearableClass.DataApi.RemoveListenerAsync (googleApiClient, this);
+            await WearableClass.MessageApi.RemoveListenerAsync (googleApiClient, this);
+            await WearableClass.NodeApi.RemoveListenerAsync (googleApiClient, this);
 			googleApiClient.Disconnect ();
 		}
 
-		public void OnConnected (Bundle bundle)
+		public async void OnConnected (Bundle bundle)
 		{
 			DataLayerListenerService.LOGD (Tag, "OnConnected(): Successfully connected to Google API client");
-			WearableClass.DataApi.AddListener (googleApiClient, this);
-			WearableClass.MessageApi.AddListener (googleApiClient, this);
-			WearableClass.NodeApi.AddListener (googleApiClient, this);
+			await WearableClass.DataApi.AddListenerAsync (googleApiClient, this);
+			await WearableClass.MessageApi.AddListenerAsync (googleApiClient, this);
+			await WearableClass.NodeApi.AddListenerAsync (googleApiClient, this);
 		}
 
 		public void OnConnectionSuspended (int p0)
@@ -105,7 +106,7 @@ namespace Wearable
 			});
 		}
 
-		public void OnDataChanged (DataEventBuffer dataEvents)
+		public async void OnDataChanged (DataEventBuffer dataEvents)
 		{
 			DataLayerListenerService.LOGD (Tag, "OnDatachanged() : " + dataEvents);
 
@@ -118,7 +119,7 @@ namespace Wearable
 					if (DataLayerListenerService.ImagePath.Equals (path)) {
 						DataMapItem dataMapItem = DataMapItem.FromDataItem (e.DataItem);
 						Asset photo = dataMapItem.DataMap.GetAsset (DataLayerListenerService.ImageKey);
-						Bitmap bitmap = LoadBitmapFromAsset (googleApiClient, photo);
+						Bitmap bitmap = await LoadBitmapFromAsset (googleApiClient, photo);
 						handler.Post (() => {
 							DataLayerListenerService.LOGD (Tag, "Setting background image..");
 							layout.SetBackgroundDrawable (new BitmapDrawable (Resources, bitmap));
@@ -143,21 +144,20 @@ namespace Wearable
 		/// <returns>A Bitmap generated from the supplied Asset</returns>
 		/// <param name="apiClient"></param>
 		/// <param name="asset"></param>
-		Bitmap LoadBitmapFromAsset(IGoogleApiClient apiClient, Asset asset)
+		async Task<Bitmap> LoadBitmapFromAsset(GoogleApiClient apiClient, Asset asset)
 		{
 			if (asset == null) {
 				throw new NullReferenceException ("Asset must be non-null");
 			}
 
-			Stream assetStream = WearableClass.DataApi.GetFdForAsset (apiClient, asset)
-				.Await ().JavaCast<IDataApiGetFdForAssetResult> ().InputStream;
+            var fd = await WearableClass.DataApi.GetFdForAssetAsync (apiClient, asset);
 
-			if (assetStream == null) {
+            if (fd == null || !fd.Status.IsSuccess || fd.InputStream == null) {
 				Log.Warn (Tag, "Requested an unknown Asset");
 				return null;
 			}
 			//byte[] byteArray = assetStream.ToArray ();
-			Bitmap bitmap = BitmapFactory.DecodeStream (assetStream);
+            Bitmap bitmap = BitmapFactory.DecodeStream (fd.InputStream);
 			return bitmap;
 		}
 

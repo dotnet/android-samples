@@ -9,24 +9,23 @@ using Android.Content;
 using Android.Views;
 using Java.Interop;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GooglePlay.Services.Helpers
 {
 	/// <summary>
 	/// Basic wrapper for interfacing with the GooglePlayServices Game API's
 	/// </summary>
-	public class GameHelper: Java.Lang.Object, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class GameHelper: Java.Lang.Object, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
-		IGoogleApiClient client;
+		GoogleApiClient client;
 		Activity activity;
 		bool signedOut = true;
 		bool signingin = false;
 		bool resolving = false;
 		List<IAchievement> achievments = new List<IAchievement>();
 		Dictionary<string, List<ILeaderboardScore>> scores = new Dictionary<string, List<ILeaderboardScore>> ();
-		AchievementsCallback achievmentsCallback;
-		LeaderBoardsCallback leaderboardsCallback;
-
+		
 		const int REQUEST_LEADERBOARD = 9002;
 		const int REQUEST_ALL_LEADERBOARDS = 9003;
 		const int REQUEST_ACHIEVEMENTS = 9004;
@@ -91,10 +90,7 @@ namespace GooglePlay.Services.Helpers
 		public GameHelper (Activity activity)
 		{
 			this.activity = activity;
-			this.GravityForPopups = GravityFlags.Bottom | GravityFlags.Center;
-			achievmentsCallback = new AchievementsCallback (this);
-			leaderboardsCallback = new LeaderBoardsCallback (this);
-
+			this.GravityForPopups = GravityFlags.Bottom | GravityFlags.Center;			
 		}
 
 		public void Initialize() {
@@ -112,7 +108,7 @@ namespace GooglePlay.Services.Helpers
 			var settings = this.activity.GetSharedPreferences ("googleplayservicessettings", FileCreationMode.Private);
 			var id = settings.GetString ("playerid", String.Empty);
 
-			var builder = new GoogleApiClientBuilder (activity, this, this);
+			var builder = new GoogleApiClient.Builder (activity, this, this);
 			builder.AddApi (Android.Gms.Games.GamesClass.API);
 			builder.AddScope (Android.Gms.Games.GamesClass.ScopeGames);
 			builder.SetGravityForPopups ((int)GravityForPopups);
@@ -262,14 +258,24 @@ namespace GooglePlay.Services.Helpers
 		/// <summary>
 		/// Load the Achievments. This populates the Achievements property
 		/// </summary>
-		public void LoadAchievements() {
-			var pendingResult = GamesClass.Achievements.Load (client, false);
-			pendingResult.SetResultCallback (achievmentsCallback);
+		public async Task LoadAchievements() {
+			var ar = await GamesClass.Achievements.LoadAsync (client, false);
+            if (ar != null) {
+                achievments.Clear ();
+                achievments.AddRange (ar.Achievements);
+            }
 		}
 
-		public void LoadTopScores(string leaderboardCode) {
-			var pendingResult = GamesClass.Leaderboards.LoadTopScores (client, leaderboardCode, 2, 0, 25);
-			pendingResult.SetResultCallback (leaderboardsCallback);
+        public async Task LoadTopScores(string leaderboardCode) {
+			var ar = await GamesClass.Leaderboards.LoadTopScoresAsync (client, leaderboardCode, 2, 0, 25);
+            if (ar != null) {
+                var id = ar.Leaderboard.LeaderboardId;
+                if (!scores.ContainsKey (id)) {
+                    scores.Add (id, new List<ILeaderboardScore> ());
+                }
+                scores [id].Clear ();
+                scores [id].AddRange (ar.Scores);
+            }
 		}
 
 		#region IGoogleApiClientConnectionCallbacks implementation
@@ -336,63 +342,7 @@ namespace GooglePlay.Services.Helpers
 						OnSignInFailed (this, EventArgs.Empty);
 				}
 			}
-		}
-
-
-		internal class AchievementsCallback : Java.Lang.Object, IResultCallback {
-
-			GameHelper helper;
-
-			public AchievementsCallback (GameHelper helper): base()
-			{
-				this.helper = helper;
-			}
-
-			#region IResultCallback implementation
-			public void OnResult (Java.Lang.Object result)
-			{
-				var ar = result.JavaCast<IAchievementsLoadAchievementsResult>();
-				if (ar != null) {
-					helper.achievments.Clear ();
-					var count = ar.Achievements.Count;
-					for (int i = 0; i < count; i++) {
-						var item = ar.Achievements.Get (i);
-						var a = item.JavaCast<IAchievement> ();
-						helper.achievments.Add (a);
-					}
-				}
-			}
-			#endregion
-		}
-
-		internal class LeaderBoardsCallback : Java.Lang.Object, IResultCallback {
-
-			GameHelper helper;
-
-			public LeaderBoardsCallback (GameHelper helper): base()
-			{
-				this.helper = helper;
-			}
-
-			#region IResultCallback implementation
-			public void OnResult (Java.Lang.Object result)
-			{
-				var ar = result.JavaCast<ILeaderboardsLoadScoresResult>();
-				if (ar != null) {
-					var id = ar.Leaderboard.LeaderboardId;
-					if (!helper.scores.ContainsKey (id)) {
-						helper.scores.Add (id, new List<ILeaderboardScore> ());
-					}
-					helper.scores [id].Clear ();
-					var count = ar.Scores.Count;
-					for (int i = 0; i < count; i++) {
-						var score = ar.Scores.Get(i).JavaCast<ILeaderboardScore> ();
-						helper.scores [id].Add (score);
-					}
-				}
-			}
-			#endregion
-		}
+		}            
 	}
 }
 

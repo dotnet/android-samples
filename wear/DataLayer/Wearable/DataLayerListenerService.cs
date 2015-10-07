@@ -28,18 +28,18 @@ namespace Wearable
 		public const string ImageKey = "photo";
 		const string ContKey = "count";
 		const int MaxLogTagLength = 23;
-		IGoogleApiClient googleApiClient;
+		GoogleApiClient googleApiClient;
 
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			googleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			googleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.Build ();
 			googleApiClient.Connect ();
 		}
 
-		public override void OnDataChanged (DataEventBuffer dataEvents)
+		public override async void OnDataChanged (DataEventBuffer dataEvents)
 		{
 			LOGD (Tag, "OnDataChanged: " + dataEvents);
 			IList events = FreezableUtils.FreezeIterable (dataEvents);
@@ -63,7 +63,7 @@ namespace Wearable
 					byte[] payload = Encoding.UTF8.GetBytes (uri.ToString ());
 
 					// Send the rpc
-					WearableClass.MessageApi.SendMessage (googleApiClient, nodeId, DataItemReceivedPath, payload);
+					await WearableClass.MessageApi.SendMessageAsync (googleApiClient, nodeId, DataItemReceivedPath, payload);
 				}
 			}
 		}
