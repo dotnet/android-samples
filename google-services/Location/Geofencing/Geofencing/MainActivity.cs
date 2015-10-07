@@ -17,11 +17,12 @@ using Java.Lang;
 namespace Geofencing
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks, 
-		IGoogleApiClientOnConnectionFailedListener, IResultCallback
+	public class MainActivity : ActionBarActivity, 
+        GoogleApiClient.IConnectionCallbacks, 
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		protected const string TAG = "creating-and-monitoring-geofences";
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 		protected IList<IGeofence> mGeofenceList;
 		bool mGeofencesAdded;
 		PendingIntent mGeofencePendingIntent;
@@ -55,7 +56,7 @@ namespace Geofencing
 
 		protected void BuildGoogleApiClient ()
 		{
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (LocationServices.API)
@@ -98,7 +99,7 @@ namespace Geofencing
 			return builder.Build ();
 		}
 
-		public void AddGeofencesButtonHandler (object sender, EventArgs e)
+		public async void AddGeofencesButtonHandler (object sender, EventArgs e)
 		{
 			if (!mGoogleApiClient.IsConnected) {
 				Toast.MakeText (this, GetString (Resource.String.not_connected), ToastLength.Short).Show ();
@@ -106,22 +107,24 @@ namespace Geofencing
 			}
 
 			try {
-				LocationServices.GeofencingApi.AddGeofences (mGoogleApiClient, GetGeofencingRequest (),
-					GetGeofencePendingIntent ()).SetResultCallback (this);
+				var status = await LocationServices.GeofencingApi.AddGeofencesAsync (mGoogleApiClient, GetGeofencingRequest (),
+					GetGeofencePendingIntent ());
+                HandleResult (status);
 			} catch (SecurityException securityException) {
 				LogSecurityException(securityException);
 			}
 		}
 
-		public void RemoveGeofencesButtonHandler (object sender, EventArgs e)
+        public async void RemoveGeofencesButtonHandler (object sender, EventArgs e)
 		{
 			if (!mGoogleApiClient.IsConnected) {
 				Toast.MakeText (this, GetString(Resource.String.not_connected), ToastLength.Short).Show ();
 				return;
 			}
 			try {
-				LocationServices.GeofencingApi.RemoveGeofences (mGoogleApiClient,
-					GetGeofencePendingIntent ()).SetResultCallback(this);
+				var status = await LocationServices.GeofencingApi.RemoveGeofencesAsync (mGoogleApiClient, 
+                    GetGeofencePendingIntent ());
+                HandleResult (status);
 			} catch (SecurityException securityException) {
 				LogSecurityException (securityException);
 			}
@@ -133,9 +136,8 @@ namespace Geofencing
 				"You need to use ACCESS_FINE_LOCATION with geofences", securityException);
 		}
 
-		public void OnResult (Java.Lang.Object x0)
+        public void HandleResult (Statuses status)
 		{
-			var status = (Statuses)x0;
 			if (status.IsSuccess) {
 				mGeofencesAdded = !mGeofencesAdded;
 				var editor = mSharedPreferences.Edit ();

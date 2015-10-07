@@ -15,7 +15,8 @@ using Android.Gms.Plus;
 namespace SigninQuickstart
 {
 	[Activity (MainLauncher = true, Theme = "@style/ThemeOverlay.MyNoTitleActivity")]
-	public class MainActivity : AppCompatActivity, View.IOnClickListener, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : AppCompatActivity, View.IOnClickListener, 
+        GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string TAG = "MainActivity";
 
@@ -24,7 +25,7 @@ namespace SigninQuickstart
 		const string KEY_IS_RESOLVING = "is_resolving";
 		const string KEY_SHOULD_RESOLVE = "should_resolve";
 
-		IGoogleApiClient mGoogleApiClient;
+		GoogleApiClient mGoogleApiClient;
 
 		TextView mStatus;
 
@@ -51,7 +52,7 @@ namespace SigninQuickstart
 
 			mStatus = FindViewById<TextView> (Resource.Id.status);
 
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (PlusClass.API)
@@ -177,7 +178,7 @@ namespace SigninQuickstart
 			}
 		}
 
-		public void OnClick (View v)
+		public async void OnClick (View v)
 		{
 			switch (v.Id) {
 			case Resource.Id.sign_in_button:
@@ -195,7 +196,7 @@ namespace SigninQuickstart
 			case Resource.Id.disconnect_button:
 				if (mGoogleApiClient.IsConnected) {
 					PlusClass.AccountApi.ClearDefaultAccount (mGoogleApiClient);
-					PlusClass.AccountApi.RevokeAccessAndDisconnect (mGoogleApiClient);
+					await PlusClass.AccountApi.RevokeAccessAndDisconnect (mGoogleApiClient);
 					mGoogleApiClient.Disconnect ();
 				}
 				UpdateUI (false);

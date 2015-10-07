@@ -23,14 +23,14 @@ namespace AppIndexing
 	public class MainActivity : Activity
 	{
 		static readonly string Tag = typeof(MainActivity).Name;
-		IGoogleApiClient mClient;
+		GoogleApiClient mClient;
 		string articleId;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.activity_main);
-			mClient = new GoogleApiClientBuilder(this).AddApi (AppIndex.APP_INDEX_API).Build ();
+			mClient = new GoogleApiClient.Builder (this).AddApi (AppIndex.APP_INDEX_API).Build ();
 			OnNewIntent (Intent);
 		}
 
@@ -45,7 +45,7 @@ namespace AppIndexing
 			}
 		}
 
-		protected override void OnStart ()
+		protected override async void OnStart ()
 		{
 			base.OnStart ();
 			if (articleId != null) {
@@ -58,37 +58,25 @@ namespace AppIndexing
 				var webUrl = Uri.Parse("http://www.example.com/articles/" + articleId);
 
 				// Call the App Indexing API view method
-				var result = AppIndex.AppIndexApi.View(mClient, this,
-					appUri, title, webUrl, null);
-				result.SetResultCallback (new ResultCallback ());
+				var result = await AppIndex.AppIndexApi.ViewAsync (mClient, this, appUri, title, webUrl, null);
+
+                if (result.IsSuccess)
+                    Log.Debug(Tag, "App Indexing API: Recorded page view successfully.");
+                else
+                    Log.Error(Tag, "App Indexing API: There was an error recording the page view." + result);
 			}
 		}
 
 
-		protected override void OnStop ()
+		protected override async void OnStop ()
 		{
 			base.OnStop ();
 			if (articleId != null) {
 				var appUri = Uri.Parse("android-app://com.google.developers.app-indexing.quickstart/http/www.example.com/articles/" + articleId);
-				var result = AppIndex.AppIndexApi.ViewEnd(mClient, this, appUri);
+				
+                await AppIndex.AppIndexApi.ViewEndAsync (mClient, this, appUri);
 
 				mClient.Disconnect();
-			}
-		}
-
-		class ResultCallback : Java.Lang.Object, IResultCallback
-		{
-			public void OnResult (Java.Lang.Object x0)
-			{
-				var status = x0 as Statuses;
-				if (status == null)
-					return;
-				if (status.IsSuccess) {
-					Log.Debug(Tag, "App Indexing API: Recorded page view successfully.");
-				} else {
-					Log.Error(Tag, "App Indexing API: There was an error recording the page view."
-						+ status.ToString());
-				}
 			}
 		}
 	}

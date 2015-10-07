@@ -15,15 +15,16 @@ using Android.Locations;
 namespace BasicLocationSample
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : ActionBarActivity, 
+        GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		protected const string TAG = "basic-location-sample";
 
 		/**
      	* Provides the entry point to Google Play services.
      	*/
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 
 		/**
     	 * Represents a geographical location.
@@ -46,7 +47,7 @@ namespace BasicLocationSample
 
 		protected void BuildGoogleApiClient ()
 		{
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (LocationServices.API)

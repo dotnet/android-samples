@@ -11,12 +11,13 @@ using Android.Gms.Common.Apis;
 using Android.Support.V7.App;
 using Android.Locations;
 using Android.Util;
+using System.Threading.Tasks;
 
 namespace LocationUpdates
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
-	IGoogleApiClientOnConnectionFailedListener, Android.Gms.Location.ILocationListener {
+	public class MainActivity : ActionBarActivity, GoogleApiClient.IConnectionCallbacks,
+	    GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener {
 
 		protected const string TAG = "location-updates-sample";
 		public const long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
@@ -25,7 +26,7 @@ namespace LocationUpdates
 		protected const string LOCATION_KEY = "location-key";
 		protected const string LAST_UPDATED_TIME_STRING_KEY = "last-updated-time-string-key";
 
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 		protected LocationRequest mLocationRequest;
 		protected Location mCurrentLocation;
 
@@ -84,7 +85,7 @@ namespace LocationUpdates
 		protected void BuildGoogleApiClient ()
 		{
 			Log.Info (TAG, "Building GoogleApiClient");
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (LocationServices.API)
@@ -100,27 +101,27 @@ namespace LocationUpdates
 			mLocationRequest.SetPriority (LocationRequest.PriorityHighAccuracy);
 		}
 
-		public void StartUpdatesButtonHandler (object sender, EventArgs e)
+		public async void StartUpdatesButtonHandler (object sender, EventArgs e)
 		{
 			if (!mRequestingLocationUpdates) {
 				mRequestingLocationUpdates = true;
 				SetButtonsEnabledState ();
-				StartLocationUpdates ();
+				await StartLocationUpdates ();
 			}
 		}
 
-		public void StopUpdatesButtonHandler (object sender, EventArgs e)
+		public async void StopUpdatesButtonHandler (object sender, EventArgs e)
 		{
 			if (mRequestingLocationUpdates) {
 				mRequestingLocationUpdates = false;
 				SetButtonsEnabledState ();
-				StopLocationUpdates ();
+				await StopLocationUpdates ();
 			}
 		}
 
-		protected void StartLocationUpdates ()
+		protected async Task StartLocationUpdates ()
 		{
-			LocationServices.FusedLocationApi.RequestLocationUpdates (mGoogleApiClient, mLocationRequest, this);
+			await LocationServices.FusedLocationApi.RequestLocationUpdates (mGoogleApiClient, mLocationRequest, this);
 		}
 
 		void SetButtonsEnabledState ()
@@ -143,9 +144,9 @@ namespace LocationUpdates
 			}
 		}
 
-		protected void StopLocationUpdates ()
+        protected async Task StopLocationUpdates ()
 		{
-			LocationServices.FusedLocationApi.RemoveLocationUpdates (mGoogleApiClient, this);
+			await LocationServices.FusedLocationApi.RemoveLocationUpdates (mGoogleApiClient, this);
 		}
 
 		protected override void OnStart ()
@@ -154,20 +155,20 @@ namespace LocationUpdates
 			mGoogleApiClient.Connect();
 		}
 
-		protected override void OnResume ()
+		protected override async void OnResume ()
 		{
 			base.OnResume ();
 
 			if (mGoogleApiClient.IsConnected && mRequestingLocationUpdates) {
-				StartLocationUpdates();
+				await StartLocationUpdates();
 			}
 		}
 
-		protected override void OnPause ()
+		protected override async void OnPause ()
 		{
 			base.OnPause ();
 			if (mGoogleApiClient.IsConnected) {
-				StopLocationUpdates();
+				await StopLocationUpdates();
 			}
 		}
 
@@ -178,18 +179,18 @@ namespace LocationUpdates
 			base.OnStop ();
 		}
 
-		public void OnConnected (Bundle connectionHint)
+		public async void OnConnected (Bundle connectionHint)
 		{
 			Log.Info(TAG, "Connected to GoogleApiClient");
 
 			if (mCurrentLocation == null) {
-				mCurrentLocation = LocationServices.FusedLocationApi.GetLastLocation(mGoogleApiClient);
+				mCurrentLocation = LocationServices.FusedLocationApi.GetLastLocation (mGoogleApiClient);
 				mLastUpdateTime = DateTime.Now.TimeOfDay.ToString();
 				UpdateUI();
 			}
 
 			if (mRequestingLocationUpdates) {
-				StartLocationUpdates();
+				await StartLocationUpdates ();
 			}
 		}
 

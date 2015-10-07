@@ -33,7 +33,7 @@ namespace BasicHistorySessions
 		const string AUTH_PENDING = "auth_state_pending";
 		bool authInProgress;
 
-		IGoogleApiClient mClient;
+		GoogleApiClient mClient;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -54,7 +54,7 @@ namespace BasicHistorySessions
 		void BuildFitnessClient ()
 		{
 			var clientConnectionCallback = new ClientConnectionCallback ();
-			clientConnectionCallback.OnConnectedImpl = () => {
+			clientConnectionCallback.OnConnectedImpl = async () => {
 				SessionInsertRequest insertRequest = InsertFitnessSession();
 
 				// [START insert_session]
@@ -63,7 +63,7 @@ namespace BasicHistorySessions
 				// calling await() to avoid hanging that can occur from the service being shutdown
 				// because of low memory or other conditions.
 				Log.Info(TAG, "Inserting the session in the History API");
-				var insertStatus = (Statuses)FitnessClass.SessionsApi.InsertSession (mClient, insertRequest).Await (1, TimeUnit.Minutes);
+                var insertStatus = await FitnessClass.SessionsApi.InsertSessionAsync (mClient, insertRequest);
 
 				// Before querying the session, check to see if the insertion succeeded.
 				if (!insertStatus.IsSuccess) {
@@ -82,8 +82,7 @@ namespace BasicHistorySessions
 				// [START read_session]
 				// Invoke the Sessions API to fetch the session with the query and wait for the result
 				// of the read request.
-				var sessionReadResult =
-					(SessionReadResult)FitnessClass.SessionsApi.ReadSession (mClient, readRequest).Await (1, TimeUnit.Minutes);
+				var sessionReadResult = await FitnessClass.SessionsApi.ReadSessionAsync (mClient, readRequest);
 
 				// Get a list of the sessions that match the criteria to check the result.
 				Log.Info (TAG, "Session read was successful. Number of returned sessions is: "
@@ -101,7 +100,7 @@ namespace BasicHistorySessions
 			};
 
 			// Create the Google API Client
-			mClient = new GoogleApiClientBuilder (this)
+			mClient = new GoogleApiClient.Builder (this)
 				.AddApi (FitnessClass.HISTORY_API)
 				.AddApi (FitnessClass.SESSIONS_API)
 				.AddScope (new Scope (Scopes.FitnessActivityReadWrite))
@@ -130,7 +129,7 @@ namespace BasicHistorySessions
 				}).Build ();
 		}
 
-		class ClientConnectionCallback : Java.Lang.Object, IGoogleApiClientConnectionCallbacks
+		class ClientConnectionCallback : Java.Lang.Object, GoogleApiClient.IConnectionCallbacks
 		{
 			public Action OnConnectedImpl { get; set; }
 
@@ -143,9 +142,9 @@ namespace BasicHistorySessions
 
 			public void OnConnectionSuspended (int cause)
 			{
-				if (cause == GoogleApiClientConnectionCallbacksConsts.CauseNetworkLost) {
+				if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseNetworkLost) {
 					Log.Info (TAG, "Connection lost.  Cause: Network Lost.");
-				} else if (cause == GoogleApiClientConnectionCallbacksConsts.CauseServiceDisconnected) {
+				} else if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseServiceDisconnected) {
 					Log.Info (TAG, "Connection lost.  Reason: Service Disconnected");
 				}
 			}
@@ -313,7 +312,7 @@ namespace BasicHistorySessions
 					session.GetEndTime (TimeUnit.Milliseconds)).ToString (DATE_FORMAT));
 		}
 
-		void DeleteSession ()
+        async Task DeleteSession ()
 		{
 			Log.Info (TAG, "Deleting today's session data for speed");
 
@@ -330,16 +329,14 @@ namespace BasicHistorySessions
 
 			// Invoke the History API with the Google API client object and the delete request and
 			// specify a callback that will check the result.
-			FitnessClass.HistoryApi.DeleteData (mClient, request)
-				.SetResultCallback ((Statuses status) => {
-					if (status.IsSuccess) {
-						Log.Info(TAG, "Successfully deleted today's sessions");
-					} else {
-						// The deletion will fail if the requesting app tries to delete data
-						// that it did not insert.
-						Log.Info(TAG, "Failed to delete today's sessions");
-					}
-				});
+            var status = await FitnessClass.HistoryApi.DeleteDataAsync (mClient, request);
+			if (status.IsSuccess) {
+				Log.Info(TAG, "Successfully deleted today's sessions");
+			} else {
+				// The deletion will fail if the requesting app tries to delete data
+				// that it did not insert.
+				Log.Info(TAG, "Failed to delete today's sessions");
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)

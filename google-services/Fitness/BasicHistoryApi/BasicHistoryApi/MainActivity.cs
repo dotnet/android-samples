@@ -26,9 +26,9 @@ namespace BasicHistoryApi
 		const string AUTH_PENDING = "auth_state_pending";
 		const string DATE_FORMAT = "yyyy.MM.dd HH:mm:ss";
 		bool authInProgress;
-		IGoogleApiClient mClient;
+		GoogleApiClient mClient;
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override async void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.activity_main);
@@ -39,13 +39,13 @@ namespace BasicHistoryApi
 				authInProgress = savedInstanceState.GetBoolean (AUTH_PENDING);
 			}
 
-			BuildFitnessClient ();
+			await BuildFitnessClient ();
 		}
 
-		void BuildFitnessClient ()
+		async Task BuildFitnessClient ()
 		{
 			var clientConnectionCallback = new ClientConnectionCallback ();
-			clientConnectionCallback.OnConnectedImpl = () => {
+			clientConnectionCallback.OnConnectedImpl = async () => {
 				DataSet dataSet = InsertFitnessData ();
 
 				Log.Info (TAG, "Inserting the dataset in the History API");
@@ -60,12 +60,12 @@ namespace BasicHistoryApi
 
 				DataReadRequest readRequest = QueryFitnessData ();
 
-				var dataReadResult = (DataReadResult)FitnessClass.HistoryApi.ReadData (mClient, readRequest).Await (1, TimeUnit.Minutes);
+                var dataReadResult = await FitnessClass.HistoryApi.ReadDataAsync (mClient, readRequest);
 
 				PrintData (dataReadResult);
 			};
 			// Create the Google API Client
-			mClient = new GoogleApiClientBuilder (this)
+			mClient = new GoogleApiClient.Builder (this)
 				.AddApi (FitnessClass.HISTORY_API)
 				.AddScope (new Scope (Scopes.FitnessActivityReadWrite))
 				.AddConnectionCallbacks (clientConnectionCallback)
@@ -91,7 +91,7 @@ namespace BasicHistoryApi
 				}).Build ();
 		}
 
-		class ClientConnectionCallback : Java.Lang.Object, IGoogleApiClientConnectionCallbacks
+		class ClientConnectionCallback : Java.Lang.Object, GoogleApiClient.IConnectionCallbacks
 		{
 			public Action OnConnectedImpl { get; set; }
 
@@ -104,9 +104,9 @@ namespace BasicHistoryApi
 
 			public void OnConnectionSuspended (int cause)
 			{
-				if (cause == GoogleApiClientConnectionCallbacksConsts.CauseNetworkLost) {
+				if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseNetworkLost) {
 					Log.Info (TAG, "Connection lost.  Cause: Network Lost.");
-				} else if (cause == GoogleApiClientConnectionCallbacksConsts.CauseServiceDisconnected) {
+				} else if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseServiceDisconnected) {
 					Log.Info (TAG, "Connection lost.  Reason: Service Disconnected");
 				}
 			}
@@ -241,7 +241,7 @@ namespace BasicHistoryApi
 			}
 		}
 
-		void DeleteData ()
+        async Task DeleteData ()
 		{
 			Log.Info (TAG, "Deleting today's step count data");
 
@@ -259,15 +259,15 @@ namespace BasicHistoryApi
 
 			// Invoke the History API with the Google API client object and delete request, and then
 			// specify a callback that will check the result.
-			FitnessClass.HistoryApi.DeleteData (mClient, request).SetResultCallback ((Statuses status) => {
-				if (status.IsSuccess) {
-					Log.Info (TAG, "Successfully deleted today's step count data");
-				} else {
-					// The deletion will fail if the requesting app tries to delete data
-					// that it did not insert.
-					Log.Info (TAG, "Failed to delete today's step count data");
-				}
-			});
+            var status = await FitnessClass.HistoryApi.DeleteDataAsync (mClient, request);
+			if (status.IsSuccess) {
+				Log.Info (TAG, "Successfully deleted today's step count data");
+			} else {
+				// The deletion will fail if the requesting app tries to delete data
+				// that it did not insert.
+				Log.Info (TAG, "Failed to delete today's step count data");
+			}
+
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)

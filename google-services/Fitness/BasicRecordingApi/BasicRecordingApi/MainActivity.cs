@@ -15,6 +15,7 @@ using Android.Gms.Fitness.Data;
 using Android.Gms.Fitness.Result;
 using CommonSampleLibrary;
 using Android.Graphics;
+using System.Threading.Tasks;
 
 namespace BasicRecordingApi
 {
@@ -27,7 +28,7 @@ namespace BasicRecordingApi
 		const string AUTH_PENDING = "auth_state_pending";
 		bool authInProgress;
 
-		IGoogleApiClient mClient;
+		GoogleApiClient mClient;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -46,9 +47,9 @@ namespace BasicRecordingApi
 		void BuildFitnessClient ()
 		{
 			var clientConnectionCallback = new ClientConnectionCallback ();
-			clientConnectionCallback.OnConnectedImpl = Subscribe;
+            clientConnectionCallback.OnConnectedImpl = () => Subscribe ();
 			// Create the Google API Client
-			mClient = new GoogleApiClientBuilder (this)
+			mClient = new GoogleApiClient.Builder (this)
 				.AddApi (FitnessClass.RECORDING_API)
 				.AddScope (new Scope (Scopes.FitnessActivityRead))
 				.AddConnectionCallbacks (clientConnectionCallback)
@@ -73,7 +74,7 @@ namespace BasicRecordingApi
 				}).Build ();
 		}
 
-		class ClientConnectionCallback : Java.Lang.Object, IGoogleApiClientConnectionCallbacks
+		class ClientConnectionCallback : Java.Lang.Object, GoogleApiClient.IConnectionCallbacks
 		{
 			public Action OnConnectedImpl { get; set; }
 
@@ -86,9 +87,9 @@ namespace BasicRecordingApi
 
 			public void OnConnectionSuspended (int cause)
 			{
-				if (cause == GoogleApiClientConnectionCallbacksConsts.CauseNetworkLost) {
+				if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseNetworkLost) {
 					Log.Info (TAG, "Connection lost.  Cause: Network Lost.");
-				} else if (cause == GoogleApiClientConnectionCallbacksConsts.CauseServiceDisconnected) {
+				} else if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseServiceDisconnected) {
 					Log.Info (TAG, "Connection lost.  Reason: Service Disconnected");
 				}
 			}
@@ -129,47 +130,42 @@ namespace BasicRecordingApi
 			outState.PutBoolean (AUTH_PENDING, authInProgress);
 		}
 
-		public void Subscribe ()
+        public async Task Subscribe ()
 		{
-			FitnessClass.RecordingApi.Subscribe (mClient, DataType.TypeActivitySample)
-				.SetResultCallback ((Statuses status) => {
-					if (status.IsSuccess) {
-						if (status.StatusCode == FitnessStatusCodes.SuccessAlreadySubscribed) {
-							Log.Info (TAG, "Existing subscription for activity detected.");
-						} else {
-							Log.Info (TAG, "Successfully subscribed!");
-						}
-					} else {
-						Log.Info (TAG, "There was a problem subscribing.");
-					}
-				});
+            var status = await FitnessClass.RecordingApi.SubscribeAsync (mClient, DataType.TypeActivitySample);
+			if (status.IsSuccess) {
+				if (status.StatusCode == FitnessStatusCodes.SuccessAlreadySubscribed) {
+					Log.Info (TAG, "Existing subscription for activity detected.");
+				} else {
+					Log.Info (TAG, "Successfully subscribed!");
+				}
+			} else {
+				Log.Info (TAG, "There was a problem subscribing.");
+			}
 		}
 
-		void DumpSubscriptionsList ()
+        async Task DumpSubscriptionsList ()
 		{
-			FitnessClass.RecordingApi.ListSubscriptions (mClient, DataType.TypeActivitySample)
-				.SetResultCallback ((ListSubscriptionsResult listSubscriptionsResult) => {
-					foreach (Subscription sc in listSubscriptionsResult.Subscriptions) {
-						DataType dt = sc.DataType;
-						Log.Info (TAG, "Active subscription for data type: " + dt.Name);
-					}
-				});
+            var listSubscriptionsResult = await FitnessClass.RecordingApi.ListSubscriptionsAsync (mClient, DataType.TypeActivitySample);
+
+			foreach (Subscription sc in listSubscriptionsResult.Subscriptions) {
+				DataType dt = sc.DataType;
+				Log.Info (TAG, "Active subscription for data type: " + dt.Name);
+			}
 		}
 
-		void CancelSubscription ()
+        async Task CancelSubscription ()
 		{
 			string dataTypeStr = DataType.TypeActivitySample.ToString ();
 			Log.Info (TAG, "Unsubscribing from data type: " + dataTypeStr);
 
-			FitnessClass.RecordingApi.Unsubscribe (mClient, DataType.TypeActivitySample)
-				.SetResultCallback((Statuses status) => {
-					if (status.IsSuccess) {
-						Log.Info(TAG, "Successfully unsubscribed for data type: " + dataTypeStr);
-					} else {
-						// Subscription not removed
-						Log.Info(TAG, "Failed to unsubscribe for data type: " + dataTypeStr);
-					}
-				});
+            var status = await FitnessClass.RecordingApi.UnsubscribeAsync (mClient, DataType.TypeActivitySample);
+			if (status.IsSuccess) {
+				Log.Info(TAG, "Successfully unsubscribed for data type: " + dataTypeStr);
+			} else {
+				// Subscription not removed
+				Log.Info(TAG, "Failed to unsubscribe for data type: " + dataTypeStr);
+			}
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -182,7 +178,7 @@ namespace BasicRecordingApi
 		{
 			int id = item.ItemId;
 			if (id == Resource.Id.action_cancel_subs) {
-				CancelSubscription();
+				CancelSubscription ();
 				return true;
 			} else if (id == Resource.Id.action_dump_subs) {
 				DumpSubscriptionsList ();

@@ -16,6 +16,7 @@ using Android.Gms.Fitness.Data;
 using Android.Gms.Fitness.Result;
 using Java.Util.Concurrent;
 using Android.Graphics;
+using System.Threading.Tasks;
 
 namespace BasicSensorsApi
 {
@@ -29,7 +30,7 @@ namespace BasicSensorsApi
 		const string AUTH_PENDING = "auth_state_pending";
 		bool authInProgress;
 
-		IGoogleApiClient mClient;
+		GoogleApiClient mClient;
 
 		IOnDataPointListener mListener;
 
@@ -50,8 +51,8 @@ namespace BasicSensorsApi
 		void BuildFitnessClient ()
 		{
 			var clientConnectionCallback = new ClientConnectionCallback ();
-			clientConnectionCallback.OnConnectedImpl = FindFitnessDataSources;
-			mClient = new GoogleApiClientBuilder (this)
+            clientConnectionCallback.OnConnectedImpl = () => FindFitnessDataSources ();
+			mClient = new GoogleApiClient.Builder (this)
 				.AddApi (FitnessClass.SENSORS_API)
 				.AddScope (new Scope (Scopes.FitnessLocationRead))
 				.AddConnectionCallbacks (clientConnectionCallback)
@@ -74,7 +75,7 @@ namespace BasicSensorsApi
 				}).Build ();
 		}
 
-		class ClientConnectionCallback : Java.Lang.Object, IGoogleApiClientConnectionCallbacks
+		class ClientConnectionCallback : Java.Lang.Object, GoogleApiClient.IConnectionCallbacks
 		{
 			public Action OnConnectedImpl { get; set; }
 
@@ -87,9 +88,9 @@ namespace BasicSensorsApi
 
 			public void OnConnectionSuspended (int cause)
 			{
-				if (cause == GoogleApiClientConnectionCallbacksConsts.CauseNetworkLost) {
+				if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseNetworkLost) {
 					Log.Info (TAG, "Connection lost.  Cause: Network Lost.");
-				} else if (cause == GoogleApiClientConnectionCallbacksConsts.CauseServiceDisconnected) {
+				} else if (cause == GoogleApiClient.ConnectionCallbacksConsts.CauseServiceDisconnected) {
 					Log.Info (TAG, "Connection lost.  Reason: Service Disconnected");
 				}
 			}
@@ -128,44 +129,41 @@ namespace BasicSensorsApi
 			outState.PutBoolean(AUTH_PENDING, authInProgress);
 		}
 
-		void FindFitnessDataSources ()
+        async Task FindFitnessDataSources ()
 		{
-			FitnessClass.SensorsApi.FindDataSources (mClient, new DataSourcesRequest.Builder ()
+            var dataSourcesResult = await FitnessClass.SensorsApi.FindDataSourcesAsync (mClient, new DataSourcesRequest.Builder ()
 				.SetDataTypes (DataType.TypeLocationSample)
 				.SetDataSourceTypes (DataSource.TypeRaw)
-				.Build ())
-				.SetResultCallback ((DataSourcesResult dataSourcesResult) => {
-					Log.Info (TAG, "Result: " + dataSourcesResult.Status);
-					foreach (DataSource dataSource in dataSourcesResult.DataSources) {
-						Log.Info (TAG, "Data source found: " + dataSource);
-						Log.Info (TAG, "Data Source type: " + dataSource.DataType.Name);
+                .Build ());
+            
+			Log.Info (TAG, "Result: " + dataSourcesResult.Status);
+			foreach (DataSource dataSource in dataSourcesResult.DataSources) {
+				Log.Info (TAG, "Data source found: " + dataSource);
+				Log.Info (TAG, "Data Source type: " + dataSource.DataType.Name);
 
-						//Let's register a listener to receive Activity data!
-						if (dataSource.DataType == DataType.TypeLocationSample && mListener == null) {
-							Log.Info (TAG, "Data source for LOCATION_SAMPLE found!  Registering.");
-							RegisterFitnessDataListener (dataSource, DataType.TypeLocationSample);
-						}
-					}
-				});
+				//Let's register a listener to receive Activity data!
+				if (dataSource.DataType == DataType.TypeLocationSample && mListener == null) {
+					Log.Info (TAG, "Data source for LOCATION_SAMPLE found!  Registering.");
+					await RegisterFitnessDataListener (dataSource, DataType.TypeLocationSample);
+				}
+			}
 		}
 			
-		void RegisterFitnessDataListener (DataSource dataSource, DataType dataType)
+        async Task RegisterFitnessDataListener (DataSource dataSource, DataType dataType)
 		{
 			// [START register_data_listener]
 			mListener = new OnDataPointListener ();
-			FitnessClass.SensorsApi.Add (mClient, new SensorRequest.Builder ()
+			var status = await FitnessClass.SensorsApi.AddAsync (mClient, new SensorRequest.Builder ()
 				.SetDataSource (dataSource) // Optional but recommended for custom data sets.
 				.SetDataType (dataType) // Can't be omitted.
 				.SetSamplingRate (10, TimeUnit.Seconds)
 				.Build (),
-				mListener)
-				.SetResultCallback ((Statuses status) => {
-					if (status.IsSuccess) {
-						Log.Info (TAG, "Listener registered!");
-					} else {
-						Log.Info (TAG, "Listener not registered.");
-					}
-				});
+                mListener);
+			if (status.IsSuccess) {
+				Log.Info (TAG, "Listener registered!");
+			} else {
+				Log.Info (TAG, "Listener not registered.");
+			}
 		}
 
 		class OnDataPointListener : Java.Lang.Object, IOnDataPointListener
@@ -181,20 +179,20 @@ namespace BasicSensorsApi
 			
 		}
 
-		void UnregisterFitnessDataListener ()
+        async Task UnregisterFitnessDataListener ()
 		{
 			if (mListener == null) {
 				return;
 			}
 
-			FitnessClass.SensorsApi.Remove (mClient, mListener)
-				.SetResultCallback((Statuses status) => {
-					if (status.IsSuccess) {
-						Log.Info (TAG, "Listener was removed!");
-					} else {
-						Log.Info (TAG, "Listener was not removed.");
-					}
-				});
+            var status = await FitnessClass.SensorsApi.RemoveAsync (mClient, mListener);
+				
+			if (status.IsSuccess) {
+				Log.Info (TAG, "Listener was removed!");
+			} else {
+				Log.Info (TAG, "Listener was not removed.");
+			}
+		
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)

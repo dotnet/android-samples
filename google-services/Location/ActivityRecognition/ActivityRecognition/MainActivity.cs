@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Java.IO;
 using Android.Content.PM;
+using System.Threading.Tasks;
 
 namespace ActivityRecognition
 {
@@ -24,13 +25,12 @@ namespace ActivityRecognition
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
 	)]
 	public class MainActivity : ActionBarActivity,
-		IGoogleApiClientConnectionCallbacks, 
-		IGoogleApiClientOnConnectionFailedListener, 
-		IResultCallback
+		GoogleApiClient.IConnectionCallbacks, 
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		protected const string TAG = "activity-recognition";
 		protected ActivityDetectionBroadcastReceiver mBroadcastReceiver;
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 		PendingIntent mActivityDetectionPendingIntent;
 		Button mRequestActivityUpdatesButton;
 		Button mRemoveActivityUpdatesButton;
@@ -77,7 +77,7 @@ namespace ActivityRecognition
 
 		protected void buildGoogleApiClient ()
 		{
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (Android.Gms.Location.ActivityRecognition.API)
@@ -125,35 +125,36 @@ namespace ActivityRecognition
 			Log.Info (TAG, "Connection failed: ConnectionResult.ErrorCode = " + result.ErrorCode);
 		}
 
-		public void RequestActivityUpdatesButtonHandler (object sender, EventArgs e)
+        public async void RequestActivityUpdatesButtonHandler (object sender, EventArgs e)
 		{
 			if (!mGoogleApiClient.IsConnected) {
 				Toast.MakeText (this, GetString (Resource.String.not_connected),
 					ToastLength.Short).Show ();
 				return;
 			}
-			Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RequestActivityUpdates (
-				mGoogleApiClient,
-				Constants.DetectionIntervalInMilliseconds,
-				ActivityDetectionPendingIntent
-			).SetResultCallback (this);
+            var status = await Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RequestActivityUpdatesAsync (
+                    mGoogleApiClient,
+                    Constants.DetectionIntervalInMilliseconds,
+                    ActivityDetectionPendingIntent
+                );
+            HandleResult (status);
 		}
 
-		public void RemoveActivityUpdatesButtonHandler (object sender, EventArgs e)
+        public async void RemoveActivityUpdatesButtonHandler (object sender, EventArgs e)
 		{
 			if (!mGoogleApiClient.IsConnected) {
 				Toast.MakeText (this, GetString (Resource.String.not_connected), ToastLength.Short).Show ();
 				return;
 			}
-			Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RemoveActivityUpdates (
-				mGoogleApiClient,
-				ActivityDetectionPendingIntent
-			).SetResultCallback (this);
+            var status = await Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RemoveActivityUpdatesAsync (
+                    mGoogleApiClient,
+                    ActivityDetectionPendingIntent
+                );
+            HandleResult (status);
 		}
 
-		public void OnResult (Java.Lang.Object x0)
+		public void HandleResult (Statuses status)
 		{
-			var status = (Statuses)x0;
 			if (status.IsSuccess) {
 				bool requestingUpdates = !UpdatesRequestedState;
 				UpdatesRequestedState = requestingUpdates;

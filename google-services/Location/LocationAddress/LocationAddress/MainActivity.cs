@@ -15,13 +15,14 @@ using Android.Util;
 namespace LocationAddress
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : ActionBarActivity, 
+        GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		protected const string TAG = "main-activity";
 		protected const string ADDRESS_REQUESTED_KEY = "address-request-pending";
 		protected const string LOCATION_ADDRESS_KEY = "location-address";
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 		protected Location mLastLocation;
 		protected bool mAddressRequested;
 		protected string mAddressOutput;
@@ -74,7 +75,7 @@ namespace LocationAddress
 
 		protected void BuildGoogleApiClient ()
 		{
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (LocationServices.API)

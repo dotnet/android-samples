@@ -11,12 +11,13 @@ using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using Android.Locations;
 using Android.Util;
+using System.Threading.Tasks;
 
 namespace LocationSettings
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener,	Android.Gms.Location.ILocationListener, IResultCallback
+	public class MainActivity : ActionBarActivity, GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener,	Android.Gms.Location.ILocationListener
 	{
 		protected const string TAG = "location-settings";
 		protected const int REQUEST_CHECK_SETTINGS = 0x1;
@@ -26,7 +27,7 @@ namespace LocationSettings
 		protected const string KEY_LOCATION = "location";
 		protected const string KEY_LAST_UPDATED_TIME_STRING = "last-updated-time-string";
 
-		protected IGoogleApiClient mGoogleApiClient;
+		protected GoogleApiClient mGoogleApiClient;
 		protected LocationRequest mLocationRequest;
 		protected LocationSettingsRequest mLocationSettingsRequest;
 		protected Location mCurrentLocation;
@@ -84,7 +85,7 @@ namespace LocationSettings
 		protected void BuildGoogleApiClient ()
 		{
 			Log.Info (TAG, "Building GoogleApiClient");
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (LocationServices.API)
@@ -106,21 +107,20 @@ namespace LocationSettings
 			mLocationSettingsRequest = builder.Build ();
 		}
 
-		protected void CheckLocationSettings ()
+		protected async Task CheckLocationSettings ()
 		{
-			IPendingResult result = LocationServices.SettingsApi.CheckLocationSettings (
+			var result = await LocationServices.SettingsApi.CheckLocationSettingsAsync (
 				mGoogleApiClient, mLocationSettingsRequest);
-			result.SetResultCallback (this);
+            await HandleResult (result);
 		}
 
-		public void OnResult (Java.Lang.Object x0)
+        public async Task HandleResult (LocationSettingsResult locationSettingsResult)
 		{
-			var locationSettingsResult = (LocationSettingsResult)x0;
-			Statuses status = locationSettingsResult.Status;
+			var status = locationSettingsResult.Status;
 			switch (status.StatusCode) {
 			case CommonStatusCodes.Success:
 				Log.Info (TAG, "All location settings are satisfied.");
-				StartLocationUpdates ();
+				await StartLocationUpdates ();
 				break;
 			case CommonStatusCodes.ResolutionRequired:
 				Log.Info (TAG, "Location settings are not satisfied. Show the user a dialog to" +
@@ -139,14 +139,14 @@ namespace LocationSettings
 			}
 		}
 
-		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			switch (requestCode) {
 			case REQUEST_CHECK_SETTINGS:
 				switch (resultCode) {
 				case Result.Ok:
 					Log.Info (TAG, "User agreed to make required location settings changes.");
-					StartLocationUpdates ();
+					await StartLocationUpdates ();
 					break;
 				case Result.Canceled:
 					Log.Info (TAG, "User chose not to make required location settings changes.");
@@ -156,27 +156,26 @@ namespace LocationSettings
 			}
 		}
 
-		public void StartUpdatesButtonHandler (object sender, EventArgs e)
+		public async void StartUpdatesButtonHandler (object sender, EventArgs e)
 		{
-			CheckLocationSettings ();
+			await CheckLocationSettings ();
 		}
 
-		public void StopUpdatesButtonHandler (object sender, EventArgs e)
+		public async void StopUpdatesButtonHandler (object sender, EventArgs e)
 		{
-			StopLocationUpdates ();
+			await StopLocationUpdates ();
 		}
 
-		protected void StartLocationUpdates ()
+		protected async Task StartLocationUpdates ()
 		{
-			LocationServices.FusedLocationApi.RequestLocationUpdates (
+			await LocationServices.FusedLocationApi.RequestLocationUpdates (
 				mGoogleApiClient,
 				mLocationRequest,
 				this
-			).SetResultCallback ((Statuses status) => {
-				mRequestingLocationUpdates = true;
-				SetButtonsEnabledState ();
-			});
-
+            );
+                
+            mRequestingLocationUpdates = true;
+			SetButtonsEnabledState ();		
 		}
 
 		void UpdateUI ()
@@ -205,15 +204,15 @@ namespace LocationSettings
 			}
 		}
 
-		protected void StopLocationUpdates ()
+        protected async Task StopLocationUpdates ()
 		{
-			LocationServices.FusedLocationApi.RemoveLocationUpdates (
-				mGoogleApiClient,
-				this
-			).SetResultCallback ((Statuses status) => {
-				mRequestingLocationUpdates = false;
-				SetButtonsEnabledState ();
-			});
+            await LocationServices.FusedLocationApi.RemoveLocationUpdates (
+                    mGoogleApiClient,
+                    this
+                );
+
+			mRequestingLocationUpdates = false;
+			SetButtonsEnabledState ();
 		}
 
 		protected override void OnStart ()
@@ -222,19 +221,19 @@ namespace LocationSettings
 			mGoogleApiClient.Connect ();
 		}
 
-		protected override void OnResume ()
+		protected override async void OnResume ()
 		{
 			base.OnResume ();
 			if (mGoogleApiClient.IsConnected && mRequestingLocationUpdates) {
-				StartLocationUpdates ();
+				await StartLocationUpdates ();
 			}
 		}
 
-		protected override void OnPause ()
+		protected override async void OnPause ()
 		{
 			base.OnPause ();
 			if (mGoogleApiClient.IsConnected) {
-				StopLocationUpdates ();
+				await StopLocationUpdates ();
 			}
 		}
 

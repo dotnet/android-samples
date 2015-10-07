@@ -11,16 +11,17 @@ using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using System.Threading.Tasks;
 
 namespace AppInvite
 {
 	[Activity (Label = "@string/app_name", Theme = "@style/ThemeOverlay.MyDialogActivity")]			
-	public class DeepLinkActivity : AppCompatActivity, IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener, View.IOnClickListener
+	public class DeepLinkActivity : AppCompatActivity, GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener, View.IOnClickListener
 	{
 		static readonly string Tag = typeof(DeepLinkActivity).Name;
 
-		IGoogleApiClient googleApiClient;
+		GoogleApiClient googleApiClient;
 
 		Intent cachedInvitationIntent;
 
@@ -31,20 +32,20 @@ namespace AppInvite
 
 			FindViewById (Resource.Id.button_ok).SetOnClickListener (this);
 
-			googleApiClient = new GoogleApiClientBuilder (this)
+			googleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.EnableAutoManage (this, 0, this)
 				.AddApi (Android.Gms.AppInvite.AppInviteClass.API)
 				.Build ();
 		}
 
-		protected override void OnStart ()
+		protected override async void OnStart ()
 		{
 			base.OnStart ();
-			ProcessReferralIntent (Intent);
+			await ProcessReferralIntent (Intent);
 		}
 
-		void ProcessReferralIntent (Intent intent)
+		async Task ProcessReferralIntent (Intent intent)
 		{
 			if (!AppInviteReferral.HasReferral (intent)) {
 				Log.Error (Tag, "Error: DeepLinkActivity Intent does not contain App Invite");
@@ -59,30 +60,30 @@ namespace AppInvite
 			(FindViewById<TextView> (Resource.Id.invitation_id_text)).Text =  string.Format(invitationId, GetString (Resource.String.invitation_id_fmt));
 
 			if (googleApiClient.IsConnected) {
-				UpdateInvitationStatus (intent);
+				await UpdateInvitationStatus (intent);
 			} else {
 				Log.Warn (Tag, "Warning: GoogleAPIClient not connected, can't update invitation.");
 				cachedInvitationIntent = intent;
 			}
 		}
 
-		void UpdateInvitationStatus (Intent intent)
+        async Task UpdateInvitationStatus (Intent intent)
 		{
 			var invitationId = AppInviteReferral.GetInvitationId (intent);
 
 			if (AppInviteReferral.IsOpenedFromPlayStore (intent)) {
-				AppInviteClass.AppInviteApi.UpdateInvitationOnInstall (googleApiClient, invitationId);
+				await AppInviteClass.AppInviteApi.UpdateInvitationOnInstallAsync (googleApiClient, invitationId);
 			}
 
-			AppInviteClass.AppInviteApi.ConvertInvitation (googleApiClient, invitationId);
+			await AppInviteClass.AppInviteApi.ConvertInvitationAsync (googleApiClient, invitationId);
 		}
 
-		public void OnConnected (Bundle connectionHint)
+		public async void OnConnected (Bundle connectionHint)
 		{
 			Log.Debug (Tag, "googleApiClient:onConnected");
 
 			if (cachedInvitationIntent != null) {
-				UpdateInvitationStatus (cachedInvitationIntent);
+				await UpdateInvitationStatus (cachedInvitationIntent);
 				cachedInvitationIntent = null;
 			}
 		}

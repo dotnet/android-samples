@@ -13,6 +13,7 @@ using Android.Text.Method;
 using Android.Gms.Nearby;
 using Android.Util;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ConnectionsQuickstart
 {
@@ -22,8 +23,8 @@ namespace ConnectionsQuickstart
 		Intent.CategoryLeanbackLauncher
 	})]
 	public class MainActivity : Activity, 
-		IGoogleApiClientConnectionCallbacks, 
-		IGoogleApiClientOnConnectionFailedListener, 
+		GoogleApiClient.IConnectionCallbacks, 
+		GoogleApiClient.IOnConnectionFailedListener, 
 		View.IOnClickListener, 
 		IConnectionsConnectionRequestListener, 
 		IConnectionsMessageListener, 
@@ -43,7 +44,7 @@ namespace ConnectionsQuickstart
 			Connected = 1027
 		}
 
-		IGoogleApiClient mGoogleApiClient;
+		GoogleApiClient mGoogleApiClient;
 
 		TextView mDebugInfo;
 		EditText mMessageText;
@@ -68,7 +69,7 @@ namespace ConnectionsQuickstart
 			mDebugInfo = FindViewById<TextView> (Resource.Id.debug_text);
 			mDebugInfo.MovementMethod = new ScrollingMovementMethod ();
 
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.AddApi (NearbyClass.CONNECTIONS_API)
@@ -101,7 +102,7 @@ namespace ConnectionsQuickstart
 			}
 		}
 
-		void StartAdvertising ()
+        async Task StartAdvertising ()
 		{
 			DebugLog ("startAdvertising");
 			if (!IsConnectedToNetwork) {
@@ -114,27 +115,26 @@ namespace ConnectionsQuickstart
 			var appMetadata = new AppMetadata (appIdentifierList);
 
 			var name = string.Empty;
-			NearbyClass.Connections.StartAdvertising (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE,
-				this).SetResultCallback ((IConnectionsStartAdvertisingResult result) => {
-				Log.Debug (TAG, "startAdvertising:onResult:" + result);
-				if (result.Status.IsSuccess) {
-					DebugLog ("startAdvertising:onResult: SUCCESS");
+            var result = await NearbyClass.Connections.StartAdvertisingAsync (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE, this);
+			
+            Log.Debug (TAG, "startAdvertising:onResult:" + result);
+			if (result.Status.IsSuccess) {
+				DebugLog ("startAdvertising:onResult: SUCCESS");
 
-					UpdateViewVisibility (NearbyConnectionState.Advertising);
+				UpdateViewVisibility (NearbyConnectionState.Advertising);
+			} else {
+				DebugLog ("startAdvertising:onResult: FAILURE ");
+
+				int statusCode = result.Status.StatusCode;
+				if (statusCode == ConnectionsStatusCodes.StatusAlreadyAdvertising) {
+					DebugLog ("STATUS_ALREADY_ADVERTISING");
 				} else {
-					DebugLog ("startAdvertising:onResult: FAILURE ");
-
-					int statusCode = result.Status.StatusCode;
-					if (statusCode == ConnectionsStatusCodes.StatusAlreadyAdvertising) {
-						DebugLog ("STATUS_ALREADY_ADVERTISING");
-					} else {
-						UpdateViewVisibility (NearbyConnectionState.Ready);
-					}
+					UpdateViewVisibility (NearbyConnectionState.Ready);
 				}
-			});
+			}
 		}
 
-		void StartDiscovery ()
+        async Task StartDiscovery ()
 		{
 			DebugLog ("startDiscovery");
 			if (!IsConnectedToNetwork) {
@@ -143,23 +143,23 @@ namespace ConnectionsQuickstart
 			}
 
 			string serviceId = GetString (Resource.String.service_id);
-			NearbyClass.Connections.StartDiscovery (mGoogleApiClient, serviceId, TIMEOUT_DISCOVER, this)
-				.SetResultCallback ((Statuses status) => {
-				if (status.IsSuccess) {
-					DebugLog ("startDiscovery:onResult: SUCCESS");
+			var status = await NearbyClass.Connections.StartDiscoveryAsync (mGoogleApiClient, 
+                serviceId, TIMEOUT_DISCOVER, this);
 
-					UpdateViewVisibility (NearbyConnectionState.Discovering);
+        	if (status.IsSuccess) {
+				DebugLog ("startDiscovery:onResult: SUCCESS");
+
+				UpdateViewVisibility (NearbyConnectionState.Discovering);
+			} else {
+				DebugLog ("startDiscovery:onResult: FAILURE");
+
+				int statusCode = status.StatusCode;
+				if (statusCode == ConnectionsStatusCodes.StatusAlreadyDiscovering) {
+					DebugLog ("STATUS_ALREADY_DISCOVERING");
 				} else {
-					DebugLog ("startDiscovery:onResult: FAILURE");
-
-					int statusCode = status.StatusCode;
-					if (statusCode == ConnectionsStatusCodes.StatusAlreadyDiscovering) {
-						DebugLog ("STATUS_ALREADY_DISCOVERING");
-					} else {
-						UpdateViewVisibility (NearbyConnectionState.Ready);
-					}
+					UpdateViewVisibility (NearbyConnectionState.Ready);
 				}
-			});
+			}
 		}
 
 		void SendMessage ()
@@ -170,7 +170,7 @@ namespace ConnectionsQuickstart
 			mMessageText.Text = null;
 		}
 
-		void ConnectTo (string endpointId, string endpointName)
+        async Task ConnectTo (string endpointId, string endpointName)
 		{
 			DebugLog ("connectTo:" + endpointId + ":" + endpointName);
 
@@ -192,7 +192,8 @@ namespace ConnectionsQuickstart
 				}
 			};
 
-			NearbyClass.Connections.SendConnectionRequest (mGoogleApiClient, myName, endpointId, myPayload, connectionResponseCallback, this);
+			await NearbyClass.Connections.SendConnectionRequestAsync (mGoogleApiClient, myName, endpointId, 
+                myPayload, connectionResponseCallback, this);
 		}
 
 		class ConnectionResponseCallback : Java.Lang.Object, IConnectionsConnectionResponseCallback
@@ -256,14 +257,14 @@ namespace ConnectionsQuickstart
 			UpdateViewVisibility (NearbyConnectionState.Idle);
 		}
 
-		public void OnClick (View v)
+		public async void OnClick (View v)
 		{
 			switch (v.Id) {
 			case Resource.Id.button_advertise:
-				StartAdvertising ();
+				await StartAdvertising ();
 				break;
 			case Resource.Id.button_discover:
-				StartDiscovery ();
+				await StartDiscovery ();
 				break;
 			case Resource.Id.button_send:
 				SendMessage ();
@@ -294,11 +295,11 @@ namespace ConnectionsQuickstart
 					.SetNegativeButton ("Cancel", (sender, e) => mMyListDialog.Dismiss ());
 
 				// Create the MyListDialog with a listener
-				mMyListDialog = new MyListDialog (this, builder, (sender, e) => { 
+				mMyListDialog = new MyListDialog (this, builder, async (sender, e) => { 
 					var selectedEndpointName = mMyListDialog.GetItemKey (e.Which);
 					var selectedEndpointId = mMyListDialog.GetItemValue (e.Which);
 
-					ConnectTo (selectedEndpointId, selectedEndpointName);
+					await ConnectTo (selectedEndpointId, selectedEndpointName);
 					mMyListDialog.Dismiss ();
 				});
 			}
