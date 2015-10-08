@@ -14,12 +14,12 @@ namespace Wearable
 	[Service(), IntentFilter(new string[] { "com.google.android.gms.wearable.BIND_LISTENER" })]
 	public class HomeListenerService : WearableListenerService
 	{
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			mGoogleApiClient = new GoogleApiClientBuilder (this.ApplicationContext)
-				.AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClient.Builder (this.ApplicationContext)
+				.AddApi (WearableClass.API)
 				.Build ();
 			mGoogleApiClient.Connect ();
 		}

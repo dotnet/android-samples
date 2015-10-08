@@ -14,8 +14,8 @@ using Java.Interop;
 namespace Wearable
 {
 	[Service]
-	public class UpdateQuestionService : IntentService,IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener
+	public class UpdateQuestionService : IntentService, GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		public const string EXTRA_QUESTION_CORRECT = "extra_question_correct";
 		public const string EXTRA_QUESTION_INDEX = "extra_question_index";
@@ -23,7 +23,7 @@ namespace Wearable
 		const int TIME_OUT_MS = 100;
 		const string TAG = "UpdateQuestionService";
 
-		private IGoogleApiClient google_api_client;
+		private GoogleApiClient google_api_client;
 		public UpdateQuestionService () : base()
 		{
 		}
@@ -31,7 +31,7 @@ namespace Wearable
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			google_api_client = new GoogleApiClientBuilder (this)
+			google_api_client = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)

@@ -18,17 +18,17 @@ using Java.Interop;
 namespace SynchronizedNotifications
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true)]
-	public class PhoneActivity : Activity, IResultCallback, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class PhoneActivity : Activity, IResultCallback, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string Tag = "PhoneActivity";
-		IGoogleApiClient googleApiClient;
+		GoogleApiClient googleApiClient;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_phone);
-			googleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			googleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

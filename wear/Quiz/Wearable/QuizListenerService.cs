@@ -47,7 +47,7 @@ namespace Wearable
 			var events = FreezableUtils.FreezeIterable (eventBuffer);
 			eventBuffer.Close ();
 
-			var google_api_client = new GoogleApiClientBuilder (this)
+			var google_api_client = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.Build ();
 

@@ -11,17 +11,17 @@ namespace Wearable
 {
 	[Service(), IntentFilter(new string[] { "com.google.android.gms.wearable.BIND_LISTENER" }), 
 		IntentFilter(new string [] {"com.example.android.wearable.synchronizednotifications.DISMISS"})]
-	public class NotificationUpdateService : WearableListenerService, IGoogleApiClientConnectionCallbacks, 
-	IGoogleApiClientOnConnectionFailedListener, IResultCallback
+	public class NotificationUpdateService : WearableListenerService, GoogleApiClient.IConnectionCallbacks, 
+	    GoogleApiClient.IOnConnectionFailedListener, IResultCallback
 	{
 		const string Tag = "NotificationUpdate";
-		IGoogleApiClient googleApiClient;
+		GoogleApiClient googleApiClient;
 
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			googleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			googleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

@@ -20,7 +20,8 @@ namespace Geofencing
 		ExcludeFromRecents = true, 
 		Theme = "@android:style/Theme.Translucent.NoTitleBar",
 		Label = "@string/app_name", MainLauncher = true)]
-	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class MainActivity : Activity, 
+        GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		// Internal List of Geofence objects. In a real app, these migth be provided by an API based on locations within the user's proximity
 		List<IGeofence> mGeofenceList;
@@ -32,7 +33,7 @@ namespace Geofencing
 		// Persistent storage for geofences
 		SimpleGeofenceStore mGeofenceStorage;
 
-		IGoogleApiClient apiClient;
+		GoogleApiClient apiClient;
 		// Stores the PendingIntent used to request geofence monitoring
 		PendingIntent mGeofenceRequestIntent;
 
@@ -124,7 +125,7 @@ namespace Geofencing
 			}
 			// Create a new location client object. Since this activity implements ConnectionCallbacks and OnConnectionFailedListener,
 			// it can be used as the listener for both parameters
-			apiClient = new GoogleApiClientBuilder (this, this, this)
+			apiClient = new GoogleApiClient.Builder (this, this, this)
 				.AddApi (LocationServices.API)
 				.Build ();
 			// If a request is not already underway

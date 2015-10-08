@@ -15,21 +15,21 @@ using Android.Widget;
 namespace DelayedConfirmation
 {
 	[Activity (Label = "DelayedConfirmation", MainLauncher = true, Icon = "@drawable/ic_launcher", LaunchMode = Android.Content.PM.LaunchMode.SingleTask)]
-	public class MainActivity : Activity, IGoogleApiClientConnectionCallbacks, 
-		IGoogleApiClientOnConnectionFailedListener, IMessageApiMessageListener, IResultCallback
+	public class MainActivity : Activity, GoogleApiClient.IConnectionCallbacks, 
+		GoogleApiClient.IOnConnectionFailedListener, IMessageApiMessageListener, IResultCallback
 	{
 		private static string TAG = "DelayedConfirmation";
 		private static string START_ACTIVITY_PATH = "/start-activity";
 		private static string TIMER_SELECTED_PATH = "/timer_selected";
 		private static string TIMER_FINISHED_PATH = "/timer_finished";
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.main_activity);
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

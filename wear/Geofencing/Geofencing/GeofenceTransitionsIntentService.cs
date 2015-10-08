@@ -10,9 +10,9 @@ namespace Geofencing
 {
 	[Service(Exported = false)]
 	public class GeofenceTransitionsIntentService : IntentService, 
-	IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	    GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 		public GeofenceTransitionsIntentService ()
 			:base(typeof(GeofenceTransitionsIntentService).Name)
 		{
@@ -21,7 +21,7 @@ namespace Geofencing
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)

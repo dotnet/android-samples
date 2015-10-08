@@ -11,9 +11,9 @@ using Android.Content;
 namespace Wearable
 {
 	[Service()]
-	public class CheckInAndDeleteDataItemsService : IntentService, IGoogleApiClientConnectionCallbacks, IGoogleApiClientOnConnectionFailedListener
+	public class CheckInAndDeleteDataItemsService : IntentService, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 		public CheckInAndDeleteDataItemsService ()
 			:base(typeof(CheckInAndDeleteDataItemsService).Name)
 		{
@@ -23,8 +23,8 @@ namespace Wearable
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

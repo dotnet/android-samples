@@ -26,7 +26,7 @@ namespace Quiz
 		Icon = "@drawable/ic_launcher", 
 		ConfigurationChanges = ConfigChanges.KeyboardHidden | ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
 	public class MainActivity : Activity,IDataApiDataListener,IMessageApiMessageListener,
-		IGoogleApiClientConnectionCallbacks,IGoogleApiClientOnConnectionFailedListener
+		GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		public const string TAG = "ExampleQuizApp";
 		const string QUIZ_JSON_FILE = "Quiz.json";
@@ -45,7 +45,7 @@ namespace Quiz
 		private Button reset_quiz_button;
 		private Button new_quiz_button;
 
-		public IGoogleApiClient google_api_client;
+		public GoogleApiClient google_api_client;
 		private Java.Util.PriorityQueue future_questions;
 		private int question_index;
 		public bool has_question_been_asked = false;
@@ -76,7 +76,7 @@ namespace Quiz
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.activity_main);
 
-			google_api_client = new GoogleApiClientBuilder (this)
+			google_api_client = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)

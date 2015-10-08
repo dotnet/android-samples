@@ -15,17 +15,17 @@ using Java.Interop;
 namespace Wearable
 {
 	[Service]
-	public class DeleteQuestionService : IntentService,IGoogleApiClientConnectionCallbacks,
-		IGoogleApiClientOnConnectionFailedListener
+	public class DeleteQuestionService : IntentService, GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string TAG = "DeleteQuestionReciever";
 
-		private IGoogleApiClient google_api_client;
+		private GoogleApiClient google_api_client;
 
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
-			google_api_client = new GoogleApiClientBuilder (this)
+			google_api_client = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)

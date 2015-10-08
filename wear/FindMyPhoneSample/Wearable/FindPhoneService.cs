@@ -14,7 +14,8 @@ using Java.Util.Concurrent;
 namespace FindMyPhoneSample
 {
 	[Service]
-	public class FindPhoneService : IntentService,IGoogleApiClientConnectionCallbacks,IGoogleApiClientOnConnectionFailedListener
+	public class FindPhoneService : IntentService,
+        GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string TAG = "ExampleFindPhoneApp";
 		const string FIELD_ALARM_ON = "alarm_on";
@@ -24,14 +25,14 @@ namespace FindMyPhoneSample
 		public const string ACTION_CANCEL_ALARM = "action_alarm_off";
 
 		const int CONNECTION_TIME_OUT_MS = 100;
-		private IGoogleApiClient google_api_client;
+		private GoogleApiClient google_api_client;
 	
 
 		public override void OnCreate()
 		{
 			base.OnCreate ();
-			google_api_client = new GoogleApiClientBuilder (this)
-				.AddApi (WearableClass.Api)
+			google_api_client = new GoogleApiClient.Builder (this)
+				.AddApi (WearableClass.API)
 				.AddConnectionCallbacks (this)
 				.AddOnConnectionFailedListener (this)
 				.Build ();

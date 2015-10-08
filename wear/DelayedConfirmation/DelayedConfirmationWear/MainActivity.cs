@@ -20,7 +20,8 @@ using Android.Support.Wearable.Views;
 namespace DelayedConfirmation
 {
 	[Activity (Label = "Wearable", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-	public class MainActivity : Activity, DelayedConfirmationView.IDelayedConfirmationListener, IGoogleApiClientOnConnectionFailedListener, IResultCallback
+	public class MainActivity : Activity, DelayedConfirmationView.IDelayedConfirmationListener, 
+        GoogleApiClient.IOnConnectionFailedListener, IResultCallback
 	{
 		private static string TAG = "DelayedConfirmation";
 		private static int NUM_SECONDS = 5;
@@ -31,7 +32,7 @@ namespace DelayedConfirmation
 		string path;
 
 		private DelayedConfirmationView delayedConfirmationView;
-		private IGoogleApiClient mGoogleApiClient;
+		private GoogleApiClient mGoogleApiClient;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -39,7 +40,7 @@ namespace DelayedConfirmation
 			SetContentView (Resource.Layout.main_activity);
 			delayedConfirmationView = FindViewById<DelayedConfirmationView> (Resource.Id.delayed_confirmation);
 			delayedConfirmationView.SetTotalTimeMs (NUM_SECONDS * 1000);
-			mGoogleApiClient = new GoogleApiClientBuilder (this)
+			mGoogleApiClient = new GoogleApiClient.Builder (this)
 				.AddApi (WearableClass.Api)
 				.AddOnConnectionFailedListener (this)
 				.Build ();
