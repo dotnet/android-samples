@@ -60,6 +60,7 @@ namespace Cheesesquare
                 public View View { get;set; }
                 public ImageView ImageView { get; set; }
                 public TextView TextView { get; set; }
+                public EventHandler ClickHandler { get; set; }
 
                 public ViewHolder (View view) : base (view) 
                 {
@@ -103,13 +104,17 @@ namespace Cheesesquare
                 h.BoundString = values [position];
                 h.TextView.Text = values [position];
 
-                h.View.Click += (sender, e) => {
+                if (h.ClickHandler != null)
+                    h.View.Click -= h.ClickHandler;
+
+                h.ClickHandler = new EventHandler ((sender, e) => {
                     var context = h.View.Context;
                     var intent = new Intent (context, typeof (CheeseDetailActivity));
                     intent.PutExtra (CheeseDetailActivity.EXTRA_NAME, h.BoundString);
 
                     context.StartActivity(intent);
-                };
+                });
+                h.View.Click += h.ClickHandler;
                     
                 h.ImageView.SetImageDrawable (Cheeses.GetRandomCheeseDrawable (parent));
             }
