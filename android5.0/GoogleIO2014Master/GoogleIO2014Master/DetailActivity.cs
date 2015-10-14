@@ -123,30 +123,38 @@ namespace GoogleIO2014Master
 
 		public void Colorize (Bitmap bitmap)
 		{
-			Palette palette = Palette.Generate (bitmap);
+			Palette palette = new Palette.Builder (bitmap).Generate ();
 			ApplyPalette (palette);
 		}
 
 		void ApplyPalette (Palette palette)
 		{
-			Window.SetBackgroundDrawable (new ColorDrawable (new Color (palette.DarkMutedSwatch.Rgb)));
-
-			var titleView = FindViewById<TextView> (Resource.Id.title);
-			titleView.SetTextColor (new Color (palette.VibrantSwatch.Rgb));
-
-			var descriptionView = FindViewById<TextView> (Resource.Id.description);
-			descriptionView.SetTextColor (new Color (palette.LightVibrantSwatch.Rgb));
-
-			ColorRipple (Resource.Id.info, palette.DarkMutedSwatch.Rgb, palette.DarkVibrantSwatch.Rgb);
-			ColorRipple (Resource.Id.star, palette.MutedSwatch.Rgb, palette.VibrantSwatch.Rgb);
-
-			var infoView = FindViewById (Resource.Id.information_container);
-			infoView.SetBackgroundColor (new Color (palette.LightMutedSwatch.Rgb));
+			// Null check, as swatch value might be null.
+			if (palette.DarkMutedSwatch != null)
+				Window.SetBackgroundDrawable (new ColorDrawable (new Color (palette.DarkMutedSwatch.Rgb)));
 
 			var star = FindViewById<AnimatedPathView> (Resource.Id.star_container);
-			star.FillColor = palette.VibrantSwatch.Rgb;
-			star.StrokeColor = palette.LightVibrantSwatch.Rgb;
+			var titleView = FindViewById<TextView> (Resource.Id.title);
+			if (palette.VibrantSwatch != null) {
+				star.FillColor = palette.VibrantSwatch.Rgb;
+				titleView.SetTextColor (new Color (palette.VibrantSwatch.Rgb));
+			}
 
+			var descriptionView = FindViewById<TextView> (Resource.Id.description);
+			if (palette.LightVibrantSwatch != null) {
+				star.StrokeColor = palette.LightVibrantSwatch.Rgb;
+				descriptionView.SetTextColor (new Color (palette.LightVibrantSwatch.Rgb));
+			}
+
+			if (palette.DarkMutedSwatch != null && palette.DarkVibrantSwatch != null)
+				ColorRipple (Resource.Id.info, palette.DarkMutedSwatch.Rgb, palette.DarkVibrantSwatch.Rgb);
+
+			if (palette.MutedSwatch != null && palette.VibrantSwatch != null)
+				ColorRipple (Resource.Id.star, palette.MutedSwatch.Rgb, palette.VibrantSwatch.Rgb);
+
+			var infoView = FindViewById (Resource.Id.information_container);
+			if (palette.LightMutedSwatch != null)
+				infoView.SetBackgroundColor (new Color (palette.LightMutedSwatch.Rgb));
 		}
 
 		public void ColorRipple (int id, int bgColor, int tintColor)
