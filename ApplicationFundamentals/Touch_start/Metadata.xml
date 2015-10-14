@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>019cb38d-1ac4-4701-8d28-cfa5dbb0a8c3</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features</Tags>
+	<Gallery>true</Gallery>
+	<Brief>Starting point for the walkthrough about working with touch events and gestures in Android.</Brief>
+</SampleMetadata>

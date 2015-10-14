@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch", "Touch.csproj", "{38B273A3-4394-4D78-9E00-576E38F44508}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Release|iPhone.Build.0 = Release|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{38B273A3-4394-4D78-9E00-576E38F44508}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
