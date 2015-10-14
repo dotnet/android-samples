@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>9640b1a2-a5ea-4e3c-acdb-3ca9ebf025fe</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data, Platform Features</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>false</Gallery>
+	<Brief>How to use speech recognition in an Android app.</Brief>
+</SampleMetadata>

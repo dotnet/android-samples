@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_weight=".45"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout4"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="Say this"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:layout_marginLeft="5pt"
+                android:layout_marginRight="5pt"
+                android:textColor="#fff" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSpeech"
+                android:layout_marginRight="5dp"
+                android:hint="Type what I should say" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:layout_weight=".45"
+        android:gravity="center_vertical">
+        <TableLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayout1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:weightSum="1">
+                <TextView
+                    android:text="Language"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="0"
+                    android:id="@+id/textView11"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight=".1" />
+                <Spinner
+                    android:layout_column="1"
+                    android:id="@+id/spinLanguage"
+                    android:layout_weight=".8" />
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="2"
+                    android:id="@+id/textView14"
+                    android:layout_weight=".1" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:gravity="center_vertical"
+                android:weightSum="1">
+                <TextView
+                    android:text="Pitch"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="0"
+                    android:id="@+id/textView12"
+                    android:layout_weight=".1" />
+                <SeekBar
+                    android:layout_column="1"
+                    android:id="@+id/seekPitch"
+                    android:layout_width="wrap_content"
+                    android:layout_weight=".8"
+                    android:max="255" />
+                <TextView
+                    android:text="0.5"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="2"
+                    android:id="@+id/textPitch"
+                    android:layout_weight=".1" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:gravity="center_vertical"
+                android:weightSum="1">
+                <TextView
+                    android:text="Speed"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="0"
+                    android:id="@+id/textView13"
+                    android:layout_weight=".1" />
+                <SeekBar
+                    android:layout_column="1"
+                    android:id="@+id/seekSpeed"
+                    android:layout_weight=".8"
+                    android:max="255" />
+                <TextView
+                    android:text="0.5"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_column="2"
+                    android:id="@+id/textSpeed"
+                    android:layout_weight=".1" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3"
+        android:layout_weight=".1"
+        android:gravity="center">
+        <Button
+            android:text="Say it!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSpeak" />
+    </LinearLayout>
+</LinearLayout>
