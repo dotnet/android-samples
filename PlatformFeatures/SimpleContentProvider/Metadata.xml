@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>be7d8c65-8249-4000-af75-4120d5422aec</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data, Platform Features</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>false</Gallery>
+	<Brief>How to build a simple custom ContentProvider.</Brief>
+</SampleMetadata>

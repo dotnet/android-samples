@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Android.Widget.CursorAdapter" Collapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CursorTableAdapter.VegetableDatabase">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <Members>
+      <Field Name="create_table_sql" Hidden="true" />
+      <Field Name="DatabaseName" Hidden="true" />
+      <Field Name="DatabaseVersion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACIAAAAAAAAAACAAAAAgAAAAAAABAAA=</HashCode>
+      <FileName>VegetableDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CursorTableAdapter.VegetableProvider">
+    <Position X="2.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABQAAEBBAAAAAAAACIQAAAAAACEEAAkAEABBAAAAABA=</HashCode>
+      <FileName>VegetableProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Android.Content.ContentProvider" Collapsed="true">
+    <Position X="2.75" Y="0.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Interface Name="Android.Content.ContentProvider.IPipeDataWriter" Collapsed="true">
+        <TypeIdentifier />
+      </Interface>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Android.Database.Sqlite.SQLiteOpenHelper">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <Members>
+      <Method Name="Close" Hidden="true" />
+      <Method Name="OnCreate" Hidden="true" />
+      <Method Name="OnDowngrade" Hidden="true" />
+      <Method Name="OnOpen" Hidden="true" />
+      <Method Name="OnUpgrade" Hidden="true" />
+      <Method Name="SQLiteOpenHelper" Hidden="true" />
+      <Property Name="ThresholdClass" Hidden="true" />
+      <Property Name="ThresholdType" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Android.Content.ContentResolver" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="AcquireContentProviderClient" Hidden="true" />
+      <Method Name="AddPeriodicSync" Hidden="true" />
+      <Method Name="AddStatusChangeListener" Hidden="true" />
+      <Method Name="ApplyBatch" Hidden="true" />
+      <Method Name="BulkInsert" Hidden="true" />
+      <Method Name="Call" Hidden="true" />
+      <Method Name="CancelSync" Hidden="true" />
+      <Method Name="ContentResolver" Hidden="true" />
+      <Property Name="CurrentSync" Hidden="true" />
+      <Property Name="CurrentSyncs" Hidden="true" />
+      <Field Name="CursorDirBaseType" Hidden="true" />
+      <Field Name="CursorItemBaseType" Hidden="true" />
+      <Method Name="Delete" Hidden="true" />
+      <Method Name="GetIsSyncable" Hidden="true" />
+      <Method Name="GetPeriodicSyncs" Hidden="true" />
+      <Method Name="GetStreamTypes" Hidden="true" />
+      <Method Name="GetSyncAdapterTypes" Hidden="true" />
+      <Method Name="GetSyncAutomatically" Hidden="true" />
+      <Method Name="GetType" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="IsSyncActive" Hidden="true" />
+      <Method Name="IsSyncPending" Hidden="true" />
+      <Property Name="MasterSyncAutomatically" Hidden="true" />
+      <Method Name="NotifyChange" Hidden="true" />
+      <Method Name="OpenAssetFileDescriptor" Hidden="true" />
+      <Method Name="OpenFileDescriptor" Hidden="true" />
+      <Method Name="OpenInputStream" Hidden="true" />
+      <Method Name="OpenOutputStream" Hidden="true" />
+      <Method Name="OpenTypedAssetFileDescriptor" Hidden="true" />
+      <Method Name="Query" Hidden="true" />
+      <Method Name="RegisterContentObserver" Hidden="true" />
+      <Method Name="RemovePeriodicSync" Hidden="true" />
+      <Method Name="RemoveStatusChangeListener" Hidden="true" />
+      <Method Name="RequestSync" Hidden="true" />
+      <Field Name="SchemeAndroidResource" Hidden="true" />
+      <Field Name="SchemeContent" Hidden="true" />
+      <Field Name="SchemeFile" Hidden="true" />
+      <Method Name="SetIsSyncable" Hidden="true" />
+      <Method Name="SetSyncAutomatically" Hidden="true" />
+      <Method Name="StartSync" Hidden="true" />
+      <Field Name="SyncExtrasAccount" Hidden="true" />
+      <Field Name="SyncExtrasDiscardLocalDeletions" Hidden="true" />
+      <Field Name="SyncExtrasDoNotRetry" Hidden="true" />
+      <Field Name="SyncExtrasExpedited" Hidden="true" />
+      <Field Name="SyncExtrasForce" Hidden="true" />
+      <Field Name="SyncExtrasIgnoreBackoff" Hidden="true" />
+      <Field Name="SyncExtrasIgnoreSettings" Hidden="true" />
+      <Field Name="SyncExtrasInitialize" Hidden="true" />
+      <Field Name="SyncExtrasManual" Hidden="true" />
+      <Field Name="SyncExtrasOverrideTooManyDeletions" Hidden="true" />
+      <Field Name="SyncExtrasUpload" Hidden="true" />
+      <Field Name="SyncObserverTypeActive" Hidden="true" />
+      <Field Name="SyncObserverTypePending" Hidden="true" />
+      <Field Name="SyncObserverTypeSettings" Hidden="true" />
+      <Property Name="ThresholdClass" Hidden="true" />
+      <Property Name="ThresholdType" Hidden="true" />
+      <Method Name="UnregisterContentObserver" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="ValidateSyncExtrasBundle" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Android.Content.UriMatcher" Collapsed="true">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
