@@ -69,6 +69,7 @@ namespace FingerprintDialog
 				}
 			};
 
+			mInputMethodManager = (InputMethodManager)Context.GetSystemService (Context.InputMethodService);
 			mFingerprintContent = v.FindViewById (Resource.Id.fingerprint_container);
 			mBackupContent = v.FindViewById (Resource.Id.backup_container);
 			mPassword = v.FindViewById<EditText> (Resource.Id.password);
