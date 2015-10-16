@@ -70,6 +70,7 @@ namespace FingerprintDialog
 					return;
 				}
 
+				mFingerprintManager = (FingerprintManager)GetSystemService (Context.FingerprintService);
 				if (!mFingerprintManager.HasEnrolledFingerprints) {
 					purchaseButton.Enabled = false;
 					// This happens when no fingerprints are registered.
@@ -85,6 +86,9 @@ namespace FingerprintDialog
 					// crypto, or you can fall back to using a server-side verified password.
 					FindViewById (Resource.Id.confirmation_message).Visibility = ViewStates.Gone;
 					FindViewById (Resource.Id.encrypted_message).Visibility = ViewStates.Gone;
+
+					mFragment = new FingerprintAuthenticationDialogFragment ();
+					mSharedPreferences = this.GetPreferences (FileCreationMode.Private);
 
 					if (InitCipher ()) {
 						mFragment.SetCryptoObject (new FingerprintManager.CryptoObject (mCipher));
@@ -111,7 +115,7 @@ namespace FingerprintDialog
 				var key = mKeyStore.GetKey (KEY_NAME, null);
 				mCipher.Init (CipherMode.EncryptMode, key);
 				return true;
-			} catch (KeyPermanentlyInvalidatedException e) {
+			} catch (KeyPermanentlyInvalidatedException) {
 				return false;
 			} catch (KeyStoreException e) {
 				throw new RuntimeException ("Failed to init Cipher", e);

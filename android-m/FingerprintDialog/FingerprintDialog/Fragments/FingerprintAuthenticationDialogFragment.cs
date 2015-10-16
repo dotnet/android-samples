@@ -76,6 +76,8 @@ namespace FingerprintDialog
 			mPasswordDescriptionTextView = v.FindViewById<TextView> (Resource.Id.password_description);
 			mUseFingerprintFutureCheckBox = v.FindViewById<CheckBox> (Resource.Id.use_fingerprint_in_future_check);
 			mNewFingerprintEnrolledTextView = v.FindViewById<TextView> (Resource.Id.new_fingerprint_enrolled_description);
+			var fingerprintManager = (FingerprintManager)Context.GetSystemService (Context.FingerprintService);
+			mFingerprintUiHelperBuilder = new FingerprintUiHelper.FingerprintUiHelperBuilder (fingerprintManager);
 			mFingerprintUiHelper = mFingerprintUiHelperBuilder.Build (
 				(ImageView)v.FindViewById (Resource.Id.fingerprint_icon),
 				(TextView)v.FindViewById (Resource.Id.fingerprint_status), this);
