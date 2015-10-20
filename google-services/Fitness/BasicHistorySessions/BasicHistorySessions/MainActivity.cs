@@ -191,8 +191,8 @@ namespace BasicHistorySessions
 			var epoch = new DateTime (1970, 1, 1);
 			var now = DateTime.UtcNow;
 			long endTime = (long)(now - epoch).TotalMilliseconds;
-			long endWalkTime = (long)(now.Subtract (TimeSpan.FromDays (10)) - epoch).TotalMilliseconds;
-			long startWalkTime = (long)(now.Subtract (TimeSpan.FromDays (20)) - epoch).TotalMilliseconds;
+			long endWalkTime = (long)(now.Subtract (TimeSpan.FromMinutes (10)) - epoch).TotalMilliseconds;
+			long startWalkTime = (long)(now.Subtract (TimeSpan.FromMinutes (20)) - epoch).TotalMilliseconds;
 			long startTime = (long)(now.Subtract (TimeSpan.FromMinutes (30)) - epoch).TotalMilliseconds;
 
 			var speedDataSource = new DataSource.Builder()
