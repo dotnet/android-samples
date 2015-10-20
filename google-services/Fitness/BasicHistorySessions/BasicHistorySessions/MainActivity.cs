@@ -103,6 +103,7 @@ namespace BasicHistorySessions
 			// Create the Google API Client
 			mClient = new GoogleApiClientBuilder (this)
 				.AddApi (FitnessClass.HISTORY_API)
+				.AddApi (FitnessClass.SESSIONS_API)
 				.AddScope (new Scope (Scopes.FitnessActivityReadWrite))
 				.AddConnectionCallbacks (clientConnectionCallback)
 				.AddOnConnectionFailedListener (result => {
