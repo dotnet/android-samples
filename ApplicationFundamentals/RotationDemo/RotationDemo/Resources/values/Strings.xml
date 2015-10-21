@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RotationDemo</string>
+	<string name="orientationResources">Orientation Resources</string>
+	<string name="simpleSaveState">Simple Save State</string>
+	<string name="incrementCounter">Increment Counter</string>
+	<string name="nonConfigInstance">Demo NonConfigurationInstance</string>
+	<string name="layoutInCode">Layout in Code</string>
+</resources>

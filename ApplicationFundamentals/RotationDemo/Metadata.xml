@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6EC2EF5B-4612-4FFD-8F39-A215F78A4CB5</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates how Android handles rotation</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
