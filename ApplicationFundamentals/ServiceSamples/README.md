@@ -17,6 +17,6 @@ service fundamentals. Also includes a client project named
 Contains sample code for walkthrough presented in the second half of 
 the **Creating Services** article. 
 
-###Authors
+### Authors
 ---
 Mike Bluestein
