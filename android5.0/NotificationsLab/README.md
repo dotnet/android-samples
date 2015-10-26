@@ -26,15 +26,12 @@ the "ingredients" of a notification:
 
 A launch button is located at the bottom of the screen to post a 
 notification with the above-selected options.                                        
-
-![](Screenshots/1-start-screen.png)
-
 When you tap on a notification, it takes you to a "SecondActivity" screen
 to demonstrate how PendingIntents work.
 
 To build and run this sample, you must first enable Android 5.0 support as 
 described in 
-[Setting Up an Android 5.0 Project](http://developer.xamarin.com/guides/android/platform_features/android_l/introduction_to_android_l#settingup).
+[Setting Up an Android 5.0 Project](http://developer.xamarin.com/guides/android/platform_features/introduction_to_lollipop#settingup).
 You will need an Android device or emulator with a large screen (such as 
 a Nexus 5 or an AVD with the WXGA720 skin) to view and select from all 
 of the options.

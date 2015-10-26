@@ -2,8 +2,8 @@ RecyclerViewer
 ==============
 
 This sample app accompanies the articles
-[CardView](http://developer.xamarin.com/guides/android/platform_features/android_l/cardview) and
-[RecyclerView](http://developer.xamarin.com/guides/android/platform_features/android_l/recyclerview).
+[CardView](http://developer.xamarin.com/guides/android/user_interface/cardview) and
+[RecyclerView](http://developer.xamarin.com/guides/android/user_interface/recyclerview).
 You can use this sample to learn how to use the new `CardView` and `RecyclerView` widgets
 introduced with Android 5.0 Lollipop.
 
@@ -16,8 +16,6 @@ demonstrate how `RecyclerView` is updated when the data set changes.
 When the user taps a photo, a toast appears to display the number of 
 the photo within the collection &ndash; this demonstrates how item view 
 click handlers work. 
-
-![](Screenshots/example-screens.png)
 
 Each image/caption (photo) row item is displayed in a `CardView` 
 layout, and the app uses a single `RecyclerView` layout to hold and 

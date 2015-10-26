@@ -3,9 +3,9 @@
 	<ID>eb582e00-b4d6-422d-b540-dc8df923e1c8</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>AndroidL, Notifications</Tags>
+	<Tags>Notifications</Tags>
     <SupportedPlatforms>Android</SupportedPlatforms>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>Use this sample to try out the different notification styles and options in Android 5.0.</Brief>
+	<Brief>Use this sample to try out the different notification styles and options in Android Lollipop and later.</Brief>
 </SampleMetadata>

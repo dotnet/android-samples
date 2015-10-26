@@ -10,10 +10,6 @@ read back to confirm that the name was set, then launches the
 **Contacts** app to view the user's profile. A single screen provides a 
 button that initiates the update and view sequence: 
 
-![](Screenshots/example-screenshot.png)
-
-This screenshot was taken on Android 5.0 (Lollipop).
-
 Author
 ------ 
 

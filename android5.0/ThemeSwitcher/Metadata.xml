@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-	<ID>96D227D3-5EB9-41F9-B641-CBB1759D944C</ID>
+	<ID>DEC96AB8-D982-48DC-9EB7-C15FBC5696C6</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Cloud</Tags>
+	<Tags>Platform Features</Tags>
     <SupportedPlatforms>Android</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Use this sample to try out the different Material Design themes in Android Lollipop and later.</Brief>
 </SampleMetadata>

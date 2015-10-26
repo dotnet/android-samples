@@ -14,8 +14,6 @@ response is received, the app parses the results and displays a subset
 of the weather information in textbox fields in the lower half of the 
 display: 
 
-![](Screenshots/example-screen.png)
-
 This example uses `System.Json` to parse the results of the HTTP 
 request. The HTTP request, response, parsing, and display are handled 
 asynchronously via `async`/`await`. 
