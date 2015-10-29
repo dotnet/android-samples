@@ -6,7 +6,7 @@ This sample app accompanies the article
 Before you can use this sample, you must acquire the necessary 
 credentials to use Google's servers; this process is explained in 
 [Google Cloud Messaging](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/android/google-cloud-messaging). 
-In particular, you will need an *API Key* and a *Server ID* to insert 
+In particular, you will need an *API Key* and a *Sender ID* to insert 
 into the example code before it can connect to GCM. 
    
 Most of the action takes place "behind the scenes", and is to be

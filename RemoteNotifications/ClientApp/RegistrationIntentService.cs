@@ -30,7 +30,7 @@ namespace ClientApp
                 {
                     // Request a registration token:
                     var instanceID = InstanceID.GetInstance(this);
-                    var token = instanceID.GetToken("YOUR_SERVER_ID",
+                    var token = instanceID.GetToken("YOUR_SENDER_ID",
                         GoogleCloudMessaging.InstanceIdScope, null);
 
                     // Log the registration token that was returned from GCM:
