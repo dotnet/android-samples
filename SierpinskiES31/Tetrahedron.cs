@@ -203,7 +203,7 @@ namespace Mono.Samples.Tetrahedron
 			// Create and compile compute shader.
 			if (compShaderSource != null) {
 				if (!CompileShader (ShaderType.ComputeShader, compShaderSource, out compShader)) {
-					Console.WriteLine ("Failed to compile vertex shader");
+					Console.WriteLine ("Failed to compile compute shader");
 					return false;
 				}
 			} else

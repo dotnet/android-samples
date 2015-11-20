@@ -22,10 +22,10 @@ void main()
     diff = clamp (diff, 0.0, 1.0);
 
     highp float fdist = distance(vpos.xyz, light);
-    highp float falloff = 150f / (fdist * fdist);
+    highp float falloff = float(150) / (fdist * fdist);
 
-    if (any (lessThan (vbaycentric, vec3 (0.005f * (level + 1f)))))
-        falloff /= 2f;
+    if (any (lessThan (vbaycentric, vec3 (0.005f * (level + float(1))))))
+        falloff /= float(2);
 
     fragColor = falloff * (amb + diff);
 }
