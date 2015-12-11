@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>E5D0D92C-9B55-461F-9119-45C9A405E105</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Simple project containing a keystore</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
