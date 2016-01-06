@@ -7,5 +7,5 @@
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Tags>Platform Features</Tags>
     <SupportedPlatforms>Android</SupportedPlatforms>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 </SampleMetadata>
