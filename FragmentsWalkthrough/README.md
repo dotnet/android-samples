@@ -2,4 +2,4 @@ Fragments Walkthrough
 =====================
 
 This is the source code for the 
-[Fragment Walkthrough](http://docs.xamarin.com/android/tutorials/Fragments_Walkthrough). 
+[Fragments Walkthrough](http://developer.xamarin.com/guides/android/platform_features/fragments/fragments_walkthrough/). 
