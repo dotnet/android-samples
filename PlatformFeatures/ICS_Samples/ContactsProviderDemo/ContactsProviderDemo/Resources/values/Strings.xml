@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="getContacts">Get Contacts</string>
+    <string name="updateProfile">Update Profile</string>   
+    <string name="app_name">ContactsProviderDemo</string>
+</resources>
