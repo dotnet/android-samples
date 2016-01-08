@@ -23,6 +23,7 @@ namespace AppRestrictionSchema
 	{
 		// Tag for logger
 		private string TAG = "AppRestrictionSchemaFragment";
+		static readonly string KEY_CAN_SAY_HELLO = "can_say_hello";
 
 		// UI components
 		private TextView textSayHello;
@@ -45,32 +46,35 @@ namespace AppRestrictionSchema
 		public override void OnResume ()
 		{
 			base.OnResume ();
-
-			// Update the UI according to the configured restrictions
-			var restrictionsManager = (RestrictionsManager)Activity.GetSystemService (Context.RestrictionsService);
-			Bundle restrictions = restrictionsManager.ApplicationRestrictions;
-			UpdateUI (restrictions);
+			ResolveRestrictions ();
 		}
 
-		private void UpdateUI(Bundle restrictions)
+		void ResolveRestrictions ()
 		{
-			if (CanSayHello (restrictions)) {
-				textSayHello.SetText (Resource.String.explanation_can_say_hello_true);
-				buttonSayHello.Enabled = true;
-			} else {
-				textSayHello.SetText (Resource.String.explanation_can_say_hello_false);
-				buttonSayHello.Enabled = false;
+			var manager = (RestrictionsManager) Activity.GetSystemService (Context.RestrictionsService);
+			Bundle restrictions = manager.ApplicationRestrictions;
+			IList<RestrictionEntry> entries = manager.GetManifestRestrictions (Activity.ApplicationContext.PackageName);
+
+			foreach (RestrictionEntry entry in entries) {
+				String key = entry.Key;
+				Log.Debug (TAG, "key: " + key);
+				if (key == KEY_CAN_SAY_HELLO) {
+					UpdateCanSayHello (entry, restrictions);
+				}
 			}
 		}
 
-		// Returns the current status of the restriction
-		private bool CanSayHello(Bundle restrictions)
+		void UpdateCanSayHello (RestrictionEntry entry, Bundle restrictions)
 		{
-			bool defaultValue = false;
-			bool canSayHello = restrictions == null ? defaultValue :
-				restrictions.GetBoolean("can_say_hello", defaultValue);
-			Log.Debug (TAG, "canSayHello: " + canSayHello);
-			return canSayHello;
+			bool canSayHello;
+			if (restrictions == null || !restrictions.ContainsKey (KEY_CAN_SAY_HELLO))
+				canSayHello = entry.SelectedState;
+			else
+				canSayHello = restrictions.GetBoolean (KEY_CAN_SAY_HELLO);
+
+			textSayHello.SetText (canSayHello ? Resource.String.explanation_can_say_hello_true :
+				Resource.String.explanation_can_say_hello_false);
+			buttonSayHello.Enabled = canSayHello;
 		}
 	}
 }
