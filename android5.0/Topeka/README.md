@@ -4,12 +4,14 @@ A quiz game that showcases material design on Android. This sample makes use of 
 
 ### Screenshots
 
-<img src="Screenshots/Screenshot1.png" width="30%" /> 
-<img src="Screenshots/Screenshot2.png" width="30%" /> 
-<img src="Screenshots/Screenshot3.png" width="30%" /> 
+<img src="Screenshots/Screenshot1.png" width="30%" />
+<img src="Screenshots/Screenshot2.png" width="30%" />
+<img src="Screenshots/Screenshot3.png" width="30%" />
 
 ### Authors
 
 Copyright (c) 2015 Google, Inc.  
 Ported from [Topeka for Android](https://github.com/googlesamples/android-topeka)  
 Ported to Xamarin.Android by Aaron Sky  
+
+### CI/CD Edits
