@@ -36,14 +36,14 @@ namespace ClientApp
         public bool IsPlayServicesAvailable ()
         {
             // These methods are moving to GoogleApiAvailability soon:
-            int resultCode = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (this);
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
             if (resultCode != ConnectionResult.Success)
-            { 
+            {
                 // Google Play Service check failed - display the error to the user:
-                if (GooglePlayServicesUtil.IsUserRecoverableError (resultCode))
+                if (GoogleApiAvailability.Instance.IsUserResolvableError (resultCode))
                 {
                     // Give the user a chance to download the APK:
-                    msgText.Text = GooglePlayServicesUtil.GetErrorString (resultCode);
+                    msgText.Text = GoogleApiAvailability.Instance.GetErrorString (resultCode);
                 }
                 else
                 {
