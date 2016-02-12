@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>DF5C56D5-DEA9-4F15-BE6D-206E5B930591</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstates usage of the Navigation Bar.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
