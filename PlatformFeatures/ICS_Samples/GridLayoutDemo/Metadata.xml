@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>58ABF285-A130-4480-AADF-92E66CE3A26C</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates use of the GridLayout widget.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>
