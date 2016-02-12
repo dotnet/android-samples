@@ -44,7 +44,7 @@ namespace Example_WorkingWithAudio
                 // Frequency
 				11025,
                 // Mono or stereo
-				ChannelConfiguration.Mono,
+				ChannelOut.Mono,
                 // Audio encoding
 				Android.Media.Encoding.Pcm16bit,
                 // Length of the audio clip.
