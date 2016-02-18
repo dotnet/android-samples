@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>531E59EF-35C6-4738-9643-AD8FBF442326</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates how to create your first Xamarin.Android Wear app.</Brief>
+	<Level>Beginning</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features, Getting Started, Android Wear</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>
