@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>C5B93E94-506E-457A-AEB7-9243AFDB79C2</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates the use of ActionBar tabbed layouts.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>

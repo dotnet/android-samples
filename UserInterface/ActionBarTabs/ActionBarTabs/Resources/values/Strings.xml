@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">ActionBar Tabs</string>
+	<string name="whatson_tab_label">What\'s On</string>
+	<string name="speakers_tab_label">Speakers</string>
+	<string name="sessions_tab_label">Sessions</string>
+</resources>
