@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6DB6F6AD-BC1D-44CD-98B9-FBA40114EB5B</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Provides a starting point for the TabHost walkthrough</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
