@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_padding"
+                android:background="?android:attr/colorBackground"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/authenticated_panel">
+  <TextView
+    android:id="@+id/validated_textview"
+    android:text="@string/authenticated_user_message"
+    android:drawablePadding="@dimen/textview_drawablePadding"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal" />
+  <Button xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/scan_again_button"
+          android:layout_below="@+id/validated_textview"
+          android:text="@string/scan_fingerprint_try_again"
+          android:layout_marginTop="6dp" />
+</RelativeLayout>

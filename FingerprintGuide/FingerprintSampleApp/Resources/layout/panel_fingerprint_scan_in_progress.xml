@@ -1,0 +1,17 @@
+﻿<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_padding"
+                android:background="?android:attr/colorBackground"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/scan_in_progress">
+  <TextView
+    android:id="@+id/scan_in_progress_textview"
+    android:text="@string/scan_fingerprint_in_progress"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableTop="@drawable/ic_fp_40px"
+    android:gravity="center_horizontal" />
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>{17C3089A-41B2-4BDF-8EBF-2B4F8F2198C7}</ID>
+    <IsFullApplication>true</IsFullApplication>
+    <Level>Advanced</Level>
+    <Tags>AndroidM,Authentication</Tags>
+    <LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief></Brief>
+</SampleMetadata>

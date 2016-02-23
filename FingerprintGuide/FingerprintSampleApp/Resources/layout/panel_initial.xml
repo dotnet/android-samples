@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_padding"
+                android:background="?android:attr/colorBackground"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:id="@+id/initial_panel">
+  <TextView
+    android:id="@+id/initial_panel_textview"
+    android:text="@string/scan_fingerprint_ready"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableTop="@drawable/ic_fp_40px"
+    android:gravity="center_horizontal" />
+  <Button
+    android:id="@+id/start_authentication_scan_buton"
+    android:text="@string/scan_fingerprint_start"
+    android:layout_gravity="center"
+    android:layout_below="@+id/initial_panel_textview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp" />
+</RelativeLayout>
