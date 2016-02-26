@@ -14,7 +14,7 @@ namespace Wearable
 	public class DeleteService : IntentService, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
 	{
 		// Timeout for making a connection to GoogleApiClient (in milliseconds)
-		private const long TIME_OUT = 100;
+		private const long TIME_OUT = 300;
 
 		private GoogleApiClient mGoogleApiClient;
 
