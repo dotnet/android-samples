@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<dimen name="keyline_margin">16dp</dimen>
+	<dimen name="keyline_content_start">72dp</dimen>
+	<dimen name="keyline_content_end_with_fab">32dp</dimen>
+</resources>
