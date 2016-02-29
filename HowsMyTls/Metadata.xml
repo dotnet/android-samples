@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6b88f613-5aa4-4903-aa2e-eeb9a0d0fae3</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Cloud</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates how to make a basic TLSv1.0/1.2 connections.</Brief>
+</SampleMetadata>

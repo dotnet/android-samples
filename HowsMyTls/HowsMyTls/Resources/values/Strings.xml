@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">How\'s My TLS?</string>
+	<string name="rating">Rating: </string>
+	<string name="tls_version">TLS version: </string>
+	<string name="able_to_detect_n_minus_one_splitting">Able to detect n minus one splitting: </string>
+	<string name="beast_vuln">Beast vuln: </string>
+	<string name="unknown_cipher_suite_supported">Unknown cipher suite supported: </string>
+	<string name="tls_compression_supported">TLS compression supported: </string>
+	<string name="session_ticket_supported">Session ticket supported: </string>
+	<string name="ephemeral_keys_supported">Ephemeral keys supported: </string>
+	<string name="given_cipher_suites">Given cipher suites</string>
+	<string name="issue_net_request">Run check with Mono request</string>
+	<string name="issue_native_request">Run check with Android request</string>
+</resources>
