@@ -72,7 +72,7 @@ namespace HowsMyTls {
 
 				WebResponse msg = await RunRequest ();
 				using (var stream = msg.GetResponseStream ())
-					ProcessResponceStream (stream);
+					ProcessResponseStream (stream);
 
 				netRequestButton.Enabled = !netRequestButton.Enabled;
 			};
@@ -83,7 +83,7 @@ namespace HowsMyTls {
 
 				AndroidHttpResponseMessage msg = await RunNativeRequest ();
 				using (var stream = await msg.Content.ReadAsStreamAsync ())
-					ProcessResponceStream (stream);
+					ProcessResponseStream (stream);
 
 				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
 			};
@@ -151,7 +151,7 @@ namespace HowsMyTls {
 			}).ConfigureAwait (false);
 		}
 
-		public void ProcessResponceStream (Stream stream)
+		public void ProcessResponseStream (Stream stream)
 		{
 			if (stream == null)
 				return;
