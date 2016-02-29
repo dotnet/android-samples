@@ -68,16 +68,24 @@ namespace HowsMyTls {
 
 			var netRequestButton = FindViewById<Button> (Resource.Id.NetRequestButton);
 			netRequestButton.Click += async delegate {
+				netRequestButton.Enabled = !netRequestButton.Enabled;
+
 				WebResponse msg = await RunRequest ();
 				using (var stream = msg.GetResponseStream ())
 					ProcessResponceStream (stream);
+
+				netRequestButton.Enabled = !netRequestButton.Enabled;
 			};
 
 			var nativeRequestButton = FindViewById<Button> (Resource.Id.NativeRequestButton);
 			nativeRequestButton.Click += async delegate {
+				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
+
 				AndroidHttpResponseMessage msg = await RunNativeRequest ();
 				using (var stream = await msg.Content.ReadAsStreamAsync ())
 					ProcessResponceStream (stream);
+
+				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
 			};
 
 			layout = FindViewById (Resource.Id.sample_main_layout);
@@ -98,7 +106,7 @@ namespace HowsMyTls {
 				WebResponse msg = null;
 
 				try {
-					// NOTE: diagnostic will show TLS1.0
+					// NOTE: diagnostic will show TLS1.0 even if we enforce TLS1.2
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 					var request = new HttpWebRequest (new Uri (serverUrl));

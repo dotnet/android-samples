@@ -210,13 +210,10 @@
                     android:layout_gravity="right"
                     android:gravity="right" />
             </LinearLayout>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="@string/issue_net_request"
                 android:gravity="center"
                 android:textColor="@color/secondaryText"
@@ -230,10 +227,6 @@
                 android:textColor="@color/secondaryText"
                 android:id="@+id/NativeRequestButton"
                 android:textAllCaps="false" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
