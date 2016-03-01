@@ -1,4 +1,3 @@
-using Android.App;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V7.App;
@@ -6,7 +5,7 @@ using Android.Util;
 
 namespace com.xamarin.example.actionbar.tabs.support
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/Theme.AppCompat", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Android.App.Activity(Label = "@string/app_name", Theme = "@style/Theme.AppCompat", MainLauncher = true, Icon = "@drawable/ic_launcher")]
     public class MainActivity : ActionBarActivity, ActionBar.ITabListener
     {
         static readonly string Tag = "ActionBarTabsSupport";
@@ -34,7 +33,6 @@ namespace com.xamarin.example.actionbar.tabs.support
         {
             base.OnCreate(bundle);
 
-            SupportActionBar.NavigationMode = ActionBar.NavigationModeTabs;
             SetContentView(Resource.Layout.Main);
 
             _fragments = new Fragment[]
