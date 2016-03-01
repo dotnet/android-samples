@@ -9,6 +9,7 @@ using Android.Support.V4.Hardware.Fingerprint;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Res = Android.Resource;
 
 namespace Xamarin.FingerprintSample
 {
@@ -102,7 +103,7 @@ namespace Xamarin.FingerprintSample
             }
             else
             {
-                Snackbar.Make(FindViewById(Android.Resource.Id.Content),
+                Snackbar.Make(FindViewById(Res.Id.Content),
                               Resource.String.missing_fingerprint_permissions,
                               Snackbar.LengthLong)
                         .Show();

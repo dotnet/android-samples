@@ -9,6 +9,7 @@ using Android.Widget;
 using Java.Lang;
 using Javax.Crypto;
 using CancellationSignal = Android.Support.V4.OS.CancellationSignal;
+using Res = Android.Resource;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UseStringInterpolation
@@ -63,7 +64,7 @@ namespace Xamarin.FingerprintSample
             base.OnCreate(savedInstanceState);
             RetainInstance = true;
             CryptObjectHelper = new CryptoObjectHelper();
-            SetStyle(DialogFragmentStyle.Normal, Android.Resource.Style.ThemeMaterialLightDialog);
+            SetStyle(DialogFragmentStyle.Normal, Res.Style.ThemeMaterialLightDialog);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
