@@ -3,8 +3,6 @@ using System.Net;
 using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 using Android.App;
 using Android.Views;
@@ -13,7 +11,6 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 
-using Java.Security.Cert;
 using Xamarin.Android.Net;
 using Newtonsoft.Json;
 
@@ -33,33 +30,6 @@ namespace HowsMyTls {
 		TextView ephemeralKeysSupported;
 
 		public ClientStatus CurrentStatus { get; set; }
-
-		X509Certificate2 dotNetCertificate;
-		X509Certificate2 DotNetCertificate {
-			get {
-				if (dotNetCertificate == null) {
-					using (Stream cs = Assets.Open (certificateFileName)) {
-						var bytes = cs.ReadAllBytes ();
-						dotNetCertificate = new X509Certificate2 (bytes);
-					}
-				}
-
-				return dotNetCertificate;
-			}
-		}
-
-		Certificate nativeCertificate;
-		Certificate NativeCertificate {
-			get {
-				if (nativeCertificate == null) {
-					var cf = CertificateFactory.GetInstance ("X.509");
-					using (Stream cs = Assets.Open (certificateFileName))
-						nativeCertificate = cf.GenerateCertificate (cs);
-				}
-
-				return nativeCertificate;
-			}
-		}
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -100,30 +70,24 @@ namespace HowsMyTls {
 
 		async Task<WebResponse> RunRequest ()
 		{
-			return await Task.Factory.StartNew (() => {
+			var actual = ServicePointManager.SecurityProtocol;
+			WebResponse msg = null;
 
-				var actual = ServicePointManager.SecurityProtocol;
-				WebResponse msg = null;
+			try {
+				//// NOTE: diagnostic will show TLS1.0 even if we enforce TLS1.2
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-				try {
-					// NOTE: diagnostic will show TLS1.0 even if we enforce TLS1.2
-					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				var request = new HttpWebRequest (new Uri (serverUrl));
+				ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+				msg = await request.GetResponseAsync ();
+			} catch (Exception ex) {
+				ShowMessage ("Web exception occurred");
+				Console.WriteLine (ex.Message);
+			} finally {
+				ServicePointManager.SecurityProtocol = actual;
+			}
 
-					var request = new HttpWebRequest (new Uri (serverUrl));
-					ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-
-					request.ClientCertificates.Add (DotNetCertificate);
-					ShowMessage ("Executing request");
-					msg = request.GetResponse ();
-				} catch (Exception ex) {
-					ShowMessage ("Web exception occurred");
-					Console.WriteLine (ex.Message);
-				} finally {
-					ServicePointManager.SecurityProtocol = actual;
-				}
-
-				return msg;
-			}).ConfigureAwait (false);
+			return msg;
 		}
 
 		async Task<AndroidHttpResponseMessage> RunNativeRequest ()
@@ -136,8 +100,7 @@ namespace HowsMyTls {
 					var handler = new AndroidClientHandler {
 						UseCookies = true,
 						AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip,
-						PreAuthenticate = true,
-						TrustedCerts = new List<Certificate> { NativeCertificate }
+						PreAuthenticate = true
 					};
 
 					var httpClient = new HttpClient (handler);
