@@ -40,9 +40,9 @@ namespace HowsMyTls {
 			netRequestButton.Click += async delegate {
 				netRequestButton.Enabled = !netRequestButton.Enabled;
 
-				WebResponse msg = await RunRequest ();
-				using (var stream = msg.GetResponseStream ())
-					ProcessResponseStream (stream);
+				string json = await RunRequest ();
+				CurrentStatus = JsonConvert.DeserializeObject<ClientStatus> (json);
+				UpdateUI (CurrentStatus);
 
 				netRequestButton.Enabled = !netRequestButton.Enabled;
 			};
@@ -51,9 +51,9 @@ namespace HowsMyTls {
 			nativeRequestButton.Click += async delegate {
 				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
 
-				AndroidHttpResponseMessage msg = await RunNativeRequest ();
-				using (var stream = await msg.Content.ReadAsStreamAsync ())
-					ProcessResponseStream (stream);
+				string json = await RunNativeRequest ();
+				CurrentStatus = JsonConvert.DeserializeObject<ClientStatus>(json);
+				UpdateUI (CurrentStatus);
 
 				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
 			};
@@ -68,18 +68,20 @@ namespace HowsMyTls {
 			ephemeralKeysSupported = FindViewById<TextView> (Resource.Id.EphemeralKeysSupported);
 		}
 
-		async Task<WebResponse> RunRequest ()
+		async Task<string> RunRequest ()
 		{
 			var actual = ServicePointManager.SecurityProtocol;
-			WebResponse msg = null;
+			string msg = string.Empty;
 
 			try {
 				//// NOTE: diagnostic will show TLS1.0 even if we enforce TLS1.2
-				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-				var request = new HttpWebRequest (new Uri (serverUrl));
-				ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-				msg = await request.GetResponseAsync ();
+				using (var client = new HttpClient ()) {
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+					using (var response = await client.GetAsync (serverUrl)) {
+						msg = await response.Content.ReadAsStringAsync ();
+					}
+				}
 			} catch (Exception ex) {
 				ShowMessage ("Web exception occurred");
 				Console.WriteLine (ex.Message);
@@ -90,28 +92,26 @@ namespace HowsMyTls {
 			return msg;
 		}
 
-		async Task<AndroidHttpResponseMessage> RunNativeRequest ()
+		async Task<string> RunNativeRequest ()
 		{
-			return await Task.Factory.StartNew (() => {
+			string msg = string.Empty;
 
-				AndroidHttpResponseMessage msg = null;
+			try {
+				var handler = new AndroidClientHandler {
+					UseCookies = true,
+					AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip,
+					PreAuthenticate = true
+				};
 
-				try {
-					var handler = new AndroidClientHandler {
-						UseCookies = true,
-						AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip,
-						PreAuthenticate = true
-					};
+				var httpClient = new HttpClient (handler);
+				var responseMessage = await httpClient.GetAsync (serverUrl);
+				msg = await ((AndroidHttpResponseMessage)responseMessage).Content.ReadAsStringAsync ();
+			} catch (Exception ex) {
+				ShowMessage ("Web exception occurred");
+				Console.WriteLine (ex.Message);
+			}
 
-					var httpClient = new HttpClient (handler);
-					msg = httpClient.GetAsync (serverUrl)?.Result as AndroidHttpResponseMessage;
-				} catch (Exception ex) {
-					ShowMessage ("Web exception occurred");
-					Console.WriteLine (ex.Message);
-				}
-
-				return msg;
-			}).ConfigureAwait (false);
+			return msg;
 		}
 
 		public void ProcessResponseStream (Stream stream)
