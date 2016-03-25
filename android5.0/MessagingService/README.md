@@ -1,10 +1,14 @@
 Messaging Service Sample
 ==========================
 
-This sample shows a simple service that sends notifications using NotificationCompat.
-In addition to sending a notification, it also extends the notification with a CarExtender 
-to make it compatible with Android Auto. Each unread conversation from a user is sent 
-as a distinct notification.
+This sample shows a simple service that sends notifications using
+NotificationCompat. It also extends the notification with Remote
+Input to allow Android N devices to reply via text directly from
+the notification without having to open an App. The same Remote
+Input object also allows Android Auto users to respond by voice
+when the notification is presented there.
+Note: Each unread conversation from a user is sent as a distinct
+notification.
 
 Introduction
 ------------
@@ -29,7 +33,7 @@ Instructions
 
 Build Requirements
 ------------------
-Using this sample requires the Android SDK platform for Android 5.0 (API level 21).
+Using this sample requires the Android SDK platform for Android 5.0 (API level 23).
 
 Screenshots
 -------------
@@ -38,7 +42,7 @@ Screenshots
 
 Authors
 -------
-Copyright (c) 2014 The Android Open Source Project, Inc.
+Copyright (c) 2016 The Android Open Source Project, Inc.
 
 Ported from [Android MessagingService Sample](https://github.com/googlesamples/android-messagingService)
 

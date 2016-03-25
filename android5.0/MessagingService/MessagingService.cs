@@ -37,7 +37,7 @@ namespace MessagingService
 		public const string REPLY_ACTION =
 			"com.xamarin.messagingservice.ACTION_MESSAGE_REPLY";
 		public const string CONVERSATION_ID = "conversation_id";
-		public const string EXTRA_VOICE_REPLY = "extra_voice_reply";
+		public const string EXTRA_REMOTE_REPLY = "extra_remote_reply";
 		public const int MSG_SEND_NOTIFICATION = 1;
 
 		NotificationManagerCompat mNotificationManager;
@@ -96,9 +96,10 @@ namespace MessagingService
 				                                  GetMessageReadIntent (conversation.ConversationId),
 				                                  PendingIntentFlags.UpdateCurrent);
 
-			// Build a RemoteInput for receiving voice input in a Car Notification
-			var remoteInput = new Android.Support.V4.App.RemoteInput.Builder (EXTRA_VOICE_REPLY)
-				.SetLabel (ApplicationContext.GetString (Resource.String.notification_reply))
+			// Build a RemoteInput for receiving voice input in a Car Notification or text input on
+			// devices that support text input (like devices on Android N and above).
+			var remoteInput = new Android.Support.V4.App.RemoteInput.Builder (EXTRA_REMOTE_REPLY)
+				.SetLabel (ApplicationContext.GetString (Resource.String.reply))
 				.Build ();
 
 			// Building a Pending Intent for the reply action to trigger
@@ -106,6 +107,12 @@ namespace MessagingService
 				                            conversation.ConversationId,
 				                            GetMessageReplyIntent (conversation.ConversationId),
 				                            PendingIntentFlags.UpdateCurrent);
+
+			// Build an Android N compatible Remote Input enabled action.
+			NotificationCompat.Action actionReplyByRemoteInput = new NotificationCompat.Action.Builder (
+				Resource.Drawable.notification_icon,
+				GetString (Resource.String.reply),
+				replyIntent).AddRemoteInput (remoteInput).Build ();
 
 			// Create the UnreadConversation and populate it with the participant name,
 			// read and reply intents.
@@ -135,7 +142,8 @@ namespace MessagingService
 				.Extend (new NotificationCompat.CarExtender ()
 					.SetUnreadConversation (unreadConvBuilder.Build ())
 					.SetColor (ApplicationContext
-						.Resources.GetColor (Resource.Color.default_color_light)));
+						.Resources.GetColor (Resource.Color.default_color_light)))
+				.AddAction (actionReplyByRemoteInput);
 
 			MessageLogger.LogMessage (ApplicationContext, "Sending notification "
 			+ conversation.ConversationId + " conversation: " + conversation);

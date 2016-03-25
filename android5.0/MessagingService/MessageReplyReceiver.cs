@@ -15,7 +15,10 @@
  */
 
 using System;
+
+using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Util;
@@ -23,7 +26,7 @@ using Android.Util;
 namespace MessagingService
 {
 	[BroadcastReceiver (Enabled = true)]
-	[Android.App.IntentFilter (new String[]{ MessagingService.REPLY_ACTION })]
+	[Android.App.IntentFilter (new []{ MessagingService.REPLY_ACTION })]
 	/// <summary>
 	/// A receiver that gets called when a reply is sent to a given conversationId
 	/// </summary>
@@ -40,6 +43,15 @@ namespace MessagingService
 					Log.Debug (TAG, "Got reply (" + reply + ") for ConversationId " + conversationId);
 					MessageLogger.LogMessage (context, "ConversationId: " + conversationId +
 					" received a reply: [" + reply + "]");
+
+					using (NotificationManagerCompat notificationManager = NotificationManagerCompat.From (context)) {
+						var notificationBuilder = new NotificationCompat.Builder (context);
+						notificationBuilder.SetSmallIcon (Resource.Drawable.notification_icon);
+						notificationBuilder.SetLargeIcon (BitmapFactory.DecodeResource (context.Resources, Resource.Drawable.android_contact));
+						notificationBuilder.SetContentText (context.GetString (Resource.String.replied));
+						Notification repliedNotification = notificationBuilder.Build ();
+						notificationManager.Notify (conversationId, repliedNotification);
+					}
 				}
 			}
 		}
@@ -53,8 +65,8 @@ namespace MessagingService
 		/// <param name="intent">Intent.</param>
 		static string GetMessageText (Intent intent)
 		{
-			Bundle remoteInput = RemoteInput.GetResultsFromIntent (intent);
-			return remoteInput != null ? remoteInput.GetCharSequence (MessagingService.EXTRA_VOICE_REPLY) : null;
+			Bundle remoteInput = Android.App.RemoteInput.GetResultsFromIntent (intent);
+			return remoteInput != null ? remoteInput.GetCharSequence (MessagingService.EXTRA_REMOTE_REPLY) : null;
 		}
 	}
 }
