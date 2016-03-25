@@ -1,29 +1,34 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.Service.Notification;
+using Android.Support.V4.App;
 
 namespace ActiveNotifications
 {
-	public class ActiveNotificationFragment :Fragment
+	// A fragment that allows notifications to be enqueued.
+	public class ActiveNotificationFragment : Android.App.Fragment
 	{
+		// The request code can be any number as long as it doesn't match another request code used in the same app.
+		static readonly int REQUEST_CODE = 2323;
+
 		static readonly string TAG = "ActiveNotificationFragment";
+
+		static readonly string NOTIFICATION_GROUP = "com.example.android.activenotifications.notification_type";
+
+		static readonly int NOTIFICATION_GROUP_SUMMARY_ID = 1;
 
 		NotificationManager notificationManager;
 		TextView numberOfNotifications;
 
-		// Every notification needs a unique ID otherwise the previous one would be overwritten.
-		int notificationId = 0;
+		// Every notification needs a unique ID otherwise the previous one would be overwritten. This
+		// variable is incremented when used.
+		int notificationId = NOTIFICATION_GROUP_SUMMARY_ID + 1;
+
 		PendingIntent deletePendingIntent;
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -37,32 +42,66 @@ namespace ActiveNotifications
 			numberOfNotifications = view.FindViewById <TextView> (Resource.Id.number_of_notifications);
 			var addNotification = view.FindViewById <Button> (Resource.Id.add_notification);
 
-			addNotification.Click += (object sender, EventArgs e) => AddNotificationAndReadNumber ();
+			addNotification.Click += (sender, e) => AddNotificationAndUpdateSummaries ();
 
 			// Create a PendingIntent to be fired upon deletion of a Notification.
 			var deleteIntent = new Intent (MainActivity.ACTION_NOTIFICATION_DELETE);
-			deletePendingIntent = PendingIntent.GetBroadcast (Activity, 2323 /* requestCode */, deleteIntent, 0);
+			deletePendingIntent = PendingIntent.GetBroadcast (Activity, REQUEST_CODE, deleteIntent, 0);
 		}
-			
+
 		/**
-		 *  Add a new Notification with sample data and send it to the system.
-		 * Then read the current number of displayed notifications for this application.
-		 */
-		void AddNotificationAndReadNumber ()
+		* Adds a new {@link Notification} with sample data and sends it to the system.
+		* Then updates the current number of displayed notifications for this application and
+		* creates a notification summary if more than one notification exists.
+		*/
+		void AddNotificationAndUpdateSummaries ()
 		{
 			// Create a Notification and notify the system.
-			var builder = new Notification.Builder (Activity)
+			var builder = new NotificationCompat.Builder (Activity)
 				.SetSmallIcon (Resource.Mipmap.ic_notification)
 				.SetContentTitle (GetString (Resource.String.app_name))
 				.SetContentText (GetString (Resource.String.sample_notification_content))
 				.SetAutoCancel (true)
-				.SetDeleteIntent (deletePendingIntent);
+				.SetDeleteIntent (deletePendingIntent)
+				.SetGroup (NOTIFICATION_GROUP);
 
 			Notification notification = builder.Build ();
-			notificationManager.Notify (++notificationId, notification);
+			notificationManager.Notify (GetNewNotificationId (), notification);
 
 			CommonSampleLibrary.Log.Info (TAG, "Add a notification");
-			UpdateNumberOfNotifications ();
+			UpdateNotificationSummary ();
+		}
+
+		// Adds/updates/removes the notification summary as necessary.
+		void UpdateNotificationSummary ()
+		{
+			StatusBarNotification[] activeNotifications = notificationManager.GetActiveNotifications ();
+			int numberOfNotifications = activeNotifications.Length;
+
+			// Since the notifications might include a summary notification remove it from the count if
+			// it is present.
+			foreach (StatusBarNotification notification in activeNotifications) {
+				if (notification.Id == NOTIFICATION_GROUP_SUMMARY_ID) {
+					numberOfNotifications--;
+					break;
+				}
+			}
+
+			if (numberOfNotifications > 1) {
+				// Add/update the notification summary.
+				string notificationContent = GetString (Resource.String.sample_notification_content, "" + numberOfNotifications);
+				var builder = new NotificationCompat.Builder (Activity);
+				builder.SetSmallIcon (Resource.Mipmap.ic_notification);
+				builder.SetStyle (new NotificationCompat.BigTextStyle ().SetSummaryText (notificationContent));
+				builder.SetGroup (NOTIFICATION_GROUP);
+				builder.SetGroupSummary (true);
+
+				Notification notification = builder.Build ();
+				notificationManager.Notify (NOTIFICATION_GROUP_SUMMARY_ID, notification);
+			} else {
+				// Remove the notification summary.
+				notificationManager.Cancel (NOTIFICATION_GROUP_SUMMARY_ID);
+			}
 		}
 
 		/**
@@ -72,8 +111,8 @@ namespace ActiveNotifications
 		public void UpdateNumberOfNotifications () 
 		{
 			/** TODO Clearing large sets of notifications at once currently throws an exception. 
-			 * See https://github.com/googlesamples/android-ActiveNotifications/issues/1
-			 * for more information.
+			* See https://github.com/googlesamples/android-ActiveNotifications/issues/1
+			* for more information.
 			*/
 			try {
 				// Query the currently displayed notifications.
@@ -84,8 +123,23 @@ namespace ActiveNotifications
 
 				CommonSampleLibrary.Log.Info (TAG, GetString (Resource.String.active_notifications, totalNotifications));
 			} catch (Exception e) {
-				Console.WriteLine (e.ToString ());
+				Console.WriteLine (e);
 			}
+		}
+
+		/**
+		* Retrieves a unique notification ID.
+		*/
+		public int GetNewNotificationId ()
+		{
+			int updatedNotificationId = notificationId++;
+			// Unlikely in the sample, but the int will overflow if used enough so we skip the summary
+			// ID. Most apps will prefer a more deterministic way of identifying an ID such as hashing
+			// the content of the notification.
+			if (updatedNotificationId == NOTIFICATION_GROUP_SUMMARY_ID)
+				updatedNotificationId = notificationId++;
+
+			return updatedNotificationId;
 		}
 	}
 }

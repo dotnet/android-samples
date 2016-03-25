@@ -14,24 +14,17 @@
 * limitations under the License.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
-using Android.Text;
 
 namespace CommonSampleLibrary
 {
 	/**
 	* Simple fraggment which contains a LogView and uses is to output log data it receives
- 	* through the LogNode interface.
+	* through the LogNode interface.
 	*/
 	public class LogFragment : Fragment
 	{
@@ -75,10 +68,7 @@ namespace CommonSampleLibrary
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			View result = InflateViews ();
-
-			mLogView.AfterTextChanged += (object sender, AfterTextChangedEventArgs e) => {
-				mScrollView.FullScroll (FocusSearchDirection.Down);
-			}; 
+			mLogView.AfterTextChanged += (sender, e) => mScrollView.FullScroll (FocusSearchDirection.Down); 
 
 			return result;
 		}

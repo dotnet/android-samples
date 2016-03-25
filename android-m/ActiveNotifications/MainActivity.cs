@@ -1,12 +1,8 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Content.PM;
 
 using CommonSampleLibrary;
 
@@ -35,8 +31,7 @@ namespace ActiveNotifications
 
 			if (bundle == null) {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
-				var fragment = new ActiveNotificationFragment ();
-				transaction.Replace (Resource.Id.sample_content_fragment, fragment);
+				transaction.Replace (Resource.Id.sample_content_fragment, new ActiveNotificationFragment ());
 				transaction.Commit ();
 			}
 		}
@@ -89,10 +84,7 @@ namespace ActiveNotifications
 				logShown = !logShown;
 				var output = FindViewById <ViewAnimator> (Resource.Id.sample_output);
 
-				if (logShown)
-					output.DisplayedChild = 1;
-				else
-					output.DisplayedChild = 0;
+				output.DisplayedChild = logShown ? 1 : 0;
 
 				InvalidateOptionsMenu ();
 				return true;
@@ -122,7 +114,7 @@ namespace ActiveNotifications
 
 	class ANBroadcastReceiver : BroadcastReceiver
 	{
-		MainActivity self;
+		readonly MainActivity self;
 
 		public ANBroadcastReceiver (MainActivity self)
 		{

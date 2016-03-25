@@ -15,14 +15,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.Util;
 
@@ -46,8 +41,8 @@ namespace CommonSampleLibrary
 		}
 
 		/**
-     	* Formats the log data and prints it out to the LogView.
-     	*/
+		* Formats the log data and prints it out to the LogView.
+		*/
 		public void WriteLine (LogPriority priority, string tag, string msg, Java.Lang.Throwable tr)
 		{
 			string priorityStr = null;
@@ -72,8 +67,6 @@ namespace CommonSampleLibrary
 			case LogPriority.Assert:
 				priorityStr = "ASSERT";
 				break;
-			default:
-				break;
 			}
 
 			// Handily, the Log class has a facility for converting a stack trace into a usable string.
@@ -84,9 +77,9 @@ namespace CommonSampleLibrary
 
 			// Take the priority, tag, message, and exception, and concatenate as necessary
 			// into one usable line of text.
-			StringBuilder outputBuilder = new StringBuilder ();
+			var outputBuilder = new StringBuilder ();
 
-			string delimiter = "\t";
+			const string delimiter = "\t";
 			AppendIfNotNull (outputBuilder, priorityStr, delimiter);
 			AppendIfNotNull (outputBuilder, tag, delimiter);
 			AppendIfNotNull (outputBuilder, msg, delimiter);
@@ -104,24 +97,17 @@ namespace CommonSampleLibrary
 			}
 		}
 
-
-		// The next LogNode in the chain.
-		ILogNode mNext;
-
-		public ILogNode NextNode {
-			get { return mNext; }
-			set { mNext = value; }
-		}
+		public ILogNode NextNode { get; set; }
 
 		/** Takes a string and adds to it, with a separator, if the bit to be added isn't null. Since
-     	* the logger takes so many arguments that might be null, this method helps cut out some of the
-     	* agonizing tedium of writing the same 3 lines over and over.
-     	*/
-		StringBuilder AppendIfNotNull (StringBuilder source, string addStr, string delimiter)
+		* the logger takes so many arguments that might be null, this method helps cut out some of the
+		* agonizing tedium of writing the same 3 lines over and over.
+		*/
+		static StringBuilder AppendIfNotNull (StringBuilder source, string addStr, string delimiter)
 		{
 			if (addStr != null) {
 				if (addStr.Length == 0) {
-					delimiter = "";
+					delimiter = string.Empty;
 				}
 				return source.Append (addStr).Append (delimiter);
 			}
