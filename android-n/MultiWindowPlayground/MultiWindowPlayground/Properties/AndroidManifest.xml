@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.xamarin.multiwindowplayground" xmlns:android="http://schemas.android.com/apk/res/android">
+	<application android:label="MultiWindow Playground" android:icon="@mipmap/ic_launcher">
+		<activity android:name="com.xamarin.multiwindowplayground.MinimumSizeActivity" android:launchMode="singleInstance" android:taskAffinity="">
+			<layout android:defaultHeight="500dp" android:defaultWidth="750dp" android:gravity="top|end" android:minimalSize="500dp" />
+		</activity>
+		<activity android:name="com.xamarin.multiwindowplayground.UnresizableActivity" android:resizeableActivity="false" android:taskAffinity="" />
+	</application>
+	<uses-sdk android:minSdkVersion="23" />
+</manifest>
