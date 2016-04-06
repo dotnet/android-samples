@@ -6,5 +6,5 @@
 		</activity>
 		<activity android:name="com.xamarin.multiwindowplayground.UnresizableActivity" android:resizeableActivity="false" android:taskAffinity="" />
 	</application>
-	<uses-sdk />
+	<uses-sdk android:minSdkVersion="23" />
 </manifest>
