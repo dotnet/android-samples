@@ -39,7 +39,7 @@ namespace MultiWindowPlayground
 			// properties from the root activity would have been inherited (which was here marked as
 			// resizable by default).
 
-			Intent intent = new Intent(this, typeof(UnresizableActivity));
+			var intent = new Intent(this, typeof(UnresizableActivity));
 			intent.AddFlags(ActivityFlags.NewTask);
 
 			StartActivity(intent);
@@ -77,14 +77,14 @@ namespace MultiWindowPlayground
 			Log.Debug(logTag, "** starting LaunchBoundsActivity");
 
 			// Define the bounds in which the Activity will be launched into.
-			Rect bounds = new Rect(500, 300, 100, 0);
+			var bounds = new Rect(500, 300, 100, 0);
 
 			// Set the bounds as an activity option.
-			var options = ActivityOptions.MakeBasic();
+			ActivityOptions options = ActivityOptions.MakeBasic();
 			options.SetLaunchBounds(bounds);
 
 			// Start the LaunchBoundsActivity with the specified options
-			Intent intent = new Intent(this, typeof(LaunchBoundsActivity));
+			var intent = new Intent(this, typeof(LaunchBoundsActivity));
 			StartActivity(intent, options.ToBundle());
 
 		}
