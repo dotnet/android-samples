@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67B72C75-2B31-41BD-B14B-5AC557AC4E67}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DirectBoot</RootNamespace>
+    <AssemblyName>DirectBoot</AssemblyName>
+    <TargetFrameworkVersion>v6.0.99</TargetFrameworkVersion>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>packages\Xamarin.Android.Support.v4.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Vector.Drawable.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>packages\Xamarin.Android.Support.Design.23.2.1\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Alarms\Alarm.cs" />
+    <Compile Include="Alarms\AlarmAdapter.cs" />
+    <Compile Include="Alarms\AlarmUtil.cs" />
+    <Compile Include="Alarms\AlarmStorage.cs" />
+    <Compile Include="Alarms\AlarmIntentService.cs" />
+    <Compile Include="BootBroadcastReceiver.cs" />
+    <Compile Include="SchedulerFragment.cs" />
+    <Compile Include="TimePickerFragment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\divider.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_add_alarm_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_alarm_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_delete_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_fbe_notification.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tile.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_add_alarm_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_alarm_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_delete_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_fbe_notification.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_add_alarm_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_alarm_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_delete_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_fbe_notification.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_alarm_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_alarm_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_fbe_notification.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add_alarm_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_alarm_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete_black_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_fbe_notification.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
+    <AndroidResource Include="Resources\layout\alarm_row.axml" />
+    <AndroidResource Include="Resources\layout\fragment_alarm_scheduler.axml" />
+    <AndroidResource Include="Resources\layout\fragment_time_picker.axml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\template-dimens.xml" />
+    <AndroidResource Include="Resources\values\template-styles.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-dimens.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\template-styles.xml" />
+    <AndroidResource Include="Resources\values-v11\template-styles.xml" />
+    <AndroidResource Include="Resources\values-v21\base-template-styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Alarms\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\mipmap-hdpi\" />
+    <Folder Include="Resources\mipmap-mdpi\" />
+    <Folder Include="Resources\mipmap-xhdpi\" />
+    <Folder Include="Resources\mipmap-xxhdpi\" />
+    <Folder Include="Resources\mipmap-xxxhdpi\" />
+    <Folder Include="Resources\values-sw600dp\" />
+    <Folder Include="Resources\values-v11\" />
+    <Folder Include="Resources\values-v21\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.23.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.23.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
+</Project>
