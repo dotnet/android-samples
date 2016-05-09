@@ -88,7 +88,7 @@ namespace AgendaData
 				// Store the DataItem URIs in a List and close the bugger. Then we use these URIs to delete the DataItems.
 				var dataItemList = new List<IDataItem> ();
                 dataItemList.AddRange (dataItems);
-				dataItems.Close ();
+				//dataItems.Close ();
 
 				if (dataItemList.Count > 0) {
 					foreach (var dataItem in dataItemList) {

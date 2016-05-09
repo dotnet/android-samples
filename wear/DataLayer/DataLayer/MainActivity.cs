@@ -116,13 +116,13 @@ namespace DataLayer
 
 		protected override async void OnStop ()
 		{
+			base.OnStop ();
 			if (!mResolvingError) {
 				await WearableClass.DataApi.RemoveListenerAsync (mGoogleApiClient, this);
                 await WearableClass.MessageApi.RemoveListenerAsync (mGoogleApiClient, this);
                 await WearableClass.NodeApi.RemoveListenerAsync (mGoogleApiClient, this);
 				mGoogleApiClient.Disconnect ();
 			}
-			base.OnStop ();
 		}
 
 		public async void OnConnected (Bundle connectionHint)
@@ -172,7 +172,7 @@ namespace DataLayer
 			LOGD (Tag, "OnDataChanged: " + dataEvents);
 			var events = new List<IDataEvent> ();
             events.AddRange (dataEvents);
-			dataEvents.Close ();
+			//dataEvents.Close ();
 			RunOnUiThread (() => {
 				foreach (var ev in events)
 				{

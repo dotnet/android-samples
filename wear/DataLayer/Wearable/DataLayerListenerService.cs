@@ -43,7 +43,7 @@ namespace Wearable
 		{
 			LOGD (Tag, "OnDataChanged: " + dataEvents);
 			IList events = FreezableUtils.FreezeIterable (dataEvents);
-			dataEvents.Close ();
+			dataEvents.Release ();
 			if (!googleApiClient.IsConnected) {
 				ConnectionResult connectionResult = googleApiClient.BlockingConnect (30, TimeUnit.Seconds);
 				if (!connectionResult.IsSuccess) {
