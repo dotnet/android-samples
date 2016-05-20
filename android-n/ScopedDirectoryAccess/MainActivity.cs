@@ -4,7 +4,7 @@ using Android.Support.V7.App;
 
 namespace ScopedDirectoryAccess
 {
-	[Activity (Label = "ScopedDirectoryAccess", MainLauncher = true, Theme= "@style/AppTheme")]
+	[Activity (Label = "ScopedDirectoryAccess", MainLauncher = true, Theme= "@style/Theme.AppCompat.Light")]
 	public class MainActivity : AppCompatActivity
 	{
 		readonly string FRAGMENT_TAG = typeof(ScopedDirectoryAccessFragment).Name;

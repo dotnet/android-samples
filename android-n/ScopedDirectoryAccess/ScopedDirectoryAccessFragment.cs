@@ -41,11 +41,11 @@ namespace ScopedDirectoryAccess
 			return new ScopedDirectoryAccessFragment ();
 		}
 
-		public override void OnActivityCreated (Bundle savedInstanceState)
+		public override void OnAttach (Context context)
 		{
-			base.OnActivityCreated (savedInstanceState);
+			base.OnAttach (context);
 
-			storageManager = Activity.GetSystemService (Java.Lang.Class.FromType (typeof(StorageManager))).JavaCast<StorageManager> ();
+			storageManager = Activity.GetSystemService (Java.Lang.Class.FromType (typeof (StorageManager))).JavaCast<StorageManager> ();
 		}
 
 		public override void OnActivityResult (int requestCode, Result resultCode, Android.Content.Intent data)
@@ -71,15 +71,35 @@ namespace ScopedDirectoryAccess
 			currentDirectoryTextView = (TextView)view.FindViewById (Resource.Id.textview_current_directory);
 			nothingInDirectoryTextView = (TextView)view.FindViewById (Resource.Id.textview_nothing_in_directory);
 
-			var openPictureButton = (Button)view.FindViewById (Resource.Id.button_open_directory);
+			var openPictureButton = (Button)view.FindViewById (Resource.Id.button_open_directory_primary_volume);
 			openPictureButton.Click += delegate {
 				string selected = directoriesSpinner.SelectedItem.ToString ();
 				string directoryName = GetDirectoryName (selected);
-				Intent intent = storageManager.PrimaryVolume.CreateAccessIntent (directoryName);
+				Intent intent = storageManager.PrimaryStorageVolume.CreateAccessIntent (directoryName);
 				StartActivityForResult (intent, OPEN_DIRECTORY_REQUEST_CODE);
 			};
 
-			var recyclerVioew = (RecyclerView)view.FindViewById (Resource.Id.recyclerview_directory_entries);
+			// Set onClickListener for the external volumes if exists
+			var containerVolumes = (LinearLayout)Activity.FindViewById (Resource.Id.container_volumes);
+			foreach (StorageVolume volume in storageManager.StorageVolumes) {
+				if (volume.IsPrimary) {
+					// Primary volume area is already added
+					continue;
+				}
+				var volumeArea = (LinearLayout)Activity.LayoutInflater.Inflate (
+					Resource.Layout.volume_entry, containerVolumes);
+				var volumeName = (TextView)volumeArea.FindViewById (Resource.Id.textview_volume_name);
+				volumeName.Text = volume.GetDescription (Activity);
+				var button = (Button)volumeArea.FindViewById (Resource.Id.button_open_directory);
+				button.Click += delegate {
+					string selected = directoriesSpinner.SelectedItem.ToString ();
+					string directoryName = GetDirectoryName (selected);
+					Intent intent = volume.CreateAccessIntent (directoryName);
+					StartActivityForResult (intent, OPEN_DIRECTORY_REQUEST_CODE);
+				};
+			}
+
+			var recyclerView = (RecyclerView)view.FindViewById (Resource.Id.recyclerview_directory_entries);
 			if (savedInstanceState != null) {
 				directoryEntries = (List<DirectoryEntry>)savedInstanceState.GetParcelableArrayList (DIRECTORY_ENTRIES_KEY);
 				currentDirectoryTextView.Text = savedInstanceState.GetString (SELECTED_DIRECTORY_KEY);
@@ -93,8 +113,8 @@ namespace ScopedDirectoryAccess
 				adapter = new DirectoryEntryAdapter ();
 			}
 
-			recyclerVioew.SetAdapter (adapter);
-			recyclerVioew.SetLayoutManager (new LinearLayoutManager (Activity));
+			recyclerView.SetAdapter (adapter);
+			recyclerView.SetLayoutManager (new LinearLayoutManager (Activity));
 			directoriesSpinner = (Spinner)view.FindViewById (Resource.Id.spinner_directories);
 			var directoriesAdapter = ArrayAdapter.CreateFromResource (Activity, Resource.Array.directories,
 																	  Android.Resource.Layout.SimpleSpinnerDropDownItem);
