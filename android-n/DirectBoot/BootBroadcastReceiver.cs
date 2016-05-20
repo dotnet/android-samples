@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Android.OS;
+using Android.Util;
 
 namespace DirectBoot
 {
@@ -13,7 +14,7 @@ namespace DirectBoot
 			bool bootCompleted;
 			string action = intent.Action;
 			//TODO Switch to UserManagerCompat, BuildCompat
-			//Log.Info (TAG, $"Recieved action {action}, user unlocked: {UserManagerCompat.IsUserUnlocked (context))}");
+			Log.Info (TAG, $"Recieved action {action}, user unlocked: "); //{UserManagerCompat.IsUserUnlocked (context))}");
 
 			if (Build.VERSION.SdkInt > BuildVersionCodes.M)
 				bootCompleted = Intent.ActionLockedBootCompleted == action;

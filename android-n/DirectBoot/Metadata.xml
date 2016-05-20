@@ -6,5 +6,5 @@
     <Tags>Data, Platform Features, AndroidN</Tags>
     <LicenseRequirement>Community</LicenseRequirement>
     <Gallery>false</Gallery>
-    <Brief>Demonstrates how to store data in a device-encrypted storage.</Brief>
+    <Brief>Demonstrates how to store data in a device-protected storage.</Brief>
 </SampleMetadata>

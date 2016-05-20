@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Linq;
+using Android.App;
 using Android.Content;
 using Android.Provider;
 using Android.Runtime;
@@ -20,18 +21,22 @@ namespace DirectBoot
 		{
 			Context context = ApplicationContext;
 			var alarm = (Alarm)intent.GetParcelableExtra (ALARM_KEY);
+			var alarmStorage = new AlarmStorage (context);
+
+			// HACK - workaround https://github.com/googlesamples/android-DirectBoot/issues/4
+			if (alarm == null)
+				alarm = alarmStorage.GetAlarms ().First (a => a.Minute == System.DateTime.Now.Minute);
 
 			var manager = context.GetSystemService (Context.NotificationService).JavaCast<NotificationManager> ();
 			var builder = new NotificationCompat.Builder (context)
-			                                    .SetSmallIcon (Resource.Drawable.ic_fbe_notification)
-			                                    .SetCategory (Notification.CategoryAlarm)
-			                                    .SetSound (Settings.System.DefaultAlarmAlertUri)
-			                                    .SetContentTitle (context.GetString (Resource.String.alarm_went_off, alarm.Hour, alarm.Minute));
+												.SetSmallIcon (Resource.Drawable.ic_fbe_notification)
+												.SetCategory (Notification.CategoryAlarm)
+												.SetSound (Settings.System.DefaultAlarmAlertUri)
+												.SetContentTitle (context.GetString (Resource.String.alarm_went_off, alarm.Hour, alarm.Minute));
 
 			manager.Notify (alarm.Id, builder.Build ());
-			                
-			var alarmStorage = new AlarmStorage (context);
 			alarmStorage.DeleteAlarm (alarm);
+
 			var wentoffIntent = new Intent (ALARM_WENT_OFF_ACTION);
 			wentoffIntent.PutExtra (ALARM_KEY, alarm);
 			LocalBroadcastManager.GetInstance (context).SendBroadcast (wentoffIntent);

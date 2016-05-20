@@ -23,10 +23,10 @@ namespace DirectBoot
 			// TODO Use Support BuildCompat or proper N Version code.
 			if (Build.VERSION.SdkInt > BuildVersionCodes.M) {
 				// All N devices have split storage areas, but we may need to
-				// migrate existing preferences into the new device encrypted
+				// move the existing preferences to the new device protected
 				// storage area, which is where the data lives from now on.
-				Context deviceContext = context.CreateDeviceEncryptedStorageContext ();
-				if (!deviceContext.MigrateSharedPreferencesFrom (context, ALARM_PREFERENCES_NAME))
+				Context deviceContext = context.CreateDeviceProtectedStorageContext();
+				if (!deviceContext.MoveSharedPreferencesFrom (context, ALARM_PREFERENCES_NAME))
 					Log.Warn (TAG, "Failed to migrate shared preferences.");
 
 				storageContext = deviceContext;

@@ -1,10 +1,10 @@
 Direct Boot Sample
 ===========================
 
-This sample demonstrates how to store data in a device-encrypted storage which is always available 
+This sample demonstrates how to store data in a device-protected storage which is always available
 while the device is booted both before and after any user credentials(PIN/Pattern/Password) are entered.
 
-Sensitive data (such as user's emails, auth tokens) shouldn't be stored in a device-encrypted storage 
+Sensitive data (such as user's emails, auth tokens) shouldn't be stored in a device-protected storage
 because the storage isn't protected by the user's credential (PIN/Pattern/Password).
 
 Instructions

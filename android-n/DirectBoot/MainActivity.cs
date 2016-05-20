@@ -4,7 +4,7 @@ using Android.Support.V7.App;
 
 namespace DirectBoot
 {
-	[Activity (Label = "DirectBoot", MainLauncher = true, Theme="@style/AppTheme")]
+	[Activity (Label = "DirectBoot", MainLauncher = true, Theme="@style/Theme.AppCompat.Light")]
 	public class MainActivity : AppCompatActivity
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
