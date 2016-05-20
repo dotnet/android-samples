@@ -11,12 +11,12 @@ using Android.Support.V4.App;
 namespace ActiveNotifications
 {
 	// A fragment that allows notifications to be enqueued.
-	public class ActiveNotificationFragment : Android.App.Fragment
+	public class ActiveNotificationsFragment : Android.App.Fragment
 	{
 		// The request code can be any number as long as it doesn't match another request code used in the same app.
 		static readonly int REQUEST_CODE = 2323;
 
-		static readonly string TAG = "ActiveNotificationFragment";
+		static readonly string TAG = "ActiveNotificationsFragment";
 
 		static readonly string NOTIFICATION_GROUP = "com.example.android.activenotifications.notification_type";
 
@@ -34,6 +34,12 @@ namespace ActiveNotifications
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			return inflater.Inflate (Resource.Layout.fragment_notification_builder, container, false);
+		}
+
+		public override void OnResume ()
+		{
+			base.OnResume ();
+			UpdateNumberOfNotifications ();
 		}
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
@@ -70,6 +76,7 @@ namespace ActiveNotifications
 
 			CommonSampleLibrary.Log.Info (TAG, "Add a notification");
 			UpdateNotificationSummary ();
+			UpdateNumberOfNotifications ();
 		}
 
 		// Adds/updates/removes the notification summary as necessary.

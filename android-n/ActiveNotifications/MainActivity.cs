@@ -11,7 +11,7 @@ namespace ActiveNotifications
 	[Activity (Label = "@string/app_name", MainLauncher = true, Theme = "@style/AppTheme")]
 	public class MainActivity : SampleActivityBase
 	{
-		public ActiveNotificationFragment fragment;
+		public ActiveNotificationsFragment fragment;
 		public static readonly string ACTION_NOTIFICATION_DELETE = "com.xamarin.activenotifications.delete";
 
 		bool logShown;
@@ -31,7 +31,7 @@ namespace ActiveNotifications
 
 			if (bundle == null) {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
-				transaction.Replace (Resource.Id.sample_content_fragment, new ActiveNotificationFragment ());
+				transaction.Replace (Resource.Id.sample_content_fragment, new ActiveNotificationsFragment ());
 				transaction.Commit ();
 			}
 		}
@@ -46,7 +46,7 @@ namespace ActiveNotifications
 
 		public void FindFragment ()
 		{
-			fragment = (ActiveNotificationFragment)FragmentManager
+			fragment = (ActiveNotificationsFragment)FragmentManager
 				.FindFragmentById (Resource.Id.sample_content_fragment);
 		}
 
@@ -112,9 +112,10 @@ namespace ActiveNotifications
 		}
 	}
 
-	class ANBroadcastReceiver : BroadcastReceiver
+	public class ANBroadcastReceiver : BroadcastReceiver
 	{
 		readonly MainActivity self;
+
 
 		public ANBroadcastReceiver (MainActivity self)
 		{
