@@ -21,6 +21,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
 
 namespace MessagingService
@@ -123,7 +124,7 @@ namespace MessagingService
 					.SetReplyAction (replyIntent, remoteInput);
 
 			// Note: Add messages from oldest to newest to the UnreadConversation.Builder
-			StringBuilder messageForNotification = new StringBuilder ();
+			var messageForNotification = new StringBuilder ();
 			for (int i = 0; i < conversation.Messages.Count; i++) {
 				unreadConvBuilder.AddMessage (conversation.Messages [i]);
 				messageForNotification.Append (conversation.Messages [i]);
@@ -141,8 +142,7 @@ namespace MessagingService
 				.SetContentIntent (readPendingIntent)
 				.Extend (new NotificationCompat.CarExtender ()
 					.SetUnreadConversation (unreadConvBuilder.Build ())
-					.SetColor (ApplicationContext
-						.Resources.GetColor (Resource.Color.default_color_light)))
+				         .SetColor (ContextCompat.GetColor (this, Resource.Color.default_color_light)))
 				.AddAction (actionReplyByRemoteInput);
 
 			MessageLogger.LogMessage (ApplicationContext, "Sending notification "

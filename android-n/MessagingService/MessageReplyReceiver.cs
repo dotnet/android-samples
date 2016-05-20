@@ -26,7 +26,7 @@ using Android.Util;
 namespace MessagingService
 {
 	[BroadcastReceiver (Enabled = true)]
-	[Android.App.IntentFilter (new []{ MessagingService.REPLY_ACTION })]
+	[Android.App.IntentFilter (new [] { MessagingService.REPLY_ACTION })]
 	/// <summary>
 	/// A receiver that gets called when a reply is sent to a given conversationId
 	/// </summary>
@@ -44,7 +44,7 @@ namespace MessagingService
 					MessageLogger.LogMessage (context, "ConversationId: " + conversationId +
 					" received a reply: [" + reply + "]");
 
-					using (NotificationManagerCompat notificationManager = NotificationManagerCompat.From (context)) {
+					using (var notificationManager = NotificationManagerCompat.From (context)) {
 						var notificationBuilder = new NotificationCompat.Builder (context);
 						notificationBuilder.SetSmallIcon (Resource.Drawable.notification_icon);
 						notificationBuilder.SetLargeIcon (BitmapFactory.DecodeResource (context.Resources, Resource.Drawable.android_contact));

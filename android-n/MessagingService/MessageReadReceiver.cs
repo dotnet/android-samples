@@ -22,7 +22,7 @@ using Android.Util;
 namespace MessagingService
 {
 	[BroadcastReceiver (Enabled = true)]
-	[Android.App.IntentFilter (new String[]{ MessagingService.READ_ACTION })]
+	[Android.App.IntentFilter (new [] { MessagingService.READ_ACTION })]
 	public class MessageReadReceiver : BroadcastReceiver
 	{
 		readonly string TAG = typeof(MessageReadReceiver).Name;

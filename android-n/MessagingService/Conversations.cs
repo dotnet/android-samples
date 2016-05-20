@@ -67,7 +67,7 @@ namespace MessagingService
 				this.conversationId = conversationId;
 				this.participantName = participantName;
 				this.messages = messages ?? new List<string> ();
-				this.timestamp = JavaSystem.CurrentTimeMillis ();
+				timestamp = JavaSystem.CurrentTimeMillis ();
 			}
 
 			public int ConversationId {
@@ -95,14 +95,10 @@ namespace MessagingService
 			}
 		}
 
-		Conversations ()
-		{
-		}
-
 		public static Conversation[] GetUnreadConversations (int howManyConversations,
 		                                                     int messagesPerConversation)
 		{
-			Conversation[] conversations = new Conversation[howManyConversations];
+			var conversations = new Conversation[howManyConversations];
 			for (int i = 0; i < howManyConversations; i++) {
 				conversations [i] = new Conversation (
 					ThreadLocalRandom.Current ().NextInt (),
