@@ -20,7 +20,7 @@ namespace MultiWindowPlayground
 			var multiDisabledMessage = FindViewById(Resource.Id.warning_multiwindow_disabled);
 			// Display an additional message if the app is not in multiwindow mode.
 
-			if (!InMultiWindow())
+			if (!IsInMultiWindowMode)
 			{
 				multiDisabledMessage.Visibility = ViewStates.Visible;
 			}

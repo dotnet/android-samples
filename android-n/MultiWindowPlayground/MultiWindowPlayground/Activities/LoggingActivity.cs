@@ -75,10 +75,10 @@ namespace MultiWindowPlayground
 			Log.Debug(logTag, "onStop");
 		}
 
-		public override void OnMultiWindowChanged(bool inMultiWindow)
+		public override void OnMultiWindowModeChanged(bool isInMultiWindowMode)
 		{
-			base.OnMultiWindowChanged(inMultiWindow);
-			Log.Debug(logTag, string.Format("onMultiWindowChanged: {0}", inMultiWindow));
+			base.OnMultiWindowModeChanged(isInMultiWindowMode);
+			Log.Debug(logTag, $"OnMultiWindowModeChanged: {isInMultiWindowMode}");
 		}
 
 		/// <summary>
