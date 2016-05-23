@@ -25,7 +25,14 @@ namespace DirectBoot
 		public void ScheduleAlarm (Alarm alarm)
 		{
 			var intent = new Intent (context, typeof (AlarmIntentService));
-			intent.PutExtra (AlarmIntentService.ALARM_KEY, alarm);
+			// intent.PutExtra (AlarmIntentService.ALARM_KEY, alarm);
+			// TODO - workaround https://github.com/googlesamples/android-DirectBoot/issues/4
+			intent.PutExtra ("id", alarm.Id);
+			intent.PutExtra ("year", alarm.Year);
+			intent.PutExtra ("month", alarm.Month);
+			intent.PutExtra ("day", alarm.Day);
+			intent.PutExtra ("hour", alarm.Hour);
+			intent.PutExtra ("minute", alarm.Minute);
 			var pendingIntent = PendingIntent.GetService (context, alarm.Id, intent, PendingIntentFlags.UpdateCurrent);
 			var triggerOffset = new DateTimeOffset (alarm.GetTriggerTime ());
 			var alarmClockInfo = new AlarmManager.AlarmClockInfo (triggerOffset.ToUnixTimeMilliseconds (), pendingIntent);
