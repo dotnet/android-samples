@@ -10,10 +10,11 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 using Fragment = Android.Support.V4.App.Fragment;
+using Android.Content.PM;
 
 namespace FlashlightSample
 {
-	[Activity (Label = "FlashlightSample", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity (Label = "FlashlightSample", MainLauncher = true, Icon = "@drawable/ic_launcher", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : FragmentActivity
 	{
 		private ViewPager view_pager;
@@ -35,7 +36,7 @@ namespace FlashlightSample
 			adapter.AddFragment (party_fragment);
 
 			view_pager.Adapter = adapter;
-			view_pager.SetOnPageChangeListener (new MyOnPageListener (this));
+			view_pager.AddOnPageChangeListener(new MyOnPageListener (this));
 
 		}
 	}
