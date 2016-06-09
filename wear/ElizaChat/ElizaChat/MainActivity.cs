@@ -32,13 +32,14 @@ namespace ElizaChat
 			SetContentView (Resource.Layout.activity_main);
 			mReceiver = new Receiver (this);
 			mHistoryView = FindViewById<TextView> (Resource.Id.history);
-			StartResponderService ();
+			StartResponderService (ResponderService.ACTION_INCOMING);
 		}
 
-		private void StartResponderService ()
+		private void StartResponderService (string action)
 		{
-			var serviceIntent = new Intent (ResponderService.ACTION_INCOMING);
-			StartService (serviceIntent);
+			Intent serviceIntent = new Intent(this, typeof(ResponderService));
+			serviceIntent.SetAction(action);
+			this.StartService (serviceIntent);
 		}
 
 		protected override void OnResume ()
@@ -46,8 +47,7 @@ namespace ElizaChat
 			base.OnResume ();
 			LocalBroadcastManager.GetInstance (this).RegisterReceiver (mReceiver, new IntentFilter (ACTION_NOTIFY));
 			mHistoryView.Text = "";
-			var serviceIntent = new Intent (ACTION_GET_CONVERSATION);
-			StartService (serviceIntent);
+			StartResponderService(ACTION_GET_CONVERSATION);
 		}
 
 		protected override void OnPause ()
