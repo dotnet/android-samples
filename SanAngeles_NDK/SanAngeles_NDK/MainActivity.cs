@@ -50,10 +50,11 @@ using Android.Opengl;
 using Android.OS;
 using Android.Views;
 using System.Runtime.InteropServices;
+using Android.Content.PM;
 
 namespace SanAngles
 {
-	[Activity (Label = "Mono SanAngeles sample", MainLauncher = true)]
+	[Activity (Label = "Mono SanAngeles sample", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenLayout | ConfigChanges.Orientation)]
 	public class DemoActivity : Activity {
 		protected override void OnCreate (Bundle savedInstanceState) 
 		{
