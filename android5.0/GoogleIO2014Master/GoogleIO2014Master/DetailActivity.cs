@@ -170,6 +170,12 @@ namespace GoogleIO2014Master
 
 		public Bitmap SetupPhoto (int resource)
 		{
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.InJustDecodeBounds = true;  
+            o.InDither = false;
+            o.InPurgeable = true;
+            o.InInputShareable = true;
+
 			var bitmap = MainActivity.SPhotoCache.Get (resource);
 			FindViewById<ImageView> (Resource.Id.photo).SetImageBitmap (bitmap);
 			return bitmap;
