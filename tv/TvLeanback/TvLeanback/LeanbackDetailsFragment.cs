@@ -25,8 +25,8 @@ namespace TvLeanback
 		private static readonly int ACTION_RENT = 2;
 		private static readonly int ACTION_BUY = 3;
 
-		private static readonly int DETAIL_THUMB_WIDTH = 274;
-		private static readonly int DETAIL_THUMB_HEIGHT = 274;
+		private static readonly int DETAIL_THUMB_WIDTH = 150;
+		private static readonly int DETAIL_THUMB_HEIGHT = 150;
 
 		protected TvLeanback.Movie selectedMovie;
 
@@ -52,6 +52,7 @@ namespace TvLeanback
 			Log.Debug (TAG, "DetailsActivity movie: " + selectedMovie.ToString ());
 			new DetailRowBuilderTask (this).Execute (selectedMovie);
 			OnItemViewClickedListener = this;
+			GC.Collect();
 		}
 
 		public void OnItemClicked (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
@@ -75,6 +76,7 @@ namespace TvLeanback
 				.Resize (mMetrics.WidthPixels, mMetrics.HeightPixels)
 				.Error (mDefaultBackground)
 				.Into (mBackgroundTarget);
+			GC.Collect();
 		}
 
 		internal class DetailRowBuilderTask : AsyncTask<Movie, int, DetailsOverviewRow>,  IOnActionClickedListener
@@ -115,6 +117,7 @@ namespace TvLeanback
 					owner.Resources.GetString (Resource.String.rent_2)));
 				row.AddAction (new Action (ACTION_BUY, owner.Resources.GetString (Resource.String.buy_1),
 					owner.Resources.GetString (Resource.String.buy_2)));
+				GC.Collect();
 				return row;
 			}
 

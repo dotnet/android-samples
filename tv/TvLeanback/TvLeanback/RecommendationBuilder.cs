@@ -16,8 +16,8 @@ namespace TvLeanback
 	{
 		private static readonly string TAG = "RecommendationBuilder";
 
-		private static int CARD_WIDTH = 313;
-		private static int CARD_HEIGHT = 176;
+		private static int CARD_WIDTH = 250;
+		private static int CARD_HEIGHT = 150;
 
 		public static readonly string EXTRA_BACKGROUND_IMAGE_URL = "background_image_url";
 
@@ -107,6 +107,7 @@ namespace TvLeanback
 				.Load (mImageUri)
 				.Resize (Utils.dpToPx (CARD_WIDTH, mContext), Utils.dpToPx (CARD_HEIGHT, mContext))
 				.Get ();
+			GC.Collect();
 
 			var notification = new NotificationCompat.BigPictureStyle (
 				                            new NotificationCompat.Builder (mContext)
