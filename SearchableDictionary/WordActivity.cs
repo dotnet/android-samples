@@ -28,6 +28,8 @@ using Android.Widget;
 namespace SearchableDictionary
 {
     [Activity(Label="WordActivity")]
+	[IntentFilter(new string[] { "android.intent.action.SEARCH" })]
+	[MetaData(("android.app.searchable"), Resource = "@xml/searchable")]
     public class WordActivity : Activity
     {
         protected override void OnCreate (Bundle bundle)
