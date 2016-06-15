@@ -25,8 +25,8 @@ namespace TvLeanback
 		private static readonly int ACTION_RENT = 2;
 		private static readonly int ACTION_BUY = 3;
 
-		private static readonly int DETAIL_THUMB_WIDTH = 150;
-		private static readonly int DETAIL_THUMB_HEIGHT = 150;
+		private static readonly int DETAIL_THUMB_WIDTH = 120;
+		private static readonly int DETAIL_THUMB_HEIGHT = 120;
 
 		protected TvLeanback.Movie selectedMovie;
 

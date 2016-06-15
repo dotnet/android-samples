@@ -25,8 +25,8 @@ namespace TvLeanback
 		private static readonly String TAG = "MainFragment";
 
 		private static int BACKGROUND_UPDATE_DELAY = 300;
-		private static int GRID_ITEM_WIDTH = 150;
-		private static int GRID_ITEM_HEIGHT = 150;
+		private static int GRID_ITEM_WIDTH = 130;
+		private static int GRID_ITEM_HEIGHT = 130;
 
 		private ArrayObjectAdapter mRowsAdapter;
 		private Drawable mDefaultBackground;

@@ -16,8 +16,8 @@ namespace TvLeanback
 	{
 		private static readonly string TAG = "RecommendationBuilder";
 
-		private static int CARD_WIDTH = 250;
-		private static int CARD_HEIGHT = 120;
+		private static int CARD_WIDTH = 200;
+		private static int CARD_HEIGHT = 100;
 
 		public static readonly string EXTRA_BACKGROUND_IMAGE_URL = "background_image_url";
 
