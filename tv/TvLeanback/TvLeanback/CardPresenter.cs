@@ -26,8 +26,8 @@ namespace TvLeanback
 			private set;
 		}
 
-		public static readonly int CARD_WIDTH = 313;
-		public static readonly int CARD_HEIGHT = 176;
+		public static readonly int CARD_WIDTH = 250;
+		public static readonly int CARD_HEIGHT = 120;
 
 
 		public override ViewHolder OnCreateViewHolder (ViewGroup parent)
