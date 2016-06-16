@@ -169,7 +169,7 @@ namespace GoogleIO2014Master
 		}
 
 		public Bitmap SetupPhoto (int resource)
-		{
+		{ 
 			var bitmap = MainActivity.SPhotoCache.Get (resource);
 			FindViewById<ImageView> (Resource.Id.photo).SetImageBitmap (bitmap);
 			return bitmap;
