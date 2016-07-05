@@ -13,6 +13,7 @@ using Android.Util;
 using Java.Util;
 using Java.Lang;
 using Android.Support.V4.App;
+using Android.Content.PM;
 
 namespace JumpingJack
 {
@@ -74,7 +75,7 @@ namespace JumpingJack
 		}
 	}
 
-	[Activity (Label = "JumpingJack", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity (Label = "JumpingJack", MainLauncher = true, Icon = "@drawable/ic_launcher",ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation )]
 	public class MainActivity : FragmentActivity, ISensorEventListener
 	{
 		public const string TAG = "JJMainActivity";
