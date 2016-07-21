@@ -5,6 +5,6 @@
     <Level>Intermediate</Level>
     <Tags>Platform Features, AndroidN</Tags>
     <LicenseRequirement>Community</LicenseRequirement>
-    <Gallery>false</Gallery>
+    <Gallery>true</Gallery>
     <Brief>Demonstrates creating activities in various multi-window configurations.</Brief>
 </SampleMetadata>

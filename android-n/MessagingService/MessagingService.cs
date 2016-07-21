@@ -100,7 +100,7 @@ namespace MessagingService
 			// Build a RemoteInput for receiving voice input in a Car Notification or text input on
 			// devices that support text input (like devices on Android N and above).
 			var remoteInput = new Android.Support.V4.App.RemoteInput.Builder (EXTRA_REMOTE_REPLY)
-				.SetLabel (ApplicationContext.GetString (Resource.String.reply))
+				.SetLabel (GetString (Resource.String.reply))
 				.Build ();
 
 			// Building a Pending Intent for the reply action to trigger
