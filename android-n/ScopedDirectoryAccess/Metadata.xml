@@ -5,6 +5,6 @@
     <Level>Intermediate</Level>
     <Tags>Data, AndroidN</Tags>
     <LicenseRequirement>Community</LicenseRequirement>
-    <Gallery>false</Gallery>
+    <Gallery>true</Gallery>
     <Brief>Demonstrates a new way to interact with specific storage locations.</Brief>
 </SampleMetadata>

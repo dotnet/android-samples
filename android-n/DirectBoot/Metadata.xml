@@ -5,6 +5,6 @@
     <Level>Intermediate</Level>
     <Tags>Data, Platform Features, AndroidN</Tags>
     <LicenseRequirement>Community</LicenseRequirement>
-    <Gallery>false</Gallery>
+    <Gallery>true</Gallery>
     <Brief>Demonstrates how to store data in a device-protected storage.</Brief>
 </SampleMetadata>

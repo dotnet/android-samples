@@ -5,6 +5,6 @@
     <Level>Intermediate</Level>
     <Tags>Data, AndroidM</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <Gallery>false</Gallery>
+    <Gallery>true</Gallery>
     <Brief></Brief>
 </SampleMetadata>
