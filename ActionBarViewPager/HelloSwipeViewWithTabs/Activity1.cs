@@ -8,10 +8,11 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
+using Android.Content.PM;
 
 namespace HelloSwipeViewWithTabs
 {
-    [Activity(Label = "HelloSwipeViewWithTabs", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "HelloSwipeViewWithTabs", MainLauncher = true, Icon = "@drawable/icon", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class Activity1 : FragmentActivity
     {
         protected override void OnCreate(Bundle bundle)

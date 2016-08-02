@@ -19,6 +19,10 @@ namespace JumpingJack
 		private Button button;
 		private MainActivity main_activity;
 
+		public SettingsFragment()
+		{
+		}
+
 		public SettingsFragment(MainActivity mainActivity)
 		{
 			main_activity = mainActivity;

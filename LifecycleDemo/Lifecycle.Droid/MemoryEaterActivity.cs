@@ -24,7 +24,7 @@ namespace Lifecycle.Droid
 			base.OnStart ();
 
 			// consume memory
-			int[] Big = new int[1000000000];
+			int[] Big = new int[100000000];
 		}
 	}
 }

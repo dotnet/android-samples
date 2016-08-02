@@ -111,7 +111,7 @@ namespace Wearable
 			DataLayerListenerService.LOGD (Tag, "OnDatachanged() : " + dataEvents);
 
 			IList events = FreezableUtils.FreezeIterable (dataEvents);
-			dataEvents.Close ();
+			dataEvents.Release();
 			foreach (var ev in events) {
 				var e = ((Java.Lang.Object)ev).JavaCast<IDataEvent> ();
 				if (e.Type == DataEvent.TypeChanged) {

@@ -17,7 +17,8 @@
                 style="@style/CardPhoto"
                 android:id="@+id/photo"
                 android:transitionName="photo1"
-                android:src="@drawable/photo1" />
+                android:src="@drawable/photo1"
+                android:background="@drawable/photo1" />
             <TextView
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_1"
@@ -29,7 +30,8 @@
                 style="@style/CardPhoto"
                 android:id="@id/photo"
                 android:transitionName="photo2"
-                android:src="@drawable/photo2" />
+                android:src="@drawable/photo2"
+                android:background="@drawable/photo2" />
             <TextView
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_2"
@@ -41,7 +43,8 @@
                 style="@style/CardPhoto"
                 android:id="@id/photo"
                 android:transitionName="photo3"
-                android:src="@drawable/photo3" />
+                android:src="@drawable/photo3"
+                android:background="@drawable/photo3" />
             <TextView
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_3"
@@ -53,7 +56,8 @@
                 style="@style/CardPhoto"
                 android:id="@id/photo"
                 android:transitionName="photo4"
-                android:src="@drawable/photo4" />
+                android:src="@drawable/photo4"
+                android:background="@drawable/photo4" />
             <TextView
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_4"
