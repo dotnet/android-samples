@@ -15,48 +15,31 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Util;
 
 namespace CommonSampleLibrary
 {
 	/**
- 	* Helper class which wraps Android's native Log utility in the Logger interface.  This way
- 	* normal DDMS output can be one of the many targets receiving and outputting logs simultaneously.
- 	*/
+	* Helper class which wraps Android's native Log utility in the Logger interface.  This way
+	* normal DDMS output can be one of the many targets receiving and outputting logs simultaneously.
+	*/
 	public class LogWrapper : ILogNode
 	{
 		// For piping:  The next node to receive Log data after this one has done its work.
-		ILogNode mNext;
 
 		/**
-     	* Gets the next LogNode in the linked list.
-     	* Sets the LogNode data will be sent to..
-     	*/
-		public ILogNode NextNode {
-			get { return mNext; }
-			set { mNext = value; }
-		}
+		* Gets the next LogNode in the linked list.
+		* Sets the LogNode data will be sent to..
+		*/public ILogNode NextNode { get; set; }
 
 		/**
-     	* Prints data out to the console using Android's native log mechanism.
-     	*/
+		* Prints data out to the console using Android's native log mechanism.
+		*/
 		public void WriteLine (LogPriority priority, string tag, string msg, Java.Lang.Throwable tr)
 		{
 			// There actually are log methods that don't take a msg parameter.  For now,
 			// if that's the case, just convert null to the empty string and move on.
-			String useMsg = msg;
-			if (useMsg == null) {
-				useMsg = "";
-			}
+			String useMsg = msg ?? string.Empty;
 
 			// If an exeption was provided, convert that exception to a usable string and attach
 			// it to the end of the msg method.

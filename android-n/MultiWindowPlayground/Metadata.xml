@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>9f460524-a11c-4a56-bea5-1084c32b2ae7</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>Platform Features, AndroidN</Tags>
+    <LicenseRequirement>Community</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates creating activities in various multi-window configurations.</Brief>
+</SampleMetadata>

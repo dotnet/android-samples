@@ -14,44 +14,30 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Util;
 
 namespace CommonSampleLibrary
 {
 	/**
- 	* Simple ILogNode filter, removes everything except the message.
- 	* Useful for situations like on-screen log output where you don't want a lot of metadata displayed,
- 	* just easy-to-read message updates as they're happening.
- 	*/
+	* Simple ILogNode filter, removes everything except the message.
+	* Useful for situations like on-screen log output where you don't want a lot of metadata displayed,
+	* just easy-to-read message updates as they're happening.
+	*/
 	public class MessageOnlyLogFilter : ILogNode
 	{
-		ILogNode mNext;
 
 		/**
-     	* Gets the next LogNode in the chain.
-     	* Sets the LogNode data will be sent to..
-     	*/
-		public ILogNode NextNode {
-			get { return mNext; }
-			set { mNext = value; }
-		}
+		* Gets the next LogNode in the chain.
+		* Sets the LogNode data will be sent to..
+		*/
+		public ILogNode NextNode { get; set; }
 
 		/**
-     	* Takes the "next" LogNode as a parameter, to simplify chaining.
-     	*/
+		* Takes the "next" LogNode as a parameter, to simplify chaining.
+		*/
 		public MessageOnlyLogFilter (ILogNode next)
 		{
-			mNext = next;
+			NextNode = next;
 		}
 
 		public MessageOnlyLogFilter ()

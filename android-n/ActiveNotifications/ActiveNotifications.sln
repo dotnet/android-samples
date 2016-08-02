@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveNotifications", "ActiveNotifications.csproj", "{BA95A29B-6F3C-41FA-B170-FA6FE639A672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "..\..\CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA95A29B-6F3C-41FA-B170-FA6FE639A672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA95A29B-6F3C-41FA-B170-FA6FE639A672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA95A29B-6F3C-41FA-B170-FA6FE639A672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA95A29B-6F3C-41FA-B170-FA6FE639A672}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

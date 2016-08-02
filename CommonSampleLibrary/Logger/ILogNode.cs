@@ -14,35 +14,25 @@
  * limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Java.Lang;
 using Android.Util;
 
 namespace CommonSampleLibrary
 {
 	/**
- 	* Basic interface for a logging system that can output to one or more targets.
- 	* Note that in addition to classes that will output these logs in some format,
- 	* one can also implement this interface over a filter and insert that in the chain,
- 	* such that no targets further down see certain data, or see manipulated forms of the data.
- 	* You could, for instance, write a "ToHtmlLoggerNode" that just converted all the log data
- 	* it received to HTML and sent it along to the next node in the chain, without printing it
- 	* anywhere.
- 	*/
+	* Basic interface for a logging system that can output to one or more targets.
+	* Note that in addition to classes that will output these logs in some format,
+	* one can also implement this interface over a filter and insert that in the chain,
+	* such that no targets further down see certain data, or see manipulated forms of the data.
+	* You could, for instance, write a "ToHtmlLoggerNode" that just converted all the log data
+	* it received to HTML and sent it along to the next node in the chain, without printing it
+	* anywhere.
+	*/
 	public interface ILogNode
 	{
 		/**
-     	* Instructs first LogNode in the list to print the log data provided.
-     	*/
+		* Instructs first LogNode in the list to print the log data provided.
+		*/
 		void WriteLine (LogPriority priority, string tag, string msg, Throwable tr);
 	}
 }

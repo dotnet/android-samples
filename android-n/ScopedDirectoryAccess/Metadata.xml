@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>98a98744-6039-47b4-93fb-c237b4024484</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>Data, AndroidN</Tags>
+    <LicenseRequirement>Community</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates a new way to interact with specific storage locations.</Brief>
+</SampleMetadata>

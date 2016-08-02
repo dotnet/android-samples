@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DirectBoot</string>
+    <string name="intro_message">
+        <![CDATA[
+        
+
+This sample demonstrates how to store/access data in a device protected storage
+which is always available while the device is booted.
+This sample works as a simple alarm clock. On > Android N devices, the scheduled alarms
+go off after reboot even before the user enters their credentials.
+
+        
+        ]]>
+    </string>
+	<string name="alarm_saved">Alarm scheduled at %1$2d:%2$02d</string>
+    <string name="alarm_deleted">Deleted the alarm at %1$2d:%2$02d</string>
+    <string name="alarm_went_off">Alarm went off at %1$2d:%2$02d</string>
+    <string name="time_24hour_format">%1$2d:%2$02d</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="registered_alarms">Registered alarms</string>
+</resources>

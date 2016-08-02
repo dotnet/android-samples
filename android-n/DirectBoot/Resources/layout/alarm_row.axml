@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/alarm_row_height"
+    android:layout_marginLeft="@dimen/margin_medium"
+    android:layout_marginRight="@dimen/margin_medium">
+    <TextView
+        android:id="@+id/text_alarm_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:textSize="52sp" />
+    <TextView
+        android:id="@+id/text_alarm_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/text_alarm_time"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_alignBaseline="@id/text_alarm_time"
+        android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/image_delete_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_delete_black_24dp" />
+</RelativeLayout>

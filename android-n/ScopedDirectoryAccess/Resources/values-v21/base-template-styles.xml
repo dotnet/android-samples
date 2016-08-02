@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+
+    <style name="Theme.Base" parent="@style/Theme.AppCompat.Light">
+    </style>
+
+</resources>

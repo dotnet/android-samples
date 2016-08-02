@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TimePicker
+        android:id="@+id/time_picker_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/button_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/margin_medium"
+        android:paddingEnd="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small"
+        android:gravity="bottom"
+        style="?android:attr/buttonBarStyle">
+        <Space
+            android:id="@+id/spacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+        <Button
+            android:id="@+id/button_cancel_time_picker"
+            style="?android:attr/buttonBarNegativeButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+        <Button
+            android:id="@+id/button_ok_time_picker"
+            style="?android:attr/buttonBarPositiveButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok" />
+    </LinearLayout>
+</LinearLayout>
