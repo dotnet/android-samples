@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewPagerIndicator", "ViewPagerIndicator\ViewPagerIndicator.csproj", "{10BE6857-6A09-448A-A52E-C0AC31CAFD9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewPagerIndicatorUITest", "ViewPagerIndicatorUITest\ViewPagerIndicatorUITest.csproj", "{59478A84-7279-4F44-866D-D2EF386A523D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{10BE6857-6A09-448A-A52E-C0AC31CAFD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10BE6857-6A09-448A-A52E-C0AC31CAFD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10BE6857-6A09-448A-A52E-C0AC31CAFD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59478A84-7279-4F44-866D-D2EF386A523D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59478A84-7279-4F44-866D-D2EF386A523D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59478A84-7279-4F44-866D-D2EF386A523D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59478A84-7279-4F44-866D-D2EF386A523D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ViewPagerIndicator\ViewPagerIndicator.csproj
