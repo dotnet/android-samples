@@ -52,7 +52,7 @@ namespace ElizaChat
 
 		protected override void OnPause ()
 		{
-			LocalBroadcastManager.GetInstance (this).RegisterReceiver (mReceiver, new IntentFilter (ACTION_NOTIFY));
+			LocalBroadcastManager.GetInstance (this).UnregisterReceiver (mReceiver);
 			base.OnPause ();
 		}
 
