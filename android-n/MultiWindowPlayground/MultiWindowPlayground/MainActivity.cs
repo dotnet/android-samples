@@ -66,7 +66,7 @@ namespace MultiWindowPlayground
 
 			// TODO Add the Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT flag
 			var intent = new Intent(this, typeof(AdjacentActivity));
-			intent.AddFlags((ActivityFlags)Intent.FlagActivityLaunchAdjacent | ActivityFlags.NewTask);
+			intent.AddFlags((ActivityFlags)ActivityFlags.LaunchAdjacent | ActivityFlags.NewTask);
 
 			StartActivity(intent);
 		}

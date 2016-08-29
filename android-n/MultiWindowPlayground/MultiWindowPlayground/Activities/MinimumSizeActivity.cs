@@ -1,10 +1,12 @@
-﻿
+﻿using Android.Content.PM;
 using Android.App;
 using Android.OS;
 
 namespace MultiWindowPlayground
 {
-	[Activity(Name= "com.xamarin.multiwindowplayground.MinimumSizeActivity")]
+	//TODO Use LaunchMode and Layout ActivityAttributes
+	//[Activity (LaunchMode = LaunchMode.SingleInstance)]
+	[Activity(Name = "com.xamarin.multiwindowplayground.MinimumSizeActivity")]
 	public class MinimumSizeActivity : LoggingActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
