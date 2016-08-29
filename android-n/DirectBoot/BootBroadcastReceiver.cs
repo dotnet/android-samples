@@ -1,10 +1,12 @@
-﻿using Android.Content;
+﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Util;
 
 namespace DirectBoot
 {
-	[BroadcastReceiver (Name = "com.xamarin.directboot.BootBroadcastReceiver")]
+	[BroadcastReceiver (Exported = false, DirectBootAware = true)]
+	[IntentFilter (new [] { "android.intent.action.BOOT_COMPLETED", "android.intent.action.LOCKED_BOOT_COMPLETED" })]
 	public class BootBroadcastReceiver : BroadcastReceiver
 	{
 		static readonly string TAG = "BootBroadcastReceiver";
