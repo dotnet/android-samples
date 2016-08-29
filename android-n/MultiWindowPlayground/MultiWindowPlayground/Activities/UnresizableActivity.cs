@@ -4,8 +4,7 @@ using Android.OS;
 
 namespace MultiWindowPlayground
 {
-	// TODO Use attribute to set ResizeableActivity = false
-	[Activity(Name = "com.xamarin.multiwindowplayground.UnresizableActivity")]
+	[Activity(ResizeableActivity = false, TaskAffinity = "")]
 	public class UnresizableActivity : LoggingActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
