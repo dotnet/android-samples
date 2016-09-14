@@ -60,7 +60,12 @@ namespace MonoDroid.ApiDemo
 			button.Click += delegate { Recreate (); };
 		}
 
-		protected override void OnSaveInstanceState (Bundle outState)
+	    protected override void OnRestoreInstanceState(Bundle savedInstanceState)
+	    {
+	        // To avoid crash, do not call to base
+	    }
+
+	    protected override void OnSaveInstanceState (Bundle outState)
 		{
 			base.OnSaveInstanceState (outState);
 
