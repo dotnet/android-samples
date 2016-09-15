@@ -35,23 +35,28 @@ namespace MonoDroid.ApiDemo
 		{
 			base.OnCreate (bundle);
 
-			if (bundle != null) {
-				current_theme = bundle.GetInt ("theme");
+		    if (bundle != null)
+		    {
+		        current_theme = bundle.GetInt("theme");
 
-				switch (current_theme) {
-					case Android.Resource.Style.ThemeHoloLight:
-						current_theme = Android.Resource.Style.ThemeHoloDialog;
-						break;
-					case Android.Resource.Style.ThemeHoloDialog:
-						current_theme = Android.Resource.Style.ThemeHolo;
-						break;
-					default:
-						current_theme = Android.Resource.Style.ThemeHoloLight;
-						break;
-				}
+		        switch (current_theme)
+		        {
+		            case Resource.Style.ThemeCurrent:
+		                current_theme = Resource.Style.ThemeCurrentDialog;
+		                break;
+		            case Resource.Style.ThemeCurrentDialog:
+		                current_theme = Resource.Style.ThemeCurrentDialogWhenLarge;
+		                break;
+                    case Resource.Style.ThemeCurrentDialogWhenLarge:
+                        current_theme = Resource.Style.Theme;
+                        break;
+                    default:
+		                current_theme = Resource.Style.ThemeCurrent;
+		                break;
+		        }
 
-				SetTheme (current_theme);
-			}
+		        SetTheme(current_theme);
+		    }
 
 			SetContentView (Resource.Layout.activity_recreate);
 
@@ -59,11 +64,6 @@ namespace MonoDroid.ApiDemo
 			var button = FindViewById<Button> (Resource.Id.recreate);
 			button.Click += delegate { Recreate (); };
 		}
-
-	    protected override void OnRestoreInstanceState(Bundle savedInstanceState)
-	    {
-	        // To avoid crash, do not call to base
-	    }
 
 	    protected override void OnSaveInstanceState (Bundle outState)
 		{

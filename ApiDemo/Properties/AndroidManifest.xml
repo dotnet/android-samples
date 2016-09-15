@@ -60,7 +60,8 @@
 				<category android:name="mono.apidemo.sample" />
 			</intent-filter>
 		</activity>
-		<activity android:label="@string/activity_recreate" android:name="monodroid.apidemo.ActivityRecreate" android:enabled="@bool/atLeastHoneycomb">
+		<activity android:label="@string/activity_recreate" android:name="monodroid.apidemo.ActivityRecreate" android:enabled="@bool/atLeastHoneycomb"
+              android:theme="@style/Theme">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="mono.apidemo.sample" />
