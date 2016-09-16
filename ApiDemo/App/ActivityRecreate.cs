@@ -25,51 +25,51 @@ using Android.Widget;
 
 namespace MonoDroid.ApiDemo
 {
-	[Activity (Label = "@string/activity_recreate", Name = "monodroid.apidemo.ActivityRecreate")]
-	[IntentFilter (new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
-	public class ActivityRecreate : Activity
-	{
-		int current_theme;
+    [Activity(Label = "@string/activity_recreate", Name = "monodroid.apidemo.ActivityRecreate")]
+    [IntentFilter(new[] { Intent.ActionMain }, Categories = new string[] { ApiDemo.SAMPLE_CATEGORY })]
+    public class ActivityRecreate : Activity
+    {
+        int current_theme;
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-		    if (bundle != null)
-		    {
-		        current_theme = bundle.GetInt("theme");
+            if (bundle != null)
+            {
+                current_theme = bundle.GetInt("theme");
 
-		        switch (current_theme)
-		        {
-		            case Resource.Style.ThemeCurrent:
-		                current_theme = Resource.Style.ThemeCurrentDialog;
-		                break;
-		            case Resource.Style.ThemeCurrentDialog:
-		                current_theme = Resource.Style.ThemeCurrentDialogWhenLarge;
-		                break;
+                switch (current_theme)
+                {
+                    case Resource.Style.ThemeCurrent:
+                        current_theme = Resource.Style.ThemeCurrentDialog;
+                        break;
+                    case Resource.Style.ThemeCurrentDialog:
+                        current_theme = Resource.Style.ThemeCurrentDialogWhenLarge;
+                        break;
                     case Resource.Style.ThemeCurrentDialogWhenLarge:
                         current_theme = Resource.Style.Theme;
                         break;
                     default:
-		                current_theme = Resource.Style.ThemeCurrent;
-		                break;
-		        }
+                        current_theme = Resource.Style.ThemeCurrent;
+                        break;
+                }
 
-		        SetTheme(current_theme);
-		    }
+                SetTheme(current_theme);
+            }
 
-			SetContentView (Resource.Layout.activity_recreate);
+            SetContentView(Resource.Layout.activity_recreate);
 
-			// Watch for button clicks
-			var button = FindViewById<Button> (Resource.Id.recreate);
-			button.Click += delegate { Recreate (); };
-		}
+            // Watch for button clicks
+            var button = FindViewById<Button>(Resource.Id.recreate);
+            button.Click += delegate { Recreate(); };
+        }
 
-	    protected override void OnSaveInstanceState (Bundle outState)
-		{
-			base.OnSaveInstanceState (outState);
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
 
-			outState.PutInt ("theme", current_theme);
-		}
-	}
+            outState.PutInt("theme", current_theme);
+        }
+    }
 }
