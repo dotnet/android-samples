@@ -16,14 +16,14 @@
 
 <resources>
     <!-- For API level 11 or later, the Holo theme is available and we prefer that. -->
-    <style name="ThemeHolo" parent="android:Theme.Holo">
-    </style>
+    <style name="ThemeCurrent" parent="android:Theme.Holo"/>
 
     <!-- For API level 11 or later, the Holo theme is available and we prefer that. -->
-    <style name="ThemeHoloDialog" parent="android:Theme.Holo.Dialog">
-    </style>
+    <style name="ThemeCurrentDialog" parent="android:Theme.Holo.Dialog"/>
 
     <!-- For API level 11 or later, we can use the magical DialogWhenLarge theme. -->
-    <style name="ThemeDialogWhenLarge" parent="android:style/Theme.Holo.DialogWhenLarge">
-    </style>
+    <style name="ThemeCurrentDialogWhenLarge" parent="android:style/Theme.Holo.DialogWhenLarge"/>
+
+    <!-- For API level 11 or later, the Holo theme is available and we prefer that. -->
+    <style name="ThemeDefault" parent="@android:style/Theme.Holo" />
 </resources>
