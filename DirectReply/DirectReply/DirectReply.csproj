@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -59,5 +60,31 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\reply.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v11\reply.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\reply.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v11\reply.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\reply.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi-v11\reply.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\reply.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi-v11\reply.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\reply.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi-v11\reply.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\action_reply.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\action_reply.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\action_reply.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\action_reply.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\action_reply.png" />
+    <AndroidResource Include="Resources\drawable\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
