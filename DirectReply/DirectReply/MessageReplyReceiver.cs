@@ -17,7 +17,7 @@ namespace DirectReply
 		{
 			if (!MainActivity.REPLY_ACTION.Equals(intent.Action))
 				return;
-			
+
 
 			var requestId = intent.GetIntExtra(MainActivity.REQUEST_CODE_KEY, -1);
 			if (requestId == -1)

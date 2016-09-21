@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>C6BE12C4-B54A-43E8-9EB5-54DAE2675A12</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>User Interface, Notifications</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates DirectReply feature for Android 7.0</Brief>
+	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
+</SampleMetadata>

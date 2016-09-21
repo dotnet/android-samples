@@ -27,80 +27,80 @@ namespace DirectReply
 			// and attach an event to it
 			var button = FindViewById<Button>(Resource.Id.myButton);
 
-            // Set button listener
-		    button.Click += (sender, args) =>
-		    {
-                OnButtonClick();
-            };
+			// Set button listener
+			button.Click += (sender, args) =>
+			{
+				OnButtonClick();
+			};
 		}
 
-	    private void OnButtonClick()
-	    {
-            requestCode++;
+		private void OnButtonClick()
+		{
+			requestCode++;
 
-            // Build PendingIntent
-	        var pendingIntent = MakePendingIntent();
+			// Build PendingIntent
+			var pendingIntent = MakePendingIntent();
 
-            var replyText = GetString(Resource.String.reply_text);
+			var replyText = GetString(Resource.String.reply_text);
 
-            // Create remote input that will read text
-            var remoteInput = new Android.Support.V4.App.RemoteInput.Builder(KEY_TEXT_REPLY)
-                                         .SetLabel(replyText)
-                                         .Build();
+			// Create remote input that will read text
+			var remoteInput = new Android.Support.V4.App.RemoteInput.Builder(KEY_TEXT_REPLY)
+										 .SetLabel(replyText)
+										 .Build();
 
-            // Build action for noticiation
-            var action = new NotificationCompat.Action.Builder(Resource.Drawable.action_reply, replyText, pendingIntent)
-                                               .AddRemoteInput(remoteInput)
-                                               .Build();
+			// Build action for noticiation
+			var action = new NotificationCompat.Action.Builder(Resource.Drawable.action_reply, replyText, pendingIntent)
+											   .AddRemoteInput(remoteInput)
+											   .Build();
 
-            // Build notification
-            var notification = new NotificationCompat.Builder(this)
-                                                     .SetSmallIcon(Resource.Drawable.reply)
-                                                     .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.avatar))
-                                                     .SetContentText("Hey, it is James! What's up?")
-                                                     .SetContentTitle(GetString(Resource.String.message))
-                                                     .SetAutoCancel(true)
-                                                     .AddAction(action)
-                                                     .Build();
+			// Build notification
+			var notification = new NotificationCompat.Builder(this)
+													 .SetSmallIcon(Resource.Drawable.reply)
+													 .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.avatar))
+													 .SetContentText("Hey, it is James! What's up?")
+													 .SetContentTitle(GetString(Resource.String.message))
+													 .SetAutoCancel(true)
+													 .AddAction(action)
+													 .Build();
 
-            // Notify
-            using (var notificationManager = NotificationManagerCompat.From(this))
-            {
-                notificationManager.Notify(requestCode, notification);
-            }
-        }
+			// Notify
+			using (var notificationManager = NotificationManagerCompat.From(this))
+			{
+				notificationManager.Notify(requestCode, notification);
+			}
+		}
 
-	    private PendingIntent MakePendingIntent()
-	    {
-            PendingIntent pendingIntent = null;
+		private PendingIntent MakePendingIntent()
+		{
+			PendingIntent pendingIntent = null;
 
-            if ((int)Build.VERSION.SdkInt >= (int)BuildVersionCodes.N)
-            {
-                // >= Android N
-                var intent = new Intent(REPLY_ACTION)
-                    .AddFlags(ActivityFlags.IncludeStoppedPackages)
-                    .SetAction(REPLY_ACTION)
-                    .PutExtra(REQUEST_CODE_KEY, requestCode);
+			if ((int)Build.VERSION.SdkInt >= (int)BuildVersionCodes.N)
+			{
+				// >= Android N
+				var intent = new Intent(REPLY_ACTION)
+					.AddFlags(ActivityFlags.IncludeStoppedPackages)
+					.SetAction(REPLY_ACTION)
+					.PutExtra(REQUEST_CODE_KEY, requestCode);
 
-                pendingIntent = PendingIntent.GetBroadcast(this,
-                                                           requestCode,
-                                                           intent,
-                                                           PendingIntentFlags.UpdateCurrent);
-            }
-            else
-            {
-                // < Android N
-                var intent = new Intent(this, typeof(MainActivity));
-                intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+				pendingIntent = PendingIntent.GetBroadcast(this,
+														   requestCode,
+														   intent,
+														   PendingIntentFlags.UpdateCurrent);
+			}
+			else
+			{
+				// < Android N
+				var intent = new Intent(this, typeof(MainActivity));
+				intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
 
-                pendingIntent = PendingIntent.GetActivity(this,
-                                                          requestCode,
-                                                          intent,
-                                                          PendingIntentFlags.UpdateCurrent);
-            }
+				pendingIntent = PendingIntent.GetActivity(this,
+														  requestCode,
+														  intent,
+														  PendingIntentFlags.UpdateCurrent);
+			}
 
-	        return pendingIntent;
-	    }
+			return pendingIntent;
+		}
 	}
 }
 
