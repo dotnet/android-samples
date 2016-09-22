@@ -3,8 +3,8 @@ using Android.OS;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
+using CommonSampleLibrary;
 using Java.Lang;
-using TextSwitcher.Logger;
 
 namespace TextSwitcher
 {
@@ -16,7 +16,7 @@ namespace TextSwitcher
             get { return "MainActivity"; }
         }
 
-        private Android.Widget.TextSwitcher _switcher;
+        Android.Widget.TextSwitcher switcher;
         private int _mCounter = 0;
 
         protected override void OnCreate(Bundle bundle)
@@ -26,18 +26,18 @@ namespace TextSwitcher
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            _switcher = FindViewById<Android.Widget.TextSwitcher>(Resource.Id.Switcher);
+            switcher = FindViewById<Android.Widget.TextSwitcher>(Resource.Id.Switcher);
 
             // BEGIN_INCLUDE(setup)
             // Set the factory used to create TextViews to switch between.
-            _switcher.SetFactory(this);
+            switcher.SetFactory(this);
 
             /*
              * Set the in and out animations. Using the fade_in/out animations
              * provided by the framework.
              */
-            _switcher.InAnimation = AnimationUtils.LoadAnimation(this, Android.Resource.Animation.FadeIn);
-            _switcher.OutAnimation = AnimationUtils.LoadAnimation(this, Android.Resource.Animation.FadeOut);
+            switcher.InAnimation = AnimationUtils.LoadAnimation(this, Android.Resource.Animation.FadeIn);
+            switcher.OutAnimation = AnimationUtils.LoadAnimation(this, Android.Resource.Animation.FadeOut);
             // END_INCLUDE(setup)
             
             /*
@@ -51,12 +51,12 @@ namespace TextSwitcher
             {
                 // BEGIN_INCLUDE(settext)
                 _mCounter++;
-                _switcher.SetText(String.ValueOf(_mCounter));
+                switcher.SetText(String.ValueOf(_mCounter));
                 // END_INCLUDE(settext)
             };
 
             // Set the initial text without an animation
-            _switcher.SetCurrentText(String.ValueOf(_mCounter));
+            switcher.SetCurrentText(String.ValueOf(_mCounter));
         }
 
         protected override void OnStart()
