@@ -66,22 +66,29 @@ namespace SkeletonWear
 			public override Android.Graphics.Drawables.Drawable GetBackgroundForPage (int row, int column)
 			{
 				Point pt = new Point (column, row);
-				Drawable drawable = mBackgrounds [pt];
-				if (drawable == null) {
-					var bm = Bitmap.CreateBitmap (200, 200, Bitmap.Config.Argb8888);
-					var c = new Canvas (bm);
-					var p = new Paint ();
-					// Clear previous image.
-					c.DrawRect (0, 0, 200, 200, p);
-					p.AntiAlias = true;
-					p.SetTypeface (Typeface.Default);
-					p.TextSize = 64;
-					p.Color = Color.LightGray;
-					p.TextAlign = Paint.Align.Center;
-					c.DrawText (column+ "-" + row, 100, 100, p);
-					drawable = new BitmapDrawable (owner.Resources, bm);
-					mBackgrounds.Add (pt, drawable);
-				}
+			    Drawable drawable;
+                if (!mBackgrounds.ContainsKey(pt))
+			    {
+                    // the key wasn't found in Dictionary
+                    var bm = Bitmap.CreateBitmap(200, 200, Bitmap.Config.Argb8888);
+                    var c = new Canvas(bm);
+                    var p = new Paint();
+                    // Clear previous image.
+                    c.DrawRect(0, 0, 200, 200, p);
+                    p.AntiAlias = true;
+                    p.SetTypeface(Typeface.Default);
+                    p.TextSize = 64;
+                    p.Color = Color.LightGray;
+                    p.TextAlign = Paint.Align.Center;
+                    c.DrawText(column + "-" + row, 100, 100, p);
+                    drawable = new BitmapDrawable(owner.Resources, bm);
+                    mBackgrounds.Add(pt, drawable);
+                }
+			    else
+			    {
+                    // the key was found
+                    drawable = mBackgrounds[pt];
+                }
 				return drawable;
 			}
 		}
