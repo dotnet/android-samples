@@ -2,13 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Content.Res;
 using Android.OS;
 using Android.Util;
 using Android.Views;
@@ -66,16 +63,16 @@ namespace Camera2Basic
         private Camera2BasicSurfaceTextureListener mSurfaceTextureListener;
         private class Camera2BasicSurfaceTextureListener : Java.Lang.Object, TextureView.ISurfaceTextureListener
         {
-            public Camera2BasicFragment owner;
+            public Camera2BasicFragment Owner { get; set; }
 
             public Camera2BasicSurfaceTextureListener(Camera2BasicFragment owner)
             {
-                this.owner = owner;
+                Owner = owner;
             }
 
             public void OnSurfaceTextureAvailable(Android.Graphics.SurfaceTexture surface, int width, int height)
             {
-                owner.OpenCamera(width, height);
+                Owner.OpenCamera(width, height);
             }
 
             public bool OnSurfaceTextureDestroyed(Android.Graphics.SurfaceTexture surface)
@@ -85,7 +82,7 @@ namespace Camera2Basic
 
             public void OnSurfaceTextureSizeChanged(Android.Graphics.SurfaceTexture surface, int width, int height)
             {
-                owner.ConfigureTransform(width, height);
+                Owner.ConfigureTransform(width, height);
             }
 
             public void OnSurfaceTextureUpdated(Android.Graphics.SurfaceTexture surface)
@@ -135,13 +132,12 @@ namespace Camera2Basic
                 owner.mCameraOpenCloseLock.Release();
                 cameraDevice.Close();
                 owner.mCameraDevice = null;
-                if (owner != null)
+                if (owner == null)
+                    return;
+                Activity activity = owner.Activity;
+                if (activity != null)
                 {
-                    Activity activity = owner.Activity;
-                    if (activity != null)
-                    {
-                        activity.Finish();
-                    }
+                    activity.Finish();
                 }
 
             }
@@ -166,11 +162,11 @@ namespace Camera2Basic
         private ImageAvailableListener mOnImageAvailableListener;
         private class ImageAvailableListener : Java.Lang.Object, ImageReader.IOnImageAvailableListener
         {
-            public File File;
-            public Camera2BasicFragment owner;
+            public File File { get; set; }
+            public Camera2BasicFragment Owner { get; set; }
             public void OnImageAvailable(ImageReader reader)
             {
-                owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), File));
+                Owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), File));
             }
         }
 
@@ -197,8 +193,8 @@ namespace Camera2Basic
         private CameraCaptureListener mCaptureCallback;
         private class CameraCaptureListener : CameraCaptureSession.CaptureCallback
         {
-            public Camera2BasicFragment owner;
-            public File File;
+            public Camera2BasicFragment Owner { get; set; }
+            public File File { get; set; }
             public override void OnCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result)
             {
                 Process(result);
@@ -211,19 +207,14 @@ namespace Camera2Basic
 
             private void Process(CaptureResult result)
             {
-                switch (owner.mState)
+                switch (Owner.mState)
                 {
-                    case STATE_PREVIEW:
-                        {
-                            // We have nothing to do when the camera preview is working normally.
-                            break;
-                        }
                     case STATE_WAITING_LOCK:
                         {
                             Integer afState = (Integer)result.Get(CaptureResult.ControlAfState);
                             if (afState == null)
                             {
-                                owner.CaptureStillPicture();
+                                Owner.CaptureStillPicture();
                             }
 
                             else if ((((int)ControlAFState.FocusedLocked) == afState.IntValue()) ||
@@ -234,12 +225,12 @@ namespace Camera2Basic
                                 if (aeState == null ||
                                         aeState.IntValue() == ((int)ControlAEState.Converged))
                                 {
-                                    owner.mState = STATE_PICTURE_TAKEN;
-                                    owner.CaptureStillPicture();
+                                    Owner.mState = STATE_PICTURE_TAKEN;
+                                    Owner.CaptureStillPicture();
                                 }
                                 else
                                 {
-                                    owner.RunPrecaptureSequence();
+                                    Owner.RunPrecaptureSequence();
                                 }
                             }
                             break;
@@ -252,7 +243,7 @@ namespace Camera2Basic
                                     aeState.IntValue() == ((int)ControlAEState.Precapture) ||
                                     aeState.IntValue() == ((int)ControlAEState.FlashRequired))
                             {
-                                owner.mState = STATE_WAITING_NON_PRECAPTURE;
+                                Owner.mState = STATE_WAITING_NON_PRECAPTURE;
                             }
                             break;
                         }
@@ -262,8 +253,8 @@ namespace Camera2Basic
                             Integer aeState = (Integer)result.Get(CaptureResult.ControlAeState);
                             if (aeState == null || aeState.IntValue() != ((int)ControlAEState.Precapture))
                             {
-                                owner.mState = STATE_PICTURE_TAKEN;
-                                owner.CaptureStillPicture();
+                                Owner.mState = STATE_PICTURE_TAKEN;
+                                Owner.CaptureStillPicture();
                             }
                             break;
                         }
@@ -419,18 +410,13 @@ namespace Camera2Basic
 
         public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
         {
-            if (requestCode == REQUEST_CAMERA_PERMISSION)
+            if (requestCode != REQUEST_CAMERA_PERMISSION)
+                return;
+
+            if (grantResults.Length != 1 || grantResults[0] != (int)Permission.Granted)
             {
-                if (grantResults.Length != 1 || grantResults[0] != (int)Permission.Granted)
-                {
-                    ErrorDialog.NewInstance(GetString(Resource.String.request_permission))
-                            .Show(ChildFragmentManager, FRAGMENT_DIALOG);
-                }
-            }
-            else
-            {
-                // it should call to base..
-                //base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+                ErrorDialog.NewInstance(GetString(Resource.String.request_permission))
+                        .Show(ChildFragmentManager, FRAGMENT_DIALOG);
             }
         }
 
@@ -939,29 +925,19 @@ namespace Camera2Basic
                 ByteBuffer buffer = mImage.GetPlanes()[0].Buffer;
                 byte[] bytes = new byte[buffer.Remaining()];
                 buffer.Get(bytes);
-                FileOutputStream output = null;
-                try
+                using (var output = new FileOutputStream(mFile))
                 {
-                    output = new FileOutputStream(mFile);
-                    output.Write(bytes);
-                }
-                catch (IOException e)
-                {
-                    e.PrintStackTrace();
-                }
-                finally
-                {
-                    mImage.Close();
-                    if (null != output)
+                    try
                     {
-                        try
-                        {
-                            output.Close();
-                        }
-                        catch (IOException e)
-                        {
-                            e.PrintStackTrace();
-                        }
+                        output.Write(bytes);
+                    }
+                    catch (IOException e)
+                    {
+                        e.PrintStackTrace();
+                    }
+                    finally
+                    {
+                        mImage.Close();
                     }
                 }
             }
@@ -995,11 +971,9 @@ namespace Camera2Basic
 
             public static ErrorDialog NewInstance(string message)
             {
-                ErrorDialog dialog = new ErrorDialog();
                 var args = new Bundle();
                 args.PutString(ARG_MESSAGE, message);
-                dialog.Arguments = args;
-                return dialog;
+                return new ErrorDialog { Arguments = args };
             }
 
             public override Dialog OnCreateDialog(Bundle savedInstanceState)
