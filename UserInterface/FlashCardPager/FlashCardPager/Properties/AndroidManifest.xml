@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+          package="FlashCardPager.FlashCardPager" android:versionCode="1" android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="22" />
+  <application android:label="FlashCardPager" 
+               android:icon="@drawable/icon"
+               android:theme="@style/Theme.AppCompat.Light.DarkActionBar"> 
+  </application>
+</manifest>
