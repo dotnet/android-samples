@@ -72,6 +72,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareSizesByArea.cs" />
+    <Compile Include="ConfirmationDialog.cs" />
+    <Compile Include="ErrorDialog.cs" />
+    <Compile Include="Listeners\Camera2BasicSurfaceTextureListener.cs" />
+    <Compile Include="Listeners\CameraCaptureListener.cs" />
+    <Compile Include="Listeners\CameraCaptureSessionCallback.cs" />
+    <Compile Include="Listeners\CameraCaptureStillPictureSessionCallback.cs" />
+    <Compile Include="Listeners\CameraStateListener.cs" />
+    <Compile Include="Listeners\ImageAvailableListener.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CameraActivity.cs" />
