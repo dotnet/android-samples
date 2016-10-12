@@ -388,7 +388,7 @@ namespace Camera2Basic
 			SurfaceOrientation rotation = activity.WindowManager.DefaultDisplay.Rotation;
 			Matrix matrix = new Matrix ();
 			RectF viewRect = new RectF (0, 0, viewWidth, viewHeight);
-			RectF bufferRect = new RectF (0, 0, mPreviewSize.Width, mPreviewSize.Height);
+			RectF bufferRect = new RectF (0, 0, mPreviewSize.Height, mPreviewSize.Width);
 			float centerX = viewRect.CenterX();
 			float centerY = viewRect.CenterY();
 			if (rotation == SurfaceOrientation.Rotation90 || rotation == SurfaceOrientation.Rotation270) {
