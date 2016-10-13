@@ -1,0 +1,11 @@
+<SampleMetadata>
+	<ID>bd7480f9-cef7-4bba-94cb-1579ae2865b8</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Games, Data, User Interface</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Intermediate</LicenseRequirement>
+	<Brief>Demonstrates the Leaderboard and Achievement features for Google Play Games.</Brief>
+	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
+</SampleMetadata>
