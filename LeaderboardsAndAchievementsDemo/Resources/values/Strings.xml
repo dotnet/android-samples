@@ -2,5 +2,5 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">LeaderboardsAndAchievementsDemo</string>
-	<string name="app_id">192784375831</string>
+	<string name="app_id">PASTE_YOUR_GAME_ID_HERE</string>
 </resources>
