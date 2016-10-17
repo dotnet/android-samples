@@ -5,7 +5,7 @@ FlashCardPager
 [ViewPager](http://developer.xamarin.com/guides/android/user_interface/viewpager/).
 
 This sample demonstrates how to use `ViewPager` and `PagerTabStrip` 
-together to implement an app that presents series of math problems on 
+together to implement an app that presents a series of math problems on 
 flash cards. The user can swipe left and right through the flash cards 
 and tap on a math problem to reveal the answer. 
 
