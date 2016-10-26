@@ -12,11 +12,11 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">App Shortcuts Sample</string>
-  <string name="add_new_website">Add New Website</string>
-  <string name="add_new_website_short">Add Website</string>
-  <string name="existing_shortcuts">Existing shortcuts:</string>
-  <string name="remove_shortcut">Remove</string>
-  <string name="disable_shortcut">Disable</string>
-  <string name="enable_shortcut">Enable</string>
+  <string name="app_name">アプリのショートカットサンプル</string>
+  <string name="add_new_website">ウェブサイト追加</string>
+  <string name="add_new_website_short">追加</string>
+  <string name="existing_shortcuts">既存のショートカット:</string>
+  <string name="remove_shortcut">削除</string>
+  <string name="disable_shortcut">無効</string>
+  <string name="enable_shortcut">有効</string>
 </resources>

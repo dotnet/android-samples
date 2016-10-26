@@ -10,13 +10,17 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">App Shortcuts Sample</string>
-  <string name="add_new_website">Add New Website</string>
-  <string name="add_new_website_short">Add Website</string>
-  <string name="existing_shortcuts">Existing shortcuts:</string>
-  <string name="remove_shortcut">Remove</string>
-  <string name="disable_shortcut">Disable</string>
-  <string name="enable_shortcut">Enable</string>
-</resources>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android" >
+    <shortcut
+        android:shortcutId="add_website"
+        android:icon="@drawable/add"
+        android:shortcutShortLabel="@string/add_new_website_short"
+        android:shortcutLongLabel="@string/add_new_website"
+        >
+        <intent
+            android:action="com.example.android.appshortcuts.ADD_WEBSITE"
+            android:targetPackage="com.xamarin.appshortcuts"
+            android:targetClass="com.xamarin.appshortcuts.Main"
+            />
+    </shortcut>
+</shortcuts>
