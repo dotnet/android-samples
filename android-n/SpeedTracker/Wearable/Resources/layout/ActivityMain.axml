@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111">
+    <View
+        android:id="@+id/center"
+        android:layout_width="1px"
+        android:layout_height="1px"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingLeft="16dp"
+        android:fontFamily="sans-serif-light"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="italic"
+        android:id="@+id/gps_issue_text"
+        android:text="" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/current_speed_text"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/center"
+        android:textColor="@color/green"
+        android:layout_marginRight="-10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="18sp"
+        android:text="@string/mph"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBaseline="@+id/current_speed_text"
+        android:id="@+id/current_speed_mph"
+        android:fontFamily="sans-serif-thin"
+        android:layout_toRightOf="@+id/current_speed_text" />
+    <ImageView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/current_speed_mph"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/dot" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/max_speed_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="17sp"
+        android:layout_marginTop="33dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_gps_not_saving_grey600_96dp"
+        android:id="@+id/gps_permission"
+        android:onClick="onGpsPermissionClick"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="50dp" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/speed_limit_setting"
+        android:onClick="onSpeedLimitClick"
+        android:background="@drawable/settings"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/gps_permission"
+        android:layout_marginRight="50dp" />
+</RelativeLayout>

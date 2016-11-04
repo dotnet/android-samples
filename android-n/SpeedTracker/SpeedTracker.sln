@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedTracker", "SpeedTracker\SpeedTracker.csproj", "{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wearable", "Wearable\Wearable.csproj", "{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{FE2799D1-1686-46E9-A91F-24F36929D53F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B76E49-D7D7-4616-B4E8-B847BC0D14D2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F53B5EBC-5AA1-4DC1-9666-F598C00A8537}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FE2799D1-1686-46E9-A91F-24F36929D53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2799D1-1686-46E9-A91F-24F36929D53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2799D1-1686-46E9-A91F-24F36929D53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2799D1-1686-46E9-A91F-24F36929D53F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
