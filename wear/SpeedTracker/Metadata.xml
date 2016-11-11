@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>8C8D0B8F-94E7-4AC5-811D-F6AC1F59800F</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Maps, Android Wear</Tags>
+	<Gallery>true</Gallery>
+	<Brief>Demonstrates how to track speed using a watch.</Brief>
+</SampleMetadata>
