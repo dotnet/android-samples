@@ -6,10 +6,12 @@ This sample demonstrates how to make your app viewable in Google Search using Go
 Instructions
 ------------
 
-* On the device's web browser, navigate to the deep link URL defined in MainActivity.cs.
+* Run app from VS or XS on devicer or emulator
+* Close app from the device or emulator
+* Open terminal and run ```adb shell am start -a android.intent.action.VIEW -d "http://www.example.com/articles/test" com.xamarin.appindexing```
 
 Authors
 -------
-Copyright (c) 2015 Google, Inc.
-Ported from [Google App Indexing Quickstart Sample](https://github.com/googlesamples/google-services/tree/master/android/app-indexing)
-Ported to Xamarin.Android by Aaron Sky
+Copyright (c) 2016 Google, Inc.
+Ported from [Google App Indexing Quickstart Sample](https://github.com/firebase/quickstart-android/blob/master/app-indexing)
+Ported to Xamarin.Android by Aaron Sky and Gonzalo Martin
