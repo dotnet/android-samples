@@ -5,7 +5,9 @@ using Android.Content.PM;
 using Android.Gms.AppIndexing;
 using Android.Net;
 using Android.Gms.Common.Apis;
+using Android.Support.V7.App;
 using Android.Util;
+using Java.Lang;
 
 namespace AppIndexing
 {
@@ -17,11 +19,13 @@ namespace AppIndexing
 			Android.Content.Intent.CategoryBrowsable
 		},
 		DataScheme = "http",
-		DataHost = "example.com",
+		DataHost = "www.example.com",
 		DataPathPrefix = "/articles/"
 	)]
-	public class MainActivity : Activity
+	public class MainActivity : AppCompatActivity
 	{
+		// Define a title for your current page, shown in autocompletion UI
+		const string Title = "Sample Article";
 		static readonly string Tag = typeof(MainActivity).Name;
 		GoogleApiClient mClient;
 		string articleId;
@@ -38,46 +42,49 @@ namespace AppIndexing
 		{
 			var action = intent.Action;
 			var data = intent.DataString;
-			if (action == Android.Content.Intent.ActionView && string.IsNullOrEmpty(data)) {
-				articleId = data.Substring(data.LastIndexOf("/") + 1);
-				var deepLinkText = FindViewById<TextView>(Resource.Id.deep_link);
-				deepLinkText.Text = data;
-			}
+			if (action != Android.Content.Intent.ActionView || !string.IsNullOrEmpty(data)) return;
+			articleId = data.Substring(data.LastIndexOf("/") + 1);
+			var deepLinkText = FindViewById<TextView>(Resource.Id.deep_link);
+			deepLinkText.Text = data;
 		}
 
 		protected override async void OnStart ()
 		{
 			base.OnStart ();
-			if (articleId != null) {
-				// Connect your client
-				mClient.Connect();
+			if (articleId == null) return;
+			// Connect your client
+			mClient.Connect();
 
-				// Define a title for your current page, shown in autocompletion UI
-				const string title = "Sample Article";
-				var appUri = Uri.Parse("android-app://com.google.developers.app-indexing.quickstart/http/www.example.com/articles/" + articleId);
-				var webUrl = Uri.Parse("http://www.example.com/articles/" + articleId);
+			var baseUrl = Uri.Parse("http://www.example.com/articles/");
+			var appUri = baseUrl.BuildUpon().AppendPath(articleId).Build();
 
-				// Call the App Indexing API view method
-				var result = await AppIndex.AppIndexApi.ViewAsync (mClient, this, appUri, title, webUrl, null);
+			var viewAction = Action.NewAction(Action.TypeView, Title, appUri);
 
-                if (result.IsSuccess)
-                    Log.Debug(Tag, "App Indexing API: Recorded page view successfully.");
-                else
-                    Log.Error(Tag, "App Indexing API: There was an error recording the page view." + result);
-			}
+			// Call the App Indexing API view method
+			var result = await AppIndex.AppIndexApi.Start(mClient, viewAction);
+			if (result.Status.IsSuccess)
+				Log.Debug(Tag, "App Indexing API: Recorded page view successfully.");
+			else
+				Log.Error(Tag, "App Indexing API: There was an error recording the page view." + result);
 		}
-
 
 		protected override async void OnStop ()
 		{
 			base.OnStop ();
-			if (articleId != null) {
-				var appUri = Uri.Parse("android-app://com.google.developers.app-indexing.quickstart/http/www.example.com/articles/" + articleId);
-				
-                await AppIndex.AppIndexApi.ViewEndAsync (mClient, this, appUri);
+			if (articleId == null) return;
+			var baseUrl = Uri.Parse("http://www.example.com/articles/");
+			var appUri = baseUrl.BuildUpon().AppendPath(articleId).Build();
 
-				mClient.Disconnect();
-			}
+			var viewAction = Action.NewAction(Action.TypeView, Title, appUri);
+			var result = await AppIndex.AppIndexApi.End(mClient, viewAction);
+
+			await AppIndex.AppIndexApi.ViewEndAsync (mClient, this, appUri);
+			if (result.Status.IsSuccess)
+				Log.Debug(Tag, "App Indexing API: Indexed recipe view end successfully.");
+			else
+				Log.Error(Tag, "App Indexing API: There was an error indexing the recipe view." + result.Status);
+
+			mClient.Disconnect();
 		}
 	}
 }
