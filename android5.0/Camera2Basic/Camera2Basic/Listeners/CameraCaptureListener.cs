@@ -1,4 +1,3 @@
-
 using Android.Hardware.Camera2;
 using Java.IO;
 using Java.Lang;
@@ -7,8 +6,15 @@ namespace Camera2Basic.Listeners
 {
     public class CameraCaptureListener : CameraCaptureSession.CaptureCallback
     {
-        public Camera2BasicFragment Owner { get; set; }
-        public File File { get; set; }
+        private readonly Camera2BasicFragment owner;
+
+        public CameraCaptureListener(Camera2BasicFragment owner)
+        {
+            if (owner == null)
+                throw new System.ArgumentNullException("owner");
+            this.owner = owner;
+        }
+
         public override void OnCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result)
         {
             Process(result);
@@ -21,14 +27,14 @@ namespace Camera2Basic.Listeners
 
         private void Process(CaptureResult result)
         {
-            switch (Owner.mState)
+            switch (owner.mState)
             {
                 case Camera2BasicFragment.STATE_WAITING_LOCK:
                     {
                         Integer afState = (Integer)result.Get(CaptureResult.ControlAfState);
                         if (afState == null)
                         {
-                            Owner.CaptureStillPicture();
+                            owner.CaptureStillPicture();
                         }
 
                         else if ((((int)ControlAFState.FocusedLocked) == afState.IntValue()) ||
@@ -39,12 +45,12 @@ namespace Camera2Basic.Listeners
                             if (aeState == null ||
                                     aeState.IntValue() == ((int)ControlAEState.Converged))
                             {
-                                Owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
-                                Owner.CaptureStillPicture();
+                                owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
+                                owner.CaptureStillPicture();
                             }
                             else
                             {
-                                Owner.RunPrecaptureSequence();
+                                owner.RunPrecaptureSequence();
                             }
                         }
                         break;
@@ -57,7 +63,7 @@ namespace Camera2Basic.Listeners
                                 aeState.IntValue() == ((int)ControlAEState.Precapture) ||
                                 aeState.IntValue() == ((int)ControlAEState.FlashRequired))
                         {
-                            Owner.mState = Camera2BasicFragment.STATE_WAITING_NON_PRECAPTURE;
+                            owner.mState = Camera2BasicFragment.STATE_WAITING_NON_PRECAPTURE;
                         }
                         break;
                     }
@@ -67,8 +73,8 @@ namespace Camera2Basic.Listeners
                         Integer aeState = (Integer)result.Get(CaptureResult.ControlAeState);
                         if (aeState == null || aeState.IntValue() != ((int)ControlAEState.Precapture))
                         {
-                            Owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
-                            Owner.CaptureStillPicture();
+                            owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
+                            owner.CaptureStillPicture();
                         }
                         break;
                     }

@@ -1,20 +1,21 @@
-
 using Android.Views;
 
 namespace Camera2Basic.Listeners
 {
     public class Camera2BasicSurfaceTextureListener : Java.Lang.Object, TextureView.ISurfaceTextureListener
     {
-        public Camera2BasicFragment Owner { get; set; }
+        private readonly Camera2BasicFragment owner;
 
         public Camera2BasicSurfaceTextureListener(Camera2BasicFragment owner)
         {
-            Owner = owner;
+            if (owner == null)
+                throw new System.ArgumentNullException("owner");
+            this.owner = owner;
         }
 
         public void OnSurfaceTextureAvailable(Android.Graphics.SurfaceTexture surface, int width, int height)
         {
-            Owner.OpenCamera(width, height);
+            owner.OpenCamera(width, height);
         }
 
         public bool OnSurfaceTextureDestroyed(Android.Graphics.SurfaceTexture surface)
@@ -24,7 +25,7 @@ namespace Camera2Basic.Listeners
 
         public void OnSurfaceTextureSizeChanged(Android.Graphics.SurfaceTexture surface, int width, int height)
         {
-            Owner.ConfigureTransform(width, height);
+            owner.ConfigureTransform(width, height);
         }
 
         public void OnSurfaceTextureUpdated(Android.Graphics.SurfaceTexture surface)
