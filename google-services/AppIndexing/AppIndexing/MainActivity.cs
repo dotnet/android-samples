@@ -42,7 +42,7 @@ namespace AppIndexing
 		{
 			var action = intent.Action;
 			var data = intent.DataString;
-			if (action != Android.Content.Intent.ActionView || !string.IsNullOrEmpty(data)) return;
+			if (!Android.Content.Intent.ActionView.Equals(action) || string.IsNullOrEmpty(data)) return;
 			articleId = data.Substring(data.LastIndexOf("/") + 1);
 			var deepLinkText = FindViewById<TextView>(Resource.Id.deep_link);
 			deepLinkText.Text = data;
