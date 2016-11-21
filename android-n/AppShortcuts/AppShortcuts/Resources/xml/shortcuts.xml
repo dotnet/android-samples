@@ -19,8 +19,8 @@
         >
         <intent
             android:action="com.example.android.appshortcuts.ADD_WEBSITE"
-            android:targetPackage="com.xamarin.appshortcuts"
-            android:targetClass="com.xamarin.appshortcuts.Main"
+            android:targetPackage="AppShortcuts.AppShortcuts"
+            android:targetClass="AppShortcuts.AppShortcuts.Main"
             />
     </shortcut>
 </shortcuts>

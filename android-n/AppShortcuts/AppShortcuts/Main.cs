@@ -24,10 +24,12 @@ using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Java.Lang;
+using System;
+using Android.Content.PM;
 
 namespace AppShortcuts
 {
-	[Activity(Label = "AppShortcuts", MainLauncher = true, Icon = "@mipmap/icon")]
+	[Activity(Label = "AppShortcuts", MainLauncher = true, Icon = "@mipmap/ic_launcher")]
 	[MetaData("android.app.shortcuts", Resource = "@xml/shortcuts")]
 	public class Main : ListActivity, View.IOnClickListener
 	{
@@ -45,7 +47,7 @@ namespace AppShortcuts
 			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Main);
+			SetContentView(Resource.Layout.ActivityMain);
 
 			mHelper = new ShortcutHelper(this);
 
@@ -72,6 +74,7 @@ namespace AppShortcuts
 		/**
 		 * Handle the add button.
 		 */
+		[Java.Interop.Export("OnAddPressed")]
 		public void OnAddPressed(View v)
 		{
 			AddWebSite();
@@ -86,7 +89,7 @@ namespace AppShortcuts
 
 			EditText editUri = new EditText(this);
 
-			editUri.SetHint("http://www.xamarin.com/");
+			editUri.Hint = "http://www.xamarin.com/";
 			editUri.InputType = InputTypes.TextVariationUri;
 
 			new AlertDialog.Builder(this)
@@ -95,7 +98,7 @@ namespace AppShortcuts
 				.SetView(editUri)
 				.SetPositiveButton("Add", (dialog, whichButton) =>
 				{
-					string url = editUri.Text.ToString().Trim();
+					var url = editUri.Text.ToString().Trim();
 					if (url.Length > 0)
 					{
 						AddUriAsync(url);
@@ -106,10 +109,10 @@ namespace AppShortcuts
 
 		private void AddUriAsync(string url)
 		{
-			new AddUriTask(this, mHelper);
+			new AddUriTask(this, mHelper).Execute(url);
 		}
 
-		private class AddUriTask : AsyncTask<Java.Lang.Void, Java.Lang.Void, Java.Lang.Void>
+		private class AddUriTask : AsyncTask<Java.Lang.Object, Java.Lang.Object, Java.Lang.Void>
 		{
 			private ShortcutHelper Helper { get; set; }
 			private Main Owner { get; set; }
@@ -120,16 +123,16 @@ namespace AppShortcuts
 				Helper = helper;
 			}
 
-			protected override Void DoInBackground(params Void[] @params)
-			{
-				var uri = (string) @params[0];
-				Helper.AddWebSiteShortcut(uri);
-				return null;
-			}
-
-			protected override void OnPostExecute(Void result)
+			protected override void OnPostExecute(Java.Lang.Void result)
 			{
 				Owner.RefreshList();
+			}
+
+			protected override Java.Lang.Void RunInBackground(params Java.Lang.Object[] @params)
+			{
+				var uri = (string)@params[0];
+				Helper.AddWebSiteShortcut(uri);
+				return null;
 			}
 		}
 
@@ -145,7 +148,7 @@ namespace AppShortcuts
 			switch (view.Id)
 			{
 				case Resource.Id.disable:
-					if (shortcut.IsEnabled())
+					if (shortcut.IsEnabled)
 					{
 						mHelper.DisableShortcut(shortcut);
 					}
@@ -168,25 +171,25 @@ namespace AppShortcuts
 		{
 			StringBuilder sb = new StringBuilder();
 			string sep = "";
-			if (shortcut.IsDynamic())
+			if (shortcut.IsDynamic)
 			{
 				sb.Append(sep);
 				sb.Append("Dynamic");
 				sep = ", ";
 			}
-			if (shortcut.IsPinned())
+			if (shortcut.IsPinned)
 			{
 				sb.Append(sep);
 				sb.Append("Pinned");
 				sep = ", ";
 			}
-			if (!shortcut.IsEnabled())
+			if (!shortcut.IsEnabled)
 			{
 				sb.Append(sep);
 				sb.Append("Disabled");
 				sep = ", ";
 			}
-			return sb.toString();
+			return sb.ToString();
 		}
 
 		private class MyAdapter : BaseAdapter
@@ -199,7 +202,7 @@ namespace AppShortcuts
 			public MyAdapter(Context context)
 			{
 				Context = context;
-				Inflater = Context.GetSystemService(typeof (LayoutInflater));
+				Inflater = (LayoutInflater)Context.GetSystemService(Java.Lang.Class.FromType(typeof(LayoutInflater)));
 				Owner = (Main) context;
 			}
 
@@ -211,9 +214,9 @@ namespace AppShortcuts
 				}
 			}
 
-			public override Object GetItem(int position)
+			public override Java.Lang.Object GetItem(int position)
 			{
-				return (Object) mList[position];
+				return (Java.Lang.Object) mList[position];
 			}
 
 			public override long GetItemId(int position)
@@ -258,14 +261,14 @@ namespace AppShortcuts
 				TextView line1 = view.FindViewById<TextView>(Resource.Id.line1);
 				TextView line2 = view.FindViewById<TextView>(Resource.Id.line2);
 
-				line1.Text = shortcut.GetLongLabel();
+				line1.Text = shortcut.LongLabel;
 
 				line2.Text = Owner.GetType(shortcut);
 
 				Button remove = view.FindViewById<Button>(Resource.Id.remove);
 				Button disable = view.FindViewById<Button>(Resource.Id.disable);
 
-				disable.Text = shortcut.IsEnabled()
+				disable.Text = shortcut.IsEnabled
 					? Owner.GetString(Resource.String.disable_shortcut)
 					: Owner.GetString(Resource.String.enable_shortcut);
 

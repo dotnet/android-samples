@@ -27,6 +27,7 @@ using Java.Net;
 using Java.Util;
 using IOException = Java.IO.IOException;
 using Uri = Android.Net.Uri;
+using Android.Content.PM;
 
 namespace AppShortcuts
 {
@@ -45,12 +46,12 @@ namespace AppShortcuts
 		public ShortcutHelper(Context context)
 		{
 			mContext = context;
-			//mShortcutManager = mContext.getSystemService(ShortcutManager.class);
+			mShortcutManager = (ShortcutManager)mContext.GetSystemService(Java.Lang.Class.FromType(typeof(ShortcutManager)));
 		}
 
 		public void MaybeRestoreAllDynamicShortcuts()
 		{
-			if (mShortcutManager.GetDynamicShortcuts().size() == 0)
+			if (mShortcutManager.DynamicShortcuts.Count == 0)
 			{
 				// NOTE: If this application is always supposed to have dynamic shortcuts, then publish
 				// them here.
@@ -67,11 +68,11 @@ namespace AppShortcuts
 		/**
 		 * Use this when interacting with ShortcutManager to show consistent error messages.
 		 */
-		private void CallShortcutManager(BooleanSupplier r)
+		private void CallShortcutManager(bool r)
 		{
 			try
 			{
-				if (!r.GetAsBoolean())
+				if (!r)
 				{
 					Utils.ShowToast(mContext, "Call to ShortcutManager is rate-limited");
 				}
@@ -95,18 +96,18 @@ namespace AppShortcuts
 			HashSet<string> seenKeys = new HashSet<string>();
 
 			// Check existing shortcuts shortcuts
-			foreach (var shortcut in mShortcutManager.getDynamicShortcuts())
+			foreach (var shortcut in mShortcutManager.DynamicShortcuts)
 			{
-				if (shortcut.IsImmutable()) continue;
+				if (shortcut.IsImmutable) continue;
 				ret.Add(shortcut);
-				seenKeys.Add(shortcut.GetId());
+				seenKeys.Add(shortcut.Id);
 			}
 
-			foreach (var shortcut in mShortcutManager.getPinnedShortcuts())
+			foreach (var shortcut in mShortcutManager.PinnedShortcuts)
 			{
-				if (shortcut.IsImmutable() || seenKeys.Contains(shortcut.GetId())) continue;
+				if (shortcut.IsImmutable || seenKeys.Contains(shortcut.Id)) continue;
 				ret.Add(shortcut);
-				seenKeys.Add(shortcut.GetId());
+				seenKeys.Add(shortcut.Id);
 			}
 			
 			return ret;
@@ -114,24 +115,26 @@ namespace AppShortcuts
 
 		public void RefreshShortcuts(bool force)
 		{
-			new RefreshShortcutsTask(mContext, this).Execute(force);
+			new RefreshShortcutsTask(mContext, this, mShortcutManager).Execute(force);
 		}
 
-		private class RefreshShortcutsTask : AsyncTask<Java.Lang.Void, Java.Lang.Void, Java.Lang.Void>
+		private class RefreshShortcutsTask : AsyncTask<bool, Java.Lang.Void, Java.Lang.Void>
 		{
 			private ShortcutHelper Helper { get; set; }
+			private ShortcutManager ShortcutManager { get; set; }
 			private Context Context { get; set; }
 
-			public RefreshShortcutsTask(Context context, ShortcutHelper helper)
+			public RefreshShortcutsTask(Context context, ShortcutHelper helper, ShortcutManager shortcutManager)
 			{
 				Context = context;
 				Helper = helper;
+				ShortcutManager = shortcutManager;
 			}
-			protected override Void RunInBackground(params Void[] @params)
+			protected override Void RunInBackground(params bool[] @params)
 			{
 				Log.Info(TAG, "refreshingShortcuts...");
 
-				var force = (bool) @params[0];
+				var force = @params[0];
 
 				var now = Java.Lang.JavaSystem.CurrentTimeMillis();
 				var staleThreshold = force ? now : now - REFRESH_INTERVAL_MS;
@@ -143,12 +146,12 @@ namespace AppShortcuts
 
 				foreach (var shortcut in updateList)
 				{
-					if (shortcut.IsImmutable())
+					if (shortcut.IsImmutable)
 					{
 						continue;
 					}
 
-					PersistableBundle extras = shortcut.GetExtras();
+					var extras = shortcut.Extras;
 
 					if (extras != null && extras.GetLong(EXTRA_LAST_REFRESH) >= staleThreshold)
 					{
@@ -156,11 +159,11 @@ namespace AppShortcuts
 						continue;
 					}
 
-					Log.Info(TAG, "Refreshing shortcut: " + shortcut.GetId());
+					Log.Info(TAG, "Refreshing shortcut: " + shortcut.Id);
 
-					ShortcutInfo.Builder b = new ShortcutInfo.Builder(Context, shortcut.GetId());
+					var b = new ShortcutInfo.Builder(Context, shortcut.Id);
 
-					Helper.SetSiteInformation(b, shortcut.GetIntent().getData());
+					Helper.SetSiteInformation(b, shortcut.Intent.Data);
 
 					Helper.SetExtras(b);
 
@@ -168,9 +171,9 @@ namespace AppShortcuts
 				}
 
 				// Call update.
-				if (updateList.Count > 0)
+				if ((ShortcutManager != null) && (updateList.Count > 0))
 				{
-					Helper.CallShortcutManager(()->mShortcutManager.updateShortcuts(updateList));
+					Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
 				}
 
 				return null;
@@ -225,25 +228,24 @@ namespace AppShortcuts
 		public void AddWebSiteShortcut(string urlAsString)
 		{
 			var uriFinal = urlAsString;
-			CallShortcutManager(()-> {
-				ShortcutInfo shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
-				return mShortcutManager.AddDynamicShortcuts(Arrays.AsList(shortcut));
-			});
+			var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
+			CallShortcutManager(mShortcutManager.AddDynamicShortcuts((IList<Android.Content.PM.ShortcutInfo>)Arrays.AsList(shortcut)));
+
 		}
 
 		public void RemoveShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.RemoveDynamicShortcuts(Arrays.AsList(shortcut.GetId()));
+			mShortcutManager.RemoveDynamicShortcuts((IList<string>)Arrays.AsList(shortcut.Id));
 		}
 
 		public void DisableShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.DisableShortcuts(Arrays.AsList(shortcut.GetId()));
+			mShortcutManager.DisableShortcuts((IList<string>)Arrays.AsList(shortcut.Id));
 		}
 
 		public void EnableShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.EnableShortcuts(Arrays.AsList(shortcut.GetId()));
+			mShortcutManager.EnableShortcuts((System.Collections.Generic.IList<string>)Arrays.AsList(shortcut.Id));
 		}
 
 		private Bitmap FetchFavicon(Uri uri)
