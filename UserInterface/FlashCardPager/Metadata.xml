@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>731F46C6-07FA-46C8-AD24-62089066889A</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>A math problem flash card deck that demonstrates how to use ViewPager and PagerTabStrip with fragments.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>

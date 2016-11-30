@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
  Copyright 2014 The Android Open Source Project
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +15,8 @@
  limitations under the License.
 -->
 <resources>
-    <string name="picture">Picture</string>
-    <string name="description_info">Info</string>
+  <string name="picture">Picture</string>
+  <string name="description_info">Info</string>
+  <string name="request_permission">This sample needs camera permission.</string>
+  <string name="camera_error">This device doesn\'t support Camera2 API.</string>
 </resources>
