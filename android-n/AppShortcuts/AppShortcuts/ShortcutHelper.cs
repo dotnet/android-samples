@@ -68,11 +68,11 @@ namespace AppShortcuts
 		/**
 		 * Use this when interacting with ShortcutManager to show consistent error messages.
 		 */
-		private void CallShortcutManager(bool r)
+		private void CallShortcutManager(Java.Util.Functions.IBooleanSupplier r)
 		{
 			try
 			{
-				if (!r)
+				if (!r.AsBoolean)
 				{
 					Utils.ShowToast(mContext, "Call to ShortcutManager is rate-limited");
 				}
@@ -173,7 +173,8 @@ namespace AppShortcuts
 				// Call update.
 				if ((ShortcutManager != null) && (updateList.Count > 0))
 				{
-					Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
+					ShortcutManager.UpdateShortcuts(updateList);
+					//Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
 				}
 
 				return null;
@@ -229,7 +230,11 @@ namespace AppShortcuts
 		{
 			var uriFinal = urlAsString;
 			var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
-			CallShortcutManager(mShortcutManager.AddDynamicShortcuts((IList<Android.Content.PM.ShortcutInfo>)Arrays.AsList(shortcut)));
+			CallShortcutManager(() =>
+			{
+				var list = (IList<Android.Content.PM.ShortcutInfo>)Arrays.AsList(shortcut);
+				return mShortcutManager.AddDynamicShortcuts(list);
+			});
 
 		}
 
