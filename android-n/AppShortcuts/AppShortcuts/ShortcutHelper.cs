@@ -173,6 +173,7 @@ namespace AppShortcuts
 				// Call update.
 				if ((ShortcutManager != null) && (updateList.Count > 0))
 				{
+					//ShortcutManager.UpdateShortcuts(updateList);
 					Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
 				}
 
@@ -184,7 +185,7 @@ namespace AppShortcuts
 		{
 			Log.Info(TAG, "createShortcutForUrl: " + urlAsString);
 
-			ShortcutInfo.Builder b = new ShortcutInfo.Builder(mContext, urlAsString);
+			var b = new ShortcutInfo.Builder(mContext, urlAsString);
 
 			var uri = Uri.Parse(urlAsString);
 			b.SetIntent(new Intent(Intent.ActionView, uri));
@@ -229,23 +230,22 @@ namespace AppShortcuts
 		{
 			var uriFinal = urlAsString;
 			var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
-			CallShortcutManager(mShortcutManager.AddDynamicShortcuts((IList<Android.Content.PM.ShortcutInfo>)Arrays.AsList(shortcut)));
-
+			CallShortcutManager(mShortcutManager.AddDynamicShortcuts(new List<ShortcutInfo> { shortcut }));
 		}
 
 		public void RemoveShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.RemoveDynamicShortcuts((IList<string>)Arrays.AsList(shortcut.Id));
+			mShortcutManager.RemoveDynamicShortcuts(new List<string> { shortcut.Id });
 		}
 
 		public void DisableShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.DisableShortcuts((IList<string>)Arrays.AsList(shortcut.Id));
+			mShortcutManager.DisableShortcuts(new List<string> { shortcut.Id });
 		}
 
 		public void EnableShortcut(ShortcutInfo shortcut)
 		{
-			mShortcutManager.EnableShortcuts((System.Collections.Generic.IList<string>)Arrays.AsList(shortcut.Id));
+			mShortcutManager.EnableShortcuts(new List<string> { shortcut.Id });
 		}
 
 		private Bitmap FetchFavicon(Uri uri)

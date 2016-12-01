@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
+using Android.App;
 using Android.Content;
 using Android.Util;
 
 namespace AppShortcuts
 {
+	[BroadcastReceiver(Enabled = true)]
+	[IntentFilter(new[] {Intent.ActionLocaleChanged})]
 	public class MyReceiver : BroadcastReceiver
 	{
 		private static string TAG = Main.TAG;
