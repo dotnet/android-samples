@@ -18,6 +18,7 @@ using Android.App;
 using Android.Content;
 using Android.InputMethodServices;
 using Android.OS;
+using Android.Support.V13.View.Inputmethod;
 using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
@@ -64,8 +65,8 @@ namespace CommitContentSampleIME
 				return false;
 			}
 
-			string[] supportedMimeTypes = EditorInfoCompat.getContentMimeTypes(editorInfo);
-			for (string supportedMimeType : supportedMimeTypes)
+			var supportedMimeTypes = EditorInfoCompat.GetContentMimeTypes(editorInfo);
+			foreach (var supportedMimeType in supportedMimeTypes)
 			{
 				if (ClipDescription.CompareMimeTypes(mimeType, supportedMimeType))
 				{
@@ -97,7 +98,7 @@ namespace CommitContentSampleIME
 				// you can specify InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION to give
 				// a temporary read access to the recipient application without exporting your content
 				// provider.
-				flag = InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;
+				flag = InputConnectionCompat.InputContentGrantReadUriPermission;
 			}
 			else
 			{
@@ -111,7 +112,7 @@ namespace CommitContentSampleIME
 				{
 					// TODO: Use revokeUriPermission to revoke as needed.
 					GrantUriPermission(
-							editorInfo.PackageName, contentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+							editorInfo.PackageName, contentUri, ActivityFlags.GrantReadUriPermission);
 				}
 				catch (Exception e)
 				{
@@ -124,7 +125,7 @@ namespace CommitContentSampleIME
 				contentUri,
 				new ClipDescription(description, new [] { mimeType }),
 				null /* linkUrl */);
-			InputConnectionCompat.commitContent(
+			InputConnectionCompat.CommitContent(
 					CurrentInputConnection, CurrentInputEditorInfo, inputContentInfoCompat,
 					flag, null);
 		}
