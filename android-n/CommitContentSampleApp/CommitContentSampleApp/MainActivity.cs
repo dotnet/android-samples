@@ -14,22 +14,25 @@
  * limitations under the License
  */
 
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Net;
 using Android.OS;
+using Android.Support.V13.View.Inputmethod;
 using Android.Text;
 using Android.Util;
 using Android.Views.InputMethods;
 using Android.Webkit;
 using Android.Widget;
 using Java.Lang;
+using Java.Util;
 
 namespace CommitContentSampleApp
 {
-	[Activity(Label = "CommitContentSampleApp", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity(Label = "CommitContentSampleApp", MainLauncher = true, Theme = "@style/AppTheme", Icon = "@drawable/ic_launcher")]
 	public class MainActivity : Activity
 	{
 		private const string InputContentInfoKey = "COMMIT_CONTENT_INPUT_CONTENT_INFO";
@@ -107,7 +110,7 @@ namespace CommitContentSampleApp
 					mCurrentInputContentInfo.ReleasePermission();
 				}
 			}
-			catch (Exception e)
+			catch (Java.Lang.Exception e)
 			{
 				Log.Error(Tag, "InputContentInfoCompat#releasePermission() failed.", e);
 			}
@@ -126,7 +129,7 @@ namespace CommitContentSampleApp
 			var supported = false;
 			foreach (var contentMimeType in contentMimeTypes)
 			{
-				if (inputContentInfo.Description.HasMimeType(mimeType))
+				if (inputContentInfo.Description.HasMimeType(contentMimeType))
 				{
 					supported = true;
 					break;
@@ -143,23 +146,23 @@ namespace CommitContentSampleApp
 
 		private bool OnCommitContentInternal(InputContentInfoCompat inputContentInfo, int flags)
 		{
-			if ((flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0)
+			if ((flags & InputConnectionCompat.InputContentGrantReadUriPermission) != 0)
 			{
 				try
 				{
 					inputContentInfo.RequestPermission();
 				}
-				catch (Exception e)
+				catch (Java.Lang.Exception e)
 				{
 					Log.Error(Tag, "InputContentInfoCompat#requestPermission() failed.", e);
 					return false;
 				}
 			}
 
-			mMimeTypes.Text = string.Join(".", inputContentInfo.Description.filterMimeTypes("*/*"));
+			mMimeTypes.Text = string.Join(".", inputContentInfo.Description.FilterMimeTypes("*/*"));
 			mContentUri.Text = inputContentInfo.ContentUri.ToString();
 			mLabel.Text = inputContentInfo.Description.Label;
-			Uri linkUri = inputContentInfo.LinkUri;
+			Android.Net.Uri linkUri = inputContentInfo.LinkUri;
 			mLinkUri.Text = linkUri != null ? linkUri.ToString() : "null";
 			mFlags.Text = FlagsToString(flags);
 			mWebView.LoadUrl(inputContentInfo.ContentUri.ToString());
@@ -223,6 +226,7 @@ namespace CommitContentSampleApp
 		private class CustomEditText : EditText
 		{
 			public string[] MimeTypes { get; set; }
+			public MainActivity Owner { get; set; }
 			public CustomEditText(Context context) : base(context)
 			{
 			}
@@ -242,11 +246,21 @@ namespace CommitContentSampleApp
 			public override IInputConnection OnCreateInputConnection(EditorInfo editorInfo)
 			{
 				var ic = base.OnCreateInputConnection(editorInfo);
-				EditorInfoCompat.SetContentMimeTypes(editorInfo, mimeTypes);
+				EditorInfoCompat.SetContentMimeTypes(editorInfo, MimeTypes);
+				var callback = new OnCommitContentListenerImpl() { MimeTypes = MimeTypes, Owner = Owner };
 				return InputConnectionCompat.CreateWrapper(ic, editorInfo, callback);
 			}
 
-			// TODO: implement InputConnectionCompat.OnCommitContentListener callback 
+			private class OnCommitContentListenerImpl : Java.Lang.Object, InputConnectionCompat.IOnCommitContentListener
+			{
+				public string[] MimeTypes { get; set; }
+				public MainActivity Owner { get; set; }
+				public bool OnCommitContent(InputContentInfoCompat inputContentInfo, int flags, Bundle opts)
+				{
+					return Owner.OnCommitContent(inputContentInfo, flags, opts, MimeTypes);
+				}
+			}
+
 		}
 
 		/**
@@ -261,11 +275,11 @@ namespace CommitContentSampleApp
 		 */
 		private static string FlagsToString(int flags)
 		{
-			var tokens = new List<string>();
-			if ((flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0)
+			var tokens = new ArrayList();
+			if ((flags & InputConnectionCompat.InputContentGrantReadUriPermission) != 0)
 			{
 				tokens.Add("INPUT_CONTENT_GRANT_READ_URI_PERMISSION");
-				flags &= ~InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;
+				flags &= ~InputConnectionCompat.InputContentGrantReadUriPermission;
 			}
 			if (flags != 0)
 			{
