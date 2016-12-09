@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/left_padding"
+    android:paddingEnd="@dimen/left_padding"
+    android:paddingTop="@dimen/top_margin">
+    <TextView
+        android:text="@string/app_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/top_margin" />
+    <Button
+        android:id="@+id/start_timestamp_service_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:text="@string/restart_timestamp_service_button_text" />
+    <Button
+        android:id="@+id/stop_timestamp_service_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/stop_timestamp_service_button_text" />
+</LinearLayout>

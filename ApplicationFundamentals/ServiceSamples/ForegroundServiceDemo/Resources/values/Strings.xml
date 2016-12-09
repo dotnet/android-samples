@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="stop_timestamp_service_button_text">Stop Service</string>
+	<string name="restart_timestamp_service_button_text"> Start Service</string>
+	<string name="app_name">Foreground Service Demo</string>
+	<string name="service_started">The service is started.</string>
+	<string name="app_description">This app is a demonstration of running a Xamarin.Android service in the foreground.</string>
+	<string name="notification_text">The started service is running.</string>
+	<string name="restart_timer">Restart Timer</string>
+	<string name="stop_service">Stop Service</string>
+</resources>

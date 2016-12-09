@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="stop_timestamp_service_button_text">Stop Service</string>
+	<string name="restart_timestamp_service_button_text"> Start Service</string>
+	<string name="app_name">Started Services Demo</string>
+	<string name="service_started">The service is started.</string>
+	<string name="app_description">This app is a demonstration of a started service in Xamarin.Android. When started the service will dump messages via Android.Util.Log every 5 seconds. </string>
+	<string name="notification_text">The started service is running.</string>
+</resources>

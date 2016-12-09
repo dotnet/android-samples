@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="get_timestamp_button_text">Get Timestamp from Service</string>
+	<string name="stop_timestamp_service_button_text">Unbind from Service</string>
+	<string name="restart_timestamp_service_button_text">Bind to Service</string>
+	<string name="app_name">Bound Services Demo 1</string>
+	<string name="service_not_connected">Please wait, the service is not connected.</string>
+	<string name="service_started">The service is started.</string>
+
+	<string name="app_description">This app is a demonstration of a Bound Service in Xamarin.Android. This example will bind to a Service, which will return a timestamp telling how long the Service has been running. </string>
+</resources>
