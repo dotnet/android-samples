@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Android.Content;
@@ -28,25 +27,27 @@ using Java.Util;
 using IOException = Java.IO.IOException;
 using Uri = Android.Net.Uri;
 using Android.Content.PM;
+using Java.Lang;
+using Exception = System.Exception;
 
 namespace AppShortcuts
 {
 	public class ShortcutHelper
 	{
-		private static string TAG = Main.TAG;
+		static string TAG = Main.TAG;
 
-		private static string EXTRA_LAST_REFRESH = "com.example.android.shortcutsample.EXTRA_LAST_REFRESH";
+		static string EXTRA_LAST_REFRESH = "com.example.android.shortcutsample.EXTRA_LAST_REFRESH";
 
-		private static long REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+		static long REFRESH_INTERVAL_MS = 60 * 60 * 1000;
 
-		private Context mContext;
+		Context mContext;
 
-		private ShortcutManager mShortcutManager;
+		ShortcutManager mShortcutManager;
 
 		public ShortcutHelper(Context context)
 		{
 			mContext = context;
-			mShortcutManager = (ShortcutManager)mContext.GetSystemService(Java.Lang.Class.FromType(typeof(ShortcutManager)));
+			mShortcutManager = (ShortcutManager)mContext.GetSystemService(Context.ShortcutService);
 		}
 
 		public void MaybeRestoreAllDynamicShortcuts()
@@ -68,7 +69,7 @@ namespace AppShortcuts
 		/**
 		 * Use this when interacting with ShortcutManager to show consistent error messages.
 		 */
-		private void CallShortcutManager(bool r)
+		void CallShortcutManager(bool r)
 		{
 			try
 			{
@@ -118,7 +119,7 @@ namespace AppShortcuts
 			new RefreshShortcutsTask(mContext, this, mShortcutManager).Execute(force);
 		}
 
-		private class RefreshShortcutsTask : AsyncTask<bool, Java.Lang.Void, Java.Lang.Void>
+		class RefreshShortcutsTask : AsyncTask<bool, Java.Lang.Void, Java.Lang.Void>
 		{
 			private ShortcutHelper Helper { get; set; }
 			private ShortcutManager ShortcutManager { get; set; }
@@ -173,7 +174,6 @@ namespace AppShortcuts
 				// Call update.
 				if ((ShortcutManager != null) && (updateList.Count > 0))
 				{
-					//ShortcutManager.UpdateShortcuts(updateList);
 					Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
 				}
 
@@ -181,7 +181,7 @@ namespace AppShortcuts
 			}
 		}
 
-		private ShortcutInfo CreateShortcutForUrl(string urlAsString)
+		ShortcutInfo CreateShortcutForUrl(string urlAsString)
 		{
 			Log.Info(TAG, "createShortcutForUrl: " + urlAsString);
 
@@ -196,7 +196,7 @@ namespace AppShortcuts
 			return b.Build();
 		}
 
-		private ShortcutInfo.Builder SetSiteInformation(ShortcutInfo.Builder b, Uri uri)
+		ShortcutInfo.Builder SetSiteInformation(ShortcutInfo.Builder b, Uri uri)
 		{
 			// TODO Get the actual site <title> and use it.
 			// TODO Set the current locale to accept-language to get localized title.
@@ -209,7 +209,7 @@ namespace AppShortcuts
 			return b;
 		}
 
-		private ShortcutInfo.Builder SetExtras(ShortcutInfo.Builder b)
+		ShortcutInfo.Builder SetExtras(ShortcutInfo.Builder b)
 		{
 			var extras = new PersistableBundle();
 			extras.PutLong(EXTRA_LAST_REFRESH, Java.Lang.JavaSystem.CurrentTimeMillis());
@@ -217,7 +217,7 @@ namespace AppShortcuts
 			return b;
 		}
 
-		private string NormalizeUrl(string urlAsString)
+		string NormalizeUrl(string urlAsString)
 		{
 			if (urlAsString.StartsWith("http://") || urlAsString.StartsWith("https://"))
 			{
@@ -230,7 +230,14 @@ namespace AppShortcuts
 		{
 			var uriFinal = urlAsString;
 			var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
-			CallShortcutManager(mShortcutManager.AddDynamicShortcuts(new List<ShortcutInfo> { shortcut }));
+			try
+			{
+				CallShortcutManager(mShortcutManager.AddDynamicShortcuts(new List<ShortcutInfo> { shortcut }));
+			}
+			catch (IllegalArgumentException e)
+			{
+				Utils.ShowToast(mContext, "Error while calling ShortcutManager: " + e);
+			}
 		}
 
 		public void RemoveShortcut(ShortcutInfo shortcut)
@@ -248,7 +255,7 @@ namespace AppShortcuts
 			mShortcutManager.EnableShortcuts(new List<string> { shortcut.Id });
 		}
 
-		private Bitmap FetchFavicon(Uri uri)
+		Bitmap FetchFavicon(Uri uri)
 		{
 			var iconUri = uri.BuildUpon().Path("favicon.ico").Build();
 			Log.Info(TAG, "Fetching favicon from: " + iconUri);

@@ -24,14 +24,12 @@ namespace AppShortcuts
 {
 	public class Utils
 	{
-		private Utils() {}
-
 		public static void ShowToast(Context context, string message)
 		{
 			new Handler(Looper.MainLooper).Post(new HandlerRunnable(context, message));
 		}
 
-		private class HandlerRunnable : Java.Lang.Object, IRunnable
+		class HandlerRunnable : Java.Lang.Object, IRunnable
 		{
 			Context Context { get; set; }
 			string Message { get; set; }

@@ -24,7 +24,7 @@ namespace AppShortcuts
 	[IntentFilter(new[] {Intent.ActionLocaleChanged})]
 	public class MyReceiver : BroadcastReceiver
 	{
-		private static string TAG = Main.TAG;
+		static string TAG = Main.TAG;
 
 		public override void OnReceive(Context context, Intent intent)
 		{

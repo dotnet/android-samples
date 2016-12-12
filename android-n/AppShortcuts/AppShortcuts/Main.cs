@@ -25,7 +25,11 @@ using Android.Views;
 using Android.Views.InputMethods;
 using Java.Lang;
 using System;
+using System.Runtime.Remoting.Contexts;
+using System.Text;
 using Android.Content.PM;
+using Context = Android.Content.Context;
+using StringBuilder = Java.Lang.StringBuilder;
 
 namespace AppShortcuts
 {
@@ -38,9 +42,9 @@ namespace AppShortcuts
 		static string ID_ADD_WEBSITE = "add_website";
 
 		static string ACTION_ADD_WEBSITE = "com.example.android.shortcutsample.ADD_WEBSITE";
-		private MyAdapter mAdapter;
+		MyAdapter mAdapter;
 
-		private ShortcutHelper mHelper;
+		ShortcutHelper mHelper;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -80,7 +84,7 @@ namespace AppShortcuts
 			AddWebSite();
 		}
 
-		private void AddWebSite()
+		void AddWebSite()
 		{
 			Log.Info(TAG, "addWebSite");
 
@@ -98,7 +102,7 @@ namespace AppShortcuts
 				.SetView(editUri)
 				.SetPositiveButton("Add", (dialog, whichButton) =>
 				{
-					var url = editUri.Text.ToString().Trim();
+					var url = editUri.Text.Trim();
 					if (url.Length > 0)
 					{
 						AddUriAsync(url);
@@ -107,12 +111,12 @@ namespace AppShortcuts
 				.Show();
 		}
 
-		private void AddUriAsync(string url)
+		void AddUriAsync(string url)
 		{
 			new AddUriTask(this, mHelper).Execute(url);
 		}
 
-		private class AddUriTask : AsyncTask<Java.Lang.Object, Java.Lang.Object, Java.Lang.Void>
+		class AddUriTask : AsyncTask<Java.Lang.Object, Java.Lang.Object, Java.Lang.Void>
 		{
 			private ShortcutHelper Helper { get; set; }
 			private Main Owner { get; set; }
@@ -136,7 +140,7 @@ namespace AppShortcuts
 			}
 		}
 
-		private void RefreshList()
+		void RefreshList()
 		{
 			mAdapter.SetShortcuts(mHelper.GetShortcuts());
 		}
@@ -165,9 +169,9 @@ namespace AppShortcuts
 			}
 		}
 
-		private static List<ShortcutInfo> EMPTY_LIST = new List<ShortcutInfo>();
+		static List<ShortcutInfo> EMPTY_LIST = new List<ShortcutInfo>();
 
-		private string GetType(ShortcutInfo shortcut)
+		string GetType(ShortcutInfo shortcut)
 		{
 			StringBuilder sb = new StringBuilder();
 			string sep = "";
@@ -192,7 +196,7 @@ namespace AppShortcuts
 			return sb.ToString();
 		}
 
-		private class MyAdapter : BaseAdapter
+		class MyAdapter : BaseAdapter
 		{
 			private Context Context { get; set; }
 			private LayoutInflater Inflater;
@@ -202,7 +206,7 @@ namespace AppShortcuts
 			public MyAdapter(Context context)
 			{
 				Context = context;
-				Inflater = (LayoutInflater)Context.GetSystemService(Java.Lang.Class.FromType(typeof(LayoutInflater)));
+				Inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 				Owner = (Main) context;
 			}
 
