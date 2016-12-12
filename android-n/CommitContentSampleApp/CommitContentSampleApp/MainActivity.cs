@@ -35,20 +35,20 @@ namespace CommitContentSampleApp
 	[Activity(Label = "CommitContentSampleApp", MainLauncher = true, Theme = "@style/AppTheme", Icon = "@drawable/ic_launcher")]
 	public class MainActivity : Activity
 	{
-		private const string InputContentInfoKey = "COMMIT_CONTENT_INPUT_CONTENT_INFO";
-		private const string CommitContentFlagsKey = "COMMIT_CONTENT_FLAGS";
+		const string InputContentInfoKey = "COMMIT_CONTENT_INPUT_CONTENT_INFO";
+		const string CommitContentFlagsKey = "COMMIT_CONTENT_FLAGS";
 
-		private const string Tag = "CommitContentSupport";
+		const string Tag = "CommitContentSupport";
 
-		private WebView mWebView;
-		private TextView mLabel;
-		private TextView mContentUri;
-		private TextView mLinkUri;
-		private TextView mMimeTypes;
-		private TextView mFlags;
+		WebView mWebView;
+		TextView mLabel;
+		TextView mContentUri;
+		TextView mLinkUri;
+		TextView mMimeTypes;
+		TextView mFlags;
 
-		private InputContentInfoCompat mCurrentInputContentInfo;
-		private int mCurrentFlags;
+		InputContentInfoCompat mCurrentInputContentInfo;
+		int mCurrentFlags;
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -99,7 +99,7 @@ namespace CommitContentSampleApp
 			}
 		}
 
-		private bool OnCommitContent(InputContentInfoCompat inputContentInfo, int flags,
+		bool OnCommitContent(InputContentInfoCompat inputContentInfo, int flags,
 			Bundle opts, string[] contentMimeTypes)
 		{
 			// Clear the temporary permission (if any).  See below about why we do this here.
@@ -144,7 +144,7 @@ namespace CommitContentSampleApp
 			return OnCommitContentInternal(inputContentInfo, flags);
 		}
 
-		private bool OnCommitContentInternal(InputContentInfoCompat inputContentInfo, int flags)
+		bool OnCommitContentInternal(InputContentInfoCompat inputContentInfo, int flags)
 		{
 			if ((flags & InputConnectionCompat.InputContentGrantReadUriPermission) != 0)
 			{
@@ -201,7 +201,7 @@ namespace CommitContentSampleApp
 		 * @return a new instance of {@link EditText}, which specifies EditorInfo#contentMimeTypes with
 		 * the given content MIME types
 		 */
-		private EditText CreateEditTextWithContentMimeTypes(string[] contentMimeTypes)
+		EditText CreateEditTextWithContentMimeTypes(string[] contentMimeTypes)
 		{
 			string hintText;
 			string[] mimeTypes;  // our own copy of contentMimeTypes.
@@ -217,32 +217,23 @@ namespace CommitContentSampleApp
 				contentMimeTypes.CopyTo(mimeTypes, 0);
 			}
 
-			var editText = new CustomEditText(this) {MimeTypes = mimeTypes, Hint = hintText};
+			var editText = new CustomEditText(this)
+			{
+				Owner = this, MimeTypes = mimeTypes, Hint = hintText
+			};
 			editText.SetTextColor(Color.White);
 			editText.SetHintTextColor(Color.White);
 			return editText;
 		}
 
-		private class CustomEditText : EditText
+		class CustomEditText : EditText
 		{
 			public string[] MimeTypes { get; set; }
 			public MainActivity Owner { get; set; }
 			public CustomEditText(Context context) : base(context)
 			{
 			}
-
-			public CustomEditText(Context context, IAttributeSet attrs) : base(context, attrs)
-			{
-			}
-
-			public CustomEditText(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
-			{
-			}
-
-			public CustomEditText(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes) : base(context, attrs, defStyleAttr, defStyleRes)
-			{
-			}
-
+			
 			public override IInputConnection OnCreateInputConnection(EditorInfo editorInfo)
 			{
 				var ic = base.OnCreateInputConnection(editorInfo);
@@ -251,7 +242,7 @@ namespace CommitContentSampleApp
 				return InputConnectionCompat.CreateWrapper(ic, editorInfo, callback);
 			}
 
-			private class OnCommitContentListenerImpl : Java.Lang.Object, InputConnectionCompat.IOnCommitContentListener
+			class OnCommitContentListenerImpl : Java.Lang.Object, InputConnectionCompat.IOnCommitContentListener
 			{
 				public string[] MimeTypes { get; set; }
 				public MainActivity Owner { get; set; }
@@ -273,7 +264,7 @@ namespace CommitContentSampleApp
 		 *              InputContentInfoCompat, int, Bundle)}
 		 * @return a human readable string that corresponds to the given {@code flags}
 		 */
-		private static string FlagsToString(int flags)
+		static string FlagsToString(int flags)
 		{
 			var tokens = new ArrayList();
 			if ((flags & InputConnectionCompat.InputContentGrantReadUriPermission) != 0)
