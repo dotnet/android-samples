@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="CommitContentSampleIME.CommitContentSampleIME" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="16" />
-	<application android:label="CommitContentSampleIME" android:icon="@drawable/ic_launcher"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.xamarin.commitcontentsampleime" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
+	<application android:label="CommitContentSampleIME" android:icon="@drawable/ic_launcher">
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.xamarin.commitcontentsampleime.inputcontent" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+		</provider>
+	</application>
 </manifest>

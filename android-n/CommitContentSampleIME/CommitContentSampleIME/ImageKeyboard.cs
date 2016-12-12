@@ -35,20 +35,20 @@ namespace CommitContentSampleIME
 	[MetaData("android.view.im", Resource = "@xml/method")]
 	public class ImageKeyboard : InputMethodService
 	{
-		private const string Tag = "ImageKeyboard";
-		private const string Authority = "com.example.android.supportv13.sampleime.inputcontent";
-		private const string MimeTypeGif = "image/gif";
-		private const string MimeTypePng = "image/png";
-		private const string MimeTypeWebp = "image/webp";
+		const string Tag = "ImageKeyboard";
+		const string Authority = "com.xamarin.commitcontentsampleime.inputcontent";
+		const string MimeTypeGif = "image/gif";
+		const string MimeTypePng = "image/png";
+		const string MimeTypeWebp = "image/webp";
 
-		private File mPngFile;
-		private File mGifFile;
-		private File mWebpFile;
-		private Button mGifButton;
-		private Button mPngButton;
-		private Button mWebpButton;
+		File mPngFile;
+		File mGifFile;
+		File mWebpFile;
+		Button mGifButton;
+		Button mPngButton;
+		Button mWebpButton;
 
-		private bool IsCommitContentSupported(EditorInfo editorInfo, string mimeType)
+		bool IsCommitContentSupported(EditorInfo editorInfo, string mimeType)
 		{
 			if (editorInfo == null)
 			{
@@ -76,7 +76,7 @@ namespace CommitContentSampleIME
 			return false;
 		}
 
-		private void DoCommitContent(string description, string mimeType, File file)
+		void DoCommitContent(string description, string mimeType, File file)
 		{
 			var editorInfo = CurrentInputEditorInfo;
 
@@ -130,7 +130,7 @@ namespace CommitContentSampleIME
 					flag, null);
 		}
 
-		private bool ValidatePackageName(EditorInfo editorInfo)
+		bool ValidatePackageName(EditorInfo editorInfo)
 		{
 			if (editorInfo == null)
 			{
@@ -242,7 +242,7 @@ namespace CommitContentSampleIME
 			mWebpButton.Enabled = mWebpFile != null && IsCommitContentSupported(info, MimeTypeWebp);
 		}
 
-		private static File GetFileForResource(Context context, int res, File outputDir, string filename)
+		static File GetFileForResource(Context context, int res, File outputDir, string filename)
 		{
 			var outputFile = new File(outputDir, filename);
 			var buffer = new byte[4096];
