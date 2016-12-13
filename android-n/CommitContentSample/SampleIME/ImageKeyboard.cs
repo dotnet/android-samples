@@ -26,6 +26,7 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Java.IO;
 using Java.Lang;
+using SampleIME;
 using File = Java.IO.File;
 
 namespace CommitContentSampleIME

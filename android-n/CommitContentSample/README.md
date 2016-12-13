@@ -1,5 +1,5 @@
-CommitContentSampleIME Sample
-===========================
+CommitContentSample
+===================
 
 This sample demonstrates how to write an keyboard which sends rich content (such as images) to text fields using the Commit Content API.
 
