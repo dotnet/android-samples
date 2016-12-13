@@ -33,7 +33,7 @@ using SampleApp;
 
 namespace CommitContentSampleApp
 {
-	[Activity(Label = "CommitContentSampleApp", MainLauncher = true, Theme = "@style/AppTheme", Icon = "@drawable/ic_launcher")]
+	[Activity(Label = "CommitContentSampleApp", MainLauncher = true, Theme = "@style/AppTheme")]
 	public class MainActivity : Activity
 	{
 		const string InputContentInfoKey = "COMMIT_CONTENT_INPUT_CONTENT_INFO";
