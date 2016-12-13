@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Android.Content;
@@ -69,19 +70,19 @@ namespace AppShortcuts
 		/**
 		 * Use this when interacting with ShortcutManager to show consistent error messages.
 		 */
-		void CallShortcutManager(bool r)
+		void CallShortcutManager(Func<bool> r)
 		{
 			try
 			{
-				if (!r)
+				if (!r.Invoke())
 				{
 					Utils.ShowToast(mContext, "Call to ShortcutManager is rate-limited");
 				}
 			}
 			catch (Exception e)
 			{
-				Log.Error(TAG, "Caught Exception", e);
-				Utils.ShowToast(mContext, "Error while calling ShortcutManager: " + e.ToString());
+				Log.Error(TAG, (Throwable)e, "Caught Exception");
+				Utils.ShowToast(mContext, "Error while calling ShortcutManager: " + e.Message);
 			}
 		}
 
@@ -121,9 +122,9 @@ namespace AppShortcuts
 
 		class RefreshShortcutsTask : AsyncTask<bool, Java.Lang.Void, Java.Lang.Void>
 		{
-			private ShortcutHelper Helper { get; set; }
-			private ShortcutManager ShortcutManager { get; set; }
-			private Context Context { get; set; }
+			ShortcutHelper Helper { get; set; }
+			ShortcutManager ShortcutManager { get; set; }
+			Context Context { get; set; }
 
 			public RefreshShortcutsTask(Context context, ShortcutHelper helper, ShortcutManager shortcutManager)
 			{
@@ -174,7 +175,7 @@ namespace AppShortcuts
 				// Call update.
 				if ((ShortcutManager != null) && (updateList.Count > 0))
 				{
-					Helper.CallShortcutManager(ShortcutManager.UpdateShortcuts(updateList));
+					Helper.CallShortcutManager(() => ShortcutManager.UpdateShortcuts(updateList));
 				}
 
 				return null;
@@ -229,15 +230,11 @@ namespace AppShortcuts
 		public void AddWebSiteShortcut(string urlAsString)
 		{
 			var uriFinal = urlAsString;
-			var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
-			try
-			{
-				CallShortcutManager(mShortcutManager.AddDynamicShortcuts(new List<ShortcutInfo> { shortcut }));
-			}
-			catch (IllegalArgumentException e)
-			{
-				Utils.ShowToast(mContext, "Error while calling ShortcutManager: " + e);
-			}
+			
+			CallShortcutManager(() => {
+				var shortcut = CreateShortcutForUrl(NormalizeUrl(uriFinal));
+				return mShortcutManager.AddDynamicShortcuts(new List<ShortcutInfo> { shortcut });
+			});
 		}
 
 		public void RemoveShortcut(ShortcutInfo shortcut)

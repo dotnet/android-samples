@@ -33,7 +33,7 @@ using StringBuilder = Java.Lang.StringBuilder;
 
 namespace AppShortcuts
 {
-	[Activity(Label = "AppShortcuts", MainLauncher = true, Icon = "@mipmap/ic_launcher")]
+	[Activity(Label = "AppShortcuts", MainLauncher = true)]
 	[MetaData("android.app.shortcuts", Resource = "@xml/shortcuts")]
 	public class Main : ListActivity, View.IOnClickListener
 	{
