@@ -1,7 +1,19 @@
-# TextSwitcher
+# TextSwitcher Sample
 
-This is a sample porting from Java to C# using Xamarin.
+This sample illustrates the use of a TextSwitcher to display animations for text changes.
 
-[Java sample source](https://github.com/googlesamples/android-TextSwitcher).
+##Instructions
 
-Link to [Test Run](https://testcloud.xamarin.com/test/76726e8d-66c4-471b-b453-0e30d5fe957c/) on Test Cloud.
+- Click the "Next" button to set new text in the TextSwitcher and observe the in and out fade animations.
+
+
+##Build Requirements
+
+Using this sample requires Xamarin.Android API 25.
+
+
+##Authors
+
+Copyright (c) 2016 The Android Open Source Project, Inc.
+Ported from [Android TextSwitcher Sample](https://github.com/googlesamples/android-TextSwitcher)
+Ported to Xamarin.Android by Gonzalo Martin.
