@@ -6,8 +6,8 @@
     <ProjectGuid>{05DAB32E-1F15-4E61-91CE-0D658503ED2B}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>ServicesDemo2</RootNamespace>
-    <AssemblyName>ServicesDemo2</AssemblyName>
+    <RootNamespace>StartedServicesDemo</RootNamespace>
+    <AssemblyName>StartedServicesDemo</AssemblyName>
     <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
