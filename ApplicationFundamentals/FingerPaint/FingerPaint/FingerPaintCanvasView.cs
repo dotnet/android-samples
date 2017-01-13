@@ -6,11 +6,6 @@ using Android.Util;
 using Android.Views;
 using Android.Graphics;
 
-
-// TODO: Properties and methods for color, stroke-width, and Clear
-// ===============================================================
-
-
 namespace FingerPaint
 {
     public class FingerPaintCanvasView : View
@@ -36,6 +31,18 @@ namespace FingerPaint
         {
         }
 
+        // External interface accessed from MainActivity
+        public Color StrokeColor { set; get; } = Color.Red;
+
+        public float StrokeWidth { set; get; } = 2;
+
+        public void ClearAll()
+        {
+            completedPolylines.Clear();
+            Invalidate();
+        }
+
+        // Overrides
         public override bool OnTouchEvent(MotionEvent args)
         {
             // Get the pointer index
@@ -53,8 +60,8 @@ namespace FingerPaint
                     // Create a Polyline, set the initial point, and store it
                     FingerPaintPolyline polyline = new FingerPaintPolyline
                     {
-                        Color = Color.Blue,
-                        StrokeWidth = 10
+                        Color = StrokeColor,
+                        StrokeWidth = StrokeWidth
                     };
 
                     polyline.Path.MoveTo(args.GetX(pointerIndex),
@@ -65,7 +72,7 @@ namespace FingerPaint
 
                 case MotionEventActions.Move:
 
-                    // Multiple Move events can be bundled, so handle them differently
+                    // Multiple Move events are bundled, so handle them differently
                     for (pointerIndex = 0; pointerIndex < args.PointerCount; pointerIndex++)
                     {
                         id = args.GetPointerId(pointerIndex);
@@ -89,10 +96,6 @@ namespace FingerPaint
                 case MotionEventActions.Cancel:
                     inProgressPolylines.Remove(id);
                     break;
-
-                default:
-                    System.Diagnostics.Debug.WriteLine(args.Action);
-                    break;
             }
         
             // Invalidate to update the view
@@ -106,13 +109,15 @@ namespace FingerPaint
         {
             base.OnDraw(canvas);
 
-            // Clear screen to white
+            // Clear canvas to white
             paint.SetStyle(Paint.Style.Fill);
             paint.Color = Color.White;
             canvas.DrawPaint(paint);
 
             // Draw strokes
             paint.SetStyle(Paint.Style.Stroke);
+            paint.StrokeCap = Paint.Cap.Round;
+            paint.StrokeJoin = Paint.Join.Round;
 
             // Draw the completed polylines
             foreach (FingerPaintPolyline polyline in completedPolylines)

@@ -1,14 +1,13 @@
 ﻿using System;
+
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
+using Android.Graphics;
 using Android.Widget;
 using Android.OS;
 
 namespace FingerPaint
 {
-    [Activity(Label = "FingerPaint", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Finger Paint", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         FingerPaintCanvasView fingerPaintCanvasView;
@@ -23,7 +22,7 @@ namespace FingerPaint
             // Get a reference to the FingerPaintCanvasView from the Main.axml file
             fingerPaintCanvasView = FindViewById<FingerPaintCanvasView>(Resource.Id.canvasView);
 
-            // Set up the Spinner to select color
+            // Set up the Spinner to select stroke color
             Spinner colorSpinner = FindViewById<Spinner>(Resource.Id.colorSpinner);
             colorSpinner.ItemSelected += OnColorSpinnerItemSelected;
 
@@ -31,35 +30,38 @@ namespace FingerPaint
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             colorSpinner.Adapter = adapter;
 
-            // Set up the Spinner to select line width
-
+            // Set up the Spinner to select stroke width
             Spinner widthSpinner = FindViewById<Spinner>(Resource.Id.widthSpinner);
-            //    spinner.ItemSelected
+            widthSpinner.ItemSelected += OnWidthSpinnerItemSelected; 
 
             var widthsAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.widths_array, Android.Resource.Layout.SimpleSpinnerItem);
             widthsAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             widthSpinner.Adapter = widthsAdapter;
 
-
-            // Get the Clear button
+            // Set up the Clear button
             Button clearButton = FindViewById<Button>(Resource.Id.clearButton);
             clearButton.Click += OnClearButtonClick;
-
         }
 
-
-        private void OnColorSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs args)
+        void OnColorSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs args)
         {
             Spinner spinner = (Spinner)sender;
-
-            var x = spinner.GetItemAtPosition(args.Position);
+            string strColor = (string)spinner.GetItemAtPosition(args.Position);
+            Color strokeColor = (Color)(typeof(Color).GetProperty(strColor).GetValue(null));
+            fingerPaintCanvasView.StrokeColor = strokeColor;
         }
 
-        private void OnClearButtonClick(object sender, EventArgs args)
+        void OnWidthSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs args)
         {
-
+            Spinner spinner = (Spinner)sender;
+            float strokeWidth = new float[] { 2, 5, 10, 20, 50 } [args.Position];
+            fingerPaintCanvasView.StrokeWidth = strokeWidth;
         }
 
+        void OnClearButtonClick(object sender, EventArgs args)
+        {
+            fingerPaintCanvasView.ClearAll();
+        }
     }
 }
 

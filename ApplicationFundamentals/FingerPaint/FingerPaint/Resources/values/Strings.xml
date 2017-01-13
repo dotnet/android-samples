@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">FingerPaint</string>
 
-    <string name="spinner_prompt">Color</string>
+    <string name="color_spinner_prompt">Color</string>
 
     <string-array name="colors_array">
         <item>Red</item>
@@ -12,12 +11,18 @@
         <item>Cyan</item>
         <item>Magenta</item>
         <item>Yellow</item>
+        <item>Black</item>
+        <item>Gray</item>
+        <item>White</item>
     </string-array>
+
+    <string name="width_spinner_prompt">Width</string>
 
     <string-array name="widths_array">
         <item>Thin</item>
-        <item>Thicker</item>
+        <item>Thinish</item>
         <item>Medium</item>
+        <item>Thickish</item>
         <item>Thick</item>
     </string-array>
 

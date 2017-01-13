@@ -13,13 +13,13 @@
             android:id="@+id/colorSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:prompt="@string/spinner_prompt" />
+            android:prompt="@string/color_spinner_prompt" />
 
         <Spinner
             android:id="@+id/widthSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:prompt="@string/spinner_prompt" />
+            android:prompt="@string/width_spinner_prompt" />
 
         <Button
             android:id="@+id/clearButton"
