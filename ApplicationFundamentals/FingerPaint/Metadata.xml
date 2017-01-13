@@ -4,6 +4,8 @@
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Touch, Graphics</Tags>
+	<SupportedPlatforms>Android, iOS, windows-rt</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
 	<Brief>Tracking multi-touch events in Android.</Brief>
 </SampleMetadata>
