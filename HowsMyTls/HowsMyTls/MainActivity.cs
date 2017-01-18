@@ -76,7 +76,7 @@ namespace HowsMyTls {
 			string msg = string.Empty;
 
 			try {
-				//// NOTE: diagnostic will show TLS1.0 even if we enforce TLS1.2
+				//// NOTE: diagnostic will show TLS1.0 for legacy provider even if we enforce TLS1.2
 				using (var client = new HttpClient ()) {
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 					ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
