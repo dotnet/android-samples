@@ -28,6 +28,7 @@ namespace HowsMyTls {
 		TextView tlsCompression;
 		TextView ticketSupported;
 		TextView ephemeralKeysSupported;
+		TextView rating;
 
 		public ClientStatus CurrentStatus { get; set; }
 
@@ -66,6 +67,7 @@ namespace HowsMyTls {
 			tlsCompression = FindViewById<TextView> (Resource.Id.TlsCompression);
 			ticketSupported = FindViewById<TextView> (Resource.Id.TicketSupported);
 			ephemeralKeysSupported = FindViewById<TextView> (Resource.Id.EphemeralKeysSupported);
+			rating = FindViewById<TextView> (Resource.Id.Rating);
 		}
 
 		async Task<string> RunRequest ()
@@ -138,6 +140,8 @@ namespace HowsMyTls {
 			tlsCompression.Text = status.TlsCompressionSupported.ToString ();
 			ticketSupported.Text = status.SessionTicketSupported.ToString ();
 			ephemeralKeysSupported.Text = status.EphemeralKeysSupported.ToString ();
+			rating.Text = status.Rating;
+
 		}
 
 		void ShowMessage (string message)
