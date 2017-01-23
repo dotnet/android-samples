@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Util;
 using Android.Gms.Gcm;
-using Android.Gms.Gcm.Iid;
+using Android.Gms.Iid;
 
 namespace ClientApp
 {
