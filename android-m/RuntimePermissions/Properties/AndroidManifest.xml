@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.runtimepermissions">
 	<!-- Note that all required permissions are declared here in the Android manifest.
      On Android M and above, use of these permissions is only requested at run time. -->
@@ -7,7 +7,6 @@
      On older platforms these permissions are not requested and will not be available. -->
 	<uses-permission-sdk-m android:name="android.permission.READ_CONTACTS" />
 	<uses-permission-sdk-m android:name="android.permission.WRITE_CONTACTS" />
-	<application android:label="RuntimePermissions" android:icon="@mipmap/icon">
-	</application>
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23" />
+	<application android:label="RuntimePermissions" android:icon="@mipmap/icon"></application>
+	<uses-sdk android:minSdkVersion="15" />
 </manifest>
