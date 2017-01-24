@@ -13,6 +13,7 @@ using Android.Support.V7.App;
 
 using Xamarin.Android.Net;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HowsMyTls {
 	[Activity (Label = "How's my TLS?", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -29,6 +30,7 @@ namespace HowsMyTls {
 		TextView ticketSupported;
 		TextView ephemeralKeysSupported;
 		TextView rating;
+		TextView diagnosticResponse;
 
 		public ClientStatus CurrentStatus { get; set; }
 
@@ -43,7 +45,7 @@ namespace HowsMyTls {
 
 				string json = await RunRequest ();
 				CurrentStatus = JsonConvert.DeserializeObject<ClientStatus> (json);
-				UpdateUI (CurrentStatus);
+				UpdateUI (CurrentStatus, json);
 
 				netRequestButton.Enabled = !netRequestButton.Enabled;
 			};
@@ -54,7 +56,7 @@ namespace HowsMyTls {
 
 				string json = await RunNativeRequest ();
 				CurrentStatus = JsonConvert.DeserializeObject<ClientStatus>(json);
-				UpdateUI (CurrentStatus);
+				UpdateUI (CurrentStatus, json);
 
 				nativeRequestButton.Enabled = !nativeRequestButton.Enabled;
 			};
@@ -68,6 +70,7 @@ namespace HowsMyTls {
 			ticketSupported = FindViewById<TextView> (Resource.Id.TicketSupported);
 			ephemeralKeysSupported = FindViewById<TextView> (Resource.Id.EphemeralKeysSupported);
 			rating = FindViewById<TextView> (Resource.Id.Rating);
+			diagnosticResponse = FindViewById<TextView> (Resource.Id.FullResponseText);
 		}
 
 		async Task<string> RunRequest ()
@@ -124,11 +127,11 @@ namespace HowsMyTls {
 			using (var reader = new StreamReader (stream)) {
 				var json = reader.ReadToEnd ();
 				CurrentStatus = JsonConvert.DeserializeObject<ClientStatus> (json);
-				UpdateUI (CurrentStatus);
+				UpdateUI (CurrentStatus, json);
 			}
 		}
 
-		void UpdateUI (ClientStatus status)
+		void UpdateUI (ClientStatus status, string rawJson)
 		{
 			if (status == null)
 				return;
@@ -142,6 +145,7 @@ namespace HowsMyTls {
 			ephemeralKeysSupported.Text = status.EphemeralKeysSupported.ToString ();
 			rating.Text = status.Rating;
 
+			diagnosticResponse.Text = JObject.Parse (rawJson).ToString ();
 		}
 
 		void ShowMessage (string message)
