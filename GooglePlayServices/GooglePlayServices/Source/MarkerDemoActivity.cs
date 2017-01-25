@@ -34,7 +34,7 @@ namespace GooglePlayServicesTest
 {
 	[Activity (Label = "XA GoogleMapV2 MarkerDemo")]
 	public class MarkerDemoActivity : Android.Support.V4.App.FragmentActivity,
-		GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener 
+		GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener, GoogleMap.IOnMarkerDragListener, IOnMapReadyCallback
 	{
 		static readonly LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
 		static readonly LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
@@ -138,28 +138,10 @@ namespace GooglePlayServicesTest
 			
 			mTopText = (TextView) FindViewById (Resource.Id.top_text);
 			
-			SetUpMapIfNeeded ();
+			var mapFragment = ((SupportMapFragment)SupportFragmentManager.FindFragmentById (Resource.Id.map));
+			mapFragment.GetMapAsync (this);
 		}
-		
-		protected override void OnResume ()
-		{
-			base.OnResume ();
-			SetUpMapIfNeeded ();
-		}
-		
-		private void SetUpMapIfNeeded () 
-		{
-			// Do a null check to confirm that we have not already instantiated the map.
-			if (mMap == null) {
-				// Try to obtain the map from the SupportMapFragment.
-				mMap = ((SupportMapFragment) SupportFragmentManager.FindFragmentById(Resource.Id.map)).Map;
-				// Check if we were successful in obtaining the map.
-				if (mMap != null) {
-					SetUpMap ();
-				}
-			}
-		}
-		
+
 		class GlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
 		{
 			Action on_global_layout;
@@ -174,8 +156,10 @@ namespace GooglePlayServicesTest
 			}
 		}
 		
-		private void SetUpMap () 
+		public void OnMapReady (GoogleMap map)
 		{
+			mMap = map;
+
 			// Hide the zoom controls as the button panel will cover it.
 			mMap.UiSettings.ZoomControlsEnabled = false;
 			

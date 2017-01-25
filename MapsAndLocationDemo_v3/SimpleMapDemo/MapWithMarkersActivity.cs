@@ -7,7 +7,7 @@ namespace SimpleMapDemo
     using Android.Widget;
 
     [Activity(Label = "@string/activity_label_mapwithmarkers")]
-    public class MapWithMarkersActivity : Activity
+	public class MapWithMarkersActivity : Activity, IOnMapReadyCallback
     {
         private static readonly LatLng Passchendaele = new LatLng(50.897778, 3.013333);
         private static readonly LatLng VimyRidge = new LatLng(50.379444, 2.773611);
@@ -47,6 +47,7 @@ namespace SimpleMapDemo
                 fragTx.Add(Resource.Id.map, _mapFragment, "map");
                 fragTx.Commit();
             }
+			_mapFragment.GetMapAsync(this);
         }
 
         private void SetupAnimateToButton()
@@ -68,11 +69,15 @@ namespace SimpleMapDemo
             };
         }
 
+		public void OnMapReady (GoogleMap map)
+		{
+			_map = map;
+		}
+
         private void SetupMapIfNeeded()
         {
             if (_map == null)
             {
-                _map = _mapFragment.Map;
                 if (_map != null)
                 {
                     MarkerOptions markerOpt1 = new MarkerOptions();
