@@ -1,7 +1,7 @@
 TreePager 
 =========
 
-**TreePager** is a sample app that accompanies the forthcoming article, 
+**TreePager** is a sample app that accompanies the article, 
 [ViewPager](http://developer.xamarin.com/guides/android/user_interface/viewpager/).
 
 This sample demonstrates how to use `ViewPager` and `PagerTabStrip` 

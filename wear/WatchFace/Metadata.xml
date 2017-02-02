@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>926FE7F5-7C9B-4760-822A-51C74B8649DD</ID>
+	<IsFullApplication>true</IsFullApplication>
+    <Brief>An analog-style watch with hour, minute, and seconds hands. Supports ambient/interactive modes and time zone changes.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Graphics</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>
