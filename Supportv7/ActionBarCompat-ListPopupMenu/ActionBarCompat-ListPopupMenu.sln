@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarCompat-ListPopupMenu", "ActionBarCompat-ListPopupMenu.csproj", "{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest", "..\UITest\UITest.csproj", "{6C2219DD-7225-4FCE-AF04-1ABF50165011}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,7 +15,15 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BFC6593-E734-44EE-B8B9-5DFE604C47E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2219DD-7225-4FCE-AF04-1ABF50165011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2219DD-7225-4FCE-AF04-1ABF50165011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2219DD-7225-4FCE-AF04-1ABF50165011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2219DD-7225-4FCE-AF04-1ABF50165011}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
