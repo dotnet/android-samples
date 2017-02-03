@@ -12,7 +12,7 @@ namespace SimpleMapDemo
     using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
     [Activity(Label = "@string/activity_label_mapwithmarkers")]
-    public class MapWithMarkersActivity : FragmentActivity
+	public class MapWithMarkersActivity : FragmentActivity, IOnMapReadyCallback
     {
         private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
         private static readonly LatLng LeaveFromHereToMaui = new LatLng(82.4986, -62.348);
@@ -50,13 +50,14 @@ namespace SimpleMapDemo
 
         protected override void OnResume()
         {
-            base.OnResume();
-            SetupMapIfNeeded();
+			base.OnResume();
+			if (SetupMapIfNeeded ())
+			{
+				_map.MyLocationEnabled = true;
 
-            _map.MyLocationEnabled = true;
-
-            // Setup a handler for when the user clicks on a marker.
-            _map.MarkerClick += MapOnMarkerClick;
+				// Setup a handler for when the user clicks on a marker.
+				_map.MarkerClick += MapOnMarkerClick;
+			}
         }
 
         private void AddInitialPolarBarToMap()
@@ -105,6 +106,7 @@ namespace SimpleMapDemo
                 fragTx.Add(Resource.Id.mapWithOverlay, _mapFragment, "map");
                 fragTx.Commit();
             }
+			_mapFragment.GetMapAsync(this);
         }
 
         private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
@@ -140,20 +142,27 @@ namespace SimpleMapDemo
             }
         }
 
-        private void SetupMapIfNeeded()
+		public void OnMapReady (GoogleMap map)
+		{
+			_map = map;
+		}
+
+        private bool SetupMapIfNeeded()
         {
             if (_map == null)
             {
-                _map = _mapFragment.Map;
                 if (_map != null)
                 {
                     AddMonkeyMarkersToMap();
                     AddInitialPolarBarToMap();
 
                     // Move the map so that it is showing the markers we added above.
-                    _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
-                }
-            }
+					_map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
+					return true;
+				}
+				return false;
+			}
+			return true;
         }
     }
 }

@@ -25,7 +25,7 @@ using GoogleIO2014Master.UI;
 namespace GoogleIO2014Master
 {
 	[Activity (ParentActivity = typeof(MainActivity), Theme = "@style/DetailTheme", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
-	public class DetailActivity : Activity
+	public class DetailActivity : Activity, IOnMapReadyCallback
 	{
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -36,7 +36,9 @@ namespace GoogleIO2014Master
 
 			Colorize (photo);
 
-			SetupMap ();
+			MapFragment mapFragment = FragmentManager.FindFragmentById<MapFragment> (Resource.Id.map);
+			mapFragment.GetMapAsync (this);
+
 			SetupText ();
 
 			SetOutlines (Resource.Id.star, Resource.Id.info);
@@ -66,10 +68,8 @@ namespace GoogleIO2014Master
 			descriptionView.SetText (Intent.GetStringExtra ("description"), TextView.BufferType.Normal);
 		}
 
-		public void SetupMap ()
+		public void OnMapReady (GoogleMap map)
 		{
-			GoogleMap map = (FragmentManager.FindFragmentById<MapFragment> (Resource.Id.map)).Map;
-
 			double lat = Intent.GetDoubleExtra ("lat", 37.6329946);
 			double lng = Intent.GetDoubleExtra ("lng", -122.4938344);
 			float zoom = Intent.GetFloatExtra ("zoom", 15.0f);

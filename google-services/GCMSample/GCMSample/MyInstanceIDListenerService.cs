@@ -1,6 +1,6 @@
-﻿using Android.Gms.Gcm.Iid;
-using Android.Content;
+﻿using Android.Content;
 using Android.App;
+using Android.Gms.Iid;
 
 namespace GCMSample
 {
