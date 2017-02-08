@@ -14,29 +14,23 @@ using Java.Util.Concurrent;
 
 namespace WatchFace
 {
-    // WatchFaceService is a subclass of WallpaperService. It implements only one
-    // method, OnCreateEngine, and it defines a nested class that is derived from
+    // MyWatchFaceService implements only one method, OnCreateEngine, 
+    // and it defines a nested class that is derived from
     // CanvasWatchFaceService.Engine.
 
-    public class WatchFaceService : CanvasWatchFaceService
+    public class MyWatchFaceService : CanvasWatchFaceService
     {
         // Used for logging:
-        const String Tag = "WatchFaceService";
-
-        public WatchFaceService ()
-        {
-        }
+        const String Tag = "MyWatchFaceService";
 
         // Must be implemented to return a new instance of the wallpaper's engine:
-
         public override WallpaperService.Engine OnCreateEngine () 
         {
-            return new WatchFaceEngine (this);
+            return new MyWatchFaceEngine (this);
         }
 
         // Class for a watch face that draws on a Canvas:
-
-        public class WatchFaceEngine : CanvasWatchFaceService.Engine 
+        public class MyWatchFaceEngine : CanvasWatchFaceService.Engine 
         {
             // Update every second:
             static long InterActiveUpdateRateMs = TimeUnit.Seconds.ToMillis (1);
@@ -68,7 +62,7 @@ namespace WatchFace
             Bitmap backgroundScaledBitmap;
 
             // Saves a reference to the outer CanvasWatchFaceService
-            public WatchFaceEngine (CanvasWatchFaceService owner) : base(owner)
+            public MyWatchFaceEngine (CanvasWatchFaceService owner) : base(owner)
             {
                 this.owner = owner;
             }
@@ -135,13 +129,13 @@ namespace WatchFace
 
             // Called when the properties of the Wear device are determined, specifically 
             // low bit ambient mode (the screen supports fewer bits for each color in
-            // ambient mode)::
+            // ambient mode):
 
             public override void OnPropertiesChanged(Bundle properties) 
             {
                 base.OnPropertiesChanged (properties);
 
-                lowBitAmbient = properties.GetBoolean (WatchFaceService.PropertyLowBitAmbient);
+                lowBitAmbient = properties.GetBoolean (MyWatchFaceService.PropertyLowBitAmbient);
 
                 if (Log.IsLoggable (Tag, LogPriority.Debug))
                     Log.Debug (Tag, "OnPropertiesChanged: low-bit ambient = " + lowBitAmbient);
@@ -149,7 +143,7 @@ namespace WatchFace
 
             // Called periodically to update the time shown by the watch face: at least 
             // once per minute in ambient and interactive modes, and whenever the date, 
-            // time, or timezone has changed.
+            // time, or timezone has changed:
 
             public override void OnTimeTick ()
             {
@@ -171,7 +165,8 @@ namespace WatchFace
                 if (Log.IsLoggable (Tag, LogPriority.Debug))
                     Log.Debug (Tag, "OnAmbientMode");
                 
-                if (lowBitAmbient) {
+                if (lowBitAmbient)
+                {
                     bool antiAlias = !inAmbientMode;
                     hourPaint.AntiAlias = antiAlias;
                     minutePaint.AntiAlias = antiAlias;
@@ -195,7 +190,8 @@ namespace WatchFace
                 // Draw the background, scaled to fit:
                 if (backgroundScaledBitmap == null
                     || backgroundScaledBitmap.Width != width
-                    || backgroundScaledBitmap.Height != height) {
+                    || backgroundScaledBitmap.Height != height)
+                {
                     backgroundScaledBitmap = Bitmap.CreateScaledBitmap(backgroundBitmap,
                         width, height, true /* filter */);
                 }
@@ -209,7 +205,8 @@ namespace WatchFace
                 // Draw the ticks:
                 float innerTickRadius = centerX - 10;
                 float outerTickRadius = centerX;
-                for (int tickIndex = 0; tickIndex < 12; tickIndex++) {
+                for (int tickIndex = 0; tickIndex < 12; tickIndex++)
+                {
                     float tickRot = (float) (tickIndex * Math.PI * 2 / 12);
                     float innerX = (float) Math.Sin(tickRot) * innerTickRadius;
                     float innerY = (float) -Math.Cos(tickRot) * innerTickRadius;
@@ -230,7 +227,8 @@ namespace WatchFace
                 float hrLength = centerX - 80;
 
                 // Draw the second hand only in interactive mode:
-                if (!IsInAmbientMode) {
+                if (!IsInAmbientMode)
+                {
                     float secX = (float) Math.Sin(secRot) * secLength;
                     float secY = (float) -Math.Cos(secRot) * secLength;
                     canvas.DrawLine(centerX, centerY, centerX + secX, centerY + secY, secondPaint);
@@ -260,13 +258,14 @@ namespace WatchFace
                 // If the watch face became visible, register the timezone receiver
                 // and get the current time. Else, unregister the timezone receiver:
 
-                if (visible) {
+                if (visible)
+                {
                     RegisterTimezoneReceiver ();
                     time.Clear (Java.Util.TimeZone.Default.ID);
                     time.SetToNow ();
-                } else {
-                    UnregisterTimezoneReceiver ();
                 }
+                else
+                    UnregisterTimezoneReceiver ();
             }
 
             // Run the timer only when visible and in interactive mode:
@@ -282,10 +281,12 @@ namespace WatchFace
 
             void RegisterTimezoneReceiver()
             {
-                if (registeredTimezoneReceiver) {
+                if (registeredTimezoneReceiver)
                     return;
-                } else  {
-                    if (timeZoneReceiver == null) {
+                else
+                {
+                    if (timeZoneReceiver == null)
+                    {
                         timeZoneReceiver = new TimeZoneReceiver ();
                         timeZoneReceiver.Receive = (intent) => {
                             time.Clear (intent.GetStringExtra ("time-zone"));
@@ -304,13 +305,10 @@ namespace WatchFace
             {
                 if (!registeredTimezoneReceiver)
                     return;
-                
                 registeredTimezoneReceiver = false;
                 Application.Context.UnregisterReceiver (timeZoneReceiver);
             }
-
         }
-
     }
 
     // Time zone broadcast receiver. OnReceive is called when the

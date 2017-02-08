@@ -3,7 +3,7 @@
 	<uses-sdk />
 	<uses-feature android:name="android.hardware.type.watch" />
 	<application android:label="WatchFace" android:theme="@android:style/Theme.DeviceDefault" android:icon="@drawable/xamarin_logo">
-		<service android:name="watchface.WatchFaceService" android:label="Xamarin Sample" android:allowEmbedded="true" android:taskAffinity="" android:permission="android.permission.BIND_WALLPAPER">
+		<service android:name="watchface.MyWatchFaceService" android:label="Xamarin Sample" android:allowEmbedded="true" android:taskAffinity="" android:permission="android.permission.BIND_WALLPAPER">
 			<meta-data android:name="android.service.wallpaper" android:resource="@xml/watch_face" />
 			<meta-data android:name="com.google.android.wearable.watchface.preview" android:resource="@drawable/preview_analog" />
 			<intent-filter>
