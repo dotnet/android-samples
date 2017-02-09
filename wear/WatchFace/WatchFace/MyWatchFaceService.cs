@@ -119,6 +119,8 @@ namespace WatchFace
                 // Instantiate the time object:
                 time = new Time ();
 
+                // Start a timer for redrawing the click face (second hand)
+                // every second.
                 // How to stop the timer? It shouldn't run in ambient mode...
                 timerSeconds = new Timer (new TimerCallback (state => {
                     Invalidate ();
