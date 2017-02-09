@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="get_timestamp_button_text">Get Timestamp from Service</string>
+	<string name="say_hello_to_service_text">Say \'Hello\' to the Service</string>
+	<string name="app_name">Messenger Client Demo</string>
+	<string name="app_description">This app is a demonstration of a using a Messenger to communicate with a service. The MessengerService app must be installed BEFORE this app is installed.</string>
+	<string name="service_starting">The service is starting, it may take a minute or two...</string>
+	<string name="service_started">Connected to service.</string>
+	<string name="service_not_connected">Tried to connect to service, but failed.</string>
+	<string name="service_disconnected">Service disconnected.</string>
+	<string name="status_text">Status:</string>
+	<string name="one_way_description">One-way communication, activity to service. The service will display a Toast when it receives the message.</string>
+	<string name="two_way_description">Two-way communication. This Activity will send a Message to a service. The service will reply back to the Activity with a Message. The contents of the Message will be displayed in the Status area below.</string>	
+	<string name="service_not_installed">The MessengerService app must be installed BEFORE this application. Please uninstall this app, install MessengerService, and then reinstall the MessengerClient app.</string>
+	<string name="permission_label">Required for remote appications to start the Timestamp Service.</string>
+	<string name="permission_description">This is the custom permission to prevent unauthorized use of the Timestamps service.</string>
+	<string name="permission_not_granted">You must grant permission before this app can use the Timestamp Service.</string>
+</resources>
