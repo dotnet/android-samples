@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.watchface" android:installLocation="auto">
-	<uses-sdk />
+	<uses-sdk android:minSdkVersion="19" />
 	<uses-feature android:name="android.hardware.type.watch" />
 	<application android:label="WatchFace" android:theme="@android:style/Theme.DeviceDefault" android:icon="@drawable/xamarin_logo">
 		<service android:name="watchface.WatchFaceService" android:label="Xamarin Sample" android:allowEmbedded="true" android:taskAffinity="" android:permission="android.permission.BIND_WALLPAPER">
