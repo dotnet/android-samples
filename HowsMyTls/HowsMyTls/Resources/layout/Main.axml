@@ -210,6 +210,33 @@
                     android:layout_gravity="right"
                     android:gravity="right" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingRight="@dimen/keyline_margin"
+                android:paddingLeft="@dimen/keyline_margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rating"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:textColor="@color/secondaryText" />
+                <TextView
+                    android:id="@+id/Rating"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textColor="@color/secondaryText"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:layout_gravity="right"
+                    android:gravity="right" />
+            </LinearLayout>
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -227,6 +254,26 @@
                 android:textColor="@color/secondaryText"
                 android:id="@+id/NativeRequestButton"
                 android:textAllCaps="false" />
+            <TextView
+                android:id="@+id/FullResponseTextLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/full_response_label"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:paddingTop="@dimen/diagnostic_margin" />
+            <ScrollView
+                android:id="@+id/FullResponseTextScroller"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:fillViewport="true">
+                <TextView
+                    android:id="@+id/FullResponseText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

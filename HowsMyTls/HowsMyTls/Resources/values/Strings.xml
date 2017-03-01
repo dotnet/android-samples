@@ -12,4 +12,5 @@
 	<string name="given_cipher_suites">Given cipher suites</string>
 	<string name="issue_net_request">Run check with Mono request</string>
 	<string name="issue_native_request">Run check with Android request</string>
+	<string name="full_response_label">Full response:</string>
 </resources>
