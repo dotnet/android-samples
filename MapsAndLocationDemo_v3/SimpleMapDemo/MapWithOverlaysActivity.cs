@@ -9,7 +9,7 @@ namespace SimpleMapDemo
     using Android.Widget;
 
     [Activity(Label = "@string/activity_label_mapwithoverlays")]
-    public class MapWithOverlaysActivity : Activity
+	public class MapWithOverlaysActivity : Activity, IOnMapReadyCallback
     {
         private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
         private static readonly LatLng LeaveFromHereToMaui = new LatLng(82.4986, -62.348);
@@ -112,6 +112,7 @@ namespace SimpleMapDemo
                 fragTx.Add(Resource.Id.mapWithOverlay, _mapFragment, "map");
                 fragTx.Commit();
             }
+			_mapFragment.GetMapAsync(this);
         }
 
         private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
@@ -149,11 +150,15 @@ namespace SimpleMapDemo
             }
         }
 
+		public void OnMapReady (GoogleMap map)
+		{
+			_map = map;
+		}
+
         private bool SetupMapIfNeeded()
         {
             if (_map == null)
             {
-                _map = _mapFragment.Map;
                 if (_map != null)
                 {
                     AddMonkeyMarkersToMap();

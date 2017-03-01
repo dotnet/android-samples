@@ -17,7 +17,7 @@ using Squareup.Picasso;
 
 namespace TvLeanback
 {
-	public class LeanbackDetailsFragment : Android.Support.V17.Leanback.App.DetailsFragment, IOnItemViewClickedListener
+	public class LeanbackDetailsFragment : Android.Support.V17.Leanback.App.DetailsFragment, IBaseOnItemViewClickedListener
 	{
 		private static readonly string TAG = "DetailsFragment";
 
@@ -55,7 +55,7 @@ namespace TvLeanback
 		}
 
 		public void OnItemClicked (Presenter.ViewHolder itemViewHolder, Java.Lang.Object item,
-			RowPresenter.ViewHolder rowViewHolder, Row row)
+		                           RowPresenter.ViewHolder rowViewHolder, Java.Lang.Object row)
 		{
 			if (item is Movie) {
 				var movie = (Movie)item;

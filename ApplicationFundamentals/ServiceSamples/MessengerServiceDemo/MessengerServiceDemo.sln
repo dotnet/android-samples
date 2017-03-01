@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerService", "MessengerService\MessengerService.csproj", "{BE3ED2A1-4254-4814-B71F-ABD538B260E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerClient", "MessengerClient\MessengerClient.csproj", "{1D6D416E-A0A3-4D3E-8E62-A9D988AFD423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerCore", "MessengerCore\MessengerCore.csproj", "{115306CC-B56B-4C79-ADC0-69293CAA6D20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE3ED2A1-4254-4814-B71F-ABD538B260E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3ED2A1-4254-4814-B71F-ABD538B260E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3ED2A1-4254-4814-B71F-ABD538B260E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3ED2A1-4254-4814-B71F-ABD538B260E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6D416E-A0A3-4D3E-8E62-A9D988AFD423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6D416E-A0A3-4D3E-8E62-A9D988AFD423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6D416E-A0A3-4D3E-8E62-A9D988AFD423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6D416E-A0A3-4D3E-8E62-A9D988AFD423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115306CC-B56B-4C79-ADC0-69293CAA6D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115306CC-B56B-4C79-ADC0-69293CAA6D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115306CC-B56B-4C79-ADC0-69293CAA6D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115306CC-B56B-4C79-ADC0-69293CAA6D20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

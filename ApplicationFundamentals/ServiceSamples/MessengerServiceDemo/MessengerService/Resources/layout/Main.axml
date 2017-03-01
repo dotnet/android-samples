@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/left_padding"
+    android:paddingEnd="@dimen/left_padding"
+    android:paddingTop="@dimen/top_margin">
+    <TextView
+        android:text="@string/app_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_border"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="@dimen/container_padding"
+        android:paddingRight="@dimen/container_padding"
+        android:paddingBottom="@dimen/container_padding"
+        android:paddingLeft="@dimen/container_padding">
+        <TextView
+            android:text="@string/one_way_description"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/say_hello_to_service_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/say_hello_to_service_text"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_border"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="@dimen/container_padding"
+        android:paddingRight="@dimen/container_padding"
+        android:paddingBottom="@dimen/container_padding"
+        android:paddingLeft="@dimen/container_padding">
+        <TextView
+            android:text="@string/two_way_description"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/get_timestamp_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/get_timestamp_button_text"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/layout_border"
+        android:paddingTop="@dimen/container_padding"
+        android:paddingRight="@dimen/container_padding"
+        android:paddingBottom="@dimen/container_padding"
+        android:paddingLeft="@dimen/container_padding">
+        <TextView
+            android:text="@string/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/container_padding" />
+        <TextView
+            android:id="@+id/message_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:minLines="2" />
+    </LinearLayout>
+</LinearLayout>

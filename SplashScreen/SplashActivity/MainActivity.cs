@@ -7,9 +7,9 @@ using Android.Widget;
 namespace com.xamarin.sample.splashscreen
 {
     [Activity(Label = "@string/ApplicationName")]
-    public class Activity1 : AppCompatActivity
+    public class MainActivity : AppCompatActivity
     {
-        static readonly string TAG = "X:" + typeof (Activity1).Name;
+        static readonly string TAG = "X:" + typeof (MainActivity).Name;
         Button _button;
         int _clickCount;
 
@@ -27,7 +27,7 @@ namespace com.xamarin.sample.splashscreen
                                  Log.Debug(TAG, message);
                              };
 
-            Log.Debug(TAG, "Activity1 is loaded.");
+            Log.Debug(TAG, "MainActivity is loaded.");
         }
     }
 }

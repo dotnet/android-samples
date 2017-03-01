@@ -1,6 +1,6 @@
 ﻿using Android.App;
 using Android.Preferences;
-using Android.Gms.Gcm.Iid;
+using Android.Gms.Iid;
 using Android;
 using Android.Gms.Gcm;
 using Android.Util;
