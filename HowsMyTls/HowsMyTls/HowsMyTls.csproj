@@ -48,6 +48,7 @@
     <AndroidFastDeploymentType>
     </AndroidFastDeploymentType>
     <AndroidTlsProvider>legacy</AndroidTlsProvider>
+    </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugBTLS|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
