@@ -13,6 +13,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="AppShortcuts.AppShortcuts">
 	<uses-sdk android:minSdkVersion="25" android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:resizeableActivity="true">
-	</application>
+	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:resizeableActivity="true"></application>
 </manifest>
