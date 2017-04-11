@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>B6801AD3-58B9-46CD-9E40-34259C3B7451</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates how to use Firebase Cloud Messaging for notifications.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Cloud, Notifications</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>

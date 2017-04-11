@@ -1,11 +1,11 @@
-Android Remote Notifications
-============================
+Android GCM Remote Notifications
+================================
 
 This sample app accompanies the article 
-[Remote Notifications](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/android/remote_notifications_in_android/).
+[Remote Notifications with Google Cloud Messaging](http://developer.xamarin.com/guides/android/application_fundamentals/notifications/remote-notifications-with-gcm/).
 Before you can use this sample, you must acquire the necessary 
 credentials to use Google's servers; this process is explained in 
-[Google Cloud Messaging](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/android/google-cloud-messaging). 
+[Google Cloud Messaging](http://developer.xamarin.com/guides/android/application_fundamentals/notifications/google-cloud-messaging). 
 In particular, you will need an *API Key* and a *Sender ID* to insert 
 into the example code before it can connect to GCM. 
    
@@ -15,5 +15,7 @@ the IDE.
 
 Author
 ------ 
+
+Copyright 2016 Xamarin
 
 Mark McLemore
