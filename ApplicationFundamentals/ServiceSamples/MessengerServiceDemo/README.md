@@ -5,7 +5,7 @@ This solution is an example of IPC communication between an Android service and 
 
 Ensure that the **MessengerService** project is installed on the device _before_ the **MeessengerClient** project. If the **MessengerClient** is inadvertently installed first, it will be necessary to uninstall it, install the **MessengerService** app, and then reinstall the **MessengerClient** project.
 
-![](./MessengerServiceDemo/Screenshots/service-messenger-activity.png)
+![](./Screenshots/service-messenger-activity.png)
 
 ## Authors
 
