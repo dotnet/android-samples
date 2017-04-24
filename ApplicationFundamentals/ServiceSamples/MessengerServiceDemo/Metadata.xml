@@ -3,5 +3,7 @@
 	<ID>06FF04D5-2A5C-45B5-BEE6-E8FD01D5E873</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Advanced</Level>
-	<Tags>Services</Tags>
+	<Gallery>true</Gallery>
+	<Tags>Application Fundamentals,Services</Tags>
+	<Brief>A sample showing how to use a Messenger to communicate between a Service and and Activity in Xamarin.Android.</Brief>
 </SampleMetadata>

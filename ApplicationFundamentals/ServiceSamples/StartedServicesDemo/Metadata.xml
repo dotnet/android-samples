@@ -3,5 +3,7 @@
 	<ID>70F80C3E-E131-4E8E-BF4A-20C824DC6C3F</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Advanced</Level>
-	<Tags>Services</Tags>
+	<Gallery>true</Gallery>
+	<Tags>Application Fundamentals,Services</Tags>
+	<Brief>A sample showing how to create a started service in Xamarin.Android.</Brief>
 </SampleMetadata>

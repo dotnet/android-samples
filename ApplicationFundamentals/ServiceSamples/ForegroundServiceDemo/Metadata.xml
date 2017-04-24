@@ -3,5 +3,8 @@
 	<ID>564AF6DE-0D72-4117-A1DC-3A80A123ADA5</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Advanced</Level>
-	<Tags>Services</Tags>
+	<Gallery>true</Gallery>
+	<Tags>Application Fundamentals,Services</Tags>
+	<Brief>A sample showing how to create a foreground service in Xamarin.Android.</Brief>
+
 </SampleMetadata>
