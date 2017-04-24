@@ -12,7 +12,7 @@ This directory holds the sample projects from the [Creating Services](https://de
 
 * **StartedServicesDemo** &ndash; An example of [creating a started service](https://developer.xamarin.com/guides/android/application_fundamentals/services/creating-a-service/started-services/) in Xamarin.Android.
 
-    ![](./StartedServiceDemo/Screenshots/started-service.png)
+    ![](./StartedServicesDemo/Screenshots/started-service.png)
 
 * **MessengerService** &ndash; This solution is an example of IPC communication between an Android service and an Activity (using a Messenger and a Handler). It demonstates how perform one-way and two-way IPC calls between an Activty and a Service running in it's own process.
 
