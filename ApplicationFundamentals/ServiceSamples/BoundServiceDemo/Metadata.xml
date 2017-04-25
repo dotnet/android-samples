@@ -4,6 +4,6 @@
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Advanced</Level>
 	<Gallery>true</Gallery>
-	<Tags>Application Fundamentals</Tags>
+	<Tags>Application Fundamentals,Services</Tags>
 	<Brief>A sample showing how to create a bound service in Xamarin.Android.</Brief>
 </SampleMetadata>

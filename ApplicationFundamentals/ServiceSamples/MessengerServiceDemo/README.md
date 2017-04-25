@@ -1,5 +1,6 @@
 
-# Xamarin.Android Messenger and Service Sample
+Xamarin.Android Messenger and Service Sample
+============================================
 
 This solution is an example of IPC communication between an Android service and an Activity (using a Messenger and a Handler). It demonstates how perform one-way and two-way IPC calls between an Activty and a Service running in it's own process.
 
@@ -7,6 +8,8 @@ Ensure that the **MessengerService** project is installed on the device _before_
 
 ![](./Screenshots/service-messenger-activity.png)
 
-## Authors
+
+Authors
+-------
 
 Tom Opgenorth (toopge@microsoft.com)
