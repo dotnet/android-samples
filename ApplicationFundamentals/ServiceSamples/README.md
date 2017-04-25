@@ -1,4 +1,5 @@
-# Xamarin.Android Service Samples
+Xamarin.Android Service Samples
+===============================
 
 This directory holds the sample projects from the [Creating Services](https://developer.xamarin.com/guides/android/application_fundamentals/services/) guides for Xamarin.Android. There are multiple solutions in the subdirectories of this project. Each solution is meant to be a stand alone solution that focus on a specific topic.
 
@@ -20,6 +21,7 @@ This directory holds the sample projects from the [Creating Services](https://de
 
     ![](./MessengerServiceDemo/Screenshots/service-messenger-activity.png)
 
-## Authors
+Authors
+-------
 
 Tom Opgenorth (toopge@microsoft.com)
