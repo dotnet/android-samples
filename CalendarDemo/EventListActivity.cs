@@ -122,7 +122,6 @@ namespace CalendarDemo
             Calendar c = Calendar.GetInstance (Java.Util.TimeZone.Default);
             
             c.Set (Java.Util.CalendarField.DayOfMonth, 15);
-            c.Set (Java.Util.CalendarField.DayOfMonth, 15);
             c.Set (Java.Util.CalendarField.HourOfDay, hr);
             c.Set (Java.Util.CalendarField.Minute, min);
             c.Set (Java.Util.CalendarField.Month, Calendar.December);
