@@ -8,6 +8,8 @@ Ensure that the **MessengerService** project is installed on the device _before_
 
 ![](./Screenshots/service-messenger-activity.png)
 
+**Note**: Currently it is not possible to implement an `IsolatedProcess` in Xamarin.Android. Please see [Bugzilla 51940 -  Services with isolated processes and custom Application class fail to resolve overloads properly](https://bugzilla.xamarin.com/show_bug.cgi?id=51940) for more details.
+
 
 Authors
 -------
