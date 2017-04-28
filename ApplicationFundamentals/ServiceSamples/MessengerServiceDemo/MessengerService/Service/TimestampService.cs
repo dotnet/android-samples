@@ -13,6 +13,9 @@ namespace MessengerService
 	         Exported=true, 
 	         Permission="com.xamarin.xample.messengerservice.REQUEST_TIMESTAMP",
 	         Process="com.xamarin.xample.messengerservice.timestampservice_process")]
+    // Currently there is an issue with Xamarin.Android where the service
+    // will crash on startup when attempting to run it in it's own process. 
+    // See https://bugzilla.xamarin.com/show_bug.cgi?id=51940
 	public class TimestampService : Service, IGetTimestamp
 	{
 		static readonly string TAG = typeof(TimestampService).FullName;
