@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6CCD4C01-C04B-49FA-BDC8-B4EF55A4BBC5</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Advanced</Level>
+	<Gallery>true</Gallery>
+	<Tags>Application Fundamentals,Services</Tags>
+	<Brief>A sample showing how to create a bound service in Xamarin.Android.</Brief>
+</SampleMetadata>

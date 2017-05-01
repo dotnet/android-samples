@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Provider;
+using Android.Database;
 using Java.Util;
 
 namespace CalendarDemo
@@ -30,12 +31,16 @@ namespace CalendarDemo
                CalendarContract.Calendars.InterfaceConsts.AccountName
             };
             
-            var cursor = ManagedQuery (calendarsUri, calendarsProjection, null, null, null);
+            var loader = new CursorLoader(this, calendarsUri, calendarsProjection, null, null, null);
+            var cursor = (ICursor)loader.LoadInBackground();
             
-            string[] sourceColumns = {CalendarContract.Calendars.InterfaceConsts.CalendarDisplayName, 
+            string[] sourceColumns = {
+                CalendarContract.Calendars.InterfaceConsts.CalendarDisplayName, 
                 CalendarContract.Calendars.InterfaceConsts.AccountName};
             
-            int[] targetResources = {Resource.Id.calDisplayName, Resource.Id.calAccountName};       
+            int[] targetResources = {
+                Resource.Id.calDisplayName,
+                Resource.Id.calAccountName};
             
             SimpleCursorAdapter adapter = new SimpleCursorAdapter (this, Resource.Layout.CalListItem, 
                 cursor, sourceColumns, targetResources);

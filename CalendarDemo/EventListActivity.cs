@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Provider;
+using Android.Database;
 using Java.Util;
 
 namespace CalendarDemo
@@ -41,19 +42,23 @@ namespace CalendarDemo
                 CalendarContract.Events.InterfaceConsts.Title,
                 CalendarContract.Events.InterfaceConsts.Dtstart
              };
-         
-            var cursor = ManagedQuery (eventsUri, eventsProjection, 
-             String.Format ("calendar_id={0}", _calId), null, "dtstart ASC");
-         
+
+            var loader = new CursorLoader(this, eventsUri, eventsProjection, 
+                               String.Format ("calendar_id={0}", _calId), null, "dtstart ASC");
+            var cursor = (ICursor)loader.LoadInBackground();
+
             string[] sourceColumns = {
                 CalendarContract.Events.InterfaceConsts.Title, 
                 CalendarContract.Events.InterfaceConsts.Dtstart
             };
          
-            int[] targetResources = { Resource.Id.eventTitle, Resource.Id.eventStartDate };
+            int[] targetResources = {
+                Resource.Id.eventTitle,
+                Resource.Id.eventStartDate
+            };
          
             var adapter = new SimpleCursorAdapter (this, Resource.Layout.EventListItem, 
-             cursor, sourceColumns, targetResources); 
+                 cursor, sourceColumns, targetResources); 
          
             adapter.ViewBinder = new ViewBinder ();
          
@@ -116,11 +121,11 @@ namespace CalendarDemo
         {
             Calendar c = Calendar.GetInstance (Java.Util.TimeZone.Default);
             
-            c.Set (Calendar.DayOfMonth, 15);
-            c.Set (Calendar.HourOfDay, hr);
-            c.Set (Calendar.Minute, min);
-            c.Set (Calendar.Month, Calendar.December);
-            c.Set (Calendar.Year, 2011);
+            c.Set (Java.Util.CalendarField.DayOfMonth, 15);
+            c.Set (Java.Util.CalendarField.HourOfDay, hr);
+            c.Set (Java.Util.CalendarField.Minute, min);
+            c.Set (Java.Util.CalendarField.Month, Calendar.December);
+            c.Set (Java.Util.CalendarField.Year, 2011);
                   
             return c.TimeInMillis;
         }
