@@ -17,6 +17,15 @@ using System.Threading.Tasks;
 
 namespace ConnectionsQuickstart
 {
+	public enum NearbyConnectionState
+	{
+		Idle = 1023,
+		Ready = 1024,
+		Advertising = 1025,
+		Discovering = 1026,
+		Connected = 1027
+	}
+
 	[Activity (WindowSoftInputMode = SoftInput.AdjustPan)]
 	[IntentFilter (new []{ Intent.ActionMain }, Categories = new[] {
 		Intent.CategoryLauncher,
@@ -26,34 +35,20 @@ namespace ConnectionsQuickstart
 		GoogleApiClient.IConnectionCallbacks, 
 		GoogleApiClient.IOnConnectionFailedListener, 
 		View.IOnClickListener, 
-		IConnectionsConnectionRequestListener, 
-		IConnectionsMessageListener, 
-		IConnectionsEndpointDiscoveryListener
+		IConnectionsMessageListener
 	{
-		static readonly string TAG = typeof(MainActivity).Name;
+		public static readonly string TAG = typeof(MainActivity).Name;
 
 		const long TIMEOUT_ADVERTISE = 1000L * 30L;
 		const long TIMEOUT_DISCOVER = 1000L * 30L;
 
-		public enum NearbyConnectionState
-		{
-			Idle = 1023,
-			Ready = 1024,
-			Advertising = 1025,
-			Discovering = 1026,
-			Connected = 1027
-		}
-
-		GoogleApiClient mGoogleApiClient;
-
+        public GoogleApiClient mGoogleApiClient { get; private set; }
+        public AlertDialog mConnectionRequestDialog { get; set; }
+        public string mOtherEndpointId { get; set; }
 		TextView mDebugInfo;
 		EditText mMessageText;
-		AlertDialog mConnectionRequestDialog;
-		MyListDialog mMyListDialog;
-
+        public MyListDialog mMyListDialog { get; set; }
 		NearbyConnectionState mState = NearbyConnectionState.Idle;
-
-		string mOtherEndpointId;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -110,12 +105,12 @@ namespace ConnectionsQuickstart
 				return;
 			}
 
-			var appIdentifierList = new List<AppIdentifier> ();
+            var appIdentifierList = new List<AppIdentifier> ();
 			appIdentifierList.Add (new AppIdentifier (PackageName));
 			var appMetadata = new AppMetadata (appIdentifierList);
 
 			var name = string.Empty;
-            var result = await NearbyClass.Connections.StartAdvertisingAsync (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE, this);
+            var result = await NearbyClass.Connections.StartAdvertisingAsync (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE, new MyConnectionsConnectionRequestListener(this));
 			
             Log.Debug (TAG, "startAdvertising:onResult:" + result);
 			if (result.Status.IsSuccess) {
@@ -144,7 +139,7 @@ namespace ConnectionsQuickstart
 
 			string serviceId = GetString (Resource.String.service_id);
 			var status = await NearbyClass.Connections.StartDiscoveryAsync (mGoogleApiClient, 
-                serviceId, TIMEOUT_DISCOVER, this);
+                serviceId, TIMEOUT_DISCOVER, new MyConnectionsEndpointDiscoveryListener (this));
 
         	if (status.IsSuccess) {
 				DebugLog ("startDiscovery:onResult: SUCCESS");
@@ -168,72 +163,6 @@ namespace ConnectionsQuickstart
 			NearbyClass.Connections.SendReliableMessage (mGoogleApiClient, mOtherEndpointId, System.Text.Encoding.Default.GetBytes (msg));
 
 			mMessageText.Text = null;
-		}
-
-        async Task ConnectTo (string endpointId, string endpointName)
-		{
-			DebugLog ("connectTo:" + endpointId + ":" + endpointName);
-
-			string myName = null;
-			byte[] myPayload = null;
-			var connectionResponseCallback = new ConnectionResponseCallback ();
-
-			connectionResponseCallback.OnConnectionResponseImpl = (remoteEndpointId, status, payload) => {
-				Log.Debug (TAG, "onConnectionResponse:" + remoteEndpointId + ":" + status);
-				if (status.IsSuccess) {
-					DebugLog ("onConnectionResponse: " + endpointName + " SUCCESS");
-					Toast.MakeText (this, "Connected to " + endpointName,
-						ToastLength.Short).Show ();
-
-					mOtherEndpointId = remoteEndpointId;
-					UpdateViewVisibility (NearbyConnectionState.Connected);
-				} else {
-					DebugLog ("onConnectionResponse: " + endpointName + " FAILURE");
-				}
-			};
-
-			await NearbyClass.Connections.SendConnectionRequestAsync (mGoogleApiClient, myName, endpointId, 
-                myPayload, connectionResponseCallback, this);
-		}
-
-		class ConnectionResponseCallback : Java.Lang.Object, IConnectionsConnectionResponseCallback
-		{
-			public Action<string, Statuses, byte[]> OnConnectionResponseImpl { get; set; }
-
-			public void OnConnectionResponse (string remoteEndpointId, Statuses status, byte[] payload)
-			{
-				OnConnectionResponseImpl (remoteEndpointId, status, payload);
-			}
-			
-		}
-
-		public void OnConnectionRequest (string remoteEndpointId, string remoteDeviceId, string remoteEndpointName, byte[] payload)
-		{
-			DebugLog ("onConnectionRequest:" + remoteEndpointId + ":" + remoteEndpointName);
-
-			// This device is advertising and has received a connection request. Show a dialog asking
-			// the user if they would like to connect and accept or reject the request accordingly.
-			mConnectionRequestDialog = new AlertDialog.Builder (this)
-				.SetTitle ("Connection Request")
-				.SetMessage ("Do you want to connect to " + remoteEndpointName + "?")
-				.SetCancelable (false)
-				.SetPositiveButton ("Connect", (sender, e) => {
-					byte[] pLoad = null;
-					NearbyClass.Connections.AcceptConnectionRequest (mGoogleApiClient, 
-						remoteEndpointId, pLoad, this).SetResultCallback ((Statuses status) => {
-							if (status.IsSuccess) {
-								DebugLog ("acceptConnectionRequest: SUCCESS");
-								mOtherEndpointId = remoteEndpointId;
-								UpdateViewVisibility (NearbyConnectionState.Connected);
-							} else {
-								DebugLog ("acceptConnectionRequest: FAILURE");
-							}
-						});
-				})
-				.SetNegativeButton ("No", (sender, e) => NearbyClass.Connections.RejectConnectionRequest (mGoogleApiClient, remoteEndpointId))
-				.Create ();
-
-			mConnectionRequestDialog.Show ();
 		}
 
 		public void OnConnected (Bundle bundle)
@@ -284,43 +213,7 @@ namespace ConnectionsQuickstart
 			DebugLog ("onMessageReceived:" + remoteEndpointId + ":" + System.Text.Encoding.Default.GetString (payload));
 		}
 
-		public void OnEndpointFound (string endpointId, string deviceId, string serviceId, string name)
-		{
-			Log.Debug (TAG, "onEndpointFound:" + endpointId + ":" + name);
-
-			if (mMyListDialog == null) {
-				var builder = new AlertDialog.Builder (this)
-					.SetTitle ("Endpoint(s) Found")
-					.SetCancelable (true)
-					.SetNegativeButton ("Cancel", (sender, e) => mMyListDialog.Dismiss ());
-
-				// Create the MyListDialog with a listener
-				mMyListDialog = new MyListDialog (this, builder, async (sender, e) => { 
-					var selectedEndpointName = mMyListDialog.GetItemKey (e.Which);
-					var selectedEndpointId = mMyListDialog.GetItemValue (e.Which);
-
-					await ConnectTo (selectedEndpointId, selectedEndpointName);
-					mMyListDialog.Dismiss ();
-				});
-			}
-
-			mMyListDialog.AddItem (name, endpointId);
-			mMyListDialog.Show ();
-		}
-
-		public void OnEndpointLost (string endpointId)
-		{
-			DebugLog ("onEndpointLost:" + endpointId);
-
-			// An endpoint that was previously available for connection is no longer. It may have
-			// stopped advertising, gone out of range, or lost connectivity. Dismiss any dialog that
-			// was offering a connection.
-			if (mMyListDialog != null) {
-				mMyListDialog.RemoveItemByValue (endpointId);
-			}
-		}
-
-		void UpdateViewVisibility (NearbyConnectionState newState)
+		public void UpdateViewVisibility (NearbyConnectionState newState)
 		{
 			mState = newState;
 			switch (mState) {
@@ -343,7 +236,7 @@ namespace ConnectionsQuickstart
 			}
 		}
 
-		void DebugLog (string msg)
+		public void DebugLog (string msg)
 		{
 			Log.Debug (TAG, msg);
 			mDebugInfo.Append ("\n" + msg);
