@@ -42,12 +42,12 @@ namespace ConnectionsQuickstart
 		const long TIMEOUT_ADVERTISE = 1000L * 30L;
 		const long TIMEOUT_DISCOVER = 1000L * 30L;
 
-        public GoogleApiClient mGoogleApiClient { get; private set; }
-        public AlertDialog mConnectionRequestDialog { get; set; }
-        public string mOtherEndpointId { get; set; }
+		public GoogleApiClient mGoogleApiClient { get; private set; }
+		public AlertDialog mConnectionRequestDialog { get; set; }
+		public string mOtherEndpointId { get; set; }
 		TextView mDebugInfo;
 		EditText mMessageText;
-        public MyListDialog mMyListDialog { get; set; }
+		public MyListDialog mMyListDialog { get; set; }
 		NearbyConnectionState mState = NearbyConnectionState.Idle;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -97,7 +97,7 @@ namespace ConnectionsQuickstart
 			}
 		}
 
-        async Task StartAdvertising ()
+		async Task StartAdvertising ()
 		{
 			DebugLog ("startAdvertising");
 			if (!IsConnectedToNetwork) {
@@ -105,14 +105,14 @@ namespace ConnectionsQuickstart
 				return;
 			}
 
-            var appIdentifierList = new List<AppIdentifier> ();
+			var appIdentifierList = new List<AppIdentifier> ();
 			appIdentifierList.Add (new AppIdentifier (PackageName));
 			var appMetadata = new AppMetadata (appIdentifierList);
 
 			var name = string.Empty;
-            var result = await NearbyClass.Connections.StartAdvertisingAsync (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE, new MyConnectionsConnectionRequestListener(this));
-			
-            Log.Debug (TAG, "startAdvertising:onResult:" + result);
+			var result = await NearbyClass.Connections.StartAdvertisingAsync (mGoogleApiClient, name, appMetadata, TIMEOUT_ADVERTISE, new MyConnectionsConnectionRequestListener(this));
+
+			Log.Debug (TAG, "startAdvertising:onResult:" + result);
 			if (result.Status.IsSuccess) {
 				DebugLog ("startAdvertising:onResult: SUCCESS");
 
@@ -129,7 +129,7 @@ namespace ConnectionsQuickstart
 			}
 		}
 
-        async Task StartDiscovery ()
+		async Task StartDiscovery ()
 		{
 			DebugLog ("startDiscovery");
 			if (!IsConnectedToNetwork) {
@@ -138,10 +138,10 @@ namespace ConnectionsQuickstart
 			}
 
 			string serviceId = GetString (Resource.String.service_id);
-			var status = await NearbyClass.Connections.StartDiscoveryAsync (mGoogleApiClient, 
-                serviceId, TIMEOUT_DISCOVER, new MyConnectionsEndpointDiscoveryListener (this));
+			var status = await NearbyClass.Connections.StartDiscoveryAsync (mGoogleApiClient,
+				serviceId, TIMEOUT_DISCOVER, new MyConnectionsEndpointDiscoveryListener (this));
 
-        	if (status.IsSuccess) {
+			if (status.IsSuccess) {
 				DebugLog ("startDiscovery:onResult: SUCCESS");
 
 				UpdateViewVisibility (NearbyConnectionState.Discovering);
