@@ -4,6 +4,6 @@
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>Platform Features, User Interface, Android Wear</Tags>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 	<Brief>Demonstrates a simple timer application designed for Wear.</Brief>
 </SampleMetadata>
