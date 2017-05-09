@@ -1,8 +1,8 @@
 WatchFace 
 =========
 
-**WatchFace** is a sample app that accompanies the forthcoming article,
-[WatchFace](http://developer.xamarin.com/guides/android/wear/custom-watchface/).
+**WatchFace** is a sample app that accompanies the article,
+[Creating a Watch Face](https://developer.xamarin.com/guides/android/wear/creating-a-watchface/).
 
 This sample demonstrates how to use `CanvasWatchFaceService` and 
 `CanvasWatchFaceService.Engine` to implement a custom Android Wear 
