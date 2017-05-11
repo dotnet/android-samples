@@ -1,6 +1,5 @@
-Timer
+Timer -- DEPRECATED
 =====
-
 A simple timer application designed for Wear. The timer is displayed as a notification with reset and delete options.
 
 Instructions

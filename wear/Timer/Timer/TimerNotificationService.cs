@@ -4,9 +4,6 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Util;
-using Android.Gms.Common;
-using Android.Gms.Common.Apis;
-using Android.Gms.Wearable;
 
 namespace Timer
 {
