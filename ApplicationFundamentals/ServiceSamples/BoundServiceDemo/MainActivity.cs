@@ -22,8 +22,13 @@ namespace BoundServiceDemo
 			SetContentView(Resource.Layout.Main);
 
 			timestampButton = FindViewById<Button>(Resource.Id.get_timestamp_button);
+            timestampButton.Click += GetTimestampButton_Click;
+
 			stopServiceButton = FindViewById<Button>(Resource.Id.stop_timestamp_service_button);
+            stopServiceButton.Click += StopServiceButton_Click;
+
 			restartServiceButton = FindViewById<Button>(Resource.Id.restart_timestamp_service_button);
+            restartServiceButton.Click += RestartServiceButton_Click;
 
 			timestampMessageTextView = FindViewById<TextView>(Resource.Id.message_textview);
 		}
@@ -35,21 +40,18 @@ namespace BoundServiceDemo
 			{
 				serviceConnection = new TimestampServiceConnection(this);
 			}
-		
-			Intent serviceToStart = new Intent(this, typeof(TimestampService));
-			BindService(serviceToStart, serviceConnection, Bind.AutoCreate);
-			restartServiceButton.Enabled = false;
+            DoBindService();
 		}
 
 		protected override void OnResume()
 		{
 			base.OnResume();
-
-			stopServiceButton.Click += StopServiceButton_Click;
-			stopServiceButton.Enabled = true;
-
-			timestampButton.Click += GetTimestampButton_Click;
-			timestampButton.Enabled = true;
+            if (serviceConnection.IsConnected) {
+                UpdateUiForBoundService();
+            }
+            else {
+                UpdateUiForUnboundService();
+            }
 		}
 
 		protected override void OnPause()
@@ -63,9 +65,33 @@ namespace BoundServiceDemo
 
 		protected override void OnStop()
 		{
-			UnbindService(serviceConnection);
+            DoUnBindService();
 			base.OnStop();
 		}
+
+        internal void UpdateUiForBoundService() {
+            timestampButton.Enabled = true;
+            stopServiceButton.Enabled = true;
+            restartServiceButton.Enabled = false;
+
+		}
+        internal void UpdateUiForUnboundService() {
+			timestampButton.Enabled = false;
+			stopServiceButton.Enabled = false;
+			restartServiceButton.Enabled = true;
+		}
+
+        void DoBindService() {
+			Intent serviceToStart = new Intent(this, typeof(TimestampService));
+			BindService(serviceToStart, serviceConnection, Bind.AutoCreate);
+			timestampMessageTextView.Text = "";
+		}
+
+        void DoUnBindService() {
+            UnbindService(serviceConnection);
+            restartServiceButton.Enabled = true;
+            timestampMessageTextView.Text = "";
+        }
 
 		void GetTimestampButton_Click(object sender, System.EventArgs e)
 		{
@@ -81,33 +107,16 @@ namespace BoundServiceDemo
 
 		void StopServiceButton_Click(object sender, System.EventArgs e)
 		{
-			UnbindService(serviceConnection);
+            DoUnBindService();
+            UpdateUiForUnboundService();
 
-			timestampButton.Click -= GetTimestampButton_Click;
-			timestampButton.Enabled = false;
 
-			stopServiceButton.Click -= StopServiceButton_Click;
-			stopServiceButton.Enabled = false;
-
-			restartServiceButton.Click += RestartServiceButton_Click;
-			restartServiceButton.Enabled = true;
-
-			timestampMessageTextView.SetText(Resource.String.service_not_connected);
 		}
 
 		void RestartServiceButton_Click(object sender, System.EventArgs e)
 		{
-			Intent serviceToStart = new Intent(this, typeof(TimestampService));
-			BindService(serviceToStart, serviceConnection, Bind.AutoCreate);
-			restartServiceButton.Enabled = false;
-
-			stopServiceButton.Click += StopServiceButton_Click;
-			stopServiceButton.Enabled = true;
-
-			timestampButton.Click += GetTimestampButton_Click;
-			timestampButton.Enabled = true;
-
-			timestampMessageTextView.Text = string.Empty;
+            DoBindService();
+            UpdateUiForBoundService();
 		}
 	}
 }
