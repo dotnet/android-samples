@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AndroidLSamples</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>AndroidLSamples</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.21.0.0-rc1\lib\MonoAndroid10\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.Palette">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.Palette.21.0.0-rc1\lib\MonoAndroid10\Xamarin.Android.Support.v7.Palette.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.21.0.0-rc1v2\lib\MonoAndroid10\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0.3\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Photos.cs" />
+    <Compile Include="Utils\HeightAdjustableImageView.cs" />
+    <Compile Include="Activities\AnimationActivity1.cs" />
+    <Compile Include="Activities\AnimationActivity2.cs" />
+    <Compile Include="Activities\CardActivity.cs" />
+    <Compile Include="Activities\HomeActivity.cs" />
+    <Compile Include="Activities\ImageDetailPaletteActivity.cs" />
+    <Compile Include="Activities\ImageListActivity.cs" />
+    <Compile Include="Activities\NotificationsActivity.cs" />
+    <Compile Include="Activities\RecyclerViewActivity.cs" />
+    <Compile Include="Activities\RecyclerViewActivityAddRemove.cs" />
+    <Compile Include="Activities\ThemesActivity.cs" />
+    <Compile Include="Activities\AnimationActivityMoveImage1.cs" />
+    <Compile Include="Activities\AnimationActivityMoveImage2.cs" />
+    <Compile Include="Activities\EvelvationActivity.cs" />
+    <Compile Include="Activities\AnimationRevealActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\rect_blue.xml" />
+    <AndroidResource Include="Resources\drawable\rect_red.xml" />
+    <AndroidResource Include="Resources\drawable\rect_orange.xml" />
+    <AndroidResource Include="Resources\drawable\xamarin.png" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\evolve.jpg" />
+    <AndroidResource Include="Resources\layout\activity_recycler_view.axml" />
+    <AndroidResource Include="Resources\layout\activity_image_list.axml" />
+    <AndroidResource Include="Resources\layout\activity_image_detail.axml" />
+    <AndroidResource Include="Resources\layout\grid_item.axml" />
+    <AndroidResource Include="Resources\layout\item.axml" />
+    <AndroidResource Include="Resources\layout\palette_item.axml" />
+    <AndroidResource Include="Resources\layout\activity_card.axml" />
+    <AndroidResource Include="Resources\layout\activity_animations_1.axml" />
+    <AndroidResource Include="Resources\layout\activity_animations_2.axml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\layout\activity_themes.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\flying_in_the_light_large.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\jelly_fish_2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\lone_pine_sunset.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\look_me_in_the_eye.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\over_there.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\rainbow.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\sample1.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\sample2.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\caterpiller.jpg" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\layout\recycleritem_card.axml" />
+    <AndroidResource Include="Resources\layout\activity_recycler_view_add_remove.axml" />
+    <AndroidResource Include="Resources\layout\activity_notifications.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_notification.png" />
+    <AndroidResource Include="Resources\menu\menu1.xml" />
+    <AndroidResource Include="Resources\menu\menu2.xml" />
+    <AndroidResource Include="Resources\layout\activity_elevation.axml" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\layout\activity_reveal.axml" />
+    <AndroidResource Include="Resources\drawable\monkey.png" />
+    <AndroidResource Include="Resources\drawable\xamarin_white.png" />
+    <AndroidResource Include="Resources\drawable\mycircle.xml" />
+    <AndroidResource Include="Resources\drawable\shape.xml" />
+    <AndroidResource Include="Resources\drawable\shape2.xml" />
+    <AndroidResource Include="Resources\drawable\gear.jpg" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Activities\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\menu\" />
+  </ItemGroup>
+</Project>
