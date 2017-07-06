@@ -42,7 +42,7 @@
                     console.error('Error starting camera. Denied.');
                 });
             } else {
-                stream.stop();
+                stream.getTracks().forEach(function (track) { track.stop(); });
                 stream = null;
                 toggle.innerText = 'Start';
                 console.log('Stopped');
