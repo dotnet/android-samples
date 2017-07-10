@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>10C4FDA1-5999-4BEF-AB5E-4EFEEEFE81AF</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates the Android Material Design library</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>
