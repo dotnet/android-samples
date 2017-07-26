@@ -18,8 +18,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,7 +82,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Wear, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Android.Wear.2.0.1\lib\MonoAndroid70\Xamarin.Android.Wear.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Android.Wear.2.0.1.1\lib\MonoAndroid70\Xamarin.Android.Wear.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -157,7 +156,6 @@
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets'))" />
   </Target>
-  <Import Project="..\packages\Xamarin.Android.Wear.2.0.1\build\MonoAndroid70\Xamarin.Android.Wear.targets" Condition="Exists('..\packages\Xamarin.Android.Wear.2.0.1\build\MonoAndroid70\Xamarin.Android.Wear.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Compat.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Compat.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Core.UI.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.UI.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Core.UI.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Core.Utils.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.Utils.25.4.0.1\build\MonoAndroid70\Xamarin.Android.Support.Core.Utils.targets')" />
@@ -171,4 +169,5 @@
   <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Wear.2.0.1.1\build\MonoAndroid70\Xamarin.Android.Wear.targets" Condition="Exists('..\packages\Xamarin.Android.Wear.2.0.1.1\build\MonoAndroid70\Xamarin.Android.Wear.targets')" />
 </Project>
