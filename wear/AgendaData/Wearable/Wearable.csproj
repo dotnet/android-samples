@@ -134,7 +134,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Wear.2.0.1\build\MonoAndroid70\Xamarin.Android.Wear.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Wear.2.0.1\build\MonoAndroid70\Xamarin.Android.Wear.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets'))" />
