@@ -20,7 +20,7 @@ namespace com.xamarin.recipes.filepicker
     /// </remarks>
     public class FileListFragment : ListFragment
     {
-        public static readonly string DefaultInitialDirectory = "/";
+        public static readonly string DefaultInitialDirectory = "/sdcard";
         private FileListAdapter _adapter;
         private DirectoryInfo _directory;
 
@@ -70,7 +70,7 @@ namespace com.xamarin.recipes.filepicker
             }
             catch (Exception ex)
             {
-                Log.Error("FileListFragment", "Couldn't access the directory " + _directory.FullName + "; " + ex);
+                Log.Error("FileListFragment", "Couldn't access the directory " + dir.FullName + "; " + ex);
                 Toast.MakeText(Activity, "Problem retrieving contents of " + directory, ToastLength.Long).Show();
                 return;
             }
