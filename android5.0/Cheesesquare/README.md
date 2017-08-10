@@ -1,9 +1,9 @@
-Cheesesquare Sample
-===================================
-
 **NOTE:** This is a port of the original Cheesesquare Sample by Chris Banes, available on GitHub: https://github.com/chrisbanes/cheesesquare
 
-![Screenshot](Screenshots/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/xamarin/monodroid-samples/master/android5.0/Cheesesquare/screenshot.png)
+
+Cheesesquare Sample
+===================================
 
 Demos the new Android Design library. This is not an exhaustive sample, but shows
 some of the important features in the Design library:
