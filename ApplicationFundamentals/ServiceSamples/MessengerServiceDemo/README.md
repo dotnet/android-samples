@@ -1,4 +1,3 @@
-
 Xamarin.Android Messenger and Service Sample
 ============================================
 

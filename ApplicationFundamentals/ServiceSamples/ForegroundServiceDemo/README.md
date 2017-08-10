@@ -1,4 +1,3 @@
-
 Xamarin.Android Foreground Service Sample
 =========================================
 

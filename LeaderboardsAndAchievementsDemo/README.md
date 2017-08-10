@@ -1,4 +1,5 @@
-#LeaderboardsAndAchievementsDemo
+LeaderboardsAndAchievementsDemo
+===============================
 
 This is a sample xamarin android application that shows the [Leaderboards](https://developers.google.com/games/services/android/leaderboards) and [Achievements](https://developers.google.com/games/services/android/achievements) for a specific provided game of Google Play Games.
 
@@ -17,11 +18,11 @@ For more information, please visit this [web site](https://developers.google.com
 ##Screenshots
 
 
-![screenshot](https://github.com/xamarin/monodroid-samples/tree/master/LeaderboardsAndAchievementsDemo/Screenshots/home.png "Home")
+![screenshot](Screenshots/home.png "Home")
 
-![screenshot](https://github.com/xamarin/monodroid-samples/tree/master/LeaderboardsAndAchievementsDemo/Screenshots/leaderboards.png "Leaderboards")
+![screenshot](Screenshots/leaderboards.png "Leaderboards")
 
-![screenshot](https://github.com/xamarin/monodroid-samples/tree/master/LeaderboardsAndAchievementsDemo/Screenshots/achievements.png "Achievements")
+![screenshot](Screenshots/achievements.png "Achievements")
 
 
 Author
