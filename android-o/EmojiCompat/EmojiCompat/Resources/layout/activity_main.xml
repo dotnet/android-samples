@@ -4,7 +4,7 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.emojicompat.MainActivity">
+    tools:context="Emojicompat.MainActivity">
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_small"
             android:textSize="@dimen/text_size" />
-        <com.example.android.emojicompat.CustomTextView
+        <EmojiCompat.CustomTextView
             android:id="@+id/emoji_custom_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
