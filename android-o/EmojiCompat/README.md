@@ -24,12 +24,6 @@ Build Requirements
 Using this sample requires the Android 8.0 (API 26) and the Xamarin.Android 7.5 or higher.
 
 
-Screenshots
--------------
-
-<img src=“Screenshots/Main.png" height="400" alt="Screenshot"/> 
-
-
 Authors
 -------
 
