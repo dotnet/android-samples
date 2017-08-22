@@ -8,7 +8,7 @@ using Android.Views;
 
 namespace AutofillFramework
 {
-	[Activity(Label = "Autofill Framework", MainLauncher = true, TaskAffinity = ".MainActivity")]
+	[Activity(Label = "Autofill Framework", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity
 	{
 		abstract class BaseListenerImpl : Java.Lang.Object {
@@ -56,7 +56,7 @@ namespace AutofillFramework
 		}
 
 		protected override void OnCreate(Bundle savedInstanceState)
-		{
+		{	
 			base.OnCreate(savedInstanceState);
 
 			// Set our view from the "main" layout resource

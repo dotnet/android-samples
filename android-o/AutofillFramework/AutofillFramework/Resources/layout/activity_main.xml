@@ -11,7 +11,7 @@
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
-        <com.xamarin.Autofill_Framework.app.NavigationItem
+        <AutofillFramework.app.NavigationItem
             android:id="@+id/standardViewSignInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
             app:labelText="@string/navigation_button_edittext_login_label"
             app:itemLogo="@drawable/ic_edittexts_logo_24dp"
             app:imageColor="@android:color/holo_red_dark" />
-        <com.xamarin.Autofill_Framework.app.NavigationItem
+        <AutofillFramework.app.NavigationItem
             android:id="@+id/standardLoginWithAutoCompleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             app:labelText="@string/navigation_button_autocomplete_login_label"
             app:itemLogo="@drawable/ic_autocomplete_logo_24dp"
             app:imageColor="@android:color/holo_blue_dark" />
-        <com.xamarin.Autofill_Framework.app.NavigationItem
+        <AutofillFramework.app.NavigationItem
             android:id="@+id/virtualViewSignInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             app:labelText="@string/navigation_button_custom_virtual_view_login_label"
             app:itemLogo="@drawable/ic_custom_virtual_logo_24dp"
             app:imageColor="@android:color/holo_green_dark" />
-        <com.xamarin.Autofill_Framework.app.NavigationItem
+        <AutofillFramework.app.NavigationItem
             android:id="@+id/creditCardCheckoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             app:labelText="@string/navigation_button_spinners_credit_card_label"
             app:itemLogo="@drawable/ic_spinners_logo_24dp"
             app:imageColor="@android:color/holo_orange_dark" />
-        <com.xamarin.Autofill_Framework.app.NavigationItem
+        <AutofillFramework.app.NavigationItem
             android:id="@+id/emailComposeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

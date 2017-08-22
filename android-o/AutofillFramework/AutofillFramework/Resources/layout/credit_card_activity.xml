@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <com.xamarin.Autofill_Framework.app.InfoButton
+    <AutofillFramework.app.InfoButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

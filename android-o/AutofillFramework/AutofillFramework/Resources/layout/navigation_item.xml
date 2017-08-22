@@ -32,7 +32,7 @@
                 android:paddingVertical="@dimen/padding_normal"
                 tools:text="@string/navigation_button_edittext_login_label" />
         </android.support.v7.widget.CardView>
-        <com.xamarin.Autofill_Framework.app.InfoButton
+        <AutofillFramework.app.InfoButton
             android:id="@+id/infoButton"
             android:layout_width="wrap_content"
             android:layout_height="0dp"

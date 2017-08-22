@@ -1,19 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
-using Java.Lang;
 
 namespace AutofillFramework.app
 {
@@ -51,7 +43,9 @@ namespace AutofillFramework.app
 				ResetFields();
 			};
 			AutofillCallback = new MyAutofillCallback();
-			AutofillManager = (AutofillManager)GetSystemService(typeof(AutofillManager).Name);
+			// FIXME: there is no equivalent argument for AutofillManager
+			// getSystemService(AutofillManager.class);
+			AutofillManager = (AutofillManager) GetSystemService("");
         	ArrayAdapter mockAutocompleteAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.mock_autocomplete_sign_in_suggestions,
 			     Android.Resource.Layout.SimpleDropDownItem1Line);
 			UsernameAutoCompleteField.Adapter = mockAutocompleteAdapter;
