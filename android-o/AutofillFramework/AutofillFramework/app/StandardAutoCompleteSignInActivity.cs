@@ -43,9 +43,7 @@ namespace AutofillFramework.app
 				ResetFields();
 			};
 			AutofillCallback = new MyAutofillCallback();
-			// FIXME: there is no equivalent argument for AutofillManager
-			// getSystemService(AutofillManager.class);
-			AutofillManager = (AutofillManager) GetSystemService("");
+			AutofillManager = (AutofillManager) ApplicationContext.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager)));
         	ArrayAdapter mockAutocompleteAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.mock_autocomplete_sign_in_suggestions,
 			     Android.Resource.Layout.SimpleDropDownItem1Line);
 			UsernameAutoCompleteField.Adapter = mockAutocompleteAdapter;

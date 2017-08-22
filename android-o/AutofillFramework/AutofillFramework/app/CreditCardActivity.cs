@@ -21,7 +21,7 @@ namespace AutofillFramework.app
 	{
 		static int CC_EXP_YEARS_COUNT = 5;
 
-		Java.Lang.String[] Years = new Java.Lang.String[CC_EXP_YEARS_COUNT];
+		string[] Years = new string[CC_EXP_YEARS_COUNT];
 
     	Spinner mCcExpirationDaySpinner;
 		Spinner mCcExpirationMonthSpinner;
@@ -36,15 +36,20 @@ namespace AutofillFramework.app
 
 		class YearAdapter : ArrayAdapter
 		{
-			Java.Lang.String[] Years { get; set; }
-			public YearAdapter(Context context, Java.Lang.String[] years) : base(context, Android.Resource.Layout.SimpleSpinnerItem, years)
+			string[] Years { get; set; }
+			public YearAdapter(Context context, string[] years) : base(context, Android.Resource.Layout.SimpleSpinnerItem, years)
 			{
 				Years = years;
 			}
 
 			public override ICharSequence[] GetAutofillOptionsFormatted()
 			{
-				return Years;
+				// convert C# string into Java String to return a CharSequence array
+				var javaStringList = new Java.Lang.String[Years.Count()];
+				for (var pos = 0; pos < Years.Count(); pos++) {
+					javaStringList[pos] = new Java.Lang.String(Years[pos]);
+				}
+				return javaStringList;
 			}
 		}
 
@@ -72,7 +77,7 @@ namespace AutofillFramework.app
 			int year = Calendar.GetInstance(Locale.Default).Get(CalendarField.Year);
 			for (int i = 0; i < Years.Length; i++)
 			{
-				Years[i] = new Java.Lang.String(Integer.ToString(year + i));
+				Years[i] = Integer.ToString(year + i);
 			}
 
 			mCcExpirationYearSpinner.Adapter = new YearAdapter(this, Years);

@@ -1,16 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
-using Android.Widget;
 
 namespace AutofillFramework.app
 {
@@ -19,8 +10,7 @@ namespace AutofillFramework.app
 	{
 		public static Intent GetStartActivityIntent(Context context)
 		{
-			Intent intent = new Intent(context, typeof(EmailComposeActivity));
-        	return intent;
+			return new Intent(context, typeof(EmailComposeActivity));
     	}
 
 		protected override void OnCreate(Bundle savedInstanceState)
