@@ -19,6 +19,7 @@
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -95,5 +96,5 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_tab_whats_on_selected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_tab_whats_on_unselected.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
