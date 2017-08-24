@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>79d9351b-4d16-4485-b333-74539adb6d07</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates how to use the Downloadable Fonts feature introduced in Android O.</Brief>
+</SampleMetadata>
