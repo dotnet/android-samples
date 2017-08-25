@@ -9,7 +9,7 @@ namespace LocationUpdatesForegroundService
 {
 	public class Utils
 	{
-		const string KeyRequestingLocationUpdates = "requesting_locaction_updates";
+		public const string KeyRequestingLocationUpdates = "requesting_locaction_updates";
 
 		/**
 	     * Returns true if requesting location updates, otherwise returns false.
