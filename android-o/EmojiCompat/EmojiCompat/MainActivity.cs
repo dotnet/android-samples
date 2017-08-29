@@ -7,7 +7,7 @@ using static Android.Support.Text.Emoji.EmojiCompat;
 
 namespace EmojiCompat
 {
-	[Activity(Label = "EmojiCompat", MainLauncher = true)]
+	[Activity(Label = "EmojiCompat", MainLauncher = true, WindowSoftInputMode = Android.Views.SoftInput.StateUnchanged)]
 	public class MainActivity : AppCompatActivity
 	{
 		// [U+1F469] (WOMAN) + [U+200D] (ZERO WIDTH JOINER) + [U+1F4BB] (PERSONAL COMPUTER)
@@ -41,7 +41,6 @@ namespace EmojiCompat
 			var textToShow = GetString(Resource.String.regular_text_view, Emoji);
 			Get().RegisterInitCallback(new InitCallbackImpl 
 			{
-				Context = this, 
 				RegularTextView = regularTextView,
 				Text = textToShow
 			});
@@ -54,12 +53,11 @@ namespace EmojiCompat
 		class InitCallbackImpl : InitCallback 
 		{
 			public TextView RegularTextView { get; set; }
-			public Context Context { get; set; }
 			public string Text { get; set; }
 
 			public override void OnInitialized()
 			{
-				RegularTextView.Text = Android.Support.Text.Emoji.EmojiCompat.Get().Process(Text);
+				RegularTextView.Text = Get().Process(Text);
 			}
 		}
 	}
