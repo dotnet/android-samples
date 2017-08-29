@@ -12,7 +12,7 @@ namespace DownloadableFonts
 
 		Float Italic = null;
 
-		Java.Lang.Boolean Besteffort = null;
+		bool? Besteffort = null;
 
 		public QueryBuilder(string familyName)
 		{
@@ -58,7 +58,7 @@ namespace DownloadableFonts
 
 		public QueryBuilder WithBestEffort(bool bestEffort)
 		{
-			Besteffort = new Boolean(bestEffort);
+			Besteffort = bestEffort;
 			return this;
 		}
 

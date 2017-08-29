@@ -2,12 +2,12 @@
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
-using System.Collections.Generic;
 using Android.Support.Design.Widget;
 using Android.Text;
 using Java.Lang;
 using Android.Util;
 using Android.Support.V4.Provider;
+using Java.Util;
 
 namespace DownloadableFonts
 {
@@ -25,7 +25,7 @@ namespace DownloadableFonts
 		CheckBox BestEffort;
 		Button RequestDownloadButton;
 
-		HashSet<string> FamilyNameSet;
+		HashSet FamilyNameSet;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -34,8 +34,7 @@ namespace DownloadableFonts
 			SetContentView(Resource.Layout.activity_main);
 
 			InitializeSeekBars();
-			FamilyNameSet = new HashSet<string>();
-			FamilyNameSet.UnionWith(Resources.GetStringArray(Resource.Array.family_names));
+			FamilyNameSet = new HashSet(Resources.GetStringArray(Resource.Array.family_names));
 
 			DownloadableFontTextView = FindViewById(Resource.Id.textview) as TextView;
 			ArrayAdapter<string> adapter = new ArrayAdapter<string>(this,
