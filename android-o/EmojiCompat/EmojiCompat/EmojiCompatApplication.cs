@@ -17,7 +17,8 @@ namespace EmojiCompat
 		/** Change this to {@code false} when you want to use the downloadable Emoji font. */
 		const bool UseBundledEmoji = true;
 
-		public EmojiCompatApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) {}
+		public EmojiCompatApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) 
+		{}
 
 		public override void OnCreate()
 		{

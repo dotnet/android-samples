@@ -17,14 +17,18 @@ namespace EmojiCompat
 	{
 		EmojiTextViewHelper mEmojiTextViewHelper;
 
-		public CustomTextView(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) { }
+		public CustomTextView(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer) 
+		{}
 
-		public CustomTextView(Context context): this(context, null) {}
+		public CustomTextView(Context context): this(context, null) 
+		{}
 
-		public CustomTextView(Context context, IAttributeSet attrs) : this(context, attrs, 0) {}
+		public CustomTextView(Context context, IAttributeSet attrs) : this(context, attrs, 0) 
+		{}
 
 		public CustomTextView(Context context, IAttributeSet attrs, int defStyleAttr) 
-			: base(context, attrs, defStyleAttr) {
+			: base(context, attrs, defStyleAttr) 
+		{
 			GetEmojiTextViewHelper().UpdateTransformationMethod();
 		}
 

@@ -38,21 +38,28 @@ namespace EmojiCompat
 
 			// Regular TextView without EmojiCompat support; you have to manually process the text
 			var regularTextView = (TextView) FindViewById(Resource.Id.regular_text_view);
-			Get().RegisterInitCallback(new InitCallbackImpl {Context = this, RegularTextView = regularTextView});
+			var textToShow = GetString(Resource.String.regular_text_view, Emoji);
+			Get().RegisterInitCallback(new InitCallbackImpl 
+			{
+				Context = this, 
+				RegularTextView = regularTextView,
+				Text = textToShow
+			});
 
 			// Custom TextView
 			var customTextView = (TextView) FindViewById(Resource.Id.emoji_custom_text_view);
 			customTextView.Text = GetString(Resource.String.custom_text_view, Emoji);
 		}
 
-		class InitCallbackImpl : InitCallback {
+		class InitCallbackImpl : InitCallback 
+		{
 			public TextView RegularTextView { get; set; }
 			public Context Context { get; set; }
+			public string Text { get; set; }
 
 			public override void OnInitialized()
 			{
-				var compat = Get();
-				RegularTextView.Text = compat.Process(Context.GetString(Resource.String.regular_text_view, Emoji));
+				RegularTextView.Text = Android.Support.Text.Emoji.EmojiCompat.Get().Process(Text);
 			}
 		}
 	}
