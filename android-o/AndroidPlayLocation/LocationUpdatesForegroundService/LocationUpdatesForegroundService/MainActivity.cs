@@ -12,6 +12,7 @@ using Android.Support.Design.Widget;
 using Android.Net;
 using Android.Support.Compat;
 using Android.Locations;
+using Android.Support.V7.App;
 
 namespace LocationUpdatesForegroundService
 {
@@ -35,7 +36,7 @@ namespace LocationUpdatesForegroundService
 	 * notification. This dismisses the notification and stops the service.
 	 */
 	[Activity(Label = "LocationUpdatesForegroundService", MainLauncher = true)]
-	public class MainActivity : Activity, ISharedPreferencesOnSharedPreferenceChangeListener
+	public class MainActivity : AppCompatActivity, ISharedPreferencesOnSharedPreferenceChangeListener
 	{
 		const string Tag = "MainActivity";
 
@@ -158,7 +159,7 @@ namespace LocationUpdatesForegroundService
 	     */
 		bool CheckPermissions()
 		{
-			return PermissionChecker.PermissionGranted == ActivityCompat.CheckSelfPermission(this,
+			return PermissionChecker.PermissionGranted == ContextCompat.CheckSelfPermission(this,
 				Manifest.Permission.AccessFineLocation);
 		}
 

@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Threading.Tasks;
+using Android.App;
 using Android.Content;
 using Android.Gms.Location;
 using Android.Locations;
@@ -28,7 +29,7 @@ namespace LocationUpdatesForegroundService
 	[IntentFilter(new string[] { "com.xamarin.LocationUpdatesForegroundService.LocationUpdatesService" })]
 	public class LocationUpdatesService : Service
 	{
-		const string LocationPackageName = "com.google.android.gms.location.sample.locationupdatesforegroundservice";
+		const string LocationPackageName = "com.xamarin.LocationUpdatesForegroundService";
 
 		const string Tag = "LocationUpdatesService";
 
@@ -116,7 +117,7 @@ namespace LocationUpdatesForegroundService
 			NotificationManager = (NotificationManager) GetSystemService(NotificationService);
 		}
 
-		public override StartCommandResult OnStartCommand(Android.Content.Intent intent, StartCommandFlags flags, int startId)
+		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
 			Log.Info(Tag, "Service started");
 			var startedFromNotification = intent.GetBooleanExtra(ExtraStartedFromNotification, false);
@@ -258,7 +259,7 @@ namespace LocationUpdatesForegroundService
 				    .Build();
 		}
 
-		async void GetLastLocationAsync()
+		async Task GetLastLocationAsync()
 		{
 			try {
 				var location = await FusedLocationClient.GetLastLocationAsync();
