@@ -24,9 +24,7 @@ namespace LocationUpdatesPendingIntent
 	{
 		const string Tag = "LUBroadcastReceiver";
 
-    	public const string ActionProcessUpdates =
-	            "com.google.android.gms.location.sample.locationupdatespendingintent.action" + 
-				".PROCESS_UPDATES";
+    	public const string ActionProcessUpdates = "com.xamarin.LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
 		
 		public override void OnReceive(Context context, Intent intent)
 		{

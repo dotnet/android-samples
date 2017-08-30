@@ -27,10 +27,11 @@ namespace LocationUpdatesPendingIntent
 	[IntentFilter(new String[] { "LocationUpdatesPendingIntent.LocationUpdatesIntentService" })]
 	public class LocationUpdatesIntentService : IntentService
 	{
-		public const string ActionProcessUpdate = "LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
+		public const string ActionProcessUpdate = "com.xamarin.LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
 		const string Tag = "LocationUpdatesIntentService";
 
-		public LocationUpdatesIntentService() : base(Tag) {}
+		public LocationUpdatesIntentService() : base(Tag) 
+		{}
 
 		protected override void OnHandleIntent(Intent intent)
 		{
