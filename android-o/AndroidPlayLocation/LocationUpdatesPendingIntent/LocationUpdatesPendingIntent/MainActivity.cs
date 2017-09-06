@@ -13,6 +13,7 @@ using Android.Net;
 using Android.Support.Compat;
 using Android.Views;
 using Java.Lang;
+using Android.Support.V4.Content;
 
 namespace LocationUpdatesPendingIntent
 {
@@ -160,8 +161,8 @@ namespace LocationUpdatesPendingIntent
 	     */
 		bool CheckPermissions()
 		{
-			var permissionState = ActivityCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
-			return permissionState == Permission.Granted;
+			var permissionState = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
+			return permissionState == PermissionChecker.PermissionGranted;
 		}
 
 		void RequestPermissions()
