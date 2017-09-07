@@ -151,7 +151,7 @@ namespace LocationUpdatesPendingIntent
 			//        intent.SetAction(LocationUpdatesIntentService.ActionProcessUpdate);
 			//        return PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
 
-			var intent = new Intent(this, typeof(LocationUpdatesIntentService));
+			var intent = new Intent(this, typeof(LocationUpdatesBroadcastReceiver));
 			intent.SetAction(LocationUpdatesBroadcastReceiver.ActionProcessUpdates);
 			return PendingIntent.GetBroadcast(this, 0, intent, PendingIntentFlags.UpdateCurrent);
 		}

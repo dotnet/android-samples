@@ -6,9 +6,7 @@ using Android.Graphics;
 using Android.Locations;
 using Android.Preferences;
 using Android.Support.V4.App;
-using Android.Text.Format;
 using Java.Lang;
-using Java.Util;
 
 namespace LocationUpdatesPendingIntent
 {
@@ -89,7 +87,7 @@ namespace LocationUpdatesPendingIntent
 		{
 			var numLocationsReported = context.Resources.GetQuantityString(
 					Resource.Plurals.num_locations_reported, locations.Count, locations.Count);
-			return numLocationsReported + ": " + DateFormat.GetDateFormat(context).Format(new Date());
+			return numLocationsReported + ": " + DateTime.Now.ToString();
 		}
 
 		/**

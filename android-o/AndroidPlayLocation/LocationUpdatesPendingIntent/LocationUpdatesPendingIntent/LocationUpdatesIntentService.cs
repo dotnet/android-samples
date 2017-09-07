@@ -1,11 +1,6 @@
-﻿
-using System;
-using System.Collections.Generic;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Gms.Location;
-using Android.Locations;
-using Android.OS;
 using Android.Util;
 
 namespace LocationUpdatesPendingIntent
@@ -24,7 +19,6 @@ namespace LocationUpdatesPendingIntent
 	 *  foreground.
 	 */
 	[Service(Label = "LocationUpdatesIntentService", Exported = false)]
-	[IntentFilter(new String[] { "LocationUpdatesPendingIntent.LocationUpdatesIntentService" })]
 	public class LocationUpdatesIntentService : IntentService
 	{
 		public const string ActionProcessUpdate = "com.xamarin.LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
