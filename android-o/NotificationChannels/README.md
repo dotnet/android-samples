@@ -17,7 +17,7 @@ Using this sample requires the Android 8.0 (API 26) and Xamarin.Android 7.5.x or
 
 Authors
 -------
-Ported from [Android NotificationChannels Sample](https://github.com/googlesamples/android-play-location/tree/master/LocationUpdatesForegroundService).  
+Ported from [Android NotificationChannels Sample](https://github.com/googlesamples/android-NotificationChannels).
 Ported to Xamarin.Android by Peter Collins.
 
 
