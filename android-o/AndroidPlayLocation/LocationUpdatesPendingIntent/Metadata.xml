@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>31801108-2f75-4fe6-9aad-a8a38a315364</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates how to use the Location API.</Brief>
+</SampleMetadata>
