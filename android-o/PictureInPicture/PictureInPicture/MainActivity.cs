@@ -16,7 +16,7 @@ namespace PictureInPicture
     [Activity(Label = "PictureInPicture", MainLauncher = true, Icon = "@mipmap/icon", Theme = "@style/AppTheme",
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.SmallestScreenSize
               | ConfigChanges.ScreenLayout | ConfigChanges.Orientation, SupportsPictureInPicture = true)]
-    public class MainActivity : Activity
+    public class MainActivity : AppCompatActivity
     {
         /** This shows the video. */
         public MovieView PIPMovieView { get; private set; }
