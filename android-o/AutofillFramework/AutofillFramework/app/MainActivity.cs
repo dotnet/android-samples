@@ -8,10 +8,14 @@ using Android.Views;
 
 namespace AutofillFramework
 {
+	/// <summary>
+	/// This is used to launch sample activities that showcase autofill.
+	/// </summary>
 	[Activity(Label = "Autofill Framework", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity
 	{
-		abstract class BaseListenerImpl : Java.Lang.Object {
+		abstract class BaseListenerImpl : Java.Lang.Object
+		{
 			public MainActivity Context { get; set; }
 		}
 

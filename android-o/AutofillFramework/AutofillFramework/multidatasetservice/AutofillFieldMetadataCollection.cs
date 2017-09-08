@@ -6,10 +6,10 @@ using Java.Util;
 
 namespace AutofillFramework
 {
-	/**
-	 * Data structure that stores a collection of {@code AutofillFieldMetadata}s. Contains all of the
-	 * client's {@code View} hierarchy autofill-relevant metadata.
-	 */
+	/// <summary>
+	/// Data structure that stores a collection of AutofillFieldMetadatas. Contains all of the
+	/// client's View hierarchy autofill-relevant metadata.
+	/// </summary>
 	public class AutofillFieldMetadataCollection
 	{
 		List<AutofillId> AutofillIds = new List<AutofillId>();

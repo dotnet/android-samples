@@ -7,11 +7,11 @@ using static Android.App.Assist.AssistStructure;
 
 namespace AutofillFramework
 {
-	/**
-	 * A stripped down version of a {@link ViewNode} that contains only autofill-relevant metadata. It
-	 * also contains a {@code mSaveType} flag that is calculated based on the {@link ViewNode}]'s
-	 * autofill hints.
-	 */
+	/// <summary>
+	/// A stripped down version of a {@link ViewNode} that contains only autofill-relevant metadata. It
+	/// also contains a {@code mSaveType} flag that is calculated based on the {@link ViewNode}]'s
+	/// autofill hints.
+	/// </summary>
 	public class AutofillFieldMetadata
 	{
 		public SaveDataType SaveType { get; set; }
@@ -39,10 +39,12 @@ namespace AutofillFramework
 			AutofillHints = AutofillHelper.FilterForSupportedHints(view.GetAutofillHints());
 		}
 
-		/**
-	     * When the {@link ViewNode} is a list that the user needs to choose a string from (i.e. a
-	     * spinner), this is called to return the index of a specific item in the list.
-	     */
+		/// <summary>
+		/// When the ViewNode is a list that the user needs to choose a string from (i.e. a
+		/// spinner), this is called to return the index of a specific item in the list.
+		/// </summary>
+		/// <returns>The autofill option index.</returns>
+		/// <param name="value">Value.</param>
 		public int GetAutofillOptionIndex(String value)
 		{
 			for (int i = 0; i < AutofillOptions.Length; i++)

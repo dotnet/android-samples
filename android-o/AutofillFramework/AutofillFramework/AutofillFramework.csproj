@@ -134,6 +134,10 @@
     <Compile Include="app\StandardSignInActivity.cs" />
     <Compile Include="app\VirtualSignInActivity.cs" />
     <Compile Include="app\WelcomeActivity.cs" />
+    <Compile Include="app\Item.cs" />
+    <Compile Include="app\Line.cs" />
+    <Compile Include="app\MyAutofillCallback.cs" />
+    <Compile Include="app\CountdownTimerImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

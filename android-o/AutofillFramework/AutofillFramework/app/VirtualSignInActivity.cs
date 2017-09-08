@@ -1,9 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
 
@@ -41,9 +39,10 @@ namespace AutofillFramework.app
 			CustomVirtualView.ResetFields();
 		}
 
-		/**
-		 * Emulates a login action.
-		 */
+
+		/// <summary>
+		///	Emulates a login action.  
+		/// </summary>
 		void Login()
 		{
 			var username = CustomVirtualView.GetUsernameText().ToString();
@@ -60,10 +59,13 @@ namespace AutofillFramework.app
 			}
 		}
 
-		/**
-		 * Dummy implementation for demo purposes. A real service should use secure mechanisms to
-		 * authenticate users.
-		 */
+		/// <summary>
+		/// Dummy implementation for demo purposes. A real service should use secure mechanisms to
+		/// authenticate users.
+		/// </summary>
+		/// <returns><c>true</c>, if valid credentials are valid, <c>false</c> otherwise.</returns>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
 		public bool IsValidCredentials(string username, string password)
 		{
 			return username != null && password != null && username.Equals(password);

@@ -6,12 +6,12 @@ using GoogleGson;
 
 namespace AutofillFramework.multidatasetservice.datasource
 {
-	/**
- 	 * Singleton autofill data repository that stores autofill fields to SharedPreferences.
- 	 * Disclaimer: you should not store sensitive fields like user data unencrypted. This is done
- 	 * here only for simplicity and learning purposes.
- 	 */
-	 public class SharedPrefsAutofillRepository : IAutofillRepository
+	/// <summary>
+	/// Singleton autofill data repository that stores autofill fields to SharedPreferences.
+	/// Disclaimer: you should not store sensitive fields like user data unencrypted. This is done
+	/// here only for simplicity and learning purposes.
+	/// </summary>
+	public class SharedPrefsAutofillRepository : IAutofillRepository
 	{
 		static string SHARED_PREF_KEY = "com.example.android.autofillframework.service";
     	static string CLIENT_FORM_DATA_KEY = "loginCredentialDatasets";
@@ -19,11 +19,11 @@ namespace AutofillFramework.multidatasetservice.datasource
 
 		static SharedPrefsAutofillRepository sInstance;
 
-		ISharedPreferences mPrefs;
+		ISharedPreferences Prefs;
 
     	SharedPrefsAutofillRepository(Context context)
 		{
-			mPrefs = context.ApplicationContext.GetSharedPreferences(SHARED_PREF_KEY, FileCreationMode.Private);
+			Prefs = context.ApplicationContext.GetSharedPreferences(SHARED_PREF_KEY, FileCreationMode.Private);
 		}
 
 		public static SharedPrefsAutofillRepository GetInstance(Context context)
@@ -37,7 +37,7 @@ namespace AutofillFramework.multidatasetservice.datasource
 
 		public void Clear()
 		{
-			mPrefs.Edit().Remove(CLIENT_FORM_DATA_KEY).Apply();
+			Prefs.Edit().Remove(CLIENT_FORM_DATA_KEY).Apply();
 		}
 
 		public Dictionary<string, FilledAutofillFieldCollection> GetFilledAutofillFieldCollection(List<string> focusedAutofillHints, List<string> allAutofillHints)
@@ -63,11 +63,11 @@ namespace AutofillFramework.multidatasetservice.datasource
 	                }
             	}
         	}
-	        if (hasDataForFocusedAutofillHints) {
-	            return clientFormDataMap;
-	        } else {
-	            return null;
-	        }
+			if (hasDataForFocusedAutofillHints)
+			{
+				return clientFormDataMap;
+			}
+			return null;
 		}
 
 		public void SaveFilledAutofillFieldCollection(FilledAutofillFieldCollection filledAutofillFieldCollection)
@@ -83,30 +83,31 @@ namespace AutofillFramework.multidatasetservice.datasource
 
 		ICollection<string> GetAllAutofillDataStringSet()
 		{
-			return mPrefs.GetStringSet(CLIENT_FORM_DATA_KEY, new HashSet<String>());
+			return Prefs.GetStringSet(CLIENT_FORM_DATA_KEY, new HashSet<String>());
 		}
 
 		void SaveAllAutofillDataStringSet(ICollection<string> allAutofillDataStringSet)
 		{
-			mPrefs.Edit().PutStringSet(CLIENT_FORM_DATA_KEY, allAutofillDataStringSet).Apply();
+			Prefs.Edit().PutStringSet(CLIENT_FORM_DATA_KEY, allAutofillDataStringSet).Apply();
 		}
 
-		/**
-     	 * For simplicity, datasets will be named in the form "dataset-X" where X means
-     	 * this was the Xth dataset saved.
-     	 */
+		/// <summary>
+		/// For simplicity, datasets will be named in the form "dataset-X" where X means
+		/// this was the Xth dataset saved.
+		/// </summary>
+		/// <returns>The dataset number.</returns>
 		int GetDatasetNumber()
 		{
-			return mPrefs.GetInt(DATASET_NUMBER_KEY, 0);
+			return Prefs.GetInt(DATASET_NUMBER_KEY, 0);
 		}
 
-		/**
-		 * Every time a dataset is saved, this should be called to increment the dataset number.
-		 * (only important for this service's dataset naming scheme).
-		 */
+		/// <summary>
+		/// Every time a dataset is saved, this should be called to increment the dataset number.
+		/// (only important for this service's dataset naming scheme).
+		/// </summary>
 		void IncrementDatasetNumber()
 		{
-			mPrefs.Edit().PutInt(DATASET_NUMBER_KEY, GetDatasetNumber() + 1).Apply();
+			Prefs.Edit().PutInt(DATASET_NUMBER_KEY, GetDatasetNumber() + 1).Apply();
 		}
 
 	}

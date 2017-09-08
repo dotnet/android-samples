@@ -1,15 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
 
 namespace AutofillFramework.app
@@ -47,9 +39,9 @@ namespace AutofillFramework.app
 			PasswordEditText.Text = "";
 		}
 
-		/**
-		 * Emulates a login action.
-		 */
+		/// <summary>
+		/// Emulates a login action.
+		/// </summary>
 		void Login()
 		{
 			var username = UsernameEditText.Text;
@@ -66,10 +58,13 @@ namespace AutofillFramework.app
 			}
 		}
 
-		/**
-		 * Dummy implementation for demo purposes. A real service should use secure mechanisms to
-		 * authenticate users.
-		 */
+		/// <summary>
+		/// Dummy implementation for demo purposes. A real service should use secure mechanisms to
+		/// authenticate users.
+		/// </summary>
+		/// <returns><c>true</c>, if valid credentials are valid, <c>false</c> otherwise.</returns>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
 		public bool IsValidCredentials(string username, string password)
 		{
 			return username != null && password != null && username.Equals(password);

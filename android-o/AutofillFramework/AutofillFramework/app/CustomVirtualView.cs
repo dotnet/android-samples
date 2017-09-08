@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
-using Android.Widget;
 using Java.Lang;
-using Java.Util;
 using static Android.Graphics.Paint;
 
 namespace AutofillFramework.app
 {
+	/// <summary>
+	/// Custom View with virtual child views for Username/Password text fields.
+	/// </summary>
 	public class CustomVirtualView : View
 	{
 		static string Tag = "CustomView";
@@ -23,7 +23,7 @@ namespace AutofillFramework.app
 		static int LINE_HEIGHT = TEXT_HEIGHT + VERTICAL_GAP;
 		static int UNFOCUSED_COLOR = Color.Black;
 		static int FOCUSED_COLOR = Color.Red;
-		static int sNextId;
+		public static int sNextId;
 
 		List<Line> VirtualViewGroups = new List<Line>();
 		SparseArray<Item> VirtualViews = new SparseArray<Item>();
@@ -59,10 +59,10 @@ namespace AutofillFramework.app
 				var id = values.KeyAt(i);
 				AutofillValue value = (Android.Views.Autofill.AutofillValue)values.ValueAt(i);
 				Item item = VirtualViews.Get(id);
-				if (item != null && item.editable)
+				if (item != null && item.Editable)
 				{
 					// Set the item's text to the text wrapped in the AutofillValue.
-					item.text = new Java.Lang.String(value.TextValue);
+					item.Text = new Java.Lang.String(value.TextValue);
 				}
 				else if (item == null)
 				{
@@ -92,14 +92,14 @@ namespace AutofillFramework.app
 				Item item = VirtualViews.ValueAt(i);
 				Log.Debug(Tag, "Adding new child at index " + index + ": " + item);
 				var child = structure.NewChild(index);
-				child.SetAutofillId(structure.AutofillId, item.id);
-				child.SetAutofillHints(item.hints);
-				child.SetAutofillType(item.type);
-				child.SetDataIsSensitive(!item.sanitized);
-				child.Text = item.text.ToString();
-				child.SetAutofillValue(AutofillValue.ForText(item.text));
-				child.SetFocused(item.focused);
-				child.SetId(item.id, Context.PackageName, null, item.line.idEntry);
+				child.SetAutofillId(structure.AutofillId, item.Id);
+				child.SetAutofillHints(item.Hints);
+				child.SetAutofillType(item.Type);
+				child.SetDataIsSensitive(!item.Sanitized);
+				child.Text = item.Text.ToString();
+				child.SetAutofillValue(AutofillValue.ForText(item.Text));
+				child.SetFocused(item.Focused);
+				child.SetId(item.Id, Context.PackageName, null, item.Line.IdEntry);
 				child.SetClassName(item.getClassName());
 				index++;
 			}
@@ -117,17 +117,17 @@ namespace AutofillFramework.app
 				x = LEFT_MARGIN;
 				Line line = VirtualViewGroups[i];
 				Log.Verbose(Tag, "Drawing '" + line + "' at " + x + "x" + y);
-				TextPaint.Color = new Color(line.fieldTextItem.focused ? FOCUSED_COLOR : UNFOCUSED_COLOR);
-				string readOnlyText = line.labelItem.text + ":  [";
-				string writeText = line.fieldTextItem.text + "]";
+				TextPaint.Color = new Color(line.FieldTextItem.Focused ? FOCUSED_COLOR : UNFOCUSED_COLOR);
+				string readOnlyText = line.LabelItem.Text + ":  [";
+				string writeText = line.FieldTextItem.Text + "]";
 				// Paints the label first...
 				canvas.DrawText(readOnlyText, x, y, TextPaint);
 				// ...then paints the edit text and sets the proper boundary
 				float deltaX = TextPaint.MeasureText(readOnlyText);
 				x += deltaX;
-				line.bounds = new Rect((int)x, (int)(y - LINE_HEIGHT),
+				line.Bounds = new Rect((int)x, (int)(y - LINE_HEIGHT),
 						 (int)(x + TextPaint.MeasureText(writeText)), (int)y);
-				Log.Debug(Tag, "setBounds(" + x + ", " + y + "): " + line.bounds);
+				Log.Debug(Tag, "setBounds(" + x + ", " + y + "): " + line.Bounds);
 				canvas.DrawText(writeText, x, y, TextPaint);
 				y += LINE_HEIGHT;
 			}
@@ -162,12 +162,12 @@ namespace AutofillFramework.app
 
 		public ICharSequence GetUsernameText()
 		{
-			return UsernameLine.fieldTextItem.text;
+			return UsernameLine.FieldTextItem.Text;
 		}
 
 		public ICharSequence GetPasswordText()
 		{
-			return PasswordLine.fieldTextItem.text;
+			return PasswordLine.FieldTextItem.Text;
 		}
 
 		public void ResetFields()
@@ -182,102 +182,9 @@ namespace AutofillFramework.app
 		{
 			Line line = new Line(idEntry, label, hints, text, sanitized) {AutofillManager = this.AutofillManager};
 			VirtualViewGroups.Add(line);
-			VirtualViews.Put(line.labelItem.id, line.labelItem);
-			VirtualViews.Put(line.fieldTextItem.id, line.fieldTextItem);
+			VirtualViews.Put(line.LabelItem.Id, line.LabelItem);
+			VirtualViews.Put(line.FieldTextItem.Id, line.FieldTextItem);
 			return line;
-		}
-
-		class Item 
-		{
-			public Line line { get; set; }
-        	public int id { get; set; }
-			public bool editable { get; set; }
-	        public bool sanitized { get; set; }
-	        public string[] hints { get; set; }
-	        public int type { get; set; }
-			public ICharSequence text { get; set; }
-			public bool focused { get; set; }
-
-			public Item(Line line, int id, string[] hints, int type, ICharSequence text, bool editable,
-				bool sanitized)
-			{
-				this.line = line;
-				this.id = id;
-				this.text = text;
-				this.editable = editable;
-				this.sanitized = sanitized;
-				this.hints = hints;
-				this.type = type;
-			}
-
-			public override string ToString()
-			{
-				return id + ": " + text + (editable ? " (editable)" : " (read-only)"
-					+ (sanitized ? " (sanitized)" : " (sensitive"));
-			}
-
-			public string getClassName() => editable ? typeof(EditText).Name : typeof(TextView).Name;
-		}
-
-		class Line
-		{
-			// Boundaries of the text field, relative to the CustomView
-			public Rect bounds { get; set; }
-			public Item labelItem;
-			public Item fieldTextItem;
-			public string idEntry { get; }
-			public CustomVirtualView CustomVirtualView { get; set; }
-			public AutofillManager AutofillManager { get; set; }
-
-			public Line(string idEntry, string label, string[] hints, string text, bool sanitized)
-			{
-				this.idEntry = idEntry;
-				this.bounds = new Rect();
-				this.labelItem = new Item(this, ++sNextId, null, (int) AutofillType.None, new Java.Lang.String(label),
-					false, true);
-				this.fieldTextItem = new Item(this, ++sNextId, hints, (int) AutofillType.Text, new Java.Lang.String(text),
-						true, sanitized);
-			}
-
-			public void ChangeFocus(bool focused)
-			{
-				fieldTextItem.focused = focused;
-				if (focused)
-				{
-					Rect absBounds = GetAbsCoordinates();
-					Log.Debug(Tag, "focus gained on " + fieldTextItem.id + "; absBounds=" + absBounds);
-					AutofillManager.NotifyViewEntered(CustomVirtualView, fieldTextItem.id, absBounds);
-				}
-				else
-				{
-					Log.Debug(Tag, "focus lost on " + fieldTextItem.id);
-					AutofillManager.NotifyViewExited(CustomVirtualView, fieldTextItem.id);
-				}
-			}
-
-			Rect GetAbsCoordinates()
-			{
-				// Must offset the boundaries so they're relative to the CustomView.
-				int[] offset = new int[2];
-				CustomVirtualView.GetLocationOnScreen(offset);
-				Rect absBounds = new Rect(bounds.Left + offset[0],
-						bounds.Top + offset[1],
-						bounds.Right + offset[0], bounds.Bottom + offset[1]);
-				Log.Verbose(Tag, "getAbsCoordinates() for " + fieldTextItem.id + ": bounds=" + bounds
-						+ " offset: " + Arrays.ToString(offset) + " absBounds: " + absBounds);
-				return absBounds;
-			}
-
-			public void Reset()
-			{
-				fieldTextItem.text = new Java.Lang.String("        ");
-			}
-
-			public override string ToString()
-			{
-				return "Label: " + labelItem + " Text: " + fieldTextItem + " Focused: " +
-					fieldTextItem.focused;
-			}
 		}
 	}
 }

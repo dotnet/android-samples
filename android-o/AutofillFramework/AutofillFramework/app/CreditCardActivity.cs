@@ -1,15 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
 using Java.Lang;
 using Java.Util;
@@ -97,10 +90,10 @@ namespace AutofillFramework.app
 			mCcCardNumber.Text = "";
 		}
 
-		/**
-     	 * Launches new Activity and finishes, triggering an autofill save request if the user entered
-     	 * any new data.
-     	 */
+		/// <summary>
+		/// Launches new Activity and finishes, triggering an autofill save request if the user entered
+		/// any new data.
+		/// </summary>
 		void Submit()
 		{
 			Intent intent = WelcomeActivity.GetStartActivityIntent(this);

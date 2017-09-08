@@ -15,11 +15,14 @@ namespace AutofillFramework.app
 	{
 		CardView CardView;
 
-		public NavigationItem(Context context) : this(context, null) {}
+		public NavigationItem(Context context) : this(context, null) 
+		{}
 
-		public NavigationItem(Context context, IAttributeSet attrs) : this(context, attrs, 0) {}
+		public NavigationItem(Context context, IAttributeSet attrs) : this(context, attrs, 0) 
+		{}
 
-		public NavigationItem(Context context, IAttributeSet attrs, int defStyleAttr) : this(context, attrs, defStyleAttr, 0) {}
+		public NavigationItem(Context context, IAttributeSet attrs, int defStyleAttr) : this(context, attrs, defStyleAttr, 0) 
+		{}
 
 		public NavigationItem(Context context, IAttributeSet attrs, int defStyleAttr,
 		                      int defStyleRes) : base(context, attrs, defStyleAttr, defStyleRes)

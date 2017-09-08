@@ -2,8 +2,6 @@
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Util;
-using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
 
@@ -67,9 +65,9 @@ namespace AutofillFramework.app
 			PasswordField.Text = "";
 		}
 
-		/**
-		 * Emulates a login action.
-		 */
+		/// <summary>
+		/// Emulates a login action.
+		/// </summary>
 		void Login()
 		{
 			var username = UsernameAutoCompleteField.Text;
@@ -86,44 +84,16 @@ namespace AutofillFramework.app
 			}
 		}
 
-		/**
-     	 * Dummy implementation for demo purposes. A real service should use secure mechanisms to
-     	 * authenticate users.
-     	 */
+		/// <summary>
+		/// Dummy implementation for demo purposes. A real service should use secure mechanisms to
+		/// authenticate users.
+		/// </summary>
+		/// <returns><c>true</c>, if valid credentials are valid, <c>false</c> otherwise.</returns>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
 		public bool IsValidCredentials(string username, string password)
 		{
 			return username != null && password != null && username.Equals(password);
-		}
-
-		class MyAutofillCallback : AutofillManager.AutofillCallback
-		{
-			bool AutofillReceived = false;
-
-			public override void OnAutofillEvent(View view, AutofillEventType eventType)
-			{
-				base.OnAutofillEvent(view, eventType);
-				if (view is AutoCompleteTextView)
-				{
-					switch (eventType)
-					{
-						case AutofillEventType.InputUnavailable:
-						// no break on purpose
-						case AutofillEventType.InputHidden:
-							if (!AutofillReceived)
-							{
-								((AutoCompleteTextView)view).ShowDropDown();
-							}
-							break;
-						case AutofillEventType.InputShown:
-							AutofillReceived = true;
-							((AutoCompleteTextView)view).Adapter = null;
-							break;
-						default:
-							Log.Debug(CommonUtil.Tag, "Unexpected callback: " + eventType);
-							break;
-					}
-				}
-			}
 		}
 	}
 }

@@ -6,11 +6,11 @@ using static Android.App.Assist.AssistStructure;
 
 namespace AutofillFramework
 {
-	/**
- 	 * Parser for an AssistStructure object. This is invoked when the Autofill Service receives an
- 	 * AssistStructure from the client Activity, representing its View hierarchy. In this sample, it
- 	 * parses the hierarchy and collects autofill metadata from {@link ViewNode}s along the way.
- 	 */
+	/// <summary>
+	///	Parser for an AssistStructure object. This is invoked when the Autofill Service receives an
+	/// AssistStructure from the client Activity, representing its View hierarchy. In this sample, it
+	/// parses the hierarchy and collects autofill metadata from {@link ViewNode}s along the way.
+	/// </summary>
 	public sealed class StructureParser
 	{
 		public AutofillFieldMetadataCollection AutofillFields { get; set; }
@@ -33,9 +33,11 @@ namespace AutofillFramework
 			Parse(false);
 		}
 
-		/**
-     	 * Traverse AssistStructure and add ViewNode metadata to a flat list.
-     	 */
+		/// <summary>
+		/// Traverse AssistStructure and add ViewNode metadata to a flat list.
+		/// </summary>
+		/// <returns>The parse.</returns>
+		/// <param name="forFill">If set to <c>true</c> for fill.</param>
 		void Parse(bool forFill)
 		{
 			Log.Debug(CommonUtil.Tag, "Parsing structure for " + Structure.ActivityComponent);

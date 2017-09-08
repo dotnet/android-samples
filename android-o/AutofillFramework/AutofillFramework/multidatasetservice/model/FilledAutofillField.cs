@@ -1,25 +1,22 @@
 ﻿using Android.App.Assist;
-using Android.Runtime;
 using Android.Views.Autofill;
 using Java.Lang;
 
 namespace AutofillFramework.multidatasetservice.model
 {
-	/**
- 	 * JSON serializable data class containing the same data as an {@link AutofillValue}.
- 	 */
+	/// <summary>
+	/// JSON serializable data class containing the same data as an {@link AutofillValue}.
+	/// </summary>
 	public class FilledAutofillField
 	{
-		// @Expose
 		public string TextValue { get; }
-		// @Expose
-		public long DateValue { get; }
-		// @Expose
+		public long? DateValue { get; }
 		public Boolean ToggleValue { get; }
 
-		/**
-     	 * Does not need to be serialized into persistent storage, so it's not exposed.
-     	 */
+		/// <summary>
+		/// Does not need to be serialized into persistent storage, so it's not exposed.
+		/// </summary>
+		/// <value>The autofill hints.</value>
 		public string[] AutofillHints { get; }
 
 		public FilledAutofillField(AssistStructure.ViewNode viewNode)

@@ -8,15 +8,13 @@ using Java.Lang;
 
 namespace AutofillFramework.multidatasetservice.model
 {
-	/**
- 	 * FilledAutofillFieldCollection is the model that holds all of the data on a client app's page,
- 	 * plus the dataset name associated with it.
- 	 */
+	/// <summary>
+	/// FilledAutofillFieldCollection is the model that holds all of the data on a client app's page,
+	/// plus the dataset name associated with it.
+	/// </summary>
 	public class FilledAutofillFieldCollection
 	{
-		// @Expose
 		public Dictionary<string, FilledAutofillField> HintMap { get; }
-		// @Expose
 		public string DatasetName { get; set; }
 
 		public FilledAutofillFieldCollection(string datasetName, Dictionary<string, FilledAutofillField> hintMap)
@@ -27,9 +25,11 @@ namespace AutofillFramework.multidatasetservice.model
 
 		public FilledAutofillFieldCollection() : this(null, new Dictionary<string, FilledAutofillField>()) {}
 
-		/**
-     	 * Adds a {@code FilledAutofillField} to the collection, indexed by all of its hints.
-     	 */
+		/// <summary>
+		/// Adds a filledAutofillField to the collection, indexed by all of its hints.
+		/// </summary>
+		/// <returns>The add.</returns>
+		/// <param name="filledAutofillField">Filled autofill field.</param>
 		public void Add(FilledAutofillField filledAutofillField)
 		{
 			string[] autofillHints = filledAutofillField.AutofillHints;
@@ -39,15 +39,18 @@ namespace AutofillFramework.multidatasetservice.model
 			}
 		}
 
-		/**
-	     * Populates a {@link Dataset.Builder} with appropriate values for each {@link AutofillId}
-	     * in a {@code AutofillFieldMetadataCollection}.
-	     *
-	     * In other words, it constructs an autofill
-	     * {@link Dataset.Builder} by applying saved values (from this {@code FilledAutofillFieldCollection})
-	     * to Views specified in a {@code AutofillFieldMetadataCollection}, which represents the current
-	     * page the user is on.
-	     */
+		/// <summary>
+		/// Populates a Dataset.Builder with appropriate values for each AutofillId
+		/// in a AutofillFieldMetadataCollection.
+		/// 
+		/// In other words, it constructs an autofill Dataset.Builder 
+		/// by applying saved values (from this FilledAutofillFieldCollection)
+		/// to Views specified in a AutofillFieldMetadataCollection, which represents the current
+		/// page the user is on.
+		/// </summary>
+		/// <returns><c>true</c>, if to fields was applyed, <c>false</c> otherwise.</returns>
+		/// <param name="autofillFieldMetadataCollection">Autofill field metadata collection.</param>
+		/// <param name="datasetBuilder">Dataset builder.</param>
 		public bool ApplyToFields(AutofillFieldMetadataCollection autofillFieldMetadataCollection,
 			Dataset.Builder datasetBuilder)
 		{
@@ -83,7 +86,7 @@ namespace AutofillFramework.multidatasetservice.model
 							break;
 						case (int) AutofillType.Date:
 							var dateValue = filledAutofillField.DateValue;
-							datasetBuilder.SetValue(autofillId, AutofillValue.ForDate(dateValue));
+							datasetBuilder.SetValue(autofillId, AutofillValue.ForDate((long)dateValue));
 							setValueAtLeastOnce = true;
 							break;
 						case (int) AutofillType.Text:
@@ -111,11 +114,13 @@ namespace AutofillFramework.multidatasetservice.model
 			return setValueAtLeastOnce;
 		}
 
-		/**
-     	 * Takes in a list of autofill hints (`autofillHints`), usually associated with a View or set of
-     	 * Views. Returns whether any of the filled fields on the page have at least 1 of these
-     	 * `autofillHint`s.
-     	 */
+		/// <summary>
+		/// Takes in a list of autofill hints (`autofillHints`), usually associated with a View or set of
+		/// Views. Returns whether any of the filled fields on the page have at least 1 of these
+		/// `autofillHint`s.
+		/// </summary>
+		/// <returns><c>true</c>, if with hints was helpsed, <c>false</c> otherwise.</returns>
+		/// <param name="autofillHints">Autofill hints.</param>
 		public bool HelpsWithHints(List<string> autofillHints)
 		{
 			for (int i = 0; i < autofillHints.Count; i++)
@@ -129,9 +134,8 @@ namespace AutofillFramework.multidatasetservice.model
 			return false;
 		}
 
-		public static implicit operator FilledAutofillFieldCollection(Java.Lang.Object v)
-		{
-			throw new NotImplementedException();
+		public static implicit operator FilledAutofillFieldCollection(Java.Lang.Object v) {
+			return (FilledAutofillFieldCollection)v;
 		}
 	}
 }

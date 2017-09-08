@@ -8,9 +8,9 @@ namespace AutofillFramework
 	public class CommonUtil
 	{
 		public const string Tag = "AutofillSample";
-	    public const bool Debug = true;
+		public const bool Debug = true;
 		public const string EXTRA_DATASET_NAME = "dataset_name";
-	    public const string EXTRA_FOR_RESPONSE = "for_response";
+		public const string EXTRA_FOR_RESPONSE = "for_response";
 
 		static void BundleToString(StringBuilder builder, Bundle data)
 		{

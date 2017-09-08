@@ -9,15 +9,20 @@ using AutofillFramework.multidatasetservice.model;
 
 namespace AutofillFramework
 {
-	/**
- 	 * This is a class containing helper methods for building Autofill Datasets and Responses.
- 	 */
+	/// <summary>
+	/// This is a class containing helper methods for building Autofill Datasets and Responses.
+	/// </summary>
 	public class AutofillHelper
 	{
-		/**
-     	 * Wraps autofill data in a LoginCredential  Dataset object which can then be sent back to the
-     	 * client View.
-     	 */
+		/// <summary>
+		/// Wraps autofill data in a LoginCredential  Dataset object which can then be sent back to the
+		/// client View.
+		/// </summary>
+		/// <returns>The dataset.</returns>
+		/// <param name="context">Context.</param>
+		/// <param name="autofillFields">Autofill fields.</param>
+		/// <param name="filledAutofillFieldCollection">Filled autofill field collection.</param>
+		/// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
 		public static Dataset NewDataset(Context context,
 				AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, bool datasetAuth) 
 		{
@@ -56,10 +61,15 @@ namespace AutofillFramework
 			return presentation;
 		}
 
-		/**
-     	 * Wraps autofill data in a Response object (essentially a series of Datasets) which can then
-     	 * be sent back to the client View.
-     	 */
+		/// <summary>
+		/// Wraps autofill data in a Response object (essentially a series of Datasets) which can then
+		/// be sent back to the client View.
+		/// </summary>
+		/// <returns>The response.</returns>
+		/// <param name="context">Context.</param>
+		/// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
+		/// <param name="autofillFields">Autofill fields.</param>
+		/// <param name="clientFormDataMap">Client form data map.</param>
 		public static FillResponse NewResponse(Context context, bool datasetAuth, AutofillFieldMetadataCollection autofillFields,
 				Dictionary<string, FilledAutofillFieldCollection> clientFormDataMap)
 		{

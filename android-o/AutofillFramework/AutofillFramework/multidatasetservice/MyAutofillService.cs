@@ -1,6 +1,4 @@
-﻿using System;
-using Android.App;
-using Android.App.Assist;
+﻿using Android.App;
 using Android.OS;
 using Android.Service.Autofill;
 using Android.Util;

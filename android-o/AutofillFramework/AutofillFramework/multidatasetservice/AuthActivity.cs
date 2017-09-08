@@ -1,18 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System;
 using Android.App;
 using Android.App.Assist;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Service.Autofill;
 using Android.Support.V7.App;
 using Android.Util;
-using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
 using AutofillFramework.multidatasetservice.datasource;
@@ -20,10 +13,17 @@ using AutofillFramework.multidatasetservice.settings;
 
 namespace AutofillFramework
 {
+	/// <summary>
+	/// This Activity controls the UI for logging in to the Autofill service.
+	/// It is launched when an Autofill Response or specific Dataset within the Response requires
+	/// authentication to access. It bundles the result in an Intent.
+	/// </summary>
 	[Activity(Label = "AuthActivity")]
 	public class AuthActivity : AppCompatActivity
 	{
-		// Unique id for dataset intents.
+		/// <summary>
+		/// Unique id for dataset intents.
+		/// </summary>
 		static int DatasetPendingIntentId = 0;
 
 		EditText MasterPassword;

@@ -11,74 +11,80 @@ namespace AutofillFramework.multidatasetservice.settings
 	    static String DATASET_AUTH_KEY = "dataset_auth";
 	    static String MASTER_PASSWORD_KEY = "master_password";
 
-		static MyPreferences sInstance;
-		ISharedPreferences mPrefs;
+		static MyPreferences Instance;
+		ISharedPreferences Prefs;
 
 		MyPreferences(Context context)
 		{
-			mPrefs = context.ApplicationContext.GetSharedPreferences("my-settings", FileCreationMode.Private);
+			Prefs = context.ApplicationContext.GetSharedPreferences("my-settings", FileCreationMode.Private);
 		}
 
 		public static MyPreferences GetInstance(Context context)
 		{
-			if (sInstance == null)
+			if (Instance == null)
 			{
-				sInstance = new MyPreferences(context);
+				Instance = new MyPreferences(context);
 			}
-			return sInstance;
+			return Instance;
 		}
 
-		/**
-     	 * Gets whether {@link FillResponse}s should require authentication.
-     	 */
+		/// <summary>
+		/// Gets whether FillResponses should require authentication.
+		/// </summary>
+		/// <returns><c>true</c>, if response auth was ised, <c>false</c> otherwise.</returns>
 		public bool IsResponseAuth()
 		{
-			return mPrefs.GetBoolean(RESPONSE_AUTH_KEY, false);
+			return Prefs.GetBoolean(RESPONSE_AUTH_KEY, false);
 		}
 
-		/**
-     	 * Enables/disables authentication for the entire autofill {@link FillResponse}.
-     	 */
+		/// <summary>
+		/// Enables/disables authentication for the entire autofill {@link FillResponse}.
+		/// </summary>
+		/// <param name="responseAuth">If set to <c>true</c> response auth.</param>
 		public void SetResponseAuth(bool responseAuth)
 		{
-			mPrefs.Edit().PutBoolean(RESPONSE_AUTH_KEY, responseAuth).Apply();
+			Prefs.Edit().PutBoolean(RESPONSE_AUTH_KEY, responseAuth).Apply();
 		}
 
-		/**
-     	 * Gets whether {@link Dataset}s should require authentication.
-     	 */
+		/// <summary>
+		/// Gets whether Datasets should require authentication.
+		/// </summary>
+		/// <returns><c>true</c>, if dataset auth was ised, <c>false</c> otherwise.</returns>
 		public bool IsDatasetAuth()
 		{
-			return mPrefs.GetBoolean(DATASET_AUTH_KEY, false);
+			return Prefs.GetBoolean(DATASET_AUTH_KEY, false);
 		}
 
-		/**
-     	 * Enables/disables authentication for individual autofill {@link Dataset}s.
-     	 */
+		/// <summary>
+		/// Enables/disables authentication for individual autofill Datasets.
+		/// </summary>
+		/// <param name="datasetAuth">If set to <c>true</c> dataset auth.</param>
 		public void SetDatasetAuth(bool datasetAuth)
 		{
-			mPrefs.Edit().PutBoolean(DATASET_AUTH_KEY, datasetAuth).Apply();
+			Prefs.Edit().PutBoolean(DATASET_AUTH_KEY, datasetAuth).Apply();
 		}
 
-		/**
-     	 * Gets autofill master username.
-     	 */
+		/// <summary>
+		/// Gets autofill master username.
+		/// </summary>
+		/// <returns>The master password.</returns>
 		public string GetMasterPassword()
 		{
-			return mPrefs.GetString(MASTER_PASSWORD_KEY, null);
+			return Prefs.GetString(MASTER_PASSWORD_KEY, null);
 		}
 
-		/**
-     	 * Sets autofill master password.
-     	 */
+		/// <summary>
+		/// Sets autofill master password.
+		/// </summary>
+		/// <param name="masterPassword">Master password.</param>
 		public void SetMasterPassword(string masterPassword)
 		{
-			mPrefs.Edit().PutString(MASTER_PASSWORD_KEY, masterPassword).Apply();
+			Prefs.Edit().PutString(MASTER_PASSWORD_KEY, masterPassword).Apply();
 		}
 
 		public void ClearCredentials()
 		{
-			mPrefs.Edit().Remove(MASTER_PASSWORD_KEY).Apply();
+			Prefs.Edit().Remove(MASTER_PASSWORD_KEY).Apply();
 		}
 	}
 }

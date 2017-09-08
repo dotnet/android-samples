@@ -7,7 +7,7 @@ using AutofillFramework.multidatasetservice.datasource;
 
 namespace AutofillFramework.multidatasetservice.settings
 {
-	[Activity(Label = "SettingsActivity", Exported = true, TaskAffinity = ".SettingsActivity", MainLauncher = true)]
+	[Activity(Label = "SettingsActivity", Exported = true, MainLauncher = true)]
 	public class SettingsActivity : AppCompatActivity
 	{
 		Android.Support.V7.App.AlertDialog ClearDataDialog;
