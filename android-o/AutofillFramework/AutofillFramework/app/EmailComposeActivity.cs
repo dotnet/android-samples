@@ -1,11 +1,13 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V7.App;
 
 namespace AutofillFramework.app
 {
 	[Activity(Label = "EmailComposeActivity")]
+	[Register("com.xamarin.AutofillFramework.app.EmailComposeActivity")]
 	public class EmailComposeActivity : AppCompatActivity
 	{
 		public static Intent GetStartActivityIntent(Context context)

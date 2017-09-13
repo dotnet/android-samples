@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Android.Content;
 using AutofillFramework.multidatasetservice.model;
-using GoogleGson;
+using Newtonsoft.Json;
 
 namespace AutofillFramework.multidatasetservice.datasource
 {
@@ -47,22 +47,15 @@ namespace AutofillFramework.multidatasetservice.datasource
 			var clientFormDataStringSet = GetAllAutofillDataStringSet();
 			foreach (string clientFormDataString in clientFormDataStringSet)
 			{
-				Gson gson = new GsonBuilder().ExcludeFieldsWithoutExposeAnnotation().Create();
-				var obj = gson.FromJson(clientFormDataString, Java.Lang.Class.FromType(typeof(FilledAutofillFieldCollection)));
-				FilledAutofillFieldCollection filledAutofillFieldCollection = obj;
-            	if (filledAutofillFieldCollection != null) {
-	                if (filledAutofillFieldCollection.HelpsWithHints(focusedAutofillHints)) {
-	                    // Saved data has data relevant to at least 1 of the hints associated with the
-	                    // View in focus.
-	                    hasDataForFocusedAutofillHints = true;
-	                }
-	                if (filledAutofillFieldCollection.HelpsWithHints(allAutofillHints)) {
-	                    // Saved data has data relevant to at least 1 of these hints associated with any
-	                    // of the Views in the hierarchy.
-						clientFormDataMap.Add(filledAutofillFieldCollection.DatasetName, filledAutofillFieldCollection);
-	                }
-            	}
-        	}
+				var filledAutofillFieldCollection = JsonConvert.DeserializeObject<FilledAutofillFieldCollection>(clientFormDataString);
+				hasDataForFocusedAutofillHints |= filledAutofillFieldCollection.HelpsWithHints(focusedAutofillHints);
+				if (filledAutofillFieldCollection.HelpsWithHints(allAutofillHints))
+				{
+					// Saved data has data relevant to at least 1 of these hints associated with any
+					// of the Views in the hierarchy.
+					clientFormDataMap.Add(filledAutofillFieldCollection.DatasetName, filledAutofillFieldCollection);
+				}
+			}
 			if (hasDataForFocusedAutofillHints)
 			{
 				return clientFormDataMap;
@@ -75,8 +68,11 @@ namespace AutofillFramework.multidatasetservice.datasource
 			var datasetName = "dataset-" + GetDatasetNumber();
 			filledAutofillFieldCollection.DatasetName = datasetName;
 			ICollection<string> allAutofillData = GetAllAutofillDataStringSet();
-			Gson gson = new GsonBuilder().ExcludeFieldsWithoutExposeAnnotation().Create();
-			//allAutofillData.Add(gson.ToJson(filledAutofillFieldCollection));
+			var json = JsonConvert.SerializeObject(filledAutofillFieldCollection, Formatting.Indented, new JsonSerializerSettings 
+			{
+				NullValueHandling = NullValueHandling.Ignore	                                     
+			});
+			allAutofillData.Add(json);
 			SaveAllAutofillDataStringSet(allAutofillData);
 			IncrementDatasetNumber();
 		}

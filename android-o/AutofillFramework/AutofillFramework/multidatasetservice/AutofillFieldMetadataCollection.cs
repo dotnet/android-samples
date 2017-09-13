@@ -31,9 +31,7 @@ namespace AutofillFramework
 			SaveType |= autofillFieldMetadata.SaveType;
 			Size++;
 			AutofillIds.Add(autofillFieldMetadata.AutofillId);
-			Arrays.AsList();
-
-			List<string> hintsList = (List<string>) Arrays.AsList(autofillFieldMetadata.AutofillHints);
+			var hintsList = autofillFieldMetadata.AutofillHints;
 			AllAutofillHints.AddRange(hintsList);
 			if (autofillFieldMetadata.Focused)
 			{
@@ -41,7 +39,8 @@ namespace AutofillFramework
 			}
 			foreach (var hint in autofillFieldMetadata.AutofillHints)
 			{
-				if (AutofillHintsToFieldsMap[hint] == null)
+				// TODO: we should check the value as well
+				if (!AutofillHintsToFieldsMap.ContainsKey(hint))
 				{
 					AutofillHintsToFieldsMap.Add(hint, new List<AutofillFieldMetadata>());
 				}

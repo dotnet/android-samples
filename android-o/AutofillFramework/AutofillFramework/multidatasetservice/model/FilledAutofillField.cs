@@ -9,15 +9,18 @@ namespace AutofillFramework.multidatasetservice.model
 	/// </summary>
 	public class FilledAutofillField
 	{
-		public string TextValue { get; }
-		public long? DateValue { get; }
-		public Boolean ToggleValue { get; }
+		public string TextValue { get; set; }
+		public long? DateValue { get; set; }
+		public bool? ToggleValue { get; set; }
 
 		/// <summary>
 		/// Does not need to be serialized into persistent storage, so it's not exposed.
 		/// </summary>
 		/// <value>The autofill hints.</value>
-		public string[] AutofillHints { get; }
+		public string[] AutofillHints { get; set; }
+
+		public FilledAutofillField()
+		{}
 
 		public FilledAutofillField(AssistStructure.ViewNode viewNode)
 		{

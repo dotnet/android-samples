@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="GoogleGson">
-      <HintPath>..\packages\GoogleGson.2.8.1\lib\MonoAndroid\GoogleGson.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.Constraint.Layout.Solver">
       <HintPath>..\packages\Xamarin.Android.Support.Constraint.Layout.Solver.1.0.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Constraint.Layout.Solver.dll</HintPath>
     </Reference>
@@ -107,6 +104,12 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.26.0.2-beta1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -121,7 +124,7 @@
     <Compile Include="multidatasetservice\MyAutofillService.cs" />
     <Compile Include="multidatasetservice\StructureParser.cs" />
     <Compile Include="multidatasetservice\settings\MyPreferences.cs" />
-    <Compile Include="multidatasetservice\datasource\AutofillRepository.cs" />
+    <Compile Include="multidatasetservice\datasource\IAutofillRepository.cs" />
     <Compile Include="multidatasetservice\datasource\SharedPrefsAutofillRepository.cs" />
     <Compile Include="multidatasetservice\settings\SettingsActivity.cs" />
     <Compile Include="app\MainActivity.cs" />

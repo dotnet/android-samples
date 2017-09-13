@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
+using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
@@ -12,9 +13,10 @@ namespace AutofillFramework.app
 	/// <summary>
 	/// Custom View with virtual child views for Username/Password text fields.
 	/// </summary>
+	[Register("com.xamarin.AutofillFramework.app.CustomVirtualView")]
 	public class CustomVirtualView : View
 	{
-		static string Tag = "CustomView";
+		static string LogTag = "CustomVirtualView";
 
     	static int TOP_MARGIN = 100;
 		static int LEFT_MARGIN = 100;
@@ -37,7 +39,7 @@ namespace AutofillFramework.app
 
 		public CustomVirtualView(Context context, IAttributeSet attrs) : base(context, attrs)
 		{
-			AutofillManager = (AutofillManager)context.GetSystemService(typeof(AutofillManager).Name);
+			AutofillManager = (AutofillManager)context.ApplicationContext.GetSystemService(Class.FromType(typeof(AutofillManager)));
 			TextPaint = new Paint();
 			TextPaint.SetStyle(Style.Fill);
 			TextPaint.TextSize = TEXT_HEIGHT;
@@ -53,7 +55,7 @@ namespace AutofillFramework.app
 			// The Dataset is comprised of a list of AutofillValues, with each AutofillValue meant
 			// to fill a specific autofillable view. Now we have to update the UI based on the
 			// AutofillValues in the list.
-			Log.Debug(Tag, "autoFill(): " + values);
+			Log.Debug(LogTag, "autoFill(): " + values);
 			for (int i = 0; i < values.Size(); i++)
 			{
 				var id = values.KeyAt(i);
@@ -66,11 +68,11 @@ namespace AutofillFramework.app
 				}
 				else if (item == null)
 				{
-					Log.Warn(Tag, "No item for id " + id);
+					Log.Warn(LogTag, "No item for id " + id);
 				}
 				else
 				{
-					Log.Warn(Tag, "Item for id " + id + " is not editable: " + item);
+					Log.Warn(LogTag, "Item for id " + id + " is not editable: " + item);
 				}
 			}
 			PostInvalidate();
@@ -82,7 +84,7 @@ namespace AutofillFramework.app
 			// when it is time to find autofill suggestions.
 			structure.SetClassName(Class.Name);
 			var childrenSize = VirtualViews.Size();
-			Log.Debug(Tag, "onProvideAutofillVirtualStructure(): flags = " + flags + ", items = "
+			Log.Debug(LogTag, "onProvideAutofillVirtualStructure(): flags = " + flags + ", items = "
 			          + childrenSize + ", extras: " + CommonUtil.BundleToString(structure.Extras));
 			var index = structure.AddChildCount(childrenSize);
 			// Traverse through the view hierarchy, including virtual child views. For each view, we
@@ -90,7 +92,7 @@ namespace AutofillFramework.app
 			for (int i = 0; i < childrenSize; i++)
 			{
 				Item item = VirtualViews.ValueAt(i);
-				Log.Debug(Tag, "Adding new child at index " + index + ": " + item);
+				Log.Debug(LogTag, "Adding new child at index " + index + ": " + item);
 				var child = structure.NewChild(index);
 				child.SetAutofillId(structure.AutofillId, item.Id);
 				child.SetAutofillHints(item.Hints);
@@ -109,14 +111,14 @@ namespace AutofillFramework.app
 		{
 			base.OnDraw(canvas);
 
-			Log.Debug(Tag, "onDraw: " + VirtualViewGroups.Count + " lines; canvas:" + canvas);
+			Log.Debug(LogTag, "onDraw: " + VirtualViewGroups.Count + " lines; canvas:" + canvas);
 			float x;
 			float y = TOP_MARGIN + LINE_HEIGHT;
 			for (int i = 0; i < VirtualViewGroups.Count; i++)
 			{
 				x = LEFT_MARGIN;
 				Line line = VirtualViewGroups[i];
-				Log.Verbose(Tag, "Drawing '" + line + "' at " + x + "x" + y);
+				Log.Verbose(LogTag, "Drawing '" + line + "' at " + x + "x" + y);
 				TextPaint.Color = new Color(line.FieldTextItem.Focused ? FOCUSED_COLOR : UNFOCUSED_COLOR);
 				string readOnlyText = line.LabelItem.Text + ":  [";
 				string writeText = line.FieldTextItem.Text + "]";
@@ -127,7 +129,7 @@ namespace AutofillFramework.app
 				x += deltaX;
 				line.Bounds = new Rect((int)x, (int)(y - LINE_HEIGHT),
 						 (int)(x + TextPaint.MeasureText(writeText)), (int)y);
-				Log.Debug(Tag, "setBounds(" + x + ", " + y + "): " + line.Bounds);
+				Log.Debug(LogTag, "setBounds(" + x + ", " + y + "): " + line.Bounds);
 				canvas.DrawText(writeText, x, y, TextPaint);
 				y += LINE_HEIGHT;
 			}
@@ -136,19 +138,19 @@ namespace AutofillFramework.app
 		public override bool OnTouchEvent(MotionEvent e)
 		{
 			int y = (int) e.GetY();
-			Log.Debug(Tag, "Touched: y=" + y + ", range=" + LINE_HEIGHT + ", top=" + TOP_MARGIN);
+			Log.Debug(LogTag, "Touched: y=" + y + ", range=" + LINE_HEIGHT + ", top=" + TOP_MARGIN);
 	        int lowerY = TOP_MARGIN;
 			int upperY = -1;
 			for (int i = 0; i < VirtualViewGroups.Count; i++) {
 	            upperY = lowerY + LINE_HEIGHT;
 				Line line = VirtualViewGroups[i];
-				Log.Debug(Tag, "Line " + i + " ranges from " + lowerY + " to " + upperY);
+				Log.Debug(LogTag, "Line " + i + " ranges from " + lowerY + " to " + upperY);
 	            if (lowerY <= y && y <= upperY) {
 	                if (FocusedLine != null) {
-						Log.Debug(Tag, "Removing focus from " + FocusedLine);
+						Log.Debug(LogTag, "Removing focus from " + FocusedLine);
 						FocusedLine.ChangeFocus(false);
 	                }
-					Log.Debug(Tag, "Changing focus to " + line);
+					Log.Debug(LogTag, "Changing focus to " + line);
 	                FocusedLine = line;
 	                FocusedLine.ChangeFocus(true);
 
@@ -177,10 +179,13 @@ namespace AutofillFramework.app
 			PostInvalidate();
 		}
 
-		Line AddLine(string idEntry, string label, string[] hints, string text,
-			bool sanitized)
+		Line AddLine(string idEntry, string label, string[] hints, string text, bool sanitized)
 		{
-			Line line = new Line(idEntry, label, hints, text, sanitized) {AutofillManager = this.AutofillManager};
+			Line line = new Line(idEntry, label, hints, text, sanitized)
+			{
+				CustomVirtualView = this,
+				AutofillManager = AutofillManager
+			};
 			VirtualViewGroups.Add(line);
 			VirtualViews.Put(line.LabelItem.Id, line.LabelItem);
 			VirtualViews.Put(line.FieldTextItem.Id, line.FieldTextItem);

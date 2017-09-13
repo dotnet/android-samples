@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -8,6 +9,7 @@ using AutofillFramework.multidatasetservice.datasource;
 namespace AutofillFramework.multidatasetservice.settings
 {
 	[Activity(Label = "SettingsActivity", Exported = true, MainLauncher = true)]
+	[Register("com.xamarin.AutofillFramework.multidatasetservice.settings.SettingsActivity")]
 	public class SettingsActivity : AppCompatActivity
 	{
 		Android.Support.V7.App.AlertDialog ClearDataDialog;

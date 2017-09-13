@@ -5,6 +5,7 @@ using Android.Support.V7.App;
 using AutofillFramework.app;
 using static Android.Views.View;
 using Android.Views;
+using Android.Runtime;
 
 namespace AutofillFramework
 {
@@ -12,6 +13,7 @@ namespace AutofillFramework
 	/// This is used to launch sample activities that showcase autofill.
 	/// </summary>
 	[Activity(Label = "Autofill Framework", MainLauncher = true)]
+	[Register("com.xamarin.AutofillFramework.app.MainActivity")]
 	public class MainActivity : AppCompatActivity
 	{
 		abstract class BaseListenerImpl : Java.Lang.Object

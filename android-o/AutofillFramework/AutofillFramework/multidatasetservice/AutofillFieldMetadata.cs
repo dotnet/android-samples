@@ -16,14 +16,7 @@ namespace AutofillFramework
 	{
 		public SaveDataType SaveType { get; set; }
 
-		public string[] AutofillHints {
-			get => AutofillHints;
-			set
-			{
-				AutofillHints = value;
-				UpdateSaveTypeFromHints();
-			} 
-		}
+		public string[] AutofillHints { get; set; }
 
 		public AutofillId AutofillId { get; }
 		public int AutofillType { get; }
@@ -36,7 +29,13 @@ namespace AutofillFramework
 			AutofillType = (int)view.AutofillType;
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
-			AutofillHints = AutofillHelper.FilterForSupportedHints(view.GetAutofillHints());
+			SetHints(AutofillHelper.FilterForSupportedHints(view.GetAutofillHints()));
+		}
+
+		void SetHints(string[] value)
+		{
+			AutofillHints = value;
+			UpdateSaveTypeFromHints();
 		}
 
 		/// <summary>

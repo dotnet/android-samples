@@ -1,16 +1,18 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.OS;
+using Android.Runtime;
 using Android.Service.Autofill;
 using Android.Util;
 using AutofillFramework.multidatasetservice.datasource;
 using AutofillFramework.multidatasetservice.settings;
-using Java.Util;
 
 namespace AutofillFramework
 {
-	[Service(Label = "Multi-Dataset Autofill Service", Permission = "android.permission.BIND_AUTOFILL")]
+	[Service(Label = "Multi-Dataset Autofill Service", Permission = Manifest.Permission.BindAutofillService)]
 	[IntentFilter(new[]{"android.service.autofill.AutofillService"})]
 	[MetaData("android.autofill", Resource = "@xml/multidataset_service")]
+	[Register("com.xamarin.AutofillFramework.multidatasetservice.MyAutofillService")]
 	public class MyAutofillService : AutofillService
 	{
 		public override void OnFillRequest(FillRequest request, CancellationSignal cancellationSignal, FillCallback callback)
@@ -30,7 +32,7 @@ namespace AutofillFramework
 			// Check user's settings for authenticating Responses and Datasets.
 			bool responseAuth = MyPreferences.GetInstance(this).IsResponseAuth();
 			var autofillIds = autofillFields.GetAutofillIds();
-			if (responseAuth && !(Arrays.AsList(autofillIds).Count == 0))
+			if (responseAuth && !(autofillIds.Length == 0))
 			{
 				// If the entire Autofill Response is authenticated, AuthActivity is used
 				// to generate Response.

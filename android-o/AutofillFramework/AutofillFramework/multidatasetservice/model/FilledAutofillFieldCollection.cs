@@ -14,16 +14,17 @@ namespace AutofillFramework.multidatasetservice.model
 	/// </summary>
 	public class FilledAutofillFieldCollection
 	{
-		public Dictionary<string, FilledAutofillField> HintMap { get; }
+		public Dictionary<string, FilledAutofillField> HintMap { get; set; }
 		public string DatasetName { get; set; }
 
-		public FilledAutofillFieldCollection(string datasetName, Dictionary<string, FilledAutofillField> hintMap)
+		public FilledAutofillFieldCollection(Dictionary<string, FilledAutofillField> hintMap, string datasetName = "")
 		{
 			HintMap = hintMap;
 			DatasetName = datasetName;
 		}
 
-		public FilledAutofillFieldCollection() : this(null, new Dictionary<string, FilledAutofillField>()) {}
+		public FilledAutofillFieldCollection() : this(new Dictionary<string, FilledAutofillField>()) 
+		{}
 
 		/// <summary>
 		/// Adds a filledAutofillField to the collection, indexed by all of its hints.
@@ -101,7 +102,7 @@ namespace AutofillFramework.multidatasetservice.model
 							var toggleValue = filledAutofillField.ToggleValue;
 							if (toggleValue != null)
 							{
-								datasetBuilder.SetValue(autofillId, AutofillValue.ForToggle(toggleValue.BooleanValue()));
+								datasetBuilder.SetValue(autofillId, AutofillValue.ForToggle(toggleValue.Value));
 								setValueAtLeastOnce = true;
 							}
 							break;

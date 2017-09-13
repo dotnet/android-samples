@@ -32,7 +32,7 @@
         app:layout_constraintStart_toEndOf="@+id/custom_virtual_login_header"
         app:layout_constraintTop_toTopOf="@+id/custom_virtual_login_header"
         app:dialogText="@string/custom_virtual_login_info" />
-    <AutofillFramework.app.CustomVirtualView
+    <com.xamarin.AutofillFramework.app.CustomVirtualView
         android:id="@+id/custom_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_view_height"
