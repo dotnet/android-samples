@@ -57,7 +57,7 @@ namespace EmojiCompat
 
 			public override void OnInitialized()
 			{
-				RegularTextView.Text = Get().Process(Text);
+				RegularTextView.TextFormatted = Get().ProcessFormatted(new Java.Lang.String(Text));
 			}
 		}
 	}
