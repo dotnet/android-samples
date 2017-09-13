@@ -6,7 +6,7 @@
     <ProjectGuid>{9022D4C4-DFB9-4D3E-A3DF-B65185F2A696}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>EmojiCompat</RootNamespace>
+    <RootNamespace>EmojiCompatSample</RootNamespace>
     <AssemblyName>EmojiCompat</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>

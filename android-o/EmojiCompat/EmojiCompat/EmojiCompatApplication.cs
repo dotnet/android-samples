@@ -5,9 +5,8 @@ using Android.Support.Text.Emoji;
 using Android.Support.Text.Emoji.Bundled;
 using Android.Support.V4.Provider;
 using Android.Util;
-using static Android.Support.Text.Emoji.EmojiCompat;
 
-namespace EmojiCompat
+namespace EmojiCompatSample
 {
 	[Application]
 	public class EmojiCompatApplication : Application
@@ -24,7 +23,7 @@ namespace EmojiCompat
 		{
 			base.OnCreate();
 
-			Android.Support.Text.Emoji.EmojiCompat.Config config;
+			EmojiCompat.Config config;
 			if (UseBundledEmoji) 
 			{
 				// Use the bundled font for EmojiCompat
@@ -43,10 +42,10 @@ namespace EmojiCompat
 					.RegisterInitCallback(new InitCallbackImpl());
 			}
 
-			Init(config);
+			EmojiCompat.Init(config);
 		}
 
-		class InitCallbackImpl : InitCallback
+		class InitCallbackImpl : EmojiCompat.InitCallback
 		{
 			public override void OnInitialized()
 			{

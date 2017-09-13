@@ -5,7 +5,7 @@ using Android.Support.Text.Emoji.Widget;
 using Android.Support.V7.Widget;
 using Android.Util;
 
-namespace EmojiCompat
+namespace EmojiCompatSample
 {
 	/**
  	 * A sample implementation of custom TextView.

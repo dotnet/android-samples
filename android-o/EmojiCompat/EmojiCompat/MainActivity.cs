@@ -1,11 +1,10 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
+using Android.Support.Text.Emoji;
 using Android.Support.V7.App;
 using Android.Widget;
-using static Android.Support.Text.Emoji.EmojiCompat;
 
-namespace EmojiCompat
+namespace EmojiCompatSample
 {
 	[Activity(Label = "EmojiCompat", MainLauncher = true, WindowSoftInputMode = Android.Views.SoftInput.StateUnchanged)]
 	public class MainActivity : AppCompatActivity
@@ -39,7 +38,7 @@ namespace EmojiCompat
 			// Regular TextView without EmojiCompat support; you have to manually process the text
 			var regularTextView = (TextView) FindViewById(Resource.Id.regular_text_view);
 			var textToShow = GetString(Resource.String.regular_text_view, Emoji);
-			Get().RegisterInitCallback(new InitCallbackImpl 
+			EmojiCompat.Get().RegisterInitCallback(new InitCallbackImpl 
 			{
 				RegularTextView = regularTextView,
 				Text = textToShow
@@ -50,14 +49,14 @@ namespace EmojiCompat
 			customTextView.Text = GetString(Resource.String.custom_text_view, Emoji);
 		}
 
-		class InitCallbackImpl : InitCallback 
+		class InitCallbackImpl : EmojiCompat.InitCallback 
 		{
 			public TextView RegularTextView { get; set; }
 			public string Text { get; set; }
 
 			public override void OnInitialized()
 			{
-				RegularTextView.TextFormatted = Get().ProcessFormatted(new Java.Lang.String(Text));
+				RegularTextView.TextFormatted = EmojiCompat.Get().ProcessFormatted(new Java.Lang.String(Text));
 			}
 		}
 	}
