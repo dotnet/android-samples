@@ -26,7 +26,7 @@ namespace AutofillFramework.app
 
 		public override void OnTick(long millisUntilFinished)
 		{
-			int secondsRemaining = Java.Lang.Math.ToIntExact(millisUntilFinished / 1000);
+			int secondsRemaining = Convert.ToInt32(millisUntilFinished / 1000);
 			CountdownText.Text = CountdownText.Context.Resources
 				.GetQuantityString(Resource.Plurals.welcome_page_countdown, secondsRemaining, secondsRemaining);
 		}
