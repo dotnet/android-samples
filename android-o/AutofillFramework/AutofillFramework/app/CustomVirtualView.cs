@@ -39,7 +39,7 @@ namespace AutofillFramework.app
 
 		public CustomVirtualView(Context context, IAttributeSet attrs) : base(context, attrs)
 		{
-			AutofillManager = (AutofillManager)context.ApplicationContext.GetSystemService(Class.FromType(typeof(AutofillManager)));
+			AutofillManager = (AutofillManager)context.GetSystemService(Class.FromType(typeof(AutofillManager)));
 			TextPaint = new Paint();
 			TextPaint.SetStyle(Style.Fill);
 			TextPaint.TextSize = TEXT_HEIGHT;

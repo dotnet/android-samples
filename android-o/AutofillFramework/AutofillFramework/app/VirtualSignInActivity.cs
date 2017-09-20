@@ -31,7 +31,7 @@ namespace AutofillFramework.app
 			FindViewById(Resource.Id.clear).Click += (sender, e) => {
 				ResetFields();
 			};
-			AutofillManager = (AutofillManager) GetSystemService(typeof(AutofillManager).Name);
+			AutofillManager = (AutofillManager)ApplicationContext.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager)));
 		}
 
 		void ResetFields()
