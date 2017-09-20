@@ -38,9 +38,9 @@ namespace AutofillFramework.app
 			public override ICharSequence[] GetAutofillOptionsFormatted()
 			{
 				// convert C# string into Java String to return a CharSequence array
-				var javaStringList = new Java.Lang.String[Years.Count()];
+				var javaStringList = new String[Years.Count()];
 				for (var pos = 0; pos < Years.Count(); pos++) {
-					javaStringList[pos] = new Java.Lang.String(Years[pos]);
+					javaStringList[pos] = new String(Years[pos]);
 				}
 				return javaStringList;
 			}
@@ -50,10 +50,10 @@ namespace AutofillFramework.app
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.credit_card_activity);
-			mCcExpirationDaySpinner = (Android.Widget.Spinner)FindViewById(Resource.Id.expirationDay);
-			mCcExpirationMonthSpinner = (Android.Widget.Spinner)FindViewById(Resource.Id.expirationMonth);
-			mCcExpirationYearSpinner = (Android.Widget.Spinner)FindViewById(Resource.Id.expirationYear);
-			mCcCardNumber = (Android.Widget.EditText)FindViewById(Resource.Id.creditCardNumberField);
+			mCcExpirationDaySpinner = (Spinner)FindViewById(Resource.Id.expirationDay);
+			mCcExpirationMonthSpinner = (Spinner)FindViewById(Resource.Id.expirationMonth);
+			mCcExpirationYearSpinner = (Spinner)FindViewById(Resource.Id.expirationYear);
+			mCcCardNumber = (EditText)FindViewById(Resource.Id.creditCardNumberField);
 
 			// Create an ArrayAdapter using the string array and a default spinner layout
 			ArrayAdapter dayAdapter = ArrayAdapter.CreateFromResource

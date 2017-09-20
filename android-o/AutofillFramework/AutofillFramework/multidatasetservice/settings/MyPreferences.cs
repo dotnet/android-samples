@@ -5,8 +5,6 @@ namespace AutofillFramework.multidatasetservice.settings
 {
 	public class MyPreferences
 	{
-		static String TAG = "MyPreferences";
-
 	    static String RESPONSE_AUTH_KEY = "response_auth";
 	    static String DATASET_AUTH_KEY = "dataset_auth";
 	    static String MASTER_PASSWORD_KEY = "master_password";

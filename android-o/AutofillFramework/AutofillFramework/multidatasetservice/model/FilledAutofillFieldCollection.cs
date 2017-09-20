@@ -134,9 +134,5 @@ namespace AutofillFramework.multidatasetservice.model
 			}
 			return false;
 		}
-
-		public static implicit operator FilledAutofillFieldCollection(Java.Lang.Object v) {
-			return (FilledAutofillFieldCollection)v;
-		}
 	}
 }
