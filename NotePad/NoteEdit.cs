@@ -99,6 +99,10 @@ namespace NotePad
             string title = this.titleText.Text;
             string body = this.bodyText.Text;
 
+	    // Don't save state when there is a creation and there are no content to add
+	    if (this.rowId == null && string.IsNullOrEmpty(title) && string.IsNullOrEmpty(body))
+		return;
+
             if (this.rowId == null)
             {
                 long id = this.dbHelper.CreateNote(title, body);
