@@ -19,14 +19,14 @@ namespace AutofillFramework
 		public string[] AutofillHints { get; set; }
 
 		public AutofillId AutofillId { get; }
-		public int AutofillType { get; }
+		public AutofillType AutofillType { get; }
 		string[] AutofillOptions { get; }
 		public bool Focused { get; }
 
 		public AutofillFieldMetadata(ViewNode view)
 		{
 			AutofillId = view.AutofillId;
-			AutofillType = (int)view.AutofillType;
+			AutofillType = (AutofillType)view.AutofillType;
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
 			SetHints(AutofillHelper.FilterForSupportedHints(view.GetAutofillHints()));

@@ -25,9 +25,9 @@ namespace AutofillFramework.app
 		{
 			IdEntry = idEntry;
 			Bounds = new Rect();
-			LabelItem = new Item(this, ++CustomVirtualView.sNextId, null, (int)AutofillType.None, new Java.Lang.String(label),
+			LabelItem = new Item(this, ++CustomVirtualView.sNextId, null, AutofillType.None, label,
 				false, true);
-			FieldTextItem = new Item(this, ++CustomVirtualView.sNextId, hints, (int)AutofillType.Text, new Java.Lang.String(text),
+			FieldTextItem = new Item(this, ++CustomVirtualView.sNextId, hints, AutofillType.Text, text,
 					true, sanitized);
 		}
 
@@ -62,7 +62,7 @@ namespace AutofillFramework.app
 
 		public void Reset()
 		{
-			FieldTextItem.Text = new Java.Lang.String("        ");
+			FieldTextItem.Text = "        ";
 		}
 
 		public override string ToString()

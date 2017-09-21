@@ -77,7 +77,7 @@ namespace AutofillFramework.multidatasetservice.model
 					var autofillType = autofillFieldMetadata.AutofillType;
 					switch (autofillType)
 					{
-						case (int) AutofillType.List:
+						case AutofillType.List:
 							var listValue = autofillFieldMetadata.GetAutofillOptionIndex(filledAutofillField.TextValue);
 							if (listValue != -1)
 							{
@@ -85,12 +85,12 @@ namespace AutofillFramework.multidatasetservice.model
 								setValueAtLeastOnce = true;
 							}
 							break;
-						case (int) AutofillType.Date:
+						case AutofillType.Date:
 							var dateValue = filledAutofillField.DateValue;
 							datasetBuilder.SetValue(autofillId, AutofillValue.ForDate((long)dateValue));
 							setValueAtLeastOnce = true;
 							break;
-						case (int) AutofillType.Text:
+						case AutofillType.Text:
 							var textValue = filledAutofillField.TextValue;
 							if (textValue != null)
 							{
@@ -98,7 +98,7 @@ namespace AutofillFramework.multidatasetservice.model
 								setValueAtLeastOnce = true;
 							}
 							break;
-						case (int) AutofillType.Toggle:
+						case AutofillType.Toggle:
 							var toggleValue = filledAutofillField.ToggleValue;
 							if (toggleValue != null)
 							{

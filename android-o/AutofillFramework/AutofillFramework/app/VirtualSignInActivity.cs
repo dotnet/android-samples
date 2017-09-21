@@ -45,8 +45,8 @@ namespace AutofillFramework.app
 		/// </summary>
 		void Login()
 		{
-			var username = CustomVirtualView.GetUsernameText().ToString();
-			var password = CustomVirtualView.GetPasswordText().ToString();
+			var username = CustomVirtualView.UsernameText;
+			var password = CustomVirtualView.PasswordText;
 			bool valid = IsValidCredentials(username, password);
 			if (valid)
 			{

@@ -59,12 +59,12 @@ namespace AutofillFramework.app
 			for (int i = 0; i < values.Size(); i++)
 			{
 				var id = values.KeyAt(i);
-				AutofillValue value = (Android.Views.Autofill.AutofillValue)values.ValueAt(i);
+				var value = (AutofillValue)values.ValueAt(i);
 				Item item = VirtualViews.Get(id);
 				if (item != null && item.Editable)
 				{
 					// Set the item's text to the text wrapped in the AutofillValue.
-					item.Text = new Java.Lang.String(value.TextValue);
+					item.Text = value.TextValue;
 				}
 				else if (item == null)
 				{
@@ -96,9 +96,9 @@ namespace AutofillFramework.app
 				var child = structure.NewChild(index);
 				child.SetAutofillId(structure.AutofillId, item.Id);
 				child.SetAutofillHints(item.Hints);
-				child.SetAutofillType(item.Type);
+				child.SetAutofillType((int) item.Type); // Fix enumification
 				child.SetDataIsSensitive(!item.Sanitized);
-				child.Text = item.Text.ToString();
+				child.Text = item.Text;
 				child.SetAutofillValue(AutofillValue.ForText(item.Text));
 				child.SetFocused(item.Focused);
 				child.SetId(item.Id, Context.PackageName, null, item.Line.IdEntry);
@@ -162,15 +162,9 @@ namespace AutofillFramework.app
 			return base.OnTouchEvent(e);
 		}
 
-		public ICharSequence GetUsernameText()
-		{
-			return UsernameLine.FieldTextItem.Text;
-		}
+		public string UsernameText => UsernameLine.FieldTextItem.Text;
 
-		public ICharSequence GetPasswordText()
-		{
-			return PasswordLine.FieldTextItem.Text;
-		}
+		public string PasswordText => PasswordLine.FieldTextItem.Text;
 
 		public void ResetFields()
 		{

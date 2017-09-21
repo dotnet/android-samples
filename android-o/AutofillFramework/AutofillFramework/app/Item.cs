@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.Views;
 using Android.Widget;
 using Java.Lang;
 
@@ -11,11 +12,11 @@ namespace AutofillFramework.app
 		public bool Editable { get; set; }
 		public bool Sanitized { get; set; }
 		public string[] Hints { get; set; }
-		public int Type { get; set; }
-		public ICharSequence Text { get; set; }
+		public AutofillType Type { get; set; }
+		public string Text { get; set; }
 		public bool Focused { get; set; }
 
-		public Item(Line line, int id, string[] hints, int type, ICharSequence text, bool editable,
+		public Item(Line line, int id, string[] hints, AutofillType type, string text, bool editable,
 			bool sanitized)
 		{
 			Line = line;
