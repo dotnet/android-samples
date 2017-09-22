@@ -96,7 +96,7 @@ namespace AutofillFramework.app
 				var child = structure.NewChild(index);
 				child.SetAutofillId(structure.AutofillId, item.Id);
 				child.SetAutofillHints(item.Hints);
-				child.SetAutofillType((int) item.Type); // Fix enumification
+				child.SetAutofillType(item.Type);
 				child.SetDataIsSensitive(!item.Sanitized);
 				child.Text = item.Text;
 				child.SetAutofillValue(AutofillValue.ForText(item.Text));
