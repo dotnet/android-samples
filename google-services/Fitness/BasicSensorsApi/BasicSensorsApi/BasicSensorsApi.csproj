@@ -16,11 +16,9 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>BasicSensorsApi</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
-    <AndroidTlsProvider>
-    </AndroidTlsProvider>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <AndroidTlsProvider></AndroidTlsProvider>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
