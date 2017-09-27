@@ -24,7 +24,7 @@ namespace ActivityRecognition
 		ScreenOrientation = ScreenOrientation.SensorPortrait, 
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
 	)]
-	public class MainActivity : ActionBarActivity,
+	public class MainActivity : AppCompatActivity,
 		GoogleApiClient.IConnectionCallbacks, 
 		GoogleApiClient.IOnConnectionFailedListener
 	{

@@ -19,7 +19,7 @@ using Android.Graphics;
 namespace BasicHistoryApi
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity
+	public class MainActivity : AppCompatActivity
 	{
 		public const string TAG = "BasicHistoryApi";
 		const int REQUEST_OAUTH = 1;

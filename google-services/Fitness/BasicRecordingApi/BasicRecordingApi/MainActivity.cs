@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace BasicRecordingApi
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity
+	public class MainActivity : AppCompatActivity
 	{
 		public const string TAG = "BasicRecordingApi";
 		const int REQUEST_OAUTH = 1;

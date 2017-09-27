@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace LocationUpdates
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, GoogleApiClient.IConnectionCallbacks,
+	public class MainActivity : AppCompatActivity, GoogleApiClient.IConnectionCallbacks,
 	    GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener {
 
 		protected const string TAG = "location-updates-sample";

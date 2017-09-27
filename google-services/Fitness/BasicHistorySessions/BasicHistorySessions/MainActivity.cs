@@ -23,7 +23,7 @@ using System.Collections.Generic;
 namespace BasicHistorySessions
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity
+	public class MainActivity : AppCompatActivity
 	{
 		public const string TAG = "BasicSessions";
 		public const string SAMPLE_SESSION_NAME = "Afternoon run";

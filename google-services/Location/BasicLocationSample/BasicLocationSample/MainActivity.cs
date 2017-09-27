@@ -15,7 +15,7 @@ using Android.Locations;
 namespace BasicLocationSample
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, 
+	public class MainActivity : AppCompatActivity, 
         GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener
 	{

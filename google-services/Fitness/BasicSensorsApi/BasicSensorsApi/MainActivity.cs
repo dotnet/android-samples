@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace BasicSensorsApi
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity
+	public class MainActivity : AppCompatActivity
 	{
 		public const string TAG = "BasicSensorsApi";
 
