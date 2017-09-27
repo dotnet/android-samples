@@ -26,7 +26,7 @@ namespace AutofillFramework
 		public AutofillFieldMetadata(ViewNode view)
 		{
 			AutofillId = view.AutofillId;
-			AutofillType = (AutofillType)view.AutofillType;
+			AutofillType = view.AutofillType;
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
 			SetHints(AutofillHelper.FilterForSupportedHints(view.GetAutofillHints()));
