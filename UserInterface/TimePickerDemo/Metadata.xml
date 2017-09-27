@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>FAD7B47A-4186-4467-A010-63B077AB214B</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>This sample demonstrates how to add a TimePicker to your app</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Platform Features</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>
