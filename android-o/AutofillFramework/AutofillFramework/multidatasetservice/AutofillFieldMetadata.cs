@@ -26,7 +26,7 @@ namespace AutofillFramework
 		public AutofillFieldMetadata(ViewNode view)
 		{
 			AutofillId = view.AutofillId;
-			AutofillType = view.AutofillType;
+			AutofillType = (AutofillType)view.AutofillType; //FIXME Cast to be removed in upcoming XA version.
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
 			SetHints(AutofillHelper.FilterForSupportedHints(view.GetAutofillHints()));
