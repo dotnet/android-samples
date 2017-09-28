@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>c55bd0c7-471b-4848-8f24-4d24a9daa02d</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginner</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates how to use the Location API to get locations updates</Brief>
+</SampleMetadata>

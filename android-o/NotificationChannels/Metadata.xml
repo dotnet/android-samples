@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>02b1fb06-9f75-46c0-85c4-a62e4d29d64d</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginner</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates the new Notification Channels system in Oreo.</Brief>
+</SampleMetadata>
