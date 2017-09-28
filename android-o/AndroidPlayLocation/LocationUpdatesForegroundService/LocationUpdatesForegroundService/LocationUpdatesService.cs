@@ -109,7 +109,6 @@ namespace LocationUpdatesForegroundService
 			LocationCallback = new LocationCallbackImpl { Service = this };
 
 			CreateLocationRequest();
-			GetLastLocationAsync();
 
 			HandlerThread handlerThread = new HandlerThread(Tag);
 			handlerThread.Start();
@@ -257,25 +256,6 @@ namespace LocationUpdatesForegroundService
 	                .SetTicker(text)
 				    .SetWhen(JavaSystem.CurrentTimeMillis())
 				    .Build();
-		}
-
-		async Task GetLastLocationAsync()
-		{
-			try {
-				var location = await FusedLocationClient.GetLastLocationAsync();
-				if (location != null)
-				{
-					Location = location;
-				}
-				else
-				{
-					Log.Warn(Tag, "Failed to get location.");
-				}	
-			}
-			catch (SecurityException unlikely)
-			{
-				Log.Error(Tag, "Lost location permission." + unlikely);
-			}
 		}
 
 		public void OnNewLocation(Location location)
