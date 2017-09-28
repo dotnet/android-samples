@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Gms.Location;
 using Android.Util;
 
-namespace LocationUpdatesPendingIntent
+namespace LocUpdPendIntent
 {
 	/**
 	 * Receiver for handling location updates.
@@ -24,7 +24,7 @@ namespace LocationUpdatesPendingIntent
 	{
 		const string Tag = "LUBroadcastReceiver";
 
-    	public const string ActionProcessUpdates = "com.xamarin.LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
+    	public const string ActionProcessUpdates = "com.xamarin.LocUpdPendIntent.action.PROCESS_UPDATES";
 		
 		public override void OnReceive(Context context, Intent intent)
 		{

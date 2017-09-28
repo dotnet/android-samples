@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26923.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationUpdatesForegroundService", "LocationUpdatesForegroundService\LocationUpdatesForegroundService.csproj", "{8F28BD24-4751-4B87-A416-75C3BFC5D268}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocUpdFgService", "LocUpdFgService\LocUpdFgService.csproj", "{8F28BD24-4751-4B87-A416-75C3BFC5D268}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

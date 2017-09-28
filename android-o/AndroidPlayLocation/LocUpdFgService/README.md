@@ -12,7 +12,7 @@ Press the “Remove Location Updates” if you do not want to listen any locatio
 
 Build Requirements
 ------------------
-Using this sample requires the Android 8.0 (API 26) and the Xamarin.Android 7.5.x or higher.
+Using this sample requires the Android 8.0 (API 26) and Xamarin.Android 7.5.x or higher.
 
 
 Authors

@@ -14,7 +14,7 @@ using Android.Support.Compat;
 using Android.Locations;
 using Android.Support.V7.App;
 
-namespace LocationUpdatesForegroundService
+namespace LocUpdFgService
 {
 	/**
 	 * The only activity in this sample.
@@ -35,7 +35,7 @@ namespace LocationUpdatesForegroundService
 	 * activity from the notification. The user can also remove location updates directly from the
 	 * notification. This dismisses the notification and stops the service.
 	 */
-	[Activity(Label = "LocationUpdatesForegroundService", MainLauncher = true)]
+	[Activity(Label = "LocUpdFgService", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity, ISharedPreferencesOnSharedPreferenceChangeListener
 	{
 		const string Tag = "MainActivity";

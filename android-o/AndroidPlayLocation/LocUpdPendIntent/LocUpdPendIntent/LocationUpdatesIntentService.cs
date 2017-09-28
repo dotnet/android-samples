@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Gms.Location;
 using Android.Util;
 
-namespace LocationUpdatesPendingIntent
+namespace LocUpdPendIntent
 {
 	/**
 	 * Handles incoming location updates and displays a notification with the location data.
@@ -21,7 +21,7 @@ namespace LocationUpdatesPendingIntent
 	[Service(Label = "LocationUpdatesIntentService", Exported = false)]
 	public class LocationUpdatesIntentService : IntentService
 	{
-		public const string ActionProcessUpdate = "com.xamarin.LocationUpdatesPendingIntent.action.PROCESS_UPDATES";
+		public const string ActionProcessUpdate = "com.xamarin.LocUpdPendIntent.action.PROCESS_UPDATES";
 		const string Tag = "LocationUpdatesIntentService";
 
 		public LocationUpdatesIntentService() : base(Tag) 

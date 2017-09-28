@@ -9,7 +9,7 @@ using Android.Support.V4.Content;
 using Android.Util;
 using Java.Lang;
 
-namespace LocationUpdatesForegroundService
+namespace LocUpdFgService
 {
 	/**
 	 * A bound and started service that is promoted to a foreground service when location updates have
@@ -26,10 +26,10 @@ namespace LocationUpdatesForegroundService
 	 * notification assocaited with that service is removed.
 	 */
 	[Service(Label = "LocationUpdatesService", Enabled = true, Exported = true)]
-	[IntentFilter(new string[] { "com.xamarin.LocationUpdatesForegroundService.LocationUpdatesService" })]
+	[IntentFilter(new string[] { "com.xamarin.LocUpdFgService.LocationUpdatesService" })]
 	public class LocationUpdatesService : Service
 	{
-		const string LocationPackageName = "com.xamarin.LocationUpdatesForegroundService";
+		const string LocationPackageName = "com.xamarin.LocUpdFgService";
 
 		const string Tag = "LocationUpdatesService";
 

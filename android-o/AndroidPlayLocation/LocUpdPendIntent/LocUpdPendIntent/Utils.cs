@@ -8,7 +8,7 @@ using Android.Preferences;
 using Android.Support.V4.App;
 using Java.Lang;
 
-namespace LocationUpdatesPendingIntent
+namespace LocUpdPendIntent
 {
 	/**
 	 * Utility methods used in this sample.

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26923.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationUpdatesPendingIntent", "LocationUpdatesPendingIntent\LocationUpdatesPendingIntent.csproj", "{E6058364-DCA8-4893-9C25-6BAC8BFBEE4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocUpdPendIntent", "LocUpdPendIntent\LocUpdPendIntent.csproj", "{E6058364-DCA8-4893-9C25-6BAC8BFBEE4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using Android.Preferences;
 using Android.Text.Format;
 using Java.Util;
 
-namespace LocationUpdatesForegroundService
+namespace LocUpdFgService
 {
 	public class Utils
 	{

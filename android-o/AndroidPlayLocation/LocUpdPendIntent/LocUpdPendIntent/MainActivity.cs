@@ -15,9 +15,9 @@ using Android.Views;
 using Java.Lang;
 using Android.Support.V4.Content;
 
-namespace LocationUpdatesPendingIntent
+namespace LocUpdPendIntent
 {
-	[Activity(Label = "LocationUpdatesPendingIntent", MainLauncher = true)]
+	[Activity(Label = "LocUpdPendIntent", MainLauncher = true)]
 	public class MainActivity : FragmentActivity,  ISharedPreferencesOnSharedPreferenceChangeListener
 	{
 		const string Tag = "MainActivity";
