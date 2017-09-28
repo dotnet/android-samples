@@ -1,6 +1,5 @@
-
 EmojiCompat Sample
-===================================
+==================
 
 This sample demonstrates usage of EmojiCompat support library. You can use this library
 to prevent your app from showing missing emoji characters in the form of tofu (□). You
