@@ -2,7 +2,7 @@ TimePickerDemo
 ==============
 
 **TimePickerDemo** is a sample app that accompanies the article,
-[Time Picker](/guides/android/user_interface/controls/pickers/time-picker).
+[Time Picker](https://developer.xamarin.com/guides/android/user_interface/controls/pickers/time-picker/).
 
 This sample demonstrates how to use the `TimePickerDialog`, wrapped in
 a `DialogFragment`. This application displays the `TimePickerDialog` as
