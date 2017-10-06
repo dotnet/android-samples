@@ -7,8 +7,8 @@ using Android.Widget;
 
 namespace Phoneword
 {
-	[Activity(Label = "@string/callHistory")]            
-	public class CallHistoryActivity : ListActivity
+	[Activity(Label = "@string/translationHistory")]            
+	public class TranslationHistoryActivity : ListActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{

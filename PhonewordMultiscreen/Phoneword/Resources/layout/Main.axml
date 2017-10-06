@@ -19,15 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TranslateButton" />
-    <Button
-        android:text="Call"
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CallButton" />
+        android:id="@+id/TranslatedPhoneWord" />
     <Button
-        android:text="@string/callHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CallHistoryButton"
+        android:id="@+id/TranslationHistoryButton"
+        android:text="@string/translationHistory"
         android:enabled="false" />
 </LinearLayout>
