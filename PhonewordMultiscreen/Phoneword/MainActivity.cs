@@ -23,7 +23,6 @@ namespace Phoneword
             EditText phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText);
             Button translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
             TextView translatedPhoneWord = FindViewById<TextView>(Resource.Id.TranslatedPhoneWord);
-            //Button callHistoryButton = FindViewById<Button>(Resource.Id.CallHistoryButton);
             Button translationHistoryButton = FindViewById<Button>(Resource.Id.TranslationHistoryButton);
 
             // Add code to translate number
