@@ -6,6 +6,8 @@
     <string name="signed_in_fmt">Signed in as: {0}</string>
     <string name="signing_in">Signing in…</string>
     <string name="signed_out">Signed out</string>
+	<string name="loading">Loading…</string>
+    <string name="server_client_id">PASTE HERE YOU CLIENT-ID</string>
 
     <!-- Google Play Services error for Toast -->
     <string name="play_services_error_fmt">Google Play Services Error: {0}</string>
