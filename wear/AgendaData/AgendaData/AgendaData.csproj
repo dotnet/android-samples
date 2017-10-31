@@ -15,7 +15,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>AgendaData</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider></AndroidTlsProvider>

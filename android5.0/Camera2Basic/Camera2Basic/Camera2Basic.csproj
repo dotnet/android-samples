@@ -14,14 +14,12 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>Camera2Basic</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <AndroidTlsProvider>
-    </AndroidTlsProvider>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

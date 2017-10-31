@@ -15,7 +15,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>RuntimePermissions</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

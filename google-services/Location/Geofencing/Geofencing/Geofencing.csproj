@@ -16,7 +16,7 @@
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>Geofencing</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
     <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>

@@ -12,7 +12,7 @@
     <RootNamespace>ViewPagerIndicator</RootNamespace>
     <AssemblyName>ViewPagerIndicator</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>

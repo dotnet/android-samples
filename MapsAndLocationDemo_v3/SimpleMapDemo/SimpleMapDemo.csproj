@@ -18,7 +18,7 @@
     <AndroidSupportedAbis>armeabi-v7a%3bx86</AndroidSupportedAbis>
     <MandroidI18n />
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
     <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>
   </PropertyGroup>
