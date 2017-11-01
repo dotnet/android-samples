@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Android.App;
 using Android.Content;
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace LocationSettings
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, GoogleApiClient.IConnectionCallbacks,
+	public class MainActivity : AppCompatActivity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener,	Android.Gms.Location.ILocationListener
 	{
 		protected const string TAG = "location-settings";
