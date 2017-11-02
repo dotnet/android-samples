@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>6f8b0bd2-7e61-4433-9591-8df66b64aef6</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginning</Level>
+    <Tags>AndroidO, Emoji</Tags>
+    <LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates usage of EmojiCompat support library</Brief>
+</SampleMetadata>

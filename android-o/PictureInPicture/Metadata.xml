@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>09d7209e-30ff-4158-9832-6fd987c78513</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginner</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates the new Picture in Picture display mode in Oreo.</Brief>
+</SampleMetadata>

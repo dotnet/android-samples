@@ -17,7 +17,8 @@ namespace Core
 			{
 				if (" -0123456789".Contains(c))
 					newNumber.Append(c);
-				else {
+				else 
+				{
 					var result = TranslateToNumber(c);
 					if (result != null)
 						newNumber.Append(result);

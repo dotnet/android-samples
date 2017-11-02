@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">Autofill Sample</string>
+    <string name="settings_name">Autofill Settings</string>
+    <string name="navigation_button_custom_virtual_view_login_label">Sample Login Using a Custom Virtual View</string>
+    <string name="navigation_button_spinners_credit_card_label">Sample Credit Card Check Out Using Spinners</string>
+    <string name="navigation_button_edittext_login_label">Sample Login Using EditTexts</string>
+    <string name="navigation_button_autocomplete_login_label">Sample Login Using AutoCompleteTextViews</string>
+    <string name="navigation_button_email_compose_label">Sample Email Compose Using EditTexts</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="welcome_text">Success!</string>
+    <string name="standard_view_sign_in">Sign in using standard views</string>
+    <string name="standard_view_autocomplete_sign_in">Sign in using standard views that
+        trigger AutoComplete dialogs when focused</string>
+    <string name="autofill_sign_in_prompt">Tap to sign in.</string>
+    <string name="credit_card_number_label">CC Number</string>
+    <string name="credit_card_expiration_label">CC Exp</string>
+    <string name="credit_card_security_code_label">CC Security Code</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_authenticate_responses">Authenticate responses</string>
+    <string name="settings_authenticate_datasets">Authenticate datasets</string>
+    <string name="settings_clear_data_label">Clear all data (including credentials)</string>
+    <string name="settings_clear_data_confirmation">Are you sure you want to delete all autofill
+        data from the sample service?
+    </string>
+    <string name="settings_clear_data_confirmation_title">Confirmation</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings_authentication_header">Authentication</string>
+    <string name="settings_data_header">Data</string>
+    <string name="settings_auth_credentials_label">Update credentials</string>
+    <string name="settings_auth_enter_current_password">Enter current password</string>
+    <string name="settings_auth_enter_new_password">Enter new password</string>
+    <string name="settings_auth_change_credentials_title">Change credentials</string>
+    <string name="clear_label">Clear</string>
+    <string name="login_label">Login</string>
+    <string name="to_label">To</string>
+    <string name="body_label">Body</string>
+    <string name="autofill_master_login_label">Autofill Master Login</string>
+    <string name="submit_label">Submit</string>
+    <string name="edittext_login_info">This is a sample login page that uses standard EditTexts
+        from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
+        code is almost never needed.
+    </string>
+    <string name="autocomplete_login_info">This is a sample login page that uses
+        AutoCompleteTextViews instead of EditTexts. The AutoComplete dialogs can potentially
+        interfere with the Autofill dialogs, so it is necessary to implement the AutofillCallback to
+        disable AutoComplete when Autofill is working.
+    </string>
+    <string name="custom_virtual_login_info">This is a sample login page that uses a custom View with
+        virtual children. Since the Autofill framework does not know how to autofill the virtual
+        children out of the box, it is necessary implement certain Autofill-specific methods and
+        interface directly with AutofillManager.
+    </string>
+    <string name="spinners_credit_card_info">This is a sample credit card checkout page that uses
+        EditTexts and Spinners to input data into the form. While EditTexts are optimized out of the
+        box, Spinners can require a small amount of work when using a custom array adapter.
+        In that case, you need to tell the Autofill framework which values in the adapter map to
+        which indices.
+    </string>
+    <string name="email_compose_info">
+        This is a sample email compose page that uses EditTexts to compose the email. Since none of
+        the fields on the page are important to autofill, it is necessary to set the
+        android:importantForAutofill XML property appropriately for each View. You can either set it
+        to &quot;no&quot; on all non-autofillable Views, or set &quot;noExcludeDescendants&quot;
+        on the root View if all Views in the hierarchy should not be autofilled. In this case, we
+        did the latter.
+    </string>
+    <plurals name="welcome_page_countdown">
+        <item quantity="one">Automatically return to main page in %d second.</item>
+        <item quantity="other">Automatically return to main page in %d seconds.</item>
+    </plurals>
+    <string-array name="month_array">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string-array name="day_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+    <string-array name="mock_autocomplete_sign_in_suggestions">
+        <item>user-1</item>
+        <item>user-2</item>
+    </string-array>
+
+</resources>

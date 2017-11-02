@@ -1,0 +1,26 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26923.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadableFonts", "DownloadableFonts\DownloadableFonts.csproj", "{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B49D58-44A6-4BBF-8B2F-E3013AF35D1E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD7977D2-A723-49CB-A926-1846D15430A8}
+	EndGlobalSection
+EndGlobal

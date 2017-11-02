@@ -6,7 +6,7 @@ using Android.Util;
 namespace com.xamarin.example.actionbar.tabs.support
 {
 	[Android.App.Activity(Label = "@string/app_name", Theme = "@style/Theme.AppCompat", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-    public class MainActivity : ActionBarActivity, ActionBar.ITabListener
+    public class MainActivity : AppCompatActivity, ActionBar.ITabListener
     {
         static readonly string Tag = "ActionBarTabsSupport";
         Fragment[] _fragments;

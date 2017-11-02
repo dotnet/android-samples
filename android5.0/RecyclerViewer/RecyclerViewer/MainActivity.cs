@@ -116,8 +116,8 @@ namespace RecyclerViewer
             Caption = itemView.FindViewById<TextView> (Resource.Id.textView);
 
             // Detect user clicks on the item view and report which item
-            // was clicked (by position) to the listener:
-            itemView.Click += (sender, e) => listener (base.Position);
+            // was clicked (by layout position) to the listener:
+            itemView.Click += (sender, e) => listener (base.LayoutPosition);
         }
     }
 

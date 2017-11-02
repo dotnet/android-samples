@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Android.App;
 using Android.Content;
@@ -17,7 +17,7 @@ using Java.Lang;
 namespace Geofencing
 {
 	[Activity (MainLauncher = true)]
-	public class MainActivity : ActionBarActivity, 
+	public class MainActivity : AppCompatActivity, 
         GoogleApiClient.IConnectionCallbacks, 
 		GoogleApiClient.IOnConnectionFailedListener
 	{

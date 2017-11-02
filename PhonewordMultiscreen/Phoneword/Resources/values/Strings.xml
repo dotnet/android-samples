@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="callHistory">Call History</string>
+    <string name="translationHistory">Translation History</string>
+	<string name="ApplicationName">Phone Word</string>
 </resources>

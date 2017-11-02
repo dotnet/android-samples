@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>f268c556-8aec-4551-8ebc-b1f5cc0a750e</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>Platform Features, AndroidO</Tags>
+    <LicenseRequirement>Community</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>This sample demonstrates how to use the Autofill Framework API.</Brief>
+</SampleMetadata>
