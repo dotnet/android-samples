@@ -161,13 +161,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launch.png" />
     <AndroidResource Include="Resources\values-w820dp\dimens.xml" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <XamarinComponentReference Include="googleplayservices-location">
-      <Version>42.1001.0.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
