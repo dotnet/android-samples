@@ -1,234 +1,180 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common.Apis;
 using Android.Gms.Location;
 using Android.OS;
-using Android.Support.V4.Content;
 using Android.Support.V7.App;
-using Android.Util;
-using Android.Views;
 using Android.Widget;
-using Java.IO;
 using Android.Content.PM;
-using System.Threading.Tasks;
+using Android.Preferences;
+using Android.Util;
 
 namespace ActivityRecognition
 {
-	[Activity (
-		Label = "ActivityRecognition", 
-		MainLauncher = true, 
-		Icon = "@drawable/icon", 
-		ScreenOrientation = ScreenOrientation.SensorPortrait, 
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
-	)]
-	public class MainActivity : AppCompatActivity,
-		GoogleApiClient.IConnectionCallbacks, 
-		GoogleApiClient.IOnConnectionFailedListener
-	{
-		protected const string TAG = "activity-recognition";
-		protected ActivityDetectionBroadcastReceiver mBroadcastReceiver;
-		protected GoogleApiClient mGoogleApiClient;
-		PendingIntent mActivityDetectionPendingIntent;
-		Button mRequestActivityUpdatesButton;
-		Button mRemoveActivityUpdatesButton;
-		ListView mDetectedActivitiesListView;
-		DetectedActivitiesAdapter mAdapter;
-		List<DetectedActivity> mDetectedActivities;
+    [Activity(
+        Label = "ActivityRecognition",
+        MainLauncher = true,
+        Icon = "@drawable/icon",
+        ScreenOrientation = ScreenOrientation.SensorPortrait,
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
+    )]
+    public class MainActivity : AppCompatActivity, ISharedPreferencesOnSharedPreferenceChangeListener
+    {
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
-			SetContentView (Resource.Layout.main_activity);
+        protected const string TAG = "MainActivity";
+        public Context mContext;
+        private ActivityRecognitionClient mActivityRecognitionClient;
+        protected GoogleApiClient mGoogleApiClient;
+        Button mRequestActivityUpdatesButton;
+        Button mRemoveActivityUpdatesButton;
+        DetectedActivitiesAdapter mAdapter;
 
-			mRequestActivityUpdatesButton = FindViewById<Button> (Resource.Id.request_activity_updates_button);
-			mRemoveActivityUpdatesButton = FindViewById<Button> (Resource.Id.remove_activity_updates_button);
-			mDetectedActivitiesListView = FindViewById<ListView> (Resource.Id.detected_activities_listview);
 
-			mRequestActivityUpdatesButton.Click += RequestActivityUpdatesButtonHandler;
-			mRemoveActivityUpdatesButton.Click += RemoveActivityUpdatesButtonHandler;
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.main_activity);
 
-			mBroadcastReceiver = new ActivityDetectionBroadcastReceiver ();
-			mBroadcastReceiver.OnReceiveImpl = (context, intent) => {
-				var updatedActivities = intent.GetParcelableArrayExtra (Constants.ActivityExtra).Cast<DetectedActivity>().ToList ();
-				UpdateDetectedActivitiesList (updatedActivities);
-			};
+            mContext = this;
 
-			SetButtonsEnabledState ();
+            mRequestActivityUpdatesButton = FindViewById<Button>(Resource.Id.request_activity_updates_button);
+            mRemoveActivityUpdatesButton = FindViewById<Button>(Resource.Id.remove_activity_updates_button);
+            ListView detectedActivitiesListView = FindViewById<ListView>(Resource.Id.detected_activities_listview);
 
-			if (savedInstanceState != null && savedInstanceState.ContainsKey (Constants.DetectedActivities)) {
-				mDetectedActivities = ((SerializableDetectedActivities)savedInstanceState.GetSerializable (
-					Constants.DetectedActivities)).DetectedActivities;
-			} else {
-				mDetectedActivities = new List<DetectedActivity> ();
+            mRequestActivityUpdatesButton.Click += RequestActivityUpdatesButtonHandler;
+            mRemoveActivityUpdatesButton.Click += RemoveActivityUpdatesButtonHandler;
 
-				for (int i = 0; i < Constants.MonitoredActivities.Length; i++) {
-					mDetectedActivities.Add (new DetectedActivity (Constants.MonitoredActivities [i], 0));
-				}
-			}
+            SetButtonsEnabledState();
 
-			mAdapter = new DetectedActivitiesAdapter (this, mDetectedActivities);
-			mDetectedActivitiesListView.Adapter = mAdapter;
+            List<DetectedActivity> detectedActivities = Utils.DetectedActivitiesFromJson(
+                PreferenceManager.GetDefaultSharedPreferences(this).GetString(
+                    Constants.KeyDetectedActivities, string.Empty));
 
-			buildGoogleApiClient ();
-		}
+            mAdapter = new DetectedActivitiesAdapter(this, detectedActivities);
+            detectedActivitiesListView.Adapter = mAdapter;
 
-		protected void buildGoogleApiClient ()
-		{
-			mGoogleApiClient = new GoogleApiClient.Builder (this)
-				.AddConnectionCallbacks (this)
-				.AddOnConnectionFailedListener (this)
-				.AddApi (Android.Gms.Location.ActivityRecognition.API)
-				.Build ();
-		}
+            mActivityRecognitionClient = new ActivityRecognitionClient(this);
+        }
 
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			mGoogleApiClient.Connect ();
-		}
+        protected override void OnResume()
+        {
+            base.OnResume();
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .RegisterOnSharedPreferenceChangeListener(this);
+            UpdateDetectedActivitiesList();
+        }
 
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			mGoogleApiClient.Disconnect ();
-		}
+        protected override void OnPause()
+        {
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .UnregisterOnSharedPreferenceChangeListener(this);
+            base.OnPause();
+        }
 
-		protected override void OnResume ()
-		{
-			base.OnResume ();
-			LocalBroadcastManager.GetInstance (this).RegisterReceiver (mBroadcastReceiver,
-				new IntentFilter (Constants.BroadcastAction));
-		}
+        public async void RequestActivityUpdatesButtonHandler(object sender, EventArgs e)
+        {
+            try
+            {
+                await mActivityRecognitionClient.RequestActivityUpdatesAsync(Constants.DetectionIntervalInMilliseconds, ActivityDetectionPendingIntent);
 
-		protected override void OnPause ()
-		{
-			LocalBroadcastManager.GetInstance (this).UnregisterReceiver (mBroadcastReceiver);
-			base.OnPause ();
-		}
+                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_enabled), ToastLength.Short).Show();
+                SetUpdatesRequestedState(true);
+                UpdateDetectedActivitiesList();
 
-		public void OnConnected (Bundle connectionHint)
-		{
-			Log.Info (TAG, "Connected to GoogleApiClient");
-		}
+            }
+            catch
+            {
+                Log.Warn(TAG, mContext.GetString(Resource.String.activity_updates_not_enabled));
+                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_not_enabled), ToastLength.Short).Show();
+                SetUpdatesRequestedState(false);
+            }
+        }
 
-		public void OnConnectionSuspended (int cause)
-		{
-			Log.Info (TAG, "Connection suspended");
-			mGoogleApiClient.Connect ();
-		}
+        public async void RemoveActivityUpdatesButtonHandler(object sender, EventArgs e)
+        {
+            try
+            {
+                await mActivityRecognitionClient.RemoveActivityUpdatesAsync(ActivityDetectionPendingIntent);
 
-		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
-		{
-			Log.Info (TAG, "Connection failed: ConnectionResult.ErrorCode = " + result.ErrorCode);
-		}
+                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_removed), ToastLength.Short).Show();
+                SetUpdatesRequestedState(false);
+                mAdapter.UpdateActivities(new List<DetectedActivity>());
 
-        public async void RequestActivityUpdatesButtonHandler (object sender, EventArgs e)
-		{
-			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText (this, GetString (Resource.String.not_connected),
-					ToastLength.Short).Show ();
-				return;
-			}
-            var status = await Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RequestActivityUpdatesAsync (
-                    mGoogleApiClient,
-                    Constants.DetectionIntervalInMilliseconds,
-                    ActivityDetectionPendingIntent
-                );
-            HandleResult (status);
-		}
+            }
+            catch
+            {
+                Log.Warn(TAG, "Failed to enable activity recognition.");
+                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_not_removed), ToastLength.Short).Show();
+                SetUpdatesRequestedState(true);
+            }
+        }
 
-        public async void RemoveActivityUpdatesButtonHandler (object sender, EventArgs e)
-		{
-			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText (this, GetString (Resource.String.not_connected), ToastLength.Short).Show ();
-				return;
-			}
-            var status = await Android.Gms.Location.ActivityRecognition.ActivityRecognitionApi.RemoveActivityUpdatesAsync (
-                    mGoogleApiClient,
-                    ActivityDetectionPendingIntent
-                );
-            HandleResult (status);
-		}
+        PendingIntent ActivityDetectionPendingIntent
+        {
+            get
+            {
+                var intent = new Intent(this, typeof(DetectedActivitiesIntentService));
 
-		public void HandleResult (Statuses status)
-		{
-			if (status.IsSuccess) {
-				bool requestingUpdates = !UpdatesRequestedState;
-				UpdatesRequestedState = requestingUpdates;
+                return PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+            }
+        }
 
-				SetButtonsEnabledState ();
+        void SetButtonsEnabledState()
+        {
+            if (GetUpdatesRequestedState())
+            {
+                mRequestActivityUpdatesButton.Enabled = false;
+                mRemoveActivityUpdatesButton.Enabled = true;
+            }
+            else
+            {
+                mRequestActivityUpdatesButton.Enabled = true;
+                mRemoveActivityUpdatesButton.Enabled = false;
+            }
+        }
 
-				Toast.MakeText (
-					this,
-					GetString (requestingUpdates ? Resource.String.activity_updates_added : Resource.String.activity_updates_removed), 
-					ToastLength.Short
-				).Show ();
-			} else {
-				Log.Error (TAG, "Error adding or removing activity detection: " + status.StatusMessage);
-			}
-		}
+        bool GetUpdatesRequestedState()
+        {
+            return PreferenceManager.GetDefaultSharedPreferences(this)
+                .GetBoolean(Constants.KeyActivityUpdatesRequested, false);
+        }
 
-		PendingIntent ActivityDetectionPendingIntent {
-			get {
-				if (mActivityDetectionPendingIntent != null) {
-					return mActivityDetectionPendingIntent;
-				}
-				var intent = new Intent (this, typeof(DetectedActivitiesIntentService));
+        void SetUpdatesRequestedState(bool value)
+        {
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .Edit()
+                .PutBoolean(Constants.KeyActivityUpdatesRequested, value)
+                .Apply();
+            SetButtonsEnabledState();
+        }
 
-				return PendingIntent.GetService (this, 0, intent, PendingIntentFlags.UpdateCurrent);
-			}
-		}
+        protected void UpdateDetectedActivitiesList()
+        {
+            List<DetectedActivity> detectedActivities = Utils.DetectedActivitiesFromJson(
+                PreferenceManager.GetDefaultSharedPreferences(mContext)
+                    .GetString(Constants.KeyDetectedActivities, string.Empty));
 
-		void SetButtonsEnabledState ()
-		{
-			if (UpdatesRequestedState) {
-				mRequestActivityUpdatesButton.Enabled = false;
-				mRemoveActivityUpdatesButton.Enabled = true;
-			} else {
-				mRequestActivityUpdatesButton.Enabled = true;
-				mRemoveActivityUpdatesButton.Enabled = false;
-			}
-		}
+            mAdapter.UpdateActivities(detectedActivities);
+        }
 
-		ISharedPreferences SharedPreferencesInstance {
-			get {
-				return GetSharedPreferences (Constants.SharedPreferencesName, FileCreationMode.Private);
-			}
-		}
+        public void OnSharedPreferenceChanged(ISharedPreferences sharedPreferences, string key)
+        {
+            if (key == Constants.KeyDetectedActivities)
+            {
+                UpdateDetectedActivitiesList();
+            }
+        }
 
-		bool UpdatesRequestedState {
-			get {
-				return SharedPreferencesInstance.GetBoolean (Constants.ActivityUpdatesRequestedKey, false);
-			}
-			set {
-				SharedPreferencesInstance.Edit ().PutBoolean (Constants.ActivityUpdatesRequestedKey, value).Commit ();
-			}
-		}
+        public class ActivityDetectionBroadcastReceiver : BroadcastReceiver
+        {
+            public Action<Context, Intent> OnReceiveImpl { get; set; }
 
-		protected override void OnSaveInstanceState (Bundle outState)
-		{
-			outState.PutSerializable (Constants.DetectedActivities, new SerializableDetectedActivities (mDetectedActivities));
-			base.OnSaveInstanceState (outState);
-		}
-
-		protected void UpdateDetectedActivitiesList (IList<DetectedActivity> detectedActivities)
-		{
-			mAdapter.UpdateActivities (detectedActivities);
-		}
-
-		public class ActivityDetectionBroadcastReceiver : BroadcastReceiver
-		{
-			public Action<Context, Intent> OnReceiveImpl { get; set;}
-
-			public override void OnReceive (Context context, Intent intent)
-			{
-				OnReceiveImpl (context, intent);
-			}
-		}
-	}
+            public override void OnReceive(Context context, Intent intent)
+            {
+                OnReceiveImpl(context, intent);
+            }
+        }
+    }
 }
-
-
