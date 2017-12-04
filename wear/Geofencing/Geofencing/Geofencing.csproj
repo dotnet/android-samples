@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.props')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -94,23 +94,29 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Base.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Base.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Basement, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Basement.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Basement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Basement.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Location, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Location.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Location.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Location, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Location.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Maps, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Maps.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Maps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Maps.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Tasks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Tasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Wearable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.dll</HintPath>
+    <Reference Include="Xamarin.GooglePlayServices.Wearable, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Wearable.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Wearable.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -153,12 +159,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Location.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Location.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Location.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Location.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Maps.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Maps.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Maps.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets'))" />
@@ -170,14 +170,15 @@
     <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Location.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Location.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Maps.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Maps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Maps.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Maps.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Wearable.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Wearable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Wearable.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Wearable.targets'))" />
   </Target>
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Basement.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Base.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Location.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Location.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Location.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Location.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Maps.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Maps.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Maps.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Maps.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Wearable.42.1021.0\build\MonoAndroid70\Xamarin.GooglePlayServices.Wearable.targets')" />
-  <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />
   <Import Project="..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />
   <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
@@ -189,4 +190,11 @@
   <Import Project="..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Location.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Location.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Maps.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Maps.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Maps.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Maps.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Wearable.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Wearable.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Wearable.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Wearable.targets')" />
 </Project>
