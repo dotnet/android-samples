@@ -122,6 +122,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listeners\RemoveOnFailureListener.cs" />
+    <Compile Include="Listeners\RemoveOnSuccessListener.cs" />
+    <Compile Include="Listeners\RequestOnFailureListener.cs" />
+    <Compile Include="Listeners\RequestOnSuccessListener.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +159,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

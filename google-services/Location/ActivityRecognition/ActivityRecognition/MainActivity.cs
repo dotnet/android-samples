@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ActivityRecognition.Listeners;
 using Android.App;
 using Android.Content;
 using Android.Gms.Common.Apis;
@@ -9,7 +10,6 @@ using Android.Support.V7.App;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Preferences;
-using Android.Util;
 
 namespace ActivityRecognition
 {
@@ -23,13 +23,13 @@ namespace ActivityRecognition
     public class MainActivity : AppCompatActivity, ISharedPreferencesOnSharedPreferenceChangeListener
     {
 
-        protected const string TAG = "MainActivity";
+        public string TAG = "MainActivity";
         public Context mContext;
         private ActivityRecognitionClient mActivityRecognitionClient;
         protected GoogleApiClient mGoogleApiClient;
         Button mRequestActivityUpdatesButton;
         Button mRemoveActivityUpdatesButton;
-        DetectedActivitiesAdapter mAdapter;
+        public DetectedActivitiesAdapter mAdapter;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -41,14 +41,14 @@ namespace ActivityRecognition
 
             mRequestActivityUpdatesButton = FindViewById<Button>(Resource.Id.request_activity_updates_button);
             mRemoveActivityUpdatesButton = FindViewById<Button>(Resource.Id.remove_activity_updates_button);
-            ListView detectedActivitiesListView = FindViewById<ListView>(Resource.Id.detected_activities_listview);
+            var detectedActivitiesListView = FindViewById<ListView>(Resource.Id.detected_activities_listview);
 
             mRequestActivityUpdatesButton.Click += RequestActivityUpdatesButtonHandler;
             mRemoveActivityUpdatesButton.Click += RemoveActivityUpdatesButtonHandler;
 
             SetButtonsEnabledState();
 
-            List<DetectedActivity> detectedActivities = Utils.DetectedActivitiesFromJson(
+            var detectedActivities = Utils.DetectedActivitiesFromJson(
                 PreferenceManager.GetDefaultSharedPreferences(this).GetString(
                     Constants.KeyDetectedActivities, string.Empty));
 
@@ -73,42 +73,18 @@ namespace ActivityRecognition
             base.OnPause();
         }
 
-        public async void RequestActivityUpdatesButtonHandler(object sender, EventArgs e)
+        public void RequestActivityUpdatesButtonHandler(object sender, EventArgs e)
         {
-            try
-            {
-                await mActivityRecognitionClient.RequestActivityUpdatesAsync(Constants.DetectionIntervalInMilliseconds, ActivityDetectionPendingIntent);
-
-                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_enabled), ToastLength.Short).Show();
-                SetUpdatesRequestedState(true);
-                UpdateDetectedActivitiesList();
-
-            }
-            catch
-            {
-                Log.Warn(TAG, mContext.GetString(Resource.String.activity_updates_not_enabled));
-                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_not_enabled), ToastLength.Short).Show();
-                SetUpdatesRequestedState(false);
-            }
+            var task = mActivityRecognitionClient.RequestActivityUpdates(Constants.DetectionIntervalInMilliseconds, ActivityDetectionPendingIntent);
+            task.AddOnSuccessListener(new RequestOnSuccessListener { Activity = this });
+            task.AddOnFailureListener(new RequestOnFailureListener { Activity = this });
         }
 
-        public async void RemoveActivityUpdatesButtonHandler(object sender, EventArgs e)
+        public void RemoveActivityUpdatesButtonHandler(object sender, EventArgs e)
         {
-            try
-            {
-                await mActivityRecognitionClient.RemoveActivityUpdatesAsync(ActivityDetectionPendingIntent);
-
-                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_removed), ToastLength.Short).Show();
-                SetUpdatesRequestedState(false);
-                mAdapter.UpdateActivities(new List<DetectedActivity>());
-
-            }
-            catch
-            {
-                Log.Warn(TAG, "Failed to enable activity recognition.");
-                Toast.MakeText(mContext, mContext.GetString(Resource.String.activity_updates_not_removed), ToastLength.Short).Show();
-                SetUpdatesRequestedState(true);
-            }
+            var task = mActivityRecognitionClient.RemoveActivityUpdates(ActivityDetectionPendingIntent);
+            task.AddOnSuccessListener(new RemoveOnSuccessListener { Activity = this });
+            task.AddOnFailureListener(new RemoveOnFailureListener { Activity = this });
         }
 
         PendingIntent ActivityDetectionPendingIntent
@@ -141,7 +117,7 @@ namespace ActivityRecognition
                 .GetBoolean(Constants.KeyActivityUpdatesRequested, false);
         }
 
-        void SetUpdatesRequestedState(bool value)
+        public void SetUpdatesRequestedState(bool value)
         {
             PreferenceManager.GetDefaultSharedPreferences(this)
                 .Edit()
@@ -150,9 +126,9 @@ namespace ActivityRecognition
             SetButtonsEnabledState();
         }
 
-        protected void UpdateDetectedActivitiesList()
+        public void UpdateDetectedActivitiesList()
         {
-            List<DetectedActivity> detectedActivities = Utils.DetectedActivitiesFromJson(
+            var detectedActivities = Utils.DetectedActivitiesFromJson(
                 PreferenceManager.GetDefaultSharedPreferences(mContext)
                     .GetString(Constants.KeyDetectedActivities, string.Empty));
 
