@@ -15,7 +15,8 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_activity_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding">
@@ -59,4 +60,4 @@
         android:textIsSelectable="true"
         android:layout_marginTop="@dimen/text_margin"
         android:textSize="@dimen/lat_long_text_size"/>
-</RelativeLayout>
+</LinearLayout>

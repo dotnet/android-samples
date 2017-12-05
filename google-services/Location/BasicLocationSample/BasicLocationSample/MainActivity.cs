@@ -1,95 +1,208 @@
 using System;
-
+using Android;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
+using Android.Content.PM;
 using Android.Widget;
 using Android.OS;
-using Android.Gms.Common.Apis;
 using Android.Support.V7.App;
 using Android.Gms.Location;
 using Android.Util;
 using Android.Locations;
+using Android.Support.Design.Widget;
+using Android.Views;
+using Java.Util;
+using static Android.Views.View;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
 
 namespace BasicLocationSample
 {
-	[Activity (MainLauncher = true)]
-	public class MainActivity : AppCompatActivity, 
-        GoogleApiClient.IConnectionCallbacks,
-		GoogleApiClient.IOnConnectionFailedListener
-	{
-		protected const string TAG = "basic-location-sample";
+    [Activity(MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
+    {
+        protected string Tag = typeof(MainActivity).Name;
 
-		/**
-     	* Provides the entry point to Google Play services.
-     	*/
-		protected GoogleApiClient mGoogleApiClient;
+        protected const int RequestPermissionsRequestCode = 34;
 
-		/**
-    	 * Represents a geographical location.
-    	 */
-		protected Location mLastLocation;
+        /**
+         * Provides the entry point to the Fused Location Provider API.
+         */
+        private FusedLocationProviderClient mFusedLocationClient;
 
-		protected TextView mLatitudeText;
-		protected TextView mLongitudeText;
+        /**
+         * Represents a geographical location.
+         */
+        protected Location mLastLocation;
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
-			SetContentView (Resource.Layout.main_activity);
+        private string mLatitudeLabel;
+        private string mLongitudeLabel;
+        private TextView mLatitudeText;
+        private TextView mLongitudeText;
 
-			mLatitudeText = FindViewById<TextView> (Resource.Id.latitude_text);
-			mLongitudeText = FindViewById<TextView> (Resource.Id.longitude_text);
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.main_activity);
 
-			BuildGoogleApiClient ();
-		}
+            mLatitudeLabel = GetString(Resource.Id.latitude_text);
+            mLongitudeLabel = GetString(Resource.Id.longitude_label);
+            mLatitudeText = FindViewById<TextView>(Resource.Id.latitude_text);
+            mLongitudeText = FindViewById<TextView>(Resource.Id.longitude_label);
 
-		protected void BuildGoogleApiClient ()
-		{
-			mGoogleApiClient = new GoogleApiClient.Builder (this)
-				.AddConnectionCallbacks (this)
-				.AddOnConnectionFailedListener (this)
-				.AddApi (LocationServices.API)
-				.Build ();
-		}
+            mFusedLocationClient = LocationServices.GetFusedLocationProviderClient(this);
+        }
 
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			mGoogleApiClient.Connect ();
-		}
+        protected override void OnStart()
+        {
+            base.OnStart();
 
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			if (mGoogleApiClient.IsConnected) {
-				mGoogleApiClient.Disconnect ();
-			}
-		}
+            if (!CheckPermissions())
+            {
+                RequestPermissions();
+            }
+            else
+            {
+                GetLastLocation();
+            }
+        }
 
-		public void OnConnected (Bundle connectionHint)
-		{
-			mLastLocation = LocationServices.FusedLocationApi.GetLastLocation (mGoogleApiClient);
-			if (mLastLocation != null) {
-				mLatitudeText.Text = mLastLocation.Latitude.ToString ();
-				mLongitudeText.Text = mLastLocation.Longitude.ToString ();
-			} else {
-				Toast.MakeText (this, Resource.String.no_location_detected, ToastLength.Long).Show ();
-			}
-		}
+        private void GetLastLocation()
+        {
+            //mFusedLocationClient.LastLocation.AddOnCompleteListener(new OnCompleteListener(...));
+            var task = mFusedLocationClient.LastLocation;
+            if (task.IsSuccessful && task.Result != null)
+            {
+                mLastLocation = (Location)task.Result;
 
-		public void OnConnectionSuspended (int cause)
-		{
-			Log.Info (TAG, "Connection suspended");
-			mGoogleApiClient.Connect ();
-		}
+                mLatitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLatitudeLabel, mLastLocation.Latitude);
+                mLongitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLongitudeLabel, mLastLocation.Longitude);
+            }
+            else
+            {
+                Log.Warn(Tag, "GetLastLocation:exception", task.Exception);
+                ShowSnackbar(GetString(Resource.String.no_location_detected));
+            }
+        }
 
-		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
-		{
-			Log.Info(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
-		}
-	}
+        private void ShowSnackbar(String text)
+        {
+            View container = FindViewById<TextView>(Resource.Id.main_activity_container);
+            if (container != null)
+            {
+                Snackbar.Make(container, text, Snackbar.LengthLong).Show();
+            }
+        }
+
+        private void ShowSnackbar(int mainTextStringId, int actionStringId, IOnClickListener listener)
+        {
+            Snackbar.Make(FindViewById(Resource.Id.wrap_content), GetString(mainTextStringId), Snackbar.LengthIndefinite)
+                .SetAction(GetString(actionStringId), listener).Show();
+        }
+
+        private bool CheckPermissions()
+        {
+            var permissionState = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessCoarseLocation);
+            return permissionState == (int)Permission.Granted;
+        }
+
+        private void StartLocationPermissionRequest()
+        {
+            ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessCoarseLocation }, RequestPermissionsRequestCode);
+        }
+
+        private void RequestPermissions()
+        {
+            bool shouldProvideRationale = ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessCoarseLocation);
+
+            if (shouldProvideRationale)
+            {
+                Log.Info(Tag, "Displaying permission rationale to provide additional context.");
+
+                //ShowSnackbar(Resource.String.permission_rationale, android.R.string.ok, new View.OnClickListener() {
+                //    public void onClick(View view)
+                //    {
+                //    StartLocationPermissionRequest();
+                //}
+                //});
+
+            }
+            else
+            {
+                Log.Info(Tag, "Requesting permission");
+                StartLocationPermissionRequest();
+            }
+        }
+
+        public void OnRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+        {
+            Log.Info(Tag, "OnRequestPermissionResult");
+            if (requestCode == RequestPermissionsRequestCode)
+            {
+                if (grantResults.Length <= 0)
+                {
+                    Log.Info(Tag, "User interaction was cancelled.");
+                }
+                else if (grantResults[0] == (int)Permission.Granted)
+                {
+                    GetLastLocation();
+                }
+                else
+                {
+                    //    ShowSnackbar(Resource.String.permission_denied_explanation, R.string.settings,
+                    //            new View.OnClickListener() {
+                    //            @Override
+                    //                public void onClick(View view)
+                    //    {
+                    //        // Build intent that displays the App settings screen.
+                    //        Intent intent = new Intent();
+                    //        intent.setAction(
+                    //                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    //        Uri uri = Uri.fromParts("package",
+                    //                BuildConfig.APPLICATION_ID, null);
+                    //        intent.setData(uri);
+                    //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //        startActivity(intent);
+                    //    }
+                    //});
+                }
+            }
+        }
+    }
 }
 
+//public class OnCompleteListener : IOnCompleteListener {
+//    protected Location mLastLocation;
+//    private string mLatitudeLabel;
+//    private string mLongitudeLabel;
+//    private TextView mLatitudeText;
+//    private TextView mLongitudeText;
 
+//    public OnCompleteListener(Location mLastLocation, string mLatitudeLabel, string mLongitudeLabel, TextView mLatitudeText, TextView mLongitudeText)
+//    {
+//        this.mLastLocation = mLastLocation;
+//        this.mLatitudeLabel = mLatitudeLabel;
+//        this.mLongitudeLabel = mLongitudeLabel;
+//        this.mLatitudeText = mLatitudeText;
+//        this.mLongitudeText = mLongitudeText;
+//    }
+
+//    protected string TAG = typeof(MainActivity).Name;
+//    public IntPtr Handle { get; set; }
+//    public void Dispose() {}
+
+//    public void OnComplete(Task task)
+//    {
+//        if (task.IsSuccessful && task.Result != null)
+//        {
+//            mLastLocation = (Location)task.Result;
+
+//            mLatitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLatitudeLabel, mLastLocation.Latitude);
+//            mLongitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLongitudeLabel, mLastLocation.Longitude);
+//        }
+//        else
+//        {
+//            Log.Warn(TAG, "getLastLocation:exception", task.Exception);
+//            //ShowSnackbar(Context.GetString(Resource.Id.no_location_detected));
+//        }
+//    }
+//}
