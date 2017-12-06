@@ -1,26 +1,31 @@
-using System;
 using Android;
 using Android.App;
+using Android.Arch.Lifecycle;
+using Android.Content;
 using Android.Content.PM;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Gms.Location;
+using Android.Gms.Tasks;
 using Android.Util;
 using Android.Locations;
+using Android.Net;
+using Android.Provider;
 using Android.Support.Design.Widget;
 using Android.Views;
-using Java.Util;
 using static Android.Views.View;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
+using BasicLocationSample;
+using Resource = BasicLocationSample.Resource;
 
 namespace BasicLocationSample
 {
     [Activity(MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        protected string Tag = typeof(MainActivity).Name;
+        public string Tag = typeof(MainActivity).Name;
 
         protected const int RequestPermissionsRequestCode = 34;
 
@@ -32,22 +37,22 @@ namespace BasicLocationSample
         /**
          * Represents a geographical location.
          */
-        protected Location mLastLocation;
+        public Location mLastLocation;
 
-        private string mLatitudeLabel;
-        private string mLongitudeLabel;
-        private TextView mLatitudeText;
-        private TextView mLongitudeText;
+        public string mLatitudeLabel;
+        public string mLongitudeLabel;
+        public TextView mLatitudeText;
+        public TextView mLongitudeText;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main_activity);
 
-            mLatitudeLabel = GetString(Resource.Id.latitude_text);
-            mLongitudeLabel = GetString(Resource.Id.longitude_label);
+            mLatitudeLabel = GetString(Resource.String.latitude_label);
+            mLongitudeLabel = GetString(Resource.String.longitude_label);
             mLatitudeText = FindViewById<TextView>(Resource.Id.latitude_text);
-            mLongitudeText = FindViewById<TextView>(Resource.Id.longitude_label);
+            mLongitudeText = FindViewById<TextView>(Resource.Id.longitude_text);
 
             mFusedLocationClient = LocationServices.GetFusedLocationProviderClient(this);
         }
@@ -68,23 +73,10 @@ namespace BasicLocationSample
 
         private void GetLastLocation()
         {
-            //mFusedLocationClient.LastLocation.AddOnCompleteListener(new OnCompleteListener(...));
-            var task = mFusedLocationClient.LastLocation;
-            if (task.IsSuccessful && task.Result != null)
-            {
-                mLastLocation = (Location)task.Result;
-
-                mLatitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLatitudeLabel, mLastLocation.Latitude);
-                mLongitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLongitudeLabel, mLastLocation.Longitude);
-            }
-            else
-            {
-                Log.Warn(Tag, "GetLastLocation:exception", task.Exception);
-                ShowSnackbar(GetString(Resource.String.no_location_detected));
-            }
+            mFusedLocationClient.LastLocation.AddOnCompleteListener(new OnCompleteListener { Activity = this });
         }
 
-        private void ShowSnackbar(String text)
+        public void ShowSnackbar(string text)
         {
             View container = FindViewById<TextView>(Resource.Id.main_activity_container);
             if (container != null)
@@ -93,7 +85,7 @@ namespace BasicLocationSample
             }
         }
 
-        private void ShowSnackbar(int mainTextStringId, int actionStringId, IOnClickListener listener)
+        public void ShowSnackbar(int mainTextStringId, int actionStringId, IOnClickListener listener)
         {
             Snackbar.Make(FindViewById(Resource.Id.wrap_content), GetString(mainTextStringId), Snackbar.LengthIndefinite)
                 .SetAction(GetString(actionStringId), listener).Show();
@@ -105,7 +97,7 @@ namespace BasicLocationSample
             return permissionState == (int)Permission.Granted;
         }
 
-        private void StartLocationPermissionRequest()
+        public void StartLocationPermissionRequest()
         {
             ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessCoarseLocation }, RequestPermissionsRequestCode);
         }
@@ -117,14 +109,7 @@ namespace BasicLocationSample
             if (shouldProvideRationale)
             {
                 Log.Info(Tag, "Displaying permission rationale to provide additional context.");
-
-                //ShowSnackbar(Resource.String.permission_rationale, android.R.string.ok, new View.OnClickListener() {
-                //    public void onClick(View view)
-                //    {
-                //    StartLocationPermissionRequest();
-                //}
-                //});
-
+                ShowSnackbar(Resource.String.permission_rationale, Android.Resource.String.Ok, new RequestPermissionsClickListener { Activity = this });
             }
             else
             {
@@ -133,7 +118,7 @@ namespace BasicLocationSample
             }
         }
 
-        public void OnRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
         {
             Log.Info(Tag, "OnRequestPermissionResult");
             if (requestCode == RequestPermissionsRequestCode)
@@ -148,61 +133,52 @@ namespace BasicLocationSample
                 }
                 else
                 {
-                    //    ShowSnackbar(Resource.String.permission_denied_explanation, R.string.settings,
-                    //            new View.OnClickListener() {
-                    //            @Override
-                    //                public void onClick(View view)
-                    //    {
-                    //        // Build intent that displays the App settings screen.
-                    //        Intent intent = new Intent();
-                    //        intent.setAction(
-                    //                Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    //        Uri uri = Uri.fromParts("package",
-                    //                BuildConfig.APPLICATION_ID, null);
-                    //        intent.setData(uri);
-                    //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    //        startActivity(intent);
-                    //    }
-                    //});
+                    ShowSnackbar(Resource.String.permission_denied_explanation, Resource.String.settings, new OnRequestPermissionsResultClickListener { Activity = this });
                 }
             }
         }
     }
 }
 
-//public class OnCompleteListener : IOnCompleteListener {
-//    protected Location mLastLocation;
-//    private string mLatitudeLabel;
-//    private string mLongitudeLabel;
-//    private TextView mLatitudeText;
-//    private TextView mLongitudeText;
+public class RequestPermissionsClickListener : Java.Lang.Object, IOnClickListener
+{
+    public MainActivity Activity { get; set; }
+    public void OnClick(View v)
+    {
+        Activity.StartLocationPermissionRequest();
+    }
+}
 
-//    public OnCompleteListener(Location mLastLocation, string mLatitudeLabel, string mLongitudeLabel, TextView mLatitudeText, TextView mLongitudeText)
-//    {
-//        this.mLastLocation = mLastLocation;
-//        this.mLatitudeLabel = mLatitudeLabel;
-//        this.mLongitudeLabel = mLongitudeLabel;
-//        this.mLatitudeText = mLatitudeText;
-//        this.mLongitudeText = mLongitudeText;
-//    }
+public class OnRequestPermissionsResultClickListener : Java.Lang.Object, IOnClickListener
+{
+    public MainActivity Activity { get; set; }
+    public void OnClick(View v)
+    {
+        var intent = new Intent();
+        intent.SetAction(Settings.ActionApplicationDetailsSettings);
+        var uri = Uri.FromParts("package", BuildConfig.ApplicationId, null);
+        intent.SetData(uri);
+        intent.SetFlags(ActivityFlags.NewTask);
+        Activity.StartActivity(intent);
+    }
+}
 
-//    protected string TAG = typeof(MainActivity).Name;
-//    public IntPtr Handle { get; set; }
-//    public void Dispose() {}
+public class OnCompleteListener : Java.Lang.Object, IOnCompleteListener
+{
+    public MainActivity Activity { get; set; }
+    public void OnComplete(Task task)
+    {
+        if (task.IsSuccessful && task.Result != null)
+        {
+            Activity.mLastLocation = (Location)task.Result;
 
-//    public void OnComplete(Task task)
-//    {
-//        if (task.IsSuccessful && task.Result != null)
-//        {
-//            mLastLocation = (Location)task.Result;
-
-//            mLatitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLatitudeLabel, mLastLocation.Latitude);
-//            mLongitudeText.Text = String.Format(Locale.English.ToString(), "%s: %f", mLongitudeLabel, mLastLocation.Longitude);
-//        }
-//        else
-//        {
-//            Log.Warn(TAG, "getLastLocation:exception", task.Exception);
-//            //ShowSnackbar(Context.GetString(Resource.Id.no_location_detected));
-//        }
-//    }
-//}
+            Activity.mLatitudeText.Text = $"{Activity.mLatitudeLabel}: {Activity.mLastLocation.Latitude}";
+            Activity.mLongitudeText.Text = $"{Activity.mLongitudeLabel}: {Activity.mLastLocation.Longitude}";
+        }
+        else
+        {
+            Log.Warn(Activity.Tag, "getLastLocation:exception", task.Exception);
+            Activity.ShowSnackbar(Activity.GetString(Resource.String.no_location_detected));
+        }
+    }
+}
