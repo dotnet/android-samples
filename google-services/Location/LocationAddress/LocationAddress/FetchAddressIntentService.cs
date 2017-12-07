@@ -12,7 +12,7 @@ namespace LocationAddress
 	[Service (Exported = false)]
 	public class FetchAddressIntentService : IntentService
 	{
-		const string TAG = "fetch-address-intent-service";
+		const string TAG = "FetchAddressIS";
 
 		protected ResultReceiver mReceiver;
 
@@ -66,7 +66,7 @@ namespace LocationAddress
 				Address address = addresses.FirstOrDefault ();
 				var addressFragments = new List<string> ();
 
-				for (int i = 0; i < address.MaxAddressLineIndex; i++) {
+				for (int i = 0; i <= address.MaxAddressLineIndex; i++) {
 					addressFragments.Add (address.GetAddressLine (i));
 				}
 				Log.Info (TAG, GetString (Resource.String.address_found));
