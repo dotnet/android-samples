@@ -1,5 +1,4 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Gms.Location;
 using Android.Util;
 using Android.Content;
@@ -12,7 +11,7 @@ namespace Geofencing
 	[Service]
 	public class GeofenceTransitionsIntentService : IntentService
 	{
-		protected const string TAG = "geofence-transitions-service";
+		private const string TAG = "GeofenceTransitionsIS";
 
 		public GeofenceTransitionsIntentService () : base (TAG)
 		{
