@@ -4,7 +4,9 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Locations;
+using Android.OS;
 using Android.Preferences;
+using Android.Runtime;
 using Android.Support.V4.App;
 using Java.Lang;
 
@@ -17,6 +19,7 @@ namespace LocUpdPendIntent
 	{
 		public const string KeyLocationUpdatesRequested = "location-updates-requested";
 		public const string KeyLocationUpdatesResult = "location-update-result";
+		public const string ChannelId = "channel_01";
 
 		public static void SetRequestingLocationUpdates(Context context, bool value)
 		{
@@ -74,8 +77,23 @@ namespace LocUpdPendIntent
 	        // Get an instance of the Notification manager
 			var mNotificationManager = context.GetSystemService(Context.NotificationService) as NotificationManager;
 
-			// Issue the notification
-			mNotificationManager.Notify(0, builder.Build());
+		    // Android O requires a Notification Channel.
+		    if (Build.VERSION.SdkInt>= Build.VERSION_CODES.O)
+		    {
+		        string name = context.GetString(Resource.String.app_name);
+		        // Create the channel for the notification
+		        // Create the channel for the notification
+		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationManager.ImportanceDefault);
+
+		        // Set the Notification Channel for the Notification Manager.
+		        mNotificationManager.CreateNotificationChannel(mChannel);
+
+		        // Channel ID
+		        builder.SetChannelId(ChannelId);
+		    }
+
+            // Issue the notification
+            mNotificationManager.Notify(0, builder.Build());
 	    }
 
 		/**
