@@ -24,10 +24,11 @@ namespace ActiveNotifications
 
 		NotificationManager notificationManager;
 		TextView numberOfNotifications;
+        int numberOfNotificationsCount;
 
-		// Every notification needs a unique ID otherwise the previous one would be overwritten. This
-		// variable is incremented when used.
-		int notificationId = NOTIFICATION_GROUP_SUMMARY_ID + 1;
+        // Every notification needs a unique ID otherwise the previous one would be overwritten. This
+        // variable is incremented when used.
+        int notificationId = NOTIFICATION_GROUP_SUMMARY_ID + 1;
 
 		PendingIntent deletePendingIntent;
 
@@ -83,18 +84,18 @@ namespace ActiveNotifications
 		void UpdateNotificationSummary ()
 		{
 			StatusBarNotification[] activeNotifications = notificationManager.GetActiveNotifications ();
-			int numberOfNotifications = activeNotifications.Length;
+            numberOfNotificationsCount = activeNotifications.Length;
 
 			// Since the notifications might include a summary notification remove it from the count if
 			// it is present.
 			foreach (StatusBarNotification notification in activeNotifications) {
 				if (notification.Id == NOTIFICATION_GROUP_SUMMARY_ID) {
-					numberOfNotifications--;
+                    numberOfNotificationsCount--;
 					break;
 				}
 			}
 
-			if (numberOfNotifications > 1) {
+			if (numberOfNotificationsCount > 1) {
 				// Add/update the notification summary.
 				string notificationContent = GetString (Resource.String.sample_notification_content, "" + numberOfNotifications);
 				var builder = new NotificationCompat.Builder (Activity);
@@ -122,13 +123,8 @@ namespace ActiveNotifications
 			* for more information.
 			*/
 			try {
-				// Query the currently displayed notifications.
-				StatusBarNotification[] activeNotifications = notificationManager.GetActiveNotifications ();
-
-				int totalNotifications = activeNotifications.Length;
-				numberOfNotifications.Text = GetString (Resource.String.active_notifications, totalNotifications);
-
-				CommonSampleLibrary.Log.Info (TAG, GetString (Resource.String.active_notifications, totalNotifications));
+				numberOfNotifications.Text = GetString (Resource.String.active_notifications, numberOfNotificationsCount);
+				CommonSampleLibrary.Log.Info (TAG, GetString (Resource.String.active_notifications, numberOfNotificationsCount));
 			} catch (Exception e) {
 				Console.WriteLine (e);
 			}
