@@ -1,201 +1,299 @@
 using System;
-
 using Android.App;
 using Android.Content;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Gms.Common.Apis;
 using System.Collections.Generic;
+using Android;
+using Android.Arch.Lifecycle;
+using Android.Content.PM;
 using Android.Gms.Location;
-using Android.Media;
+using Android.Gms.Tasks;
+using Android.Preferences;
+using Android.Provider;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
-using Java.Lang;
+using Android.Views;
+using static Android.Support.V4.App.ActivityCompat;
 
 namespace Geofencing
 {
-	[Activity (MainLauncher = true)]
-	public class MainActivity : AppCompatActivity, 
-        GoogleApiClient.IConnectionCallbacks, 
-		GoogleApiClient.IOnConnectionFailedListener
-	{
-		protected const string TAG = "creating-and-monitoring-geofences";
-		protected GoogleApiClient mGoogleApiClient;
-		protected IList<IGeofence> mGeofenceList;
-		bool mGeofencesAdded;
-		PendingIntent mGeofencePendingIntent;
-		ISharedPreferences mSharedPreferences;
-		Button mAddGeofencesButton;
-		Button mRemoveGeofencesButton;
+    [Activity(MainLauncher = true)]
+    public class MainActivity : AppCompatActivity, IOnCompleteListener
+    {
+        protected string TAG = typeof(MainActivity).Name;
+        public int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
-			SetContentView (Resource.Layout.main_activity);
+        private enum PendingGeofenceTask
+        {
+            ADD, REMOVE, NONE
+        }
 
-			mAddGeofencesButton = FindViewById<Button> (Resource.Id.add_geofences_button);
-			mRemoveGeofencesButton = FindViewById<Button> (Resource.Id.remove_geofences_button);
+        private GeofencingClient mGeofencingClient;
+        private IList<IGeofence> mGeofenceList;
+        private PendingIntent mGeofencePendingIntent;
+        private Button mAddGeofencesButton;
+        private Button mRemoveGeofencesButton;
+        private PendingGeofenceTask mPendingGeofenceTask = PendingGeofenceTask.NONE;
 
-			mAddGeofencesButton.Click += AddGeofencesButtonHandler;
-			mRemoveGeofencesButton.Click += RemoveGeofencesButtonHandler;
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.main_activity);
 
-			mGeofenceList = new List<IGeofence> ();
-			mGeofencePendingIntent = null;
+            mAddGeofencesButton = FindViewById<Button>(Resource.Id.add_geofences_button);
+            mRemoveGeofencesButton = FindViewById<Button>(Resource.Id.remove_geofences_button);
+            mGeofenceList = new List<IGeofence>();
+            mGeofencePendingIntent = null;
+            SetButtonsEnabledState();
+            PopulateGeofenceList();
+            mGeofencingClient = LocationServices.GetGeofencingClient(this);
 
-			mSharedPreferences = GetSharedPreferences (Constants.SHARED_PREFERENCES_NAME,
-				FileCreationMode.Private);
+            mAddGeofencesButton.Click += AddGeofencesButtonHandler;
+            mRemoveGeofencesButton.Click += RemoveGeofencesButtonHandler;
+        }
 
-			mGeofencesAdded = mSharedPreferences.GetBoolean (Constants.GEOFENCES_ADDED_KEY, false);
+        protected override void OnStart()
+        {
+            base.OnStart();
 
-			SetButtonsEnabledState ();
-			PopulateGeofenceList ();
-			BuildGoogleApiClient ();
-		}
+            if (!CheckPermissions())
+            {
+                RequestPermissions();
+            }
+            else
+            {
+                PerformPendingGeofenceTask();
+            }
+        }
 
-		protected void BuildGoogleApiClient ()
-		{
-			mGoogleApiClient = new GoogleApiClient.Builder (this)
-				.AddConnectionCallbacks (this)
-				.AddOnConnectionFailedListener (this)
-				.AddApi (LocationServices.API)
-				.Build ();
-		}
+        private GeofencingRequest GetGeofencingRequest()
+        {
+            GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
+            builder.SetInitialTrigger(GeofencingRequest.InitialTriggerEnter);
+            builder.AddGeofences(mGeofenceList);
+            return builder.Build();
+        }
 
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			mGoogleApiClient.Connect ();
-		}
+        public void AddGeofencesButtonHandler(object sender, EventArgs ea)
+        {
+            if (!CheckPermissions())
+            {
+                mPendingGeofenceTask = PendingGeofenceTask.ADD;
+                RequestPermissions();
+                return;
+            }
+            AddGeofences();
+        }
 
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			mGoogleApiClient.Disconnect ();
-		}
+        private void AddGeofences()
+        {
+            if (!CheckPermissions())
+            {
+                ShowSnackbar(GetString(Resource.String.insufficient_permissions));
+                return;
+            }
 
-		public void OnConnected (Bundle connectionHint)
-		{
-			Log.Info (TAG, "Connected to GoogleApiClient");
-		}
+            mGeofencingClient.AddGeofences(GetGeofencingRequest(), GetGeofencePendingIntent()).AddOnCompleteListener((IOnCompleteListener)this);
+        }
 
-		public void OnConnectionSuspended (int cause)
-		{
-			Log.Info (TAG, "Connection suspended");
-		}
+        public void RemoveGeofencesButtonHandler(object sender, EventArgs ea)
+        {
+            if (!CheckPermissions())
+            {
+                mPendingGeofenceTask = PendingGeofenceTask.REMOVE;
+                RequestPermissions();
+                return;
+            }
+            RemoveGeofences();
+        }
 
-		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
-		{
-			Log.Info (TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
-		}
+        private void RemoveGeofences()
+        {
+            if (!CheckPermissions())
+            {
+                ShowSnackbar(GetString(Resource.String.insufficient_permissions));
+                return;
+            }
 
-		GeofencingRequest GetGeofencingRequest ()
-		{
-			var builder = new GeofencingRequest.Builder ();
-			builder.SetInitialTrigger (GeofencingRequest.InitialTriggerEnter);
-			builder.AddGeofences (mGeofenceList);
+            mGeofencingClient.RemoveGeofences(GetGeofencePendingIntent()).AddOnCompleteListener((IOnCompleteListener)this);
+        }
 
-			return builder.Build ();
-		}
 
-		public async void AddGeofencesButtonHandler (object sender, EventArgs e)
-		{
-			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText (this, GetString (Resource.String.not_connected), ToastLength.Short).Show ();
-				return;
-			}
+        public void OnComplete(Task task)
+        {
+            mPendingGeofenceTask = PendingGeofenceTask.NONE;
+            if (task.IsSuccessful)
+            {
+                UpdateGeofencesAdded(!GetGeofencesAdded());
+                SetButtonsEnabledState();
 
-			try {
-				var status = await LocationServices.GeofencingApi.AddGeofencesAsync (mGoogleApiClient, GetGeofencingRequest (),
-					GetGeofencePendingIntent ());
-                HandleResult (status);
-			} catch (SecurityException securityException) {
-				LogSecurityException(securityException);
-			}
-		}
+                var messageId = GetGeofencesAdded() ? Resource.String.geofences_added : Resource.String.geofences_removed;
+                Toast.MakeText(this, GetString(messageId), ToastLength.Short).Show();
+            }
+            else
+            {
+                var errorMessage = GeofenceErrorMessages.GetErrorString(this, task.Exception);
+                Log.Warn(TAG, errorMessage);
+            }
+        }
 
-        public async void RemoveGeofencesButtonHandler (object sender, EventArgs e)
-		{
-			if (!mGoogleApiClient.IsConnected) {
-				Toast.MakeText (this, GetString(Resource.String.not_connected), ToastLength.Short).Show ();
-				return;
-			}
-			try {
-				var status = await LocationServices.GeofencingApi.RemoveGeofencesAsync (mGoogleApiClient, 
-                    GetGeofencePendingIntent ());
-                HandleResult (status);
-			} catch (SecurityException securityException) {
-				LogSecurityException (securityException);
-			}
-		}
+        private PendingIntent GetGeofencePendingIntent()
+        {
+            if (mGeofencePendingIntent != null)
+            {
+                return mGeofencePendingIntent;
+            }
+            var intent = new Intent(this, typeof(GeofenceTransitionsIntentService));
+            return PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+        }
 
-		void LogSecurityException (SecurityException securityException)
-		{
-			Log.Error (TAG, "Invalid location permission. " +
-				"You need to use ACCESS_FINE_LOCATION with geofences", securityException);
-		}
+        private void PopulateGeofenceList()
+        {
+            foreach (var entry in Constants.BAY_AREA_LANDMARKS)
+            {
 
-        public void HandleResult (Statuses status)
-		{
-			if (status.IsSuccess) {
-				mGeofencesAdded = !mGeofencesAdded;
-				var editor = mSharedPreferences.Edit ();
-				editor.PutBoolean (Constants.GEOFENCES_ADDED_KEY, mGeofencesAdded);
-				editor.Commit ();
+                mGeofenceList.Add(new GeofenceBuilder()
+                    .SetRequestId(entry.Key)
+                    .SetCircularRegion(
+                        entry.Value.Latitude,
+                        entry.Value.Longitude,
+                        Constants.GEOFENCE_RADIUS_IN_METERS
+                    )
+                    .SetExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
+                    .SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionExit)
+                    .Build());
+            }
+        }
 
-				SetButtonsEnabledState ();
+        private void SetButtonsEnabledState()
+        {
+            if (GetGeofencesAdded())
+            {
+                mAddGeofencesButton.Enabled = false;
+                mRemoveGeofencesButton.Enabled = true;
+            }
+            else
+            {
+                mAddGeofencesButton.Enabled = true;
+                mRemoveGeofencesButton.Enabled = false;
+            }
+        }
 
-				Toast.MakeText (
-					this,
-					GetString (mGeofencesAdded ? Resource.String.geofences_added :
-						Resource.String.geofences_removed),
-					ToastLength.Short
-				).Show ();
-			} else {
-				var errorMessage = GeofenceErrorMessages.GetErrorString (this,
-					status.StatusCode);
-				Log.Error (TAG, errorMessage);
-			}
-		}
+        private void ShowSnackbar(string text)
+        {
+            var container = FindViewById<View>(Android.Resource.Id.Content);
+            if (container != null)
+            {
+                Snackbar.Make(container, text, Snackbar.LengthLong).Show();
+            }
+        }
 
-		PendingIntent GetGeofencePendingIntent ()
-		{
-			if (mGeofencePendingIntent != null) {
-				return mGeofencePendingIntent;
-			}
-			var intent = new Intent (this, typeof(GeofenceTransitionsIntentService));
-			return PendingIntent.GetService (this, 0, intent, PendingIntentFlags.UpdateCurrent);
-		}
+        private void ShowSnackbar(int mainTextStringId, int actionStringId, View.IOnClickListener listener)
+        {
+            Snackbar.Make(FindViewById(Android.Resource.Id.Content),
+                    GetString(mainTextStringId),
+                    Snackbar.LengthIndefinite)
+                .SetAction(GetString(actionStringId), listener).Show();
+        }
+        private bool GetGeofencesAdded()
+        {
+            return PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(Constants.GEOFENCES_ADDED_KEY, false);
+        }
 
-		public void PopulateGeofenceList ()
-		{
-			foreach (var entry in Constants.BAY_AREA_LANDMARKS) {
-				mGeofenceList.Add (new GeofenceBuilder ()
-					.SetRequestId (entry.Key)
-					.SetCircularRegion (
-						entry.Value.Latitude,
-						entry.Value.Longitude,
-						Constants.GEOFENCE_RADIUS_IN_METERS
-					)
-					.SetExpirationDuration (Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
-					.SetTransitionTypes (Geofence.GeofenceTransitionEnter |
-						Geofence.GeofenceTransitionExit)
-					.Build ());
-			}
-		}
+        private void UpdateGeofencesAdded(bool added)
+        {
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .Edit()
+                .PutBoolean(Constants.GEOFENCES_ADDED_KEY, added)
+                .Apply();
+        }
 
-		void SetButtonsEnabledState ()
-		{
-			if (mGeofencesAdded) {
-				mAddGeofencesButton.Enabled = false;
-				mRemoveGeofencesButton.Enabled = true;
-			} else {
-				mAddGeofencesButton.Enabled = true;
-				mRemoveGeofencesButton.Enabled = false;
-			}
-		}
-	}
+        private void PerformPendingGeofenceTask()
+        {
+            if (mPendingGeofenceTask == PendingGeofenceTask.ADD)
+            {
+                AddGeofences();
+            }
+            else if (mPendingGeofenceTask == PendingGeofenceTask.REMOVE)
+            {
+                RemoveGeofences();
+            }
+        }
+
+        private bool CheckPermissions()
+        {
+            var permissionState = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
+            return permissionState == (int)Permission.Granted;
+        }
+        private void RequestPermissions()
+        {
+            var shouldProvideRationale = ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation);
+
+            if (shouldProvideRationale)
+            {
+                Log.Info(TAG, "Displaying permission rationale to provide additional context.");
+                var listener = (View.IOnClickListener)new RequestPermissionsClickListener { Activity = this };
+                ShowSnackbar(Resource.String.permission_rationale, Android.Resource.String.Ok, listener);
+            }
+            else
+            {
+                Log.Info(TAG, "Requesting permission");
+                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessFineLocation }, REQUEST_PERMISSIONS_REQUEST_CODE);
+            }
+        }
+
+        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
+        {
+            Log.Info(TAG, "onRequestPermissionResult");
+            if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE)
+            {
+                if (grantResults.Length <= 0)
+                {
+                    Log.Info(TAG, "User interaction was cancelled.");
+                }
+                else if (grantResults[0] == (int)Permission.Granted)
+                {
+                    Log.Info(TAG, "Permission granted.");
+                    PerformPendingGeofenceTask();
+                }
+                else
+                {
+                    var listener = (View.IOnClickListener)new OnRequestPermissionsResultClickListener { Activity = this };
+                    ShowSnackbar(Resource.String.permission_denied_explanation, Resource.String.settings, listener);
+                    mPendingGeofenceTask = PendingGeofenceTask.NONE;
+                }
+            }
+        }
+    }
+
+    public class RequestPermissionsClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+        public MainActivity Activity { get; set; }
+
+        public void OnClick(View v)
+        {
+            RequestPermissions(Activity, new[] { Manifest.Permission.AccessFineLocation }, Activity.REQUEST_PERMISSIONS_REQUEST_CODE);
+        }
+    }
+
+    public class OnRequestPermissionsResultClickListener : Java.Lang.Object, View.IOnClickListener
+    {
+
+        public MainActivity Activity { get; set; }
+        public void OnClick(View v)
+        {
+            Intent intent = new Intent();
+            intent.SetAction(Settings.ActionApplicationDetailsSettings);
+            var uri = Android.Net.Uri.FromParts("package", BuildConfig.ApplicationId, null);
+            intent.SetData(uri);
+            intent.SetFlags(ActivityFlags.NewTask);
+            Activity.StartActivity(intent);
+        }
+    }
 }
 
 
