@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Service.Notification;
 using Android.Support.V4.App;
+using Android.Util;
 
 namespace ActiveNotifications
 {
@@ -24,11 +25,10 @@ namespace ActiveNotifications
 
 		NotificationManager notificationManager;
 		TextView numberOfNotifications;
-        int numberOfNotificationsCount;
 
-        // Every notification needs a unique ID otherwise the previous one would be overwritten. This
-        // variable is incremented when used.
-        int notificationId = NOTIFICATION_GROUP_SUMMARY_ID + 1;
+		// Every notification needs a unique ID otherwise the previous one would be overwritten. This
+		// variable is incremented when used.
+		int notificationId = NOTIFICATION_GROUP_SUMMARY_ID + 1;
 
 		PendingIntent deletePendingIntent;
 
@@ -84,18 +84,18 @@ namespace ActiveNotifications
 		void UpdateNotificationSummary ()
 		{
 			StatusBarNotification[] activeNotifications = notificationManager.GetActiveNotifications ();
-            numberOfNotificationsCount = activeNotifications.Length;
+			int numberOfNotifications = activeNotifications.Length;
 
 			// Since the notifications might include a summary notification remove it from the count if
 			// it is present.
 			foreach (StatusBarNotification notification in activeNotifications) {
 				if (notification.Id == NOTIFICATION_GROUP_SUMMARY_ID) {
-                    numberOfNotificationsCount--;
+					numberOfNotifications--;
 					break;
 				}
 			}
 
-			if (numberOfNotificationsCount > 1) {
+			if (numberOfNotifications > 1) {
 				// Add/update the notification summary.
 				string notificationContent = GetString (Resource.String.sample_notification_content, "" + numberOfNotifications);
 				var builder = new NotificationCompat.Builder (Activity);
@@ -118,16 +118,9 @@ namespace ActiveNotifications
 		 */
 		public void UpdateNumberOfNotifications () 
 		{
-			/** TODO Clearing large sets of notifications at once currently throws an exception. 
-			* See https://github.com/googlesamples/android-ActiveNotifications/issues/1
-			* for more information.
-			*/
-			try {
-				numberOfNotifications.Text = GetString (Resource.String.active_notifications, numberOfNotificationsCount);
-				CommonSampleLibrary.Log.Info (TAG, GetString (Resource.String.active_notifications, numberOfNotificationsCount));
-			} catch (Exception e) {
-				Console.WriteLine (e);
-			}
+			int notificationsCount = GetNumberOfNotifications();
+			numberOfNotifications.Text = GetString(Resource.String.active_notifications, notificationsCount);
+			Log.Info(TAG, GetString(Resource.String.active_notifications, notificationsCount));
 		}
 
 		/**
@@ -143,6 +136,20 @@ namespace ActiveNotifications
 				updatedNotificationId = notificationId++;
 
 			return updatedNotificationId;
+		}
+
+		private int GetNumberOfNotifications()
+		{
+			StatusBarNotification[] activeNotifications = notificationManager.GetActiveNotifications();
+
+			foreach (StatusBarNotification notification in activeNotifications)
+			{
+				if (notification.Id == NOTIFICATION_GROUP_SUMMARY_ID)
+				{
+					return activeNotifications.Length - 1;
+				}
+			}
+			return activeNotifications.Length;
 		}
 	}
 }
