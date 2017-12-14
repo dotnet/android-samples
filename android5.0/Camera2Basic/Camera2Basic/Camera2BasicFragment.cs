@@ -192,7 +192,7 @@ namespace Camera2Basic
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            mStateCallback = new CameraStateListener() { owner = this };
+            mStateCallback = new CameraStateListener(this);
             mSurfaceTextureListener = new Camera2BasicSurfaceTextureListener(this);
 
             // fill ORIENTATIONS list
@@ -218,6 +218,8 @@ namespace Camera2Basic
         {
             base.OnActivityCreated(savedInstanceState);
             mFile = new File(Activity.GetExternalFilesDir(null), "pic.jpg");
+            mCaptureCallback = new CameraCaptureListener(this);
+            mOnImageAvailableListener = new ImageAvailableListener(this, mFile);
         }
 
         public override void OnResume()
@@ -414,7 +416,7 @@ namespace Camera2Basic
             var manager = (CameraManager)activity.GetSystemService(Context.CameraService);
             try
             {
-                if (!mCameraOpenCloseLock.TryAcquire(2500, TimeUnit.Microseconds))
+                if (!mCameraOpenCloseLock.TryAcquire(2500, TimeUnit.Milliseconds))
                 {
                     throw new RuntimeException("Time out waiting to lock camera opening.");
                 }
@@ -602,6 +604,8 @@ namespace Camera2Basic
             }
         }
 
+        private CaptureRequest.Builder stillCaptureBuilder;
+
         // Capture a still picture. This method should be called when we get a response in
         // {@link #mCaptureCallback} from both {@link #lockFocus()}.
         public void CaptureStillPicture()
@@ -614,19 +618,21 @@ namespace Camera2Basic
                     return;
                 }
                 // This is the CaptureRequest.Builder that we use to take a picture.
-                CaptureRequest.Builder captureBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.StillCapture);
-                captureBuilder.AddTarget(mImageReader.Surface);
+                if(stillCaptureBuilder == null)
+                    stillCaptureBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.StillCapture);
+
+                stillCaptureBuilder.AddTarget(mImageReader.Surface);
 
                 // Use the same AE and AF modes as the preview.
-                captureBuilder.Set(CaptureRequest.ControlAfMode, (int)ControlAFMode.ContinuousPicture);
-                SetAutoFlash(captureBuilder);
+                stillCaptureBuilder.Set(CaptureRequest.ControlAfMode, (int)ControlAFMode.ContinuousPicture);
+                SetAutoFlash(stillCaptureBuilder);
 
                 // Orientation
                 int rotation = (int)activity.WindowManager.DefaultDisplay.Rotation;
-                captureBuilder.Set(CaptureRequest.JpegOrientation, GetOrientation(rotation));
+                stillCaptureBuilder.Set(CaptureRequest.JpegOrientation, GetOrientation(rotation));
 
                 mCaptureSession.StopRepeating();
-                mCaptureSession.Capture(captureBuilder.Build(), new CameraCaptureStillPictureSessionCallback(this), null);
+                mCaptureSession.Capture(stillCaptureBuilder.Build(), new CameraCaptureStillPictureSessionCallback(this), null);
             }
             catch (CameraAccessException e)
             {

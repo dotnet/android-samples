@@ -1,4 +1,3 @@
-
 using Android.Media;
 using Java.IO;
 using Java.Lang;
@@ -8,11 +7,26 @@ namespace Camera2Basic.Listeners
 {
     public class ImageAvailableListener : Java.Lang.Object, ImageReader.IOnImageAvailableListener
     {
-        public File File { get; set; }
-        public Camera2BasicFragment Owner { get; set; }
+        public ImageAvailableListener(Camera2BasicFragment fragment, File file)
+        {
+            if (fragment == null)
+                throw new System.ArgumentNullException("fragment");
+            if (file == null)
+                throw new System.ArgumentNullException("file");
+
+            owner = fragment;
+            this.file = file;
+        }
+
+        private readonly File file;
+        private readonly Camera2BasicFragment owner;
+
+        //public File File { get; private set; }
+        //public Camera2BasicFragment Owner { get; private set; }
+
         public void OnImageAvailable(ImageReader reader)
         {
-            Owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), File));
+            owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), file));
         }
 
         // Saves a JPEG {@link Image} into the specified {@link File}.
@@ -26,6 +40,11 @@ namespace Camera2Basic.Listeners
 
             public ImageSaver(Image image, File file)
             {
+                if (image == null)
+                    throw new System.ArgumentNullException("image");
+                if (file == null)
+                    throw new System.ArgumentNullException("file");
+
                 mImage = image;
                 mFile = file;
             }
