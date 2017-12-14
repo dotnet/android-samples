@@ -18,30 +18,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/detected_activity_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/request_activity_updates_button"
-        android:layout_marginTop="@dimen/narrow_space"
-        android:text="@string/still" />
+  <TextView
+      android:id="@+id/detected_activity_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/request_activity_updates_button"
+      android:layout_marginTop="@dimen/narrow_space"
+      android:text="@string/still" />
 
-    <TextView
-        android:id="@+id/detected_activity_confidence_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/request_activity_updates_button"
-        android:layout_marginTop="@dimen/narrow_space" />
+  <TextView
+      android:id="@+id/detected_activity_confidence_level"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_below="@+id/request_activity_updates_button"
+      android:layout_marginTop="@dimen/narrow_space" />
 
-    <ProgressBar
-        android:id="@+id/detected_activity_progress_bar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/detected_activity_name"
-        android:layout_marginTop="@dimen/progress_bar_top_margin"
-        android:minHeight="@dimen/progress_bar_min_height"
-        android:progress="1" />
+  <ProgressBar
+      android:id="@+id/detected_activity_progress_bar"
+      style="@android:style/Widget.ProgressBar.Horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_below="@+id/detected_activity_name"
+      android:layout_marginTop="@dimen/progress_bar_top_margin"
+      android:minHeight="@dimen/progress_bar_min_height"
+      android:progress="1" />
 </RelativeLayout>
