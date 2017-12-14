@@ -1,6 +1,4 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Runtime;
 using Android.Views;
@@ -10,201 +8,197 @@ using Android.Gms.Common.Apis;
 using Android.Support.V7.App;
 using Android.Gms.Common;
 using Android.Util;
-using Android.Gms.Plus;
+using Android.Gms.Auth.Api.SignIn;
+using Android.Gms.Auth.Api;
 
 namespace SigninQuickstart
 {
 	[Activity (MainLauncher = true, Theme = "@style/ThemeOverlay.MyNoTitleActivity")]
-	public class MainActivity : AppCompatActivity, View.IOnClickListener, 
-        GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
+	[Register("com.xamarin.signinquickstart.MainActivity")]
+	public class MainActivity : AppCompatActivity, View.IOnClickListener, GoogleApiClient.IOnConnectionFailedListener
 	{
 		const string TAG = "MainActivity";
 
 		const int RC_SIGN_IN = 9001;
 
-		const string KEY_IS_RESOLVING = "is_resolving";
-		const string KEY_SHOULD_RESOLVE = "should_resolve";
-
 		GoogleApiClient mGoogleApiClient;
-
-		TextView mStatus;
-
-		bool mIsResolving = false;
-
-		bool mShouldResolve = false;
+		TextView mStatusTextView;
+		ProgressDialog mProgressDialog;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.activity_main);
 
-			if (savedInstanceState != null) {
-				mIsResolving = savedInstanceState.GetBoolean (KEY_IS_RESOLVING);
-				mShouldResolve = savedInstanceState.GetBoolean (KEY_SHOULD_RESOLVE);
-			}
+			mStatusTextView = FindViewById<TextView>(Resource.Id.status);
+			FindViewById(Resource.Id.sign_in_button).SetOnClickListener(this);
+			FindViewById(Resource.Id.sign_out_button).SetOnClickListener(this);
+			FindViewById(Resource.Id.disconnect_button).SetOnClickListener(this);
 
-			FindViewById (Resource.Id.sign_in_button).SetOnClickListener (this);
-			FindViewById (Resource.Id.sign_out_button).SetOnClickListener (this);
-			FindViewById (Resource.Id.disconnect_button).SetOnClickListener (this);
+			// [START configure_signin]
+			// Configure sign-in to request the user's ID, email address, and basic
+			// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+			GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+					.RequestEmail()
+					.Build();
+			// [END configure_signin]
 
-			FindViewById<SignInButton> (Resource.Id.sign_in_button).SetSize (SignInButton.SizeWide);
-			FindViewById (Resource.Id.sign_in_button).Enabled = false;
+			// [START build_client]
+			// Build a GoogleApiClient with access to the Google Sign-In API and the
+			// options specified by gso.
+			mGoogleApiClient = new GoogleApiClient.Builder(this)
+					.EnableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+			        .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
+					.Build();
+			// [END build_client]
 
-			mStatus = FindViewById<TextView> (Resource.Id.status);
-
-			mGoogleApiClient = new GoogleApiClient.Builder (this)
-				.AddConnectionCallbacks (this)
-				.AddOnConnectionFailedListener (this)
-				.AddApi (PlusClass.API)
-				.AddScope (new Scope (Scopes.Profile))
-				.Build ();
+			// [START customize_button]
+			// Set the dimensions of the sign-in button.
+			var signInButton = FindViewById<SignInButton>(Resource.Id.sign_in_button);
+			signInButton.SetSize(SignInButton.SizeStandard);
+			// [END customize_button]
 		}
 
-		void UpdateUI (bool isSignedIn)
+		protected override void OnStart()
 		{
-			if (isSignedIn) {
-				var person = PlusClass.PeopleApi.GetCurrentPerson (mGoogleApiClient);
-				var name = string.Empty;
-				if (person != null)
-					name = person.DisplayName;
-				mStatus.Text = string.Format(GetString (Resource.String.signed_in_fmt), name);
+			base.OnStart();
 
-				FindViewById (Resource.Id.sign_in_button).Visibility = ViewStates.Gone;
-				FindViewById (Resource.Id.sign_out_and_disconnect).Visibility = ViewStates.Visible;
-			} else {
-				mStatus.Text = GetString (Resource.String.signed_out);
-
-				FindViewById (Resource.Id.sign_in_button).Enabled = true;
-				FindViewById (Resource.Id.sign_in_button).Visibility = ViewStates.Visible;
-				FindViewById (Resource.Id.sign_out_and_disconnect).Visibility = ViewStates.Gone;
-			}
-		}
-
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			mGoogleApiClient.Connect ();
-		}
-
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			mGoogleApiClient.Disconnect ();
-		}
-
-		protected override void OnSaveInstanceState (Bundle outState)
-		{
-			base.OnSaveInstanceState (outState);
-			outState.PutBoolean (KEY_IS_RESOLVING, mIsResolving);
-			outState.PutBoolean (KEY_SHOULD_RESOLVE, mIsResolving);
-		}
-
-		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult (requestCode, resultCode, data);
-			Log.Debug (TAG, "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
-
-			if (requestCode == RC_SIGN_IN) {
-				if (resultCode != Result.Ok) {
-					mShouldResolve = false;
-				}
-
-				mIsResolving = false;
-				mGoogleApiClient.Connect ();
-			}
-		}
-
-		public void OnConnected (Bundle connectionHint)
-		{
-			Log.Debug (TAG, "onConnected:" + connectionHint);
-
-			UpdateUI (true);
-		}
-
-		public void OnConnectionSuspended (int cause)
-		{
-			Log.Warn (TAG, "onConnectionSuspended:" + cause);
-		}
-
-		public void OnConnectionFailed (ConnectionResult result)
-		{
-			Log.Debug (TAG, "onConnectionFailed:" + result);
-
-			if (!mIsResolving && mShouldResolve) {
-				if (result.HasResolution) {
-					try {
-						result.StartResolutionForResult (this, RC_SIGN_IN);
-						mIsResolving = true;
-					} catch (IntentSender.SendIntentException e) {
-						Log.Error (TAG, "Could not resolve ConnectionResult.", e);
-						mIsResolving = false;
-						mGoogleApiClient.Connect ();
-					}
-				} else {
-					ShowErrorDialog (result);
-				}
-			} else {
-				UpdateUI (false);
-			}
-		}
-
-		class DialogInterfaceOnCancelListener : Java.Lang.Object, IDialogInterfaceOnCancelListener
-		{
-			public Action<IDialogInterface> OnCancelImpl { get; set; }
-
-			public void OnCancel (IDialogInterface dialog)
+			var opr = Auth.GoogleSignInApi.SilentSignIn(mGoogleApiClient);
+			if (opr.IsDone)
 			{
-				OnCancelImpl (dialog);
+				// If the user's cached credentials are valid, the OptionalPendingResult will be "done"
+				// and the GoogleSignInResult will be available instantly.
+				Log.Debug(TAG, "Got cached sign-in");
+				var result = opr.Get() as GoogleSignInResult;
+				HandleSignInResult(result);
+			}
+			else
+			{
+				// If the user has not previously signed in on this device or the sign-in has expired,
+				// this asynchronous branch will attempt to sign in the user silently.  Cross-device
+				// single sign-on will occur in this branch.
+				ShowProgressDialog();
+				opr.SetResultCallback(new SignInResultCallback { Activity = this });
 			}
 		}
 
-		void ShowErrorDialog (ConnectionResult connectionResult)
+		protected override void OnResume()
 		{
-			int errorCode = connectionResult.ErrorCode;
+			base.OnResume();
+			HideProgressDialog();
+		}
 
-			if (GooglePlayServicesUtil.IsUserRecoverableError (errorCode)) {
-				var listener = new DialogInterfaceOnCancelListener ();
-				listener.OnCancelImpl = (dialog) => {
-					mShouldResolve = false;
-					UpdateUI (false);
-				};
-				GooglePlayServicesUtil.GetErrorDialog (errorCode, this, RC_SIGN_IN, listener).Show ();
-			} else {
-				var errorstring = string.Format(GetString (Resource.String.play_services_error_fmt), errorCode);
-				Toast.MakeText (this, errorstring, ToastLength.Short).Show ();
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			Log.Debug(TAG, "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
 
-				mShouldResolve = false;
-				UpdateUI (false);
+			// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+			if (requestCode == RC_SIGN_IN)
+			{
+				var result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
+				HandleSignInResult(result);
 			}
 		}
 
-		public async void OnClick (View v)
+		public void HandleSignInResult(GoogleSignInResult result)
 		{
-			switch (v.Id) {
-			case Resource.Id.sign_in_button:
-				mStatus.Text = GetString (Resource.String.signing_in);
-				mShouldResolve = true;
-				mGoogleApiClient.Connect ();
-				break;
-			case Resource.Id.sign_out_button:
-				if (mGoogleApiClient.IsConnected) {
-					PlusClass.AccountApi.ClearDefaultAccount (mGoogleApiClient);
-					mGoogleApiClient.Disconnect ();
-				}
-				UpdateUI (false);
-				break;
-			case Resource.Id.disconnect_button:
-				if (mGoogleApiClient.IsConnected) {
-					PlusClass.AccountApi.ClearDefaultAccount (mGoogleApiClient);
-					await PlusClass.AccountApi.RevokeAccessAndDisconnect (mGoogleApiClient);
-					mGoogleApiClient.Disconnect ();
-				}
-				UpdateUI (false);
-				break;
+			Log.Debug(TAG, "handleSignInResult:" + result.IsSuccess);
+			if (result.IsSuccess)
+			{
+				// Signed in successfully, show authenticated UI.
+				var acct = result.SignInAccount;
+				mStatusTextView.Text = string.Format(GetString(Resource.String.signed_in_fmt), acct.DisplayName);
+				UpdateUI(true);
+			}
+			else
+			{
+				// Signed out, show unauthenticated UI.
+				UpdateUI(false);
+			}
+		}
+
+		void SignIn()
+		{
+			var signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
+			StartActivityForResult(signInIntent, RC_SIGN_IN);
+		}
+
+		void SignOut()
+		{
+			Auth.GoogleSignInApi.SignOut(mGoogleApiClient).SetResultCallback(new SignOutResultCallback { Activity = this });
+		}
+
+		void RevokeAccess()
+		{
+			Auth.GoogleSignInApi.RevokeAccess(mGoogleApiClient).SetResultCallback(new SignOutResultCallback { Activity = this });
+		}
+
+		public void OnConnectionFailed(ConnectionResult result)
+		{
+			// An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        	// be available.
+			Log.Debug(TAG, "onConnectionFailed:" + result);
+		}
+
+		protected override void OnStop()
+		{
+			base.OnStop();
+			mGoogleApiClient.Disconnect();
+		}
+
+		public void ShowProgressDialog()
+		{
+			if (mProgressDialog == null)
+			{
+				mProgressDialog = new ProgressDialog(this);
+				mProgressDialog.SetMessage(GetString(Resource.String.loading));
+				mProgressDialog.Indeterminate = true;
+			}
+
+			mProgressDialog.Show();
+		}
+
+		public void HideProgressDialog()
+		{
+			if (mProgressDialog != null && mProgressDialog.IsShowing)
+			{
+				mProgressDialog.Hide();
+			}
+		}
+
+		public void UpdateUI (bool isSignedIn)
+		{
+			if (isSignedIn)
+			{
+				FindViewById(Resource.Id.sign_in_button).Visibility = ViewStates.Gone;
+				FindViewById(Resource.Id.sign_out_and_disconnect).Visibility = ViewStates.Visible;
+			}
+			else
+			{
+				mStatusTextView.Text = GetString(Resource.String.signed_out);
+
+				FindViewById(Resource.Id.sign_in_button).Visibility = ViewStates.Visible;
+				FindViewById(Resource.Id.sign_out_and_disconnect).Visibility = ViewStates.Gone;
+			}
+		}
+
+		public void OnClick(View v)
+		{
+			switch (v.Id)
+			{
+				case Resource.Id.sign_in_button:
+					SignIn();
+					break;
+				case Resource.Id.sign_out_button:
+					SignOut();
+					break;
+				case Resource.Id.disconnect_button:
+					RevokeAccess();
+					break;
 			}
 		}
 	}
-
 }
 
 

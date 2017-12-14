@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!",
+    "project_id": "signinquickstart-13471"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!",
+        "android_client_info": {
+          "package_name": "com.xamarin.signinquickstart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!",
+          "client_type": 3
+        },
+        {
+          "client_id": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xamarin.signinquickstart",
+            "certificate_hash": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "YOU MUST USE YOUR OWN GOOGLE SERVICES.JSON!"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
