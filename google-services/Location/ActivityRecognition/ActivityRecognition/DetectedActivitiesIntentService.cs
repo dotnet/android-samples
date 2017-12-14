@@ -1,41 +1,41 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using System.Collections.Generic;
 using Android.Util;
 using Android.Content;
 using Android.Gms.Location;
-using Android.Support.V4.Content;
-using System.Linq;
+using Android.Preferences;
 
 namespace ActivityRecognition
 {
-	[Service (Exported = false)]
-	public class DetectedActivitiesIntentService : IntentService
-	{
-		protected const string TAG = "activity-detection-intent-service";
+    [Service(Exported = false)]
+    public class DetectedActivitiesIntentService : IntentService
+    {
+        protected const string TAG = "DetectedActivitiesIS";
 
-		public DetectedActivitiesIntentService () 
-			: base (TAG)
-		{
-		}
+        public DetectedActivitiesIntentService()
+            : base(TAG)
+        {
+        }
 
-		protected override void OnHandleIntent (Intent intent)
-		{
-			var result = ActivityRecognitionResult.ExtractResult(intent);
-			var localIntent = new Intent (Constants.BroadcastAction);
+        protected override void OnHandleIntent(Intent intent)
+        {
+            var result = ActivityRecognitionResult.ExtractResult(intent);
 
-			IList<DetectedActivity> detectedActivities = result.ProbableActivities;
+            IList<DetectedActivity> detectedActivities = result.ProbableActivities;
 
-			Log.Info (TAG, "activities detected");
-			foreach (DetectedActivity da in detectedActivities) {
-				Log.Info (TAG, Constants.GetActivityString (
-					ApplicationContext, da.Type) + " " + da.Confidence + "%"
-				);
-			}
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .Edit()
+                .PutString(Constants.KeyDetectedActivities,
+                        Utils.DetectedActivitiesToJson(detectedActivities))
+                .Apply();
 
-			localIntent.PutExtra (Constants.ActivityExtra, detectedActivities.ToArray ());
-			LocalBroadcastManager.GetInstance (this).SendBroadcast (localIntent);
-		}
-	}
+            Log.Info(TAG, "activities detected");
+            foreach (DetectedActivity da in detectedActivities)
+            {
+                Log.Info(TAG, Utils.GetActivityString(
+                    ApplicationContext, da.Type) + " " + da.Confidence + "%"
+                );
+            }
+        }
+    }
 }
-

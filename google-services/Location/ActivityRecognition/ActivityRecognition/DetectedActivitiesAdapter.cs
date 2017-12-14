@@ -1,9 +1,7 @@
-﻿using System;
-using Android.Widget;
+﻿using Android.Widget;
 using Android.Gms.Location;
 using System.Collections.Generic;
 using Android.Content;
-using Android;
 using Android.Views;
 
 namespace ActivityRecognition
@@ -27,10 +25,14 @@ namespace ActivityRecognition
 			var activityConfidenceLevel = convertView.FindViewById<TextView> (Resource.Id.detected_activity_confidence_level);
 			var progressBar = convertView.FindViewById<ProgressBar> (Resource.Id.detected_activity_progress_bar);
 
-			activityName.Text = Constants.GetActivityString (Context, detectedActivity.Type);
-			activityConfidenceLevel.Text = detectedActivity.Confidence + "%";
-			progressBar.Progress = detectedActivity.Confidence;
-			return convertView;
+            if (detectedActivity != null)
+            {
+                activityName.Text = Utils.GetActivityString(Context, detectedActivity.Type);
+                activityConfidenceLevel.Text = detectedActivity.Confidence + Context.GetString(Resource.String.percent);
+                progressBar.Progress = detectedActivity.Confidence;
+
+            }
+            return convertView;
 		}
 
 		internal void UpdateActivities (IList<DetectedActivity> detectedActivities)
@@ -46,9 +48,12 @@ namespace ActivityRecognition
 
 				tempList.Add (new DetectedActivity(Constants.MonitoredActivities[i], confidence));
 			}
-			Clear ();
-			AddAll (tempList);
-		}
+			Clear();
+		    foreach (DetectedActivity detectedActivity in tempList)
+		    {
+		        Add(detectedActivity);
+		    }
+        }
 	}
 }
 
