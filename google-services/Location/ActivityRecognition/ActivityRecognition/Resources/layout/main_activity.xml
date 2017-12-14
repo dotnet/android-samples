@@ -3,32 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding">
-    <Button
-        android:id="@+id/request_activity_updates_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="@dimen/narrow_space"
-        android:text="@string/request_activity_updates" />
-    <Button
-        android:id="@+id/remove_activity_updates_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/narrow_space"
-        android:text="@string/remove_activity_updates" />
-    <TextView
-        android:id="@+id/detected_activities_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/request_activity_updates_button"
-        android:layout_marginBottom="@dimen/narrow_space"
-        android:layout_marginTop="@dimen/wide_space"
-        android:text="@string/detected_activities_title"
-        android:textSize="@dimen/headline_text_size" />
-    <ListView
-        android:id="@+id/detected_activities_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/detected_activities_title" />
+  <Button
+      android:id="@+id/request_activity_updates_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_marginTop="@dimen/narrow_space"
+      android:text="@string/request_activity_updates" />
+  <Button
+      android:id="@+id/remove_activity_updates_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_marginTop="@dimen/narrow_space"
+      android:text="@string/remove_activity_updates" />
+  <TextView
+      android:id="@+id/detected_activities_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/request_activity_updates_button"
+      android:layout_marginBottom="@dimen/narrow_space"
+      android:layout_marginTop="@dimen/wide_space"
+      android:text="@string/detected_activities_title"
+      android:textSize="@dimen/headline_text_size" />
+  <ListView
+      android:id="@+id/detected_activities_listview"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/detected_activities_title" />
 </RelativeLayout>
