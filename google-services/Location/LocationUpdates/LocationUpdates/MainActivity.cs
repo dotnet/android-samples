@@ -152,7 +152,7 @@ namespace LocationUpdates
                         case Result.Ok:
                             Log.Info(Tag, "User agreed to make required location settings changes.");
                             break;
-                        case (int)Result.Canceled:
+                        case Result.Canceled:
                             Log.Info(Tag, "User chose not to make required location settings changes.");
                             mRequestingLocationUpdates = false;
                             UpdateUi();
@@ -259,7 +259,7 @@ namespace LocationUpdates
         public bool CheckPermissions()
         {
             var permissionState = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
-            return permissionState == (int)Permission.Granted;
+            return permissionState == Permission.Granted;
         }
 
         public void RequestPermissions()
@@ -278,7 +278,7 @@ namespace LocationUpdates
             }
         }
 
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Log.Info(Tag, "onRequestPermissionResult");
             if (requestCode == RequestPermissionsRequestCode)
@@ -287,7 +287,7 @@ namespace LocationUpdates
                 {
                     Log.Info(Tag, "User interaction was cancelled.");
                 }
-                else if (grantResults[0] == (int)Permission.Granted)
+                else if (grantResults[0] == Permission.Granted)
                 {
                     if (mRequestingLocationUpdates)
                     {
