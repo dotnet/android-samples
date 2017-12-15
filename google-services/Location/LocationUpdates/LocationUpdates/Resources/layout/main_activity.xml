@@ -1,70 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+     Copyright (C) 2017 Google, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/layout_padding">
-    <Button
-        android:id="@+id/start_updates_button"
-        android:layout_width="wrap_content"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+  <android.support.design.widget.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+  </android.support.design.widget.AppBarLayout>
+
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="@dimen/ui_group_top_margin"
-        android:text="@string/start_updates" />
-    <Button
-        android:id="@+id/stop_updates_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/ui_group_top_margin"
-        android:enabled="false"
-        android:text="@string/stop_updates" />
-    <TextView
-        android:id="@+id/latitude_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/start_updates_button"
-        android:layout_marginTop="@dimen/ui_group_top_margin"
-        android:text="@string/latitude_label"
-        android:textSize="@dimen/default_text_size" />
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/start_updates_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:text="@string/start_updates" />
+
+      <Button
+          android:id="@+id/stop_updates_button"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/small_margin"
+          android:layout_marginStart="@dimen/small_margin"
+          android:layout_weight="1"
+          android:enabled="false"
+          android:gravity="center"
+          android:text="@string/stop_updates" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/latitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/latitude_label"
-        android:layout_marginLeft="@dimen/small_margin_left"
-        android:layout_toRightOf="@+id/latitude_label"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginStart="@dimen/small_margin"
         android:textSize="@dimen/default_text_size" />
-    <TextView
-        android:id="@+id/longitude_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/latitude_label"
-        android:text="@string/longitude_label"
-        android:textSize="@dimen/default_text_size" />
+
     <TextView
         android:id="@+id/longitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/longitude_label"
-        android:layout_marginLeft="@dimen/small_margin_left"
-        android:layout_toRightOf="@+id/longitude_label"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginStart="@dimen/small_margin"
         android:textSize="@dimen/default_text_size" />
-    <TextView
-        android:id="@+id/last_update_time_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/longitude_label"
-        android:text="@string/last_update_time_label"
-        android:textSize="@dimen/default_text_size" />
+
     <TextView
         android:id="@+id/last_update_time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/last_update_time_label"
-        android:layout_marginLeft="@dimen/small_margin_left"
-        android:layout_toRightOf="@+id/last_update_time_label"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginStart="@dimen/small_margin"
         android:textSize="@dimen/default_text_size" />
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/location_inadequate_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/location_settings_inadequate_warning"
+        android:visibility="invisible" />
+  </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
