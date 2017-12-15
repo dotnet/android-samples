@@ -123,7 +123,7 @@ namespace LocUpdFgService
 
 		    if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
 		    {
-		        var name = (String)GetString(Resource.String.app_name);
+		        string name = GetString(Resource.String.app_name);
 		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationManager.ImportanceDefault);
 		        NotificationManager.CreateNotificationChannel(mChannel);
 		    }
