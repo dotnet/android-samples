@@ -97,7 +97,7 @@ namespace Geofencing
                 return;
             }
 
-            mGeofencingClient.AddGeofences(GetGeofencingRequest(), GetGeofencePendingIntent()).AddOnCompleteListener((IOnCompleteListener)this);
+            mGeofencingClient.AddGeofences(GetGeofencingRequest(), GetGeofencePendingIntent()).AddOnCompleteListener(this);
         }
 
         public void RemoveGeofencesButtonHandler(object sender, EventArgs ea)
@@ -119,7 +119,7 @@ namespace Geofencing
                 return;
             }
 
-            mGeofencingClient.RemoveGeofences(GetGeofencePendingIntent()).AddOnCompleteListener((IOnCompleteListener)this);
+            mGeofencingClient.RemoveGeofences(GetGeofencePendingIntent()).AddOnCompleteListener(this);
         }
 
 
@@ -246,7 +246,7 @@ namespace Geofencing
             }
         }
 
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Log.Info(TAG, "onRequestPermissionResult");
             if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE)
