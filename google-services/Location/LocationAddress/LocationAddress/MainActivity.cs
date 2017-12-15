@@ -140,14 +140,34 @@ namespace LocationAddress
             Toast.MakeText(this, text, ToastLength.Short).Show();
         }
 
-        public void OnSaveInstanceState(Bundle savedInstanceState)
+	    protected override void OnSaveInstanceState(Bundle savedInstanceState)
         {
             savedInstanceState.PutBoolean(AddressRequestedKey, mAddressRequested);
             savedInstanceState.PutString(LocationAddressKey, mAddressOutput);
-            OnSaveInstanceState(savedInstanceState);
+            base.OnSaveInstanceState(savedInstanceState);
         }
 
-        public void ShowSnackbar(string text)
+	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+	    {
+			Log.Info(TAG, "onRequestPermissionResult");
+		    if (requestCode == RequestPermissionsRequestCode)
+		    {
+			    if (grantResults.Length <= 0)
+			    {
+				    Log.Info(TAG, "User interaction was cancelled.");
+			    }
+			    else if (grantResults[0] == (int)Permission.Granted)
+			    {
+				    GetAddress();
+			    }
+			    else
+			    {
+				    ShowSnackbar(Resource.String.permission_denied_explanation, Resource.String.settings, new AddressResultReceiver.OnRequestPermissionsResultClickListener { Activity = this });
+			    }
+		    }
+		}
+
+	    public void ShowSnackbar(string text)
         {
             View container = FindViewById(Android.Resource.Id.Content);
             if (container != null)
@@ -242,26 +262,6 @@ namespace LocationAddress
 
             Activity.mAddressRequested = false;
             Activity.UpdateUiWidgets();
-        }
-
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
-        {
-            Log.Info(Activity.TAG, "onRequestPermissionResult");
-            if (requestCode == Activity.RequestPermissionsRequestCode)
-            {
-                if (grantResults.Length <= 0)
-                {
-                    Log.Info(Activity.TAG, "User interaction was cancelled.");
-                }
-                else if (grantResults[0] == (int)Permission.Granted)
-                {
-                    Activity.GetAddress();
-                }
-                else
-                {
-                    Activity.ShowSnackbar(Resource.String.permission_denied_explanation, Resource.String.settings, new OnRequestPermissionsResultClickListener { Activity = Activity });
-                }
-            }
         }
 
         public class RequestPermissionsOnClickListener : Object, View.IOnClickListener
