@@ -140,8 +140,8 @@ namespace LocationUpdates
             mLocationSettingsRequest = builder.Build();
         }
 
-        protected void OnActivityResult(int requestCode, int resultCode, Intent data)
-        {
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
             const int requestCheckSettings = 0x1;
 
             switch (requestCode)
@@ -149,7 +149,7 @@ namespace LocationUpdates
                 case requestCheckSettings:
                     switch (resultCode)
                     {
-                        case (int)Result.Ok:
+                        case Result.Ok:
                             Log.Info(Tag, "User agreed to make required location settings changes.");
                             break;
                         case (int)Result.Canceled:
