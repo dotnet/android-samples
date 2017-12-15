@@ -118,7 +118,7 @@ namespace BasicLocationSample
             }
         }
 
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Log.Info(Tag, "OnRequestPermissionResult");
             if (requestCode == RequestPermissionsRequestCode)
