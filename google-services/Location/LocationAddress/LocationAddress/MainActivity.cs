@@ -1,186 +1,292 @@
 using System;
-
+using Android;
 using Android.App;
+using Android.Arch.Lifecycle;
 using Android.Content;
-using Android.Runtime;
+using Android.Content.PM;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Gms.Common.Apis;
 using Android.Locations;
 using Android.Gms.Location;
+using Android.Gms.Tasks;
+using Android.Provider;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
+using Exception = Java.Lang.Exception;
+using Object = Java.Lang.Object;
+using String = System.String;
+using Uri = Android.Net.Uri;
 
 namespace LocationAddress
 {
-	[Activity (MainLauncher = true)]
-	public class MainActivity : AppCompatActivity, 
-        GoogleApiClient.IConnectionCallbacks,
-		GoogleApiClient.IOnConnectionFailedListener
-	{
-		protected const string TAG = "main-activity";
-		protected const string ADDRESS_REQUESTED_KEY = "address-request-pending";
-		protected const string LOCATION_ADDRESS_KEY = "location-address";
-		protected GoogleApiClient mGoogleApiClient;
-		protected Location mLastLocation;
-		protected bool mAddressRequested;
-		protected string mAddressOutput;
-		private AddressResultReceiver mResultReceiver;
-		protected TextView mLocationAddressTextView;
-		ProgressBar mProgressBar;
-		Button mFetchAddressButton;
+    [Activity(MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
+    {
+        public readonly string TAG = typeof(MainActivity).Name;
+        public readonly int RequestPermissionsRequestCode = 34;
+        public const string AddressRequestedKey = "address-request-pending";
+        public const string LocationAddressKey = "location-address";
+        public FusedLocationProviderClient mFusedLocationClient;
+        public Location mLastLocation;
+        public bool mAddressRequested;
+        public string mAddressOutput;
+        public AddressResultReceiver mResultReceiver;
+        public TextView mLocationAddressTextView;
+        public ProgressBar mProgressBar;
+        public Button mFetchAddressButton;
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
-			SetContentView (Resource.Layout.main_activity);
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.main_activity);
 
-			mResultReceiver = new AddressResultReceiver (new Handler ());
-			mResultReceiver.OnReceiveResultImpl = (resultCode, resultData) => {
-				mAddressOutput = resultData.GetString (Constants.ResultDataKey);
-				DisplayAddressOutput ();
+            mResultReceiver = new AddressResultReceiver(new Handler()) { Activity = this };
 
-				if (resultCode == 0) {
-					ShowToast (GetString (Resource.String.address_found));
-				}
-				mAddressRequested = false;
-				UpdateUIWidgets ();
-			};
-			mLocationAddressTextView = FindViewById<TextView> (Resource.Id.location_address_view);
-			mProgressBar = FindViewById<ProgressBar> (Resource.Id.progress_bar);
-			mFetchAddressButton = FindViewById<Button> (Resource.Id.fetch_address_button);
+            mLocationAddressTextView = FindViewById<TextView>(Resource.Id.location_address_view);
+            mProgressBar = FindViewById<ProgressBar>(Resource.Id.progress_bar);
+            mFetchAddressButton = FindViewById<Button>(Resource.Id.fetch_address_button);
+            mFetchAddressButton.Click += FetchAddressButtonHandler;
 
-			mFetchAddressButton.Click += FetchAddressButtonHandler;
+            mAddressRequested = false;
+            mAddressOutput = string.Empty;
+            UpdateValuesFromBundle(savedInstanceState);
 
-			mAddressOutput = string.Empty;
-			UpdateValuesFromBundle (savedInstanceState);
+            mFusedLocationClient = LocationServices.GetFusedLocationProviderClient(this);
 
-			UpdateUIWidgets ();
-			BuildGoogleApiClient ();
+            UpdateUiWidgets();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if (!CheckPermissions())
+            {
+                RequestPermissions();
+            }
+            else
+            {
+                GetAddress();
+            }
+        }
+
+        private void UpdateValuesFromBundle(Bundle savedInstanceState)
+        {
+            if (savedInstanceState != null)
+            {
+                if (savedInstanceState.KeySet().Contains(AddressRequestedKey))
+                {
+                    mAddressRequested = savedInstanceState.GetBoolean(AddressRequestedKey);
+                }
+                if (savedInstanceState.KeySet().Contains(LocationAddressKey))
+                {
+                    mAddressOutput = savedInstanceState.GetString(LocationAddressKey);
+                    DisplayAddressOutput();
+                }
+            }
+        }
+
+        public void FetchAddressButtonHandler(object sender, EventArgs eventArgs)
+        {
+            if (mLastLocation != null)
+            {
+                StartIntentService();
+                return;
+            }
+            mAddressRequested = true;
+            UpdateUiWidgets();
+        }
+
+        public void StartIntentService()
+        {
+            Intent intent = new Intent(this, typeof(FetchAddressIntentService));
+            intent.PutExtra(Constants.Receiver, mResultReceiver);
+            intent.PutExtra(Constants.LocationDataExtra, mLastLocation);
+            StartService(intent);
+        }
+
+        public void GetAddress()
+        {
+            var lastLocation = mFusedLocationClient.LastLocation;
+            lastLocation.AddOnSuccessListener(this, new GetAddressOnSuccessListener { Activity = this });
+            lastLocation.AddOnFailureListener(this, new GetAddressOnFailureListener { Activity = this });
+        }
+
+        public void DisplayAddressOutput()
+        {
+            mLocationAddressTextView.Text = mAddressOutput;
+        }
+
+        public void UpdateUiWidgets()
+        {
+            if (mAddressRequested)
+            {
+                mProgressBar.Visibility = ViewStates.Visible;
+                mFetchAddressButton.Enabled = false;
+            }
+            else
+            {
+                mProgressBar.Visibility = ViewStates.Gone;
+                mFetchAddressButton.Enabled = true;
+            }
+        }
+
+        public void ShowToast(String text)
+        {
+            Toast.MakeText(this, text, ToastLength.Short).Show();
+        }
+
+	    protected override void OnSaveInstanceState(Bundle savedInstanceState)
+        {
+            savedInstanceState.PutBoolean(AddressRequestedKey, mAddressRequested);
+            savedInstanceState.PutString(LocationAddressKey, mAddressOutput);
+            base.OnSaveInstanceState(savedInstanceState);
+        }
+
+	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+	    {
+			Log.Info(TAG, "onRequestPermissionResult");
+		    if (requestCode == RequestPermissionsRequestCode)
+		    {
+			    if (grantResults.Length <= 0)
+			    {
+				    Log.Info(TAG, "User interaction was cancelled.");
+			    }
+			    else if (grantResults[0] == (int)Permission.Granted)
+			    {
+				    GetAddress();
+			    }
+			    else
+			    {
+				    ShowSnackbar(Resource.String.permission_denied_explanation, Resource.String.settings, new AddressResultReceiver.OnRequestPermissionsResultClickListener { Activity = this });
+			    }
+		    }
 		}
 
-		void UpdateValuesFromBundle (Bundle savedInstanceState)
-		{
-			if (savedInstanceState != null) {
-				if (savedInstanceState.KeySet ().Contains (ADDRESS_REQUESTED_KEY)) {
-					mAddressRequested = savedInstanceState.GetBoolean (ADDRESS_REQUESTED_KEY);
-				}
-				if (savedInstanceState.KeySet ().Contains (LOCATION_ADDRESS_KEY)) {
-					mAddressOutput = savedInstanceState.GetString (LOCATION_ADDRESS_KEY);
-					DisplayAddressOutput ();
-				}
-			}
-		}
+	    public void ShowSnackbar(string text)
+        {
+            View container = FindViewById(Android.Resource.Id.Content);
+            if (container != null)
+            {
+                Snackbar.Make(container, text, Snackbar.LengthLong).Show();
+            }
+        }
 
-		protected void BuildGoogleApiClient ()
-		{
-			mGoogleApiClient = new GoogleApiClient.Builder (this)
-				.AddConnectionCallbacks (this)
-				.AddOnConnectionFailedListener (this)
-				.AddApi (LocationServices.API)
-				.Build ();
-		}
+        public void ShowSnackbar(int mainTextStringId, int actionStringId, View.IOnClickListener listener)
+        {
+            Snackbar.Make(FindViewById(Android.Resource.Id.Content), GetString(mainTextStringId), Snackbar.LengthIndefinite)
+                .SetAction(GetString(actionStringId), listener).Show();
+        }
 
-		public void FetchAddressButtonHandler (object sender, EventArgs e)
-		{
-			if (mGoogleApiClient.IsConnected && mLastLocation != null) {
-				StartIntentService ();
-			}
-			mAddressRequested = true;
-			UpdateUIWidgets ();
-		}
+        public bool CheckPermissions()
+        {
+            var permissionState = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
+            return permissionState == (int)Permission.Granted;
+        }
 
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			mGoogleApiClient.Connect ();
-		}
+        public void RequestPermissions()
+        {
+            bool shouldProvideRationale = ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation);
 
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			if (mGoogleApiClient.IsConnected) {
-				mGoogleApiClient.Disconnect ();
-			}
-		}
+            if (shouldProvideRationale)
+            {
+                Log.Info(TAG, "Displaying permission rationale to provide additional context.");
+                ShowSnackbar(Resource.String.permission_rationale, Android.Resource.String.Ok, new AddressResultReceiver.RequestPermissionsOnClickListener { Activity = this });
+            }
+            else
+            {
+                Log.Info(TAG, "Requesting permission");
+                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.AccessFineLocation }, RequestPermissionsRequestCode);
+            }
+        }
+    }
 
-		public void OnConnected (Bundle connectionHint)
-		{
-			mLastLocation = LocationServices.FusedLocationApi.GetLastLocation (mGoogleApiClient);
-			if (mLastLocation != null) {
-				if (!Geocoder.IsPresent) {
-					Toast.MakeText (this, Resource.String.no_geocoder_available, ToastLength.Long).Show ();
-					return;
-				}
-				if (mAddressRequested) {
-					StartIntentService ();
-				}
-			}
-		}
+    public class GetAddressOnSuccessListener : Object, IOnSuccessListener
+    {
 
-		public void OnConnectionSuspended (int cause)
-		{
-			Log.Info (TAG, "Connection suspended");
-			mGoogleApiClient.Connect ();
-		}
+        public LocationAddress.MainActivity Activity { get; set; }
 
-		public void OnConnectionFailed (Android.Gms.Common.ConnectionResult result)
-		{
-			Log.Info (TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
-		}
+        public void OnSuccess(Object location)
+        {
+            if (location == null)
+            {
+                Log.Warn(Activity.TAG, "onSuccess:null");
+                return;
+            }
 
-		protected void StartIntentService ()
-		{
-			var intent = new Intent (this, typeof(FetchAddressIntentService));
-			intent.PutExtra (Constants.Receiver, mResultReceiver);
-			intent.PutExtra (Constants.LocationDataExtra, mLastLocation);
+            Activity.mLastLocation = (Location)location;
 
-			StartService (intent);
-		}
+            if (!Geocoder.IsPresent)
+            {
+                Activity.ShowSnackbar(Activity.GetString(Resource.String.no_geocoder_available));
+                return;
+            }
 
-		protected void DisplayAddressOutput ()
-		{
-			mLocationAddressTextView.Text = mAddressOutput;
-		}
+            if (Activity.mAddressRequested)
+            {
+                Activity.StartIntentService();
+            }
+        }
+    }
 
-		void UpdateUIWidgets ()
-		{
-			if (mAddressRequested) {
-				mProgressBar.Visibility = ViewStates.Visible;
-				mFetchAddressButton.Enabled = false;
-			} else {
-				mProgressBar.Visibility = ViewStates.Gone;
-				mFetchAddressButton.Enabled = true;
-			}
-		}
+    public class GetAddressOnFailureListener : Java.Lang.Object, IOnFailureListener
+    {
 
-		protected void ShowToast (string text)
-		{
-			Toast.MakeText (this, text, ToastLength.Short).Show ();
-		}
+        public LocationAddress.MainActivity Activity { get; set; }
 
-		protected override void OnSaveInstanceState (Bundle outState)
-		{
-			outState.PutBoolean (ADDRESS_REQUESTED_KEY, mAddressRequested);
 
-			outState.PutString (LOCATION_ADDRESS_KEY, mAddressOutput);
-			base.OnSaveInstanceState (outState);
-		}
+        public void OnFailure(Exception e)
+        {
+            Log.Warn(Activity.TAG, "getLastLocation:onFailure", e);
+        }
+    }
 
-		class AddressResultReceiver : ResultReceiver
-		{
-			public Action<int, Bundle> OnReceiveResultImpl { get; set; }
-			public AddressResultReceiver (Handler handler) 
-				: base (handler)
-			{
-			}
+    public class AddressResultReceiver : ResultReceiver
+    {
+        public MainActivity Activity { get; set; }
+        public AddressResultReceiver(Handler handler) : base(handler) { }
 
-			protected override void OnReceiveResult (int resultCode, Bundle resultData)
-			{
-				OnReceiveResultImpl (resultCode, resultData);
-			}
-		}
-	}
+        protected override void OnReceiveResult(int resultCode, Bundle resultData)
+        {
+            Activity.mAddressOutput = resultData.GetString(Constants.ResultDataKey);
+            Activity.DisplayAddressOutput();
+
+            if (resultCode == Constants.SuccessResult)
+            {
+                Activity.ShowToast(Activity.GetString(Resource.String.address_found));
+            }
+
+            Activity.mAddressRequested = false;
+            Activity.UpdateUiWidgets();
+        }
+
+        public class RequestPermissionsOnClickListener : Object, View.IOnClickListener
+        {
+            public MainActivity Activity { get; set; }
+
+            public void OnClick(View v)
+            {
+                ActivityCompat.RequestPermissions(Activity, new[] { Manifest.Permission.AccessFineLocation }, Activity.RequestPermissionsRequestCode);
+            }
+        }
+
+        public class OnRequestPermissionsResultClickListener : Object, View.IOnClickListener
+        {
+            public MainActivity Activity { get; set; }
+            public void OnClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.SetAction(Settings.ActionApplicationDetailsSettings);
+                Uri uri = Uri.FromParts("package", BuildConfig.ApplicationId, null);
+                intent.SetData(uri);
+                intent.SetFlags(ActivityFlags.NewTask);
+                Activity.StartActivity(intent);
+            }
+        }
+    }
 }
 
