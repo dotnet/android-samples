@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="intro">This sample illustrates the use of a <b>TextSwitcher</b> to display text.
+    \n\n<b>Click the button</b> below to set new text in the TextSwitcher and observe the in and out
+    fade animations.
+  </string>
+  <string name="next">Next</string>
+</resources>
