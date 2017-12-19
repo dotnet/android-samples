@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>074BDF0F-44FA-4DE7-BE9B-077537C94F66</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Data, User Interface</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates TextSwitcher sample</Brief>
+	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
+</SampleMetadata>
