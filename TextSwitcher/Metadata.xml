@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>67b54e90-bf42-4f1a-b62f-4e3fa9fed834</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Data, User Interface</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>This sample illustrates the use of a TextSwitcher to display animations for text changes.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
