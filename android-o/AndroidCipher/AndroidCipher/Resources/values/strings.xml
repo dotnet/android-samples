@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Android Encryption</string>
+  <string name="action_settings">Settings</string>
+  <string name="title_activity_nav__aes__android">AES Android Example</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="input_hint">Enter Your Plain Text Here!</string>
+  <string name="encrypt_button_text">Encrypt</string>
+  <string name="encrypted_text">Encrypted Text:</string>
+  <string name="decrypt_button_text">Decrypt</string>
+  <string name="decrypted_text">Decrypted Text:</string>
+</resources>
