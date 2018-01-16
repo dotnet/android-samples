@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{EA332639-C00F-4BE4-AB2C-BA2360F1C61A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA332639-C00F-4BE4-AB2C-BA2360F1C61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA332639-C00F-4BE4-AB2C-BA2360F1C61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA332639-C00F-4BE4-AB2C-BA2360F1C61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA332639-C00F-4BE4-AB2C-BA2360F1C61A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
