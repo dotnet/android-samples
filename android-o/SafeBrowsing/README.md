@@ -1,12 +1,15 @@
 SafeBrowsing
-=====
 
-SafeBrowsing is a simple project which demostrates safe brosing on android web view. This is new feature of android 8.1 (API 27).
+SafeBrowsing is a simple project which demonstrates the safe browsing functionality of an Android Web View. This is a new feature added in Android 8.1 (API 27).
 
-In order to reach desired behavior Android manifest should has android.webkit.WebView.EnableSafeBrowsing flag set to true in metadata section.
-StartSafeBrowsing method were added and gives possibility to react on malware links.
+The recommended way to enable this feature is to add the following tag to your AndroidManifest file:
+```xml
+ <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
+```
+
+The StartSafeBrowsing method initializes safe browsing if the meta-data tag mentioned above is set. Safe browsing is not fully supported on all devices.
 
 Authors
--------
 
 Malkin Dmytro

@@ -8,8 +8,8 @@ namespace SafeBrowsing
     [Activity(Label = "SafeBrowsing", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        public WebView webView;
-        public bool mSafeBrowsingIsInitialized;
+        private WebView webView;
+        public bool mSafeBrowsingIsInitialized { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

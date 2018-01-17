@@ -7,6 +7,6 @@
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Brief>Demonstrates how to enable safe browsing.</Brief>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
 </SampleMetadata>
