@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>534E4EC4-76BA-46A8-A025-E26858CD59BD</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Data, Media</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates how to enable safe browsing.</Brief>
+	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
+</SampleMetadata>
