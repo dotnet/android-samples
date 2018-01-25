@@ -96,19 +96,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Firebase.Analytics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Firebase.Analytics.60.1142.0\lib\MonoAndroid81\Xamarin.Firebase.Analytics.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Firebase.Analytics.60.1142.0\lib\MonoAndroid80\Xamarin.Firebase.Analytics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Firebase.Analytics.Impl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\lib\MonoAndroid81\Xamarin.Firebase.Analytics.Impl.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\lib\MonoAndroid80\Xamarin.Firebase.Analytics.Impl.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Firebase.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Firebase.Common.60.1142.0\lib\MonoAndroid81\Xamarin.Firebase.Common.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Firebase.Common.60.1142.0\lib\MonoAndroid80\Xamarin.Firebase.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Firebase.Iid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Firebase.Iid.60.1142.0\lib\MonoAndroid81\Xamarin.Firebase.Iid.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Firebase.Iid.60.1142.0\lib\MonoAndroid80\Xamarin.Firebase.Iid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Analytics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -195,10 +195,10 @@
     <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Iid.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Iid.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.Impl.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.Impl.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Iid.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Iid.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.Impl.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.Impl.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Analytics.Impl.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Analytics.Impl.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.TagManager.V4.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.TagManager.V4.Impl.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.TagManager.V4.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.TagManager.V4.Impl.targets'))" />
@@ -220,10 +220,10 @@
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.targets')" />
-  <Import Project="..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Common.targets" Condition="Exists('..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Common.targets')" />
-  <Import Project="..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Iid.targets" Condition="Exists('..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Iid.targets')" />
-  <Import Project="..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.Impl.targets" Condition="Exists('..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.Impl.targets')" />
-  <Import Project="..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.targets" Condition="Exists('..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid81\Xamarin.Firebase.Analytics.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Common.targets" Condition="Exists('..\packages\Xamarin.Firebase.Common.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Common.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Iid.targets" Condition="Exists('..\packages\Xamarin.Firebase.Iid.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Iid.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.Impl.targets" Condition="Exists('..\packages\Xamarin.Firebase.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.Impl.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.targets" Condition="Exists('..\packages\Xamarin.Firebase.Analytics.60.1142.0\build\MonoAndroid80\Xamarin.Firebase.Analytics.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Base.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Analytics.Impl.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Analytics.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.Analytics.Impl.targets')" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.TagManager.V4.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.TagManager.V4.Impl.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.TagManager.V4.Impl.60.1142.0\build\MonoAndroid80\Xamarin.GooglePlayServices.TagManager.V4.Impl.targets')" />
