@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.samples.urbanairship.pushsample">
-	<uses-sdk android:minSdkVersion="4" />
+	<uses-sdk android:minSdkVersion="9" />
 	<application android:label="XamarinUAirshipPushSample">
 		<!-- REQUIRED for Urban Airship GCM-->
 		<receiver android:name="com.urbanairship.CoreReceiver" />
