@@ -15,7 +15,8 @@
  * limitations under the License.
 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+       xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         android:id="@+id/navigation_button_layout"
         android:layout_width="match_parent"
@@ -32,13 +33,13 @@
             android:background="@drawable/ic_info_black_24dp" />
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Medium"
             android:id="@+id/buttonLabel"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minLines="2"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:minLines="2"
             tools:text="@string/navigation_button_edittext_login_label" />
     </LinearLayout>
 </merge>

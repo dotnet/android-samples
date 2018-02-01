@@ -18,4 +18,4 @@ Authors
 -------
 Copyright (c) 2017 The Android Open Source Project, Inc.  
 Ported from [Android AutofillFramework Sample](https://github.com/googlesamples/android-AutofillFramework/).  
-Ported to Xamarin.Android by Gonzalo Martin.
+Ported to Xamarin.Android by Malkin Dmytro.

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Autofill Sample</string>
+  <string name="invalid_package_signature">Invalid package signature</string>
+  <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
+  <string name="autofill_sign_in_prompt">Tap to sign in.</string>
+  <string name="settings_name">Autofill Settings</string>
+  <string name="settings_cancel">Cancel</string>
+  <string name="settings_save">Save</string>
+  <string name="settings_authenticate_responses">Authenticate responses</string>
+  <string name="settings_authenticate_datasets">Authenticate Datasets</string>
+  <string name="settings_add_data_label">Add fake Autofill data</string>
+  <string name="settings_add_data_title">Add Autofill Datasets</string>
+  <string name="settings_select_number_of_datasets">Select number of Datasets.</string>
+  <plurals name="settings_add_data_success">
+    <item quantity="one">Added %d Dataset.</item>
+    <item quantity="other">Added %d Datasets.</item>
+  </plurals>
+  <string name="settings_clear_data_label">Clear all autofill data (including credentials)</string>
+  <string name="settings_clear_data_confirmation">
+    Are you sure you want to delete all autofill
+    data from the sample service?
+  </string>
+  <string name="settings_clear_data_confirmation_title">Confirmation</string>
+  <string name="settings_authentication_header">Authentication</string>
+  <string name="settings_data_header">Data</string>
+  <string name="settings_auth_credentials_label">Update credentials</string>
+  <string name="settings_auth_enter_current_password">Enter current password</string>
+  <string name="settings_auth_enter_new_password">Enter new password</string>
+  <string name="settings_auth_change_credentials_title">Change credentials</string>
+  <string name="settings_number_of_datasets_label">Number of Datasets</string>
+  <string name="autofill_master_login_label">Autofill Master Login</string>
+  <string name="auth_password_label">Password</string>
+  <string name="auth_cancel">Cancel</string>
+  <string name="auth_login_label">Login</string>
+  <string name="settings_ok">Ok</string>
+  <string-array name="month_array">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+  </string-array>
+
+  <string-array name="day_array">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>21</item>
+    <item>22</item>
+    <item>23</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+    <item>27</item>
+  </string-array>
+</resources>
