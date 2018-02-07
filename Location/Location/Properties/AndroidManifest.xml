@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Location.Location">
-	<uses-sdk />
-	<application android:label="Location">
-	</application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="2" package="com.xamarin.samples.location.locationmanager" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="23" />
+	<application android:label="@string/app_name" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:icon="@drawable/Icon"></application>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </manifest>
