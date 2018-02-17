@@ -45,14 +45,8 @@ namespace Xamarin.FingerprintSample
             get { return _cancellationSignal != null; }
         }
 
-        public static FingerprintManagerApiDialogFragment NewInstance(FingerprintManagerCompat fingerprintManager)
-        {
-            FingerprintManagerApiDialogFragment frag = new FingerprintManagerApiDialogFragment
-                                                       {
-                                                           _fingerprintManager = fingerprintManager
-                                                       };
-            return frag;
-        }
+        public static FingerprintManagerApiDialogFragment NewInstance() => 
+            new FingerprintManagerApiDialogFragment();
 
         public void Init(bool startScanning = true)
         {
@@ -62,6 +56,7 @@ namespace Xamarin.FingerprintSample
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            _fingerprintManager = FingerprintManagerCompat.From(Context);
             RetainInstance = true;
             CryptObjectHelper = new CryptoObjectHelper();
             SetStyle(DialogFragmentStyle.Normal, Res.Style.ThemeMaterialLightDialog);

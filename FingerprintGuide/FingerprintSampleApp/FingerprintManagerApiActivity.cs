@@ -48,7 +48,7 @@ namespace Xamarin.FingerprintSample
 
             if (_canScan)
             {
-                _dialogFrag = FingerprintManagerApiDialogFragment.NewInstance(_fingerprintManager);
+                _dialogFrag = FingerprintManagerApiDialogFragment.NewInstance();
             }
             else
             {
@@ -61,7 +61,7 @@ namespace Xamarin.FingerprintSample
             string canScanMsg = CheckFingerprintEligibility();
             if (_canScan)
             {
-                _dialogFrag = FingerprintManagerApiDialogFragment.NewInstance(_fingerprintManager);
+                _dialogFrag = FingerprintManagerApiDialogFragment.NewInstance();
                 _initialPanel.Visibility = ViewStates.Visible;
                 _authenticatedPanel.Visibility = ViewStates.Gone;
                 _errorPanel.Visibility = ViewStates.Gone;
