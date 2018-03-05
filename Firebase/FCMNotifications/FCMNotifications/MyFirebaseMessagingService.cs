@@ -5,6 +5,7 @@ using Android.Media;
 using Android.Util;
 using Firebase.Messaging;
 using FCMNotifications;
+using System.Collections.Generic;
 
 namespace FCMNotifications
 {
@@ -17,13 +18,17 @@ namespace FCMNotifications
         {
             Log.Debug(TAG, "From: " + message.From);
             Log.Debug(TAG, "Notification Message Body: " + message.GetNotification().Body);
-            SendNotification(message.GetNotification().Body);
+            SendNotification(message.GetNotification().Body, message.Data);
         }
 
-        void SendNotification(string messageBody)
+        void SendNotification(string messageBody, IDictionary<string, string> data)
         {
             var intent = new Intent(this, typeof(MainActivity));
             intent.AddFlags(ActivityFlags.ClearTop);
+            foreach (string key in data.Keys)
+            {
+                intent.PutExtra(key, data[key]);
+            }
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
 
             var notificationBuilder = new Notification.Builder(this)

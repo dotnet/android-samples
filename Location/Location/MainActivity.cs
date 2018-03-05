@@ -1,129 +1,253 @@
 using System;
+
+using Android;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
+using Android.Content.PM;
+using Android.Locations;
+using Android.OS;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+using Android.Support.V7.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Android.OS;
-using Android.Locations;
-using Android.Util;
 
-namespace Location
+namespace com.xamarin.samples.location.locationmanager
 {
-	[Activity (Label = "Location", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    //Implement ILocationListener interface to get location updates
+    public class MainActivity : AppCompatActivity, ILocationListener
+    {
+        const long ONE_MINUTE = 60 * 1000;
+        const long FIVE_MINUTES = 5 * ONE_MINUTE;
+        static readonly string KEY_REQUESTING_LOCATION_UPDATES = "requesting_location_updates";
 
-	//Implement ILocationListener interface to get location updates
-	public class MainActivity : Activity, ILocationListener
-	{
-		LocationManager locMgr;
-		string tag = "MainActivity";
-		Button button;
-		TextView latitude;
-		TextView longitude;
-		TextView provider;
+        static readonly int RC_LAST_LOCATION_PERMISSION_CHECK = 1000;
+        static readonly int RC_LOCATION_UPDATES_PERMISSION_CHECK = 1100;
 
+        Button getLastLocationButton;
+        bool isRequestingLocationUpdates;
+        TextView latitude;
+        internal TextView latitude2;
+        LocationManager locationManager;
+        TextView longitude;
+        internal TextView longitude2;
+        TextView provider;
+        internal TextView provider2;
+        internal Button requestLocationUpdatesButton;
+        View rootLayout;
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
-			Log.Debug (tag, "OnCreate called");
+        public void OnLocationChanged(Location location)
+        {
+            latitude2.Text = Resources.GetString(Resource.String.latitude_string, location.Latitude);
+            longitude2.Text = Resources.GetString(Resource.String.longitude_string, location.Longitude);
+            provider2.Text = Resources.GetString(Resource.String.provider_string, location.Provider);
+        }
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
-			button = FindViewById<Button> (Resource.Id.myButton);
-			latitude = FindViewById<TextView> (Resource.Id.latitude);
-			longitude = FindViewById<TextView> (Resource.Id.longitude);
-			provider = FindViewById<TextView> (Resource.Id.provider);
-		}
+        public void OnProviderDisabled(string provider)
+        {
+            isRequestingLocationUpdates = false;
+            requestLocationUpdatesButton.SetText(Resource.String.request_location_button_text);
+            latitude2.Text = string.Empty;
+            longitude2.Text = string.Empty;
+            provider2.Text = string.Empty;
+        }
 
-		protected override void OnStart ()
-		{
-			base.OnStart ();
-			Log.Debug (tag, "OnStart called");
-		}
+        public void OnProviderEnabled(string provider)
+        {
+            // Nothing to do in this example.
+            Log.Debug("LocationExample", "The provider " + provider + " is enabled.");
+        }
 
-		// OnResume gets called every time the activity starts, so we'll put our RequestLocationUpdates
-		// code here, so that 
-		protected override void OnResume ()
-		{
-			base.OnResume (); 
-			Log.Debug (tag, "OnResume called");
+        public void OnStatusChanged(string provider, Availability status, Bundle extras)
+        {
+            if (status == Availability.OutOfService)
+            {
+                StopRequestingLocationUpdates();
+                isRequestingLocationUpdates = false;
+            }
+        }
 
-			// initialize location manager
-			locMgr = GetSystemService (Context.LocationService) as LocationManager;
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (requestCode == RC_LAST_LOCATION_PERMISSION_CHECK || requestCode == RC_LOCATION_UPDATES_PERMISSION_CHECK)
+            {
+                if (grantResults.Length == 1 && grantResults[0] == Permission.Granted)
+                {
+                    if (requestCode == RC_LAST_LOCATION_PERMISSION_CHECK)
+                    {
+                        GetLastLocationFromDevice();
+                    }
+                    else
+                    {
+                        isRequestingLocationUpdates = true;
+                        StartRequestingLocationUpdates();
+                    }
+                }
+                else
+                {
+                    Snackbar.Make(rootLayout, Resource.String.permission_not_granted_termininating_app, Snackbar.LengthIndefinite)
+                            .SetAction(Resource.String.ok, delegate { FinishAndRemoveTask(); })
+                            .Show();
+                    return;
+                }
+            }
+            else
+            {
+                Log.Debug("LocationSample", "Don't know how to handle requestCode " + requestCode);
+            }
 
-			button.Click += delegate {
-				button.Text = "Location Service Running";
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
-				// pass in the provider (GPS), 
-				// the minimum time between updates (in seconds), 
-				// the minimum distance the user needs to move to generate an update (in meters),
-				// and an ILocationListener (recall that this class impletents the ILocationListener interface)
-				if (locMgr.AllProviders.Contains (LocationManager.NetworkProvider)
-					&& locMgr.IsProviderEnabled (LocationManager.NetworkProvider)) {
-					locMgr.RequestLocationUpdates (LocationManager.NetworkProvider, 2000, 1, this);
-				} else {
-					Toast.MakeText (this, "The Network Provider does not exist or is not enabled!", ToastLength.Long).Show ();
-				}
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
+            locationManager = (LocationManager) GetSystemService(LocationService);
 
-				// Comment the line above, and uncomment the following, to test 
-				// the GetBestProvider option. This will determine the best provider
-				// at application launch. Note that once the provide has been set
-				// it will stay the same until the next time this method is called
+            if (bundle != null)
+            {
+                isRequestingLocationUpdates = bundle.KeySet().Contains(KEY_REQUESTING_LOCATION_UPDATES) &&
+                                              bundle.GetBoolean(KEY_REQUESTING_LOCATION_UPDATES);
+            }
+            else
+            {
+                isRequestingLocationUpdates = false;
+            }
 
-				/*var locationCriteria = new Criteria();
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.Main);
+            rootLayout = FindViewById(Resource.Id.root_layout);
 
-				locationCriteria.Accuracy = Accuracy.Coarse;
-				locationCriteria.PowerRequirement = Power.Medium;
+			getLastLocationButton = FindViewById<Button>(Resource.Id.get_last_location_button);
+			latitude = FindViewById<TextView>(Resource.Id.latitude);
+			longitude = FindViewById<TextView>(Resource.Id.longitude);
+			provider = FindViewById<TextView>(Resource.Id.provider);
 
-				string locationProvider = locMgr.GetBestProvider(locationCriteria, true);
+			requestLocationUpdatesButton = FindViewById<Button>(Resource.Id.request_location_updates_button);
+			latitude2 = FindViewById<TextView>(Resource.Id.latitude2);
+			longitude2 = FindViewById<TextView>(Resource.Id.longitude2);
+			provider2 = FindViewById<TextView>(Resource.Id.provider2);
+			
+            if (locationManager.AllProviders.Contains(LocationManager.NetworkProvider)
+                && locationManager.IsProviderEnabled(LocationManager.NetworkProvider))
+            {
+                getLastLocationButton.Click += GetLastLocationButtonOnClick;
+                requestLocationUpdatesButton.Click += RequestLocationUpdatesButtonOnClick;
+            }
+            else
+            {
+                Snackbar.Make(rootLayout, Resource.String.missing_gps_location_provider, Snackbar.LengthIndefinite)
+                        .SetAction(Resource.String.ok, delegate { FinishAndRemoveTask(); })
+                        .Show();
+            }
+        }
 
-				Log.Debug(tag, "Starting location updates with " + locationProvider.ToString());
-				locMgr.RequestLocationUpdates (locationProvider, 2000, 1, this);*/
-			};
-		}
+        void RequestLocationUpdatesButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            if (isRequestingLocationUpdates)
+            {
+                isRequestingLocationUpdates = false;
+                StopRequestingLocationUpdates();
+            }
+            else
+            {
+                if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+                {
+                    StartRequestingLocationUpdates();
+                    isRequestingLocationUpdates = true;
+                }
+                else
+                {
+                    RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+                }
+            }            
+        }
 
-		protected override void OnPause ()
-		{
-			base.OnPause ();
+        void GetLastLocationButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+            {
+                GetLastLocationFromDevice();
+            }
+            else
+            {
+                RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+            }
+        }
 
-			// stop sending location updates when the application goes into the background
-			// to learn about updating location in the background, refer to the Backgrounding guide
-			// http://docs.xamarin.com/guides/cross-platform/application_fundamentals/backgrounding/
+        void GetLastLocationFromDevice()
+        {
+            getLastLocationButton.SetText(Resource.String.getting_last_location);
 
+            var criteria = new Criteria {PowerRequirement = Power.Medium};
 
-			// RemoveUpdates takes a pending intent - here, we pass the current Activity
-			locMgr.RemoveUpdates (this);
-			Log.Debug (tag, "Location updates paused because application is entering the background");
-		}
+            var bestProvider = locationManager.GetBestProvider(criteria, true);
+            var location = locationManager.GetLastKnownLocation(bestProvider);
 
-		protected override void OnStop ()
-		{
-			base.OnStop ();
-			Log.Debug (tag, "OnStop called");
-		}
+            if (location != null)
+            {
+                latitude.Text = Resources.GetString(Resource.String.latitude_string, location.Latitude);
+                longitude.Text = Resources.GetString(Resource.String.longitude_string, location.Longitude);
+                provider.Text = Resources.GetString(Resource.String.provider_string, location.Provider);
+                getLastLocationButton.SetText(Resource.String.get_last_location_button_text);
+            }
+            else
+            {
+                latitude.SetText(Resource.String.location_unavailable);
+                longitude.SetText(Resource.String.location_unavailable);
+                provider.Text = Resources.GetString(Resource.String.provider_string, bestProvider);
+                getLastLocationButton.SetText(Resource.String.get_last_location_button_text);
+            }
+        }
 
-		public void OnLocationChanged (Android.Locations.Location location)
-		{
-			Log.Debug (tag, "Location changed");
-			latitude.Text = "Latitude: " + location.Latitude.ToString();
-			longitude.Text = "Longitude: " + location.Longitude.ToString();
-			provider.Text = "Provider: " + location.Provider.ToString();
-		}
-		public void OnProviderDisabled (string provider)
-		{
-			Log.Debug (tag, provider + " disabled by user");
-		}
-		public void OnProviderEnabled (string provider)
-		{
-			Log.Debug (tag, provider + " enabled by user");
-		}
-		public void OnStatusChanged (string provider, Availability status, Bundle extras)
-		{
-			Log.Debug (tag, provider + " availability has changed to " + status.ToString());
-		}
-	}
+        protected override void OnStart()
+        {
+            base.OnStart();
+            locationManager = GetSystemService(LocationService) as LocationManager;
+        }
+
+        protected override void OnPause()
+        {
+            locationManager.RemoveUpdates(this);
+            base.OnPause();
+        }
+
+        void RequestLocationPermission(int requestCode)
+        {
+            isRequestingLocationUpdates = false;
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation))
+            {
+                Snackbar.Make(rootLayout, Resource.String.permission_location_rationale, Snackbar.LengthIndefinite)
+                        .SetAction(Resource.String.ok,
+                                   delegate
+                                   {
+                                       ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessFineLocation}, requestCode);
+                                   })
+                        .Show();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessFineLocation}, requestCode);
+            }
+        }
+
+        void StartRequestingLocationUpdates()
+        {
+            requestLocationUpdatesButton.SetText(Resource.String.request_location_in_progress_button_text);
+            locationManager.RequestLocationUpdates(LocationManager.GpsProvider, ONE_MINUTE, 1, this);
+        }
+
+        void StopRequestingLocationUpdates()
+        {
+            latitude2.Text = string.Empty;
+            longitude2.Text = string.Empty;
+            provider2.Text = string.Empty;
+
+            requestLocationUpdatesButton.SetText(Resource.String.request_location_button_text);
+            locationManager.RemoveUpdates(this);
+        }
+    }
 }
-
-

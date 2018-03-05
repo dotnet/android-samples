@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <declare-styleable name="LocationView">
+    <attr name="latitude" format="string" />
+    <attr name="longitude" format="string" />
+    <attr name="provider" format="string" />
+    <attr name="location_button_text" format="string" />
+  </declare-styleable>
+</resources>

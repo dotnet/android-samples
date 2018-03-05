@@ -2,12 +2,15 @@
 using Android.App;
 using Android.Content;
 using Android.Gms.Location;
+using Android.Gms.Tasks;
 using Android.Locations;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Util;
 using Java.Lang;
+using Task = Android.Gms.Tasks.Task;
 
 namespace LocUpdFgService
 {
@@ -31,9 +34,11 @@ namespace LocUpdFgService
 	{
 		const string LocationPackageName = "com.xamarin.LocUpdFgService";
 
-		const string Tag = "LocationUpdatesService";
+		public string Tag = "LocationUpdatesService";
 
-		public const string ActionBroadcast = LocationPackageName + ".broadcast";
+		string ChannelId = "channel_01";
+
+        public const string ActionBroadcast = LocationPackageName + ".broadcast";
 
 		public const string ExtraLocation = LocationPackageName + ".location";
 		const string ExtraStartedFromNotification = LocationPackageName + ".started_from_notification";
@@ -85,7 +90,7 @@ namespace LocUpdFgService
 		/**
 		 * The current location.
 		 */
-		Location Location;
+		public Location Location;
 
 		public LocationUpdatesService()
 		{
@@ -109,12 +114,20 @@ namespace LocUpdFgService
 			LocationCallback = new LocationCallbackImpl { Service = this };
 
 			CreateLocationRequest();
+            GetLastLocation();
 
 			HandlerThread handlerThread = new HandlerThread(Tag);
 			handlerThread.Start();
 			ServiceHandler = new Handler(handlerThread.Looper);
 			NotificationManager = (NotificationManager) GetSystemService(NotificationService);
-		}
+
+		    if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+		    {
+		        string name = GetString(Resource.String.app_name);
+		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationManager.ImportanceDefault);
+		        NotificationManager.CreateNotificationChannel(mChannel);
+		    }
+        }
 
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
 		{
@@ -225,40 +238,58 @@ namespace LocUpdFgService
 			}
 		}
 
-		/**
+        /**
 	     * Returns the {@link NotificationCompat} used as part of the foreground service.
 	     */
-		Notification GetNotification()
-		{
-			Intent intent = new Intent(this, typeof(LocationUpdatesService));
+        Notification GetNotification()
+        {
+            Intent intent = new Intent(this, typeof(LocationUpdatesService));
 
-	        var text = Utils.GetLocationText(Location);
+            var text = Utils.GetLocationText(Location);
 
-			// Extra to help us figure out if we arrived in onStartCommand via the notification or not.
-			intent.PutExtra(ExtraStartedFromNotification, true);
+            // Extra to help us figure out if we arrived in onStartCommand via the notification or not.
+            intent.PutExtra(ExtraStartedFromNotification, true);
 
-	        // The PendingIntent that leads to a call to onStartCommand() in this service.
-			var servicePendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+            // The PendingIntent that leads to a call to onStartCommand() in this service.
+            var servicePendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
 
-			// The PendingIntent to launch activity.
-			var activityPendingIntent = PendingIntent.GetActivity(this, 0, new Intent(this, typeof(MainActivity)), 0);
+            // The PendingIntent to launch activity.
+            var activityPendingIntent = PendingIntent.GetActivity(this, 0, new Intent(this, typeof(MainActivity)), 0);
 
-	        return new NotificationCompat.Builder(this)
-	                .AddAction(Resource.Drawable.ic_launch, GetString(Resource.String.launch_activity),
-	                        activityPendingIntent)
-	                .AddAction(Resource.Drawable.ic_cancel, GetString(Resource.String.remove_location_updates),
-	                        servicePendingIntent)
-	                .SetContentText(text)
-	                .SetContentTitle(Utils.GetLocationTitle(this))
-	                .SetOngoing(true)
-				    .SetPriority((int) NotificationPriority.High)
-	                .SetSmallIcon(Resource.Mipmap.ic_launcher)
-	                .SetTicker(text)
-				    .SetWhen(JavaSystem.CurrentTimeMillis())
-				    .Build();
-		}
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .AddAction(Resource.Drawable.ic_launch, GetString(Resource.String.launch_activity),
+                    activityPendingIntent)
+                .AddAction(Resource.Drawable.ic_cancel, GetString(Resource.String.remove_location_updates),
+                    servicePendingIntent)
+                .SetContentText(text)
+                .SetContentTitle(Utils.GetLocationTitle(this))
+                .SetOngoing(true)
+                .SetPriority((int) NotificationPriority.High)
+                .SetSmallIcon(Resource.Mipmap.ic_launcher)
+                .SetTicker(text)
+                .SetWhen(JavaSystem.CurrentTimeMillis());
 
-		public void OnNewLocation(Location location)
+            if (Build.VERSION.SdkInt>= Build.VERSION_CODES.O)
+            {
+                builder.SetChannelId(ChannelId);
+            }
+
+            return builder.Build();
+        }
+
+        private void GetLastLocation()
+        {
+            try
+            {
+                FusedLocationClient.LastLocation.AddOnCompleteListener(new GetLastLocationOnCompleteListener { Service = this });
+            }
+            catch (SecurityException unlikely)
+            {
+                Log.Error(Tag, "Lost location permission." + unlikely);
+            }
+        }
+
+        public void OnNewLocation(Location location)
 		{
 			Log.Info(Tag, "New location: " + location);
 
@@ -327,4 +358,21 @@ namespace LocUpdFgService
 			return service;
 		}
 	}
+
+    public class GetLastLocationOnCompleteListener : Object, IOnCompleteListener
+    {
+        public LocationUpdatesService Service { get; set; }
+
+        public void OnComplete(Task task)
+        {
+            if (task.IsSuccessful && task.Result != null)
+            {
+                Service.Location = (Location)task.Result;
+            }
+            else
+            {
+                Log.Warn(Service.Tag, "Failed to get location.");
+            }
+        }
+    }
 }
