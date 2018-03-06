@@ -8,7 +8,7 @@
     <ProjectGuid>{73A06493-DB1C-4F09-8D7B-357C5598F272}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>BluetoothChat</RootNamespace>
+    <RootNamespace>com.xamarin.samples.bluetooth.bluetoothchat</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>BluetoothChat</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -43,39 +43,132 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Android.Arch.Core.Common">
+      <HintPath>packages\Xamarin.Android.Arch.Core.Common.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Core.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="Xamarin.Android.Support.Annotations">
+      <HintPath>packages\Xamarin.Android.Support.Annotations.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common">
+      <HintPath>packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime">
+      <HintPath>packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Compat">
+      <HintPath>packages\Xamarin.Android.Support.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.UI">
+      <HintPath>packages\Xamarin.Android.Support.Core.UI.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.Utils">
+      <HintPath>packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Fragment">
+      <HintPath>packages\Xamarin.Android.Support.Fragment.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Fragment.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Media.Compat">
+      <HintPath>packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Media.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Transition">
+      <HintPath>packages\Xamarin.Android.Support.Transition.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Transition.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>packages\Xamarin.Android.Support.v4.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.GridLayout">
+      <HintPath>packages\Xamarin.Android.Support.v7.GridLayout.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.GridLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>packages\Xamarin.Android.Support.Design.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BluetoothChat.cs" />
+    <Compile Include="MainActivity.cs" />
     <Compile Include="BluetoothChatService.cs" />
     <Compile Include="DeviceListActivity.cs" />
+    <Compile Include="BluetoothChatFragment.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="PermissionUtils.cs" />
+    <Compile Include="DiscoverableModeReceiver.cs" />
+    <Compile Include="ChatHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\message.axml" />
-    <AndroidResource Include="Resources\layout\device_name.axml" />
-    <AndroidResource Include="Resources\layout\device_list.axml" />
-    <AndroidResource Include="Resources\layout\custom_title.axml" />
-    <AndroidResource Include="Resources\layout\main.axml" />
-    <AndroidResource Include="Resources\menu\option_menu.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\layout\activity_device_list.xml" />
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
+    <AndroidResource Include="Resources\layout\device_name.xml" />
+    <AndroidResource Include="Resources\layout\fragment_bluetooth_chat.xml" />
+    <AndroidResource Include="Resources\layout\message.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_device_access_bluetooth_searching.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tile.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_device_access_bluetooth_searching.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_device_access_bluetooth_searching.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_device_access_bluetooth_searching.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\menu\bluetooth_chat.xml" />
+    <AndroidResource Include="Resources\menu\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\dimens.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\styles.xml" />
+    <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-ldpi\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\menu\" />
+    <Folder Include="Resources\values\" />
+    <Folder Include="Resources\values-sw600dp\" />
+    <Folder Include="Resources\values-v21\" />
+    <Folder Include="Common\" />
   </ItemGroup>
+  <Import Project="packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />
+  <Import Project="packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
+  <Import Project="packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets" Condition="Exists('packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets" Condition="Exists('packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets" Condition="Exists('packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Transition.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Transition.targets" Condition="Exists('packages\Xamarin.Android.Support.Transition.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Transition.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets" Condition="Exists('packages\Xamarin.Android.Support.v4.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v4.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.CardView.targets" Condition="Exists('packages\Xamarin.Android.Support.v7.CardView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.CardView.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.v7.GridLayout.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.GridLayout.targets" Condition="Exists('packages\Xamarin.Android.Support.v7.GridLayout.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.GridLayout.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('packages\Xamarin.Android.Support.v7.RecyclerView.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.RecyclerView.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Vector.Drawable.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Animated.Vector.Drawable.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.targets" Condition="Exists('packages\Xamarin.Android.Support.v7.AppCompat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v7.AppCompat.targets')" />
+  <Import Project="packages\Xamarin.Android.Support.Design.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Design.targets" Condition="Exists('packages\Xamarin.Android.Support.Design.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Design.targets')" />
 </Project>
