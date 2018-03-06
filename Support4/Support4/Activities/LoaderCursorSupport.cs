@@ -82,24 +82,26 @@ namespace Support4
 	            // or start a new one.
 				LoaderManager.InitLoader (0, null, this);
 			}
-			
-			class MyOnQueryTextListenerCompat : SearchViewCompat.OnQueryTextListenerCompat
+
+			class MyOnQueryTextListenerCompat : Java.Lang.Object, SearchView.IOnQueryTextListener
 			{
-				CursorLoaderListFragment parent;
-				
-				public MyOnQueryTextListenerCompat (CursorLoaderListFragment parent)
+				public CursorLoaderListFragment Parent { get; set; }
+
+				public bool OnQueryTextChange(string newText)
 				{
-					this.parent = parent;
-				}
-				
-				public override bool OnQueryTextChange (string newText)
-				{
-                    // Called when the action bar search text has changed.  Update
-                    // the search filter, and restart the loader to do a new query
-                    // with this filter.
-					parent._curFilter = !TextUtils.IsEmpty(newText) ? newText : null;
-					parent.LoaderManager.RestartLoader (0, null, parent);
+					// Called when the action bar search text has changed.  Update
+					// the search filter, and restart the loader to do a new query
+					// with this filter.
+					Parent._curFilter = !TextUtils.IsEmpty(newText) ? newText : null;
+					Parent.LoaderManager.RestartLoader(0, null, Parent);
 					return true;
+				}
+
+				public bool OnQueryTextSubmit(string query)
+				{
+					// let the SearchView handle the submission by launching any associated intent
+					// more info: https://developer.android.com/reference/android/widget/SearchView.OnQueryTextListener.html
+					return false;
 				}
 			}
 			
@@ -109,9 +111,9 @@ namespace Support4
 	            var item = menu.Add("Search");
 	            item.SetIcon(Android.Resource.Drawable.IcMenuSearch);
 				MenuCompat.SetShowAsAction(item, MenuItemCompat.ShowAsActionAlways);
-	            var searchView = SearchViewCompat.NewSearchView(Activity);
+				var searchView = new SearchView(Activity);
 	            if (searchView != null) {
-	                SearchViewCompat.SetOnQueryTextListener (searchView, new MyOnQueryTextListenerCompat (this));
+					searchView.SetOnQueryTextListener(new MyOnQueryTextListenerCompat {Parent = this});
 	                MenuItemCompat.SetActionView(item, searchView);
 	            }
 			}

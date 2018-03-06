@@ -4,6 +4,7 @@ Components/
 packages/
 */_ReSharper.*/*
 *.user
+*.vs
 *.suo
 *.pidb
 *.userprefs

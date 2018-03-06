@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>7ba2528b-05ed-45b8-8664-38551dd035a8</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginning</Level>
+    <Tags>Android Oreo, Architecture Components, ViewModel, LifeCycle</Tags>
+    <LicenseRequirement>Starter</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates usage of ViewModel and LifeCycle library</Brief>
+</SampleMetadata>
