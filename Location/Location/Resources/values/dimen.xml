@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <dimen name="locationview_padding_topbottom">8dp</dimen>
+  <dimen name="locationview_padding_startend">4dp</dimen>
+</resources>

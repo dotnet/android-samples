@@ -4,6 +4,7 @@ Components/
 packages/
 */_ReSharper.*/*
 *.user
+*.vs
 *.suo
 *.pidb
 *.userprefs
@@ -30,3 +31,14 @@ google-play-services_lib
 /OneABIPerAPK/Properties/AndroidManifest.xml.armeabi-v7a
 /OneABIPerAPK/Properties/AndroidManifest.xml.armeabi
 
+
+FusedLocationProvider/\.vs/FusedLocationProvider/v15/Server/sqlite3/db\.lock
+
+FusedLocationProvider/\.vs/FusedLocationProvider/v15/Server/sqlite3/storage\.ide
+
+FusedLocationProvider/\.vs/FusedLocationProvider/v15/Server/sqlite3/storage\.ide-shm
+
+FusedLocationProvider/\.vs/FusedLocationProvider/v15/Server/sqlite3/storage\.ide-wal
+
+Location/\.vs/Location/v15/Server/sqlite3/
+/BluetoothChat/.vs

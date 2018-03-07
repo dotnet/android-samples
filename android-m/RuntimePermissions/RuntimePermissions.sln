@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimePermissions", "RuntimePermissions.csproj", "{3FAC737D-3158-4D67-98D5-13FEC215D107}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSampleLibrary", "..\..\CommonSampleLibrary\CommonSampleLibrary.csproj", "{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}"
@@ -13,11 +15,18 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3FAC737D-3158-4D67-98D5-13FEC215D107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FAC737D-3158-4D67-98D5-13FEC215D107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FAC737D-3158-4D67-98D5-13FEC215D107}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{3FAC737D-3158-4D67-98D5-13FEC215D107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FAC737D-3158-4D67-98D5-13FEC215D107}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A5FB23C-6B26-461A-8BBD-02392DCE3C11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E67521B-DA5C-4771-B2CF-B79F331FC4A9}
 	EndGlobalSection
 EndGlobal

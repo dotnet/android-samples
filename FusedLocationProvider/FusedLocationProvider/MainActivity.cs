@@ -1,208 +1,273 @@
 using System;
+using System.Threading.Tasks;
+
+using Android;
 using Android.App;
-using Android.OS;
-using Android.Gms.Location;
+using Android.Content.PM;
 using Android.Gms.Common;
-using Android.Gms.Common.Apis;
+using Android.Gms.Location;
+using Android.OS;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+using Android.Support.V7.App;
 using Android.Util;
+using Android.Views;
 using Android.Widget;
-using Android.Locations;
 
-namespace FusedLocationProvider
+namespace com.xamarin.samples.location.fusedlocationprovider
 {
-	[Activity (Label = "FusedLocationProvider", MainLauncher = true)]
-	public class MainActivity : Activity, GoogleApiClient.IConnectionCallbacks,
-	    GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener 
-	{
-		GoogleApiClient apiClient;
-		LocationRequest locRequest;
-		Button button;
-		TextView latitude;
-		TextView longitude;
-		TextView provider;
-		Button button2;
-		TextView latitude2;
-		TextView longitude2;
-		TextView provider2;
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
+    {
+        const long ONE_MINUTE = 60 * 1000;
+        const long FIVE_MINUTES = 5 * ONE_MINUTE;
+        const long TWO_MINUTES = 2 * ONE_MINUTE;
 
-		bool _isGooglePlayServicesInstalled;
+        static readonly int RC_LAST_LOCATION_PERMISSION_CHECK = 1000;
+        static readonly int RC_LOCATION_UPDATES_PERMISSION_CHECK = 1100;
 
-		////Lifecycle methods
+        static readonly string KEY_REQUESTING_LOCATION_UPDATES = "requesting_location_updates";
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
-			Log.Debug ("OnCreate", "OnCreate called, initializing views...");
+        FusedLocationProviderClient fusedLocationProviderClient;
+        Button getLastLocationButton;
+        bool isGooglePlayServicesInstalled;
+        bool isRequestingLocationUpdates;
+        TextView latitude;
+        internal TextView latitude2;
+        LocationCallback locationCallback;
+        LocationRequest locationRequest;
+        TextView longitude;
+        internal TextView longitude2;
+        TextView provider;
+        internal TextView provider2;
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+        internal Button requestLocationUpdatesButton;
 
-			// UI to print last location
-			button = FindViewById<Button> (Resource.Id.myButton);
-			latitude = FindViewById<TextView> (Resource.Id.latitude);
-			longitude = FindViewById<TextView> (Resource.Id.longitude);
-			provider = FindViewById<TextView> (Resource.Id.provider);
+        View rootLayout;
 
-			// UI to print location updates
-			button2 = FindViewById<Button> (Resource.Id.myButton2);
-			latitude2 = FindViewById<TextView> (Resource.Id.latitude2);
-			longitude2 = FindViewById<TextView> (Resource.Id.longitude2);
-			provider2 = FindViewById<TextView> (Resource.Id.provider2);
+        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (requestCode == RC_LAST_LOCATION_PERMISSION_CHECK || requestCode == RC_LOCATION_UPDATES_PERMISSION_CHECK)
+            {
+                if (grantResults.Length == 1 && grantResults[0] == Permission.Granted)
+                {
+                    if (requestCode == RC_LAST_LOCATION_PERMISSION_CHECK)
+                    {
+                        await GetLastLocationFromDevice();
+                    }
+                    else
+                    {
+                        await StartRequestingLocationUpdates();
+                        isRequestingLocationUpdates = true;
+                    }
+                }
+                else
+                {
+                    Snackbar.Make(rootLayout, Resource.String.permission_not_granted_termininating_app, Snackbar.LengthIndefinite)
+                            .SetAction(Resource.String.ok, delegate { FinishAndRemoveTask(); })
+                            .Show();
+                    return;
+                }
+            }
+            else
+            {
+                Log.Debug("FusedLocationProviderSample", "Don't know how to handle requestCode " + requestCode);
+            }
 
-			_isGooglePlayServicesInstalled = IsGooglePlayServicesInstalled ();
-
-			if (_isGooglePlayServicesInstalled) {
-				// pass in the Context, ConnectionListener and ConnectionFailedListener
-				apiClient = new GoogleApiClient.Builder (this, this, this)
-					.AddApi (LocationServices.API).Build ();
-
-				// generate a location request that we will pass into a call for location updates
-				locRequest = new LocationRequest ();
-
-			} else {
-				Log.Error ("OnCreate", "Google Play Services is not installed");
-				Toast.MakeText (this, "Google Play Services is not installed", ToastLength.Long).Show ();
-				Finish ();
-			}
-
-		}
-
-		bool IsGooglePlayServicesInstalled()
-		{
-			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
-			if (queryResult == ConnectionResult.Success)
-			{
-				Log.Info ("MainActivity", "Google Play Services is installed on this device.");
-				return true;
-			}
-
-			if (GoogleApiAvailability.Instance.IsUserResolvableError (queryResult))
-			{
-				string errorString = GoogleApiAvailability.Instance.GetErrorString (queryResult);
-				Log.Error ("ManActivity", "There is a problem with Google Play Services on this device: {0} - {1}", queryResult, errorString);
-
-				// Show error dialog to let user debug google play services
-			}
-			return false;
-		}
-
-		protected override void OnResume()
-		{
-			base.OnResume ();
-			Log.Debug ("OnResume", "OnResume called, connecting to client...");
-
-			apiClient.Connect();
-
-			// Clicking the first button will make a one-time call to get the user's last location
-			button.Click += delegate {
-				if (apiClient.IsConnected)
-				{
-					button.Text = "Getting Last Location";
-
-					Location location = LocationServices.FusedLocationApi.GetLastLocation (apiClient);
-					if (location != null)
-					{
-						latitude.Text = "Latitude: " + location.Latitude.ToString();
-						longitude.Text = "Longitude: " + location.Longitude.ToString();
-						provider.Text = "Provider: " + location.Provider.ToString();
-						Log.Debug ("LocationClient", "Last location printed");
-					}
-				}
-				else
-				{
-					Log.Info ("LocationClient", "Please wait for client to connect");
-				}
-			};
-
-			// Clicking the second button will send a request for continuous updates
-			button2.Click += async delegate {
-				if (apiClient.IsConnected)
-				{
-					button2.Text = "Requesting Location Updates";
-
-					// Setting location priority to PRIORITY_HIGH_ACCURACY (100)
-					locRequest.SetPriority(100);
-
-					// Setting interval between updates, in milliseconds
-					// NOTE: the default FastestInterval is 1 minute. If you want to receive location updates more than 
-					// once a minute, you _must_ also change the FastestInterval to be less than or equal to your Interval
-					locRequest.SetFastestInterval(500);
-					locRequest.SetInterval(1000);
-
-					Log.Debug("LocationRequest", "Request priority set to status code {0}, interval set to {1} ms", 
-						locRequest.Priority.ToString(), locRequest.Interval.ToString());
-
-					// pass in a location request and LocationListener
-					await LocationServices.FusedLocationApi.RequestLocationUpdates (apiClient, locRequest, this);
-					// In OnLocationChanged (below), we will make calls to update the UI
-					// with the new location data
-				}
-				else
-				{
-					Log.Info("LocationClient", "Please wait for Client to connect");
-				}
-			};
-		}
-
-		protected override async void OnPause ()
-		{
-			base.OnPause ();
-			Log.Debug ("OnPause", "OnPause called, stopping location updates");
-
-			if (apiClient.IsConnected) {
-				// stop location updates, passing in the LocationListener
-				await LocationServices.FusedLocationApi.RemoveLocationUpdates (apiClient, this);
-
-				apiClient.Disconnect ();
-			}
-		}
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
 
-		////Interface methods
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-		public void OnConnected (Bundle bundle)
-		{
-			// This method is called when we connect to the LocationClient. We can start location updated directly form
-			// here if desired, or we can do it in a lifecycle method, as shown above 
+            if (bundle != null)
+            {
+                isRequestingLocationUpdates = bundle.KeySet().Contains(KEY_REQUESTING_LOCATION_UPDATES) &&
+                                              bundle.GetBoolean(KEY_REQUESTING_LOCATION_UPDATES);
+            }
+            else
+            {
+                isRequestingLocationUpdates = false;
+            }
 
-			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
-			Log.Info("LocationClient", "Now connected to client");
-		}
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.Main);
+            isGooglePlayServicesInstalled = IsGooglePlayServicesInstalled();
+            rootLayout = FindViewById(Resource.Id.root_layout);
 
-		public void OnDisconnected ()
-		{
-			// This method is called when we disconnect from the LocationClient.
+            // UI to display last location
+            getLastLocationButton = FindViewById<Button>(Resource.Id.get_last_location_button);
+            latitude = FindViewById<TextView>(Resource.Id.latitude);
+            longitude = FindViewById<TextView>(Resource.Id.longitude);
+            provider = FindViewById<TextView>(Resource.Id.provider);
 
-			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
-			Log.Info("LocationClient", "Now disconnected from client");
-		}
+            // UI to display location updates
+            requestLocationUpdatesButton = FindViewById<Button>(Resource.Id.request_location_updates_button);
+            latitude2 = FindViewById<TextView>(Resource.Id.latitude2);
+            longitude2 = FindViewById<TextView>(Resource.Id.longitude2);
+            provider2 = FindViewById<TextView>(Resource.Id.provider2);
 
-		public void OnConnectionFailed (ConnectionResult bundle)
-		{
-			// This method is used to handle connection issues with the Google Play Services Client (LocationClient). 
-			// You can check if the connection has a resolution (bundle.HasResolution) and attempt to resolve it
+            if (isGooglePlayServicesInstalled)
+            {
+                locationRequest = new LocationRequest()
+                                  .SetPriority(LocationRequest.PriorityHighAccuracy)
+                                  .SetInterval(FIVE_MINUTES)
+                                  .SetFastestInterval(TWO_MINUTES);
+                locationCallback = new FusedLocationProviderCallback(this);
 
-			// You must implement this to implement the IGooglePlayServicesClientOnConnectionFailedListener Interface
-			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
-		}
+                fusedLocationProviderClient = LocationServices.GetFusedLocationProviderClient(this);
+                getLastLocationButton.Click += GetLastLocationButtonOnClick;
+                requestLocationUpdatesButton.Click += RequestLocationUpdatesButtonOnClick;
+            }
+            else
+            {
+                // If there is no Google Play Services installed, then this sample won't run.
+                Snackbar.Make(rootLayout, Resource.String.missing_googleplayservices_terminating, Snackbar.LengthIndefinite)
+                        .SetAction(Resource.String.ok, delegate { FinishAndRemoveTask(); })
+                        .Show();
+            }
+        }
 
-		public void OnLocationChanged (Location location)
-		{
-			// This method returns changes in the user's location if they've been requested
-			 
-			// You must implement this to implement the Android.Gms.Locations.ILocationListener Interface
-			Log.Debug ("LocationClient", "Location updated");
+        async void RequestLocationUpdatesButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            // No need to request location updates if we're already doing so.
+            if (isRequestingLocationUpdates)
+            {
+                StopRequestionLocationUpdates();
+                isRequestingLocationUpdates = false;
+            }
+            else
+            {
+                if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+                {
+                    await StartRequestingLocationUpdates();
+                    isRequestingLocationUpdates = true;
+                }
+                else
+                {
+                    RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+                }
+            }
+        }
 
-			latitude2.Text = "Latitude: " + location.Latitude.ToString();
-			longitude2.Text = "Longitude: " + location.Longitude.ToString();
-			provider2.Text = "Provider: " + location.Provider.ToString();
-		}
+        async void GetLastLocationButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+            {
+                await GetLastLocationFromDevice();
+            }
+            else
+            {
+                RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+            }
+        }
 
-		public void OnConnectionSuspended (int i)
-		{
-			
-		}
-	}
+        async Task GetLastLocationFromDevice()
+        {
+            getLastLocationButton.SetText(Resource.String.getting_last_location);
+            var location = await fusedLocationProviderClient.GetLastLocationAsync();
+
+            if (location == null)
+            {
+                latitude.SetText(Resource.String.location_unavailable);
+                longitude.SetText(Resource.String.location_unavailable);
+                provider.SetText(Resource.String.could_not_get_last_location);
+            }
+            else
+            {
+                latitude.Text = Resources.GetString(Resource.String.latitude_string, location.Latitude);
+                longitude.Text = Resources.GetString(Resource.String.longitude_string, location.Longitude);
+                provider.Text = Resources.GetString(Resource.String.provider_string, location.Provider);
+                getLastLocationButton.SetText(Resource.String.get_last_location_button_text);
+            }
+        }
+
+        void RequestLocationPermission(int requestCode)
+        {
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation))
+            {
+                Snackbar.Make(rootLayout, Resource.String.permission_location_rationale, Snackbar.LengthIndefinite)
+                        .SetAction(Resource.String.ok,
+                                   delegate
+                                   {
+                                       ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessFineLocation}, requestCode);
+                                   })
+                        .Show();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, new[] {Manifest.Permission.AccessFineLocation}, requestCode);
+            }
+        }
+
+        async Task StartRequestingLocationUpdates()
+        {
+            requestLocationUpdatesButton.SetText(Resource.String.request_location_in_progress_button_text);
+            await fusedLocationProviderClient.RequestLocationUpdatesAsync(locationRequest, locationCallback);
+        }
+
+        async void StopRequestionLocationUpdates()
+        {
+            latitude2.Text = string.Empty;
+            longitude2.Text = string.Empty;
+            provider2.Text = string.Empty;
+
+            requestLocationUpdatesButton.SetText(Resource.String.request_location_button_text);
+
+            if (isRequestingLocationUpdates)
+            {
+                await fusedLocationProviderClient.RemoveLocationUpdatesAsync(locationCallback);
+            }
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutBoolean(KEY_REQUESTING_LOCATION_UPDATES, isRequestingLocationUpdates);
+            base.OnSaveInstanceState(outState);
+        }
+
+        protected override async void OnResume()
+        {
+            base.OnResume();
+            if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) == Permission.Granted)
+            {
+                if (isRequestingLocationUpdates)
+                {
+                    await StartRequestingLocationUpdates();
+                }
+            }
+            else
+            {
+                RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+            }
+        }
+
+        protected override void OnPause()
+        {
+            StopRequestionLocationUpdates();
+            base.OnPause();
+        }
+
+        bool IsGooglePlayServicesInstalled()
+        {
+            var queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (queryResult == ConnectionResult.Success)
+            {
+                Log.Info("MainActivity", "Google Play Services is installed on this device.");
+                return true;
+            }
+
+            if (GoogleApiAvailability.Instance.IsUserResolvableError(queryResult))
+            {
+                var errorString = GoogleApiAvailability.Instance.GetErrorString(queryResult);
+                Log.Error("MainActivity", "There is a problem with Google Play Services on this device: {0} - {1}",
+                          queryResult, errorString);
+            }
+
+            return false;
+        }
+    }
 }
-
-

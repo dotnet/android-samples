@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-	<string name="hello">Start Location Updates</string>
-	<string name="app_name">Location</string>
+  <string name="ok">OK</string>
+  <string name="get_last_location_button_text">Get Last Location</string>
+  <string name="request_location_button_text">Request Location Updates</string>
+  <string name="request_location_in_progress_button_text">Request Location Updates (In Progress)</string>
+  <string name="app_name">Location Manager Provider Sample</string>
+  <string name="getting_last_location">Getting last location from the Location Manager...</string>
+  <string name="could_not_get_last_location">Could not get the last location!</string>
+  <string name="location_unavailable">Unavailable.</string>
+  <string name="latitude_string">Latitude: %1$f</string>
+  <string name="longitude_string">Longitude: %1$f</string>
+  <string name="provider_string">Provider: %1$s</string>
+  <string name="requesting_updates_provider_string">Provider: %1$s *</string>
+  <string name="location_updates_in_progress">Listening for location updates.</string>
+  <string name="missing_gps_location_provider">No GPS provider for the Location Manager - terminating app.</string>
+  <string name="permission_location_rationale">This sample requires permission to access the device location, or else it will not work.</string>
+  <string name="permission_not_granted_termininating_app">Location permissions not granted - terminating this sample.</string>
 </resources>
