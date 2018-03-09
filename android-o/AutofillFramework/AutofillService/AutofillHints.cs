@@ -23,553 +23,553 @@ namespace AutofillService
             {
                 {
                     View.AutofillHintEmailAddress,
-                    new AutofillHintProperties(View.AutofillHintEmailAddress, (int) SaveDataType.EmailAddress,
+                    new AutofillHintProperties(View.AutofillHintEmailAddress, SaveDataType.EmailAddress,
                         PARTITION_EMAIL, new FakeFieldGeneratorForText(View.AutofillHintEmailAddress, "email{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                        AutofillType.Text, AutofillType.List)
                 },
                 {
-                    View.AutofillHintName, new AutofillHintProperties(View.AutofillHintName, (int) SaveDataType.Generic,
+                    View.AutofillHintName, new AutofillHintProperties(View.AutofillHintName,  SaveDataType.Generic,
                         PARTITION_OTHER, new FakeFieldGeneratorForText(View.AutofillHintName, "name{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     View.AutofillHintUsername, new AutofillHintProperties(View.AutofillHintUsername,
-                        (int) SaveDataType.Username,
+                        SaveDataType.Username,
                         PARTITION_OTHER, new FakeFieldGeneratorForText(View.AutofillHintUsername, "login{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     View.AutofillHintPassword, new AutofillHintProperties(View.AutofillHintPassword,
-                        (int) SaveDataType.Password,
+                         SaveDataType.Password,
                         PARTITION_OTHER, new FakeFieldGeneratorForText(View.AutofillHintPassword, "login{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     View.AutofillHintPhone, new AutofillHintProperties(View.AutofillHintPhone,
-                        (int) SaveDataType.Generic,
+                        SaveDataType.Generic,
                         PARTITION_OTHER, new FakeFieldGeneratorForText(View.AutofillHintPhone, "{0}2345678910"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text, AutofillType.List)
                 },
                 {
                     View.AutofillHintPostalAddress, new AutofillHintProperties(View.AutofillHintPostalAddress,
-                        (int) SaveDataType.Address,
+                        SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(View.AutofillHintPostalAddress,
                             "{0} Fake Ln, Fake, FA, FAA 10001"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     View.AutofillHintPostalCode, new AutofillHintProperties(View.AutofillHintPostalCode,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(View.AutofillHintPostalCode, "1000{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     View.AutofillHintCreditCardNumber, new AutofillHintProperties(View.AutofillHintCreditCardNumber,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(View.AutofillHintCreditCardNumber, "{0}234567"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     View.AutofillHintCreditCardSecurityCode, new AutofillHintProperties(View.AutofillHintCreditCardSecurityCode,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(View.AutofillHintCreditCardSecurityCode, "{0}{0}{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     View.AutofillHintCreditCardExpirationDate, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationDate,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForDate(View.AutofillHintCreditCardExpirationDate),
-                        (int) AutofillType.Date)
+                         AutofillType.Date)
                 },
                 {
                     View.AutofillHintCreditCardExpirationMonth, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationMonth,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorExpirationMonth(View.AutofillHintCreditCardExpirationMonth),
-                        (int) AutofillType.Date)
+                         AutofillType.Date)
                 },
                 {
                     View.AutofillHintCreditCardExpirationYear, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationYear,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorExpirationYear(View.AutofillHintCreditCardExpirationYear),
-                        (int) AutofillType.Text, (int) AutofillType.List, (int) AutofillType.Date)
+                         AutofillType.Text,  AutofillType.List,  AutofillType.Date)
                 },
                 {
                     View.AutofillHintCreditCardExpirationDay, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationDay,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorExpirationDay(View.AutofillHintCreditCardExpirationDay),
-                        (int) AutofillType.Text, (int) AutofillType.List, (int) AutofillType.Date)
+                         AutofillType.Text,  AutofillType.List,  AutofillType.Date)
                 },
                 {
                     W3cHints.HONORIFIC_PREFIX, new AutofillHintProperties(
                         W3cHints.HONORIFIC_PREFIX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForListValue(W3cHints.HONORIFIC_PREFIX,
                             new[] {"Miss", "Ms.", "Mr.", "Mx.", "Sr.", "Dr.", "Lady", "Lord"}),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.GIVEN_NAME, new AutofillHintProperties(
                         W3cHints.GIVEN_NAME,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.GIVEN_NAME, "name{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDITIONAL_NAME, new AutofillHintProperties(
                         W3cHints.ADDITIONAL_NAME,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.ADDITIONAL_NAME, "addtlname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.FAMILY_NAME, new AutofillHintProperties(
                         W3cHints.FAMILY_NAME,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.FAMILY_NAME, "famname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.HONORIFIC_SUFFIX, new AutofillHintProperties(
                         W3cHints.HONORIFIC_SUFFIX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForListValue(W3cHints.HONORIFIC_SUFFIX,
                             new[] {"san", "kun", "chan", "sama"}),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.NEW_PASSWORD, new AutofillHintProperties(
                         W3cHints.NEW_PASSWORD,
-                        (int) SaveDataType.Password,
+                         SaveDataType.Password,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.NEW_PASSWORD, "login{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CURRENT_PASSWORD, new AutofillHintProperties(
                         View.AutofillHintPassword,
-                        (int) SaveDataType.Password,
+                         SaveDataType.Password,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(View.AutofillHintPassword, "login{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ORGANIZATION_TITLE, new AutofillHintProperties(
                         W3cHints.ORGANIZATION_TITLE,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.ORGANIZATION_TITLE, "org{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.ORGANIZATION, new AutofillHintProperties(
                         W3cHints.ORGANIZATION,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.ORGANIZATION, "org{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.STREET_ADDRESS, new AutofillHintProperties(
                         W3cHints.STREET_ADDRESS,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(W3cHints.STREET_ADDRESS, "{0} Fake Ln, Fake, FA, FAA 10001"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LINE1, new AutofillHintProperties(
                         W3cHints.ADDRESS_LINE1,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(W3cHints.ADDRESS_LINE1, "{0} Fake Ln"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LINE2, new AutofillHintProperties(
                         W3cHints.ADDRESS_LINE2,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(W3cHints.ADDRESS_LINE2, "Apt. {0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LINE3, new AutofillHintProperties(
                         W3cHints.ADDRESS_LINE3,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(W3cHints.ADDRESS_LINE3, "FA{0}, FA, FAA"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LEVEL4, new AutofillHintProperties(
                         W3cHints.ADDRESS_LEVEL4,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGenerator(W3cHints.ADDRESS_LEVEL4),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LEVEL3, new AutofillHintProperties(
                         W3cHints.ADDRESS_LEVEL3,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGenerator(W3cHints.ADDRESS_LEVEL3),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LEVEL2, new AutofillHintProperties(
                         W3cHints.ADDRESS_LEVEL2,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGenerator(W3cHints.ADDRESS_LEVEL2),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.ADDRESS_LEVEL1, new AutofillHintProperties(
                         W3cHints.ADDRESS_LEVEL1,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGenerator(W3cHints.ADDRESS_LEVEL1),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.COUNTRY, new AutofillHintProperties(
                         W3cHints.COUNTRY,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGenerator(W3cHints.COUNTRY),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.COUNTRY_NAME, new AutofillHintProperties(
                         W3cHints.COUNTRY_NAME,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForListValue(W3cHints.COUNTRY_NAME, new[] {"USA", "Mexico", "Canada"}),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.POSTAL_CODE, new AutofillHintProperties(
                         W3cHints.POSTAL_CODE,
-                        (int) SaveDataType.Address,
+                         SaveDataType.Address,
                         PARTITION_ADDRESS,
                         new FakeFieldGeneratorForText(W3cHints.POSTAL_CODE, "{0}{0}{0}{0}{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_NAME, new AutofillHintProperties(
                         W3cHints.CC_NAME,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(W3cHints.CC_NAME, "firstname{0}lastname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_GIVEN_NAME, new AutofillHintProperties(
                         W3cHints.CC_GIVEN_NAME,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(W3cHints.CC_GIVEN_NAME, "givenname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_ADDITIONAL_NAME, new AutofillHintProperties(
                         W3cHints.CC_ADDITIONAL_NAME,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(W3cHints.CC_ADDITIONAL_NAME, "addtlname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_FAMILY_NAME, new AutofillHintProperties(
                         W3cHints.CC_FAMILY_NAME,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(W3cHints.CC_FAMILY_NAME, "familyname{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_NUMBER, new AutofillHintProperties(
                         View.AutofillHintCreditCardNumber,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(View.AutofillHintCreditCardNumber, "{0}234567"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_EXPIRATION, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationDate,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForDate(View.AutofillHintCreditCardExpirationDate),
-                        (int) AutofillType.Date)
+                         AutofillType.Date)
                 },
                 {
                     W3cHints.CC_EXPIRATION_MONTH, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationMonth,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorExpirationMonth(View.AutofillHintCreditCardExpirationMonth),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.CC_EXPIRATION_YEAR, new AutofillHintProperties(
                         View.AutofillHintCreditCardExpirationYear,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorExpirationYear(View.AutofillHintCreditCardExpirationYear),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.CC_CSC, new AutofillHintProperties(
                         View.AutofillHintCreditCardSecurityCode,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(View.AutofillHintCreditCardSecurityCode, "{0}{0}{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.CC_TYPE, new AutofillHintProperties(
                         W3cHints.CC_TYPE,
-                        (int) SaveDataType.CreditCard,
+                         SaveDataType.CreditCard,
                         PARTITION_CREDIT_CARD,
                         new FakeFieldGeneratorForText(W3cHints.CC_TYPE, "type{0}"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TRANSACTION_CURRENCY, new AutofillHintProperties(
                         W3cHints.TRANSACTION_CURRENCY,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForListValue(W3cHints.TRANSACTION_CURRENCY,
                             new[] {"USD", "CAD", "KYD", "CRC"}),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TRANSACTION_AMOUNT, new AutofillHintProperties(
                         W3cHints.TRANSACTION_AMOUNT,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForNumberMultiply(W3cHints.TRANSACTION_AMOUNT, 100),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.LANGUAGE, new AutofillHintProperties(
                         W3cHints.LANGUAGE,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForListValue(W3cHints.LANGUAGE,
                             new[] {"Bulgarian", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian"}),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.BDAY, new AutofillHintProperties(
                         W3cHints.BDAY,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForBirthDay(W3cHints.BDAY),
-                        (int) AutofillType.Date)
+                         AutofillType.Date)
                 },
                 {
                     W3cHints.BDAY_DAY, new AutofillHintProperties(
                         W3cHints.BDAY_DAY,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForNumberDivide(W3cHints.BDAY_DAY, 27),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.BDAY_MONTH, new AutofillHintProperties(
                         W3cHints.BDAY_MONTH,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForNumberDivide(W3cHints.BDAY_MONTH, 12),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.BDAY_YEAR, new AutofillHintProperties(
                         W3cHints.BDAY_YEAR,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorBdayYear(W3cHints.BDAY_YEAR),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.SEX, new AutofillHintProperties(
                         W3cHints.SEX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.SEX, "Other"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.URL, new AutofillHintProperties(
                         W3cHints.URL,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.URL, "http://google.com"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.PHOTO, new AutofillHintProperties(
                         W3cHints.PHOTO,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGeneratorForText(W3cHints.PHOTO, "photo{0}.jpg"),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.PREFIX_SECTION, new AutofillHintProperties(
                         W3cHints.PREFIX_SECTION,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.PREFIX_SECTION),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.SHIPPING, new AutofillHintProperties(
                         W3cHints.SHIPPING,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.SHIPPING),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.BILLING, new AutofillHintProperties(
                         W3cHints.BILLING,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.BILLING),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.PREFIX_HOME, new AutofillHintProperties(
                         W3cHints.PREFIX_HOME,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.PREFIX_HOME),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.PREFIX_WORK, new AutofillHintProperties(
                         W3cHints.PREFIX_WORK,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.PREFIX_WORK),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.PREFIX_FAX, new AutofillHintProperties(
                         W3cHints.PREFIX_FAX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.PREFIX_FAX),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.PREFIX_PAGER, new AutofillHintProperties(
                         W3cHints.PREFIX_PAGER,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.PREFIX_PAGER),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL, new AutofillHintProperties(
                         W3cHints.TEL,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_COUNTRY_CODE, new AutofillHintProperties(
                         W3cHints.TEL_COUNTRY_CODE,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_COUNTRY_CODE),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_NATIONAL, new AutofillHintProperties(
                         W3cHints.TEL_NATIONAL,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_NATIONAL),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_AREA_CODE, new AutofillHintProperties(
                         W3cHints.TEL_AREA_CODE,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_AREA_CODE),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_LOCAL, new AutofillHintProperties(
                         W3cHints.TEL_LOCAL,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_LOCAL),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_LOCAL_PREFIX, new AutofillHintProperties(
                         W3cHints.TEL_LOCAL_PREFIX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_LOCAL_PREFIX),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_LOCAL_SUFFIX, new AutofillHintProperties(
                         W3cHints.TEL_LOCAL_SUFFIX,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_LOCAL_SUFFIX),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.TEL_EXTENSION, new AutofillHintProperties(
                         W3cHints.TEL_EXTENSION,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.TEL_EXTENSION),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 },
                 {
                     W3cHints.EMAIL, new AutofillHintProperties(
                         View.AutofillHintEmailAddress,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_EMAIL,
                         new FakeFieldGeneratorForText(W3cHints.EMAIL, "email{0}"),
-                        (int) AutofillType.Text)
+                         AutofillType.Text)
                 },
                 {
                     W3cHints.IMPP, new AutofillHintProperties(
                         W3cHints.IMPP,
-                        (int) SaveDataType.Generic,
+                         SaveDataType.Generic,
                         PARTITION_OTHER,
                         new FakeFieldGenerator(W3cHints.IMPP),
-                        (int) AutofillType.Text, (int) AutofillType.List)
+                         AutofillType.Text,  AutofillType.List)
                 }
             }.ToImmutableDictionary();
 
@@ -577,7 +577,7 @@ namespace AutofillService
         {
         }
 
-        public static bool IsValidTypeForHints(string[] hints, int type)
+        public static bool IsValidTypeForHints(string[] hints, AutofillType type)
         {
             if (hints != null)
             {
@@ -602,9 +602,9 @@ namespace AutofillService
             return sValidHints.ContainsKey(hint);
         }
 
-        public static int GetSaveTypeForHints(string[] hints)
+        public static SaveDataType GetSaveTypeForHints(string[] hints)
         {
-            var saveType = 0;
+            SaveDataType saveType = 0;
             if (hints != null)
             {
                 foreach (string hint in hints)

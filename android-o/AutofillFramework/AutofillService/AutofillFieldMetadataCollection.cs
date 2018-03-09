@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Service.Autofill;
 using Android.Views.Autofill;
 
 namespace AutofillService
@@ -14,8 +15,8 @@ namespace AutofillService
 
         private List<string> mAllAutofillHints = new List<string>();
         private List<string> mFocusedAutofillHints = new List<string>();
-        private int mSize = 0;
-        private int mSaveType = 0;
+        private int mSize;
+        private SaveDataType mSaveType;
 
         public void Add(AutofillFieldMetadata autofillFieldMetadata)
         {
@@ -40,7 +41,7 @@ namespace AutofillService
             }
         }
 
-        public int GetSaveType()
+        public SaveDataType GetSaveType()
         {
             return mSaveType;
         }
