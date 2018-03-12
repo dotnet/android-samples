@@ -16,15 +16,16 @@
 -->
 
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="spacing_normal">8dp</dimen>
-    <dimen name="spacing_micro">4dp</dimen>
-    <dimen name="padding_normal">16dp</dimen>
-    <dimen name="padding_normal_button">12dp</dimen>
-    <dimen name="spacing_large">32dp</dimen>
-    <dimen name="a11y_min_touch_target_dimen">48dp</dimen>
-    <dimen name="text_field_width">250sp</dimen>
-    <dimen name="custom_view_height">150dp</dimen>
+  <!-- Default screen margins, per the Android Design guidelines. -->
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
+  <dimen name="spacing_normal">8dp</dimen>
+  <dimen name="spacing_micro">4dp</dimen>
+  <dimen name="padding_normal">16dp</dimen>
+  <dimen name="padding_normal_button">12dp</dimen>
+  <dimen name="spacing_large">32dp</dimen>
+  <dimen name="a11y_min_touch_target_dimen">48dp</dimen>
+  <dimen name="text_field_width">250sp</dimen>
+  <dimen name="custom_view_height">150dp</dimen>
+  <dimen name="multiple_partitions_height">450dp</dimen>
 </resources>

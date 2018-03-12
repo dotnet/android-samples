@@ -16,129 +16,198 @@
 -->
 
 <resources>
-    <string name="app_name">Autofill Sample</string>
-    <string name="settings_name">Autofill Settings</string>
-    <string name="navigation_button_custom_virtual_view_login_label">Sample Login Using a Custom Virtual View</string>
-    <string name="navigation_button_spinners_credit_card_label">Sample Credit Card Check Out Using Spinners</string>
-    <string name="navigation_button_edittext_login_label">Sample Login Using EditTexts</string>
-    <string name="navigation_button_autocomplete_login_label">Sample Login Using AutoCompleteTextViews</string>
-    <string name="navigation_button_email_compose_label">Sample Email Compose Using EditTexts</string>
-    <string name="username_label">Username</string>
-    <string name="password_label">Password</string>
-    <string name="welcome_text">Success!</string>
-    <string name="standard_view_sign_in">Sign in using standard views</string>
-    <string name="standard_view_autocomplete_sign_in">Sign in using standard views that
-        trigger AutoComplete dialogs when focused</string>
-    <string name="autofill_sign_in_prompt">Tap to sign in.</string>
-    <string name="credit_card_number_label">CC Number</string>
-    <string name="credit_card_expiration_label">CC Exp</string>
-    <string name="credit_card_security_code_label">CC Security Code</string>
-    <string name="settings_cancel">Cancel</string>
-    <string name="settings_save">Save</string>
-    <string name="settings_authenticate_responses">Authenticate responses</string>
-    <string name="settings_authenticate_datasets">Authenticate datasets</string>
-    <string name="settings_clear_data_label">Clear all data (including credentials)</string>
-    <string name="settings_clear_data_confirmation">Are you sure you want to delete all autofill
-        data from the sample service?
-    </string>
-    <string name="settings_clear_data_confirmation_title">Confirmation</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="settings_authentication_header">Authentication</string>
-    <string name="settings_data_header">Data</string>
-    <string name="settings_auth_credentials_label">Update credentials</string>
-    <string name="settings_auth_enter_current_password">Enter current password</string>
-    <string name="settings_auth_enter_new_password">Enter new password</string>
-    <string name="settings_auth_change_credentials_title">Change credentials</string>
-    <string name="clear_label">Clear</string>
-    <string name="login_label">Login</string>
-    <string name="to_label">To</string>
-    <string name="body_label">Body</string>
-    <string name="autofill_master_login_label">Autofill Master Login</string>
-    <string name="submit_label">Submit</string>
-    <string name="edittext_login_info">This is a sample login page that uses standard EditTexts
-        from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
-        code is almost never needed.
-    </string>
-    <string name="autocomplete_login_info">This is a sample login page that uses
-        AutoCompleteTextViews instead of EditTexts. The AutoComplete dialogs can potentially
-        interfere with the Autofill dialogs, so it is necessary to implement the AutofillCallback to
-        disable AutoComplete when Autofill is working.
-    </string>
-    <string name="custom_virtual_login_info">This is a sample login page that uses a custom View with
-        virtual children. Since the Autofill framework does not know how to autofill the virtual
-        children out of the box, it is necessary implement certain Autofill-specific methods and
-        interface directly with AutofillManager.
-    </string>
-    <string name="spinners_credit_card_info">This is a sample credit card checkout page that uses
-        EditTexts and Spinners to input data into the form. While EditTexts are optimized out of the
-        box, Spinners can require a small amount of work when using a custom array adapter.
-        In that case, you need to tell the Autofill framework which values in the adapter map to
-        which indices.
-    </string>
-    <string name="email_compose_info">
-        This is a sample email compose page that uses EditTexts to compose the email. Since none of
-        the fields on the page are important to autofill, it is necessary to set the
-        android:importantForAutofill XML property appropriately for each View. You can either set it
-        to &quot;no&quot; on all non-autofillable Views, or set &quot;noExcludeDescendants&quot;
-        on the root View if all Views in the hierarchy should not be autofilled. In this case, we
-        did the latter.
-    </string>
-    <plurals name="welcome_page_countdown">
-        <item quantity="one">Automatically return to main page in %d second.</item>
-        <item quantity="other">Automatically return to main page in %d seconds.</item>
-    </plurals>
-    <string-array name="month_array">
-        <item>Jan</item>
-        <item>Feb</item>
-        <item>Mar</item>
-        <item>Apr</item>
-        <item>May</item>
-        <item>Jun</item>
-        <item>Jul</item>
-        <item>Aug</item>
-        <item>Sep</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>Dec</item>
-    </string-array>
+  <string name="app_name">Autofill Sample</string>
+  <string name="edge_cases_page_title">Edge Cases</string>
+  <string name="common_cases_page_title">Common Cases</string>
+  <string name="navigation_button_custom_virtual_view_login_label">Sample Login Using a Custom Virtual View</string>
+  <string name="navigation_button_credit_card_label">Sample Credit Card Check Out Using EditTexts</string>
+  <string name="navigation_button_spinners_credit_card_label">Sample Credit Card Check Out Using Spinners</string>
+  <string name="navigation_button_edittext_login_label">Sample Login Using EditTexts</string>
+  <string name="navigation_button_autocomplete_login_label">Sample Login Using AutoCompleteTextViews</string>
+  <string name="navigation_button_email_compose_label">Sample Email Compose Using EditTexts</string>
+  <string name="navigation_button_compound_view_credit_card_label">Sample Credit Card Check Out Using Compound Views</string>
+  <string name="navigation_button_date_picker_credit_card_label">Sample Credit Card Check Out Using Date Picker</string>
+  <string name="navigation_button_multiple_partitions_label">Sample Page with Multiple Data Partitions</string>
+  <string name="navigation_button_web_view_login_label">Sample Login Using a WebView</string>
+  <string name="navigation_button_anti_pattern_credit_card_label">Sample Credit Card Anti Pattern</string>
+  <string name="navigation_button_multistep_signin_label">Multi-Step Sign In</string>
+  <string name="navigation_button_multistep_cc_label">Multi-Step Credit Card Check Out</string>
+  <string name="username_label">Username</string>
+  <string name="password_label">Password</string>
+  <string name="welcome_text">Success!</string>
+  <string name="standard_view_sign_in">Sign in using standard views</string>
+  <string name="standard_view_autocomplete_sign_in">
+    Sign in using standard views that
+    trigger AutoComplete dialogs when focused
+  </string>
+  <string name="credit_card_number_label">CC Number</string>
+  <string name="credit_card_expiration_label">CC Expiration</string>
+  <string name="credit_card_expiration_date_label">CC Exp Date</string>
+  <string name="credit_card_expiration_day_label">CC Exp Day</string>
+  <string name="credit_card_expiration_month_label">CC Exp Month</string>
+  <string name="credit_card_expiration_year_label">CC Exp Year</string>
+  <string name="credit_card_security_code_label">CC Security Code</string>
+  <string name="credit_card_security_code_abbrev_label">CSC</string>
+  <string name="ok">OK</string>
+  <string name="slash">/</string>
+  <string name="cancel">Cancel</string>
+  <string name="clear_label">Clear</string>
+  <string name="login_label">Login</string>
+  <string name="to_label">To</string>
+  <string name="body_label">Body</string>
+  <string name="submit_label">Submit</string>
+  <string name="cc_exp_month_description">Credit Card Expiration Month</string>
+  <string name="cc_exp_year_description">Credit Card Expiration Year</string>
+  <string name="edittext_login_info">
+    This is a sample login page that uses standard EditTexts
+    from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
+    code is almost never needed.
+  </string>
+  <string name="autocomplete_login_info">
+    This is a sample login page that uses
+    AutoCompleteTextViews instead of EditTexts. The AutoComplete dialogs can potentially
+    interfere with the Autofill dialogs, so it is necessary to implement the AutofillCallback to
+    disable AutoComplete when Autofill is working.
+  </string>
+  <string name="custom_virtual_login_info">
+    This is a sample login page that uses a custom View
+    with virtual children. Since the Autofill framework does not know how to autofill the
+    virtual children out of the box, it is necessary implement certain Autofill-specific methods
+    and interface directly with AutofillManager.
+  </string>
+  <string name="credit_card_info">
+    This is a sample credit card checkout page that uses
+    EditTexts to input data into the form.
+  </string>
+  <string name="spinners_credit_card_info">
+    This is a sample credit card checkout page that uses
+    EditTexts and Spinners to input data into the form. While EditTexts are optimized out of the
+    box, Spinners can require a small amount of work when using a custom array adapter.
+    In that case, you need to tell the Autofill framework which values in the adapter map to
+    which indices.
+  </string>
+  <string name="email_compose_info">
+    This is a sample email compose page that uses EditTexts to compose the email. Since none of
+    the fields on the page are important to autofill, it is necessary to set the
+    android:importantForAutofill XML property appropriately for each View. You can either set it
+    to &quot;no&quot; on all non-autofillable Views, or set &quot;noExcludeDescendants&quot;
+    on the root View if all Views in the hierarchy should not be autofilled. In this case, we
+    did the latter.
+  </string>
+  <string name="compound_view_credit_card_info">
+    This is a sample credit card checkout page that uses a custom compound View to input the
+    credit card\'s expiration date and an EditText to input the credit card number. While the
+    EditText is optimized out of the box for autofill, this example shows how to implement
+    certain Autofill-specific methods and XML properties for the custom compound view.
+  </string>
+  <string name="webview_login_info">
+    This is a sample login page that uses a WebView to control the UI. The HTML on the web page
+    uses standard W3C autofill hints that the autofill service recognizes. No extra code is
+    needed other than these hints.
+  </string>
+  <string name="date_picker_credit_card_info">
+    This is a sample credit card checkout page that uses a custom EditText and a DatePicker
+    to input the credit card\'s expiration date and an EditText to input the credit card number.
+    While the EditText is optimized out of the box for autofill, this example shows how to
+    use it to autofill a date field.
+  </string>
+  <string name="multiple_partitions">
+    This is a sample page that contains multiple partitions (login credentials, address,
+    credit card info) and can be used to make sure that only one partition can be autofilled
+    at time.
+  </string>
+  <string name="anti_pattern_credit_card_info">
+    This is a sample credit card checkout page that
+    uses a standard EditText fields to represent the full credit card expiration date (which
+    is tagged with the View.AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_DATE hint).
+    This is an anti-pattern because its autofill type is View.AUTOFILL_TYPE_TEXT,
+    which makes it harder for the autofill service to figure out how to fill them.
+    For example, should a month/year date be represent as "04/2020", "4/2020" or "4/20"?
+    Or perhaps the year comes first, so it could be "2020/04", "2020/4" or "20/4"?
+    The proper way to represent a View.AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_DATE field
+    is through a View.AUTOFILL_TYPE_DATE value, which is what the other credit card sample
+    activities use.
+  </string>
 
-    <string-array name="day_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>30</item>
-        <item>31</item>
-    </string-array>
+  <string name="multi_step_signin_info">
+    <!--TODO-->
+  </string>
 
-    <string-array name="mock_autocomplete_sign_in_suggestions">
-        <item>user-1</item>
-        <item>user-2</item>
-    </string-array>
+  <string name="multi_step_cc_info">
+    <!--TODO-->
+  </string>
+
+  <string name="partition_credentials">Credentials</string>
+  <string name="partition_credit_card">Credit Card</string>
+
+  <string name="message_autofill_ok">Autofilled partition \'%1$s\'</string>
+  <string name="message_autofill_no_partitions">No partition for id %1$d on %2$s</string>
+  <string name="message_autofill_blocked">Blocked cross-partitions: %1$s</string>
+  <string name="message_autofill_readonly">Ignoring autofill on read-only field %1$s</string>
+  <string name="message_autofill_invalid">INVALID</string>
+  <string name="message_credit_card_expiration_type">Representing expiration dates as %1$s</string>
+
+  <string name="message_finished">Finished</string>
+  <string name="message_showing_step">Showing step %1$d</string>
+  <string name="message_step_description">%1$s: %2$s</string>
+
+  <string name="previous_label">Prev</string>
+  <string name="next_label">Next</string>
+  <string name="finish_label">Finish</string>
+
+  <plurals name="welcome_page_countdown">
+    <item quantity="one">Automatically return to main page in %d second.</item>
+    <item quantity="other">Automatically return to main page in %d seconds.</item>
+  </plurals>
+
+  <string-array name="mock_autocomplete_sign_in_suggestions">
+    <item>user-1</item>
+    <item>user-2</item>
+  </string-array>
+
+  <string-array name="month_array">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+  </string-array>
+
+  <string-array name="day_array">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>21</item>
+    <item>22</item>
+    <item>23</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+    <item>27</item>
+  </string-array>
 
 </resources>

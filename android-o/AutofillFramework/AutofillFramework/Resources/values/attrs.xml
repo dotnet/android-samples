@@ -15,13 +15,17 @@
  * limitations under the License.
 -->
 <resources>
-    <declare-styleable name="NavigationItem">
-        <attr name="labelText" format="string" />
-        <attr name="infoText" format="string" />
-        <attr name="itemLogo" format="integer" />
-        <attr name="imageColor" format="reference" />
-    </declare-styleable>
-    <declare-styleable name="InfoButton">
-        <attr name="dialogText" format="string" />
-    </declare-styleable>
+  <declare-styleable name="NavigationItem">
+    <attr name="labelText" format="string" />
+    <attr name="infoText" format="string" />
+    <attr name="destinationActivityName" format="string" />
+    <attr name="itemLogo" format="integer" />
+    <attr name="imageColor" format="reference" />
+  </declare-styleable>
+  <declare-styleable name="InfoButton">
+    <attr name="dialogText" format="string" />
+  </declare-styleable>
+  <declare-styleable name="CustomVirtualView">
+    <attr name="internalTextSize" format="dimension" />
+  </declare-styleable>
 </resources>

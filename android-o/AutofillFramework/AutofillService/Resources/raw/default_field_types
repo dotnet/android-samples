@@ -1,0 +1,1165 @@
+[
+  {
+    "autofillHints": [
+      "country"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "countryseed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "country"
+    }
+  },
+  {
+    "autofillHints": [
+      "transaction-amount"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "transaction-amount"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-family-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "familynameseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "cc-family-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "postal-code",
+      "postalCode"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "1000seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "postalCode"
+    }
+  },
+  {
+    "autofillHints": [
+      "language"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "Bulgarian",
+          "Croatian",
+          "Czech",
+          "Danish",
+          "Dutch",
+          "English",
+          "Estonian"
+        ]
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "language"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-national"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-nationalseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-national"
+    }
+  },
+  {
+    "autofillHints": [
+      "transaction-currency"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "USD",
+          "CAD",
+          "KYD",
+          "CRC"
+        ]
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "transaction-currency"
+    }
+  },
+  {
+    "autofillHints": [
+      "billing"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "billingseed"
+      },
+      "partition": 1,
+      "saveInfo": 0,
+      "typeName": "billing"
+    }
+  },
+  {
+    "autofillHints": [
+      "emailAddress",
+      "email"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "emailAddressseed"
+      },
+      "partition": 2,
+      "saveInfo": 16,
+      "typeName": "emailAddress"
+    }
+  },
+  {
+    "autofillHints": [
+      "password",
+      "current-password"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "usernameseed"
+      },
+      "partition": 0,
+      "saveInfo": 1,
+      "typeName": "password"
+    }
+  },
+  {
+    "autofillHints": [
+      "honorific-suffix"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "san",
+          "kun",
+          "chan",
+          "sama"
+        ]
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "honorific-suffix"
+    }
+  },
+  {
+    "autofillHints": [
+      "shipping"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "shippingseed"
+      },
+      "partition": 1,
+      "saveInfo": 0,
+      "typeName": "shipping"
+    }
+  },
+  {
+    "autofillHints": [
+      "pager"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "pagerseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "pager"
+    }
+  },
+  {
+    "autofillHints": [
+      "impp"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "imppseed"
+      },
+      "partition": 2,
+      "saveInfo": 16,
+      "typeName": "impp"
+    }
+  },
+  {
+    "autofillHints": [
+      "bday-month"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12"
+        ],
+        "textTemplate": "bday-monthseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "bday-month"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-local-prefix"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-local-prefixseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-local-prefix"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "telseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel"
+    }
+  },
+  {
+    "autofillHints": [
+      "fax"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "faxseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "fax"
+    }
+  },
+  {
+    "autofillHints": [
+      "honorific-prefix"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "Miss",
+          "Ms.",
+          "Mr.",
+          "Mx.",
+          "Sr.",
+          "Dr.",
+          "Lady",
+          "Lord"
+        ]
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "honorific-prefix"
+    }
+  },
+  {
+    "autofillHints": [
+      "bday-year"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": []
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "bday-year"
+    }
+  },
+  {
+    "autofillHints": [
+      "creditCardExpirationMonth",
+      "cc-exp-month"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3,
+        4
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12"
+        ]
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardExpirationMonth"
+    }
+  },
+  {
+    "autofillHints": [
+      "work"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "workseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "work"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-csc",
+      "creditCardSecurityCode"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seedseedseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardSecurityCode"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-type"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "cc-typeseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "cc-type"
+    }
+  },
+  {
+    "autofillHints": [
+      "bday-day"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": [],
+        "textTemplate": "seed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "bday-day"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-line2"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "Bldg. seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-line2"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-line1"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seed Fake Ln."
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-line1"
+    }
+  },
+  {
+    "autofillHints": [
+      "postalAddress"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seed Fake Ln, Fake, FA, FAA 10001"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "postalAddress"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-line3"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "Suite seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-line3"
+    }
+  },
+  {
+    "autofillHints": [
+      "phone"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seed2345678910"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "phone"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel_extension"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel_extensionseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel_extension"
+    }
+  },
+  {
+    "autofillHints": [
+      "creditCardNumber",
+      "cc-number"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "seed234567"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardNumber"
+    }
+  },
+  {
+    "autofillHints": [
+      "name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "nameseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "name"
+    }
+  },
+  {
+    "autofillHints": [
+      "additional-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "additional-nameseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "additional-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-local"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-localseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-local"
+    }
+  },
+  {
+    "autofillHints": [
+      "bday"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        4
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": []
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "bday"
+    }
+  },
+  {
+    "autofillHints": [
+      "street-address"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "street-addressseed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "street-address"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-given-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "cc-given-nameseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "cc-given-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "creditCardExpirationDate",
+      "cc-exp"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        4
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": []
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardExpirationDate"
+    }
+  },
+  {
+    "autofillHints": [
+      "creditCardExpirationYear",
+      "cc-exp-year"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3,
+        4
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": [],
+        "textTemplate": "creditCardExpirationYearseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardExpirationYear"
+    }
+  },
+  {
+    "autofillHints": [
+      "organization-title"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "organization-titleseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "organization-title"
+    }
+  },
+  {
+    "autofillHints": [
+      "sex"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "Male",
+          "Female",
+          "Other"
+        ]
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "sex"
+    }
+  },
+  {
+    "autofillHints": [
+      "section-"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "section-seed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "section-"
+    }
+  },
+  {
+    "autofillHints": [
+      "country-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [
+          "USA",
+          "Mexico",
+          "Canada"
+        ]
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "country-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "photo"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "photoseed.jpg"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "photo"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-area-code"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-area-codeseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-area-code"
+    }
+  },
+  {
+    "autofillHints": [
+      "new-password"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "new-passwordseed"
+      },
+      "partition": 0,
+      "saveInfo": 1,
+      "typeName": "new-password"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-local-suffix"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-local-suffixseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-local-suffix"
+    }
+  },
+  {
+    "autofillHints": [
+      "family-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "family-nameseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "family-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "url"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "https://www.google.com/?count\u003dseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "url"
+    }
+  },
+  {
+    "autofillHints": [
+      "home"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "homeseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "home"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-level4"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "address-level4seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-level4"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-level3"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "address-level3seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-level3"
+    }
+  },
+  {
+    "autofillHints": [
+      "organization"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "organizationseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "organization"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-additional-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "cc-additional-nameseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "cc-additional-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-level2"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "address-level2seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-level2"
+    }
+  },
+  {
+    "autofillHints": [
+      "given-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "given-nameseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "given-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "address-level1"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "address-level1seed"
+      },
+      "partition": 1,
+      "saveInfo": 2,
+      "typeName": "address-level1"
+    }
+  },
+  {
+    "autofillHints": [
+      "creditCardExpirationDay"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3,
+        4
+      ],
+      "fakeData": {
+        "dateTemplate": "curr_time",
+        "strictExampleSet": [],
+        "textTemplate": "creditCardExpirationDayseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "creditCardExpirationDay"
+    }
+  },
+  {
+    "autofillHints": [
+      "cc-name"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "Firstnameseed Lastnameseed"
+      },
+      "partition": 3,
+      "saveInfo": 4,
+      "typeName": "cc-name"
+    }
+  },
+  {
+    "autofillHints": [
+      "username"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "usernameseed"
+      },
+      "partition": 0,
+      "saveInfo": 8,
+      "typeName": "username"
+    }
+  },
+  {
+    "autofillHints": [
+      "tel-country-code"
+    ],
+    "fieldType": {
+      "autofillTypes": [
+        1,
+        3
+      ],
+      "fakeData": {
+        "strictExampleSet": [],
+        "textTemplate": "tel-country-codeseed"
+      },
+      "partition": 0,
+      "saveInfo": 0,
+      "typeName": "tel-country-code"
+    }
+  }
+]
