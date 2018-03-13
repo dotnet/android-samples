@@ -18,12 +18,8 @@
 // C# port Coyright (C) 2012 Xamarin Inc.
 //
 
-using System;
-using System.IO;
 using Android.App;
-using Android.Content;
 using Android.Gestures;
-using Android.Runtime;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -32,7 +28,6 @@ using Java.Interop;
 using Object = Java.Lang.Object;
 using Path = System.IO.Path;
 using Environment = Android.OS.Environment;
-using Java.Interop;
 
 namespace GestureBuilder
 {
