@@ -21,441 +21,498 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.IO;
-
 using Android.App;
 using Android.Content;
 using Android.Gestures;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Java.Interop;
-using Java.Lang;
 using Java.Util;
-
 using Object = Java.Lang.Object;
 using Path = System.IO.Path;
 using Environment = Android.OS.Environment;
 
-[assembly:UsesPermission (Android.Manifest.Permission.WriteExternalStorage)]
+[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 
 namespace GestureBuilder
 {
-	[Activity (Label = "@string/application_name",
-               Icon="@drawable/icon")]
-	[IntentFilter (new string [] {"android.intent.action.MAIN"}, Categories = new string [] {
-		Intent.CategoryLauncher, Intent.CategoryDefault})]
-	public class GestureBuilderActivity : ListActivity
-	{
-		internal enum Status {
-			Success,
-			Cancelled,
-			NoStorage,
-			NotLoaded
-		}
-		const int MenuIdRename = 1;
-		const int MenuIdRemove = 2;
-		const int DialogRenameGesture = 1;
-		const int RequestNewGesture = 1;
-    
-		// Type: long (id)
-		const string GESTURES_INFO_ID = "gestures.info_id";
+    [Activity(Label = "@string/application_name", Icon = "@drawable/icon")]
+    [IntentFilter(new[] {"android.intent.action.MAIN"}, Categories = new[]
+    {
+        Intent.CategoryLauncher, Intent.CategoryDefault
+    })]
+    public class GestureBuilderActivity : ListActivity
+    {
+        internal enum Status
+        {
+            Success,
+            Cancelled,
+            NoStorage,
+            NotLoaded
+        }
 
-		readonly string mStoreFile = Path.Combine (Environment.ExternalStorageDirectory.AbsolutePath, "gestures");
+        const int MenuIdRename = 1;
+        const int MenuIdRemove = 2;
+        const int DialogRenameGesture = 1;
+        const int RequestNewGesture = 1;
 
-		class Comparator<T> : Object, IComparator where T : Object
-		{
-			Comparison<T> cmp;
-			public Comparator (Comparison<T> cmp)
-			{
-				this.cmp = cmp;
-			}
+        // Type: long (id)
+        const string GESTURES_INFO_ID = "gestures.info_id";
 
-			public int Compare (Object object1, Object object2)
-			{
-				return cmp ((T) object1, (T) object2);
-			}
+        readonly string mStoreFile = Path.Combine(Environment.ExternalStorageDirectory.AbsolutePath, "gestures");
 
-			public override bool Equals (Object obj)
-			{
-				var o = obj as Comparator<T>;
-				return o != null && cmp == o.cmp;
-			}
-		}
-    
-		Comparator<NamedGesture> mSorter = new Comparator<NamedGesture> ((o1, o2) => o1.Name.CompareTo (o2.Name));
+        class Comparator<T> : Object, IComparator where T : Object
+        {
+            Comparison<T> cmp;
 
-		static GestureLibrary sStore;
+            public Comparator(Comparison<T> cmp)
+            {
+                this.cmp = cmp;
+            }
 
-		GesturesAdapter mAdapter;
-		GesturesLoadTask mTask;
-		TextView mEmpty;
+            public int Compare(Object object1, Object object2)
+            {
+                return cmp((T) object1, (T) object2);
+            }
 
-		Dialog mRenameDialog;
-		EditText mInput;
-		NamedGesture mCurrentRenameGesture;
+            public override bool Equals(Object obj)
+            {
+                var o = obj as Comparator<T>;
+                return o != null && cmp == o.cmp;
+            }
+        }
 
-		protected override void OnCreate (Bundle savedInstanceState) 
-		{
-			base.OnCreate (savedInstanceState);
-			SetContentView (Resource.Layout.gestures_list);
+        Comparator<NamedGesture> mSorter = new Comparator<NamedGesture>((o1, o2) => o1.Name.CompareTo(o2.Name));
 
-			mAdapter = new GesturesAdapter (this);
-			ListAdapter = mAdapter;
+        static GestureLibrary sStore;
 
-			if (sStore == null)
-				sStore = GestureLibraries.FromFile (mStoreFile);
-			mEmpty = (TextView) FindViewById (Android.Resource.Id.Empty);
-			LoadGestures ();
+        GesturesAdapter mAdapter;
+        GesturesLoadTask mTask;
+        TextView mEmpty;
 
-			RegisterForContextMenu (ListView);
-		}
+        Dialog mRenameDialog;
+        EditText mInput;
+        NamedGesture mCurrentRenameGesture;
 
-		internal static GestureLibrary Store {
-			get { return sStore; }
-		}
-		
-		[Export ("reloadGestures")]
-		public void ReloadGestures (View v) 
-		{
-			LoadGestures ();
-		}
-    
-		[Export ("addGesture")]
-		public void AddGesture (View v) 
-		{
-			Intent intent = new Intent (this, typeof (CreateGestureActivity));
-			StartActivityForResult (intent, RequestNewGesture);
-		}
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.gestures_list);
 
-		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data) 
-		{
-			base.OnActivityResult (requestCode, resultCode, data);
-        
-			if (resultCode == Result.Ok) {
-				switch (requestCode) {
-				case RequestNewGesture:
-					LoadGestures ();
-					break;
-				}
-			}
-		}
+            mAdapter = new GesturesAdapter(this);
+            ListAdapter = mAdapter;
 
-		void LoadGestures ()
-		{
-			if (mTask != null && mTask.GetStatus () != AsyncTask.Status.Finished)
-				mTask.Cancel (true);
-			mTask = (GesturesLoadTask) new GesturesLoadTask (this).Execute ();
-		}
+            if (sStore == null)
+                sStore = GestureLibraries.FromFile(mStoreFile);
+            mEmpty = (TextView) FindViewById(Android.Resource.Id.Empty);
+            LoadGestures();
 
-		protected override void OnDestroy ()
-		{
-			base.OnDestroy ();
+            ListView.OnItemLongClickListener = new LongClickListener {that = this};
+        }
 
-			if (mTask != null && mTask.GetStatus () != AsyncTask.Status.Finished) {
-				mTask.Cancel (true);
-				mTask = null;
-			}
+        public class LongClickListener : Object, AdapterView.IOnItemLongClickListener
+        {
+            public GestureBuilderActivity that;
 
-			CleanupRenameDialog ();
-		}
+            public bool OnItemLongClick(AdapterView parent, View view, int position, long id)
+            {
+                var builder = new AlertDialog.Builder(that);
+                var gesture = (NamedGesture) that.ListView.GetItemAtPosition(position);
+                builder.SetTitle(gesture.Name);
+                builder.SetItems(new[] {"Rename", "Delete"}, new ClickListener
+                {
+                    that = that,
+                    position = position
+                });
+                builder.Show();
+                return true;
+            }
+        }
 
-		void CheckForEmpty () 
-		{
-			if (mAdapter.Count == 0)
-				mEmpty.SetText (Resource.String.gestures_empty);
-		}
-	
-		protected override void OnSaveInstanceState (Bundle outState) 
-		{
-			base.OnSaveInstanceState (outState);
-	
-			if (mCurrentRenameGesture != null)
-				outState.PutLong (GESTURES_INFO_ID, mCurrentRenameGesture.Gesture.ID);
-		}
-	
-		protected override void OnRestoreInstanceState (Bundle state) 
-		{
-			base.OnRestoreInstanceState (state);
-	
-			long id = state.GetLong (GESTURES_INFO_ID, -1);
-			if (id != -1) {
-				var entries = sStore.GestureEntries;
-				bool breakOut = false;
-				foreach (string name in entries) {
-					if (breakOut)
-						break;
-					foreach (Gesture gesture in sStore.GetGestures (name)) {
-						if (gesture.ID == id) {
-							mCurrentRenameGesture = new NamedGesture ();
-							mCurrentRenameGesture.Name = name;
-							mCurrentRenameGesture.Gesture = gesture;
-							breakOut = true;
-							break;
-						}
-					}
-				}
-			}
-		}
+        public class ClickListener : Object, IDialogInterfaceOnClickListener
+        {
+            public int position;
+            public GestureBuilderActivity that;
 
-		public override void OnCreateContextMenu (IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) 
-		{
+            public void OnClick(IDialogInterface dialog, int which)
+            {
+                var gesture = (NamedGesture) that.ListView.GetItemAtPosition(position);
+                switch (which + 1)
+                {
+                    case MenuIdRename:
+                        that.RenameGesture(gesture);
+                        break;
+                    case MenuIdRemove:
+                        that.DeleteGesture(gesture);
+                        break;
+                }
+            }
+        }
 
-			base.OnCreateContextMenu (menu, v, menuInfo);
+        internal static GestureLibrary Store => sStore;
 
-			var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-			menu.SetHeaderTitle (((TextView) info.TargetView).Text);
+        [Export("reloadGestures")]
+        public void ReloadGestures(View v)
+        {
+            LoadGestures();
+        }
 
-			menu.Add (0, MenuIdRename, 0, Resource.String.gestures_rename);
-			menu.Add (0, MenuIdRemove, 0, Resource.String.gestures_delete);
-		}
+        [Export("addGesture")]
+        public void AddGesture(View v)
+        {
+            Intent intent = new Intent(this, typeof(CreateGestureActivity));
+            StartActivityForResult(intent, RequestNewGesture);
+        }
 
-		public override bool OnContextItemSelected (IMenuItem item) 
-		{
-			var menuInfo = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
-			NamedGesture gesture = (NamedGesture) (object) menuInfo.TargetView.Tag;
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
 
-			switch (item.ItemId) {
-			case MenuIdRename:
-				RenameGesture (gesture);
-				return true;
-			case MenuIdRemove:
-				DeleteGesture (gesture);
-				return true;
-			}
+            if (resultCode == Result.Ok)
+            {
+                switch (requestCode)
+                {
+                    case RequestNewGesture:
+                        LoadGestures();
+                        break;
+                }
+            }
+        }
 
-			return base.OnContextItemSelected (item);
-		}
+        void LoadGestures()
+        {
+            if (mTask != null && mTask.GetStatus() != AsyncTask.Status.Finished)
+                mTask.Cancel(true);
+            mTask = (GesturesLoadTask) new GesturesLoadTask(this).Execute();
+        }
 
-		void RenameGesture (NamedGesture gesture) 
-		{
-			mCurrentRenameGesture = gesture;
-			ShowDialog (DialogRenameGesture);
-		}
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            if (mTask != null && mTask.GetStatus() != AsyncTask.Status.Finished)
+            {
+                mTask.Cancel(true);
+                mTask = null;
+            }
+
+            CleanupRenameDialog();
+        }
+
+        void CheckForEmpty()
+        {
+            if (mAdapter.Count == 0)
+                mEmpty.SetText(Resource.String.gestures_empty);
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+
+            if (mCurrentRenameGesture != null)
+                outState.PutLong(GESTURES_INFO_ID, mCurrentRenameGesture.Gesture.ID);
+        }
+
+        protected override void OnRestoreInstanceState(Bundle state)
+        {
+            base.OnRestoreInstanceState(state);
+
+            long id = state.GetLong(GESTURES_INFO_ID, -1);
+            if (id != -1)
+            {
+                var entries = sStore.GestureEntries;
+                bool breakOut = false;
+                foreach (string name in entries)
+                {
+                    if (breakOut)
+                        break;
+                    foreach (Gesture gesture in sStore.GetGestures(name))
+                    {
+                        if (gesture.ID == id)
+                        {
+                            mCurrentRenameGesture = new NamedGesture();
+                            mCurrentRenameGesture.Name = name;
+                            mCurrentRenameGesture.Gesture = gesture;
+                            breakOut = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            var builder = new AlertDialog.Builder(this);
+            builder.SetTitle(((TextView) info.TargetView).Text);
+            builder.SetItems(new[] {"Rename", "Delete"}, new ClickListener());
+            builder.Show();
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var menuInfo = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+            var gesture = (NamedGesture) (object) menuInfo.TargetView.Tag;
+
+            switch (item.ItemId)
+            {
+                case MenuIdRename:
+                    RenameGesture(gesture);
+                    return true;
+                case MenuIdRemove:
+                    DeleteGesture(gesture);
+                    return true;
+            }
+
+            return base.OnContextItemSelected(item);
+        }
+
+        void RenameGesture(NamedGesture gesture)
+        {
+            mCurrentRenameGesture = gesture;
+            ShowDialog(DialogRenameGesture);
+        }
 
 
-		protected override Dialog OnCreateDialog (int id) 
-		{
-			if (id == DialogRenameGesture)
-				return CreateRenameDialog ();
-			return base.OnCreateDialog (id);
-		}
+        protected override Dialog OnCreateDialog(int id)
+        {
+            if (id == DialogRenameGesture)
+                return CreateRenameDialog();
+            return base.OnCreateDialog(id);
+        }
 
-		protected override void OnPrepareDialog (int id, Dialog dialog) 
-		{
-			base.OnPrepareDialog (id, dialog);
-			if (id == DialogRenameGesture)
-				mInput.Text = mCurrentRenameGesture.Name;
-		}
-		
-		class DialogCancelListener : Object, IDialogInterfaceOnCancelListener
-		{
-			public DialogCancelListener (Action cleanup)
-			{
-				this.cleanup = cleanup;
-			}
-			Action cleanup;
-			
-			public void OnCancel (IDialogInterface dialog)
-			{
-				cleanup ();
-			}
-		}
+        protected override void OnPrepareDialog(int id, Dialog dialog)
+        {
+            base.OnPrepareDialog(id, dialog);
+            if (id == DialogRenameGesture)
+                mInput.Text = mCurrentRenameGesture.Name;
+        }
 
-		private Dialog CreateRenameDialog () 
-		{
-			View layout = View.Inflate (this, Resource.Layout.dialog_rename, null);
-			mInput = (EditText) layout.FindViewById (Resource.Id.name);
-			((TextView) layout.FindViewById (Resource.Id.label)).SetText (Resource.String.gestures_rename_label);
+        class DialogCancelListener : Object, IDialogInterfaceOnCancelListener
+        {
+            public DialogCancelListener(Action cleanup)
+            {
+                this.cleanup = cleanup;
+            }
 
-			AlertDialog.Builder builder = new AlertDialog.Builder (this);
-			builder.SetIcon (0);
-			builder.SetTitle (GetString (Resource.String.gestures_rename_title));
-			builder.SetCancelable (true);
-			builder.SetOnCancelListener (new DialogCancelListener (CleanupRenameDialog));
-			builder.SetNegativeButton (GetString (Resource.String.cancel_action), delegate { CleanupRenameDialog (); });
-			builder.SetPositiveButton (GetString (Resource.String.rename_action), delegate { ChangeGestureName (); });
-			builder.SetView (layout);
-			return builder.Create ();
-		}
+            Action cleanup;
 
-		void ChangeGestureName () 
-		{
-			string name = mInput.Text.ToString ();
-			if (!string.IsNullOrEmpty (name)) {
-				NamedGesture renameGesture = mCurrentRenameGesture;
-				GesturesAdapter adapter = mAdapter;
-				int count = adapter.Count;
+            public void OnCancel(IDialogInterface dialog)
+            {
+                cleanup();
+            }
+        }
 
-				// Simple linear search, there should not be enough items to warrant
-				// a more sophisticated search
-				for (int i = 0; i < count; i++) {
-					NamedGesture gesture = adapter.GetItem (i);
-					if (gesture.Gesture.ID == renameGesture.Gesture.ID) {
-						sStore.RemoveGesture (gesture.Name, gesture.Gesture);
-						gesture.Name = mInput.Text.ToString ();
-						sStore.AddGesture (gesture.Name, gesture.Gesture);
-						sStore.Save ();
-						ReloadGestures (null);
-						break;
-					}
-				}
+        private Dialog CreateRenameDialog()
+        {
+            View layout = View.Inflate(this, Resource.Layout.dialog_rename, null);
+            mInput = (EditText) layout.FindViewById(Resource.Id.name);
+            ((TextView) layout.FindViewById(Resource.Id.label)).SetText(Resource.String.gestures_rename_label);
 
-				adapter.NotifyDataSetChanged ();
-			}
-			mCurrentRenameGesture = null;
-		}
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.SetIcon(0);
+            builder.SetTitle(GetString(Resource.String.gestures_rename_title));
+            builder.SetCancelable(true);
+            builder.SetOnCancelListener(new DialogCancelListener(CleanupRenameDialog));
+            builder.SetNegativeButton(GetString(Resource.String.cancel_action), delegate { CleanupRenameDialog(); });
+            builder.SetPositiveButton(GetString(Resource.String.rename_action), delegate { ChangeGestureName(); });
+            builder.SetView(layout);
+            return builder.Create();
+        }
 
-		internal void CleanupRenameDialog () 
-		{
-			if (mRenameDialog != null) {
-				mRenameDialog.Dismiss ();
-				mRenameDialog = null;
-			}
-			mCurrentRenameGesture = null;
-		}
+        void ChangeGestureName()
+        {
+            string name = mInput.Text;
+            if (!string.IsNullOrEmpty(name))
+            {
+                NamedGesture renameGesture = mCurrentRenameGesture;
+                GesturesAdapter adapter = mAdapter;
+                int count = adapter.Count;
 
-		internal void DeleteGesture (NamedGesture gesture) 
-		{
-			sStore.RemoveGesture (gesture.Name, gesture.Gesture);
-			sStore.Save ();
+                // Simple linear search, there should not be enough items to warrant
+                // a more sophisticated search
+                for (int i = 0; i < count; i++)
+                {
+                    NamedGesture gesture = adapter.GetItem(i);
+                    if (gesture.Gesture.ID == renameGesture.Gesture.ID)
+                    {
+                        sStore.RemoveGesture(gesture.Name, gesture.Gesture);
+                        gesture.Name = mInput.Text;
+                        sStore.AddGesture(gesture.Name, gesture.Gesture);
+                        sStore.Save();
+                        ReloadGestures(null);
+                        break;
+                    }
+                }
 
-			GesturesAdapter adapter = mAdapter;
-			adapter.SetNotifyOnChange (false);
-			adapter.Remove (gesture);
-			adapter.Sort (mSorter);
-			CheckForEmpty ();
-			adapter.NotifyDataSetChanged ();
+                adapter.NotifyDataSetChanged();
+            }
 
-			Toast.MakeText (this, Resource.String.gestures_delete_success, ToastLength.Short).Show ();
-		}
+            mCurrentRenameGesture = null;
+        }
 
-		class GesturesLoadTask : AsyncTask<Object, NamedGesture, int> {
-			int mThumbnailSize;
-			int mThumbnailInset;
-			Color mPathColor;
-			
-			GestureBuilderActivity parent;
-			public GesturesLoadTask (GestureBuilderActivity parent)
-			{
-				this.parent = parent;
-			}
+        internal void CleanupRenameDialog()
+        {
+            if (mRenameDialog != null)
+            {
+                mRenameDialog.Dismiss();
+                mRenameDialog = null;
+            }
 
-			protected override void OnPreExecute () 
-			{
-				base.OnPreExecute ();
-				
-				mPathColor = parent.Resources.GetColor (Resource.Color.gesture_color);
-				mThumbnailInset = (int) parent.Resources.GetDimension (Resource.Dimension.gesture_thumbnail_inset);
-				mThumbnailSize = (int) parent.Resources.GetDimension (Resource.Dimension.gesture_thumbnail_size);
-				
-				parent.FindViewById (Resource.Id.addButton).Enabled = false;
-				parent.FindViewById (Resource.Id.reloadButton).Enabled = false;
-				
-				parent.mAdapter.SetNotifyOnChange (false);
-				parent.mAdapter.Clear ();
-			}
-			
-			protected override int RunInBackground (params Object [] parms) {
-				if (IsCancelled) return (int) GestureBuilderActivity.Status.Cancelled;
-				if (!Environment.MediaMounted.Equals (Environment.ExternalStorageState))
-					return (int) GestureBuilderActivity.Status.NoStorage;
+            mCurrentRenameGesture = null;
+        }
 
-				GestureLibrary store = sStore;
+        internal void DeleteGesture(NamedGesture gesture)
+        {
+            sStore.RemoveGesture(gesture.Name, gesture.Gesture);
+            sStore.Save();
 
-				if (store.Load ()) {
-					foreach (string name in store.GestureEntries) {
-						if (IsCancelled) break;
+            GesturesAdapter adapter = mAdapter;
+            adapter.SetNotifyOnChange(false);
+            adapter.Remove(gesture);
+            adapter.Sort(mSorter);
+            CheckForEmpty();
+            adapter.NotifyDataSetChanged();
 
-						foreach (Gesture gesture in store.GetGestures (name)) {
-							Bitmap bitmap = gesture.ToBitmap (mThumbnailSize, mThumbnailSize,
+            Toast.MakeText(this, Resource.String.gestures_delete_success, ToastLength.Short).Show();
+        }
+
+        class GesturesLoadTask : AsyncTask<Object, NamedGesture, int>
+        {
+            int mThumbnailSize;
+            int mThumbnailInset;
+            Color mPathColor;
+
+            GestureBuilderActivity parent;
+
+            public GesturesLoadTask(GestureBuilderActivity parent)
+            {
+                this.parent = parent;
+            }
+
+            protected override void OnPreExecute()
+            {
+                base.OnPreExecute();
+
+                mPathColor = parent.Resources.GetColor(Resource.Color.gesture_color);
+                mThumbnailInset = (int) parent.Resources.GetDimension(Resource.Dimension.gesture_thumbnail_inset);
+                mThumbnailSize = (int) parent.Resources.GetDimension(Resource.Dimension.gesture_thumbnail_size);
+
+                parent.FindViewById(Resource.Id.addButton).Enabled = false;
+                parent.FindViewById(Resource.Id.reloadButton).Enabled = false;
+
+                parent.mAdapter.SetNotifyOnChange(false);
+                parent.mAdapter.Clear();
+            }
+
+            protected override int RunInBackground(params Object[] parms)
+            {
+                if (IsCancelled) return (int) GestureBuilderActivity.Status.Cancelled;
+                if (!Environment.MediaMounted.Equals(Environment.ExternalStorageState))
+                    return (int) GestureBuilderActivity.Status.NoStorage;
+
+                GestureLibrary store = sStore;
+
+                if (store.Load())
+                {
+                    foreach (string name in store.GestureEntries)
+                    {
+                        if (IsCancelled) break;
+
+                        foreach (Gesture gesture in store.GetGestures(name))
+                        {
+                            Bitmap bitmap = gesture.ToBitmap(mThumbnailSize, mThumbnailSize,
                                 mThumbnailInset, mPathColor);
-							NamedGesture namedGesture = new NamedGesture ();
-							namedGesture.Gesture = gesture;
-							namedGesture.Name = name;
+                            NamedGesture namedGesture = new NamedGesture();
+                            namedGesture.Gesture = gesture;
+                            namedGesture.Name = name;
 
-							parent.mAdapter.AddBitmap (namedGesture.Gesture.ID, bitmap);
-							PublishProgress (namedGesture);
-						}
-					}
+                            parent.mAdapter.AddBitmap(namedGesture.Gesture.ID, bitmap);
+                            PublishProgress(namedGesture);
+                        }
+                    }
 
-					return (int) GestureBuilderActivity.Status.Success;
-				}
-				
-				return (int) GestureBuilderActivity.Status.NotLoaded;
-			}
+                    return (int) GestureBuilderActivity.Status.Success;
+                }
 
-
-			protected override void OnProgressUpdate (params NamedGesture [] values) 
-			{
-				base.OnProgressUpdate (values);
-
-				GesturesAdapter adapter = parent.mAdapter;
-				adapter.SetNotifyOnChange (false);
-
-				foreach (NamedGesture gesture in values)
-					adapter.Add (gesture);
-
-				adapter.Sort (parent.mSorter);
-				adapter.NotifyDataSetChanged ();
-			}
+                return (int) GestureBuilderActivity.Status.NotLoaded;
+            }
 
 
-			protected override void OnPostExecute (int result) 
-			{
-				base.OnPostExecute (result);
+            protected override void OnProgressUpdate(params NamedGesture[] values)
+            {
+                base.OnProgressUpdate(values);
 
-				if (result == (int) GestureBuilderActivity.Status.NoStorage) {
-					parent.ListView.Visibility = ViewStates.Gone;
-					parent.mEmpty.Visibility = ViewStates.Visible;
-					parent.mEmpty.Text = (parent.GetString (Resource.String.gestures_error_loading,
-					                          parent.mStoreFile));
-				} else {
-					parent.FindViewById (Resource.Id.addButton).Enabled = true;
-					parent.FindViewById (Resource.Id.reloadButton).Enabled = true;
-					parent.CheckForEmpty ();
-				}
-			}
-		}
+                GesturesAdapter adapter = parent.mAdapter;
+                adapter.SetNotifyOnChange(false);
 
-		internal class NamedGesture : Object
-		{
-			public string Name;
-			public Gesture Gesture;
-		}
+                foreach (NamedGesture gesture in values)
+                    adapter.Add(gesture);
 
-		internal class GesturesAdapter : ArrayAdapter<NamedGesture> 
-		{
-			LayoutInflater mInflater;
-			IDictionary<long, Drawable> mThumbnails = new ConcurrentDictionary<long, Drawable> ();
+                adapter.Sort(parent.mSorter);
+                adapter.NotifyDataSetChanged();
+            }
 
-			public GesturesAdapter (Context context) : base (context, 0)
-			{
-				mInflater = (LayoutInflater) context.GetSystemService (Context.LayoutInflaterService);
-			}
 
-			internal void AddBitmap (long id, Bitmap bitmap) 
-			{
-				mThumbnails [id] = new BitmapDrawable (bitmap);
-			}
+            protected override void OnPostExecute(int result)
+            {
+                base.OnPostExecute(result);
 
-			public override View GetView (int position, View convertView, ViewGroup parent) 
-			{
-				if (convertView == null)
-					convertView = mInflater.Inflate (Resource.Layout.gestures_item, parent, false);
+                if (result == (int) GestureBuilderActivity.Status.NoStorage)
+                {
+                    parent.ListView.Visibility = ViewStates.Gone;
+                    parent.mEmpty.Visibility = ViewStates.Visible;
+                    parent.mEmpty.Text = (parent.GetString(Resource.String.gestures_error_loading,
+                        parent.mStoreFile));
+                }
+                else
+                {
+                    parent.FindViewById(Resource.Id.addButton).Enabled = true;
+                    parent.FindViewById(Resource.Id.reloadButton).Enabled = true;
+                    parent.CheckForEmpty();
+                }
+            }
+        }
 
-				NamedGesture gesture = GetItem (position);
-				TextView label = (TextView) convertView;
+        internal class NamedGesture : Object
+        {
+            public string Name;
+            public Gesture Gesture;
+        }
 
-				label.Tag = gesture;
-				label.Text = gesture.Name;
-				label.SetCompoundDrawablesWithIntrinsicBounds (mThumbnails [gesture.Gesture.ID], null, null, null);
+        internal class GesturesAdapter : ArrayAdapter<NamedGesture>
+        {
+            LayoutInflater mInflater;
+            IDictionary<long, Drawable> mThumbnails = new ConcurrentDictionary<long, Drawable>();
 
-				return convertView;
-			}
-		}
-	}
+            public GesturesAdapter(Context context) : base(context, 0)
+            {
+                mInflater = (LayoutInflater) context.GetSystemService(Context.LayoutInflaterService);
+            }
+
+            internal void AddBitmap(long id, Bitmap bitmap)
+            {
+                mThumbnails[id] = new BitmapDrawable(bitmap);
+            }
+
+            public override View GetView(int position, View convertView, ViewGroup parent)
+            {
+                if (convertView == null)
+                    convertView = mInflater.Inflate(Resource.Layout.gestures_item, parent, false);
+
+                NamedGesture gesture = GetItem(position);
+                TextView label = (TextView) convertView;
+
+                label.Tag = gesture;
+                label.Text = gesture.Name;
+                label.SetCompoundDrawablesWithIntrinsicBounds(mThumbnails[gesture.Gesture.ID], null, null, null);
+
+                return convertView;
+            }
+        }
+    }
 }
