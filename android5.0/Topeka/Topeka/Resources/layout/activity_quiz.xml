@@ -22,7 +22,7 @@
     android:orientation="vertical">
 
     <!-- Scale is being used during entry animation -->
-    <md5c3006cea5dd429221ee1619e51aec34b.FloatingActionButton
+    <Topeka.Widgets.Fab.FloatingActionButton
         android:id="@+id/fab_quiz"
         android:layout_width="@dimen/size_fab"
         android:layout_height="@dimen/size_fab"

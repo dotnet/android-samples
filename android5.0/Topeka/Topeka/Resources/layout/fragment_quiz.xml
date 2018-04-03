@@ -60,7 +60,7 @@
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <md5bc6dcdd078eab8e06180c5132c09339f.AvatarView
+                <Topeka.AvatarView
                     android:id="@+id/avatar"
                     android:layout_width="@dimen/size_avatar_toolbar"
                     android:layout_height="@dimen/size_avatar_toolbar"

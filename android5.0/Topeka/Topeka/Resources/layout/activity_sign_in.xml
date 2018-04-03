@@ -19,5 +19,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="md5539d0f0aafb6f23ced9a48b82b08d596.SignInActivity"
+    tools:context="Topeka.Activities.SignInActivity"
     tools:ignore="MergeRootFrame" />
