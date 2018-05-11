@@ -128,7 +128,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\drawable\cheese_1.jpg" />
     <AndroidResource Include="Resources\drawable\cheese_2.jpg" />
     <AndroidResource Include="Resources\drawable\cheese_3.jpg" />
