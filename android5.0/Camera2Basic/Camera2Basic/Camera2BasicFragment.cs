@@ -674,22 +674,22 @@ namespace Camera2Basic
 
         public void OnClick(View v)
         {
-            switch (v.Id)
+            if (v.Id == Resource.Id.picture)
             {
-                case Resource.Id.picture:
-                    TakePicture();
-                    break;
-                case Resource.Id.info:
-                    EventHandler<DialogClickEventArgs> nullHandler = null;
-                    Activity activity = Activity;
-                    if (activity != null)
-                    {
-                        new AlertDialog.Builder(activity)
-                            .SetMessage("This sample demonstrates the basic use of the Camera2 API. ...")
-                            .SetPositiveButton(Android.Resource.String.Ok, nullHandler)
-                            .Show();
-                    }
-                    break;
+                TakePicture();
+            }
+            else if (v.Id == Resource.Id.info)
+            {
+
+                EventHandler<DialogClickEventArgs> nullHandler = null;
+                Activity activity = Activity;
+                if (activity != null)
+                {
+                    new AlertDialog.Builder(activity)
+                        .SetMessage("This sample demonstrates the basic use of the Camera2 API. ...")
+                        .SetPositiveButton(Android.Resource.String.Ok, nullHandler)
+                        .Show();
+                }
             }
         }
 
