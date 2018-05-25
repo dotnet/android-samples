@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRestrictions", "AppRestrictions.csproj", "{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}"
 EndProject
 Global
@@ -11,8 +13,16 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6762E9D8-DDEC-4D81-BF13-6549BA8C588D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92E8522A-4C5F-47F4-9EBA-CD860714C0EE}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = AppRestrictions.csproj

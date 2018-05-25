@@ -22,6 +22,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Preferences;
+using Java.Interop;
 
 namespace AppRestrictions
 {
@@ -72,19 +73,6 @@ namespace AppRestrictions
 			mMultiEntryValue = FindViewById <TextView> (Resource.Id.multi_entry_id);
 			mChoiceEntryValue = FindViewById <TextView> (Resource.Id.choice_entry_id);
 			mBooleanEntryValue = FindViewById <TextView> (Resource.Id.boolean_entry_id);
-
-			/**
-    		* Saves custom app restriction to the shared preference.
-    	 	*
-    		* This flag is used by {@code GetRestrictionsReceiver} to determine if a custom app
-    	 	* restriction activity should be used.
-    	 	*
-    	 	* @param view
-    	 	*/
-			mCustomConfig.Click += delegate (object sender, EventArgs e) {
-				var editor = PreferenceManager.GetDefaultSharedPreferences (this).Edit ();
-				editor.PutBoolean (CUSTOM_CONFIG_KEY, mCustomConfig.Checked).Commit ();
-			};
 		}
 
 		protected override void OnResume ()
@@ -130,6 +118,14 @@ namespace AppRestrictions
 				mMultiEntryValue.Text = tempValue ;
 			}
 		}
+
+        //Saves custom app restriction to the shared preference.
+        [Export]
+        public void onCustomClicked(View view)
+        {
+            var editor = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+            editor.PutBoolean(CUSTOM_CONFIG_KEY, mCustomConfig.Checked).Apply();
+        }
 	}
 }
 
