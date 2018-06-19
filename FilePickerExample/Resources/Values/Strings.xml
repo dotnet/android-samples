@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <string name="app_name">File Picker Example</string>
+  <string name="app_name">File Picker Example</string>
   <string name="no_files_or_directories">No files or directories</string>
+  <string name="permission_externalstorage_rationale">This app requires your permission to be able to read the contents of the SD card.</string>
+  <string name="ok">OK</string>
 </resources>

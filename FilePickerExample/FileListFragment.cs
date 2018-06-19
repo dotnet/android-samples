@@ -1,39 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+using Android;
+using Android.Content.PM;
+using Android.OS;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
+
 namespace com.xamarin.recipes.filepicker
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-
-    using Android.OS;
-    using Android.Support.V4.App;
-    using Android.Util;
-    using Android.Views;
-    using Android.Widget;
-
     /// <summary>
-    ///   A ListFragment that will show the files and subdirectories of a given directory.
+    ///     A ListFragment that will show the files and subdirectories of a given directory.
     /// </summary>
     /// <remarks>
-    ///   <para> This was placed into a ListFragment to make this easier to share this functionality with with tablets. </para>
-    ///   <para> Note that this is a incomplete example. It lacks things such as the ability to go back up the directory tree, or any special handling of a file when it is selected. </para>
+    ///     <para> This was placed into a ListFragment to make this easier to share this functionality with with tablets. </para>
+    ///     <para>
+    ///         Note that this is a incomplete example. It lacks things such as the ability to go back up the directory
+    ///         tree, or any special handling of a file when it is selected.
+    ///     </para>
     /// </remarks>
     public class FileListFragment : ListFragment
     {
         public static readonly string DefaultInitialDirectory = "/sdcard";
-        private FileListAdapter _adapter;
-        private DirectoryInfo _directory;
+        FileListAdapter adapter;
+        DirectoryInfo directoryInfo;
+        Action<View> requestPermissionHandler;
+        static string[] REQUIRED_PERMISSIONS = new[] {Manifest.Permission.ReadExternalStorage};
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            _adapter = new FileListAdapter(Activity, new FileSystemInfo[0]);
-            ListAdapter = _adapter;
+            adapter = new FileListAdapter(Activity, new FileSystemInfo[0]);
+            ListAdapter = adapter;
+
         }
 
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            var fileSystemInfo = _adapter.GetItem(position);
+            var fileSystemInfo = adapter.GetItem(position);
 
             if (fileSystemInfo.IsFile())
             {
@@ -53,11 +62,58 @@ namespace com.xamarin.recipes.filepicker
         public override void OnResume()
         {
             base.OnResume();
-            RefreshFilesList(DefaultInitialDirectory);
+            if (Activity.PermissionsHaveBeenGranted())
+            {
+                RefreshFilesList(DefaultInitialDirectory);
+            }
+            else
+            {
+                RequestExternalStoragePermissions();
+            }
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            if (requestCode == Helpers.REQUEST_STORAGE)
+            {
+                if (grantResults.VerifyPermissions())
+                {
+                    RefreshFilesList(DefaultInitialDirectory);
+                }
+            }
+            else
+            {
+                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+
+        void RequestExternalStoragePermissions()
+        {
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(Activity, Manifest.Permission.ReadExternalStorage))
+            {
+                var rootView = Activity.FindViewById<View>(Android.Resource.Id.Content);
+                requestPermissionHandler = delegate
+                                           {
+                                               ActivityCompat.RequestPermissions(Activity, REQUIRED_PERMISSIONS, Helpers.REQUEST_STORAGE);
+                                           };
+                Snackbar.Make(rootView, Resource.String.permission_externalstorage_rationale, Snackbar.LengthIndefinite)
+                        .SetAction(Resource.String.ok, requestPermissionHandler)
+                        .Show();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(Activity, REQUIRED_PERMISSIONS, Helpers.REQUEST_STORAGE);
+            }
+        }
         public void RefreshFilesList(string directory)
         {
+
+            if (!Activity.PermissionsHaveBeenGranted())
+            {
+                Activity.ShowSimpleSnackbar("Don't have permissions to read external storage.");
+                return;
+            }
+
             IList<FileSystemInfo> visibleThings = new List<FileSystemInfo>();
             var dir = new DirectoryInfo(directory);
 
@@ -75,15 +131,29 @@ namespace com.xamarin.recipes.filepicker
                 return;
             }
 
-            _directory = dir;
-
-            _adapter.AddDirectoryContents(visibleThings);
+            directoryInfo = dir;
+            adapter.AddDirectoryContents(visibleThings);
 
             // If we don't do this, then the ListView will not update itself when then data set 
             // in the adapter changes. It will appear to the user that nothing has happened.
             ListView.RefreshDrawableState();
 
             Log.Verbose("FileListFragment", "Displaying the contents of directory {0}.", directory);
+        }
+
+        public void NavigateUpOneDirectory()
+        {
+            var parentDir = directoryInfo.Parent;
+            var nextDir = directoryInfo.Parent.FullName;
+
+            if ("/".Equals(nextDir))
+            {
+                RefreshFilesList(DefaultInitialDirectory);
+            }
+            else
+            {
+                RefreshFilesList(parentDir.FullName);
+            }
         }
     }
 }
