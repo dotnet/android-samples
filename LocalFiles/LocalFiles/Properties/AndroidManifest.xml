@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="2" package="com.xamarin.android.samples.localfiles" android:theme="@style/MainTheme" android:installLocation="auto">
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<application android:label="@string/app_name" android:debuggable="true" android:theme="@style/MainTheme" android:icon="@drawable/icon"></application>
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="27" />
+</manifest>
