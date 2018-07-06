@@ -15,3 +15,4 @@ This will create three folders with the APK:
 	
 	
 
+> PS: These same example (but **C# console app**) how to build with a unique `android:versionCode`, `android:versionName`, `android:packageName` for each APK and ready to go to Google Play [Link to repo](https://github.com/JTOne123/OnePackagePerABI)
