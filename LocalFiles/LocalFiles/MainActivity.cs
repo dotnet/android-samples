@@ -150,7 +150,7 @@ namespace LocalFiles
         {
             if (RequestExternalStoragePermissionIfNecessary(RC_READ_EXTERNAL_STORAGE_PERMISSION))
             {
-                var count = await fileStorage.LoadFileAsync(filenameGenerator);
+                var count = await fileStorage.ReadFileAsync(filenameGenerator);
                 fileStorage.Count = count;
                 storedValueTextView.Text = string.Format(GetString(Resource.String.stored), count);
             }
@@ -164,7 +164,7 @@ namespace LocalFiles
         {
             fileStorage.Count = 0;
 
-            await fileStorage.DeleteAsync(filenameGenerator);
+            await fileStorage.DeleteFileAsync(filenameGenerator);
 
             storedValueTextView.Text = string.Format(GetString(Resource.String.stored), 0);
             incrementCountButton.SetText(Resource.String.click_to_increment);

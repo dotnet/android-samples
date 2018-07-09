@@ -23,7 +23,7 @@ namespace LocalFiles
         {
             contextRef = new WeakReference<Context>(context);
             PublicStorage = publicStorage;
-            this.directoryType = SanitizeDirectoryType(directoryType);
+            this.directoryType = string.IsNullOrWhiteSpace(directoryType) ? null : directoryType.Trim();
         }
 
         public bool PublicStorage { get; }
@@ -33,7 +33,14 @@ namespace LocalFiles
             string dir;
             if (PublicStorage)
             {
-                dir = Android.OS.Environment.GetExternalStoragePublicDirectory(directoryType).AbsolutePath;
+                if (string.IsNullOrWhiteSpace(directoryType))
+                {
+                    dir = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+                }
+                else
+                {
+                    dir = Android.OS.Environment.GetExternalStoragePublicDirectory(directoryType).AbsolutePath;
+                }
             }
             else
             {
@@ -46,26 +53,6 @@ namespace LocalFiles
             }
 
             return Path.Combine(dir, fileName);
-        }
-
-        /// <summary>
-        /// Makes sure that the directory type is valid for the type of storage.
-        /// </summary>
-        /// <param name="requestedDirectoryType"></param>
-        /// <returns></returns>
-        string SanitizeDirectoryType(string requestedDirectoryType)
-        {
-            string dirType;
-            if (string.IsNullOrEmpty(requestedDirectoryType))
-            {
-                dirType = PublicStorage ? Android.OS.Environment.DirectoryDocuments : null;
-            }
-            else
-            {
-                dirType = requestedDirectoryType.Trim();
-            }
-
-            return dirType;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace LocalFiles
         ///     the async .NET APIs for reading bytes from a file.
         /// </summary>
         /// <returns></returns>
-        public virtual async Task<int> LoadFileAsync(IGenerateNameOfFile fileName)
+        public virtual async Task<int> ReadFileAsync(IGenerateNameOfFile fileName)
         {
             var backingFile = fileName.GetAbsolutePathToFile(DefaultFilename);
             if (backingFile == null || !File.Exists(backingFile))
@@ -85,7 +85,7 @@ namespace LocalFiles
         ///     Resets the count to zero and will delete the backing text file.
         /// </summary>
         /// <param name="filename"></param>
-        public Task DeleteAsync(IGenerateNameOfFile filename)
+        public Task DeleteFileAsync(IGenerateNameOfFile filename)
         {
             Count = 0;
             return Task.Run(() => { File.Delete(filename.GetAbsolutePathToFile(DefaultFilename)); });
