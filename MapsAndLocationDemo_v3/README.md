@@ -1,48 +1,64 @@
-Maps and Location Demo v3
-=========================
+Google Maps v2 Demo
+===================
 
-This code shows how to use Google Maps v2 in an Android application. According to the [Android Dashboard](http://developer.android.com/about/dashboards/index.html), about 93% of all Android devices are running Android 4.0.3 (API level 15) or higher so the focus of this sample is on API 15 and higher. 
+This code provides an example of how to use Google Maps v2 in an
+Android application. The **SimpleMapDemo** project demonstrates the
+basic features of Google Maps for Android v2. It requires the Google
+Play Services client library, and it is designed to run on API 15
+devices and later.
 
-This sample is relevant for users of Xamarin.Android 4.8 or greater.
-
-The `Debug` and `Release` build configurations contain the following projects:
-
-* **LocationDemo** - this project shows how to use the LocationManager to figure out where the device is. This project does not require Google Play Services client library.
-* **SimpleMapDemo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library, and should run on API 15 devices and up.
-* **SimpleMapDemo_Froyo** - this project demonstrates some of the simple features of Google Maps for Android v2. It does require the Google Play Services client library, and should run on API 8 devices and up. 
-
-**Note:** Ensure that the package name of your application is all lower case. Android is very particular and the Google Maps API will not authenticate the API key property if the package name has mixed case.
+For an example of gathering location data,
+see the [FusedLocationProvider](https://developer.xamarin.com/samples/monodroid/FusedLocationProvider/)
+code example. (The **LocationDemo** project that was previously part of
+**MapsAndLocationDemo\_v3** is obsolete and has been removed from the
+solution.)
 
 ## Prerequisites
 
-The SimpleMapDemo_Froyo sample uses the Google Play Services NuGet package.
+- The **SimpleMapDemo** sample uses Xamarin GooglePlayServices NuGets
+  that are automatically downloaded when you build the project.
 
-The SimpleMapDemo sample uses the Google Play Services component that is available in the Xamarin Component Store.
+- You must also have the Google Play Client Services library installed
+  in order to use the Component. You can install this by using the
+  Android SDK Manager. This library is available under **Tools > Extras**:
 
-You must also have the Google Play Client Services library installed in order to use the Component. You can install this by using the Android SDK Manager. This library is available under the *Extras* folder:
+    ![Selecting Google Play Services in the Android SDK Manager](images/android_sdk_manager.png)
 
-![Link File](/images/android_sdk_manager.png)
+
+**Note:** The package name of your application should be all lower
+case. Android is very particular and the Google Maps API will not
+authenticate the API key property if the package name has mixed case.
 
 Google Maps v2 API Key
 ----------------------
 
-You must [obtain a new API Key](https://developers.google.com/maps/documentation/android/start#the_google_maps_api_key) for Google Maps v2. API keys from Google Maps v1 will not work. 
+You must
+[obtain a new API Key](https://developers.google.com/maps/documentation/android/start#the_google_maps_api_key)
+for Google Maps v2. API keys from Google Maps v1 will not work.
 
-The location of the debug.keystore file that Xamarin.Android uses depends on your platform:
+The location of the debug.keystore file that Xamarin.Android uses
+depends on your platform:
 
-- **Windows Vista / Windows 7 / Windows 8**: `C:\Users\[USERNAME]\AppData\Local\Xamarin\Mono for Android\debug.keystore`
-- **OSX** : `/Users/[USERNAME]/.local/share/Xamarin/Mono for Android/debug.keystore`
+- **Windows**: `C:\Users\[USERNAME]\AppData\Local\Xamarin\Mono for Android\debug.keystore`
+- **macOS** : `/Users/[USERNAME]/.local/share/Xamarin/Mono for Android/debug.keystore`
 
-To obtain the SHA1 fingerprint of the debug keystore, you can use the `keytool` command that is a part of the JDK. This is an example of using `keytool` at the command-line:
+To obtain the SHA1 fingerprint of the debug keystore, you can use the
+`keytool` command that is a part of the JDK. This is an example of
+using `keytool` at the command-line:
 
     $ keytool -V -list -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
 
 Adding the API Key to your application
 --------------------------------------
 
-It goes in your application's manifest, contained in the file Properties/AndroidManifest.xml. From there, the Maps API reads the key value and passes it to the Google Maps server, which then confirms that you have access to Google Maps data. 
+The API key goes in your application's manifest, contained in the file
+**Properties/AndroidManifest.xml**. From there, the Maps API reads the key
+value and passes it to the Google Maps server, which then confirms that
+you have access to Google Maps data.
 
-In AndroidManifest.xml, add the following element as a child of the <application> element, by inserting it just before the closing tag </application> 
+In AndroidManifest.xml, add the following element as a child of the
+`<application>` element, by inserting it just before the closing tag
+`</application>`
 
     <application android:label="@string/app_name">
 
@@ -57,7 +73,9 @@ In AndroidManifest.xml, add the following element as a child of the <application
 Specifying additional permissions
 ---------------------------------
 
-Besides permissions required by other parts of your application, you must add the following permissions to AndroidManifest.xml in order to use the Google Maps Android API: 
+Besides permissions required by other parts of your application, you
+must add the following permissions to AndroidManifest.xml in order to
+use the Google Maps Android API:
 
 	<!-- We need to be able to download map tiles and access Google Play Services-->
 
@@ -84,13 +102,22 @@ Besides permissions required by other parts of your application, you must add th
 Verifying Google Play Services installation on your device or emulator
 ----------------------------------------------------------------------
 
-[Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms) must be installed on a device or emulator before Google Maps for Android v2 will work.
+[Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms)
+must be installed on a device or emulator before Google Maps for
+Android v2 will work.
 
-Emulators using the [Google APIs Add-On](https://developers.google.com/android/add-ons/google-apis/) with API 17 and higher have Google Play Services included in the Google APIs Add On.
+Emulators using the
+[Google APIs Add-On](https://developers.google.com/android/add-ons/google-apis/)
+with API 17 and higher have Google Play Services included in the Google
+APIs Add On.
 
-Emulators not using the Google APIs Add-On images, *will not have Google Play Services installed*. The appropriate APKs may be manually installed into the emulator image, but installing Google Play Services is beyond the scope of this example. 
+Emulators not using the Google APIs Add-On images, *will not have
+Google Play Services installed*. The appropriate APKs may be manually
+installed into the emulator image, but installing Google Play Services
+is beyond the scope of this example.
 
-If the device does not have Google Play Services installed, you will see a stack trace similar to the following:
+If the device does not have Google Play Services installed, you will
+see a stack trace similar to the following:
 
 	com.htc.autotest.dlib.RecordEngine in loader dalvik.system.DexClassLoader@4052ca48Loaded assembly: Mono.Android.Support.v4.dll [External]
 	
@@ -127,32 +154,22 @@ If the device does not have Google Play Services installed, you will see a stack
 	Sending signal. PID: 19208 SIG: 9
 	
 	
-Backwards Compatibility with GingerBread / Froyo
-------------------------------------------------
+# Troubleshooting
 
-Google Play Services is supported on Android 2.2 (API level 8) or higher. This binding will work on these older API's, but some changes must be made to the binding library project and the sample project first:
+## AAPT.EXE location incorrect
 
-* Install the [Google Play Services (Froyo) component](https://components.xamarin.com/view/googleplayservicesfroyo/).
-* In the MapsAndLocationDemo project, change the target framework to **Android 2.2**.
-* In the MapsAndLocationDemo, add a reference to **Mono.Android.Support.V4**.
-* In the MapsAndLocationDemo fix the compile errors: 
-	* Change <code>FragmentManager</code> to <code>SupportFragmentManager</code>
-	* Change <code>Activity</code> to <code>FragmentActivity</code>
-	* Change <code>MapFragment</code> to <code>SupportMapFragment</code>
-	* Change <code>using Android.App;</code> to <code>using Android.Support.V4.App;</code>
+Google changed the location of certain tools in r22 of the Android SDK
+(release in mid-May, 2013), which may cause Xamarin.Android to report
+this error. The forum post
+[aapt.exe location incorrect](http://forums.xamarin.com/discussion/comment/15360/#Comment_15360)
+contains some helpful advice for dealing with this issue.
 
-At this point the projects will run on Android 2.2 and Android 2.3 devices. 
+## "does not implement inherited abstract member" compile error
 
-#Troubleshooting
-
-##AAPT.EXE location incorrect
-
-Google changed the location of certain tools in r22 of the Android SDK (release in mid-May, 2013), which may cause Xamarin.Android to report this error. The forum post [aapt.exe location incorrect](http://forums.xamarin.com/discussion/comment/15360/#Comment_15360) contains some helpful advice for dealing with this issue.
-
-##"does not implement inherited abstract member" compile error
-
-This error is typically caused by one of two things:
-
-1. **Out of date version of Xamarin.Android** - As of June 13, 2013 please use Xamarin.Android 4.6.8 from the Stable update channel. Older versions of Xamarin.Android do not seem to work. The Beta and Alpha channels do not receive the same level of QA. Care and patience are required if you wish to use the Alpha or Beta builds for production applications.
-
-2. **A stale `google-play-services_lib` directory** - Ensure that you have an up-to-date version of the Google Play Services library via the Android SDK manager, and ensure that the Android Library project that your project is using is also up to date. The forum post [Google Maps v2 and "does not implement inherited abstract member" messages](http://forums.xamarin.com/discussion/5030/google-maps-v2-and-does-not-implement-inherited-abstract-member-messages) will also be useful in troubleshooting this issue.
+This error is typically caused by a stale `google-play-services_lib`
+directory &ndash; Ensure that you have an up-to-date version of the
+Google Play Services library via the Android SDK manager, and ensure
+that the Android Library project that your project is using is also up
+to date. The forum post
+[Google Maps v2 and "does not implement inherited abstract member" messages](http://forums.xamarin.com/discussion/5030/google-maps-v2-and-does-not-implement-inherited-abstract-member-messages)
+will also be useful in troubleshooting this issue.
