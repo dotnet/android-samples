@@ -7,5 +7,5 @@
 	<LicenseRequirement>Indie</LicenseRequirement>
 	<Tags>AndroidL, Notifications</Tags>
     <SupportedPlatforms>Android</SupportedPlatforms>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -7,6 +7,8 @@ Android P Mini Demo
 This sample demonstrates the new [DisplayCutout](https://developer.android.com/reference/android/view/DisplayCutout.html)
 and image notification features in Android P. 
 
+## Display Cutout Demo
+
 The display cutout demo provides three buttons to select a display
 cutout mode:
 
@@ -23,13 +25,27 @@ the display cutout area.
 
 -   **Reset** &ndash; Changes the app back to non-fullscreen mode.
 
+If you are using the Android emulator, you must first enable cutout
+mode from within the emulator while it is running an Android P virtual
+device image:
+
+1.  Click **Setup Settings > System > Advanced > Developer Options**
+
+2.  Under **Developer Options**, scroll down to **Drawing** and click
+    **Simulate a display with a cutout**.
+
+3.  Select **Tall display cutout** to simulate a typical phone.
+
+
+## Notification Demo
+
 The notification demo generates a notification by using the new
 [Person](https://developer.android.com/reference/android/app/Person.html)
-class and includes an image in the notification by using the new
- [Notification.MessagingStyle.Message.setData](https://developer.android.com/reference/android/app/Notification.MessagingStyle.Message.html#setData%28java.lang.String,%20android.net.Uri) method.
+class, and it includes an image in the notification by using the new
+ [Notification.MessagingStyle.Message.SetData](https://developer.android.com/reference/android/app/Notification.MessagingStyle.Message.html#setData%28java.lang.String,%20android.net.Uri) method.
 
 Clicking the **Send Image Notification** button causes the app to send an
-example text notification followed several seconds later by a notification
+example text notification followed (several seconds later) by a notification
 that contains an image.
 
 
