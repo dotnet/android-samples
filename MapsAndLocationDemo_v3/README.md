@@ -22,7 +22,7 @@ solution.)
   in order to use the Component. You can install this by using the
   Android SDK Manager. This library is available under **Tools > Extras**:
 
-    ![Selecting Google Play Services in the Android SDK Manager](images/android_sdk_manager.png)
+    [ ![](Screenshots/sdk_manager-sml.png)](Screenshots/sdk_manager.png)
 
 
 **Note:** The package name of your application should be all lower
