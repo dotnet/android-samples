@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidPMiniDemo</string>
+    <string name="noti_chan_demo">Demo</string>
+    <string name="action_settings">Settings</string>
+</resources>

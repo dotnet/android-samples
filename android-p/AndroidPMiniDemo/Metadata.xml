@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>985E5008-E2EF-4FF5-B790-6566F219648C</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates the display cutout and image notifications of Android Ps</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>AndroidL, Notifications</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+</SampleMetadata>
