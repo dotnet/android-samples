@@ -1,7 +1,7 @@
 Android P Mini Demo 
 ===================
 
-**AndroidPMiniDemo** is a sample app that accompanies the forthcoming article,
+**AndroidPMiniDemo** is a sample app that accompanies the article,
 [Android P Preview](https://docs.microsoft.com/en-us/xamarin/android/platform/android-p).
 
 This sample demonstrates the new display cutout and image notification features 

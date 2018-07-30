@@ -2,10 +2,8 @@
 <SampleMetadata>
 	<ID>985E5008-E2EF-4FF5-B790-6566F219648C</ID>
 	<IsFullApplication>false</IsFullApplication>
-    <Brief>Demonstrates the display cutout and image notifications of Android Ps</Brief>
 	<Level>Intermediate</Level>
-	<LicenseRequirement>Indie</LicenseRequirement>
-	<Tags>AndroidL, Notifications</Tags>
-    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Tags>Platform Features, Notifications</Tags>
 	<Gallery>true</Gallery>
+    <Brief>Demonstrates the display cutout and image notifications in Android P.</Brief>
 </SampleMetadata>
