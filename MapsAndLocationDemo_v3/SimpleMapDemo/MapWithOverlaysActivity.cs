@@ -1,176 +1,157 @@
+using Android.App;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using Android.Graphics;
+using Android.OS;
+using Android.Support.V7.App;
+using Android.Widget;
+
 namespace SimpleMapDemo
 {
     using System;
 
-    using Android.App;
-    using Android.Gms.Maps;
-    using Android.Gms.Maps.Model;
-    using Android.OS;
-    using Android.Widget;
-
     [Activity(Label = "@string/activity_label_mapwithoverlays")]
-	public class MapWithOverlaysActivity : Activity, IOnMapReadyCallback
+    public class MapWithOverlaysActivity : AppCompatActivity, IOnMapReadyCallback
     {
-        private static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
-        private static readonly LatLng LeaveFromHereToMaui = new LatLng(82.4986, -62.348);
-        private static readonly LatLng[] LocationForCustomIconMarkers = new[]
-                                                                            {
-                                                                                new LatLng(40.741773, -74.004986),
-                                                                                new LatLng(41.051696, -73.545667),
-                                                                                new LatLng(41.311197, -72.902646)
-                                                                            };
-        private string _gotoMauiMarkerId;
-        private GoogleMap _map;
-        private MapFragment _mapFragment;
-        private Marker _polarBearMarker;
-        private GroundOverlay _polarBearOverlay;
+        static readonly LatLng InMaui = new LatLng(20.72110, -156.44776);
+        static readonly LatLng LeaveFromHereToMaui = new LatLng(58.768410, -94.164963);
 
+        static readonly LatLng[] LocationForCustomIconMarkers =
+        {
+            new LatLng(40.741773, -74.004986),
+            new LatLng(41.051696, -73.545667),
+            new LatLng(41.311197, -72.902646)
+        };
+
+        GoogleMap googleMap;
+        SupportMapFragment mapFragment;
+        string gotMauiMarkerId;
+        Marker polarBearMarker;
+        GroundOverlay polarBearOverlay;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.MapWithOverlayLayout);
-            InitMapFragment();
-            SetupMapIfNeeded();
+
+            mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.map);
+            mapFragment.GetMapAsync(this);
+
         }
+
+        public void OnMapReady(GoogleMap map)
+        {
+            googleMap = map;
+
+            var mapOptions = new GoogleMapOptions()
+                             .InvokeMapType(GoogleMap.MapTypeNormal)
+                             .InvokeZoomControlsEnabled(false)
+                             .InvokeCompassEnabled(true);
+
+
+
+            AddMonkeyMarkersToMap();
+            AddInitialPolarBarToMap();
+
+            googleMap.MyLocationEnabled = true;
+            
+            // Animate the move on the map so that it is showing the markers we added above.
+            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
+
+            // Setup a handler for when the user clicks on a marker.
+            googleMap.MarkerClick += MapOnMarkerClick;
+        }
+
 
         protected override void OnPause()
         {
-            base.OnPause();
-
             // Pause the GPS - we won't have to worry about showing the 
             // location.
-            _map.MyLocationEnabled = false;
+            googleMap.MyLocationEnabled = false;
 
-            _map.MarkerClick -= MapOnMarkerClick;
+            googleMap.MarkerClick -= MapOnMarkerClick;
 
-            _map.InfoWindowClick += HandleInfoWindowClick;
+            googleMap.InfoWindowClick += HandleInfoWindowClick;
+
+            base.OnPause();
+
         }
 
-        protected override void OnResume()
+
+        void AddInitialPolarBarToMap()
         {
-            base.OnResume();
-            if (SetupMapIfNeeded())
-            {
-                _map.MyLocationEnabled = true;
+            var markerOptions = new MarkerOptions()
+                                .SetSnippet("Click me to go on vacation.")
+                                .SetPosition(LeaveFromHereToMaui)
+                                .SetTitle("Goto Maui");
+            polarBearMarker = googleMap.AddMarker(markerOptions);
+            polarBearMarker.ShowInfoWindow();
 
-                // Setup a handler for when the user clicks on a marker.
-                _map.MarkerClick += MapOnMarkerClick;
-            }
-        }
-
-        private void AddInitialPolarBarToMap()
-        {
-            MarkerOptions markerOptions = new MarkerOptions()
-                .SetSnippet("Click me to go on vacation.")
-                .SetPosition(LeaveFromHereToMaui)
-                .SetTitle("Goto Maui");
-            _polarBearMarker = _map.AddMarker(markerOptions);
-            _polarBearMarker.ShowInfoWindow();
-
-            _gotoMauiMarkerId = _polarBearMarker.Id;
+            gotMauiMarkerId = polarBearMarker.Id;
 
             PositionPolarBearGroundOverlay(LeaveFromHereToMaui);
         }
 
         /// <summary>
-        ///   Add three markers to the map.
+        ///     Add three markers to the map.
         /// </summary>
-        private void AddMonkeyMarkersToMap()
+        void AddMonkeyMarkersToMap()
         {
-            for (int i = 0; i < LocationForCustomIconMarkers.Length; i++)
+            for (var i = 0; i < LocationForCustomIconMarkers.Length; i++)
             {
-                BitmapDescriptor icon = BitmapDescriptorFactory.FromResource(Resource.Drawable.monkey);
-                MarkerOptions markerOptions = new MarkerOptions()
-                    .SetPosition(LocationForCustomIconMarkers[i])
-                    .InvokeIcon(icon)
-                    .SetSnippet(String.Format("This is marker #{0}.", i))
-                    .SetTitle(String.Format("Marker {0}", i));
-                _map.AddMarker(markerOptions);
+                var icon = BitmapDescriptorFactory.FromResource(Resource.Drawable.monkey);
+                var markerOptions = new MarkerOptions()
+                                    .SetPosition(LocationForCustomIconMarkers[i])
+                                    .SetIcon(icon)
+                                    .SetSnippet($"This is marker #{i}.")
+                                    .SetTitle($"Marker {i}");
+                googleMap.AddMarker(markerOptions);
             }
         }
 
-        private void HandleInfoWindowClick(object sender, GoogleMap.InfoWindowClickEventArgs e)
+        void HandleInfoWindowClick(object sender, GoogleMap.InfoWindowClickEventArgs e)
         {
-            CircleOptions circleOptions = new CircleOptions();
+            var circleOptions = new CircleOptions();
             circleOptions.InvokeCenter(InMaui);
             circleOptions.InvokeRadius(100.0);
         }
 
-        private void InitMapFragment()
-        {
-            _mapFragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
-            if (_mapFragment == null)
-            {
-                GoogleMapOptions mapOptions = new GoogleMapOptions()
-                    .InvokeMapType(GoogleMap.MapTypeSatellite)
-                    .InvokeZoomControlsEnabled(false)
-                    .InvokeCompassEnabled(true);
 
-                FragmentTransaction fragTx = FragmentManager.BeginTransaction();
-                _mapFragment = MapFragment.NewInstance(mapOptions);
-                fragTx.Add(Resource.Id.mapWithOverlay, _mapFragment, "map");
-                fragTx.Commit();
-            }
-			_mapFragment.GetMapAsync(this);
-        }
-
-        private void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
+        void MapOnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs markerClickEventArgs)
         {
             markerClickEventArgs.Handled = true;
 
-			Marker marker = markerClickEventArgs.Marker;
-            if (marker.Id.Equals(_gotoMauiMarkerId))
+            var marker = markerClickEventArgs.Marker;
+            if (marker.Id.Equals(gotMauiMarkerId))
             {
                 PositionPolarBearGroundOverlay(InMaui);
-                _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(InMaui, 13));
-                _gotoMauiMarkerId = null;
-                _polarBearMarker.Remove();
-                _polarBearMarker = null;
+                googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(InMaui, 13));
+                gotMauiMarkerId = null;
+                polarBearMarker.Remove();
+                polarBearMarker = null;
             }
             else
             {
-                Toast.MakeText(this, String.Format("You clicked on Marker ID {0}", marker.Id), ToastLength.Short).Show();
+                Toast.MakeText(this, $"You clicked on Marker ID {marker.Id}", ToastLength.Short).Show();
             }
         }
 
-        private void PositionPolarBearGroundOverlay(LatLng position)
+        void PositionPolarBearGroundOverlay(LatLng position)
         {
-            if (_polarBearOverlay == null)
+            if (polarBearOverlay == null)
             {
-                BitmapDescriptor image = BitmapDescriptorFactory.FromResource(Resource.Drawable.polarbear);
-                GroundOverlayOptions groundOverlayOptions = new GroundOverlayOptions()
-                    .Position(position, 150, 200)
-                    .InvokeImage(image);
-                _polarBearOverlay = _map.AddGroundOverlay(groundOverlayOptions);
+               
+                var polarBear = BitmapDescriptorFactory.FromResource(Resource.Drawable.polarbear);
+                var groundOverlayOptions = new GroundOverlayOptions()
+                                           .InvokeImage(polarBear)
+                                           .Anchor(0, 1)
+                                           .Position(position, 150, 200);
+                polarBearOverlay = googleMap.AddGroundOverlay(groundOverlayOptions);
             }
             else
             {
-                _polarBearOverlay.Position = InMaui;
+                polarBearOverlay.Position = InMaui;
             }
-        }
-
-		public void OnMapReady (GoogleMap map)
-		{
-			_map = map;
-		}
-
-        private bool SetupMapIfNeeded()
-        {
-            if (_map == null)
-            {
-                if (_map != null)
-                {
-                    AddMonkeyMarkersToMap();
-                    AddInitialPolarBarToMap();
-
-                    // Animate the move on the map so that it is showing the markers we added above.
-                    _map.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
-                    return true;
-                }
-                return false;
-            }
-            return true;
         }
     }
 }

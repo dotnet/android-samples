@@ -1,18 +1,18 @@
-﻿namespace SimpleMapDemo
-{
-    using Android.App;
-    using Android.OS;
+﻿using Android.App;
+using Android.OS;
 
-    internal class ErrorDialogFragment :DialogFragment
+namespace SimpleMapDemo
+{
+    class ErrorDialogFragment : DialogFragment
     {
-        public ErrorDialogFragment(Dialog dialog) 
+        public ErrorDialogFragment(Dialog dialog)
         {
             Dialog = dialog;
         }
 
-        public new Dialog Dialog { get; private set; }
+        public new Dialog Dialog { get; }
 
-        public override Dialog OnCreateDialog (Bundle savedInstanceState)
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
             return Dialog;
         }

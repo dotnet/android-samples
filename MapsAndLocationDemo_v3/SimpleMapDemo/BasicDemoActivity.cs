@@ -1,10 +1,11 @@
+using Android.App;
+using Android.OS;
+using Android.Support.V7.App;
+
 namespace SimpleMapDemo
 {
-    using Android.App;
-    using Android.OS;
-
     [Activity(Label = "@string/activity_label_axml")]
-    public class BasicDemoActivity : Activity
+    public class BasicDemoActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
