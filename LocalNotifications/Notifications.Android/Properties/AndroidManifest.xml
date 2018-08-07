@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Notifications.Android">
-	<uses-sdk />
-	<application android:label="Notifications.Android"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="1.1" package="Notifications.Android" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="27" />
+	<application android:label="Notifications.Android" android:icon="@drawable/Icon" android:theme="@style/AppTheme"></application>
 </manifest>
