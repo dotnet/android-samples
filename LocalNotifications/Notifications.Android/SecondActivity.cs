@@ -16,7 +16,7 @@ namespace Notifications
             base.OnCreate(bundle);
 
             // Get the count value passed to us from MainActivity:
-            var count = Intent.Extras.GetInt("count", -1);
+            var count = Intent.Extras.GetInt(MainActivity.COUNT_KEY, -1);
 
             // No count was passed? Then just return.
             if (count <= 0)
