@@ -6,7 +6,7 @@
     using Android.Widget;
 
     [Activity(Label = "EditTextSample", MainLauncher = true, Icon = "@drawable/icon")]
-    public class Activity1 : Activity
+    public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -15,7 +15,7 @@
             SetContentView(Resource.Layout.Main);
             EditText edittext = FindViewById<EditText>(Resource.Id.edittext);
 
-            edittext.KeyPress += (object sender, View.KeyEventArgs e) =>{
+            edittext.KeyPress += (object sender, View.KeyEventArgs e) => {
 				e.Handled = false;
                 if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
                 {

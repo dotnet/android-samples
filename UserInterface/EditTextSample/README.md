@@ -1,7 +1,7 @@
 Edit Text Sample 
 ================
 
-This sample app accompanies the user interface form elements article, 
-[Edit Text](https://developer.xamarin.com/guides/android/user_interface/form_elements/edit_text/).
+This sample app accompanies the user interface article, 
+[Edit Text](https://docs.microsoft.com/xamarin/android/user-interface/controls/edit-text).
 
 
