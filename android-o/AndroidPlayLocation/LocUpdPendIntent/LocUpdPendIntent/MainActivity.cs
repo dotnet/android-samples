@@ -238,7 +238,7 @@ namespace LocUpdPendIntent
 							// Build intent that displays the App settings screen.
 							var intent = new Intent();
 							intent.SetAction(Android.Provider.Settings.ActionApplicationDetailsSettings);
-							var uri = Uri.FromParts("package", BuildConfig.ApplicationId, null);
+							var uri = Uri.FromParts("package", PackageName, null);
 							intent.SetData(uri);
 							intent.SetFlags(ActivityFlags.NewTask);
 							StartActivity(intent);

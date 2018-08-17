@@ -288,7 +288,7 @@ namespace Geofencing
         {
             Intent intent = new Intent();
             intent.SetAction(Settings.ActionApplicationDetailsSettings);
-            var uri = Android.Net.Uri.FromParts("package", BuildConfig.ApplicationId, null);
+            var uri = Android.Net.Uri.FromParts("package", Activity.PackageName, null);
             intent.SetData(uri);
             intent.SetFlags(ActivityFlags.NewTask);
             Activity.StartActivity(intent);

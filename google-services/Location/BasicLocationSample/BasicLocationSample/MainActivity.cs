@@ -78,7 +78,7 @@ namespace BasicLocationSample
 
         public void ShowSnackbar(string text)
         {
-            View container = FindViewById<TextView>(Resource.Id.main_activity_container);
+            View container = FindViewById<LinearLayout>(Resource.Id.main_activity_container);
             if (container != null)
             {
                 Snackbar.Make(container, text, Snackbar.LengthLong).Show();
@@ -156,7 +156,7 @@ public class OnRequestPermissionsResultClickListener : Java.Lang.Object, IOnClic
     {
         var intent = new Intent();
         intent.SetAction(Settings.ActionApplicationDetailsSettings);
-        var uri = Uri.FromParts("package", BuildConfig.ApplicationId, null);
+        var uri = Uri.FromParts("package", Activity.PackageName, null);
         intent.SetData(uri);
         intent.SetFlags(ActivityFlags.NewTask);
         Activity.StartActivity(intent);
