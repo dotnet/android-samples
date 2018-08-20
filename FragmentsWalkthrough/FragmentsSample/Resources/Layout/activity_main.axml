@@ -2,7 +2,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-  <fragment class="com.xamarin.sample.fragments.supportlib.TitlesFragment"
+  <fragment class="com.xamarin.sample.fragments.TitlesFragment"
             android:id="@+id/titles_fragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />

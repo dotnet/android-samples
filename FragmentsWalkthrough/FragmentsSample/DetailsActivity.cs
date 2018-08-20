@@ -1,10 +1,11 @@
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 
-namespace com.xamarin.sample.fragments.honeycomb
+namespace com.xamarin.sample.fragments
 {
     [Activity(Label = "Details Activity")]
-    public class DetailsActivity : Activity
+    public class DetailsActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

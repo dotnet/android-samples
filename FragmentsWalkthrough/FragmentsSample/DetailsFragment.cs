@@ -1,25 +1,22 @@
 using System;
 
+using Android.App;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace com.xamarin.sample.fragments.supportlib
+namespace com.xamarin.sample.fragments
 {
-    internal class DetailsFragment : Fragment
+    class DetailsFragment : Fragment
     {
+        public int ShownPlayId => Arguments.GetInt("current_play_id", 0);
+
         public static DetailsFragment NewInstance(int playId)
         {
             var detailsFrag = new DetailsFragment {Arguments = new Bundle()};
             detailsFrag.Arguments.PutInt("current_play_id", playId);
             return detailsFrag;
-        }
-
-        public int ShownPlayId
-        {
-            get { return Arguments.GetInt("current_play_id", 0); }
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -31,7 +28,7 @@ namespace com.xamarin.sample.fragments.supportlib
             }
 
             var scroller = new ScrollView(Activity);
-            
+
             var text = new TextView(Activity);
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             text.SetPadding(padding, padding, padding, padding);

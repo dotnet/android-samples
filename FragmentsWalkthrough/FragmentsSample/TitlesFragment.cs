@@ -6,32 +6,33 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace com.xamarin.sample.fragments.honeycomb
+
+namespace com.xamarin.sample.fragments
 {
     public class TitlesFragment : ListFragment
     {
-        private int _currentPlayId;
-        private bool _isDualPane;
+        int currentPlayId;
+        bool isDualPane;
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
 
             var detailsFrame = Activity.FindViewById<View>(Resource.Id.details);
-            _isDualPane = detailsFrame != null && detailsFrame.Visibility == ViewStates.Visible;
+            isDualPane = detailsFrame != null && detailsFrame.Visibility == ViewStates.Visible;
 
-            var adapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
+            var adapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemChecked, Shakespeare.Titles);
             ListAdapter = adapter;
 
             if (savedInstanceState != null)
             {
-                _currentPlayId = savedInstanceState.GetInt("current_play_id", 0);
+                currentPlayId = savedInstanceState.GetInt("current_play_id", 0);
             }
 
-            if (_isDualPane)
+            if (isDualPane)
             {
                 ListView.ChoiceMode = ChoiceMode.Single;
-                ShowDetails(_currentPlayId);
+                ShowDetails(currentPlayId);
             }
         }
 
@@ -43,13 +44,13 @@ namespace com.xamarin.sample.fragments.honeycomb
         public override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
-            outState.PutInt("current_play_id", _currentPlayId);
+            outState.PutInt("current_play_id", currentPlayId);
         }
 
-        private void ShowDetails(int playId)
+        void ShowDetails(int playId)
         {
-            _currentPlayId = playId;
-            if (_isDualPane)
+            currentPlayId = playId;
+            if (isDualPane)
             {
                 // We can display everything in-place with fragments.
                 // Have the list highlight this item and show the data.
