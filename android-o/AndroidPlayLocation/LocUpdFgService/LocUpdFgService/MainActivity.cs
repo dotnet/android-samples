@@ -10,7 +10,6 @@ using Android;
 using Android.Util;
 using Android.Support.Design.Widget;
 using Android.Net;
-using Android.Support.Compat;
 using Android.Locations;
 using Android.Support.V7.App;
 

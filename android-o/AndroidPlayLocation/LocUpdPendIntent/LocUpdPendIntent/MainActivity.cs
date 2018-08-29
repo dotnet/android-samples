@@ -10,7 +10,6 @@ using Android.Content.PM;
 using Android.Util;
 using Android.Support.Design.Widget;
 using Android.Net;
-using Android.Support.Compat;
 using Android.Views;
 using Java.Lang;
 using Android.Support.V4.Content;
