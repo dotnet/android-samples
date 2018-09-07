@@ -1,15 +1,12 @@
 using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
 
 namespace SimpleMapDemo
 {
-    using System;
-
     [Activity(Label = "@string/activity_label_mapwithoverlays")]
     public class MapWithOverlaysActivity : AppCompatActivity, IOnMapReadyCallback
     {
@@ -24,42 +21,35 @@ namespace SimpleMapDemo
         };
 
         GoogleMap googleMap;
-        SupportMapFragment mapFragment;
         string gotMauiMarkerId;
+        MapFragment mapFragment;
         Marker polarBearMarker;
         GroundOverlay polarBearOverlay;
+
+        public void OnMapReady(GoogleMap map)
+        {
+            googleMap = map;
+            googleMap.MyLocationEnabled = false;
+
+            AddMonkeyMarkersToMap();
+            AddInitialPolarBarToMap();
+
+            // Animate the move on the map so that it is showing the markers we added above.
+            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
+
+            // Setup a handler for when the user clicks on a marker.
+            googleMap.MarkerClick += MapOnMarkerClick;
+        }
+
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.MapWithOverlayLayout);
 
-            mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.map);
+            mapFragment = (MapFragment) FragmentManager.FindFragmentById(Resource.Id.map);
             mapFragment.GetMapAsync(this);
-
-        }
-
-        public void OnMapReady(GoogleMap map)
-        {
-            googleMap = map;
-
-            var mapOptions = new GoogleMapOptions()
-                             .InvokeMapType(GoogleMap.MapTypeNormal)
-                             .InvokeZoomControlsEnabled(false)
-                             .InvokeCompassEnabled(true);
-
-
-
-            AddMonkeyMarkersToMap();
-            AddInitialPolarBarToMap();
-
-            googleMap.MyLocationEnabled = true;
-            
-            // Animate the move on the map so that it is showing the markers we added above.
-            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(LocationForCustomIconMarkers[1], 2));
-
-            // Setup a handler for when the user clicks on a marker.
-            googleMap.MarkerClick += MapOnMarkerClick;
         }
 
 
@@ -70,11 +60,9 @@ namespace SimpleMapDemo
             googleMap.MyLocationEnabled = false;
 
             googleMap.MarkerClick -= MapOnMarkerClick;
-
-            googleMap.InfoWindowClick += HandleInfoWindowClick;
+            googleMap.InfoWindowClick -= HandleInfoWindowClick;
 
             base.OnPause();
-
         }
 
 
@@ -140,7 +128,6 @@ namespace SimpleMapDemo
         {
             if (polarBearOverlay == null)
             {
-               
                 var polarBear = BitmapDescriptorFactory.FromResource(Resource.Drawable.polarbear);
                 var groundOverlayOptions = new GroundOverlayOptions()
                                            .InvokeImage(polarBear)

@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name" >Xamarin Maps Demo</string>
-
-  <string name="mapsAppText" >Show Maps App</string>
-  <string name="mapsAppTextDescription">Start up the Android Map application.</string>
-  
-  <string name="streetViewText" >Show Street View</string>
-
-  <string name="activity_label_axml">AXML demo"</string>
-  <string name="activity_description_axml">Load the MapFrament in the layout file.</string>
-
-  <string name="activity_label_mapwithmarkers">Markers Demo</string>
-  <string name="activity_description_mapwithmarkers">Shows how to add some markers.</string>
-
-  <string name="activity_label_mapwithoverlays">Overlays Demo</string>
-  <string name="activity_description_mapwithoverlays">Shows how to use overlays.</string>
-
+    <string name="app_name">Xamarin Maps Demo</string>
+    <string name="ok">OK</string>
+    <string name="mapsAppText">Show Maps App</string>
+    <string name="mapsAppTextDescription">Start up the Android Map application.</string>
+    <string name="streetViewText">Show Street View</string>
+    
+    <string name="location_permission_rationale">This activity requires permission to use the GPS to determine your location.</string>
+    <string name="location_permission_missing">This activity is missing permission to use the GPS. Closing. </string>
+    
+    <string name="activity_label_axml">AXML demo"</string>
+    <string name="activity_description_axml">Load the MapFrament in the layout file.</string>
+    
+    <string name="activity_label_mapwithmarkers">Markers Demo</string>
+    <string name="activity_description_mapwithmarkers">Shows how to add some markers.</string>
+    
+    <string name="activity_label_mapwithoverlays">Overlays Demo</string>
+    <string name="activity_description_mapwithoverlays">Shows how to use overlays.</string>
+    
+    <string name="activity_label_mylocation">My Location</string>
+    <string name="activity_description_mylocation">Shows how to perform a permission check along with Maps.</string>
+    
 </resources>

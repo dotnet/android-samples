@@ -58,10 +58,12 @@
     <Compile Include="MapWithOverlaysActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleMetaData.cs" />
+    <Compile Include="SampleActivityMetaData.cs" />
     <Compile Include="MapWithMarkersActivity.cs" />
     <Compile Include="BasicDemoActivity.cs" />
     <Compile Include="SamplesListAdapter.cs" />
+    <Compile Include="MyLocationActivity.cs" />
+    <Compile Include="GoogleMapHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -72,6 +74,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\BasicDemo.axml" />
+    <AndroidResource Include="Resources\Layout\MyLocationLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml">
@@ -117,6 +120,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
       <Version>60.1142.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Design">
+      <Version>27.0.2.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
