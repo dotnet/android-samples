@@ -34,6 +34,8 @@ namespace CardReader {
 	 * on other devices it's visibility is controlled by an item on the Action Bar.
 	 */
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[IntentFilter(new[] { "android.nfc.action.TECH_DISCOVERED" })]
+	[MetaData("android.nfc.action.TECH_DISCOVERED", Resource = "@xml/nfc_tech_filter")]
 	public class MainActivity : SampleActivityBase
 	{
 

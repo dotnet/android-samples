@@ -25,7 +25,7 @@
         <item name="trackAbstractMaxLines">@integer/track_abstract_max_lines</item>
     </style>
 
-    <style name="Theme.IOSched.Home" parent="style/Theme.IOSched">
+    <style name="Theme.IOSched.Home" parent="@style/Theme.IOSched">
         <item name="android:windowBackground">@drawable/window_background_home</item>
         <item name="android:actionBarStyle">@style/ActionBar</item>
     </style>

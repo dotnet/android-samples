@@ -5,8 +5,8 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<!-- The following permissions are only requested if the device is on M or above.
      On older platforms these permissions are not requested and will not be available. -->
-	<uses-permission-sdk-m android:name="android.permission.READ_CONTACTS" />
-	<uses-permission-sdk-m android:name="android.permission.WRITE_CONTACTS" />
+	<uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
+	<uses-permission-sdk-23 android:name="android.permission.WRITE_CONTACTS" />
 	<application android:label="RuntimePermissions" android:icon="@mipmap/icon"></application>
 	<uses-sdk android:minSdkVersion="21" />
 </manifest>
