@@ -134,34 +134,39 @@ namespace TvLeanback
 	     */
 		public void OnLoadFinished (Android.Content.Loader loader, Java.Lang.Object raw)
 		{
-			var data = Utils.GetDictionary (raw);
-			mRowsAdapter = new ArrayObjectAdapter (new ListRowPresenter ());
-			var cardPresenter = new CardPresenter ();
+            if (raw != null)
+            {
+                var data = Utils.GetDictionary(raw);
+                mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
+                var cardPresenter = new CardPresenter();
 
-			int i = 0;
-			foreach (var entry in  data) {
-				var listRowAdapter = new ArrayObjectAdapter (cardPresenter);
-				IList<Movie> list = entry.Value;
-				foreach (Movie current in list) {
-					listRowAdapter.Add (current);
-				}
-				var header = new HeaderItem (i, entry.Key);
-				i++;
-				mRowsAdapter.Add (new ListRow (header, listRowAdapter));
-			}
+                int i = 0;
+                foreach (var entry in data)
+                {
+                    var listRowAdapter = new ArrayObjectAdapter(cardPresenter);
+                    IList<Movie> list = entry.Value;
+                    foreach (Movie current in list)
+                    {
+                        listRowAdapter.Add(current);
+                    }
+                    var header = new HeaderItem(i, entry.Key);
+                    i++;
+                    mRowsAdapter.Add(new ListRow(header, listRowAdapter));
+                }
 
-			var gridHeader = new HeaderItem (i, Resources.GetString (Resource.String.preferences));
-			var gridPresenter = new GridItemPresenter (this);
-			var gridRowAdapter = new ArrayObjectAdapter (gridPresenter);
+                var gridHeader = new HeaderItem(i, Resources.GetString(Resource.String.preferences));
+                var gridPresenter = new GridItemPresenter(this);
+                var gridRowAdapter = new ArrayObjectAdapter(gridPresenter);
 
-			gridRowAdapter.Add (Resources.GetString (Resource.String.grid_view));
-			gridRowAdapter.Add (Resources.GetString (Resource.String.send_feeback));
-			gridRowAdapter.Add (Resources.GetString (Resource.String.personal_settings));
-			mRowsAdapter.Add (new ListRow (gridHeader, gridRowAdapter));
-			this.Adapter = mRowsAdapter;
+                gridRowAdapter.Add(Resources.GetString(Resource.String.grid_view));
+                gridRowAdapter.Add(Resources.GetString(Resource.String.send_feeback));
+                gridRowAdapter.Add(Resources.GetString(Resource.String.personal_settings));
+                mRowsAdapter.Add(new ListRow(gridHeader, gridRowAdapter));
+                this.Adapter = mRowsAdapter;
 
-			UpdateRecommendations ();
-		}
+                UpdateRecommendations();
+            }
+        }
 
 		public void OnLoaderReset (Loader arg0)
 		{
