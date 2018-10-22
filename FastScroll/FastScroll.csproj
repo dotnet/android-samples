@@ -17,7 +17,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <DeployExternal>False</DeployExternal>
-    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
     <MandroidI18n />
   </PropertyGroup>

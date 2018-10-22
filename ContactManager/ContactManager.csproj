@@ -16,7 +16,6 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <AndroidApplication>true</AndroidApplication>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

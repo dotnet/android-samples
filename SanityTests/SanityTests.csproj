@@ -15,7 +15,7 @@
     <AndroidResgenFile>R.cs</AndroidResgenFile>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidApplication>true</AndroidApplication>
-    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -95,8 +95,6 @@
     <Exec Command="jar cf $(OutputPath)\custom.jar -C $(OutputPath)\classes ." />
   </Target>
   <ItemGroup>
-    <AndroidNativeLibrary Include="libs\armeabi\libfoo.so" />
-    <AndroidNativeLibrary Include="libs\armeabi\libbar.so" />
     <AndroidNativeLibrary Include="libs\armeabi-v7a\libfoo.so" />
     <AndroidNativeLibrary Include="libs\armeabi-v7a\libbar.so" />
     <AndroidNativeLibrary Include="libs\x86\libfoo.so" />
