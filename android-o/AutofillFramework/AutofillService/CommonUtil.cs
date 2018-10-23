@@ -31,7 +31,7 @@ namespace AutofillService
 				}
 				else
 				{
-					builder.Append(value is Java.Lang.Object[] ? Arrays.ToString((Java.Lang.Object[]) value) : value);
+					builder.Append(value);
 				}
 			}
 
