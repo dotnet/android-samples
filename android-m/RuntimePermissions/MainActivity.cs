@@ -225,7 +225,7 @@ namespace RuntimePermissions
 				if (grantResults.Length == 1 && grantResults[0] == Permission.Granted) {
 					// Camera permission has been granted, preview can be displayed
 					Log.Info (TAG, "CAMERA permission has now been granted. Showing preview.");
-					Snackbar.Make (layout, Resource.String.permision_available_camera, Snackbar.LengthShort).Show ();
+					Snackbar.Make (layout, Resource.String.permission_available_camera, Snackbar.LengthShort).Show ();
 				} else {
 					Log.Info (TAG, "CAMERA permission was NOT granted.");
 					Snackbar.Make (layout, Resource.String.permissions_not_granted, Snackbar.LengthShort).Show ();
@@ -237,7 +237,7 @@ namespace RuntimePermissions
 				// checked.
 				if (PermissionUtil.VerifyPermissions (grantResults)) {
 					// All required permissions have been granted, display contacts fragment.
-					Snackbar.Make (layout, Resource.String.permision_available_contacts, Snackbar.LengthShort).Show ();
+					Snackbar.Make (layout, Resource.String.permission_available_contacts, Snackbar.LengthShort).Show ();
 				} else {
 					Log.Info (TAG, "Contacts permissions were NOT granted.");
 					Snackbar.Make (layout, Resource.String.permissions_not_granted, Snackbar.LengthShort).Show ();
