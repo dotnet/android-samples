@@ -136,7 +136,7 @@ namespace com.xamarin.samples.location.fusedlocationprovider
             // No need to request location updates if we're already doing so.
             if (isRequestingLocationUpdates)
             {
-                StopRequestionLocationUpdates();
+                StopRequestLocationUpdates();
                 isRequestingLocationUpdates = false;
             }
             else
@@ -209,7 +209,7 @@ namespace com.xamarin.samples.location.fusedlocationprovider
             await fusedLocationProviderClient.RequestLocationUpdatesAsync(locationRequest, locationCallback);
         }
 
-        async void StopRequestionLocationUpdates()
+        async void StopRequestLocationUpdates()
         {
             latitude2.Text = string.Empty;
             longitude2.Text = string.Empty;
@@ -247,7 +247,7 @@ namespace com.xamarin.samples.location.fusedlocationprovider
 
         protected override void OnPause()
         {
-            StopRequestionLocationUpdates();
+            StopRequestLocationUpdates();
             base.OnPause();
         }
 
