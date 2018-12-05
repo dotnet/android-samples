@@ -11,7 +11,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
-        <md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout
+        <googleio2014master.ui.CardFrameLayout
             style="@style/Card">
             <ImageView
                 style="@style/CardPhoto"
@@ -23,8 +23,8 @@
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_1"
                 android:text="Pacifica Pier" />
-        </md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout>
-        <md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout
+        </googleio2014master.ui.CardFrameLayout>
+        <googleio2014master.ui.CardFrameLayout
             style="@style/Card">
             <ImageView
                 style="@style/CardPhoto"
@@ -36,8 +36,8 @@
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_2"
                 android:text="Pink Flamingo" />
-        </md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout>
-        <md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout
+        </googleio2014master.ui.CardFrameLayout>
+        <googleio2014master.ui.CardFrameLayout
             style="@style/Card">
             <ImageView
                 style="@style/CardPhoto"
@@ -49,8 +49,8 @@
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_3"
                 android:text="Antelope Canyon" />
-        </md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout>
-        <md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout
+        </googleio2014master.ui.CardFrameLayout>
+        <googleio2014master.ui.CardFrameLayout
             style="@style/Card">
             <ImageView
                 style="@style/CardPhoto"
@@ -62,6 +62,6 @@
                 style="@style/CardTitle"
                 android:id="@+id/show_photo_4"
                 android:text="Lone Pine" />
-        </md5d0eb5710bc2d8284c950530b9a9a8d74.CardFrameLayout>
+        </googleio2014master.ui.CardFrameLayout>
     </LinearLayout>
 </ScrollView>

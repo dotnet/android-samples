@@ -67,7 +67,7 @@
                     map:uiZoomControls="false"
                     map:uiZoomGestures="false" />
             </FrameLayout>
-            <md5d0eb5710bc2d8284c950530b9a9a8d74.AnimatedPathView
+            <googleio2014master.ui.AnimatedPathView
                 android:id="@+id/star_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
