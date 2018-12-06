@@ -2,5 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.xamarin.samples.cursortableadapter" android:versionCode="1" android:versionName="1.0">
 	<application android:label="CursorTableAdapter">
 	</application>
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="10" />
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19" />
 </manifest>
