@@ -13,7 +13,7 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
