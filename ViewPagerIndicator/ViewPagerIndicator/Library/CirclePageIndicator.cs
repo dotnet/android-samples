@@ -500,16 +500,17 @@ namespace ViewPagerIndicator
 		
 		protected override void OnRestoreInstanceState (IParcelable state)
 		{
-			
-			try {
-				SavedState savedState = (SavedState)state;
-				base.OnRestoreInstanceState (savedState.SuperState);
-				mCurrentPage = savedState.CurrentPage;
-				mSnapPage = savedState.CurrentPage;
-			} catch {
-				base.OnRestoreInstanceState (state);
-				// Ignore, this needs to support IParcelable...
-			}
+			SavedState savedState = state as SavedState;
+            if (savedState != null)
+            {
+                base.OnRestoreInstanceState(savedState.SuperState);
+                mCurrentPage = savedState.CurrentPage;
+                mSnapPage = savedState.CurrentPage;
+            }
+            else
+            {
+                base.OnRestoreInstanceState(state);
+            }
 			RequestLayout ();
 		}
 		
@@ -541,12 +542,12 @@ namespace ViewPagerIndicator
 			}
 			
 			[ExportField ("CREATOR")]
-			static SavedStateCreator InitializeCreator ()
+			public static SavedStateCreator InitializeCreator ()
 			{
 				return new SavedStateCreator ();
 			}
 			
-			class SavedStateCreator : Java.Lang.Object, IParcelableCreator
+			public class SavedStateCreator : Java.Lang.Object, IParcelableCreator
 			{
 				public Java.Lang.Object CreateFromParcel (Parcel source)
 				{
