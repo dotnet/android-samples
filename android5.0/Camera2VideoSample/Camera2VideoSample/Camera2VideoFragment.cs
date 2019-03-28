@@ -332,7 +332,9 @@ namespace Camera2VideoSample
 
 		private File GetVideoFile(Context context)
 		{
-			return new File (context.GetExternalFilesDir (null), "video.mp4");
+            string fileName = "video-" + DateTime.Now.ToString("yymmdd-hhmmss") + ".mp4"; //new filenamed based on date time
+			File file =  new File (context.GetExternalFilesDir (null), fileName);
+            return file;
 		}
 
 		private void StartRecordingVideo()
