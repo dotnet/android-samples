@@ -270,7 +270,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.TexParameterx (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
 			GL.TexParameterx (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
-			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
+			Android.Graphics.Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
 			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0); 
 		}

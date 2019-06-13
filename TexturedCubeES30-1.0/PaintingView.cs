@@ -283,7 +283,7 @@ namespace Mono.Samples.TexturedCube {
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
-			Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
+			Android.Graphics.Bitmap b = BitmapFactory.DecodeResource (context.Resources, resourceId);
 
 			Android.Opengl.GLUtils.TexImage2D ((int)All.Texture2D, 0, b, 0); 
 			b.Recycle ();
