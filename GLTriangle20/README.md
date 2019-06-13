@@ -1,6 +1,8 @@
 GL Triangle 20
 ==============
 
+### This sample is now obsolete. Please use GLTriangle20-1.0.
+
 OpenGL ES 2.0 Demonstration.
 
 Requirements
