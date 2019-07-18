@@ -1,5 +1,16 @@
-FusedLocationProvider Sample
-================================
+---
+name: Xamarin.Android - FusedLocationProvider Sample
+description: This sample provides an example of gathering location data using the FusedLocationProvider, available as part of Google Play services. A detailed...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: fusedlocationprovider
+---
+# FusedLocationProvider Sample
 
 This sample provides an example of gathering location data using the 
 FusedLocationProvider, available as part of Google Play services. A detailed 

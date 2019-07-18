@@ -1,5 +1,16 @@
-Bluetooth Chat
-==============
+---
+name: Xamarin.Android - Bluetooth Chat
+description: This is a port of the Android BluetoothChat sample. It demonstrates using the Bluetooth APIs to create a sample chat client. This sample has a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: bluetoothchat
+---
+# Bluetooth Chat
 
 This is a port of the [Android BluetoothChat sample](https://github.com/googlesamples/android-BluetoothChat).
 

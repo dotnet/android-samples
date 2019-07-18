@@ -1,11 +1,21 @@
-Java Native Invoke Sample
-=========================
+---
+name: Xamarin.Android - Java Native Invoke Sample
+description: This sample shows how to manually bind to a Java library so it can be consumed by a Mono for Android application. Requirements There is one...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: jnidemo
+---
+# Java Native Invoke Sample
 
 This sample shows how to manually bind to a Java library so it can
 be consumed by a Mono for Android application.
 
-Requirements
-------------
+## Requirements
 
 There is one requirement in order to build and run this sample:
 
@@ -15,8 +25,7 @@ Commands that need to be executed are indicated within backtics (`),
 and $ANDROID_SDK_PATH is the directory that contains your Android SDK
 installation.
 
-How it works
-------------
+## How it works
 
 As Mono for Android 1.0 does not support binding arbitrary .jar
 files (only the Android SDK android.jar is bound), alternative

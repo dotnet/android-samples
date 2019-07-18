@@ -1,5 +1,16 @@
-Google Maps v2 Demo
-===================
+---
+name: Xamarin.Android - Google Maps v2 Demo
+description: This code provides an example of how to use Google Maps v2 in an Android application. The SimpleMapDemo project demonstrates the basic features of...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: mapsandlocationdemo-v3
+---
+# Google Maps v2 Demo
 
 This code provides an example of how to use Google Maps v2 in an
 Android application. The **SimpleMapDemo** project demonstrates the

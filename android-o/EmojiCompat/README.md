@@ -1,5 +1,16 @@
-EmojiCompat Sample
-==================
+---
+name: Xamarin.Android - EmojiCompat Sample
+description: This sample demonstrates usage of EmojiCompat support library. You can use this library to prevent your app from showing missing emoji characters...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android-o-emojicompat
+---
+# EmojiCompat Sample
 
 This sample demonstrates usage of EmojiCompat support library. You can use this library
 to prevent your app from showing missing emoji characters in the form of tofu (□). You
@@ -17,14 +28,14 @@ users do not need to wait for Android OS updates to get the latest emoji.
 You need to first initialize EmojiCompat to load the metadata and the typeface. You can use either
 bundled or downloadable fonts.
 
-Build Requirements
---------------
+## Build Requirements
 
 Using this sample requires the Android 8.0 (API 26) and the Xamarin.Android 7.5 or higher.
 
 
-Authors
--------
+![EmojiCompat Sample application screenshot](Screenshots/Main.png "EmojiCompat Sample application screenshot")
+
+## Authors
 
 Copyright (c) 2017 The Android Open Source Project, Inc.
 

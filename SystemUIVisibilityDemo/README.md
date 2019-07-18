@@ -1,4 +1,15 @@
-System UI Visibility Demo
-=========================
+---
+name: Xamarin.Android - System UI Visibility Demo
+description: This example shows how to change the appearance of the Navigation Bar in Ice Cream Sandwich.
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: systemuivisibilitydemo
+---
+# System UI Visibility Demo
 
 This example shows how to change the appearance of the Navigation Bar in Ice Cream Sandwich.

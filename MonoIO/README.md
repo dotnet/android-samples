@@ -1,10 +1,20 @@
-Google IO 2011 App in Mono for Android
-=================================
+---
+name: Xamarin.Android - Google IO 2011 App in Mono for Android
+description: This is a port of the [Google IO 2011 Schedule App][1] - it only works on Android 2.2 to Android 4.0.3 and it is not a port of the Google IO 2012...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: monoio
+---
+# Google IO 2011 App in Mono for Android
 
 This is a port of the [Google IO 2011 Schedule App][1] - it only works on Android 2.2 to Android 4.0.3 and it is not a port of the Google IO 2012 application.
 
-License
-=======
+# License
 
     Copyright 2011 Google
     Copyright 2012 Xamarin Inc

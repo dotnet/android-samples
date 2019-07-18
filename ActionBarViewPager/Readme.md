@@ -1,5 +1,16 @@
-HelloSwipeViewWithTabs
-======================
+---
+name: Xamarin.Android - HelloSwipeViewWithTabs
+description: 'Author: Richard Lander -- rlander@microsoft.com License: Apache 2 This sample app demonstrates how to use ViewPager and ActionBar together....'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: actionbarviewpager
+---
+# HelloSwipeViewWithTabs
 
 Author: Richard Lander -- rlander@microsoft.com
 

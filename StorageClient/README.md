@@ -1,5 +1,16 @@
-Storage Client
-==================
+---
+name: Xamarin.Android - Storage Client
+description: This sample demonstrates how to use the ACTIONOPENDOCUMENT intent to let users choose a file via the system's file browser. This intent allows a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: storageclient
+---
+# Storage Client
 This sample demonstrates how to use the ACTION_OPEN_DOCUMENT
 intent to let users choose a file via the system's file browser. 
 This intent allows a client application to access a list of 

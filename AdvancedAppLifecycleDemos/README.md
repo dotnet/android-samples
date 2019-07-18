@@ -1,5 +1,16 @@
-ActivityLifecycle Demos
-=======================
+---
+name: Xamarin.Android - ActivityLifecycle Demos
+description: 'Four sample projects that cover advanced activity and application lifecycle scenarios in Android: ActivityLifecycle - Handling the activity...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: advancedapplifecycledemos
+---
+# ActivityLifecycle Demos
 Four sample projects that cover advanced activity and application lifecycle scenarios in 
 Android:
  * ActivityLifecycle - Handling the activity lifecycle including rotation and subscribing to external events
@@ -7,6 +18,5 @@ Android:
  * HandlingCrashes - Gracefully handling app crashes, waiting for app initializing and launching specific activities after crashes
  * InitializingAppAndServices - Handling multiple asynchronous initializations
 
-Authors
--------
+## Authors
 Bryan Costanich

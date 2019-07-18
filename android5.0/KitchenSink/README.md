@@ -1,10 +1,20 @@
-Android L Kitchen Sink
-=================
+---
+name: Xamarin.Android - Android L Kitchen Sink
+description: Basic samples of new Android L features including support v7. Features Activity Transitions CardView Elevation RecyclerView Material Themes Tinting...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android50-kitchensink
+---
+# Android L Kitchen Sink
 
 Basic samples of new Android L features including support v7.
 
-Features
-------------------
+## Features
 * Activity Transitions
 * CardView
 * Elevation
@@ -15,14 +25,14 @@ Features
 * Palette
 * Reveal
 
-Build Requirements
-------------------
+## Build Requirements
 * Xamarin Studio 5.5+
 * Xamarin Android 4.20+
 * Android SDK with Android 5.0
 
-Author
------- 
+![Android L Kitchen Sink application screenshot](Screenshots/CardView.png "Android L Kitchen Sink application screenshot")
+
+## Author 
 Copyright 2014 Xamarin
 
 Created by James Montemagno

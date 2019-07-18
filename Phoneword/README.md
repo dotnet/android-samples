@@ -1,5 +1,16 @@
-Phoneword
-=========
+---
+name: Xamarin.Android - Phoneword
+description: This sample app accompanies the article, Hello, Android (Quickstart). This version of Phoneword incorporates all of the functionality explained in...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: phoneword
+---
+# Phoneword
 
 This sample app accompanies the article, 
 [Hello, Android (Quickstart)](http://developer.xamarin.com/guides/android/getting_started/hello,android/hello,android_quickstart/). 

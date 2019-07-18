@@ -1,5 +1,16 @@
-Google Play Services
-====================
+---
+name: Xamarin.Android - Google Play Services
+description: This solution uses the Xamarin Google Play Services NuGet to demonstrate a few uses of the maps API included within Google Play Services. You will...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: googleplayservices
+---
+# Google Play Services
 
 This solution uses the Xamarin Google Play Services NuGet to demonstrate a few uses of
 the maps API included within Google Play Services.

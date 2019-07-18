@@ -1,5 +1,16 @@
-Android Location Services Sample
-================================
+---
+name: Xamarin.Android - Android Location Services Sample
+description: This sample provides an example of gathering location data using the Android location system service, as explained in the Xamarin Location Services...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: location
+---
+# Android Location Services Sample
 
 This sample provides an example of gathering location data using the Android location system service, as explained in the [Xamarin Location Services](https://developer.xamarin.com/guides/android/platform_features/maps_and_location/location/) 
 guide.

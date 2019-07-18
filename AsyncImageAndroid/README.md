@@ -1,5 +1,16 @@
-AsyncImageAndroid
-===========
+---
+name: Xamarin.Android - AsyncImageAndroid
+description: This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.Android 4.8. The sample download a large...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: asyncimageandroid
+---
+# AsyncImageAndroid
 
 This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.Android 4.8.
 

@@ -1,5 +1,16 @@
-Labelled Sections
-=================
+---
+name: Xamarin.Android - Labelled Sections
+description: The Labelled Sections demo is a port from the Alphabetically ordered ListView with labelled sections sample, with some changes to follow .NET...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: labelledsections
+---
+# Labelled Sections
 
 The `Labelled Sections` demo is a port from the
 [Alphabetically ordered ListView with labelled sections](http://androidseverywhere.info/JAAB/?p=6)

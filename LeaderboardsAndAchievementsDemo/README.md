@@ -1,5 +1,16 @@
-LeaderboardsAndAchievementsDemo
-===============================
+---
+name: Xamarin.Android - LeaderboardsAndAchievementsDemo
+description: This is a sample xamarin android application that shows the Leaderboards and Achievements for a specific provided game of Google Play Games. Setup...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: leaderboardsandachievementsdemo
+---
+# LeaderboardsAndAchievementsDemo
 
 This is a sample xamarin android application that shows the [Leaderboards](https://developers.google.com/games/services/android/leaderboards) and [Achievements](https://developers.google.com/games/services/android/achievements) for a specific provided game of Google Play Games.
 
@@ -25,7 +36,6 @@ For more information, please visit this [web site](https://developers.google.com
 ![screenshot](Screenshots/achievements.png "Achievements")
 
 
-Author
--------
+## Author
 
 Gonzalo Martin

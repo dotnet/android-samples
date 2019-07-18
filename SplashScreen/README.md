@@ -1,5 +1,16 @@
-Creating a Splash Screen
-========================
+---
+name: Xamarin.Android - Creating a Splash Screen
+description: This sample demonstrates one technique for creating a splash screen in a Xamarin.Android application. It is the companion code for the...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: splashscreen
+---
+# Creating a Splash Screen
 
 This sample demonstrates one technique for creating a splash screen in
 a Xamarin.Android application. It is the companion code for the Xamarin.Android

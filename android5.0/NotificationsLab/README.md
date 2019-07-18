@@ -1,5 +1,16 @@
-Android 5.0 Notifications Lab
-=============================
+---
+name: Xamarin.Android - Android 5.0 Notifications Lab
+description: This sample app accompanies the article, Local Notifications in Xamarin.Android. You can use this sample to try out the different notification...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android50-notificationslab
+---
+# Android 5.0 Notifications Lab
 
 This sample app accompanies the article, 
 [Local Notifications in Xamarin.Android](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/android/local_notifications_in_android/).
@@ -36,7 +47,8 @@ You will need an Android device or emulator with a large screen (such as
 a Nexus 5 or an AVD with the WXGA720 skin) to view and select from all 
 of the options.
 
-Author
------- 
+![Android 5.0 Notifications Lab application screenshot](Screenshots/1-start-screen.png "Android 5.0 Notifications Lab application screenshot")
+
+## Author 
 
 Mark McLemore

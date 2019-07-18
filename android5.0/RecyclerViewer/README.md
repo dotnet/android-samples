@@ -1,5 +1,16 @@
-RecyclerViewer
-==============
+---
+name: Xamarin.Android - RecyclerViewer
+description: This sample app accompanies the articles CardView and RecyclerView. You can use this sample to learn how to use the new CardView and RecyclerView...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android50-recyclerviewer
+---
+# RecyclerViewer
 
 This sample app accompanies the articles
 [CardView](http://developer.xamarin.com/guides/android/user_interface/cardview) and
@@ -25,7 +36,8 @@ the `RecyclerView` with a simple "Photo Album" database, a
 manager* positions the `CardView` row items within the `RecyclerView`. 
 
 
-Author
------- 
+![RecyclerViewer application screenshot](Screenshots/screen-1.png "RecyclerViewer application screenshot")
+
+## Author 
 
 Mark McLemore
