@@ -1,9 +1,20 @@
+---
+name: Xamarin.Android - Cheesesquare Sample
+description: 'Demos the new Android Design library. This is not an exhaustive sample, but shows some of the important features in the Design library: -...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android5-0-cheesesquare
+---
 **NOTE:** This is a port of the original Cheesesquare Sample by Chris Banes, available on GitHub: https://github.com/chrisbanes/cheesesquare
 
 ![Screenshot](https://raw.githubusercontent.com/xamarin/monodroid-samples/master/android5.0/Cheesesquare/screenshot.png)
 
-Cheesesquare Sample
-===================================
+# Cheesesquare Sample
 
 Demos the new Android Design library. This is not an exhaustive sample, but shows
 some of the important features in the Design library:
@@ -14,15 +25,13 @@ some of the important features in the Design library:
 - NavigationView
 - Snackbar
 
-Pre-requisites
---------------
+## Pre-requisites
 
 - Android SDK v22
 - Android Build Tools v22.0.1
 - Android Support Repository v22.2
 
-License
--------
+## License
 
 Copyright 2014 The Android Open Source Project, Inc.
 

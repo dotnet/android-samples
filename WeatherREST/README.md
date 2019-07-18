@@ -1,5 +1,16 @@
-WeatherREST
-===========
+---
+name: Xamarin.Android - WeatherREST
+description: This sample app accompanies the article, Call a REST Web Service. You can use this sample to learn how to call a RESTful service via HTTP and...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: weatherrest
+---
+# WeatherREST
 
 This sample app accompanies the article, 
 [Call a REST Web Service](http://developer.xamarin.com/recipes/android/web_services/consuming_services/call_a_rest_web_service/).
@@ -26,7 +37,8 @@ see if it contains a "daily limit has been exceeded" message.
 You will need an Android device or emulator with a large screen (such as 
 a Nexus 5 or an AVD with the WXGA720 skin) to view the results. 
 
-Author
------- 
+![WeatherREST application screenshot](Screenshots/before.png "WeatherREST application screenshot")
+
+## Author 
 
 Mark McLemore

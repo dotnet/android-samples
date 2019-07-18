@@ -1,5 +1,16 @@
-NavigationDrawer
-================
+---
+name: Xamarin.Android - NavigationDrawer
+description: This example illustrates a common usage of the DrawerLayout widget in the Android support library. When a navigation (left) drawer is present, the...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android5-0-navigationdrawer
+---
+# NavigationDrawer
   This example illustrates a common usage of the DrawerLayout widget
   in the Android support library.
   When a navigation (left) drawer is present, the host activity should detect presses of
@@ -22,18 +33,17 @@ Right side drawers should be used for actions, not navigation. This follows the 
   An action should be an operation performed on the current contents of the window,
   for example enabling or disabling a data overlay on top of the current content.
 
-Instructions
-------------
+## Instructions
 * Select 'Navigation Drawer Example' from the main screen
 * Bring up the Navigation Drawer by hitting the three horizontal bars or by swipping in from the left side of the device
 * Select a planet to display
 
-Build Requirements
------------------
+## Build Requirements
 * Xamarin Studio 5.3+
 * Xamarin Android 4.17+
 
-Author
-------
+![NavigationDrawer application screenshot](Screenshots/drawer open.png "NavigationDrawer application screenshot")
+
+## Author
 Copyright (c) 2005-2008, The Android Open Source Project  
 Ported to Xamarin.Android by Ben O'Halloran

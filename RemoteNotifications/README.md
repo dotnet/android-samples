@@ -1,5 +1,16 @@
-Android GCM Remote Notifications
-================================
+---
+name: Xamarin.Android - Android GCM Remote Notifications
+description: This sample app accompanies the article Remote Notifications with Google Cloud Messaging. Before you can use this sample, you must acquire the...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: remotenotifications
+---
+# Android GCM Remote Notifications
 
 This sample app accompanies the article 
 [Remote Notifications with Google Cloud Messaging](http://developer.xamarin.com/guides/android/application_fundamentals/notifications/remote-notifications-with-gcm/).
@@ -13,8 +24,9 @@ Most of the action takes place "behind the scenes", and is to be
 observed by watching the output window while the app runs from
 the IDE.
 
-Author
------- 
+![Android GCM Remote Notifications application screenshot](Screenshots/notification.png "Android GCM Remote Notifications application screenshot")
+
+## Author 
 
 Copyright 2016 Xamarin
 

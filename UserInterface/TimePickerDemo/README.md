@@ -1,5 +1,16 @@
-TimePickerDemo 
-==============
+---
+name: 'Xamarin.Android - TimePickerDemo '
+description: TimePickerDemo is a sample app that accompanies the article, Time Picker. This sample demonstrates how to use the TimePickerDialog, wrapped in a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: userinterface-timepickerdemo
+---
+# TimePickerDemo 
 
 **TimePickerDemo** is a sample app that accompanies the article,
 [Time Picker](https://developer.xamarin.com/guides/android/user_interface/controls/pickers/time-picker/).
@@ -10,8 +21,9 @@ a modal dialog when the user clicks a button on an Activity. When the
 time is set by the user, the dialog exits and a handler updates a
 `TextView` on the Activity screen with the time that was selected.
 
-Author
-------
+![TimePickerDemo  application screenshot](Screenshots/01-initial-screen.png "TimePickerDemo  application screenshot")
+
+## Author
 
 Copyright 2017 Xamarin
 

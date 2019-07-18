@@ -1,5 +1,16 @@
-Android Local Notifications Sample
-==================================
+---
+name: Xamarin.Android - Android Local Notifications Sample
+description: This sample app accompanies the article, Walkthrough - Using Local Notifications in Xamarin.Android. ![](Screenshots/screenshots.png) When you tap...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: localnotifications
+---
+# Android Local Notifications Sample
 
 This sample app accompanies the article, 
 [Walkthrough - Using Local Notifications in Xamarin.Android](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/android/local_notifications_in_android_walkthrough/).

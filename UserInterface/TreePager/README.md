@@ -1,5 +1,16 @@
-TreePager 
-=========
+---
+name: 'Xamarin.Android - TreePager '
+description: TreePager is a sample app that accompanies the article, ViewPager. This sample demonstrates how to use ViewPager and PagerTabStrip together to...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: userinterface-treepager
+---
+# TreePager 
 
 **TreePager** is a sample app that accompanies the article, 
 [ViewPager](http://developer.xamarin.com/guides/android/user_interface/viewpager/).
@@ -20,8 +31,9 @@ that this app depends on
 [Android Support Library v4](https://components.xamarin.com/gettingstarted/xamandroidsupportv4-18). 
 
 
-Author
-------
+![TreePager  application screenshot](Screenshots/1-larch.png "TreePager  application screenshot")
+
+## Author
 
 Copyright 2016 Xamarin
 

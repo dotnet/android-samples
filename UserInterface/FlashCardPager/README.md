@@ -1,5 +1,16 @@
-FlashCardPager 
-==============
+---
+name: 'Xamarin.Android - FlashCardPager '
+description: FlashCardPager is a sample app that accompanies the article, ViewPager. This sample demonstrates how to use ViewPager and PagerTabStrip together to...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: userinterface-flashcardpager
+---
+# FlashCardPager 
 
 **FlashCardPager** is a sample app that accompanies the article,
 [ViewPager](http://developer.xamarin.com/guides/android/user_interface/viewpager/).
@@ -19,8 +30,9 @@ depends on
 [Android Support Library v4](https://components.xamarin.com/gettingstarted/xamandroidsupportv4-18). 
 
 
-Author
-------
+![FlashCardPager  application screenshot](Screenshots/screen-1.png "FlashCardPager  application screenshot")
+
+## Author
 
 Copyright 2016 Xamarin
 

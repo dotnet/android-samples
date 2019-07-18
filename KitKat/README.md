@@ -1,5 +1,16 @@
-KitKat
-======
+---
+name: Xamarin.Android - KitKat
+description: 'This sample provides an overview of new features of Android 4.4 KitKat. Features include: - User Interface: basic property animations and Scenes. -...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: kitkat
+---
+# KitKat
 This sample provides an overview of new features of Android 4.4 "KitKat". Features include:
 
 - *User Interface*: basic property animations and Scenes.

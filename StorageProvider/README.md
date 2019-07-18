@@ -1,5 +1,16 @@
-Storage Provider
-==================
+---
+name: Xamarin.Android - Storage Provider
+description: This sample demonstrates how to use the DocumentsProvider API to manage documents and expose them to the Android system for sharing. The Storage...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: storageprovider
+---
+# Storage Provider
 This sample demonstrates how to use the DocumentsProvider API to manage 
 documents and expose them to the Android system for sharing.
 

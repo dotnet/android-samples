@@ -1,8 +1,18 @@
-How to build the entire package from source
-===========================================
+---
+name: Xamarin.Android - How to build the entire package from source
+description: Prerequisites - Android SDK. - Environment variable ANDROIDHOME/path/to/the/sdk - Environment variable PATH must contain $ANDROIDHOME/tools -...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: facebook
+---
+# How to build the entire package from source
 
-Prerequisites
--------------
+## Prerequisites
 
 - Android SDK.
   - Environment variable ANDROID_HOME=/path/to/the/sdk
@@ -11,8 +21,7 @@ Prerequisites
 - Apache Ant to build the library project zip.
 - Apache Maven 3.0 to build the library in its own manner and then Javadoc.
 
-Build steps
------------
+## Build steps
 
 Download Facebook Android SDK v3.0.1 from:
 https://developers.facebook.com/resources/facebook-android-sdk-3.0.1.zip

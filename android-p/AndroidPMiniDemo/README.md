@@ -1,5 +1,16 @@
-Android P Mini Demo 
-===================
+---
+name: 'Xamarin.Android - Android P Mini Demo '
+description: AndroidPMiniDemo is a sample app that accompanies the article, Android P Preview. This sample demonstrates the new display cutout and image...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android-p-androidpminidemo
+---
+# Android P Mini Demo 
 
 **AndroidPMiniDemo** is a sample app that accompanies the article,
 [Android P Preview](https://docs.microsoft.com/en-us/xamarin/android/platform/android-p).
@@ -63,8 +74,9 @@ that contains an image.
     installed via the Android SDK Manager.
 
 
-Author
-------
+![Android P Mini Demo  application screenshot](Screenshots/1-image-notification.png "Android P Mini Demo  application screenshot")
+
+## Author
 
 Copyright 2018 Microsoft
 

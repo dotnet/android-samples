@@ -1,28 +1,37 @@
-PictureInPicture Sample
-=======================
+---
+name: Xamarin.Android - PictureInPicture Sample
+description: This sample demonstrates basic usage of the new Picture-in-Picture (PiP) mode for handheld devices introduced in Oreo. The sample plays a video...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android-o-pictureinpicture
+---
+# PictureInPicture Sample
 
 This sample demonstrates basic usage of the new Picture-in-Picture (PiP) mode for handheld devices introduced in Oreo. The sample plays a video which continues uninterrupted while switching back and forth between display modes or other activities.
 
 
-Instructions
-------------
+## Instructions
 
 Tap the button to drop in to Picture-in-Picture mode. Tapping on the PiP view will present controls which can be used to pause, show info, return to full screen, or exit the application.
 
 
-Build Requirements
-------------------
+## Build Requirements
 Using this sample requires the Android 8.0 (API 26) and Xamarin.Android 7.5.x or higher.
 
 
-Authors
--------
+![PictureInPicture Sample application screenshot](Screenshots/main_activity.png "PictureInPicture Sample application screenshot")
+
+## Authors
 Ported from [Android PictureInPicture Sample](https://github.com/googlesamples/android-PictureInPicture/).  
 Ported to Xamarin.Android by Peter Collins.
 
 
-License
--------
+## License
 Copyright (c) 2017 The Android Open Source Project, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at

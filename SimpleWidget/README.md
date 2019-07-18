@@ -1,11 +1,21 @@
-Simple Widget
-=============
+---
+name: Xamarin.Android - Simple Widget
+description: This sample shows a simple widget which fetches the word of the day from Wiktionary. To Run Deploy to target device using Build -> Deploy Long tap...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: simplewidget
+---
+# Simple Widget
 
 This sample shows a simple widget which fetches the word of
 the day from Wiktionary.
 
-To Run
-======
+# To Run
 
 * Deploy to target device using Build -> Deploy
 * Long tap on the desktop

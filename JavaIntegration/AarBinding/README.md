@@ -1,5 +1,16 @@
-Binding an .AAR Example 
-=======================
+---
+name: 'Xamarin.Android - Binding an .AAR Example '
+description: This sample app accompanies the article, Binding an .AAR. This sample can help you understand how a Xamarin.Android application can reuse existing...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: javaintegration-aarbinding
+---
+# Binding an .AAR Example 
 
 This sample app accompanies the article, 
 [Binding an .AAR](http://developer.xamarin.com/guides/android/advanced_topics/java_integration_overview/binding-a-java-library/binding-an-aar/).
@@ -23,8 +34,9 @@ is the Binding Project that wraps the `textanalyzer.aar` file, and the
 `BindingTest` project is the test app that references `AarBinding`. 
 
 
-Author
------- 
+![Binding an .AAR Example  application screenshot](Screenshots/initial-screen.png "Binding an .AAR Example  application screenshot")
+
+## Author 
 
 Mark McLemore
 
