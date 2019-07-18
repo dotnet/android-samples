@@ -1,3 +1,15 @@
+---
+name: Xamarin.Android - SafeBrowsing
+description: SafeBrowsing is a simple project which demonstrates the safe browsing functionality of an Android Web View. This is a new feature added in Android...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-android
+urlFragment: android-o-safebrowsing
+---
 # SafeBrowsing
 
 SafeBrowsing is a simple project which demonstrates the safe browsing functionality of an Android Web View. This is a new feature added in Android 8.1 (API 27).
