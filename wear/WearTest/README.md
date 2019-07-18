@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Android Wear Getting Started '
+name: Xamarin.Android - Android Wear Getting Started
 description: This sample app accompanies the Android Wear article, Getting Started.
 page_type: sample
 languages:

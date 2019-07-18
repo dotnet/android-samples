@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Jelly Bean Time Animation '
+name: Xamarin.Android - Jelly Bean Time Animation
 description: This sample app accompanies the article, Introduction to Jelly Bean.
 page_type: sample
 languages:

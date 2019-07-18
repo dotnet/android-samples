@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Popup Menu Demo '
+name: Xamarin.Android - Popup Menu Demo
 description: This sample app accompanies the article, PopUp Menus.
 page_type: sample
 languages:

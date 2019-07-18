@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Android P Mini Demo '
+name: Xamarin.Android - Android P Mini Demo
 description: AndroidPMiniDemo is a sample app that accompanies the article, Android P Preview. This sample demonstrates the new display cutout and image...
 page_type: sample
 languages:

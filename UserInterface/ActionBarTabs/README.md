@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Tabbed Layouts ActionBar Sample '
+name: Xamarin.Android - Tabbed Layouts ActionBar Sample
 description: This sample app accompanies the article, Tabbed Layouts with the ActionBar.
 page_type: sample
 languages:

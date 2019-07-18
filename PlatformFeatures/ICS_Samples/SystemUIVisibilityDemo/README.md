@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - System UI Visibility Demo '
+name: Xamarin.Android - System UI Visibility Demo
 description: This sample app accompanies the article, Navigation Bar.
 page_type: sample
 languages:

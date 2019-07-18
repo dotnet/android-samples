@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - TabHost Walkthrough Start '
+name: Xamarin.Android - TabHost Walkthrough Start
 description: This sample app provides the starting point for the article, Walkthrough - Creating a tabbed UI with TabHost.
 page_type: sample
 languages:

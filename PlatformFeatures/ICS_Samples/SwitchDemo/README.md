@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Switch Demo '
+name: Xamarin.Android - Switch Demo
 description: This sample app accompanies the article, Introduction to Switches.
 page_type: sample
 languages:

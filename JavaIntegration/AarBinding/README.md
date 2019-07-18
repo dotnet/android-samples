@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Binding an .AAR Example '
+name: Xamarin.Android - Binding an .AAR Example
 description: This sample app accompanies the article, Binding an .AAR. This sample can help you understand how a Xamarin.Android application can reuse existing...
 page_type: sample
 languages:

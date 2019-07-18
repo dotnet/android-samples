@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Edit Text Sample '
+name: Xamarin.Android - Edit Text Sample
 description: This sample app accompanies the user interface article, Edit Text.
 page_type: sample
 languages:

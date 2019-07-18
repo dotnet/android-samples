@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - TimePickerDemo '
+name: Xamarin.Android - TimePickerDemo
 description: TimePickerDemo is a sample app that accompanies the article, Time Picker. This sample demonstrates how to use the TimePickerDialog, wrapped in a...
 page_type: sample
 languages:

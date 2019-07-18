@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - TreePager '
+name: Xamarin.Android - TreePager
 description: TreePager is a sample app that accompanies the article, ViewPager. This sample demonstrates how to use ViewPager and PagerTabStrip together to...
 page_type: sample
 languages:

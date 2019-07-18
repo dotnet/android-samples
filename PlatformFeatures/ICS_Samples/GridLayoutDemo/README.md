@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Grid Layout Demo '
+name: Xamarin.Android - Grid Layout Demo
 description: This sample app accompanies the article, GridLayout.
 page_type: sample
 languages:

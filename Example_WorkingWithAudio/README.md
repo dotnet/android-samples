@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Working With Audio – Test Application
-description: 'Sample code to accompany the article Working With Audio.This simple application provides the following functionality: Recording audio using the...'
+description: 'Sample code to accompany the article Working With Audio. This simple application provides the following functionality: Recording audio using the...'
 page_type: sample
 languages:
 - csharp

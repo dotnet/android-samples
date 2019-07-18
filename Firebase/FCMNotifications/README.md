@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.Android - Android FCM Remote Notifications '
+name: Xamarin.Android - Android FCM Remote Notifications
 description: This sample app accompanies the article Remote Notifications with Firebase Cloud Messaging. Before you can use this sample, you must acquire the...
 page_type: sample
 languages:
