@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: notepad-mono-data-sqlite
+urlFragment: notepad-monodatasqlite
 ---
 # Notepad Sample (Mono.Sqlite)
 

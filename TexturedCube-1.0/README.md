@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: texturedcube-1-0
+urlFragment: texturedcube-10
 ---
 # GL Textured Cube
 

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-cardviewsample
+urlFragment: android50-cardviewsample
 ---
 # CardView
 

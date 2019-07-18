@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-revealeffectbasic
+urlFragment: android50-revealeffectbasic
 ---
 # Reveal Effect Basic
 

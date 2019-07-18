@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-navigationdrawer
+urlFragment: android50-navigationdrawer
 ---
 # NavigationDrawer
   This example illustrates a common usage of the DrawerLayout widget

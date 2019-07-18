@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-floatingactionbuttonbasic
+urlFragment: android50-floatingactionbuttonbasic
 ---
 # Floating Action Button Basic
 

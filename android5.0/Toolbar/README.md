@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-toolbar
+urlFragment: android50-toolbar
 ---
 # Toolbar
 

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: gldiagnostics-1-0
+urlFragment: gldiagnostics-10
 ---
 # GL Diagnostics
 

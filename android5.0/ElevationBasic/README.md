@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-elevationbasic
+urlFragment: android50-elevationbasic
 ---
 # Elevation Basic
 

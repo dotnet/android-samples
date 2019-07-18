@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-permissionrequest
+urlFragment: android50-permissionrequest
 ---
 # Permission Request Sample
 

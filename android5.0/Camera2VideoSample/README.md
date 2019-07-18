@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-camera2videosample
+urlFragment: android50-camera2videosample
 ---
 # Camera2Video
 This sample demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace.

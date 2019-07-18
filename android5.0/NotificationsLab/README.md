@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-notificationslab
+urlFragment: android50-notificationslab
 ---
 # Android 5.0 Notifications Lab
 

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-cheesesquare
+urlFragment: android50-cheesesquare
 ---
 **NOTE:** This is a port of the original Cheesesquare Sample by Chris Banes, available on GitHub: https://github.com/chrisbanes/cheesesquare
 

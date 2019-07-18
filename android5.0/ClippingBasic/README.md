@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-clippingbasic
+urlFragment: android50-clippingbasic
 ---
 # ClippingBasic
 This sample demonstrates simple clipping in Android L.

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-topeka
+urlFragment: android50-topeka
 ---
 # Topeka for Android
 

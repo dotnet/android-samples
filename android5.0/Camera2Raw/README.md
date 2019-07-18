@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-camera2raw
+urlFragment: android50-camera2raw
 ---
 # Camera2Raw Sample
 

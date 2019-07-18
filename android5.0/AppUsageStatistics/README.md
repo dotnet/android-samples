@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-appusagestatistics
+urlFragment: android50-appusagestatistics
 ---
 # App Usage Statistics Sample
 

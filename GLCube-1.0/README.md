@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: glcube-1-0
+urlFragment: glcube-10
 ---
 # GL Rotating Cube
 

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: gltriangle20-1-0
+urlFragment: gltriangle20-10
 ---
 # GL Triangle 20
 

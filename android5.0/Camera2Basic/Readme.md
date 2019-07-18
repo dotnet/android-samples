@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-camera2basic
+urlFragment: android50-camera2basic
 ---
 # Camera2 Basic Sample
 

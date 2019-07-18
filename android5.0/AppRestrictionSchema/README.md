@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-apprestrictionschema
+urlFragment: android50-apprestrictionschema
 ---
 # App Restriction Schema
 

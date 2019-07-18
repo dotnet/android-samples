@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-jobscheduler
+urlFragment: android50-jobscheduler
 ---
 # Job Scheduler
 This sample demonstrates the new JobScheduler API. The JobScheduler API is part of Android-L's 'Project Volta' which provides new APIs to increase battery life.

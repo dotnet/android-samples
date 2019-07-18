@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-lnotifications
+urlFragment: android50-lnotifications
 ---
 # Android L Notifications
 

@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-drawabletinting
+urlFragment: android50-drawabletinting
 ---
 # Drawable Tinting
 

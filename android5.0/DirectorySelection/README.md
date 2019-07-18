@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-directoryselection
+urlFragment: android50-directoryselection
 ---
 # Directory Selection Sample
 

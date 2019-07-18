@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-screencapture
+urlFragment: android50-screencapture
 ---
 # ScreenCapture
 

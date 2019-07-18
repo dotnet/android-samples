@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-kitchensink
+urlFragment: android50-kitchensink
 ---
 # Android L Kitchen Sink
 

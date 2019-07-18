@@ -8,7 +8,7 @@ products:
 - xamarin
 technologies:
 - xamarin-android
-urlFragment: android5-0-googleio2014master
+urlFragment: android50-googleio2014master
 ---
 # Google I/O 2014
 
