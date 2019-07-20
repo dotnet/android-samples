@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: applicationfundamentals-touch-final
 ---
 # Touch in Android (Completed Sample)

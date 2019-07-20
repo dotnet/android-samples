@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: applicationfundamentals-touch-start
 ---
 # Touch in Android (Walkthrough)

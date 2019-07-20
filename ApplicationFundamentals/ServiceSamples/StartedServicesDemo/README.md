@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: applicationfundamentals-servicesamples-startedservicesdemo
 ---
 # Xamarin.Android Started Service Sample
