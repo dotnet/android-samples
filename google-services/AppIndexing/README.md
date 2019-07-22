@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: google-services-appindexing
 ---
 # App Indexing Sample

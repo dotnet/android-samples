@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: updateusersprofile
 ---
 # Update the User's Profile

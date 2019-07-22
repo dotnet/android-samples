@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: google-services-fitness-basichistorysessions
 ---
 # Android Fit History Api Sessions Sample

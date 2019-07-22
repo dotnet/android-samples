@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: android-n-scopeddirectoryaccess
 ---
 # Scoped Directory Access Sample

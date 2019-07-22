@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: osmdroidbindingexample
 ---
 # OSMDroid Bindings for Xamarin.Android

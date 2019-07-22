@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: supportv7-appcompat-toolbar
 ---
 # Support v7 Toolbar

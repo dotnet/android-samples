@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: platformfeatures-ics-samples-popupmenudemo
 ---
 # Popup Menu Demo 

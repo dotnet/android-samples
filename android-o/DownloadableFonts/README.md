@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: android-o-downloadablefonts
 ---
 # DownloadableFonts Sample

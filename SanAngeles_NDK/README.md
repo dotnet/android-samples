@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: sanangeles-ndk
 ---
 # Mono San Angeles sample port

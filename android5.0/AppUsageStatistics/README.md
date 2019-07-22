@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: android50-appusagestatistics
 ---
 # App Usage Statistics Sample

@@ -1,15 +1,13 @@
 ---
 name: Xamarin.Android - Hello Multiscreen
-description: This is a simple example showing how to use activities to create multiscreen applications.
+description: "A simple example showing how to use activities to create multi-activity applications #getstarted"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: hellomultiscreen
 ---
 # Hello Multiscreen
 
-This is a simple example showing how to use activities to create multiscreen applications.
+This is a simple example showing how to use activities to create multi-activity applications.

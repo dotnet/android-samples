@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: google-services-location-geofencing
 ---
 # Geofencing Sample

@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: simplecursortableadapter
 ---
 # Simple Cursor Table Adapter

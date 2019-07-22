@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: modelandverts
 ---
 # MonoGame Project Combining Model and Vertex Drawing for Android

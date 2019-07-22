@@ -1,13 +1,11 @@
 ---
 name: Xamarin.Android - ICS Tabs Demo
-description: This example shows how to use tabs from the Action Bar in Ice Cream Sandwich.
+description: "This example shows how to use tabs from the Action Bar in Ice Cream Sandwich #getstarted"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: hellotabsics
 ---
 # ICS Tabs Demo

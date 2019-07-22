@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: bouncinggameemptyandroid
 ---
 # CocosSharp Empty Project for Android

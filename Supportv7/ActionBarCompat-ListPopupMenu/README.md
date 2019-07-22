@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: supportv7-actionbarcompat-listpopupmenu
 ---
 # ActionBarCompat ListPopupMenu Sample

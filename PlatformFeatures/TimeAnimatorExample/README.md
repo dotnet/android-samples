@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: platformfeatures-timeanimatorexample
 ---
 # Jelly Bean Time Animation 

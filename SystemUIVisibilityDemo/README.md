@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: systemuivisibilitydemo
 ---
 # System UI Visibility Demo

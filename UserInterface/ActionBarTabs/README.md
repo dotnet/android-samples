@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: userinterface-actionbartabs
 ---
 # Tabbed Layouts ActionBar Sample 

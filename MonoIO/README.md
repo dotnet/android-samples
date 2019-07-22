@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: monoio
 ---
 # Google IO 2011 App in Mono for Android

@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: tv-visualgamecontroller
 ---
 # Visual Game Controller

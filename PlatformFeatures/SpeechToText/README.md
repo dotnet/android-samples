@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: platformfeatures-speechtotext
 ---
 # Speech to Text

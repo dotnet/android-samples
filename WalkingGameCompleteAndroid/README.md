@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: walkinggamecompleteandroid
 ---
 # MonoGame WalkingGame Project for Android

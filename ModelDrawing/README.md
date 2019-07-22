@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: modeldrawing
 ---
 # MonoGame Model Drawing Project for Android

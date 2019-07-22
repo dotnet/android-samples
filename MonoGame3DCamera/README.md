@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: monogame3dcamera
 ---
 # MonoGame Project with 3D Camera and Model Positioning and Orientation

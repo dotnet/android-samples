@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: firebase-fcmnotifications
 ---
 # Android FCM Remote Notifications 

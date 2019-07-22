@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: android-m-fingerprintdialog
 ---
 # Fingerprint Dialog Sample

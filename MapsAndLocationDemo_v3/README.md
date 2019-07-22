@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-android
 urlFragment: mapsandlocationdemo-v3
 ---
 # Google Maps v2 Demo
