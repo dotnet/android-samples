@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - DownloadableFonts Sample
-description: This sample demonstrates how to use the Downloadable Fonts feature introduced in Android O. Downloadable Fonts is a feature that allows apps to...
+description: "Demonstrates how to use the Downloadable Fonts feature introduced in #androidoreo"
 page_type: sample
 languages:
 - csharp

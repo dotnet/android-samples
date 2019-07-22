@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - NotificationChannels Sample
-description: This sample demonstrates how to use the new Notification Channels system introduced in Android Oreo. This system allows for increased customization...
+description: "Demonstrates how to use the new Notification Channels system introduced in #androidoreo"
 page_type: sample
 languages:
 - csharp

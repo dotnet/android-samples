@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - LocationUpdatesPendingIntent Sample
-description: This sample demonstrates how to use the Location API to get updates about a device's location using a PendingIntent. Instructions Sample shows...
+description: "Demonstrates how to use the Location API to get updates about a device's location using a PendingIntent #androidoreo"
 page_type: sample
 languages:
 - csharp

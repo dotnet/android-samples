@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Hello World
-description: "A simple hello world application. It uses a TextView to display a 'hello world' message via a string resource #getstarted"
+description: "A simple hello world application that uses a TextView to display a 'hello world' message via a string resource #getstarted"
 page_type: sample
 languages:
 - csharp

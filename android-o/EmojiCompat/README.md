@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - EmojiCompat Sample
-description: This sample demonstrates usage of EmojiCompat support library. You can use this library to prevent your app from showing missing emoji characters...
+description: "Demonstrates usage of EmojiCompat support library. You can use this library to prevent your app from showing missing emoji #androidoreo"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - AndroidCipher
-description: AndroidCipher is a simple project which encrypts and decrypts string with usage of android cipher. This sample demonstrates some of the new...
+description: "AndroidCipher is a simple project which encrypts and decrypts string with usage of android cipher #androidoreo"
 page_type: sample
 languages:
 - csharp

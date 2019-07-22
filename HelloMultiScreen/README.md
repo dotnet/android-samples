@@ -11,3 +11,4 @@ urlFragment: hellomultiscreen
 # Hello Multiscreen
 
 This is a simple example showing how to use activities to create multi-activity applications.
+

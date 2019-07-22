@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - AutofillFramework Sample
-description: This sample demonstrates the use of the Autofill Framework. It includes implementations of client Activities with views that should be autofilled,...
+description: "Demonstrates the use of the Autofill Framework, including implementations of client Activities with views that should be autofilled #androidoreo"
 page_type: sample
 languages:
 - csharp

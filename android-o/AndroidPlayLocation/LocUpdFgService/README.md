@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - LocationUpdatesForegroundService Sample
-description: This sample demonstrates how to use the Location API to get updates about a device's location using a bound and started foreground service....
+description: "Demonstrates how to use the Location API to get updates about a device's location using a bound and started foreground service.... #androidoreo"
 page_type: sample
 languages:
 - csharp

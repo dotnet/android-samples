@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - PictureInPicture Sample
-description: This sample demonstrates basic usage of the new Picture-in-Picture (PiP) mode for handheld devices introduced in Oreo. The sample plays a video...
+description: "This sample demonstrates basic usage of the new Picture-in-Picture (PiP) mode for handheld devices introduced in #androidoreo"
 page_type: sample
 languages:
 - csharp

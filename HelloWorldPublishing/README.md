@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Hello World (Publishing)
-description: This is a simple hello world type application to that goes along with the Xamarin topic Publishing an Application. This project contains a sample...
+description: "A simple hello world type application to that goes along with the Xamarin topic Publishing an Application #getstarted"
 page_type: sample
 languages:
 - csharp
