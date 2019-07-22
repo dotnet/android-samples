@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Active Notifications Sample
-description: This sample demonstrates how to use the NotficationManager API to tell you how many notifications your application is currently showing....
+description: "Demonstrates how to use the NotficationManager API to tell you how many notifications your application is currently showing... #androidnougat"
 page_type: sample
 languages:
 - csharp

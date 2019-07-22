@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Messaging Service Sample
-description: This sample shows a simple service that sends notifications using NotificationCompat. It also extends the notification with Remote Input to allow...
+description: "Shows a simple service that sends notifications using NotificationCompat. It also extends the notification with Remote Input #androidnougat"
 page_type: sample
 languages:
 - csharp
@@ -21,7 +21,8 @@ notification.
 
 ## Introduction
 
-#### Flow
+## Flow
+
 MessagingFragment is shown to the user. Depending on the button clicked, the MessagingService is
 sent a message. MessagingService in turn creates notifications which can be viewed either on the
 device or in the messaging-simulator.
@@ -39,6 +40,7 @@ TextView in MessagingFragment for correlation.
 * Clear the log and tap any button to send additional conversations
 
 ## Build Requirements
+
 Using this sample requires the Android SDK platform for Android 5.0 (API level 23).
 
 ## Screenshots
@@ -48,6 +50,7 @@ Using this sample requires the Android SDK platform for Android 5.0 (API level 2
 ![Messaging Service Sample application screenshot](Screenshots/1-one-convo-one-message.png "Messaging Service Sample application screenshot")
 
 ## Authors
+
 Copyright (c) 2016 The Android Open Source Project, Inc.
 
 Ported from [Android MessagingService Sample](https://github.com/googlesamples/android-messagingService)

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Fingerprint Dialog Sample
-description: This sample demonstrates how to use registered fingerprints to authenticate the user in an app. Instructions Touch the Purchase button to open a...
+description: "Demonstrates how to use registered fingerprints to authenticate the user in an app #androidmarshmallow"
 page_type: sample
 languages:
 - csharp

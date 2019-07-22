@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Runtime Permissions Sample
-description: This sample shows runtime permissions available in Android M and above. It shows how to check and request permissions at runtime, handle backwards...
+description: "Dhows runtime permissions available in Android M and above. It shows how to check and request permissions at runtime... #androidmarshmallow"
 page_type: sample
 languages:
 - csharp

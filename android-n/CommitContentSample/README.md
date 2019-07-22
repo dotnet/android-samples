@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - CommitContentSample
-description: This sample demonstrates how to write an keyboard which sends rich content (such as images) to text fields using the Commit Content API....
+description: "Demonstrates how to write an keyboard which sends rich content (such as images) to text fields using the Commit Content API... #androidnougat"
 page_type: sample
 languages:
 - csharp

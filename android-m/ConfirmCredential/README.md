@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Confirm Credential Sample
-description: This sample demonstrates how to use device credentials (PIN, Pattern, Password) in your app. Instructions Set up a secure lock screen in ‘Settings...
+description: "Demonstrates how to use device credentials (PIN, Pattern, Password) in your app #androidmarshmallow"
 page_type: sample
 languages:
 - csharp
