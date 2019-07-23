@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Cheesesquare Sample
-description: 'Demos the new Android Design library. This is not an exhaustive sample, but shows some of the important features in the Design library: -...'
+description: 'Demos the new Android Design library. This is not an exhaustive sample, but shows some of the important features #androidlollipop'
 page_type: sample
 languages:
 - csharp
@@ -8,11 +8,12 @@ products:
 - xamarin
 urlFragment: android50-cheesesquare
 ---
-**NOTE:** This is a port of the original Cheesesquare Sample by Chris Banes, available on GitHub: https://github.com/chrisbanes/cheesesquare
+# Cheesesquare sample for Xamarin.Android
 
-![Screenshot](https://raw.githubusercontent.com/xamarin/monodroid-samples/master/android5.0/Cheesesquare/screenshot.png)
+> [!NOTE]
+> This is a port of the original Cheesesquare Sample by Chris Banes, available on GitHub: https://github.com/chrisbanes/cheesesquare
 
-# Cheesesquare Sample
+![Screenshot](Screenshots/screenshot.png)
 
 Demos the new Android Design library. This is not an exhaustive sample, but shows
 some of the important features in the Design library:

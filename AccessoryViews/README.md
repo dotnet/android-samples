@@ -8,6 +8,6 @@ products:
 - xamarin
 urlFragment: accessoryviews
 ---
-# AccessoryViews
+# Xamarin.Android AccessoryViews
 
-This sample is part of the Android ListViews and Adapters series. 
+This sample is part of the Android ListViews and Adapters [documentation](https://docs.microsoft.com/xamarin/android/user-interface/layouts/list-view/).

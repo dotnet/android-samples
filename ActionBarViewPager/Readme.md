@@ -8,11 +8,7 @@ products:
 - xamarin
 urlFragment: actionbarviewpager
 ---
-# HelloSwipeViewWithTabs
-
-Author: Richard Lander -- rlander@microsoft.com
-
-License: Apache 2
+# Xamarin.Android HelloSwipeViewWithTabs
 
 This sample app demonstrates how to use ViewPager and ActionBar
 together. ViewPager provides a "swiping view" and ActionBar provides
@@ -21,6 +17,8 @@ the tabs.
 These two classes provide a very nice user experience together, but do
 not provide an intuitive approach to integration. This sample
 demonstrates how.
+
+![Android app with tabs](Screenshots/01.png)
 
 There are two primary integration challenges:
 
@@ -40,9 +38,13 @@ and related classes whereas Viewpager works with
 trick is to change your Activity to derive from
 [FragmentActivity](http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html),
 which satisfies both the regular and 'Support' API worlds.
- 
+
 The sample provides "shape" classes that satisfy the API requirements
 of ViewPager, and then uses lambdas to provide the required
 implementation. This approach ends up being quite nice, since the
 implementation can be written inline within the Activity without
 hiding it within separate classes. That's not a requirement, however.
+
+## License
+
+Apache 2

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - App Usage Statistics Sample
-description: This sample shows how to use the App usage statistics API to let users collect statistics related to usage of the applications. Introduction The...
+description: "Shows how to use the App usage statistics API to let users collect statistics related to usage of the applications #androidlollipop"
 page_type: sample
 languages:
 - csharp
@@ -12,6 +12,8 @@ urlFragment: android50-appusagestatistics
 
 This sample shows how to use the App usage statistics API to let users collect statistics related
 to usage of the applications.
+
+![App Usage Statistics Sample application screenshot](Screenshots/1-view-daily.png) ![Weekly view](Screenshots/2-view-weekly.png)
 
 ## Introduction
 
@@ -29,17 +31,11 @@ by the timestamp of the last time each app was used.
 * View basic usage statistics for apps on the device
 
 ## Build Requirements
+
 Using this sample requires the Android SDK platform for Android 5.0 (API level 21).
 
-## Screenshots
+## License
 
-<img src="Screenshots/1-view-daily.png" height="400" alt="Screenshot"/> <img src="Screenshots/2-view-weekly.png" height="400" alt="Screenshot"/>
-
-![App Usage Statistics Sample application screenshot](Screenshots/1-view-daily.png "App Usage Statistics Sample application screenshot")
-
-## Authors
-Copyright (c) 2014 The Android Open Source Project, Inc.
+Original copyright (c) 2014 The Android Open Source Project, Inc.
 
 Ported from [Android AppUsageStatistics Sample](https://github.com/googlesamples/android-AppUsageStatistics)
-
-Ported to Xamarin.Android by Dylan Kelly

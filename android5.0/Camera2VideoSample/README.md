@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Camera2Video
-description: This sample demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace. Instructions Touch the Record...
+description: "Demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace #androidlollipop"
 page_type: sample
 languages:
 - csharp
@@ -8,8 +8,11 @@ products:
 - xamarin
 urlFragment: android50-camera2videosample
 ---
-# Camera2Video
+# Xamarin.Android Camera2Video
+
 This sample demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace.
+
+![Camera2Video application screenshot](Screenshots/info.png "Camera2Video application screenshot")
 
 ## Instructions
 
@@ -19,13 +22,13 @@ This sample demonstrates how record video on Android L through the use of the An
 * Requires a device with a rear facing camera
 
 ## Build Requirements
+
 Using this sample requires a device that is Android L or later and Xamarin.Android 4.17 or later.
 
 ## Notes
+
 This sample is known to crash on various device and Lollipop version combinations. See https://github.com/googlesamples/android-Camera2Video/issues/2 for more info.
 
-![Camera2Video application screenshot](Screenshots/info.png "Camera2Video application screenshot")
+## License
 
-## Author
-Copyright (c) 2005-2008, The Android Open Source Project  
-Ported to Xamarin.Android by John Pilczak
+Original copyright (c) 2005-2008, The Android Open Source Project  
