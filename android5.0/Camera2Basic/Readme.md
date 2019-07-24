@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Camera2 Basic Sample
-description: "Demonstrates how to use the new Camera2 APIs to render a preview of a camera's viewport, capture an image and save it #androidlollipop"
+description: "Demonstrates how to use the new Camera2 APIs to render a preview of a camera's viewport, capture an image and save it (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-camera2basic
 ---
 # Xamarin.Android Camera2 Basic Sample

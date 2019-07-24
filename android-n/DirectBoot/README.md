@@ -1,14 +1,17 @@
 ---
 name: Xamarin.Android - Direct Boot Sample
-description: "Demonstrates how to store data in a device-protected storage which is always available while the device is booted... #androidnougat"
+description: "Demonstrates how to store data in a device-protected storage which is always available while the device is booted... (Android Nougat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidnougat
 urlFragment: android-n-directboot
 ---
-# Direct Boot Sample
+# Direct Boot Sample for Xamarin.Android
 
 This sample demonstrates how to store data in a device-protected storage which is always available
 while the device is booted both before and after any user credentials(PIN/Pattern/Password) are entered.
@@ -27,10 +30,8 @@ Using this sample requires the Android N Developer Preview and the Xamarin.Andro
 
 ![Direct Boot Sample application screenshot](Screenshots/alarm_notification.png "Direct Boot Sample application screenshot")
 
-## Author
+## License
 
 Copyright (c) 2016 The Android Open Source Project, Inc.
 
 Ported from [Android DirectBoot Sample](https://github.com/googlesamples/android-DirectBoot)
-
-Ported to Xamarin.Android by Peter Collins

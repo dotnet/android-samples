@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Cheesesquare Sample
-description: 'Demos the new Android Design library. This is not an exhaustive sample, but shows some of the important features #androidlollipop'
+description: 'Demos the new Android Design library. This is not an exhaustive sample, but shows some of the important features (Android Lollipop)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-cheesesquare
 ---
 # Cheesesquare sample for Xamarin.Android

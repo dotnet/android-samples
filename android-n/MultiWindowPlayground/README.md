@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - MultiWindow Playground Sample
-description: "This sample demonstrates how to use the MultiWindow API introduced in Android N allowing adjacent and floating app windows #androidnougat"
+description: "This sample demonstrates how to use the MultiWindow API introduced in Android N allowing adjacent and floating app windows (Android Nougat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidnougat
 urlFragment: android-n-multiwindowplayground
 ---
 # MultiWindow Playground Sample

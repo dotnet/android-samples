@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - App Usage Statistics Sample
-description: "Shows how to use the App usage statistics API to let users collect statistics related to usage of the applications #androidlollipop"
+description: "Shows how to use the App usage statistics API to let users collect statistics related to usage of the applications (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-appusagestatistics
 ---
 # App Usage Statistics Sample

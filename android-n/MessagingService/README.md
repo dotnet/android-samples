@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Messaging Service Sample
-description: "Shows a simple service that sends notifications using NotificationCompat. It also extends the notification with Remote Input #androidnougat"
+description: "Shows a simple service that sends notifications using NotificationCompat. It also extends the notification with Remote Input (Android Nougat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidnougat
 urlFragment: android-n-messagingservice
 ---
 # Messaging Service Sample

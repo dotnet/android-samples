@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - ClippingBasic
-description: "Demonstrates simple clipping in Android L. Touch the Show Log/Hide Log button to toggle the log. Touch the text to cycle... #androidlollipop"
+description: "Demonstrates simple clipping in Android L. Touch the Show Log/Hide Log button to toggle the log (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-clippingbasic
 ---
 # ClippingBasic in Xamarin.Android

@@ -1,16 +1,21 @@
 ---
 name: Xamarin.Android - ActivitySceneTransitionBasic
-description: "Demonstrates how to the use Activity scene transitions when transitioning from one activity to another #androidlollipop"
+description: "Demonstrates how to the use Activity scene transitions when transitioning from one activity to another (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-activityscenetransitionbasic
 ---
 # Xamarin.Android ActivitySceneTransitionBasic
 
 This sample demonstrates how to the use Activity scene transitions when transitioning from one activity to another. Uses a combination of moveImage and changeBounds to nicely transition from a grid of images to an activity with a large image and detail text.
+
+![ActivitySceneTransitionBasic application screenshot](Screenshots/Detailed View.png)
 
 ## Instructions
 
@@ -21,8 +26,6 @@ This sample demonstrates how to the use Activity scene transitions when transiti
 
 This sample requires Xamarin.Android 4.17 or later and an Android L or later device.
 
-![ActivitySceneTransitionBasic application screenshot](Screenshots/Detailed View.png "ActivitySceneTransitionBasic application screenshot")
-
-## Author
+## License
 
 Original copyright (c) 2005-2008, The Android Open Source Project  

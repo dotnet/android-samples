@@ -30,8 +30,8 @@ Contributing
 Before adding a sample to the repository, please run either install-hook.bat
 or install-hook.sh depending on whether you're on Windows or a POSIX system.
 This will install a Git hook that runs the Xamarin code sample validator before
-a commit, to ensure that all samples are good to go.                                                                 
-                                             
+a commit, to ensure that all samples are good to go.
+
 Samples Submission Guidelines
 =============================
 

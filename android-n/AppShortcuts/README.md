@@ -1,16 +1,21 @@
 ---
 name: Xamarin.Android - AppShortcuts Sample
-description: "Demonstrates how to use the Launcher Shortcuts API introduced in Android 7.1 (API 25). This API allows an application to define... #androidnougat"
+description: "Demonstrates how to use the Launcher Shortcuts API introduced in Android 7.1 (API 25). This API allows an application to define... (Android Nougat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidnougat
 urlFragment: android-n-appshortcuts
 ---
 # AppShortcuts Sample
 
 This sample demonstrates how to use the Launcher Shortcuts API introduced in Android 7.1 (API 25). This API allows an application to define a set of Intents which are displayed as when a user long-presses on the app's launcher icon. Examples are given for registering both links both statically in XML, as well as dynamically at runtime.
+
+![AppShortcuts Sample application screenshot](Screenshots/Screenshot_1480604454.png)
 
 ## Instructions
 
@@ -20,11 +25,7 @@ You can use the shortcuts feature in Android 7.1 (API 25) to bring users from th
 
 Using this sample requires the Android 7.1 (API 25) and the Xamarin.Android 7.1.99 or higher.
 
-
-![AppShortcuts Sample application screenshot](Screenshots/Screenshot_1480604454.png "AppShortcuts Sample application screenshot")
-
-## Author
+## License
 
 Copyright (c) 2016 The Android Open Source Project, Inc.  
 Ported from [Android AppShortcuts Sample](https://github.com/googlesamples/android-AppShortcuts).  
-Ported to Xamarin.Android by Gonzalo Martin.

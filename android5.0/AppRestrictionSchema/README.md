@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - App Restriction Schema
-description: "This sample shows a basic demonstration of using a profile owner to set app restrictions in Android #androidlollipop"
+description: "This sample shows a basic demonstration of using a profile owner to set app restrictions in Android (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-apprestrictionschema
 ---
 # App Restriction Schema

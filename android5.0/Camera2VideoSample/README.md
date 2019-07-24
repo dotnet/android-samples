@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Camera2Video
-description: "Demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace #androidlollipop"
+description: "Demonstrates how record video on Android L through the use of the Android.Hardware.Camera2 namespace (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-camera2videosample
 ---
 # Xamarin.Android Camera2Video

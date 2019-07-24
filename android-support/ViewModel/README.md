@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - ViewModel Sample
-description: "This sample demonstrates usage of ViewModel and LifeCycle Architecture Components library by Android #androidoreo"
+description: "This sample demonstrates usage of ViewModel and LifeCycle Architecture Components library by Android (Android Oreo)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidoreo
 urlFragment: android-support-viewmodel
 ---
 # Xamarin.Android ViewModel Sample

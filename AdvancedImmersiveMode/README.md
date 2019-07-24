@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Advanced Immersive Mode
-description: "Android 4.4 introduces a way for you to provide a more immersive screen experience in your app: show/hide the status bar #androidkitkat"
+description: "Android 4.4 introduces a way for you to provide a more immersive screen experience in your app: show/hide the status bar (Android KitKat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidkitkat
 urlFragment: advancedimmersivemode
 ---
 # Xamarin.Android Advanced Immersive Mode

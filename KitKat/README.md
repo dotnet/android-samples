@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - KitKat
-description: 'This sample provides an overview of new features of Android 4.4 KitKat, including User Interface, Storage Access Framework... #androidkitkat'
+description: 'This sample provides an overview of new features of Android 4.4 KitKat, including User Interface, Storage Access Framework... (Android KitKat)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidkitkat
 urlFragment: kitkat
 ---
 # KitKat

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - CardView
-description: "Demonstration of the CardView API introduced in Android L. Run the project Adjust the sliders to adjust the elevation and corner... #androidlollipop"
+description: "Demonstration of the CardView API introduced in Android L. Run the project Adjust the sliders to adjust the elevation... (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-cardviewsample
 ---
 # Xamarin.Android CardView

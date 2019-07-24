@@ -1,14 +1,17 @@
 ---
 name: Xamarin.Android - Scoped Directory Access Sample
-description: "Demonstrates how to use the Scoped Directory Access API introduced Android N to easily access specific directories #androidnougat"
+description: "Demonstrates how to use the Scoped Directory Access API introduced Android N to easily access specific directories (Android Nougat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidnougat
 urlFragment: android-n-scopeddirectoryaccess
 ---
-# Scoped Directory Access Sample
+# Scoped Directory Access Sample for Xamarin.Android
 
 This sample demonstrates how to use the Scoped Directory Access API introduced Android N to easily access specific directories.
 This serves as an alternative to having to define READ_EXTERNAL_STORAGE or WRITE_EXTERNAL_STORAGE permissions in your manifest.
@@ -24,8 +27,7 @@ Using this sample requires the Android N Developer Preview and the Xamarin.Andro
 
 ![Scoped Directory Access Sample application screenshot](Screenshots/directory_content.png "Scoped Directory Access Sample application screenshot")
 
-## Author
+## License
 
 Copyright (c) 2014 The Android Open Source Project, Inc.
 Ported from [Android ScopedDirectoryAccess Sample](https://github.com/googlesamples/android-ScopedDirectoryAccess)
-Ported to Xamarin.Android by Peter Collins

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Camera2Raw Sample
-description: "Demonstrates how to use the Camera2 APIs to capture RAW camera buffers and save them to the devices storage as a dng file #androidlollipop"
+description: "Demonstrates how to use the Camera2 APIs to capture RAW camera buffers and save them to the devices storage as a dng file (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-camera2raw
 ---
 # Xamarin.Android Camera2Raw Sample

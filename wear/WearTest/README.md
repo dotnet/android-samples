@@ -8,9 +8,9 @@ products:
 - xamarin
 urlFragment: wear-weartest
 ---
-# Android Wear Getting Started 
+# Android Wear getting started
 
-This sample app accompanies the Android Wear article, 
-[Getting Started](https://developer.xamarin.com/guides/android/wear/getting-started/).
+This sample app accompanies the Android Wear article,
+[Getting Started](https://docs.microsoft.com/xamarin/android/wear/get-started/).
 
-
+![Android Wear on a watch](Screenshots/screenshot.png)

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Android P Mini Demo
-description: "Sample app that accompanies the article, Android P Preview. This sample demonstrates the new display cutout and image... #androidpie"
+description: "Demonstrates new display cutout and image notification features (Android Pie)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidpie
 urlFragment: android-p-androidpminidemo
 ---
 # Android P Mini Demo
@@ -13,8 +16,8 @@ urlFragment: android-p-androidpminidemo
 **AndroidPMiniDemo** is a sample app that accompanies the article,
 [Android P Preview](https://docs.microsoft.com/en-us/xamarin/android/platform/android-p).
 
-This sample demonstrates the new display cutout and image notification features 
-in Android P. 
+This sample demonstrates the new display cutout and image notification features
+in Android P.
 
 ## Display Cutout Demo
 
