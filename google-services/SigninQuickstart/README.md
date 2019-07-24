@@ -25,19 +25,19 @@ This sample demonstrates how to authenticate a user with the Google Api Client i
 * Tap "Disconnect" button to disconnect sign in with the app.
 
 ## Troubleshooting
-* DEVELOPER_ERROR: Make sure you're using the generated android debug keystore by Xamarin for generate SHA-1. Check [this article](https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/MD5_SHA1/) to get it.
+
+* DEVELOPER_ERROR: Make sure you're using the generated android debug keystore by Xamarin for generate SHA-1. Check [this article](https://docs.microsoft.com/xamarin/android/deploy-test/signing/keystore-signature) to get it.
 
 Note: Make sure you've authorized the app in the [Google Developers Console](https://console.developers.google.com/project) before use.
 
 ## Build Requirements
+
 Using this sample requires the Android SDK platform for Android 5.0+ (API level 21).
 
 ![Google Sign-In Sample application screenshot](Screenshots/promt.png "Google Sign-In Sample application screenshot")
 
-## Authors
+## License
+
 Copyright (c) 2015 Google, Inc.
 
 Ported from [Google Sign-In Sample](https://developers.google.com/mobile/add)
-
-Ported to Xamarin.Android by Aaron Sky
-Updated by Gonzalo Martin

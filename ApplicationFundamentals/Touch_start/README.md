@@ -10,4 +10,4 @@ urlFragment: applicationfundamentals-touch-start
 ---
 # Touch in Android (Walkthrough)
 
-Walkthrough starting point for [Using Touch in Android Walkthrough](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/touch/part_4_android_touch_walkthrough/)
+Walkthrough starting point for [Using Touch in Android Walkthrough](https://docs.microsoft.com/xamarin/android/app-fundamentals/touch/android-touch-walkthrough)

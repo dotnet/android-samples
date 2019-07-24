@@ -10,12 +10,6 @@ urlFragment: applicationfundamentals-servicesamples-boundservicedemo
 ---
 # Xamarin.Android Bound Service Sample
 
-This directory holds the sample project from the [creating a bound service section](https://developer.xamarin.com/guides/android/application_fundamentals/services/creating-a-service/bound-services/) of the [Creating Services](https://developer.xamarin.com/guides/android/application_fundamentals/services/) guide for Xamarin.Android. 
+This directory holds the sample project from the [creating a bound service section](https://docs.microsoft.com/xamarin/android/app-fundamentals/services/creating-a-service/bound-services) of the [Creating Services](https://docs.microsoft.com/xamarin/android/app-fundamentals/services/) guide for Xamarin.Android.
 
-![](./Screenshots/bound-service.png)
-
-![Xamarin.Android Bound Service Sample application screenshot](Screenshots/bound-service.png "Xamarin.Android Bound Service Sample application screenshot")
-
-## Authors
-
-Tom Opgenorth (toopge@microsoft.com)
+![Android app](Screenshots/bound-service.png)

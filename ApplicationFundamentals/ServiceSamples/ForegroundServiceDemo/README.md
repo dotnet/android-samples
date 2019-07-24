@@ -10,12 +10,6 @@ urlFragment: applicationfundamentals-servicesamples-foregroundservicedemo
 ---
 # Xamarin.Android Foreground Service Sample
 
-This directory holds the sample project from the [creating a foreground service](https://developer.xamarin.com/guides/android/application_fundamentals/services/creating-a-service/bound-services/) section of the [Creating Services](https://developer.xamarin.com/guides/android/application_fundamentals/services/) guide for Xamarin.Android.
+Sample project for the [creating a foreground service](https://docs.microsoft.com/xamarin/android/app-fundamentals/services/creating-a-service/bound-services) section of the [Creating Services](https://docs.microsoft.com/xamarin/android/app-fundamentals/services/) guide for Xamarin.Android.
 
-![](./Screenshots/foreground-service.png)
-
-![Xamarin.Android Foreground Service Sample application screenshot](Screenshots/foreground-service.png "Xamarin.Android Foreground Service Sample application screenshot")
-
-## Authors
-
-Tom Opgenorth (toopge@microsoft.com)
+![Android app screenshot](Screenshots/foreground-service.png)
