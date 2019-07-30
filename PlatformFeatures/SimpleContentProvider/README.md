@@ -8,6 +8,8 @@ products:
 - xamarin
 urlFragment: platformfeatures-simplecontentprovider
 ---
-# SimpleContentProvider
+# SimpleContentProvider for Xamarin.Android
 
-Sample for [Creating a Custom ContentProvider](http://developer.xamarin.com/guides/android/platform_features/intro_to_content_providers/part_3_-_creating_a_custom_contentprovider/)
+Sample for [Creating a Custom ContentProvider](https://docs.microsoft.com/en-us/xamarin/android/platform/content-providers/custom-contentprovider)
+
+![Screenshots of list using a content provider](Screenshots/ContentProvider.png)

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Update the User's Profile
-description: This sample app accompanies the recipe, Update the User's Profile. This sample creates a display name for the owner of the device (John Doe) and...
+description: 'This sample creates a display name for the owner of the device (John Doe) and adds to the user profile'
 page_type: sample
 languages:
 - csharp
