@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Elevation Drag
-description: This sample demonstrates a drag and drop action on different shapes. Elevation and z-translation are used to render the shadows. The views are...
+description: "Demonstrates a drag and drop action on different shapes. Elevation and z-translation are used to render the shadows (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-elevationdrag
 ---
 # Elevation Drag
@@ -20,12 +23,12 @@ Elevation and z-translation are part of Android's new [Material Design](https://
 * Click on the purple square to raise the view.
 
 ## Build Requirements
+
 * Xamarin Studio 5.3+
 * Xamarin Android 4.17+
 
 ![Elevation Drag application screenshot](Screenshots/circle.png "Elevation Drag application screenshot")
 
-## Author 
-Copyright (c) 2013, The Android Open Source Project
+## License
 
-Ported to Xamarin.Android by Ben O'Halloran
+Copyright (c) 2013, The Android Open Source Project

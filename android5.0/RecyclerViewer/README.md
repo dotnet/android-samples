@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - RecyclerViewer
-description: This sample app accompanies the articles CardView and RecyclerView. You can use this sample to learn how to use the new CardView and RecyclerView...
+description: "Sample for the CardView and RecyclerView docs. Use this sample to learn how to use the new CardView and RecyclerView... (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-recyclerviewer
 ---
 # RecyclerViewer

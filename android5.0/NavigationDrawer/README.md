@@ -1,25 +1,30 @@
 ---
-name: Xamarin.Android - NavigationDrawer
-description: This example illustrates a common usage of the DrawerLayout widget in the Android support library. When a navigation (left) drawer is present, the...
+name: Xamarin.Android - Navigation Drawer
+description: :Usage of the DrawerLayout widget in the Android support library. When a navigation (left) drawer is present, the... (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-navigationdrawer
 ---
 # NavigationDrawer
-  This example illustrates a common usage of the DrawerLayout widget
+
+This example illustrates a common usage of the DrawerLayout widget
   in the Android support library.
   When a navigation (left) drawer is present, the host activity should detect presses of
   the action bar's Up affordance as a signal to open and close the navigation drawer. The
   ActionBarDrawerToggle facilitates this behavior.
-  Items within the drawer should fall into one of two categories:  
- *  **View switches**. A view switch follows the same basic policies as
+  Items within the drawer should fall into one of two categories:
+
+- **View switches**. A view switch follows the same basic policies as
   list or tab navigation in that a view switch does not create navigation history.
   This pattern should only be used at the root activity of a task, leaving some form
   of Up navigation active for activities further down the navigation hierarchy.
- * **Selective Up**. The drawer allows the user to choose an alternate
+- **Selective Up**. The drawer allows the user to choose an alternate
   parent for Up navigation. This allows a user to jump across an app's navigation
   hierarchy at will. The application should treat this as it treats Up navigation from
   a different task, replacing the current task stack using TaskStackBuilder or similar.
@@ -32,16 +37,18 @@ Right side drawers should be used for actions, not navigation. This follows the 
   for example enabling or disabling a data overlay on top of the current content.
 
 ## Instructions
-* Select 'Navigation Drawer Example' from the main screen
-* Bring up the Navigation Drawer by hitting the three horizontal bars or by swipping in from the left side of the device
-* Select a planet to display
+
+- Select 'Navigation Drawer Example' from the main screen
+- Bring up the Navigation Drawer by hitting the three horizontal bars or by swipping in from the left side of the device
+- Select a planet to display
 
 ## Build Requirements
-* Xamarin Studio 5.3+
-* Xamarin Android 4.17+
+
+- Xamarin Studio 5.3+
+- Xamarin Android 4.17+
 
 ![NavigationDrawer application screenshot](Screenshots/drawer open.png "NavigationDrawer application screenshot")
 
-## Author
+## License
+
 Copyright (c) 2005-2008, The Android Open Source Project  
-Ported to Xamarin.Android by Ben O'Halloran

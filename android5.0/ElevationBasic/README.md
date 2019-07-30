@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Elevation Basic
-description: This sample demonstrates two alternative ways to move a view in the z-axis. The first view has a fixed elevation using XML and the second one is...
+description: "Demonstrates two alternative ways to move a view in the z-axis. The first view has a fixed elevation using XML... (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-elevationbasic
 ---
 # Elevation Basic
@@ -20,12 +23,12 @@ This layering is part of Android's new [Material Design](https://developer.andro
 * Click on the purple square to raise the view.
 
 ## Build Requirements
+
 * Xamarin Studio 5.3+
 * Xamarin Android 4.17+
 
 ![Elevation Basic application screenshot](Screenshots/down.png "Elevation Basic application screenshot")
 
-## Author 
-Copyright (c) 2013, The Android Open Source Project
+## License
 
-Ported to Xamarin.Android by Ben O'Halloran
+Copyright (c) 2013, The Android Open Source Project

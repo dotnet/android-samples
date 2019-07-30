@@ -6,6 +6,9 @@ languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - bluetooth
 urlFragment: bluetoothchat
 ---
 # Bluetooth Chat

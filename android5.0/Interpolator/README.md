@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - Interpolator
-description: This sample demonstrates the use of animation interpolators and path animations for Material Design. It shows how an ObjectAnimator is used to...
+description: "Demonstrates the use of animation interpolators and path animations for Material Design (Android Lollipop)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: android50-interpolator
 ---
 # Interpolator
@@ -19,13 +22,13 @@ This sample demonstrates the use of animation interpolators and path animations 
 * Tap the "Animate!" button to show an interpolation with the desired settings on the purple rectangle.
 
 ## Build Requirements
+
 * Xamarin Studio 5.3+
 * Xamarin Android 4.17+
 * Android SDK (L Preview)
 
 ![Interpolator application screenshot](Screenshots/After.png "Interpolator application screenshot")
 
-## Author 
-Copyright 2014 The Android Open Source Project
+## License
 
-Ported to Xamarin.Android by John Pilczak
+Copyright 2014 The Android Open Source Project
