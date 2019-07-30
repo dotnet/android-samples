@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Content Provider Demo
-description: Just a small example showing how a Content Provider can be implemented in Mono for Android. I used this article as reference.
+description: "Example showing how a Content Provider can be implemented in Xamarin.Android"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Calendar Demo
-description: This example shows how to use the calendar API to list calendars and events. It also shows how to add an event and view it using the built-in...
+description: "Shows how to use the calendar API to list calendars and events. It also shows how to add an event and view it..."
 page_type: sample
 languages:
 - csharp
@@ -12,3 +12,5 @@ urlFragment: calendardemo
 
 This example shows how to use the calendar API to list calendars and events.
 It also shows how to add an event and view it using the built-in calendar app.
+
+![Demo of a calendar with two events](Screenshots/Calendar1.png)

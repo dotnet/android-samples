@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - C# Dynamic Test
-description: This samples makes use of dynamic types in DLR. This sample imports System.Json from ASP.NET MVC sources which includes JsonValue.AsDynamic() which...
+description: "This samples makes use of dynamic types in DLR. It imports System.Json from ASP.NET MVC sources which includes JsonValue.AsDynamic()"
 page_type: sample
 languages:
 - csharp

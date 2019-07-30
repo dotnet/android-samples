@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Working With Audio – Test Application
-description: 'Sample code to accompany the article Working With Audio. This simple application provides the following functionality: Recording audio using the...'
+description: 'Sample code to accompany the article Working With Audio'
 page_type: sample
 languages:
 - csharp
@@ -10,7 +10,7 @@ urlFragment: example-workingwithaudio
 ---
 # Working With Audio – Test Application
 
-Sample code to accompany the article Working With Audio. This simple application provides the following functionality:
+Sample code to accompany the article [Working With Audio](https://docs.microsoft.com/xamarin/android/app-fundamentals/android-audio). This simple application provides the following functionality:
 
 * Recording audio using the high-level API (MediaRecorder.)
 * Playing audio using the high-level API (MediaPlayer.)

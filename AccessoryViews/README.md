@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - AccessoryViews
-description: This sample is part of the Android ListViews and Adapters series.
+description: "How to add an accessory view to a ListView"
 page_type: sample
 languages:
 - csharp
