@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Text to Speech
-description: Sample for Android Speech ![](Screenshots/TextToSpeech.png)
+description: 'Sample for Android Speech doc'
 page_type: sample
 languages:
 - csharp
@@ -10,6 +10,6 @@ urlFragment: platformfeatures-texttospeech
 ---
 # Text to Speech
 
-Sample for [Android Speech](http://developer.xamarin.com/guides/android/platform_features/speech/)
+Sample for [Android Speech](https://docs.microsoft.com/xamarin/android/platform/speech)
 
-![](Screenshots/TextToSpeech.png)
+![Text to speech Android app screenshot](Screenshots/TextToSpeech.png)
