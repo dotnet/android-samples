@@ -1,6 +1,6 @@
 ---
-name: Xamarin.Android - MonoGame Project with 3D Camera and Model Positioning and Orientation
-description: This project extends the Model with Vertex-based drawing project to add a user-controlled camera and 3D Model movement/orientation. This single...
+name: Xamarin.Android - MonoGame Project 
+description: "Extends the Model with Vertex-based drawing project with 3D camera and model positioning and orientation"
 page_type: sample
 languages:
 - csharp
@@ -14,6 +14,4 @@ This project extends the Model with Vertex-based drawing project to add a user-c
 
 This single solution contains two projects:  one for Android and one cross-platform portable class library. It is the result of the 3D Coordinates and Camera project.
 
-## Author
-
-Victor Chelaru
+Refer to the [MonoGame docs](https://docs.microsoft.com/xamarin/graphics-games/monogame/).
