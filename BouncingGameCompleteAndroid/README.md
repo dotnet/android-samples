@@ -1,13 +1,3 @@
----
-name: Xamarin.Android - CocosSharp BouncingGame Project for Android
-description: This is a small, complete game using CocosSharp for Android. It is the result of working through the the entire Introduction to CocosSharp...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: bouncinggamecompleteandroid
----
 # CocosSharp BouncingGame Project for Android
 
 This is a small, complete game using CocosSharp for Android.  It is the result of working through the the entire Introduction to CocosSharp walkthrough.
