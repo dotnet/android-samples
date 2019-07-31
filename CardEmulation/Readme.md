@@ -1,17 +1,17 @@
 ---
-name: Xamarin.Android - CardEmulation Sample
+name: Xamarin.Android - Card Emulation Sample
 description: "Demonstrates the use of the new Host Card Emulation (HCE) APIs in Android 4.4 (KitKat)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
-- extensions:
+extensions:
     tags:
     - androidkitkat
 urlFragment: cardemulation
 ---
-# CardEmulation Sample
+# Card Emulation Sample
 
 This sample demonstrates the use of the new Host Card Emulation (HCE) APIs in Android 4.4 (KitKat).
 

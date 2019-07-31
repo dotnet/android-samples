@@ -6,7 +6,7 @@ languages:
 - csharp
 products:
 - xamarin
-- extensions:
+extensions:
     tags:
     - androidkitkat
 urlFragment: batchstepsensor
