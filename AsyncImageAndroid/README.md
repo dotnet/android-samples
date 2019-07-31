@@ -1,6 +1,6 @@
 ---
-name: Xamarin.Android - AsyncImageAndroid
-description: "Demonstrates how to use the new async/await feature"
+name: Xamarin.Android - Async Image
+description: "Demonstrates how to use the new async/await feature in Xamarin.Android"
 page_type: sample
 languages:
 - csharp
@@ -11,7 +11,7 @@ extensions:
     - androidpie
 urlFragment: asyncimageandroid
 ---
-# AsyncImageAndroid
+# Async Image Android
 
 This sample application demonstrates how to use the new async/await feature which is available in Xamarin.Android 4.8.
 

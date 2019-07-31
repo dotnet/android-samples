@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Basic Immersive Mode
-description: Provide a more immersive screen experience in your app, by letting users show or hide the status bar
+description: "Provide a more immersive screen experience in your app, by letting users show or hide the status bar"
 page_type: sample
 languages:
 - csharp
@@ -19,4 +19,4 @@ the status bar and navigation bar with a swipe.
 
 This sample demonstrates how to enable and disable this feature programmatically.
 
-See the `Advanced Immersive Mode` sample for more details.
+See the _Advanced Immersive Mode_ sample for more details.
