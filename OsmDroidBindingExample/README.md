@@ -1,9 +1,10 @@
 ---
 name: Xamarin.Android - OSMDroid Bindings for Xamarin.Android
-description: This is an example of how to create bindings for a .jar file using a Java Binding Project in Xamarin.Android. This example creates a binding for...
+description: "This is an example of how to create bindings for a .jar file using a Java Binding Project in Xamarin.Android"
 page_type: sample
 languages:
 - csharp
+- java
 products:
 - xamarin
 urlFragment: osmdroidbindingexample

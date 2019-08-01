@@ -1,11 +1,14 @@
 ---
-name: Xamarin.Android - MonoGame Project 
-description: "Extends the Model with Vertex-based drawing project with 3D camera and model positioning and orientation"
+name: Xamarin.Android - MonoGame 3D Camera 
+description: "Extends the MonoGame Model with Vertex-based drawing project with 3D camera and model positioning and orientation"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - monogame
 urlFragment: monogame3dcamera
 ---
 # MonoGame Project with 3D Camera and Model Positioning and Orientation
