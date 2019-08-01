@@ -10,4 +10,4 @@ urlFragment: cursortableadapter
 ---
 # Cursor Table Adapter
 
-This sample is part of the [Android ListViews and Adapters series](https://docs.microsoft.com/xamarin/android/user-interface/layouts/list-view/)
+This sample is part of the [Android ListViews and Adapters series](https://docs.microsoft.com/xamarin/android/user-interface/layouts/list-view/).
