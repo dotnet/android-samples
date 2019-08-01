@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Google Sign-In Sample
-description: This sample demonstrates how to authenticate a user with the Google Api Client in Google Play Services. Setup You must follow the next guide to...
+description: "Demonstrates how to authenticate a user with the Google Api Client in Google Play Services"
 page_type: sample
 languages:
 - csharp
