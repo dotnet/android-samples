@@ -1,13 +1,18 @@
 ---
 name: Xamarin.Android - GridLayout Demo
-description: This example shows how to use a GridLayout with Ice Cream Sandwich.
+description: "How to use a GridLayout (Android Ice Cream Sandwich)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidicecreamsandwich
 urlFragment: gridlayoutdemo
 ---
 # GridLayout Demo
 
-This example shows how to use a GridLayout with Ice Cream Sandwich.
+This example shows how to use a GridLayout with Xamarin.Android and Ice Cream Sandwich.
+
+![Android screen with grid layout](Screenshnots/GridLayoutDemo.png)

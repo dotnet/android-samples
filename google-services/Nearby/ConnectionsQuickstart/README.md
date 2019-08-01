@@ -1,11 +1,14 @@
 ---
-name: Xamarin.Android - Nearby Connections Sample
+name: Xamarin.Android - Nearby Connections
 description: "Demonstrates how to use the Nearby Connections API to establish a connection between two devices and send messages between them...."
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidlollipop
 urlFragment: google-services-nearby-connectionsquickstart
 ---
 # Nearby Connections Sample

@@ -1,9 +1,10 @@
 ---
 name: Xamarin.Android - Java Native Invoke Sample
-description: This sample shows how to manually bind to a Java library so it can be consumed by a Mono for Android application. Requirements There is one...
+description: "How to manually bind to a Java library so it can be consumed by a Mono for Android application"
 page_type: sample
 languages:
 - csharp
+- java
 products:
 - xamarin
 urlFragment: jnidemo
@@ -11,16 +12,16 @@ urlFragment: jnidemo
 # Java Native Invoke Sample
 
 This sample shows how to manually bind to a Java library so it can
-be consumed by a Mono for Android application.
+be consumed by a Xamarin.Android application.
 
 ## Requirements
 
 There is one requirement in order to build and run this sample:
 
- 1. Mono for Android Preiew 13 or later.
+ 1. Mono for Android Preview 13 or later.
 
-Commands that need to be executed are indicated within backtics (`),
-and $ANDROID_SDK_PATH is the directory that contains your Android SDK
+Commands that need to be executed are indicated within backticks (`),
+and **$ANDROID_SDK_PATH** is the directory that contains your Android SDK
 installation.
 
 ## How it works
@@ -38,30 +39,32 @@ managed code.  Two primary mechanisms are:
  2. The ability to include Java source code and .jar files into the
     resulting Android application.
 
-We will be using mechanism (2) in order to demonstrate the Jave Native Invoke capability.
+We will be using mechanism (2) in order to demonstrate the Java Native Invoke capability.
 
-The Java source code is kept in MyActivity.java, which is included
-in the project with a Build Action of AndroidJavaSource.
+The Java source code is kept in **MyActivity.java**, which is included
+in the project with a **Build Action** of **AndroidJavaSource**.
 
-Furthermore, we edit Properties\AndroidManifest.xml so that it
+Furthermore, edit **Properties\AndroidManifest.xml** so that it
 contains one additional element:
 
-1. A /manifest/application/activity element must be created so that
-    we can use Context.StartActivity() to create the custom activity.
+1. A `/manifest/application/activity` element must be created so that
+    we can use `Context.StartActivity()` to create the custom activity.
 
 This translates to having the following XML within
 AndroidManifest.xml:
 
-	<application android:label="Managed Maps">
-		<uses-library android:name="com.google.android.maps" />
-		<activity android:name="mono.samples.jnitest.MyActivity" />
-	</application>
-	<uses-permission android:name="android.permission.INTERNET" />
+```xml
+<application android:label="Managed Maps">
+    <uses-library android:name="com.google.android.maps" />
+    <activity android:name="mono.samples.jnitest.MyActivity" />
+</application>
+<uses-permission android:name="android.permission.INTERNET" />
+```
 
-MyActivity.java uses the Resources\Layout\HelloWorld.axml resource, which
+**MyActivity.java** uses the **Resources\Layout\HelloWorld.axml** resource, which
 contains a LinearLayout with a Button and a TextView.
 
-Activity1.cs uses Java.Lang.Class.FindClass() to obtain a
-Java.Lang.Class instance for the custom MyActivity type, then we
-create an Intent to pass to Activity.StartActivity() to launch
-MyActivity.
+**Activity1.cs** uses `Java.Lang.Class.FindClass()` to obtain a
+`Java.Lang.Class` instance for the custom `MyActivity` type, then we
+create an `Intent` to pass to `Activity.StartActivity()` to launch
+`MyActivity`.
