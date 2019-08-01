@@ -1,9 +1,0 @@
-<SampleMetadata>
-	<ID>71097d7e-c1b7-4df5-b07a-40f7db5980fc</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Data</Tags>
-	<SupportedPlatforms>Android</SupportedPlatforms>
-	<Gallery>true</Gallery>
-	<Brief>This is a functional test for "ExportAttribute" which is new in Mono for Android 4.2.</Brief>
-</SampleMetadata>

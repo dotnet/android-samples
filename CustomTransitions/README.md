@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Custom Transitions
-description: This sample demonstrates how to create custom transitions to go from one scene in their app to the next
+description: "Demonstrates how to create custom transitions to go from one scene in their app to the next"
 page_type: sample
 languages:
 - csharp
@@ -14,8 +14,8 @@ This sample demonstrates how to create custom transitions to go from one scene i
 
 ## Instructions
 
-* Press the "Show next scene" button to cycle the colors using a custom transition.
-* Press the "Show Log" button to show what is logged as the transitions occur
+- Press the "Show next scene" button to cycle the colors using a custom transition.
+- Press the "Show Log" button to show what is logged as the transitions occur
 
 ## Build Requirements
 
