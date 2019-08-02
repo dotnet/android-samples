@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>8cd42de2-94eb-417e-83b3-280985bc7d02</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This is a simple application with an EditText control and clear/back buttons, plus a custom picture.</Brief>
-</SampleMetadata>

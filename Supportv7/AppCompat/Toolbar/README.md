@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Support v7 Toolbar
-description: Basic sample of replacing the ActionBar with the new Support v7 app compat Toolbar. Instructions Run the project Click on the Toolbar items to see...
+description: "Sample of replacing the ActionBar with the new Support v7 app compat Toolbar"
 page_type: sample
 languages:
 - csharp
@@ -19,13 +19,13 @@ Basic sample of replacing the ActionBar with the new Support v7 app compat Toolb
 * Click photo to navigate to details page
 
 ## Build Requirements
+
 * Xamarin Studio 5.5+
 * Xamarin Android 4.20+
 * Android SDK with Android 5.0
 
 ![Support v7 Toolbar application screenshot](Screenshots/Details.png "Support v7 Toolbar application screenshot")
 
-## Author 
-Copyright 2014 Xamarin
+## License
 
-Created by James Montemagno
+Copyright 2014 Xamarin

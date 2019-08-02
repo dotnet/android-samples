@@ -1,6 +1,6 @@
 ---
-name: Xamarin.Android - Searchable Dictionary v2
-description: This is a port of the Android Searchable Dictionary v2 sample. It demonstrates using Android's search framework.
+name: Xamarin.Android - Searchable Dictionary
+description: "Port of the Android Searchable Dictionary v2 sample. It demonstrates using Android's search framework"
 page_type: sample
 languages:
 - csharp

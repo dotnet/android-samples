@@ -1,6 +1,6 @@
 ---
-name: Xamarin.Android - ActionBarCompat ListPopupMenu Sample
-description: This sample shows how to display a pop up menu using PopupMenu from the v7 appcompat library. Introduction This sample displays a list of items and...
+name: Xamarin.Android - ActionBarCompat ListPopupMenu
+description: "How to display a pop up menu using PopupMenu from the v7 appcompat library"
 page_type: sample
 languages:
 - csharp
@@ -26,17 +26,17 @@ The sample uses ListFragment from the v4 support library to display the list. It
 * Observe the delicious cheese being removed from the list
 
 ## Build Requirements
+
 Using this sample requires the Android SDK platform for Android 5.1 (API level 21).
 
 ## Screenshots
 
-<img src="Screenshots/1-popup.png" height="400" alt="Screenshot"/> <img src="Screenshots/2-removed-item.png" height="400" alt="Screenshot"/>
+![ActionBarCompat ListPopupMenu Sample application screenshot](Screenshots/1-popup.png)
 
-![ActionBarCompat ListPopupMenu Sample application screenshot](Screenshots/1-popup.png "ActionBarCompat ListPopupMenu Sample application screenshot")
+![ActionBarCompat ListPopupMenu Sample application screenshot](Screenshots/2-removed-item.png)
 
-## Authors
+## License
+
 Copyright (c) 2014 The Android Open Source Project, Inc.
 
 Ported from [Android ActionBarCompat-ListPopupMenu Sample](https://github.com/googlesamples/android-ActionBarCompat-ListPopupMenu)
-
-Ported to Xamarin.Android by Dylan Kelly

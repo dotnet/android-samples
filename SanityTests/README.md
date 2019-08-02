@@ -1,13 +1,3 @@
----
-name: Xamarin.Android - Sanity Tests
-description: SanityTests is a hodgepodge of things to test various interactions, such as SQLite use, JNI use, P/Invoke use, SSL, compression, and all manner of...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: sanitytests
----
 # Sanity Tests
 
 SanityTests is a hodgepodge of things to test various interactions,
