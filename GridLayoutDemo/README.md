@@ -15,4 +15,4 @@ urlFragment: gridlayoutdemo
 
 This example shows how to use a GridLayout with Xamarin.Android and Ice Cream Sandwich.
 
-![Android screen with grid layout](Screenshnots/GridLayoutDemo.png)
+![Android screen with grid layout](Screenshnots/screenshot.png)

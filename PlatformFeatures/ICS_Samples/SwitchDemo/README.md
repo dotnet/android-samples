@@ -1,16 +1,6 @@
----
-name: Xamarin.Android - Switch Demo
-description: This sample app accompanies the article, Introduction to Switches.
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: platformfeatures-ics-samples-switchdemo
----
-# Switch Demo 
+# Switch Demo
 
-This sample app accompanies the article, 
-[Introduction to Switches](http://developer.xamarin.com/guides/android/user_interface/intro_to_switches/).
+This sample app accompanies the article,
+[Introduction to Switches](https://docs.microsoft.com/xamarin/android/user-interface/controls/switch).
 
-
+![Android app with a switch control](Screenshots/screenshot.png)

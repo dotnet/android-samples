@@ -1,16 +1,6 @@
----
-name: Xamarin.Android - Popup Menu Demo
-description: This sample app accompanies the article, PopUp Menus.
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: platformfeatures-ics-samples-popupmenudemo
----
-# Popup Menu Demo 
+# Popup Menu Demo
 
-This sample app accompanies the article, 
-[PopUp Menus](http://developer.xamarin.com/guides/android/user_interface/popup_menus/).
+This sample app accompanies the article,
+[PopUp Menus](https://docs.microsoft.com/en-us/xamarin/android/user-interface/controls/popup-menu).
 
-
+![Popup menu in Android](Screenshot/screenshot.png)

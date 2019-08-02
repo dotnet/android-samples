@@ -1,11 +1,14 @@
 ---
 name: Xamarin.Android - TextSwitcher Sample
-description: "Illustrates the use of a TextSwitcher to display animations for text changes"
+description: "Illustrates the use of a TextSwitcher to display animations for text changes (Android Oreo)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidoreo
 urlFragment: textswitcher
 ---
 # TextSwitcher Sample
