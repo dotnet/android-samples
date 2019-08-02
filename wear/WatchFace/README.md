@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - WatchFace
-description: WatchFace is a sample app that accompanies the article, Creating a Watch Face. This sample demonstrates how to use CanvasWatchFaceService and...
+description: "Demonstrates how to use CanvasWatchFaceService and CanvasWatchFaceService.Engine to implement a custom Android Wear watch face"
 page_type: sample
 languages:
 - csharp
@@ -8,7 +8,7 @@ products:
 - xamarin
 extensions:
     tags:
-    - wear
+    - androidwear
 urlFragment: wear-watchface
 ---
 # WatchFace

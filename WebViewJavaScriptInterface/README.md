@@ -1,26 +1,26 @@
 ---
 name: Xamarin.Android - WebView JavaScript Interface
-description: This demonstrates C - to - JavaScript interoperability in WebView (through Java interface). For the API details, see:...
+description: "Demonstrates C# to JavaScript interoperability in WebView (through Java interface)"
 page_type: sample
 languages:
 - csharp
+- javascript
 products:
 - xamarin
 urlFragment: webviewjavascriptinterface
 ---
 # WebView JavaScript Interface
 
-This demonstrates C# - to - JavaScript interoperability in WebView (through
+This demonstrates C# to JavaScript interoperability in WebView (through
 Java interface).
 
 For the API details, see:
-http://docs.mono-android.net/?link=M%3aAndroid.Webkit.WebView.AddJavascriptInterface%28Java.Lang.Object%2cSystem.String%29
+https://docs.microsoft.com/dotnet/api/android.webkit.webview.addjavascriptinterface
 
 This sample requires Mono for Android 4.1 or later, since it makes use of
 Java.Interop.ExportAttribute.
 
-
-# Testing Note
+## Testing Note
 
 _DO NOT RUN_ this sample on an API 10 (Android v2.3.3) emulator; it _will_ break
 

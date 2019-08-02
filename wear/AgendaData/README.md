@@ -1,11 +1,14 @@
 ---
-name: Xamarin.Android - AgendaData Sample
+name: Xamarin.Android - Agenda Data
 description: This sample demonstrates sending calendar events from an Android handheld device to an Android Wear device, as well as deleting those...
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidwear
 urlFragment: wear-agendadata
 ---
 # AgendaData Sample

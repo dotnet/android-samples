@@ -6,6 +6,9 @@ languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidwear
 urlFragment: wear-delayedconfirmation
 ---
 # Delayed Confirmation

@@ -6,11 +6,14 @@ languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - androidtv
 urlFragment: tv-tvleanback
 ---
 # TvLeanback
 
-This sample shows a basic Android-TV application by showcasing various video provided by Google. 
+This sample shows a basic Android-TV application by showcasing various video provided by Google.
 
 ## Note
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>c26ae153-a441-4b18-ab81-30d12ece8d9c</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Platform Features, User Interface, Android Wear</Tags>
-	<Gallery>false</Gallery>
-	<Brief>Demonstrates a simple timer application designed for Wear.</Brief>
-</SampleMetadata>
