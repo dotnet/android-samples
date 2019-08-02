@@ -1,16 +1,6 @@
----
-name: Xamarin.Android - GL Triangle 20
-description: 'This sample is now obsolete. Please use GLTriangle20-1.0. OpenGL ES 2.0 Demonstration. Requirements There is one requirement to run this sample: 1....'
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: gltriangle20
----
 # GL Triangle 20
 
-### This sample is now obsolete. Please use GLTriangle20-1.0.
+## This sample is now obsolete. Please use GLTriangle20-1.0.
 
 OpenGL ES 2.0 Demonstration.
 

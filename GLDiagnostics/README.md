@@ -1,16 +1,6 @@
----
-name: Xamarin.Android - GL Diagnostics
-description: This sample is now obsolete. Please use GLDiagnostics-1.0. This sample tests all possible graphics configuration options and outputs valid ones.
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: gldiagnostics
----
 # GL Diagnostics
 
-### This sample is now obsolete. Please use GLDiagnostics-1.0.
+## This sample is now obsolete. Please use GLDiagnostics-1.0.
 
 This sample tests all possible graphics configuration
 options and outputs valid ones.

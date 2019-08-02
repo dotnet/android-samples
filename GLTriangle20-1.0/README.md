@@ -1,13 +1,3 @@
----
-name: Xamarin.Android - GL Triangle 20
-description: 'OpenGL ES 2.0 Demonstration. Requirements There is one requirement to run this sample: 1. A device with OpenGL ES 2.0 support. Note that emulators...'
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: gltriangle20-10
----
 # GL Triangle 20
 
 OpenGL ES 2.0 Demonstration.
