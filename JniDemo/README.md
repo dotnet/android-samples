@@ -1,6 +1,6 @@
 ---
-name: Xamarin.Android - Java Native Invoke Sample
-description: "How to manually bind to a Java library so it can be consumed by a Mono for Android application"
+name: Xamarin.Android - Java Native Invoke
+description: "How to manually bind to a Java library so it can be consumed by a Xamarin.Android application"
 page_type: sample
 languages:
 - csharp
@@ -20,7 +20,7 @@ There is one requirement in order to build and run this sample:
 
  1. Mono for Android Preview 13 or later.
 
-Commands that need to be executed are indicated within backticks (`),
+Commands that need to be executed are indicated within backticks (\`),
 and **$ANDROID_SDK_PATH** is the directory that contains your Android SDK
 installation.
 
@@ -39,7 +39,7 @@ managed code.  Two primary mechanisms are:
  2. The ability to include Java source code and .jar files into the
     resulting Android application.
 
-We will be using mechanism (2) in order to demonstrate the Java Native Invoke capability.
+This sample uses mechanism (2) to demonstrate the Java Native Invoke capability.
 
 The Java source code is kept in **MyActivity.java**, which is included
 in the project with a **Build Action** of **AndroidJavaSource**.
@@ -50,8 +50,8 @@ contains one additional element:
 1. A `/manifest/application/activity` element must be created so that
     we can use `Context.StartActivity()` to create the custom activity.
 
-This translates to having the following XML within
-AndroidManifest.xml:
+This translates to having the following XML in
+**AndroidManifest.xml**:
 
 ```xml
 <application android:label="Managed Maps">
@@ -68,3 +68,5 @@ contains a LinearLayout with a Button and a TextView.
 `Java.Lang.Class` instance for the custom `MyActivity` type, then we
 create an `Intent` to pass to `Activity.StartActivity()` to launch
 `MyActivity`.
+
+![C# activity with button to start Java activity](Screenshots/csharp-activity.png) ![Java activity with hello world button](Screenshots/java-activity.png)
