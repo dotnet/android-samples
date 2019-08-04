@@ -16,30 +16,24 @@ be consumed by a Xamarin.Android application.
 
 ## Requirements
 
-There is one requirement in order to build and run this sample:
-
- 1. Mono for Android Preview 13 or later.
-
-Commands that need to be executed are indicated within backticks (\`),
-and **$ANDROID_SDK_PATH** is the directory that contains your Android SDK
-installation.
+**$ANDROID_SDK_PATH** is the directory that contains your Android SDK installation.
 
 ## How it works
 
-As Mono for Android 1.0 does not support binding arbitrary .jar
+As Xamarin.Android does not support binding arbitrary .jar
 files (only the Android SDK android.jar is bound), alternative
-mechanisms must instead used for interoperation between Java and
-managed code.  Two primary mechanisms are:
+mechanisms must instead be used for interoperation between Java and
+managed code. Two primary mechanisms are:
 
- 1. Android.Runtime.JNIEnv for creating instances of Java objects and
+ 1. `Android.Runtime.JNIEnv` for creating instances of Java objects and
     invoking methods on them from C#.  This is very similar to
-    System.Reflection in that everything is string based and thus
+    `System.Reflection` in that everything is string based and thus
     untyped at compile time.
 
  2. The ability to include Java source code and .jar files into the
     resulting Android application.
 
-This sample uses mechanism (2) to demonstrate the Java Native Invoke capability.
+This sample uses mechanism (2) to demonstrate the Java Native Invoke (JNI) capability.
 
 The Java source code is kept in **MyActivity.java**, which is included
 in the project with a **Build Action** of **AndroidJavaSource**.
