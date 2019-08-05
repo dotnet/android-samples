@@ -1,5 +1,5 @@
 ---
-name: Xamarin.Android - Java Native Invoke
+name: "Xamarin.Android - Java Native Invoke (JNI)"
 description: "How to manually bind to a Java library so it can be consumed by a Xamarin.Android application"
 page_type: sample
 languages:
@@ -7,6 +7,9 @@ languages:
 - java
 products:
 - xamarin
+extensions:
+    tags:
+    - binding
 urlFragment: jnidemo
 ---
 # Java Native Invoke Sample

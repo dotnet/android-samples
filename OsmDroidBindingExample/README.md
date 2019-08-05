@@ -1,5 +1,5 @@
 ---
-name: Xamarin.Android - OSMDroid Bindings for Xamarin.Android
+name: "Xamarin.Android - Open Street Map Bindings (OSMDroid)"
 description: "This is an example of how to create bindings for a .jar file using a Java Binding Project in Xamarin.Android"
 page_type: sample
 languages:
@@ -7,6 +7,9 @@ languages:
 - java
 products:
 - xamarin
+extensions:
+    tags:
+    - binding
 urlFragment: osmdroidbindingexample
 ---
 # OSMDroid Bindings for Xamarin.Android
