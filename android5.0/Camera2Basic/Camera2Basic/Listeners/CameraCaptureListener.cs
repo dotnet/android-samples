@@ -34,6 +34,7 @@ namespace Camera2Basic.Listeners
                         Integer afState = (Integer)result.Get(CaptureResult.ControlAfState);
                         if (afState == null)
                         {
+                            owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN; // avoids multiple picture callbacks
                             owner.CaptureStillPicture();
                         }
 
