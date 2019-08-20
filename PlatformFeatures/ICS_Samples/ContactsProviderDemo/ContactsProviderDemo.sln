@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsProviderDemo", "ContactsProviderDemo\ContactsProviderDemo.csproj", "{F8EA8877-58C6-4640-B2F1-4CC92D9493EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsProviderDemo", "ContactsProviderDemo\ContactsProviderDemo.csproj", "{9687510F-4D8B-462C-9700-EE9E7D0795A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8EA8877-58C6-4640-B2F1-4CC92D9493EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8EA8877-58C6-4640-B2F1-4CC92D9493EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8EA8877-58C6-4640-B2F1-4CC92D9493EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8EA8877-58C6-4640-B2F1-4CC92D9493EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9687510F-4D8B-462C-9700-EE9E7D0795A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9687510F-4D8B-462C-9700-EE9E7D0795A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9687510F-4D8B-462C-9700-EE9E7D0795A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9687510F-4D8B-462C-9700-EE9E7D0795A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ContactsProviderDemo\ContactsProviderDemo.csproj

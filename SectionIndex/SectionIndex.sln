@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SectionIndex", "SectionIndex.csproj", "{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SectionIndex", "SectionIndex.csproj", "{F4F2D66B-5680-444B-BF51-0BE0463D98AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F2D66B-5680-444B-BF51-0BE0463D98AF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

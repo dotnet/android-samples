@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidLSamples", "AndroidLSamples\AndroidLSamples.csproj", "{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidLSamples", "AndroidLSamples\AndroidLSamples.csproj", "{321FB2D5-3790-40AA-BFFB-EB18BE612C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321FB2D5-3790-40AA-BFFB-EB18BE612C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321FB2D5-3790-40AA-BFFB-EB18BE612C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321FB2D5-3790-40AA-BFFB-EB18BE612C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321FB2D5-3790-40AA-BFFB-EB18BE612C76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = AndroidLSamples\AndroidLSamples.csproj

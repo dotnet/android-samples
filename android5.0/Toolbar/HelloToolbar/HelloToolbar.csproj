@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{72FF247E-48FC-4828-BB0A-6D81E803245C}</ProjectGuid>
+    <ProjectGuid>{85EE1526-F63D-4F61-8A9F-77A426A6DA26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>HelloToolbar</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>

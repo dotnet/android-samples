@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridLayoutDemo", "GridLayoutDemo\GridLayoutDemo.csproj", "{32FF8070-6D3B-4B44-AC6F-284A0ECC54CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridLayoutDemo", "GridLayoutDemo\GridLayoutDemo.csproj", "{740B2043-4DA7-41AC-A888-D338EC142D6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{32FF8070-6D3B-4B44-AC6F-284A0ECC54CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32FF8070-6D3B-4B44-AC6F-284A0ECC54CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32FF8070-6D3B-4B44-AC6F-284A0ECC54CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32FF8070-6D3B-4B44-AC6F-284A0ECC54CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{740B2043-4DA7-41AC-A888-D338EC142D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{740B2043-4DA7-41AC-A888-D338EC142D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{740B2043-4DA7-41AC-A888-D338EC142D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{740B2043-4DA7-41AC-A888-D338EC142D6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = GridLayoutDemo\GridLayoutDemo.csproj

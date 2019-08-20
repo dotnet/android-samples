@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLTriangle30", "GLTriangle30.csproj", "{73A74ADF-6308-42A0-8BA6-2B5D53238546}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLTriangle30", "GLTriangle30.csproj", "{71D32F89-7907-4A6F-81B9-232E6614A082}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{73A74ADF-6308-42A0-8BA6-2B5D53238546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73A74ADF-6308-42A0-8BA6-2B5D53238546}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73A74ADF-6308-42A0-8BA6-2B5D53238546}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73A74ADF-6308-42A0-8BA6-2B5D53238546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D32F89-7907-4A6F-81B9-232E6614A082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D32F89-7907-4A6F-81B9-232E6614A082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D32F89-7907-4A6F-81B9-232E6614A082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D32F89-7907-4A6F-81B9-232E6614A082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = GLTriangle30.csproj

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloToolbar", "HelloToolbar\HelloToolbar.csproj", "{72FF247E-48FC-4828-BB0A-6D81E803245C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloToolbar", "HelloToolbar\HelloToolbar.csproj", "{85EE1526-F63D-4F61-8A9F-77A426A6DA26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{72FF247E-48FC-4828-BB0A-6D81E803245C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72FF247E-48FC-4828-BB0A-6D81E803245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72FF247E-48FC-4828-BB0A-6D81E803245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72FF247E-48FC-4828-BB0A-6D81E803245C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85EE1526-F63D-4F61-8A9F-77A426A6DA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85EE1526-F63D-4F61-8A9F-77A426A6DA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85EE1526-F63D-4F61-8A9F-77A426A6DA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85EE1526-F63D-4F61-8A9F-77A426A6DA26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = HelloToolbar\HelloToolbar.csproj
