@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelAndVerts", "ModelAndVerts\ModelAndVerts.csproj", "{037C9236-B7FE-46B8-A8AB-D1034DC3315F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelAndVerts.Android", "ModelAndVerts.Android\ModelAndVerts.Android.csproj", "{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelAndVerts.Android", "ModelAndVerts.Android\ModelAndVerts.Android.csproj", "{3004AA87-82DB-4166-9888-1D0FF8C55DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{037C9236-B7FE-46B8-A8AB-D1034DC3315F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{037C9236-B7FE-46B8-A8AB-D1034DC3315F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{037C9236-B7FE-46B8-A8AB-D1034DC3315F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3004AA87-82DB-4166-9888-1D0FF8C55DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3004AA87-82DB-4166-9888-1D0FF8C55DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3004AA87-82DB-4166-9888-1D0FF8C55DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3004AA87-82DB-4166-9888-1D0FF8C55DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

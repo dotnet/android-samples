@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{C94ED391-EC0A-4AAE-81E8-D6351DF8FA08}</ProjectGuid>
+    <ProjectGuid>{3004AA87-82DB-4166-9888-1D0FF8C55DF8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>ModelAndVerts.Android</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>

@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}</ProjectGuid>
+    <ProjectGuid>{321FB2D5-3790-40AA-BFFB-EB18BE612C76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>AndroidLSamples</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>

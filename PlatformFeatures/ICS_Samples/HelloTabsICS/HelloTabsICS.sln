@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloTabsICS", "HelloTabsICS\HelloTabsICS.csproj", "{65034C6A-8C04-4560-B97B-42F12996939A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloTabsICS", "HelloTabsICS\HelloTabsICS.csproj", "{9B378435-A009-4703-8CFA-B78170CFB8BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{65034C6A-8C04-4560-B97B-42F12996939A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65034C6A-8C04-4560-B97B-42F12996939A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65034C6A-8C04-4560-B97B-42F12996939A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65034C6A-8C04-4560-B97B-42F12996939A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B378435-A009-4703-8CFA-B78170CFB8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B378435-A009-4703-8CFA-B78170CFB8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B378435-A009-4703-8CFA-B78170CFB8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B378435-A009-4703-8CFA-B78170CFB8BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = HelloTabsICS\HelloTabsICS.csproj
