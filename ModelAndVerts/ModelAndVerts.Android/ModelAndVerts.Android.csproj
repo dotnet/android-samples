@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelAndVerts\ModelAndVerts.csproj">
-      <Project>{2DC0C3EE-5FBF-4BEE-838D-DA33916568BC}</Project>
+      <Project>{037C9236-B7FE-46B8-A8AB-D1034DC3315F}</Project>
       <Name>ModelAndVerts</Name>
     </ProjectReference>
   </ItemGroup>
