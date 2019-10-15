@@ -1,5 +1,5 @@
 ---
-name: Xamarin.Android - GL Textured Cube
+name: Xamarin.Android - GL Textured Cube ES30
 description: "This sample demonstrates a rotating cube rendered with textures via OpenTK's GL APIs."
 page_type: sample
 languages:
