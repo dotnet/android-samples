@@ -1,17 +1,5 @@
----
-name: Xamarin.Android - Rotation Demo
-description: This is the sample code for the article Handling Rotation. It shows various techniques for working with device orientation changes in Mono for...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: rotationdemo
----
 # Rotation Demo
 
-This is the sample code for the article [Handling Rotation](https://docs.microsoft.com/xamarin/android/app-fundamentals/handling-rotation).
+Use [ApplicationFundamentals/RotationDemo](https://github.com/xamarin/monodroid-samples/tree/master/ApplicationFundamentals/RotationDemo/RotationDemo) instead.
 
-It shows various techniques for working with device orientation changes in Mono for Android.
-
-![Two Android screens with horizontal and vertical alignment](Screenshots/RotationDemo.png)
+See the article [Handling Rotation](https://docs.microsoft.com/xamarin/android/app-fundamentals/handling-rotation) for more information
