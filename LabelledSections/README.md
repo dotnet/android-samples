@@ -11,7 +11,7 @@ urlFragment: labelledsections
 # Labelled Sections
 
 The `Labelled Sections` demo is a port from the
-[Alphabetically ordered ListView with labelled sections](http://androidseverywhere.info/JAAB/?p=6)
+`Alphabetically ordered ListView with labelled sections`
 sample, with some changes to follow .NET conventions.
 
 The `ListItemInterface` interface is the
