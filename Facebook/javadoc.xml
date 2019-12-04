@@ -1,8 +1,0 @@
-<project basedir="." default="doc" name="api docs">
-<target name="doc" description="my docs">
-    <javadoc destdir="docs" doctitle="Facebook SDK API javadocs" verbose="on" 
-        use="true" 
-        sourcepath="gen;src" />
-</target>
-</project>
-

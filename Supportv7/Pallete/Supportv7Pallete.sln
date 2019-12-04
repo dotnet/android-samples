@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supportv7Pallete", "Supportv7Pallete\Supportv7Pallete.csproj", "{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}"
 EndProject
 Global
@@ -11,12 +13,15 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F3C7E51-02F6-4A7C-B1E2-6B608BA21F08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B488BF17-5730-4FE4-86EA-3FACB1E470BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B488BF17-5730-4FE4-86EA-3FACB1E470BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B488BF17-5730-4FE4-86EA-3FACB1E470BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B488BF17-5730-4FE4-86EA-3FACB1E470BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16845164-B394-48D8-928C-E834DE834883}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = EvolveMaterialJames\EvolveMaterialJames.csproj
