@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29521.150
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.ActionbarsherlockTest", "ActionBarSherlockTest\Mono.ActionbarsherlockTest.csproj", "{070236F3-8BC7-4123-82CB-EE00251F6D0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionBarSherlock", "ActionBarSherlock\ActionBarSherlock.csproj", "{2D5471B2-8255-4E47-97E9-EEB28678CC82}"
@@ -19,6 +21,12 @@ Global
 		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D5471B2-8255-4E47-97E9-EEB28678CC82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29199D70-5E84-43F3-9B59-A59DA8B9B9C4}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ActionBarSherlockTest\Mono.ActionbarsherlockTest.csproj
