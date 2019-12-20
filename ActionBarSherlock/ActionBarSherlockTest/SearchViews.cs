@@ -33,7 +33,7 @@ using Xamarin.ActionbarSherlockBinding.App;
 using Xamarin.ActionbarSherlockBinding.Views;
 using Xamarin.ActionbarSherlockBinding.Widget;
 using SherlockActionBar = Xamarin.ActionbarSherlockBinding.App.ActionBar;
-using SearchView = Xamarin.ActionbarSherlockBinding.Widget.SearchView;
+//using SearchView = Xamarin.ActionbarSherlockBinding.Widget.SearchView;
 using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using IMenu = Xamarin.ActionbarSherlockBinding.Views.IMenu;
 using Android.Runtime;

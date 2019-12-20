@@ -1,9 +1,9 @@
 ﻿using System;
 using Android.Content;
 using Android.Runtime;
-using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Fragment.App;
 using Java.Lang;
 
 namespace HelloSwipeViewWithTabs

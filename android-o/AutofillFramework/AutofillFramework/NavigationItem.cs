@@ -2,12 +2,12 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Runtime;
-using Android.Support.Annotation;
-using Android.Support.V4.Content;
-using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Annotations;
+using AndroidX.CardView.Widget;
+using AndroidX.Core.Content;
 
 namespace AutofillFramework
 {

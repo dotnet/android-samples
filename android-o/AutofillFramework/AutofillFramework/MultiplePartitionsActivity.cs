@@ -2,10 +2,10 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using Java.Lang;
 
 namespace AutofillFramework

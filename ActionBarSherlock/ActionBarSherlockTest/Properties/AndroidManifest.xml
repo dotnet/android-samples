@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="mono.actionbarsherlocktest" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="29" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="mono.actionbarsherlocktest" android:installLocation="preferExternal">
+	<uses-sdk android:minSdkVersion="29" android:targetSdkVersion="29" />
 	<application android:label="Mono.ActionbarsherlockTest"></application>
 </manifest>

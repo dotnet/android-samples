@@ -2,16 +2,16 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using AutofillService.datasource;
 using AutofillService.Datasource;
 using AutofillService.Model;
-using AlertDialog = Android.Support.V7.App.AlertDialog;
+using Google.Android.Material.Snackbar;
+using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 
 namespace AutofillService
 {

@@ -3,15 +3,15 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Text.Format;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Widget;
 using Java.Util;
-using FragmentManager = Android.Support.V4.App.FragmentManager;
-using DialogFragment = Android.Support.V4.App.DialogFragment;
+using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using DialogFragment = AndroidX.Fragment.App.DialogFragment;
+using AndroidX.AppCompat.Widget;
 
 namespace AutofillFramework
 {

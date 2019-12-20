@@ -9,12 +9,12 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Android.Util;
-using Android.Support.V4.App;
-using Android.Support.Design.Widget;
 
 using CommonSampleLibrary;
 using Log = CommonSampleLibrary.Log;
 using Java.Interop;
+using AndroidX.Core.App;
+using Google.Android.Material.Snackbar;
 
 namespace RuntimePermissions
 {

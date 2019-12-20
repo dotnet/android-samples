@@ -1,17 +1,17 @@
 ﻿using Android.Content;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V4.Content;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using AndroidX.LocalBroadcastManager.Content;
+using AndroidX.RecyclerView.Widget;
+using Google.Android.Material.FloatingActionButton;
 
 namespace DirectBoot
 {
 	/**
  	* Fragment that registers scheduled alarms.
  	*/
-	public class SchedulerFragment : Android.Support.V4.App.Fragment
+	public class SchedulerFragment : AndroidX.Fragment.App.Fragment
 	{
 		static readonly string FRAGMENT_TIME_PICKER_TAG = "fragment_time_picker";
 		public AlarmAdapter AlarmAdapter { get; set; }

@@ -6,8 +6,8 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Android.Service.Notification;
-using Android.Support.V4.App;
 using Android.Util;
+using AndroidX.Core.App;
 
 namespace ActiveNotifications
 {

@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!-- Restore directly from Source, not from Cache -->
+    <RestoreNoCache>true</RestoreNoCache>
+    <!-- Put the restored packages in a sane location, easily cleared out -->
+    <RestorePackagesPath>.\packages</RestorePackagesPath>
+  </PropertyGroup>
+</Project>

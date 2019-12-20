@@ -8,9 +8,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content;
-using Android.Support.V7.Widget;
 using Android.Net;
 using Android.Database;
+using AndroidX.RecyclerView.Widget;
 
 namespace ScopedDirectoryAccess
 {

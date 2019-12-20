@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Android.Service.Autofill;
-using Android.Support.Annotation;
 using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
+using AndroidX.Annotations;
 using Newtonsoft.Json;
 
 namespace AutofillService.Model

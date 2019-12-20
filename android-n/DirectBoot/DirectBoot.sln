@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29521.150
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectBoot", "DirectBoot.csproj", "{67B72C75-2B31-41BD-B14B-5AC557AC4E67}"
 EndProject
 Global
@@ -11,7 +12,14 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{67B72C75-2B31-41BD-B14B-5AC557AC4E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67B72C75-2B31-41BD-B14B-5AC557AC4E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B72C75-2B31-41BD-B14B-5AC557AC4E67}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{67B72C75-2B31-41BD-B14B-5AC557AC4E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67B72C75-2B31-41BD-B14B-5AC557AC4E67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83CE5586-AFE0-4D07-96A9-A845B0A3A3A2}
 	EndGlobalSection
 EndGlobal

@@ -2,9 +2,9 @@
 
 using Android.Content;
 using Android.Graphics.Drawables;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using AndroidX.RecyclerView.Widget;
 
 namespace DirectBoot
 {

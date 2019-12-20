@@ -20,9 +20,9 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
 using Android.Util;
+using AndroidX.Core.App;
+using AndroidX.Core.Content;
 
 namespace MessagingService
 {
@@ -99,7 +99,7 @@ namespace MessagingService
 
 			// Build a RemoteInput for receiving voice input in a Car Notification or text input on
 			// devices that support text input (like devices on Android N and above).
-			var remoteInput = new Android.Support.V4.App.RemoteInput.Builder (EXTRA_REMOTE_REPLY)
+			var remoteInput = new AndroidX.Core.App.RemoteInput.Builder (EXTRA_REMOTE_REPLY)
 				.SetLabel (GetString (Resource.String.reply))
 				.Build ();
 

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29521.150
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingService", "MessagingService.csproj", "{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}"
 EndProject
 Global
@@ -11,7 +13,14 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C86859A-6D71-4DC1-944D-E3B03C0A7F30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49AA58A1-E1F6-4459-98EE-90888D9CBD2D}
 	EndGlobalSection
 EndGlobal

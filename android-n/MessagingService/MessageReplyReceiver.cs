@@ -20,8 +20,8 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Util;
+using AndroidX.Core.App;
 
 namespace MessagingService
 {

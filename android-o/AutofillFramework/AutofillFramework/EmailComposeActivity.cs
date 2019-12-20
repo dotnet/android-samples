@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 
 namespace AutofillFramework
 {
