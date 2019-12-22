@@ -14,16 +14,16 @@
   limitations under the License.
 -->
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet_font_query"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:behavior_peekHeight="120dp"
-    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:cardElevation="8dp">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -45,7 +45,7 @@
                 android:layout_marginEnd="@dimen/margin_large"
                 android:layout_marginBottom="@dimen/margin_large">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/auto_complete_family_name_input"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content">
@@ -57,9 +57,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/family_name"
                         android:singleLine="true" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.v4.widget.Space
+                <androidx.legacy.widget.Space
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
@@ -206,5 +206,5 @@
                 android:layout_marginStart="@dimen/margin_large"
                 android:layout_marginEnd="@dimen/margin_large" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</android.support.v7.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.cardview.widget.CardView>

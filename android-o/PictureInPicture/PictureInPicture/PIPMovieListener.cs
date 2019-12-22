@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
-using Android.Graphics.Drawables;
-using Android.Support.Annotation;
 
 namespace PictureInPicture
 {

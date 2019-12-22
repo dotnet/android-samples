@@ -1,15 +1,15 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Content.PM;
-using Android.Support.V7.App;
 using Android.Widget;
 using Android.Content;
-using Android.Support.Annotation;
 using System.Collections.Generic;
 using Android.Graphics.Drawables;
 using Android.Util;
 using Android.Content.Res;
 using Android.Views;
+using AndroidX.AppCompat.App;
+using AndroidX.Annotations;
 
 namespace PictureInPicture
 {

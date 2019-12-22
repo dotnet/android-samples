@@ -1,13 +1,12 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using Android.Views;
-using Android.Hardware.Camera2;
 using Android.Graphics.Drawables;
 using Android.Net;
 using System.Threading;
+using AndroidX.AppCompat.App;
 
 namespace AndroidPMiniDemo
 {

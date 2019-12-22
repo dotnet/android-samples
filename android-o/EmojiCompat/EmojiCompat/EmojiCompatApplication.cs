@@ -1,10 +1,10 @@
 ﻿using System;
 using Android.App;
 using Android.Runtime;
-using Android.Support.Text.Emoji;
-using Android.Support.Text.Emoji.Bundled;
-using Android.Support.V4.Provider;
 using Android.Util;
+using AndroidX.Core.Provider;
+using AndroidX.Emoji.Bundled;
+using AndroidX.Emoji.Text;
 
 namespace EmojiCompatSample
 {

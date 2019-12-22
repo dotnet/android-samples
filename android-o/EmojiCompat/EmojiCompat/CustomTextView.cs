@@ -1,9 +1,9 @@
 ﻿using System;
 using Android.Content;
 using Android.Runtime;
-using Android.Support.Text.Emoji.Widget;
-using Android.Support.V7.Widget;
 using Android.Util;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Emoji.Widget;
 
 namespace EmojiCompatSample
 {

@@ -1,13 +1,13 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Android.Support.V7.App;
-using Android.Support.Design.Widget;
 using Android.Text;
 using Java.Lang;
 using Android.Util;
-using Android.Support.V4.Provider;
 using Java.Util;
+using AndroidX.AppCompat.App;
+using AndroidX.Core.Provider;
+using Google.Android.Material.TextField;
 
 namespace DownloadableFonts
 {
@@ -18,13 +18,13 @@ namespace DownloadableFonts
 
     	Handler Handler = null;
 
+
 		TextView DownloadableFontTextView;
 		SeekBar WidthSeekBar;
 		SeekBar WeightSeekBar;
 		SeekBar ItalicSeekBar;
 		CheckBox BestEffort;
 		Button RequestDownloadButton;
-
 		HashSet FamilyNameSet;
 
 		protected override void OnCreate(Bundle savedInstanceState)
