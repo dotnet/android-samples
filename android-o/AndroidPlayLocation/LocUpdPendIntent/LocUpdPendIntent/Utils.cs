@@ -78,12 +78,12 @@ namespace LocUpdPendIntent
 			var mNotificationManager = context.GetSystemService(Context.NotificationService) as NotificationManager;
 
 		    // Android O requires a Notification Channel.
-		    if (Build.VERSION.SdkInt>= Build.VERSION_CODES.O)
+		    if (Build.VERSION.SdkInt>= BuildVersionCodes.O)
 		    {
 		        string name = context.GetString(Resource.String.app_name);
 		        // Create the channel for the notification
 		        // Create the channel for the notification
-		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationManager.ImportanceDefault);
+		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationImportance.Default);
 
 		        // Set the Notification Channel for the Notification Manager.
 		        mNotificationManager.CreateNotificationChannel(mChannel);

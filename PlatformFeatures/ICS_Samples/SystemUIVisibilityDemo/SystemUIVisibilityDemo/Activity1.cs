@@ -26,15 +26,15 @@ namespace SystemUIVisibilityDemo
             var visibleButton = FindViewById<Button> (Resource.Id.visibleButton);
             
             lowProfileButton.Click += delegate { 
-                tv.SystemUiVisibility = (StatusBarVisibility)View.SystemUiFlagLowProfile;
+                tv.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LowProfile;
             };
             
             hideNavButton.Click += delegate {
-                tv.SystemUiVisibility = (StatusBarVisibility)View.SystemUiFlagHideNavigation;         
+                tv.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.HideNavigation;
             };
             
             visibleButton.Click += delegate {
-                tv.SystemUiVisibility = (StatusBarVisibility)View.SystemUiFlagVisible;
+                tv.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.Visible;
             };
             
             tv.SystemUiVisibilityChange += delegate(object sender, View.SystemUiVisibilityChangeEventArgs e) {

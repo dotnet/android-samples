@@ -182,14 +182,14 @@ namespace PushSample
 
 				// Grab the start date.
 				Calendar cal = Calendar.Instance;
-				cal.Set(Calendar.HourOfDay, (int) startTime.CurrentHour);
-				cal.Set(Calendar.Minute, (int) startTime.CurrentMinute);
+				cal.Set(CalendarField.HourOfDay, (int) startTime.CurrentHour);
+				cal.Set(CalendarField.Minute, (int) startTime.CurrentMinute);
 				Date startDate = cal.Time;
 
 				// Prepare the end date.
 				cal = Calendar.Instance;
-				cal.Set(Calendar.HourOfDay, (int) endTime.CurrentHour);
-				cal.Set(Calendar.Minute, (int) endTime.CurrentMinute);
+				cal.Set(CalendarField.HourOfDay, (int) endTime.CurrentHour);
+				cal.Set(CalendarField.Minute, (int) endTime.CurrentMinute);
 				Date endDate = cal.Time;
 
 				pushPrefs.SetQuietTimeInterval (startDate, endDate);

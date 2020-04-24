@@ -6,9 +6,6 @@ using Javax.Crypto.Spec;
 using System.Text;
 using Android.Util;
 using Java.Security.Spec;
-using static System.Text.Encoding;
-using static Android.Util.Base64;
-using static Javax.Crypto.Cipher;
 
 namespace AndroidCipher
 {
@@ -27,11 +24,11 @@ namespace AndroidCipher
 
         public void Decryption(object sender, EventArgs eventArgs)
         {
-            var decipher = GetInstance(Constants.Transformation);
+            var decipher = Cipher.GetInstance(Constants.Transformation);
             var algorithmParameterSpec = (IAlgorithmParameterSpec)_encipher.Parameters.GetParameterSpec(Java.Lang.Class.FromType(typeof(GCMParameterSpec)));
-            decipher.Init(DecryptMode, _secretKey, algorithmParameterSpec);
+            decipher.Init(CipherMode.DecryptMode, _secretKey, algorithmParameterSpec);
 
-            byte[] decodedValue = Decode(UTF8.GetBytes(_activity.textOutput.Text), Base64.Default);
+            byte[] decodedValue = Base64.Decode(Encoding.UTF8.GetBytes(_activity.textOutput.Text), Base64Flags.Default);
             byte[] decryptedVal = decipher.DoFinal(decodedValue);
             _activity.textOriginal.Text = Encoding.Default.GetString(decryptedVal);
         }
@@ -47,12 +44,12 @@ namespace AndroidCipher
             _secretKey = GenerateKey();
             if (ValidateInput(_activity.textInput.Text)) return;
 
-            _encipher = GetInstance(Constants.Transformation);
-            _encipher.Init(EncryptMode, _secretKey, GenerateGcmParameterSpec());
+            _encipher = Cipher.GetInstance(Constants.Transformation);
+            _encipher.Init(CipherMode.EncryptMode, _secretKey, GenerateGcmParameterSpec());
 
             byte[]
-            results = _encipher.DoFinal(UTF8.GetBytes(_activity.textInput.Text));
-            _activity.textOutput.Text = EncodeToString(results, Base64.Default);
+            results = _encipher.DoFinal(Encoding.UTF8.GetBytes(_activity.textInput.Text));
+            _activity.textOutput.Text = Base64.EncodeToString(results, Base64Flags.Default);
         }
 
         private bool ValidateInput(string input)
