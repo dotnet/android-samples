@@ -43,12 +43,12 @@ namespace AutofillFramework
             var rootView = LayoutInflater.From(context).Inflate(Resource.Layout.cc_exp_date, this);
             mCcExpMonthSpinner = rootView.FindViewById<Spinner>(Resource.Id.ccExpMonth);
             mCcExpYearSpinner = rootView.FindViewById<Spinner>(Resource.Id.ccExpYear);
-            ImportantForAutofill = ImportantForAutofillYesExcludeDescendants;
+            ImportantForAutofill = ImportantForAutofill.YesExcludeDescendants;
             var monthAdapter = ArrayAdapter.CreateFromResource(context, Resource.Array.month_array,
                 Android.Resource.Layout.SimpleSpinnerItem);
             monthAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             mCcExpMonthSpinner.Adapter = monthAdapter;
-            int year = Calendar.Instance.Get(Calendar.Year);
+            int year = Calendar.Instance.Get(CalendarField.Year);
             for (int i = 0; i < mYears.Length; i++)
             {
                 mYears[i] = (year + i).ToString();
@@ -92,8 +92,8 @@ namespace AutofillFramework
                 calendar.Clear();
                 var year = Integer.ParseInt(mCcExpYearSpinner.SelectedItem.ToString());
                 var month = mCcExpMonthSpinner.SelectedItemPosition;
-                calendar.Set(Calendar.Year, year);
-                calendar.Set(Calendar.Month, month);
+                calendar.Set(CalendarField.Year, year);
+                calendar.Set(CalendarField.Month, month);
                 var unixTime = calendar.TimeInMillis;
                 return AutofillValue.ForDate(unixTime);
             }
@@ -109,8 +109,8 @@ namespace AutofillFramework
 
             var calendar = Calendar.Instance;
             calendar.TimeInMillis = value.DateValue;
-            var month = calendar.Get(Calendar.Month);
-            var year = calendar.Get(Calendar.Year);
+            var month = calendar.Get(CalendarField.Month);
+            var year = calendar.Get(CalendarField.Year);
             mCcExpMonthSpinner.SetSelection(month);
             mCcExpYearSpinner.SetSelection(year - Integer.ParseInt(mYears[0]));
         }

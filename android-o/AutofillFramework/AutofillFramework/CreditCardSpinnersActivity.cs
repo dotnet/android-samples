@@ -64,7 +64,7 @@ namespace AutofillFramework
             monthAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             mCcExpirationMonthSpinner.Adapter = monthAdapter;
 
-            int year = Java.Util.Calendar.Instance.Get(Java.Util.Calendar.Year);
+            int year = Java.Util.Calendar.Instance.Get(Java.Util.CalendarField.Year);
             for (int i = 0; i < years.Length; i++)
             {
                 years[i] = (year + i).ToString();

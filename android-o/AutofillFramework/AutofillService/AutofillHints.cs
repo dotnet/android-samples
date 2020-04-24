@@ -5,7 +5,7 @@ using Android.Service.Autofill;
 using Android.Util;
 using Android.Views;
 using AutofillService.Model;
-using static Android.Icu.Util.Calendar;
+using static Android.Icu.Util.CalendarField;
 
 namespace AutofillService
 {
@@ -805,7 +805,7 @@ namespace AutofillService
             public FilledAutofillField Generate(int seed)
             {
                 var filledAutofillField = new FilledAutofillField(Type);
-                var calendar = Instance;
+                var calendar = Android.Icu.Util.Calendar.Instance;
                 calendar.Set(Year, calendar.Get(Year) + seed);
                 filledAutofillField.SetDateValue(calendar.TimeInMillis);
                 return filledAutofillField;
@@ -825,7 +825,7 @@ namespace AutofillService
             {
                 var months = MonthRange();
                 int month = seed % months.Length;
-                var calendar = Instance;
+                var calendar = Android.Icu.Util.Calendar.Instance;
                 calendar.Set(Month, month);
                 var filledAutofillField = new FilledAutofillField(Type);
                 filledAutofillField.SetListValue(months, month);
@@ -847,7 +847,7 @@ namespace AutofillService
             public FilledAutofillField Generate(int seed)
             {
                 FilledAutofillField filledAutofillField = new FilledAutofillField(Type);
-                var calendar = Instance;
+                var calendar = Android.Icu.Util.Calendar.Instance;
                 int expYear = calendar.Get(Year) + seed;
                 calendar.Set(Year, expYear);
                 filledAutofillField.SetDateValue(calendar.TimeInMillis);
@@ -870,7 +870,7 @@ namespace AutofillService
                 var days = DayRange();
                 int day = seed % days.Length;
                 var filledAutofillField = new FilledAutofillField(Type);
-                var calendar = Instance;
+                var calendar = Android.Icu.Util.Calendar.Instance;
                 calendar.Set(Date, day);
                 filledAutofillField.SetListValue(days, day);
                 filledAutofillField.SetTextValue(day.ToString());
@@ -891,7 +891,7 @@ namespace AutofillService
             public FilledAutofillField Generate(int seed)
             {
                 var filledAutofillField = new FilledAutofillField(Type);
-                int year = Instance.Get(Year) - seed * 10;
+                int year = Android.Icu.Util.Calendar.Instance.Get(Year) - seed * 10;
                 filledAutofillField.SetTextValue("" + year);
                 return filledAutofillField;
             }
@@ -909,7 +909,7 @@ namespace AutofillService
             public FilledAutofillField Generate(int seed)
             {
                 var filledAutofillField = new FilledAutofillField(Type);
-                var calendar = Instance;
+                var calendar = Android.Icu.Util.Calendar.Instance;
                 calendar.Set(Year, calendar.Get(Year) - seed * 10);
                 calendar.Set(Month, seed % 12);
                 calendar.Set(Date, seed % 27);

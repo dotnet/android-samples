@@ -45,8 +45,8 @@ namespace AutofillFramework
         {
             // Use the current date as the initial date in the picker.
             mTempCalendar = Calendar.Instance;
-            mYear = mTempCalendar.Get(Calendar.Year);
-            mMonth = mTempCalendar.Get(Calendar.Month);
+            mYear = mTempCalendar.Get(CalendarField.Year);
+            mMonth = mTempCalendar.Get(CalendarField.Month);
         }
 
         /**
@@ -55,9 +55,9 @@ namespace AutofillFramework
         private Calendar GetCalendar()
         {
             mTempCalendar.Clear();
-            mTempCalendar.Set(Calendar.Year, mYear);
-            mTempCalendar.Set(Calendar.Month, mMonth);
-            mTempCalendar.Set(Calendar.Date, 1);
+            mTempCalendar.Set(CalendarField.Year, mYear);
+            mTempCalendar.Set(CalendarField.Month, mMonth);
+            mTempCalendar.Set(CalendarField.Date, 1);
             return mTempCalendar;
         }
 
@@ -81,8 +81,8 @@ namespace AutofillFramework
             }
             var time = value.DateValue;
             mTempCalendar.TimeInMillis = time;
-            var year = mTempCalendar.Get(Calendar.Year);
-            var month = mTempCalendar.Get(Calendar.Month);
+            var year = mTempCalendar.Get(CalendarField.Year);
+            var month = mTempCalendar.Get(CalendarField.Month);
             if (CommonUtil.DEBUG) Log.Debug(CommonUtil.TAG, "autofill(" + value + "): " + month + "/" + year);
             SetDate(year, month);
         }
@@ -101,7 +101,7 @@ namespace AutofillFramework
         public void Reset()
         {
             mTempCalendar.TimeInMillis = DateTime.Now.Millisecond;
-            SetDate(mTempCalendar.Get(Calendar.Year), mTempCalendar.Get(Calendar.Month));
+            SetDate(mTempCalendar.Get(CalendarField.Year), mTempCalendar.Get(CalendarField.Month));
         }
 
         public void ShowDatePickerDialog(FragmentManager fragmentManager)
@@ -126,7 +126,7 @@ namespace AutofillFramework
                 // Limit range.
                 Calendar c = mParent.GetCalendar();
                 datePicker.MinDate = c.TimeInMillis;
-                c.Set(Calendar.Year, mParent.mYear + CC_EXP_YEARS_COUNT - 1);
+                c.Set(CalendarField.Year, mParent.mYear + CC_EXP_YEARS_COUNT - 1);
                 datePicker.MaxDate = c.TimeInMillis;
 
                 // Remove day.

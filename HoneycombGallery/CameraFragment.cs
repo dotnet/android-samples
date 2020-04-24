@@ -16,14 +16,13 @@
 
 using System;
 using System.Collections.Generic;
-using Android.Graphics;
 using Java.IO;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
 using Android.Views;
-using Camera = Android.Hardware.Camera;
+using Android.Hardware;
 
 namespace com.example.monodroid.hcgallery
 {
@@ -54,7 +53,7 @@ namespace com.example.monodroid.hcgallery
 			Camera.CameraInfo cameraInfo = new Camera.CameraInfo ();
 			for (int i = 0; i < mNumberOfCameras; i++) {
 				Camera.GetCameraInfo (i, cameraInfo);
-				if (cameraInfo.Facing == Camera.CameraInfo.CameraFacingBack) {
+				if (cameraInfo.Facing == CameraFacing.Back) {
 					mDefaultCameraId = i;
 				}
 			}

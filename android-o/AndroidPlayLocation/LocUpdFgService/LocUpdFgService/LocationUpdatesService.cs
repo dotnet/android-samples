@@ -121,10 +121,10 @@ namespace LocUpdFgService
 			ServiceHandler = new Handler(handlerThread.Looper);
 			NotificationManager = (NotificationManager) GetSystemService(NotificationService);
 
-		    if (Build.VERSION.SdkInt >= Build.VERSION_CODES.O)
+		    if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
 		    {
 		        string name = GetString(Resource.String.app_name);
-		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationManager.ImportanceDefault);
+		        NotificationChannel mChannel = new NotificationChannel(ChannelId, name, NotificationImportance.Default);
 		        NotificationManager.CreateNotificationChannel(mChannel);
 		    }
         }
@@ -269,7 +269,7 @@ namespace LocUpdFgService
                 .SetTicker(text)
                 .SetWhen(JavaSystem.CurrentTimeMillis());
 
-            if (Build.VERSION.SdkInt>= Build.VERSION_CODES.O)
+            if (Build.VERSION.SdkInt>= BuildVersionCodes.O)
             {
                 builder.SetChannelId(ChannelId);
             }
