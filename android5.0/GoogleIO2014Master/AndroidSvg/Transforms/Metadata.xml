@@ -27,5 +27,6 @@
   <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.TextContainer']" name="visibility">public</attr>
   <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgConditionalContainer']" name="visibility">public</attr>
   <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='SVG.SvgElement']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.caverock.androidsvg']/class[@name='CSSParser.AttribOp']" name="visibility">public</attr>
 
 </metadata>
