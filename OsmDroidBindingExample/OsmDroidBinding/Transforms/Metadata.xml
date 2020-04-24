@@ -23,6 +23,8 @@
 	<attr path="/api/package[@name='org.osmdroid.tileprovider']/class[@name='MapTileProviderBase.ScaleTileLooper']/method[@name='handleTile']" name="visibility">public</attr>
 	<attr path="/api/package[@name='org.osmdroid.tileprovider']/class[@name='MapTileProviderBase.ZoomInTileLooper']/method[@name='handleTile']" name="visibility">public</attr>
 	<attr path="/api/package[@name='org.osmdroid.tileprovider']/class[@name='MapTileProviderBase.ZoomOutTileLooper']/method[@name='handleTile']" name="visibility">public</attr>
+	<attr path="/api/package[@name='org.osmdroid.views']/class[@name='MapControllerOld.CosinusalBasedAnimationRunner']" name="visibility">public</attr>
+	<attr path="/api/package[@name='org.osmdroid.events']/class[@name='DelayedMapListener.CallbackTask']" name="visibility">public</attr>
 	<!-- Draw() seems to be public for android so we need to be consistent about it.  C# doesn't like to mix visibility during inheritance. -->
 	<attr path="/api/package[@name='org.osmdroid.views.overlay']/class[@name='Overlay']/method[@name='draw']" name="visibility">public</attr>
 	<attr path="/api/package[@name='org.osmdroid.views.overlay']/class[@name='TilesOverlay']/method[@name='draw']" name="visibility">public</attr>
