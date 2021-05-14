@@ -37,7 +37,7 @@ namespace SimpleWidget
 			var entry = new BlogPost ();
 
 			try {
-				string url = "http://blog.xamarin.com/feed/";
+				string url = "https://devblogs.microsoft.com/xamarin/feed";
 
 				XNamespace dc = "http://purl.org/dc/elements/1.1/";
 
