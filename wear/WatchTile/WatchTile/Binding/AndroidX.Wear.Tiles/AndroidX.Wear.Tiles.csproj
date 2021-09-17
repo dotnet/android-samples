@@ -61,12 +61,8 @@
       <Version>1.0.0.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\tiles-proto-1.0.0-alpha11.jar" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
