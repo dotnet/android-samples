@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.watchtile" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="30" />
+	<uses-feature android:name="android.hardware.type.watch" />
+	<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
+		<service android:name="watchtile.MyWatchTileService" android:label="Xamarin Sample" android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
+			<intent-filter>
+				<action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+			</intent-filter>
+		</service>
+	</application>
+</manifest>

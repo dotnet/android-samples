@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>847D1321-DCDB-480A-A71E-872F67BFFA1F</ID>
+	<IsFullApplication>false</IsFullApplication>
+    <Brief>Demonstrates how to implement a custom Android Wear watch tile.</Brief>
+	<Level>Intermediate</Level>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Tags>Graphics</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>true</Gallery>
+</SampleMetadata>

@@ -1,0 +1,32 @@
+﻿<metadata>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Image.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='DimensionBuilders.WrappedDimensionProp.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IContainerDimension</attr>
+  
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Arc.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.ArcAdapter.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IArcLayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.ArcLine.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IArcLayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.ArcSpacer.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IArcLayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.ArcText.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IArcLayoutElement</attr>
+
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Box.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Column.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Row.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Spacer.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.SpanImage.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ISpan</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Spannable.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.SpanText.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ISpan</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='LayoutElementBuilders.Text.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">ILayoutElement</attr>
+
+  <remove-node path="/api/package[@name='androidx.wear.tiles']/class[@name='DimensionBuilders.DpProp.Builder']" />
+  <remove-node path="/api/package[@name='androidx.wear.tiles']/class[@name='DimensionBuilders.ExpandedDimensionProp.Builder']" />
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='DimensionBuilders.ProportionalDimensionProp.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IImageDimension</attr>
+
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.AndroidBooleanExtra.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAndroidExtra</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.AndroidDoubleExtra.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAndroidExtra</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.AndroidIntExtra.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAndroidExtra</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.AndroidLongExtra.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAndroidExtra</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.AndroidStringExtra.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAndroidExtra</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.LaunchAction.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAction</attr>
+  <attr path="/api/package[@name='androidx.wear.tiles']/class[@name='ActionBuilders.LoadAction.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">IAction</attr>
+</metadata>
