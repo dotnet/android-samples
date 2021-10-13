@@ -22,6 +22,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Bluetooth;
+using Android.Bluetooth.LE;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -35,6 +36,9 @@ namespace BluetoothLeGatt
 	{
 		LeDeviceListAdapter mLeDeviceListAdapter;
 		BluetoothAdapter mBluetoothAdapter;
+		BluetoothLeScanner mBluetoothLeScanner;
+		LeScanCallback mLeScanCallback;
+
 		bool mScanning;
 		Handler mHandler;
 
@@ -60,6 +64,9 @@ namespace BluetoothLeGatt
 			// BluetoothAdapter through BluetoothManager.
 			BluetoothManager bluetoothManager = (BluetoothManager) GetSystemService (Context.BluetoothService);
 			mBluetoothAdapter = bluetoothManager.Adapter;
+			mBluetoothLeScanner = mBluetoothAdapter.BluetoothLeScanner;
+			mLeScanCallback = new LeScanCallback();
+			mLeScanCallback.Activity = this;
 
 			// Checks if Bluetooth is supported on the device.
 			if (mBluetoothAdapter == null) {
@@ -142,12 +149,12 @@ namespace BluetoothLeGatt
 			BluetoothDevice device = mLeDeviceListAdapter.GetDevice (position);
 			if (device == null) 
 				return;
-
+			
 			Intent intent = new Intent (this, typeof (DeviceControlActivity));
 			intent.PutExtra (DeviceControlActivity.EXTRAS_DEVICE_NAME, device.Name);
 			intent.PutExtra (DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.Address);
 			if (mScanning) {
-				mBluetoothAdapter.StopLeScan (this);
+				mBluetoothLeScanner.StopScan (mLeScanCallback);
 				mScanning = false;
 			}
 			StartActivity (intent);
@@ -159,17 +166,30 @@ namespace BluetoothLeGatt
 				// Stops scanning after a pre-defined scan period.
 				mHandler.PostDelayed (new Action (delegate {
 					mScanning = false;
-					mBluetoothAdapter.StopLeScan (this);
+					mBluetoothLeScanner.StopScan (mLeScanCallback);
 					InvalidateOptionsMenu ();
 				}), SCAN_PERIOD);
 
 				mScanning = true;
-				mBluetoothAdapter.StartLeScan (this);
+				mBluetoothLeScanner.StartScan (mLeScanCallback);
 			} else {
 				mScanning = false;
-				mBluetoothAdapter.StopLeScan (this);
+				mBluetoothLeScanner.StopScan (mLeScanCallback);
 			}
 			InvalidateOptionsMenu();
+		}
+
+		private class LeScanCallback : Android.Bluetooth.LE.ScanCallback
+        {
+			public DeviceScanActivity Activity { get; set; }
+			public override void OnScanResult(ScanCallbackType callbackType, ScanResult result)
+			{
+				base.OnScanResult(callbackType, result);
+				Activity.RunOnUiThread(new Action (delegate {
+					Activity.mLeDeviceListAdapter.AddDevice (result.Device);
+					Activity.mLeDeviceListAdapter.NotifyDataSetChanged();
+				}));
+			}
 		}
 
 		// Device scan callback.
