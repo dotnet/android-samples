@@ -1,5 +1,7 @@
 # MonoDroid (Xamarin.Android) samples
 
+_NOTE: see the [dotnet branch](https://github.com/xamarin/monodroid-samples/tree/dotnet) for a subset of samples that have been ported to .NET 6._
+
 This repository contains Mono for Android samples, showing usage of various
 Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android)
 to download individual samples.
