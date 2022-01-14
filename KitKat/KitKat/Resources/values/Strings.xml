@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="app_name">KitKat</string>
-	<string name="hce_service_description">An example payment Service from Xamarin</string>
-	<string name="aid_group_description">Payment group</string>
-	<string name="print">Print</string>
-</resources>

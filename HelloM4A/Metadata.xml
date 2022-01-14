@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>e5124d8a-7473-4c68-bb90-605c1cab4850</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Getting Started, User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>A simple hello world application that displays a message in a TextView when a Button is pressed.</Brief>
-</SampleMetadata>

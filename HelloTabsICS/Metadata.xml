@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>6272a210-04b9-47dd-b511-d17323d4d9fc</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Platform Features, User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This example shows how to use tabs from the Action Bar in Ice Cream Sandwich.</Brief>
-</SampleMetadata>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>23feb33f-6885-40ba-8205-8f29bb9fa841</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Platform Features, Maps + Location</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This sample provides an example of gathering location data using the FusedLocationProvider.</Brief>
-</SampleMetadata>

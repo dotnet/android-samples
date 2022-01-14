@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="app_name">SafeBrowsing</string>
-  <string name="safe_status">Safe browsing enabled</string>
-  <string name="unsafe_status">Safe browsing disabled</string>
-  <string name="blocked">Unsafe web page blocked</string>
-</resources>

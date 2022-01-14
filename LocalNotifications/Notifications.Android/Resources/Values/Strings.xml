@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<resources>
-  <string name="Hello">Hello World, Click Me!</string>
-  <string name="ApplicationName">Notifications</string>
-
-  <string name="channel_name">Local Notifications</string>
-  <string name="channel_description">The count from MainActivity.</string>
-</resources>

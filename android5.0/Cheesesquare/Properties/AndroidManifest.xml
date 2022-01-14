@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.sample.cheesesquare">
-	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="Cheesesquare" android:theme="@style/Theme.DesignDemo" android:icon="@drawable/icon"></application>
-	<uses-permission android:name="android.permission.INTERNET" />
-</manifest>

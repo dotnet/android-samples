@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>6b53a905-1768-4e1c-98e2-91e1de1bcbfb</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This sample shows a simple widget which fetches the word of the day from Wiktionary.</Brief>
-</SampleMetadata>

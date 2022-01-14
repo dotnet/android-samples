@@ -12,6 +12,7 @@ packages/
 *.designer.cs
 *.DS_Store
 *Thumbs.db
+*.binlog
 ContentControls/ContentControls/Resources/Values/PrivateStrings.xml
 
 /AndroidMapViewBalloons/android-mapviewballoons/

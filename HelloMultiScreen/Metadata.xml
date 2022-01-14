@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>9abc019e-0b98-43ac-8402-2d4bc7b1842a</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Getting Started, User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This is a simple example showing how to use activities to create multiscreen applications.</Brief>
-</SampleMetadata>

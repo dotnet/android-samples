@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>3d5eb666-c03d-4390-93c3-6861e17f4ce4</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Platform Features</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This example shows how to use the ShareActionProvider to share an image using Ice Cream Sandwich.</Brief>
-</SampleMetadata>

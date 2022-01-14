@@ -1,4 +1,0 @@
-﻿<resources>
-	<dimen name="activity_padding">16dp</dimen>
-	<dimen name="textview_drawablePadding">12dp</dimen>
-</resources>

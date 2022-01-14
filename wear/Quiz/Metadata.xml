@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>b629d83b-fceb-4c59-85de-7dc656c21fe8</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Notifications, Android Wear</Tags>
-	<Gallery>true</Gallery>
-	<Brief>Demonstrates how to create a quiz between the watch and the mobile device.</Brief>
-</SampleMetadata>

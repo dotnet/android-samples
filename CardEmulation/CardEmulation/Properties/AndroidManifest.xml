@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.CardEmulation">
-	<uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
-	<uses-permission android:name="android.permission.NFC" />
-	<application android:label="CardEmulation" android:theme="@style/AppTheme">
-	</application>
-</manifest>

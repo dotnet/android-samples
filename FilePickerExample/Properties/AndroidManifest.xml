@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto"
-          package="com.xamarin.recipe.filepicker" android:versionCode="2" android:versionName="1.1">
-  <uses-sdk android:targetSdkVersion="27" android:minSdkVersion="23" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <application android:theme="@style/AppTheme"></application>
-</manifest>

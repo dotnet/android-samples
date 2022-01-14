@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="hello">Send Notification</string>
-	<string name="app_name">DirectReply</string>
-  <string name="reply_text">Reply to message...</string>
-  <string name="replied">Replied</string>
-  <string name="message">Message</string>
-</resources>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>8b9e7a46-a2f2-4c0e-b8aa-9b942e05f900</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>User Interface</Tags>
-	<LicenseRequirement>Starter</LicenseRequirement>
-	<Brief>Demonstrates how to let users show or hide the status bar and navigation bar with a swipe programmatically.</Brief>
-</SampleMetadata>

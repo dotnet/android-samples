@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>a7d2e5d3-82f7-4fe4-b3c0-1e11479ac90a</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>User Interface, Device Features</Tags>
-	<Gallery>true</Gallery>
-	<Brief>Demonstrates using the Bluetooth APIs to create a sample chat client.</Brief>
-</SampleMetadata>

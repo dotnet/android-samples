@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-    <ID>6a261742-5ed7-4aac-b0ae-6fbe55c181e3</ID>
-    <IsFullApplication>false</IsFullApplication>
-    <Level>Intermediate</Level>
-    <Tags>Platform Features</Tags>
-	<Gallery>true</Gallery>
-	<Brief>This sample provides an overview of new features of Android 4.4 "KitKat".</Brief>
-</SampleMetadata>

@@ -1,15 +1,6 @@
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Com.Xamarin.Aidldemo;
 
 namespace Xamarin.AidlDemo
@@ -23,23 +14,21 @@ namespace Xamarin.AidlDemo
 			_activity = activity;
 		}
 
-		public IAdditionService Service 
+		public IAdditionService? Service 
 		{
 			get; private set;
 		}
 
-		public void OnServiceConnected (ComponentName name, IBinder service)
+		public void OnServiceConnected (ComponentName? name, IBinder? service)
 		{
+			ArgumentNullException.ThrowIfNull(service);
 			Service =   IAdditionServiceStub.AsInterface(service);
 			_activity.Service = (IAdditionService) Service;
-			_activity.IsBound = Service != null;
-
 		}
 
-		public void OnServiceDisconnected (ComponentName name)
+		public void OnServiceDisconnected (ComponentName? name)
 		{
 			_activity.Service = null;
-			_activity.IsBound = false;
 		}
 	}
 }

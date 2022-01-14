@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="StartActivity">Start Activity (with Java source)</string>
-	<string name="app_name">JNIDemo</string>
-</resources>

@@ -1,8 +1,0 @@
-<SampleMetadata>
-	<ID>1ec03680-ba15-40dc-aab8-51f8cb039588</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Backgrounding, Device Features</Tags>
-	<LicenseRequirement>Starter</LicenseRequirement>
-	<Brief>This sample demonstrates the use of the new Host Card Emulation (HCE) APIs in Android 4.4 (KitKat).</Brief>
-</SampleMetadata>

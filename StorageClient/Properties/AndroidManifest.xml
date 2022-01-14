@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xanarin.StorageClient" android:installLocation="auto">
-	<application android:label="StorageClient" android:icon="@drawable/icon"></application>
-	<uses-sdk android:minSdkVersion="22" />
-</manifest>

@@ -1,8 +1,40 @@
 # MonoDroid (Xamarin.Android) samples
 
+This branch contains samples ported to .NET 6.
+
+See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
+
 This repository contains Mono for Android samples, showing usage of various
 Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android)
 to download individual samples.
+
+## Tips for .NET 6 Migration
+
+The goal here is to fully "modernize" the template for .NET 6 and C# 10.
+
+Compare a `dotnet new android` template named the same as the existing project.
+
+1. If the root namespace doesn't match the project name, to get the
+   existing code to compile, you may need:
+
+```xml
+<RootNamespace>Xamarin.AidlDemo</RootNamespace>
+```
+
+2. Update any dependencies, NuGet packages, etc.
+
+3. Remove `android:versionCode`, `android:versionName`, `package`,
+   `<uses-sdk/>`, and `<application label=""`. These are defined in
+   the `.csproj` file.
+
+4. Remove all unused using statements, since we now have
+   `ImplicitUsings=enable`.
+
+5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
+
+6. Build. Fix any warnings related to nullable reference types (`Nullable=enable`).
+
+7. Run the app and ensure the sample still works.
 
 ## License
 

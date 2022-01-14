@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>985E5008-E2EF-4FF5-B790-6566F219648C</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Platform Features, Notifications</Tags>
-	<Gallery>true</Gallery>
-    <Brief>Demonstrates the display cutout and image notifications in Android P.</Brief>
-</SampleMetadata>

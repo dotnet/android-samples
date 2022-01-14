@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>267e510e-fbff-44c8-9cd0-52c59152b852</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Platform Features, User Interface, Android Wear</Tags>
-	<Gallery>true</Gallery>
-	<Brief>Demonstrates the basic outline of a wearable project, including Gridviews on Wearable devices.</Brief>
-</SampleMetadata>
