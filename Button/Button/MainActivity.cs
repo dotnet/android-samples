@@ -13,7 +13,9 @@ public class ButtonActivity : Activity
         Android.Widget.Button button = new (this);
 
         button.Text = string.Format ("{0} clicks!!", count);
-        button.Click += delegate { button.Text = string.Format ("{0} clicks!!", ++count); };
+        button.Click += delegate { 
+            button.Text = string.Format ("{0} clicks!!", ++count); 
+        };
 
         SetContentView (button);
     }
