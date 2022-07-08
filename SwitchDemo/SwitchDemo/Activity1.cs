@@ -12,7 +12,7 @@ namespace SwitchDemo
             var s = FindViewById<Switch>(Resource.Id.monitored_switch);
 
             ArgumentNullException.ThrowIfNull(s);
-            s.CheckedChange += delegate (object? sender, CompoundButton.CheckedChangeEventArgs e) {
+            s.CheckedChange += (sender, e) => {
 
                 var toast = Toast.MakeText(this, "Your answer is " + (e.IsChecked ? "correct" : "incorrect"),
                                             ToastLength.Short);
