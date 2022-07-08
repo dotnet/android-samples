@@ -1,6 +1,6 @@
 ---
 name: Xamarin.Android - Switch Demo
-description: "Shows how to use a switch control (Android Ice Cream Sandwich)"
+description: "Shows how to use a switch control"
 page_type: sample
 languages:
 - csharp
@@ -8,7 +8,7 @@ products:
 - xamarin
 extensions:
     tags:
-    - androidicecreamsandwich
+    - ui
 urlFragment: switchdemo
 ---
 # Switch Demo
