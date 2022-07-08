@@ -12,7 +12,7 @@ public class ButtonActivity : Activity
         // Create your application here
         Android.Widget.Button button = new (this);
 
-        button.Text = string.Format ("{0} clicks!!", count);
+        button.Text = $"{count} clicks!!";
         button.Click += delegate { 
             button.Text = string.Format ("{0} clicks!!", ++count); 
         };
