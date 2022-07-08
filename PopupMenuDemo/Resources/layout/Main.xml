@@ -7,7 +7,7 @@
     <Button
         android:id="@+id/popupButton"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/showPopup"
     />
 </LinearLayout>
