@@ -10,9 +10,8 @@ public class Activity1 : Activity
         SetContentView(Resource.Layout.Main);
 
         Button showPopupMenu = FindViewById<Button>(Resource.Id.popupButton)!;
-
-        if (showPopupMenu is null)
-            throw new NullReferenceException();
+            
+        ArgumentNullException.ThrowIfNull(showPopupMenu);
 
         showPopupMenu.Click += (s, arg) => {
 
