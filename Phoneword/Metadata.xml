@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>A2577E3A-EEFA-44E8-AD77-40CB4EAB6A06</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Getting Started</Tags>
+    <SupportedPlatforms>Android</SupportedPlatforms>
+	<Gallery>false</Gallery>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>Demonstrates how to convert telephone number 'words' into digits.</Brief>
+</SampleMetadata>
