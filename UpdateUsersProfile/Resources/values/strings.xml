@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UpdateUsersProfile</string>
+    <string name="app_text">Hello, Android!</string>
+	<string name="buttonText">Update Profile</string>
+	<string name="ApplicationName">UpdateUserProfile</string>
+	<string name="permission_contacts_rationale">Permission to access contacts</string>
+</resources>
