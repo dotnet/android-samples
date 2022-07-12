@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="app_name">Phone Word</string>
-	<string name="PhoneNumber">1-855-XAMARIN</string>
-	<string name="Translate">Translate</string>
-	<string name="Phoneword">Enter a Phoneword:</string>
-	</resources>
