@@ -11,9 +11,7 @@ public class Activity1 : Activity
 
         Button showPopupMenu = FindViewById<Button>(Resource.Id.popupButton)!;
             
-        ArgumentNullException.ThrowIfNull(showPopupMenu);
-
-        showPopupMenu.Click += (s, arg) => {
+            showPopupMenu!.Click += (s, arg) => {
 
             PopupMenu menu = new PopupMenu(this, showPopupMenu);
 
