@@ -14,7 +14,7 @@ public class SecondActivity : AppCompatActivity
         var count = Intent?.Extras?.GetInt (MainActivity.COUNT_KEY, -1);
 
         // No count was passed? Then just return.
-        if (count <= 0)
+        if (count is not null && count <= 0)
             return;
 
         // Display the count sent from the first activity:
