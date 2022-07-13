@@ -30,7 +30,6 @@ public class MainActivity : AppCompatActivity
         var button = FindViewById<Button> (Resource.Id.MyButton);
         ArgumentNullException.ThrowIfNull (button);
         button.Click += ButtonOnClick;
-
     }
 
     // Handler for button click events.
@@ -76,7 +75,7 @@ public class MainActivity : AppCompatActivity
     {
         ArgumentNullException.ThrowIfNull(Resources);
 
-        // API 26 and below works but are new in API 26+
+        // Creating a NotificationChannel is only needed in API 26+
         if (OperatingSystem.IsAndroidVersionAtLeast (26))
         {
             var name = Resources.GetString (Resource.String.channel_name);
