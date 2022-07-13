@@ -52,7 +52,7 @@ public class MainActivity : AppCompatActivity
         stackBuilder.AddNextIntent (resultIntent);
 
         // Create the PendingIntent with the back stack:            
-        var resultPendingIntent = stackBuilder.GetPendingIntent (0, PendingIntentFlags.UpdateCurrent);
+        var resultPendingIntent = stackBuilder.GetPendingIntent (0, PendingIntentFlags.Immutable);
 
         // Build the notification:
         var builder = new NotificationCompat.Builder (this, CHANNEL_ID)
