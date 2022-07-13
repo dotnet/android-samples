@@ -73,7 +73,7 @@ public class MainActivity : AppCompatActivity
 
     void CreateNotificationChannel ()
     {
-        ArgumentNullException.ThrowIfNull(Resources);
+        ArgumentNullException.ThrowIfNull (Resources);
 
         // Creating a NotificationChannel is only needed in API 26+
         if (OperatingSystem.IsAndroidVersionAtLeast (26))
