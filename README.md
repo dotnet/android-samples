@@ -67,6 +67,8 @@ this repository):
   6. Build. Fix any warnings related to nullable reference types (Nullable=enable).
   7. Run the app and ensure the sample still works.
 
+Another collection of tips can be found [here](https://github.com/xamarin/xamarin-android/wiki/Migrating-Xamarin.Android-Applications-to-.NET-6)
+
 ## Contributing
 
 Before adding a sample to the repository, please run either install-hook.bat
