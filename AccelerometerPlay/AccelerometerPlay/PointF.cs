@@ -1,4 +1,6 @@
-﻿/*
+﻿namespace AccelerometerPlay;
+
+/*
  * Copyright (C) 2010 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,26 +16,21 @@
  * limitations under the License.
  */
 
-using System;
-
 // It's cheaper to use a fully .Net point class than Android.Graphics.PointF
-namespace AccelerometerPlay
+class PointF
 {
-	class PointF
+	public float X;
+	public float Y;
+
+	public void Set (float x, float y)
 	{
-		public float X;
-		public float Y;
+		X = x;
+		Y = y;
+	}
 
-		public void Set (float x, float y)
-		{
-			X = x;
-			Y = y;
-		}
-
-		public void Set (PointF point)
-		{
-			X = point.X;
-			Y = point.Y;
-		}
+	public void Set (PointF point)
+	{
+		X = point.X;
+		Y = point.Y;
 	}
 }
