@@ -5,6 +5,8 @@ using Android.Widget;
 using Android.Util;
 using System;
 
+[assembly: UsesPermission(Android.Manifest.Permission.ForegroundService)]
+
 namespace ServicesDemo3
 {
 	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -85,6 +87,7 @@ namespace ServicesDemo3
 			//StopService(startServiceIntent);
 			base.OnDestroy();
 		}
+
 		void StopServiceButton_Click(object sender, System.EventArgs e)
 		{
 			stopServiceButton.Click -= StopServiceButton_Click;
