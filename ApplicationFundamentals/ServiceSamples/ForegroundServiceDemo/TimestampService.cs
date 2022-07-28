@@ -127,26 +127,47 @@ namespace ServicesDemo3
             return timestamper?.GetFormattedTimestamp();
         }
 
-        void RegisterForegroundService()
+        [RequiresApi(Api = (int)BuildVersionCodes.O)]
+        private void CreateNotificationChannel(string channelId, string channelName)
         {
-            string channelId = Resources.GetString(Resource.String.app_name) + "_" + Constants.SERVICE_RUNNING_NOTIFICATION_ID.ToString();
-            NotificationChannel chan = new NotificationChannel(channelId, Resources.GetString(Resource.String.app_name), NotificationImportance.None)
+            NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationImportance.None)
             {
                 LockscreenVisibility = NotificationVisibility.Private
             };
             NotificationManager service = GetSystemService(Context.NotificationService) as NotificationManager;
             service.CreateNotificationChannel(chan);
+        }
 
-            var notification = new Notification.Builder(this, channelId)
-                .SetContentTitle(Resources.GetString(Resource.String.app_name))
-                .SetContentText(Resources.GetString(Resource.String.notification_text))
-                .SetSmallIcon(Resource.Drawable.ic_stat_name)
-                .SetContentIntent(BuildIntentToShowMainActivity())
-                .SetOngoing(true)
-                .AddAction(BuildRestartTimerAction())
-                .AddAction(BuildStopServiceAction())
-                .Build();
+        void RegisterForegroundService()
+        {
+            Notification notification;
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                string channelId = Resources.GetString(Resource.String.app_name) + "_" + Constants.SERVICE_RUNNING_NOTIFICATION_ID.ToString();
+                CreateNotificationChannel(channelId, Resources.GetString(Resource.String.app_name));
 
+                notification = new Notification.Builder(this, channelId)
+                    .SetContentTitle(Resources.GetString(Resource.String.app_name))
+                    .SetContentText(Resources.GetString(Resource.String.notification_text))
+                    .SetSmallIcon(Resource.Drawable.ic_stat_name)
+                    .SetContentIntent(BuildIntentToShowMainActivity())
+                    .SetOngoing(true)
+                    .AddAction(BuildRestartTimerAction())
+                    .AddAction(BuildStopServiceAction())
+                    .Build();
+            }
+            else
+            {
+                notification = new Notification.Builder(this)
+                    .SetContentTitle(Resources.GetString(Resource.String.app_name))
+                    .SetContentText(Resources.GetString(Resource.String.notification_text))
+                    .SetSmallIcon(Resource.Drawable.ic_stat_name)
+                    .SetContentIntent(BuildIntentToShowMainActivity())
+                    .SetOngoing(true)
+                    .AddAction(BuildRestartTimerAction())
+                    .AddAction(BuildStopServiceAction())
+                    .Build();
+            }
 
             // Enlist this instance of the service as a foreground service
             StartForeground(Constants.SERVICE_RUNNING_NOTIFICATION_ID, notification);
