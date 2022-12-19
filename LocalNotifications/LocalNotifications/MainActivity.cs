@@ -30,8 +30,7 @@ public class MainActivity : AppCompatActivity
         SetContentView (Resource.Layout.Main);
 
         // Display the "Hello World, Click Me!" button and register its event handler:
-        var button = FindViewById<Button> (Resource.Id.MyButton);
-        ArgumentNullException.ThrowIfNull (button);
+        var button = RequireViewById<Button> (Resource.Id.MyButton);
         button.Click += (sender, e) =>
         {
             if (CheckSelfPermission(PERMISSION) == Permission.Denied)

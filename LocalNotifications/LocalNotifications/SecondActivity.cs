@@ -18,8 +18,7 @@ public class SecondActivity : AppCompatActivity
 
         // Display the count sent from the first activity:
         SetContentView (Resource.Layout.Second);
-        var txtView = FindViewById<TextView> (Resource.Id.textView1);
-        ArgumentNullException.ThrowIfNull (txtView);
+        var txtView = RequireViewById<TextView> (Resource.Id.textView1);
         txtView.Text = $"You clicked the button {count} times in the previous activity.";
     }
 }
