@@ -22,7 +22,7 @@ public class MainActivity : Activity
 
         translateButton.Click += (sender, e) =>
         {
-            // Translate user’s alphanumeric phone number to numeric
+            // Translate user's alphanumeric phone number to numeric
             translatedNumber = PhoneTranslator.ToNumber(phoneNumberText.Text);
             
             if (string.IsNullOrWhiteSpace(translatedNumber))
@@ -35,7 +35,6 @@ public class MainActivity : Activity
             }
 
             ArgumentNullException.ThrowIfNull(translatedNumber);
-
         };
     }
 }

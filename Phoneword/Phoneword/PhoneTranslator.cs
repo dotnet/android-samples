@@ -26,10 +26,12 @@ public static class PhoneTranslator
         }
         return newNumber.ToString();
     }
+
     static bool Contains(this string keyString, char c)
     {
         return keyString.IndexOf(c) >= 0;
     }
+
     static int? TranslateToNumber(char c)
     {
         if ("ABC".Contains(c))
