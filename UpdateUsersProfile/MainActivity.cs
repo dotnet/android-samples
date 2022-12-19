@@ -49,7 +49,7 @@ namespace UpdateUsersProfile
                 ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.WriteContacts) == Permission.Granted)
             {
                 // We have permission, go ahead and access contacts
-                ContentResolver?.Update(ContactsContract.Profile.ContentRawContactsUri!, values, null);
+                ContentResolver?.Update(ContactsContract.Profile.ContentRawContactsUri!, values, null, null);
             }
             else
             {
