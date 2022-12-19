@@ -9,14 +9,11 @@ namespace SwitchDemo
 
             SetContentView(Resource.Layout.Main);   
 
-            var s = FindViewById<Switch>(Resource.Id.monitored_switch);
-
-            ArgumentNullException.ThrowIfNull(s);
-            s.CheckedChange += (sender, e) => {
-
-                var toast = Toast.MakeText(this, "Your answer is " + (e.IsChecked ? "correct" : "incorrect"),
-                                            ToastLength.Short);
-                toast?.Show();
+            var monitored_switch = RequireViewById<Switch>(Resource.Id.monitored_switch);
+            monitored_switch.CheckedChange += (sender, e) =>
+            {
+                var answer = e.IsChecked ? "correct" : "incorrect";
+                Toast.MakeText(this, $"Your answer is {answer}", ToastLength.Long)!.Show();
             };
         }
     }
