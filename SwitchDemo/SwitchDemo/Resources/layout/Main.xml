@@ -5,10 +5,9 @@
 
     <Switch
         android:id="@+id/monitored_switch"
-        android:text="Is Mono for Android great?"
+        android:text="Is .NET great?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
         android:textOn="@strings/answeryes"
         android:textOff="@strings/answerno" />
 
