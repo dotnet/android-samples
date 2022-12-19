@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LocalNotifications</string>
+	<string name="Hello">Hello World, Click Me!</string>
+
+	<string name="channel_name">Local Notifications</string>
+	<string name="channel_description">The count from MainActivity.</string>
+</resources>
