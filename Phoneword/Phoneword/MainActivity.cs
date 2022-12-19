@@ -18,23 +18,20 @@ public class MainActivity : Activity
         TextView translatedPhoneWord = RequireViewById<TextView>(Resource.Id.TranslatedPhoneWord);
 
         // Add code to translate number
-        string translatedNumber = string.Empty;
-
         translateButton.Click += (sender, e) =>
         {
             // Translate user's alphanumeric phone number to numeric
-            translatedNumber = PhoneTranslator.ToNumber(phoneNumberText.Text);
+            var translatedNumber = PhoneTranslator.ToNumber(phoneNumberText.Text);
             
             if (string.IsNullOrWhiteSpace(translatedNumber))
             {
                 translatedPhoneWord.Text = string.Empty;
+                Toast.MakeText(this, "Unable to translate number!", ToastLength.Long)!.Show();
             }
             else
             {
                 translatedPhoneWord.Text = translatedNumber;
             }
-
-            ArgumentNullException.ThrowIfNull(translatedNumber);
         };
     }
 }
