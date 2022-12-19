@@ -13,9 +13,9 @@ public class MainActivity : Activity
         SetContentView(Resource.Layout.Main);
 
         // Get our UI controls from the loaded layout
-        EditText phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText)!;
-        Button translateButton = FindViewById<Button>(Resource.Id.TranslateButton)!;
-        TextView translatedPhoneWord = FindViewById<TextView>(Resource.Id.TranslatedPhoneWord)!;
+        EditText phoneNumberText = RequireViewById<EditText>(Resource.Id.PhoneNumberText);
+        Button translateButton = RequireViewById<Button>(Resource.Id.TranslateButton);
+        TextView translatedPhoneWord = RequireViewById<TextView>(Resource.Id.TranslatedPhoneWord);
 
         // Add code to translate number
         string translatedNumber = string.Empty;
