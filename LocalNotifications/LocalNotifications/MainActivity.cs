@@ -85,8 +85,10 @@ public class MainActivity : AppCompatActivity
                 Description = description
             };
 
-            var notificationManager = (NotificationManager?)GetSystemService (NotificationService);
-            notificationManager?.CreateNotificationChannel (channel);
+            if (GetSystemService(NotificationService) is NotificationManager manager)
+            {
+                manager.CreateNotificationChannel(channel);
+            }
         }
     }
 }
