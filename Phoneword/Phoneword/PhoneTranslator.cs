@@ -27,28 +27,23 @@ public static class PhoneTranslator
         return newNumber.ToString();
     }
 
-    static bool Contains(this string keyString, char c)
-    {
-        return keyString.IndexOf(c) >= 0;
-    }
-
     static int? TranslateToNumber(char c)
     {
-        if ("ABC".Contains(c))
+        if ('A' <= c && c <= 'C')
             return 2;
-        else if ("DEF".Contains(c))
+        if ('D' <= c && c <= 'F')
             return 3;
-        else if ("GHI".Contains(c))
+        if ('G' <= c && c <= 'I')
             return 4;
-        else if ("JKL".Contains(c))
+        if ('J' <= c && c <= 'L')
             return 5;
-        else if ("MNO".Contains(c))
+        if ('M' <= c && c <= 'O')
             return 6;
-        else if ("PQRS".Contains(c))
+        if ('P' <= c && c <= 'S')
             return 7;
-        else if ("TUV".Contains(c))
+        if ('T' <= c && c <= 'V')
             return 8;
-        else if ("WXYZ".Contains(c))
+        if ('W' <= c && c <= 'Z')
             return 9;
         return null;
     }
