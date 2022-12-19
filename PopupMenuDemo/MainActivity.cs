@@ -9,9 +9,8 @@ public class Activity1 : Activity
 
         SetContentView(Resource.Layout.Main);
 
-        Button showPopupMenu = FindViewById<Button>(Resource.Id.popupButton)!;
-            
-        showPopupMenu!.Click += (s, arg) => {
+        Button showPopupMenu = RequireViewById<Button>(Resource.Id.popupButton);
+        showPopupMenu.Click += (s, arg) => {
 
             PopupMenu menu = new PopupMenu(this, showPopupMenu);
 
