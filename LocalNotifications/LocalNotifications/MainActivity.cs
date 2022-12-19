@@ -3,10 +3,9 @@ using Android.Content.Res;
 using AndroidX.AppCompat.App;
 using AndroidX.Core.App;
 using Java.Lang;
-using LocalNotifications;
 using TaskStackBuilder = Android.App.TaskStackBuilder;
 
-namespace Notifications;
+namespace LocalNotifications;
 
 [Activity (Label = "Notifications", MainLauncher = true, Icon = "@drawable/Icon")]
 public class MainActivity : AppCompatActivity

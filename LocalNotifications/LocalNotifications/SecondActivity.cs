@@ -1,7 +1,6 @@
 ﻿using AndroidX.AppCompat.App;
-using LocalNotifications;
 
-namespace Notifications;
+namespace LocalNotifications;
 
 [Activity (Label = "Second Activity")]
 public class SecondActivity : AppCompatActivity
