@@ -20,10 +20,7 @@ namespace UpdateUsersProfile
             SetContentView(Resource.Layout.Main);
 
             // Get the button for updating the user profile:
-            var button = FindViewById<Button>(Resource.Id.MyButton);
-
-            ArgumentNullException.ThrowIfNull(button);
-
+            var button = RequireViewById<Button>(Resource.Id.MyButton);
             button.Click += delegate {
 
                 // Give a name to the device owner's profile:
