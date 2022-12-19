@@ -54,6 +54,51 @@ The Apache License 2.0 applies to all samples in this repository.
    See the License for the specific language governing permissions and
    limitations under the License.
 
+## Porting to NET6
+
+When porting a legacy sample to NET6+, please make sure to preserve as
+much history of the original sample as possible.  Some samples have
+their project, source and resource files in the same directory where
+the readme file, screenshot folder and other files not directly
+related to the sample code reside.  Since NET6+ defaults to importing
+all the files in the project directory as if they were part of the
+project, the application code must first be moved to a subdirectory
+(with the exception of the .sln file).
+
+New subdirectory should use the same name as the solution file,
+without the .sln extension.  After creating it **first** move all the
+relevant files and directories (source code, project file(s), the
+`Properties` and `Resources` directories etc), using the `git mv`
+command to the newly created directory, modify the .sln file to update
+project file path(s) and **commit** these changes.  This ensures that
+further changes will preserve commit history.
+
+Now the sample is ready for porting.  After creating new project file
+(using `dotnet new android -n SampleName`) in a separate directory,
+copy any necessary package and project references from the old
+project, updating them as needed and after that replace the old
+project file with the new one.  
+
+A handful of useful tips (copied from the `dotnet` branch's README in
+this repository):
+
+  1. If the root namespace doesn't match the project name, to get the existing code to compile, you may need:
+
+``` xml
+<RootNamespace>Xamarin.AidlDemo</RootNamespace>
+
+```
+  2. Update any dependencies, NuGet packages, etc.
+  3. Remove android:versionCode, android:versionName, package,
+    <uses-sdk/>, and <application label="". These are defined in the
+    .csproj file. 
+  4. Remove all unused using statements, since we now have ImplicitUsings=enable.
+  5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
+  6. Build. Fix any warnings related to nullable reference types (Nullable=enable).
+  7. Run the app and ensure the sample still works.
+
+Another collection of tips can be found [here](https://github.com/xamarin/xamarin-android/wiki/Migrating-Xamarin.Android-Applications-to-.NET-6)
+
 ## Contributing
 
 ## Samples Submission Guidelines
