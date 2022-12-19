@@ -1,6 +1,6 @@
 # MonoDroid (Xamarin.Android) samples
 
-This branch contains samples ported to .NET 6.
+This branch contains samples ported to .NET 7.
 
 See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
 
@@ -8,9 +8,9 @@ This repository contains Mono for Android samples, showing usage of various
 Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android)
 to download individual samples.
 
-## Tips for .NET 6 Migration
+## Tips for .NET 7 Migration
 
-The goal here is to fully "modernize" the template for .NET 6 and C# 10.
+The goal here is to fully "modernize" the template for .NET 7 and C# 11.
 
 Compare a `dotnet new android` template named the same as the existing project.
 

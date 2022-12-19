@@ -17,9 +17,7 @@ public class Activity1 : Activity
 		base.OnStart ();
 		InitService ();
 
-		var button1 = FindViewById<Button> (Resource.Id.buttonCalc);
-		ArgumentNullException.ThrowIfNull(button1, nameof (button1));
-
+		var button1 = RequireViewById<Button> (Resource.Id.buttonCalc);
 		button1.Click += (sender, e) => {
 			if (Service != null) {
 				var text1 = FindViewById<EditText> (Resource.Id.value1);

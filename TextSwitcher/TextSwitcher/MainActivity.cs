@@ -14,8 +14,7 @@ namespace TextSwitcher
             SetContentView(Resource.Layout.Main);
 
             // Get the TextSwitcher view from the layout
-            var mSwitcher = FindViewById<Android.Widget.TextSwitcher>(Resource.Id.switcher);
-            ArgumentNullException.ThrowIfNull(mSwitcher);
+            var mSwitcher = RequireViewById<Android.Widget.TextSwitcher>(Resource.Id.switcher);
 
             // BEGIN_INCLUDE(setup)
             // Set the factory used to create TextViews to switch between.
@@ -36,9 +35,7 @@ namespace TextSwitcher
 	         * the new value is displayed in the TextSwitcher. The change of text is
 	         * automatically animated using the in/out animations set above.
 	         */
-            var nextButton = FindViewById<Button>(Resource.Id.button);
-            ArgumentNullException.ThrowIfNull(nextButton);
-
+            var nextButton = RequireViewById<Button>(Resource.Id.button);
             nextButton.Click += (sender, e) =>
             {
                 mCounter++;

@@ -17,15 +17,12 @@ public class MainActivity : Activity
         base.OnCreate(bundle);
         SetContentView(Resource.Layout.activity_main);
         
-        var button = FindViewById<Button>(Resource.Id.myButton);
-        if (button != null)
+        var button = RequireViewById<Button>(Resource.Id.myButton);
+        button.Click += (sender, args) =>
         {
-            button.Click += (sender, args) =>
-            {
-                var intent = new Intent(this, typeof(SecondActivity));
-                StartActivity(intent);
-            };
-        }
+            var intent = new Intent(this, typeof(SecondActivity));
+            StartActivity(intent);
+        };
         
         if (bundle != null)
         {
@@ -33,16 +30,13 @@ public class MainActivity : Activity
             Log.Debug(GetType().FullName, "Activity A - Recovered instance state");
         }
         
-        var clickbutton = FindViewById<Button>(Resource.Id.clickButton);
-        if (clickbutton != null)
+        var clickbutton = RequireViewById<Button>(Resource.Id.clickButton);
+        clickbutton.Text = Resources?.GetString(Resource.String.counterbutton_text, _counter);
+        clickbutton.Click += (sender, args) =>
         {
+            _counter++;
             clickbutton.Text = Resources?.GetString(Resource.String.counterbutton_text, _counter);
-            clickbutton.Click += (sender, args) =>
-            {
-                _counter++;
-                clickbutton.Text = Resources?.GetString(Resource.String.counterbutton_text, _counter);
-            };
-        }
+        };
     }
 
     protected override void OnSaveInstanceState(Bundle outState)
