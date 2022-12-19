@@ -84,10 +84,8 @@ class SimulationView : View, ISensorEventListener
 		var opts = new BitmapFactory.Options ();
 
 		// InDither is deprecated (and has no effect) since API24
-		if (Android.OS.Build.VERSION.SdkInt <= Android.OS.BuildVersionCodes.M) {
-#pragma warning disable 0618
+		if (!OperatingSystem.IsAndroidVersionAtLeast(24)) {
 			opts.InDither = true;
-#pragma warning restore 0618
 		}
 
 		opts.InPreferredConfig = Bitmap.Config.Rgb565;
