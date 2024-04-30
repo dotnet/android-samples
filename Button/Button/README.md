@@ -1,11 +1,11 @@
 ---
-name: Xamarin.Android - Button Widget
+name: .NET for Android - Button Widget
 description: "Shows how to use a simple button widget (UI)"
 page_type: sample
 languages:
 - csharp
 products:
-- xamarin
+- dotnet-android
 extensions:
     tags:
     - ui

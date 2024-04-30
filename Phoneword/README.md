@@ -1,11 +1,11 @@
 ---
-name: Xamarin.Android - Phoneword
+name: .NET for Android - Phoneword
 description: "Sample app for the article, Hello, Android (Quickstart). This version of Phoneword incorporates all of the functionality... (get started)"
 page_type: sample
 languages:
 - csharp
 products:
-- xamarin
+- dotnet-android
 extensions:
     tags:
     - getstarted

@@ -1,11 +1,11 @@
 ---
-name: Xamarin.Android - Popup Menu
+name: .NET for Android - Popup Menu
 description: "Demonstrates how to add support for displaying popup menus that are attached to a particular view"
 page_type: sample
 languages:
 - csharp
 products:
-- xamarin
+- dotnet-android
 urlFragment: popupmenudemo
 ---
 # Popup Menu Demo

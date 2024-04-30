@@ -1,11 +1,11 @@
 ---
-name: Xamarin.Android - Switch Demo
+name: .NET for Android - Switch Demo
 description: "Shows how to use a switch control"
 page_type: sample
 languages:
 - csharp
 products:
-- xamarin
+- dotnet-android
 extensions:
     tags:
     - ui

@@ -1,11 +1,11 @@
-# MonoDroid (Xamarin.Android) samples
+# .NET for Android samples
 
 This branch contains samples ported to .NET 7.
 
 See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
 
 This repository contains Mono for Android samples, showing usage of various
-Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android)
+Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=dotnet-android)
 to download individual samples.
 
 ## Tips for .NET 7 Migration
@@ -107,32 +107,9 @@ Another collection of tips can be found [here](https://github.com/xamarin/xamari
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find the sample galleries here:
 
-- [Xamarin.Forms Samples](https://docs.microsoft.com/samples/browse/?term=Xamarin.Forms)
+- [MAUI Samples](https://learn.microsoft.com/samples/browse/?term=maui)
 
-- [iOS Samples](https://docs.microsoft.com/samples/browse/?term=Xamarin.iOS)
-
-- [Mac Samples](https://docs.microsoft.com/samples/browse/?term=Xamarin.Mac)
-
-- [Android Samples](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android)
-
-## Sample GitHub Repositories
-
-These sample galleries are populated by samples in these GitHub repos:
-
-- [https://github.com/xamarin/xamarin-forms-samples](https://github.com/xamarin/xamarin-forms-samples)
-
-- [https://github.com/xamarin/mobile-samples](https://github.com/xamarin/mobile-samples)
-
-- [https://github.com/xamarin/ios-samples](https://github.com/xamarin/ios-samples)
-
-- [https://github.com/xamarin/mac-samples](https://github.com/xamarin/mac-samples)
-
-- [https://github.com/xamarin/monodroid-samples](https://github.com/xamarin/monodroid-samples)
-
-- [https://github.com/xamarin/mac-ios-samples](https://github.com/xamarin/mac-ios-samples)
-
-The [mobile-samples](https://github.com/xamarin/mobile-samples) repository is for samples that are cross-platform.
-The [mac-ios-samples](https://github.com/xamarin/mac-ios-samples) repository is for samples that are Mac/iOS only.
+- [Android Samples](https://docs.microsoft.com/samples/browse/?term=dotnet-android)
 
 ## Sample Requirements
 
@@ -144,7 +121,7 @@ Because the sample galleries are powered by the github sample repos, each sample
 
 - **Readme** - a `README.md` file that explains the sample, and contains metadata to help customers find it. For an example of this, see [android-p/AndroidPMiniDemo](https://github.com/xamarin/monodroid-samples/blob/master/android-p/AndroidPMiniDemo/README.md). The README file should begin with a YAML header (delimited by `---`) with the following keys/values:
 
-    - **name** - must begin with `Xamarin.Android -`
+    - **name** - must begin with `.NET for Android -`
 
     - **description** - brief description of the sample (&lt; 150 chars) that appears in the sample code browser search
 
@@ -152,7 +129,7 @@ Because the sample galleries are powered by the github sample repos, each sample
 
     - **languages** - coding language/s used in the sample, such as: `csharp`, `fsharp`, `vb`, `java`
 
-    - **products**: should be `xamarin` for every sample in this repo
+    - **products**: should be `dotnet-android` for every sample in this repo
 
     - **urlFragment**: although this can be auto-generated, please supply an all-lowercase value that represents the sample's path in this repo, except directory separators are replaced with dashes (`-`) and no other punctuation.
 
@@ -160,13 +137,13 @@ Because the sample galleries are powered by the github sample repos, each sample
 
     ```yaml
     ---
-    name: Xamarin.Android - Android P Mini Demo
+    name: .NET for Android - Android P Mini Demo
     description: "Demonstrates new display cutout and image notification features (Android Pie)"
     page_type: sample
     languages:
     - csharp
     products:
-    - xamarin
+    - dotnet-android
     urlFragment: android-p-androidpminidemo
     ---
     # Heading 1
@@ -178,8 +155,5 @@ Because the sample galleries are powered by the github sample repos, each sample
 
 - **Buildable solution and .csproj file** - the project _must_ build and have the appropriate project scaffolding (solution + .csproj files).
 
-This approach ensures that all samples integrate with the Microsoft [sample code browser](https://docs.microsoft.com/samples/browse/?term=Xamarin.Android).
+This approach ensures that all samples integrate with the Microsoft [sample code browser](https://learn.microsoft.com/samples/browse/?term=dotnet-android).
 
-A good example of this stuff is here in the [Android Pie sample](https://github.com/xamarin/monodroid-samples/tree/master/android-p/AndroidPMiniDemo)
-
-For a cross-platform sample, please see: https://github.com/xamarin/mobile-samples/tree/master/Tasky
