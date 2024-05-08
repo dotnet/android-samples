@@ -1,13 +1,3 @@
----
-name: .NET for Android - Android Local Notifications Sample
-description: This sample app accompanies the article Using Local Notifications in .NET for Android.
-page_type: sample
-languages:
-- csharp
-products:
-- dotnet-android
-urlFragment: localnotifications
----
 # Android Local Notifications Sample
 
 This sample app accompanies the article,

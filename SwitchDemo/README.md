@@ -1,16 +1,3 @@
----
-name: .NET for Android - Switch Demo
-description: "Shows how to use a switch control"
-page_type: sample
-languages:
-- csharp
-products:
-- dotnet-android
-extensions:
-    tags:
-    - ui
-urlFragment: switchdemo
----
 # Switch Demo
 
 This sample app accompanies the article,
