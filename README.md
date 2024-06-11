@@ -139,15 +139,6 @@ Another collection of tips can be found [here](https://github.com/xamarin/xamari
 
 .NET (including the android-samples repo) is licensed under the [MIT license](./LICENSE).
 
-## Disclaimer
-
-The sample applications provided in this repository are intended to illustrate individual concepts that may be beneficial in understanding the underlying technology and its potential uses. These samples may not illustrate best practices for production environments.
-
-The code is not intended for operational deployment. Users should exercise caution and not rely on the samples as a foundation for any commercial or production use. See [ASP.NET Core security topics](https://learn.microsoft.com/aspnet/core/security/) for more information on security concerns related to hosting ASP.NET Core applications.
-
-## Contributing
-
-We welcome contributions to this repository of samples related to official .NET Aspire hosting and components pieces (i.e. those pieces who's code lives in the [Aspire repo](https://github.com/dotnet/aspire) and that ship from the [**Aspire** NuGet account](https://www.nuget.org/profiles/aspire)). It's generally a good idea to [log an issue](https://github.com/dotnet/aspire-samples/issues/new/choose) first to discuss any idea for a sample with the team before sending a pull request.
 
 ## Code of conduct
 
