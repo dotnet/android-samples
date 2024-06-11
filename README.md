@@ -1,107 +1,10 @@
 # .NET for Android samples
 
-This branch contains samples ported to .NET 7.
-
-See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
-
-This repository contains Mono for Android samples, showing usage of various
+This repository contains .NET for Android samples, showing usage of various
 Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=dotnet-android)
 to download individual samples.
 
-## Tips for .NET 7 Migration
-
-The goal here is to fully "modernize" the template for .NET 7 and C# 11.
-
-Compare a `dotnet new android` template named the same as the existing project.
-
-1. If the root namespace doesn't match the project name, to get the
-   existing code to compile, you may need:
-
-```xml
-<RootNamespace>Xamarin.AidlDemo</RootNamespace>
-```
-
-2. Update any dependencies, NuGet packages, etc.
-
-3. Remove `android:versionCode`, `android:versionName`, `package`,
-   `<uses-sdk/>`, and `<application label=""`. These are defined in
-   the `.csproj` file.
-
-4. Remove all unused using statements, since we now have
-   `ImplicitUsings=enable`.
-
-5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
-
-6. Build. Fix any warnings related to nullable reference types (`Nullable=enable`).
-
-7. Run the app and ensure the sample still works.
-
-## License
-
-The Apache License 2.0 applies to all samples in this repository.
-
-   Copyright 2011 Xamarin Inc
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-## Porting to NET6
-
-When porting a legacy sample to NET6+, please make sure to preserve as
-much history of the original sample as possible.  Some samples have
-their project, source and resource files in the same directory where
-the readme file, screenshot folder and other files not directly
-related to the sample code reside.  Since NET6+ defaults to importing
-all the files in the project directory as if they were part of the
-project, the application code must first be moved to a subdirectory
-(with the exception of the .sln file).
-
-New subdirectory should use the same name as the solution file,
-without the .sln extension.  After creating it **first** move all the
-relevant files and directories (source code, project file(s), the
-`Properties` and `Resources` directories etc), using the `git mv`
-command to the newly created directory, modify the .sln file to update
-project file path(s) and **commit** these changes.  This ensures that
-further changes will preserve commit history.
-
-Now the sample is ready for porting.  After creating new project file
-(using `dotnet new android -n SampleName`) in a separate directory,
-copy any necessary package and project references from the old
-project, updating them as needed and after that replace the old
-project file with the new one.  
-
-A handful of useful tips (copied from the `dotnet` branch's README in
-this repository):
-
-  1. If the root namespace doesn't match the project name, to get the existing code to compile, you may need:
-
-``` xml
-<RootNamespace>Xamarin.AidlDemo</RootNamespace>
-
-```
-  2. Update any dependencies, NuGet packages, etc.
-  3. Remove android:versionCode, android:versionName, package,
-    <uses-sdk/>, and <application label="". These are defined in the
-    .csproj file. 
-  4. Remove all unused using statements, since we now have ImplicitUsings=enable.
-  5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
-  6. Build. Fix any warnings related to nullable reference types (Nullable=enable).
-  7. Run the app and ensure the sample still works.
-
-Another collection of tips can be found [here](https://github.com/xamarin/xamarin-android/wiki/Migrating-Xamarin.Android-Applications-to-.NET-6)
-
-## Contributing
-
-## Samples Submission Guidelines
+See the [.NET MAUI Installation docs](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) for setup instructions.
 
 ## Galleries
 
@@ -157,3 +60,86 @@ Because the sample galleries are powered by the github sample repos, each sample
 
 This approach ensures that all samples integrate with the Microsoft [sample code browser](https://learn.microsoft.com/samples/browse/?term=dotnet-android).
 
+
+## Tips for .NET Migration
+
+The goal here is to fully "modernize" the template for .NET and C# 11.
+
+Compare a `dotnet new android` template named the same as the existing project.
+
+1. If the root namespace doesn't match the project name, to get the
+   existing code to compile, you may need:
+
+```xml
+<RootNamespace>Xamarin.AidlDemo</RootNamespace>
+```
+
+2. Update any dependencies, NuGet packages, etc.
+
+3. Remove `android:versionCode`, `android:versionName`, `package`,
+   `<uses-sdk/>`, and `<application label=""`. These are defined in
+   the `.csproj` file.
+
+4. Remove all unused using statements, since we now have
+   `ImplicitUsings=enable`.
+
+5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
+
+6. Build. Fix any warnings related to nullable reference types (`Nullable=enable`).
+
+7. Run the app and ensure the sample still works.
+
+
+## Porting to .NET
+
+When porting a legacy sample to .NET, please make sure to preserve as
+much history of the original sample as possible.  Some samples have
+their project, source and resource files in the same directory where
+the readme file, screenshot folder and other files not directly
+related to the sample code reside.  Since .NET defaults to importing
+all the files in the project directory as if they were part of the
+project, the application code must first be moved to a subdirectory
+(with the exception of the .sln file).
+
+New subdirectory should use the same name as the solution file,
+without the .sln extension.  After creating it **first** move all the
+relevant files and directories (source code, project file(s), the
+`Properties` and `Resources` directories etc), using the `git mv`
+command to the newly created directory, modify the .sln file to update
+project file path(s) and **commit** these changes.  This ensures that
+further changes will preserve commit history.
+
+Now the sample is ready for porting.  After creating new project file
+(using `dotnet new android -n SampleName`) in a separate directory,
+copy any necessary package and project references from the old
+project, updating them as needed and after that replace the old
+project file with the new one.  
+
+A handful of useful tips (copied from the `dotnet` branch's README in
+this repository):
+
+  1. If the root namespace doesn't match the project name, to get the existing code to compile, you may need:
+
+``` xml
+<RootNamespace>Xamarin.AidlDemo</RootNamespace>
+
+```
+  2. Update any dependencies, NuGet packages, etc.
+  3. Remove android:versionCode, android:versionName, package,
+    <uses-sdk/>, and <application label="". These are defined in the
+    .csproj file. 
+  4. Remove all unused using statements, since we now have ImplicitUsings=enable.
+  5. Fix all namespace declarations to use C# 10 file-scoped namespaces.
+  6. Build. Fix any warnings related to nullable reference types (Nullable=enable).
+  7. Run the app and ensure the sample still works.
+
+Another collection of tips can be found [here](https://github.com/xamarin/xamarin-android/wiki/Migrating-Xamarin.Android-Applications-to-.NET-6)
+
+## License
+
+.NET (including the android-samples repo) is licensed under the [MIT license](./LICENSE).
+
+
+## Code of conduct
+
+This project has adopted the code of conduct defined by the [Contributor Covenant](https://contributor-covenant.org) to clarify expected behavior in our community. For more information, see the [.NET Foundation Code of Conduct](https://www.dotnetfoundation.org/code-of-conduct).
