@@ -1,6 +1,6 @@
 # .NET for Android samples
 
-This repository contains .NET for Android samples, showing usage of various
+This repository contains [.NET for Android](https://github.com/dotnet/android) samples, showing usage of various
 Android API wrappers from C#. Visit the [Android Sample Gallery](https://docs.microsoft.com/samples/browse/?term=dotnet-android)
 to download individual samples.
 
