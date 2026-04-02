@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HpkeEncryption/HpkeEncryption.csproj">
+    <Deploy />
+  </Project>
+</Solution>
