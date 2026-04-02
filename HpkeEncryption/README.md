@@ -25,6 +25,10 @@ decrypt it with their private key in a single "open" operation.
 - Lets the user type a message and **Seal (encrypt)** it, displaying the Base64-encoded ciphertext
 - Lets the user **Open (decrypt)** the ciphertext back to plaintext
 
+## Screenshot
+
+![HPKE Encryption sample](Screenshots/screenshot-1.png)
+
 ## Requirements
 
 | Requirement | Value |
