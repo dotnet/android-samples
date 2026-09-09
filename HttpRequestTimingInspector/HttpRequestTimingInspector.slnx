@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HttpRequestTimingInspector/HttpRequestTimingInspector.csproj">
+    <Deploy />
+  </Project>
+</Solution>
