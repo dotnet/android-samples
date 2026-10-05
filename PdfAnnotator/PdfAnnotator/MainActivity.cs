@@ -76,7 +76,12 @@ namespace PdfAnnotator
 			}
 			if (_page == null) return;
 
-			var highlight = new HighlightAnnotation([new RectF(0f, 0f, _page.Width, _page.Height)]);
+			var highlightBounds = new RectF(
+				_page.Width * 0.25f,
+				_page.Height * 0.45f,
+				_page.Width * 0.75f,
+				_page.Height * 0.55f);
+			var highlight = new HighlightAnnotation([highlightBounds]);
 
 			// Semi-transparent yellow so content shows through
 			var color = Color.Yellow;
