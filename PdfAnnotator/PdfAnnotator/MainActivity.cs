@@ -81,7 +81,7 @@ namespace PdfAnnotator
 			// Semi-transparent yellow so content shows through
 			var color = Color.Yellow;
 			color.A = 128; // 50% transparent
-			highlight.SetColor(color);
+			highlight.Color = color;
 
 			// Add the annotation to this page (36.1+ API)
 			var id = _page.AddPageAnnotation(highlight);
