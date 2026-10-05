@@ -5,5 +5,5 @@ This sample app accompanies the article,
 
 
 ![Switch control in an Android app](Screenshots/screenshot.png)
-![Switch on in an Android app](Screenshots/Screenshot_switchon)
-![Switch off in an Android app](Screenshots/Screenshot_switchoff)
+![Switch on in an Android app](Screenshots/Screenshot_switchon.png)
+![Switch off in an Android app](Screenshots/Screenshot_switchoff.png)

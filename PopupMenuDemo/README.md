@@ -5,4 +5,4 @@
 It demonstrates how to add support for displaying popup menus that are attached to
 a particular view.
 
-![Popup menu in Android](Screenshots/PopupMenuDemo.png)
+![Popup menu in Android](../Screenshots/PopupMenuDemo.png)
