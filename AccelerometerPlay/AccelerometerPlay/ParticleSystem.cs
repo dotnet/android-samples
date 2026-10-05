@@ -96,8 +96,8 @@ class ParticleSystem
 							
 						// add a little bit of entropy, after nothing is
 						// perfect in the universe.
-						dx += ((float)random.Next () - 0.5f) * 0.0001f;
-						dy += ((float)random.Next () - 0.5f) * 0.0001f;
+						dx += ((float)random.NextDouble () - 0.5f) * 0.0001f;
+						dy += ((float)random.NextDouble () - 0.5f) * 0.0001f;
 						dd = dx * dx + dy * dy;
 
 						// simulate the spring
