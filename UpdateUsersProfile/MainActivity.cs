@@ -23,13 +23,15 @@ namespace UpdateUsersProfile
             var button = RequireViewById<Button>(Resource.Id.MyButton);
             button.Click += delegate {
 
+                bool hasContactsPermissions = HasContactsPermissions();
+
                 // Give a name to the device owner's profile:
                 NameOwner();
 
-                // Read back the name: 
-                if (ReadBackName())
-                    // launch an activity to view the profile if reading the name works:
-                    ViewProfile();
+                // A permission request completes asynchronously. Continue only when the
+                // permissions were already granted; the callback handles the other path.
+                if (hasContactsPermissions)
+                    ShowProfileAfterUpdate();
             };
         }
 
@@ -60,11 +62,23 @@ namespace UpdateUsersProfile
             if (requestCode == REQUEST_CONTACTS)
             {
                 // Check if the required permission(s) have been granted
-                if (grantResults.All(r => r == Permission.Granted))
+                if (grantResults.Length == 2 && grantResults.All(r => r == Permission.Granted))
                 {
                     NameOwner();
+                    ShowProfileAfterUpdate();
                 }
             }
+        }
+
+        bool HasContactsPermissions() =>
+            ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.ReadContacts) == Permission.Granted &&
+            ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.WriteContacts) == Permission.Granted;
+
+        void ShowProfileAfterUpdate()
+        {
+            // Read back the name and launch the profile only when the read succeeds.
+            if (ReadBackName())
+                ViewProfile();
         }
 
         // Read back the user name and print it to the console:
